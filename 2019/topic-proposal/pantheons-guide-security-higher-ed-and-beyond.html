@@ -1,0 +1,3677 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="Drupal security is relevant to everyone, but particularly concerning to higher ed where you’re a big target with limited resources. Left to our own devices we may be inclined to search for a good article about Drupal security and install a slew of modules that sound promising. But did you understand why certain items were suggested, or what exactly they accomplished?" />
+<link rel="canonical" href="pantheons-guide-security-higher-ed-and-beyond.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Pantheon&#039;s Guide to Security in Higher Ed and Beyond | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Pantheon&#039;s Guide to Security in Higher Ed and Beyond | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_Qoyy92GHt9RyGOt8N3WS_9HRsJcJBywJ2IhXudzvST4.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJw9jFEKwzAMQy-ULkcqTqx2AaceUdbRnX6hpfsRTzyhbEIeMQkR8sVLsT9XkLKCd99ch_OGQa2KlS_CU3pHi6t5EpsyGXiwo16ne1H4jJqg81JgGhv48o1lx3TKMcGH8cxHdX0bfg1uOh4.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_QAC1R0aFoF1mIVQtLAaSE24B2iwnT2ZCa0cZDeZsPV0.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJw9jFEKwzAMQy-ULkcqTqx2AaceUdbRnX6hpfsRTzyhbEIeMQkR8sVLsT9XkLKCd99ch_OGQa2KlS_CU3pHi6t5EpsyGXiwo16ne1H4jJqg81JgGhv48o1lx3TKMcGH8cxHdX0bfg1uOh4.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJw9jFEKwzAMQy-ULkcqTqx2AaceUdbRnX6hpfsRTzyhbEIeMQkR8sVLsT9XkLKCd99ch_OGQa2KlS_CU3pHi6t5EpsyGXiwo16ne1H4jJqg81JgGhv48o1lx3TKMcGH8cxHdX0bfg1uOh4.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJw9jFEKwzAMQy-ULkcqTqx2AaceUdbRnX6hpfsRTzyhbEIeMQkR8sVLsT9XkLKCd99ch_OGQa2KlS_CU3pHi6t5EpsyGXiwo16ne1H4jJqg81JgGhv48o1lx3TKMcGH8cxHdX0bfg1uOh4.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="pantheons-guide-security-higher-ed-and-beyond.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-hatter-midcamp2019navigation-menu" id="block-hatter-midcamp2019navigation" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-midcamp2019navigation-menu">Midcamp 2019 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" title="About MidCamp" data-drupal-link-system-path="node/191">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--venue">
+        <a href="../about/venue.html" data-drupal-link-system-path="node/192">Venue</a>
+            </li>
+          <li class="primary-nav__sublist-item item--travel">
+        <a href="../about/travel.html" title="Travel and Accommodations" data-drupal-link-system-path="node/188">Travel</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../about/lunch.html" title="Lunch options" data-drupal-link-system-path="node/189">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--volunteer">
+        <a href="../article/volunteer-help-midcamp.html" title="Volunteer!">Volunteer!</a>
+            </li>
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2019/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../../2020/news.html" data-drupal-link-system-path="2020/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--attendees">
+        <a href="../attendees.html" data-drupal-link-system-path="2019/attendees">Attendees</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" data-drupal-link-system-path="2019/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--spread-the-word">
+        <a href="../article/spread-word.html" data-drupal-link-system-path="node/371">Spread the Word</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" title="Sponsors" data-drupal-link-system-path="node/197">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--become-a-sponsor">
+        <a href="../sponsor-midcamp.html" title="Sponsor MidCamp" data-drupal-link-system-path="node/186">Become a Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../../jobs.html" title="Jobs" data-drupal-link-system-path="jobs">Jobs</a>
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" title="Schedule" data-drupal-link-system-path="node/190">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--all-sessions">
+        <a href="../sessions.html" data-drupal-link-system-path="2019/sessions">All Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--summits--training-wed">
+        <a href="../schedule/wednesday.html" title="Summits &amp; Training (Wednesday)" data-drupal-link-system-path="2019/schedule/wednesday">Summits &amp; Training (Wed)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-thu">
+        <a href="../schedule/thursday.html" title="Sessions (Thursday)" data-drupal-link-system-path="2019/schedule/thursday">Sessions (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-fri">
+        <a href="../schedule/friday.html" title="Sessions (Friday)" data-drupal-link-system-path="2019/schedule/friday">Sessions (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--contribution-sat-">
+        <a href="../contribution-day.html" title="Contribution Day" data-drupal-link-system-path="node/332">Contribution (Sat) </a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-terms-and-conditions">
+        <a href="../../speaker-terms-and-conditions.html" title="Speaker Terms and Conditions" data-drupal-link-system-path="node/21">Speaker Terms and Conditions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../../speaker-resources.html" title="Speaker Resources">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--topic-tracks">
+        <a href="../../topic-tracks.html" title="Topic Tracks" data-drupal-link-system-path="node/10">Topic Tracks</a>
+            </li>
+  </ul>
+
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2019.html" hreflang="en">MidCamp 2019</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Pantheon&#039;s Guide to Security in Higher Ed and Beyond</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="342" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2019-03-21T18:30:00Z" class="datetime">Thursday, 1:30 pm CDT</time>
+ - <time datetime="2019-03-21T19:30:00Z" class="datetime">Thursday, 2:30 pm CDT</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-81" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-name field--type-string field--label-hidden field__item">Room 314A</div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>Drupal security is relevant to everyone, but particularly concerning to higher ed where you’re a big target with limited resources. Left to our own devices we may be inclined to search for a good article about Drupal security and install a slew of modules that sound promising. But did you understand why certain items were suggested, or what exactly they accomplished?</p>
+
+<p>In this session, we’ll start by talking about security at a high level and describe why Universities are often a target. From there, we’ll give you a list of actionable takeaways relevant to anyone concerned about security.</p>
+
+<ul>
+	<li>What security issues are most likely to affect our site?</li>
+	<li>What are our options and what do they accomplish?</li>
+	<li>When should we apply them (and when shouldn’t we)?</li>
+	<li>What do we do about things outside of our control?</li>
+	<li>How do the pieces fit together into a more robust security posture?</li>
+</ul></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/noHKX7KwEBE?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-presenter-slides field--type-file field--label-above">
+    <div class="field__label">Presenter Slides</div>
+              <div class="field__item">
+<span class="file file--mime-application-pdf file--application-pdf"> <a href="../../sites/default/files/2019-03/whatwhyofwordpress-midcamp.pdf" type="application/pdf">whatwhyofwordpress-midcamp.pdf</a></span>
+</div>
+          </div>
+
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>David Needham</h4>
+
+      Developer Advocate
+
+
+          @
+              <a href="https://pantheon.io">Pantheon</a>
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p>David Needham is a Developer Advocate at Pantheon where he focuses on developer education and training. When he's not blogging about productivity at davidneedham.me or speaking at conferences, you can probably find him with his bicycle-loving family playing board games in Champaign, IL.</p>
+</div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2018-01/David%20Needham%20-%20Pantheon%20-%20cropped.jpg%3Fitok=uWxg4dea" width="220" height="220" alt="David Needham, Developer Advocate at Pantheon" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+          <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Paul Gilzow</h4>
+
+      Developer Relations Engineer
+
+
+          @
+              <a href="https://platform.sh/">Platform.sh</a>
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p>Developer Relations Engineer at Platform.sh. Former Programmer/Analyst-Principal at the University of Missouri. Web application security and accessibility evangelist. Software instructor. Conference lecturer and presenter. Runs on passion and coffee. Outside of work, you'll find Gilzow mountain biking, snowboarding, enjoying live music with his kids, and dancing wherever the mood strikes.</p>
+</div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2019-02/avatar-2016.jpg%3Fitok=9QY127Nt" width="220" height="220" alt="Paul wearing sunglasses and a giant smile" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">DevOps</div>
+          <div class="field__item">Site Building</div>
+          <div class="field__item">Sponsored Session</div>
+              </div>
+      </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p>hello everyone welcome to Vamsi ons</p>
+
+<p>guide to security in higher education</p>
+
+<p>and beyond my name is David Needham I'm</p>
+
+<p>a developer advocate at Pantheon what</p>
+
+<p>that means that I get to sort of sit</p>
+
+<p>between the developers that are actually</p>
+
+<p>out from the world using Pantheon and</p>
+
+<p>the developers that are creating</p>
+
+<p>Pantheon and making it better so it's</p>
+
+<p>been a lot of time doing training</p>
+
+<p>creating the curriculum leading</p>
+
+<p>workshops and coming to camps and</p>
+
+<p>conferences just like this my name is</p>
+
+<p>Paul Gill so I'm a programmer analyst at</p>
+
+<p>the University of Missouri my title is</p>
+
+<p>programmer in this but I also serve</p>
+
+<p>part-time with the security team and</p>
+
+<p>help triage website compromises as well</p>
+
+<p>as David I'm the go-between between the</p>
+
+<p>web developers on campus and the</p>
+
+<p>security team to make sure that as</p>
+
+<p>they're developing they're doing it in a</p>
+
+<p>secure fashion so real quick how many of</p>
+
+<p>you are actually actually work in higher</p>
+
+<p>education a couple of inch so you know</p>
+
+<p>okay so some of the examples I gave are</p>
+
+<p>specific to higher ed but the general</p>
+
+<p>concepts overall are apply a protocol to</p>
+
+<p>every site and everybody's web site so</p>
+
+<p>even though it says higher it actually</p>
+
+<p>is applicable I will give you some</p>
+
+<p>warnings about myself I feel like to</p>
+
+<p>wander around I always like to talk</p>
+
+<p>really fast and I know we just finished</p>
+
+<p>lunch so you're probably kind of little</p>
+
+<p>sleepy so I'm gonna try to keep the</p>
+
+<p>energy levels high keep you engaged and</p>
+
+<p>energetic but if I happen to go too fast</p>
+
+<p>don't hesitate slowing down if I happen</p>
+
+<p>to go over your parts don't hesitate to</p>
+
+<p>kick me and let me know so the whole</p>
+
+<p>this whole talk this presentation really</p>
+
+<p>boils down to minimizing risk how do we</p>
+
+<p>as developers how's my site</p>
+
+<p>administrators minimize risks well we</p>
+
+<p>have to make sure first that we're all</p>
+
+<p>working from the same definition of risk</p>
+
+<p>so whoops I skipped one slide there no</p>
+
+<p>fast</p>
+
+<p>backup here</p>
+
+<p>sorry about that so when I say risk in</p>
+
+<p>terms of this presentation what I mean</p>
+
+<p>by is that intersection there where</p>
+
+<p>assets threats and vulnerabilities kind</p>
+
+<p>of overlap all right so we need to make</p>
+
+<p>sure that everybody is clear what I mean</p>
+
+<p>by those three now so an asset can be</p>
+
+<p>people it can be property it can be</p>
+
+<p>information or data it's basically</p>
+
+<p>everything that we need to protect</p>
+
+<p>anything that we're trying to protect</p>
+
+<p>those things that are important to us</p>
+
+<p>that have value that we need to protect</p>
+
+<p>a threatening it is anything that poses</p>
+
+<p>a danger to those assets whether</p>
+
+<p>intentionally or by accident</p>
+
+<p>in addition that threatens what we're</p>
+
+<p>trying to protect against and a threat</p>
+
+<p>agent is a person or a group that he's</p>
+
+<p>going to implement or exploit a</p>
+
+<p>vulnerability against that asset to</p>
+
+<p>cause that threat to occur a</p>
+
+<p>vulnerability then is you skipping my</p>
+
+<p>slides I'm sorry fingers going too fast</p>
+
+<p>a vulnerability then is a weakness or a</p>
+
+<p>whole gap something and either your</p>
+
+<p>security measures or it's something that</p>
+
+<p>allows that threat agent to take</p>
+
+<p>advantage of a vulnerability and cause</p>
+
+<p>that threat to happen makes sense so far</p>
+
+<p>okay so as a as an analogy let's say</p>
+
+<p>that you are the asset alright and the</p>
+
+<p>thread is rain and the vulnerability is</p>
+
+<p>that you have a hole in your own bro so</p>
+
+<p>what's the risk and this analogy</p>
+
+<p>getting away right okay but there's one</p>
+
+<p>key piece from our definition of risk</p>
+
+<p>that I overlooked I didn't mention so</p>
+
+<p>let's say it's Friday afternoon and it's</p>
+
+<p>raining but it's just a light drizzle</p>
+
+<p>you're gonna walk home there is a</p>
+
+<p>holding your umbrella but you have no</p>
+
+<p>plans to even you're just going to go</p>
+
+<p>home and watch the TV so how big of a</p>
+
+<p>deal is it if you get wet if that threat</p>
+
+<p>that risk comes that past middle all</p>
+
+<p>right now let's say instead after work</p>
+
+<p>on Friday you have a really big event</p>
+
+<p>you're going to they're gonna walk there</p>
+
+<p>and you have some really expensive shoes</p>
+
+<p>that cannot get wet now happy gonna deal</p>
+
+<p>is it yeah that impact really is much</p>
+
+<p>greater if that comes to pass</p>
+
+<p>so that piece that we're missing</p>
+
+<p>it's the potential for loss or damage to</p>
+
+<p>those assets because of a threat</p>
+
+<p>exploiting a vulnerability multiplied by</p>
+
+<p>the impact of that threat courage makes</p>
+
+<p>sense so then in terms of minimizing</p>
+
+<p>risk what we're trying to do is minimize</p>
+
+<p>any of these things if we can minimize</p>
+
+<p>the threats we've minimized the risk if</p>
+
+<p>we can minimize the assets we minimize</p>
+
+<p>the risk if we can minimize the impacts</p>
+
+<p>we minimize the risk</p>
+
+<p>buddy good I follow along any questions</p>
+
+<p>so far</p>
+
+<p>alright now for those of you in higher</p>
+
+<p>education we are we come are in a very</p>
+
+<p>interesting industry I worked in hired</p>
+
+<p>for almost 20 years now we are a weird</p>
+
+<p>industry all right we often I'll often</p>
+
+<p>mention ideals and I understand fully</p>
+
+<p>how in higher it is hard to hit those</p>
+
+<p>ideals but we're particularly interested</p>
+
+<p>particularly attractive as a target</p>
+
+<p>because we very many reasons one is we</p>
+
+<p>have a lot of network bandwidth and</p>
+
+<p>availability how many of you been on</p>
+
+<p>campus when the network goes down</p>
+
+<p>what kind of stormed that create</p>
+
+<p>especially among your students right so</p>
+
+<p>we have huge amounts of capacity and</p>
+
+<p>massive uptime in addition we're often</p>
+
+<p>rich in hardware infrastructure</p>
+
+<p>especially if you're a research</p>
+
+<p>institution you might have your own data</p>
+
+<p>centers and you might have your own hive</p>
+
+<p>available hi Billy bit I can't talk</p>
+
+<p>today high availability machines so we</p>
+
+<p>often have lots of hardware for all that</p>
+
+<p>richness and hardware though we're often</p>
+
+<p>in fairly poor in those human resources</p>
+
+<p>the number of people the number of staff</p>
+
+<p>that are available to temperature tech</p>
+
+<p>and maintain those those pieces of</p>
+
+<p>hardware we're all so resistant to</p>
+
+<p>blacklisting how many can anybody hit</p>
+
+<p>about edu top-level domain no you have</p>
+
+<p>to be vetted you have to be in Institute</p>
+
+<p>of Education in order to get a dot edu</p>
+
+<p>so because of that were often resistant</p>
+
+<p>not immune but resistance to</p>
+
+<p>blacklisting</p>
+
+<p>search engines span house those that</p>
+
+<p>monitor those IP addresses that have</p>
+
+<p>been compromised will often give us the</p>
+
+<p>benefit of the doubt and give us a bit</p>
+
+<p>more</p>
+
+<p>time to clean things up they were just a</p>
+
+<p>regular comma or so in terms of an</p>
+
+<p>attacker if I'm looking to run maybe a</p>
+
+<p>spam SEO campaign that's going to be an</p>
+
+<p>extreme value because I know that dot</p>
+
+<p>e-d-u is going to be resistant to black</p>
+
+<p>listing on your SEO reputation again</p>
+
+<p>because not everybody can have a dot edu</p>
+
+<p>you rank higher in those search results</p>
+
+<p>because of your domain so if I can get</p>
+
+<p>my links on to your pages that's going</p>
+
+<p>to elevate my search engine rankings</p>
+
+<p>beyond that how much personally</p>
+
+<p>identifiable information and sensitive</p>
+
+<p>information you have it higher it Wow</p>
+
+<p>so think about you've got all kinds of</p>
+
+<p>information on your students you got all</p>
+
+<p>kinds of information on your staff and</p>
+
+<p>your faculty a ton of PII and SII SBI</p>
+
+<p>you might have if you're connected to a</p>
+
+<p>medical institution or a hospital you</p>
+
+<p>might have protected health information</p>
+
+<p>I gave you a research institution you</p>
+
+<p>might have content confidential</p>
+
+<p>intellectual property you might have</p>
+
+<p>national security secrets or export</p>
+
+<p>control data we have a ton and what are</p>
+
+<p>all these now this is higher ed but a</p>
+
+<p>lot of this applies those of you who are</p>
+
+<p>not been hiring right your website is</p>
+
+<p>running on some type of machine whether</p>
+
+<p>that's virtual real right you have our</p>
+
+<p>SEO reputation you could be used to send</p>
+
+<p>out spam you might get black with a</p>
+
+<p>little bit faster but that's gonna</p>
+
+<p>impact your business so even though</p>
+
+<p>you're not in higher ed you still have a</p>
+
+<p>ton of assets that are out there that</p>
+
+<p>are valuable and need to be protected</p>
+
+<p>all right so what we're going to go over</p>
+
+<p>it's kind of the most common things that</p>
+
+<p>are suggested you do to protect your</p>
+
+<p>website all right and not not any</p>
+
+<p>particular order these aren't ranked as</p>
+
+<p>far as the importance of them just</p>
+
+<p>general things that are suggested but</p>
+
+<p>more importantly we're gonna talk about</p>
+
+<p>the whys so maybe you've heard you</p>
+
+<p>should do backups you should do backups</p>
+
+<p>but if you don't understand why you're</p>
+
+<p>doing the backups maybe you've done them</p>
+
+<p>but you hadn't really understood the</p>
+
+<p>concept behind it all right so that's</p>
+
+<p>what we're going to cover so what a</p>
+
+<p>backup is specifically it's simply a</p>
+
+<p>snapshot of the files that come from are</p>
+
+<p>not compromised make up your website get</p>
+
+<p>the code and maybe the documents the</p>
+
+<p>images the j/s the CSS all the pieces as</p>
+
+<p>well as the database so snapshot goes</p>
+
+<p>and takes a snapshot takes a backup of</p>
+
+<p>all those things all right why do you</p>
+
+<p>want to do that why is this important</p>
+
+<p>because you can replace it yeah you</p>
+
+<p>should have a plan B right cuz it's not</p>
+
+<p>a matter of if you get compromised it's</p>
+
+<p>a matter of what win right this is why</p>
+
+<p>it's just a matter of win</p>
+
+<p>so should always have a plan B but even</p>
+
+<p>more importantly than that it addresses</p>
+
+<p>two types of threats the first is a data</p>
+
+<p>loss of damage we talked about that so</p>
+
+<p>if I have a backup if I've got a back of</p>
+
+<p>my database and then somebody</p>
+
+<p>compromises my database something deal</p>
+
+<p>I've never lose anything except maybe</p>
+
+<p>the information between witness snapshot</p>
+
+<p>was taken and when it was compromised</p>
+
+<p>it addresses disruption and service and</p>
+
+<p>as far as how it reduces risk it's going</p>
+
+<p>to lower the impact because again if my</p>
+
+<p>site is completely compromised but I</p>
+
+<p>know I've got a good backup in place</p>
+
+<p>it's not as much of an impact to have</p>
+
+<p>that compromise happen because I can</p>
+
+<p>just roll back to that backup all right</p>
+
+<p>some bonus points you should protect</p>
+
+<p>your backups now I don't know is how</p>
+
+<p>many Drupal modules as far as that do</p>
+
+<p>your backups backup into unprotected</p>
+
+<p>places I do a lot of work on the</p>
+
+<p>WordPress site as far as compromised</p>
+
+<p>sites and a lot of those backup the</p>
+
+<p>backups into publicly available areas</p>
+
+<p>once you create a backup what does it</p>
+
+<p>become an asset right so we got to</p>
+
+<p>protect those assets so make sure you're</p>
+
+<p>protecting the backup don't put don't</p>
+
+<p>place your back up into your git</p>
+
+<p>repository put it on the github you know</p>
+
+<p>gonna take a sequel snapshot and put it</p>
+
+<p>out there and get it over if I can get</p>
+
+<p>it you want to make sure you protect</p>
+
+<p>those backups so don't keep them in</p>
+
+<p>publicly accessible areas and this is</p>
+
+<p>one that most of the documents most of</p>
+
+<p>the Articles that you read about how to</p>
+
+<p>exercise always get how many you test</p>
+
+<p>your backups on a routine basis good but</p>
+
+<p>that's one person this will remove right</p>
+
+<p>most people especially don't understand</p>
+
+<p>why you're backing up don't go and test</p>
+
+<p>what do you not want to have happen in</p>
+
+<p>the instance where you are compromised</p>
+
+<p>not defined right not that's the reason</p>
+
+<p>we test our backup since we weren't able</p>
+
+<p>to read exactly because you don't want</p>
+
+<p>to get your situation where it's like</p>
+
+<p>you're compromised like it's no big deal</p>
+
+<p>it's cool yeah backup go to the backup</p>
+
+<p>it's corrupted now what do you do you</p>
+
+<p>want to make sure you're testing those</p>
+
+<p>backups on a routine basis now as far as</p>
+
+<p>Pantheon goes I'm gonna hand it over to</p>
+
+<p>you talking about how pay at the on</p>
+
+<p>handles backups yeah but before we do</p>
+
+<p>before we do that though I just want to</p>
+
+<p>say I'd love the posters that you've</p>
+
+<p>added to this presentation where did you</p>
+
+<p>get these from these are actually from</p>
+
+<p>the NSA the NSA I can't mean back in 60s</p>
+
+<p>to encourage security back when we were</p>
+
+<p>in the Cold War and they were recent</p>
+
+<p>released through the freedom information</p>
+
+<p>the the timeline for when they're</p>
+
+<p>confidential expired and now they're</p>
+
+<p>back in the public domain so you</p>
+
+<p>actually download all these and they're</p>
+
+<p>great some of these are fantastic cool</p>
+
+<p>hey can we switch back to you exactly</p>
+
+<p>yep cool so hey we have a a Pantheon</p>
+
+<p>site here this is the standard you want</p>
+
+<p>run-of-the-mill Pantheon site but when</p>
+
+<p>you have a site on Pantheon you</p>
+
+<p>automatically get backups created for</p>
+
+<p>you they happen automatically every day</p>
+
+<p>so it's not something you have to think</p>
+
+<p>about so just as an example for the sake</p>
+
+<p>of a demo we have this live site if I</p>
+
+<p>visit the live URL I can see wait for it</p>
+
+<p>we have a website but oh oh no this site</p>
+
+<p>has been hacked sword we have a problem</p>
+
+<p>because something has happened here</p>
+
+<p>that you know we would rather not have</p>
+
+<p>to deal with well we could we need to</p>
+
+<p>figure out exactly how this happened and</p>
+
+<p>get to the end of that but before we do</p>
+
+<p>that we it's quick and easy just to</p>
+
+<p>restore our backup and I'm doing this as</p>
+
+<p>an example but again like testing your</p>
+
+<p>backups on a regular basis is something</p>
+
+<p>that you're gonna want to do and</p>
+
+<p>something that Pantheon makes really</p>
+
+<p>easy to so if I jump over to the backup</p>
+
+<p>section I can see all the backups that</p>
+
+<p>have happened over time I can see</p>
+
+<p>actually there is a recent one that</p>
+
+<p>happened today but it was actually</p>
+
+<p>before I hacked to this site or after I</p>
+
+<p>hacked the site so I'm gonna restore</p>
+
+<p>from this manual one that I created I'm</p>
+
+<p>just gonna click restore</p>
+
+<p>and since I'm doing this on the live</p>
+
+<p>site obviously it's over writing you</p>
+
+<p>know the database the files which are</p>
+
+<p>like the content related files images in</p>
+
+<p>PDFs as well as the code so it's not</p>
+
+<p>something you're going to want to do all</p>
+
+<p>the time it's not something hopefully</p>
+
+<p>you'll never have to do on the live</p>
+
+<p>environment but this is something that</p>
+
+<p>you could do in any of your other</p>
+
+<p>environments you could spin up a</p>
+
+<p>development site apply all the backed up</p>
+
+<p>files there and just verify that it's</p>
+
+<p>actually working all right so it's in</p>
+
+<p>the process of restoring let's just flip</p>
+
+<p>back over to a quick refresh and there</p>
+
+<p>we go it's back to exactly how it was</p>
+
+<p>before</p>
+
+<p>so quick and easy no drama not a problem</p>
+
+<p>as I mentioned in the introduction I end</p>
+
+<p>up doing a lot of trainings one of the</p>
+
+<p>most common questions I get from people</p>
+
+<p>is how do i make off-site backups how do</p>
+
+<p>i set up a custom schedule how do i</p>
+
+<p>conform with whatever security internal</p>
+
+<p>security regulations that have to save</p>
+
+<p>this in multiple locations all over the</p>
+
+<p>place not just rely on what Pantheon has</p>
+
+<p>and well it was pretty easy I've always</p>
+
+<p>said like hey you can just write a</p>
+
+<p>script well I just wrote a script so you</p>
+
+<p>can check that out if you'd like this is</p>
+
+<p>using continuous integration</p>
+
+<p>specifically it's a process you can spin</p>
+
+<p>up on circle CI you can go out and grab</p>
+
+<p>this code and it's really really easy it</p>
+
+<p>uses our command line tool called</p>
+
+<p>terminus it just runs a few simple</p>
+
+<p>commands on whatever cron schedule you</p>
+
+<p>want you log into terminus and then you</p>
+
+<p>create a backup and then you get the</p>
+
+<p>backup</p>
+
+<p>and once you have the backup you can put</p>
+
+<p>it wherever you want you can store it</p>
+
+<p>locally you can store it Amazon kind of</p>
+
+<p>wherever you choose to put it all right</p>
+
+<p>that's it for the all right could be</p>
+
+<p>every Wednesday it could be every it was</p>
+
+<p>like what yeah it was windy this week</p>
+
+<p>how many attach every time so you should</p>
+
+<p>definitely try as best you can to keep</p>
+
+<p>Drupal up-to-date as soon as those</p>
+
+<p>security patches come out they often</p>
+
+<p>address security issues known</p>
+
+<p>vulnerabilities that are actively being</p>
+
+<p>exploited now sometimes it's they don't</p>
+
+<p>have any known that's the same they</p>
+
+<p>don't know that they're being attacked</p>
+
+<p>immediately in awhile but they often try</p>
+
+<p>to get those in as quickly as possible</p>
+
+<p>so it potentially was an exploitable</p>
+
+<p>vulnerability how subscribe that</p>
+
+<p>security newsletter so you know as soon</p>
+
+<p>as that thing is out you're gonna get</p>
+
+<p>that notification that it's available</p>
+
+<p>and you can start running those patches</p>
+
+<p>Patridge systems if you don't want to</p>
+
+<p>sign up for that the easiest way is</p>
+
+<p>really just to log in to drupal.org if</p>
+
+<p>you don't have an account definitely set</p>
+
+<p>up an account you can go into your</p>
+
+<p>settings there where the list of all the</p>
+
+<p>drupe newsletters are and then this will</p>
+
+<p>get you emails anytime that there's a</p>
+
+<p>security release for Drupal core or any</p>
+
+<p>of the modules of the security team</p>
+
+<p>actively monitors so it's a great way of</p>
+
+<p>you know whether you have one site or</p>
+
+<p>lots of sites being aware of what all</p>
+
+<p>the security things that are coming down</p>
+
+<p>the pipe are and I know a lot of a lot</p>
+
+<p>of times when I get to a compromise site</p>
+
+<p>and it's running an out-of-date software</p>
+
+<p>whether it's Drupal or WordPress and I'm</p>
+
+<p>Sam and I asked because that's gonna be</p>
+
+<p>one of the first things I ask it's a</p>
+
+<p>debate is why is it not up to date</p>
+
+<p>what's the number one reason people give</p>
+
+<p>didn't have time or come I know one of</p>
+
+<p>you in here has probably said this exact</p>
+
+<p>thing affecting what well though that's</p>
+
+<p>that's absolutely true - I've ever heard</p>
+
+<p>that one I didn't want to break my sight</p>
+
+<p>right I don't want to quietly because I</p>
+
+<p>don't know what it's gonna do so one of</p>
+
+<p>the great things about Pantheon is you</p>
+
+<p>can actually test an update in a</p>
+
+<p>different environment you can clone your</p>
+
+<p>production environment down to another</p>
+
+<p>environment run those patches bring the</p>
+
+<p>site up and run your automated test do</p>
+
+<p>visual testing whatever you need to do</p>
+
+<p>to ensure it's actually not going to</p>
+
+<p>break so you don't have to worry about</p>
+
+<p>applying with updates as quickly you can</p>
+
+<p>do those in the test environment right</p>
+
+<p>and so related to that we we have a</p>
+
+<p>script also that also uses continuous</p>
+
+<p>integration that can completely automate</p>
+
+<p>the process of doing all of your updates</p>
+
+<p>so the the sort of studio code once you</p>
+
+<p>set up the script it automatically spins</p>
+
+<p>up a branch a multi dev environment</p>
+
+<p>that's isolated and dedicated to this</p>
+
+<p>update it applies the updates there it</p>
+
+<p>then does visual regression testing</p>
+
+<p>which I'll talk about tomorrow and now I</p>
+
+<p>am as well as behavior testing with B</p>
+
+<p>hats even some other sorts of testing if</p>
+
+<p>you want to make sure it's working right</p>
+
+<p>and then if all the tests pass then it</p>
+
+<p>can automatically create backups on your</p>
+
+<p>other sites and deploy it up to your</p>
+
+<p>live site so you can be totally</p>
+
+<p>hands-off let it do all the backups for</p>
+
+<p>you fully tested with confidence or if</p>
+
+<p>that concerns you a little bit about</p>
+
+<p>having a deploy directly to the live</p>
+
+<p>site you can have it notify you via</p>
+
+<p>slack or SMS or whatever method you</p>
+
+<p>choose so that you know this packet are</p>
+
+<p>this flight has been updated here's the</p>
+
+<p>tests go check it out and then you can</p>
+
+<p>push the button to actually deploy it</p>
+
+<p>alive although this is something you</p>
+
+<p>should do regardless of where you are</p>
+
+<p>like the test or the the scripts that we</p>
+
+<p>wrote is specifics panthéon because it's</p>
+
+<p>right it's writing to panthéon it</p>
+
+<p>integrating with our api but this is</p>
+
+<p>something we should have anywhere</p>
+
+<p>regardless where you're being hosted ass</p>
+
+<p>they updated istant there we go you knew</p>
+
+<p>what it was coming up so the security</p>
+
+<p>principle as far as how doing or staying</p>
+
+<p>up-to-date applies back to core security</p>
+
+<p>principles is that you don't use</p>
+
+<p>components with known vulnerabilities</p>
+
+<p>you don't put things into your system</p>
+
+<p>you don't use things in your systems</p>
+
+<p>that have known problems because if you</p>
+
+<p>know there's a problem who else knows</p>
+
+<p>there's a problem yeah the bad guys</p>
+
+<p>attackers right so you don't want to use</p>
+
+<p>components with no vulnerabilities same</p>
+
+<p>exact thing but there are themes and</p>
+
+<p>modules you don't you need to keep those</p>
+
+<p>up-to-date as quickly as possible as</p>
+
+<p>well so you're gonna want to get those</p>
+
+<p>updates back into your systems as fast</p>
+
+<p>as possible some bonus points to be</p>
+
+<p>again going back to to compromise sites</p>
+
+<p>and you get in there in years</p>
+
+<p>you bring it up and there's like you</p>
+
+<p>know hundred modules and seventeen</p>
+
+<p>themes in there and you're like why are</p>
+
+<p>all what is all this stuff like do you</p>
+
+<p>actually it's not as bad WordPress we</p>
+
+<p>need we press that in Drupal - yeah</p>
+
+<p>WordPress you've read because you have</p>
+
+<p>up you know literally 40 or 50 plugins</p>
+
+<p>and you're like why do you need all</p>
+
+<p>these and the number one answer is I</p>
+
+<p>don't know well why aren't they updated</p>
+
+<p>I don't want to bring my site so you</p>
+
+<p>need to go back need to make sure you</p>
+
+<p>know exactly what you have installed as</p>
+
+<p>far as modules and Dean's and know why</p>
+
+<p>it's there initially limit your module</p>
+
+<p>thing menus as much as possible I mean</p>
+
+<p>use the modules that you need use the</p>
+
+<p>themes that you need but if you're not</p>
+
+<p>going to use it get rid of it hosting</p>
+
+<p>provider that's the next one so that's</p>
+
+<p>when you're gonna come often see in full</p>
+
+<p>the full disclosure Paul gave this talk</p>
+
+<p>at a wordpress event</p>
+
+<p>mm-hm WP campus down in st. Louis last</p>
+
+<p>year yeah and it was totally not</p>
+
+<p>pantheon related in any way but he named</p>
+
+<p>dropped Pantheon so many times for his</p>
+
+<p>presentation as a non Pantheon customer</p>
+
+<p>that we've collaborated on a few things</p>
+
+<p>since then and this this is obviously</p>
+
+<p>woman and this</p>
+
+<p>because I believe in this one I mean I</p>
+
+<p>truly believe that a hosting provider is</p>
+
+<p>crucial to the success of your website</p>
+
+<p>because if Drupal is the brain right</p>
+
+<p>it's managing you learning everything</p>
+
+<p>and your contents the heart and soul of</p>
+
+<p>your site well that hosting providers</p>
+
+<p>the rest of the body and it doesn't</p>
+
+<p>really matter does it catches up with me</p>
+
+<p>doesn't matter how well you've secured</p>
+
+<p>Drupal you could have every patch</p>
+
+<p>rolling you can have every module and</p>
+
+<p>theme updated you get all the right</p>
+
+<p>pieces in place but if your host is</p>
+
+<p>compromised you just shoot yourself in</p>
+
+<p>the foot right so it doesn't matter how</p>
+
+<p>what how much work you've done if the</p>
+
+<p>host is compromised your site's going to</p>
+
+<p>be compromised and it still remains top</p>
+
+<p>vectors for sites to be compromised</p>
+
+<p>compromising the host itself to take</p>
+
+<p>over the site's security principle and</p>
+
+<p>great it goes back to the one we just</p>
+
+<p>talked about and that's don't use</p>
+
+<p>components with no vulnerabilities and a</p>
+
+<p>good host and this is one of the reasons</p>
+
+<p>I named drop an Theon is you want to</p>
+
+<p>make sure you establish secure to false</p>
+
+<p>or it's also known as failing safely so</p>
+
+<p>which file in Drupal contains all of</p>
+
+<p>your delicious secrets the settings have</p>
+
+<p>PHP so usually if you've got a packs</p>
+
+<p>you've got engine X that's that's set up</p>
+
+<p>to take PHP when somebody calls PHP and</p>
+
+<p>send it over product cache bf p.m. and</p>
+
+<p>it processes the PHP what happens is</p>
+
+<p>that relationship all breaks and then</p>
+
+<p>Apache gets requests for that file</p>
+
+<p>what's it gonna serve it as text so now</p>
+
+<p>if I'm an attacker and I know your host</p>
+
+<p>is bad and I can cause engine X to flake</p>
+
+<p>out or and cause patchy to flake out and</p>
+
+<p>drop that relationship and then go to</p>
+
+<p>that file what am I now got use the</p>
+
+<p>castle right so you want to fail safely</p>
+
+<p>you want to make sure that your host is</p>
+
+<p>failing back to a safe environment and</p>
+
+<p>that's one of the things that Pantheon</p>
+
+<p>does instead of hard-coding those</p>
+
+<p>beautiful secrets in that sense and you</p>
+
+<p>have a sample of that I do out there yep</p>
+
+<p>yep so we freely preload environment</p>
+
+<p>variables for the name the credentials</p>
+
+<p>the faults all that stuff so it's not</p>
+
+<p>something if someone could read this it</p>
+
+<p>would mean absolutely nothing to them</p>
+
+<p>like they I'm just so someone could be</p>
+
+<p>you know get a hold of this file and it</p>
+
+<p>really wouldn't matter because all it is</p>
+
+<p>is pulling the variable the environment</p>
+
+<p>variable and inserting it into the</p>
+
+<p>settings not PHP file where it needs to</p>
+
+<p>go which just means you don't you don't</p>
+
+<p>worry it fails safely just as Paul said</p>
+
+<p>there you see how I better not sorry I</p>
+
+<p>was kind of kind of tiny</p>
+
+<p>it's down here scenario yeah fresco</p>
+
+<p>sentence that's wonder the bass yep so</p>
+
+<p>if someone got a hold of this file it</p>
+
+<p>wouldn't mean anything in fact this is</p>
+
+<p>the file that's on github for our Drupal</p>
+
+<p><br>
+on your own site as well if you have a</p>
+
+<p>plan and this is what I mean by failing</p>
+
+<p>safely so this way even if there is that</p>
+
+<p>failure yourself you've fallen back</p>
+
+<p>you've failed to a safe State nobody's</p>
+
+<p>gonna get any valuable information out</p>
+
+<p>of this file and Pantheon also has we'll</p>
+
+<p>talk about from this little later</p>
+
+<p>Pantheon has some assumptions about how</p>
+
+<p>your site should we set up for the sake</p>
+
+<p>of security including file write</p>
+
+<p>permissions things you shouldn't</p>
+
+<p>shouldn't have access to on a live</p>
+
+<p>environment you know hiding the dev</p>
+
+<p>environments from search engine and</p>
+
+<p>things like that so in addition most of</p>
+
+<p>them will follow some type of pattern</p>
+
+<p>and separating duties the segments so</p>
+
+<p>you're not running your database server</p>
+
+<p>on the same application the same server</p>
+
+<p>as your web server you're separating</p>
+
+<p>those pieces out your file storage isn't</p>
+
+<p>necessarily on the same server it's</p>
+
+<p>segmented goes out so that if one is</p>
+
+<p>compromised they haven't just</p>
+
+<p>compromised everything that's just that</p>
+
+<p>one piece is compromised</p>
+
+<p>you know Pantheon we have several layers</p>
+
+<p>of this I mean between each sites</p>
+
+<p>between each environment for each site</p>
+
+<p>it's they're all separate containers</p>
+
+<p>each piece running each piece is a</p>
+
+<p>separate container so it's a distinct</p>
+
+<p>container running your database on your</p>
+
+<p>live environment than any other</p>
+
+<p>environment any other site so you're not</p>
+
+<p>mixing up your day with some of that</p>
+
+<p>some other customers data alright some</p>
+
+<p>bonus points for hosting providers you</p>
+
+<p>should know what your host is running</p>
+
+<p>you should be engaging with those teams</p>
+
+<p>especially hire it for a long time and</p>
+
+<p>even still now we like on prim</p>
+
+<p>we have we struggle with moving to the</p>
+
+<p>cloud we have we have distinct policies</p>
+
+<p>in place we have requirements in place</p>
+
+<p>that kind of make this new arm trim so</p>
+
+<p>if you're not your team isn't the one</p>
+
+<p>responsible for web hosting on your</p>
+
+<p>canvas engage with that team make sure</p>
+
+<p>you know what you're running make sure</p>
+
+<p>they know and you need to know what</p>
+
+<p>you're running and work with them to</p>
+
+<p>make sure things are updated as quickly</p>
+
+<p>as possible and it's worth you should do</p>
+
+<p>that the thing with you on - like before</p>
+
+<p>you sign the contract before your</p>
+
+<p>company gets all connected you should</p>
+
+<p>make sure like make sure that your team</p>
+
+<p>is aware of what you know we're doing as</p>
+
+<p>well it's absolutely regardless of where</p>
+
+<p>you're going that's that's effective oh</p>
+
+<p>so David I should mention file directing</p>
+
+<p>permissions that's simply ensuring the</p>
+
+<p>files and directories that your web</p>
+
+<p>server has access to are set to the</p>
+
+<p>lowest possible the lowest access</p>
+
+<p>possible in other words do you want</p>
+
+<p>seven seven seven on your directors no</p>
+
+<p>no you want to make sure that those that</p>
+
+<p>nobody outside of who should have access</p>
+
+<p>has the ability to do anything to those</p>
+
+<p>files in addition you know there are</p>
+
+<p>certain areas you don't want anybody to</p>
+
+<p>be leaving touch right so you want to</p>
+
+<p>make sure that all those files and</p>
+
+<p>directors are set to the lowest possible</p>
+
+<p>as far as how it reduces risk well</p>
+
+<p>improper permissions are going to give</p>
+
+<p>away again those keys of the castle you</p>
+
+<p>know we've seen situations where</p>
+
+<p>somebody puts an API token inside the</p>
+
+<p>website and leaves that directory is is</p>
+
+<p>more readable and now all of a sudden</p>
+
+<p>anybody can get that API key and once</p>
+
+<p>they've got the API key I can do all</p>
+
+<p>kinds of stuff so you want to make sure</p>
+
+<p>you've restricted or modify those</p>
+
+<p>permissions down as low as possible the</p>
+
+<p>security principle did you the way this</p>
+
+<p>comes into play on Pantheon is we don't</p>
+
+<p>allow code right access on any</p>
+
+<p>environment except for your development</p>
+
+<p>environment so if you want to change</p>
+
+<p>code if you're going to do module</p>
+
+<p>updates or development or theming or</p>
+
+<p>whatever it all has to be in debt or a</p>
+
+<p>multi dev environment if you're trying</p>
+
+<p>to change code on live it's gonna fail</p>
+
+<p>we is automatically not allowed which</p>
+
+<p>means if you have a security</p>
+
+<p>vulnerability</p>
+
+<p>like the Drupal geddens of our past</p>
+
+<p>history and somewhat recent history have</p>
+
+<p>just not been an issue on an Theon</p>
+
+<p>because your Ottoman</p>
+
+<p>the immune like if you cannot write</p>
+
+<p>access on your neck to code on your live</p>
+
+<p>site it's not a problem for you the the</p>
+
+<p>person doesn't have anything they can do</p>
+
+<p>if they got access to your site and</p>
+
+<p>tagging on to that in addition let's say</p>
+
+<p>that because there are certain areas you</p>
+
+<p>should write to write I mean you can</p>
+
+<p>upload an image file on your own it's</p>
+
+<p>not right that somewhere but and this is</p>
+
+<p>another good example of a securing</p>
+
+<p>different having good secure defaults is</p>
+
+<p>that on Pantheon when you upload even if</p>
+
+<p>you upload a PHP file to that right area</p>
+
+<p>in that area scripts aren't allowed to</p>
+
+<p>run so even if they get the file onto</p>
+
+<p>the server they can't do anything with</p>
+
+<p>it it's not going to execute the</p>
+
+<p>security principle this comes back to is</p>
+
+<p>the principle of least privilege and</p>
+
+<p>when I say these privilege what I mean</p>
+
+<p>is that you're going to give the</p>
+
+<p>necessary permissions to to a person to</p>
+
+<p>a service whatever it is you're given</p>
+
+<p>the permissions they need to perform a</p>
+
+<p>duty from limited amount of time and</p>
+
+<p>it's the bare minimum they need it is</p>
+
+<p>exactly what they need and only what</p>
+
+<p>they need nothing more and then as soon</p>
+
+<p>as they're done you revoke those</p>
+
+<p>privileges those permissions that's what</p>
+
+<p>I mean by that principle of least</p>
+
+<p>privilege so some bonus points you</p>
+
+<p>should lock down all areas of Drupal to</p>
+
+<p>read-only except for those areas that</p>
+
+<p>usually explicitly need to be able to</p>
+
+<p>write you and in those areas you can</p>
+
+<p>don't allow script execution and that's</p>
+
+<p>really your files directory yeah think</p>
+
+<p>about straight on again I drove</p>
+
+<p>environment allows it set those to only</p>
+
+<p>readable if you can only readable by the</p>
+
+<p>owner usually I would bet you're in pant</p>
+
+<p>down that's probably F p.m. but either</p>
+
+<p>way actually don't know whatever is</p>
+
+<p>running your processes make sure it's</p>
+
+<p>only readable by that owner</p>
+
+<p>please</p>
+
+<p>oh and minimizing attack sir so this</p>
+
+<p>Sabonis a guy I love this one</p>
+
+<p>so the boating security principle in</p>
+
+<p>this aspect if you're limiting these</p>
+
+<p>areas if you're saying okay you can't</p>
+
+<p>write anywhere but here and then this</p>
+
+<p>right area if you even get fire you can</p>
+
+<p>you can't run an inscription to only</p>
+
+<p>read files you're minimizing an attack</p>
+
+<p>service so what I mean by an attack</p>
+
+<p>surface is it all the sum of the paths</p>
+
+<p>that lead into and out of your</p>
+
+<p>application plus all of the code that</p>
+
+<p>secures those paths plus all the data</p>
+
+<p>used in the application and all of the</p>
+
+<p>code that works to secure that data so</p>
+
+<p>if we think about this young model</p>
+
+<p>alright she's she's the asset the rain</p>
+
+<p>is the attacker</p>
+
+<p>she has minimized her attack surface by</p>
+
+<p>using a raincoat and galoshes an</p>
+
+<p>umbrella</p>
+
+<p>she's minimized the amount of skin</p>
+
+<p>that's available to get wet it's the</p>
+
+<p>same thing as minimizing that attack</p>
+
+<p>surface you're very okay all right make</p>
+
+<p>sure I'm not boring you am I no okay ah</p>
+
+<p>next step is removing the mutant themes</p>
+
+<p>and models I alluded to this earlier</p>
+
+<p>that's simply just taking anything that</p>
+
+<p>you are not actively using and this</p>
+
+<p>isn't just I should mention not just</p>
+
+<p>themes modules and users but also</p>
+
+<p>anything in your systems and you have on</p>
+
+<p>print systems and you've got an Apache</p>
+
+<p>web server and it's got my sequel and</p>
+
+<p>soul but you're not using my sequel on</p>
+
+<p>that server you've got my sequel</p>
+
+<p>somewhere else that you're connecting to</p>
+
+<p>to get rid of it because it's another</p>
+
+<p>service that's not being used it can be</p>
+
+<p>attacked so remove everything that isn't</p>
+
+<p>in active use it reduces risk because</p>
+
+<p>even in fact module or theme is</p>
+
+<p>deactivated the code is still there on</p>
+
+<p>the server right and if it has a</p>
+
+<p>vulnerability if it has an actionable</p>
+
+<p>exploit it's possibly still exploitable</p>
+
+<p>even though it's not activated I think</p>
+
+<p>this is actually pretty understated in</p>
+
+<p>the Drupal community because yes if you</p>
+
+<p>have a let's say you have a module on</p>
+
+<p>your site and over the course of its</p>
+
+<p>life you've stopped using it so you</p>
+
+<p>disable the module you uninstall it</p>
+
+<p>whatever if you don't actually remove</p>
+
+<p>the code for that though it's still</p>
+
+<p>there and Drupal is not checking for</p>
+
+<p>updates on disabled modules so if</p>
+
+<p>there's a security issue with the code</p>
+
+<p>that's running that module you're not</p>
+
+<p>getting an update for it or you're not</p>
+
+<p>even aware that there's a problem right</p>
+
+<p>so going through and deliberately</p>
+
+<p>removing oh I was just gonna show you</p>
+
+<p>something real quick</p>
+
+<p>um you ever heard of droop scan I didn't</p>
+
+<p>heard of it before Paul brought it up so</p>
+
+<p>this is one of those tools that can be</p>
+
+<p>used for good or bad there's a lot of</p>
+
+<p>these tools drupes can scan CMS's and</p>
+
+<p>what I can do I'm not gonna do it here</p>
+
+<p>because it'll take too long I can</p>
+
+<p>actually point it at a site a Drupal</p>
+
+<p>site and it'll scan the Drupal site and</p>
+
+<p>find the modules that are installed and</p>
+
+<p>now I can go back and find those modules</p>
+
+<p>and see if they have any known exploits</p>
+
+<p>in addition I can look for all kinds of</p>
+
+<p>interesting things so I can say hey you</p>
+
+<p>know uh scan this site in find the admin</p>
+
+<p>and admin area give me a location I can</p>
+
+<p>log in or I can say hey what version are</p>
+
+<p>they running this 186 nine and what it</p>
+
+<p>does called black box scanning cuz I</p>
+
+<p>don't necessarily know anything but it's</p>
+
+<p>gonna scan the site possibly unless</p>
+
+<p>you're really watching for it you're not</p>
+
+<p>even gonna know your access logs</p>
+
+<p>possibly fingerprinting things it's</p>
+
+<p>gonna pull GIS files it's gonna pull CSS</p>
+
+<p>files and get the hashes for those to</p>
+
+<p>figure out what version you're using</p>
+
+<p>it's gonna look for common login areas</p>
+
+<p>and pull those out alright so even if</p>
+
+<p>you have modules uninstalled and excuse</p>
+
+<p>me it not on this goal deactivate it if</p>
+
+<p>you haven't actually removed them an</p>
+
+<p>attacker can still scan your site and</p>
+
+<p>see if you have them install and then</p>
+
+<p>take advantage of those if you got users</p>
+
+<p>but you don't tell you all of the</p>
+
+<p>modules that are on your site that are</p>
+
+<p>I use including if you've got a sunblock</p>
+
+<p>or within views or whatever that's not</p>
+
+<p>being that's a perfectly sane to tie you</p>
+
+<p>to command or things for updating</p>
+
+<p>modules there is an option in the player</p>
+
+<p>there to say like check the disabled</p>
+
+<p>bundle hello I didn't know perfect IVs</p>
+
+<p>that before yeah so be again kind of</p>
+
+<p>like with the backups we should be doing</p>
+
+<p>routine audits of your modules and</p>
+
+<p>themes and your users because if you've</p>
+
+<p>got users in your site that aren't</p>
+
+<p>active well that's just one more account</p>
+
+<p>that can compromise and again it removes</p>
+
+<p>those potential vulnerabilities bonus</p>
+
+<p>points make those things in audio just</p>
+
+<p>make it a habit you know you're gonna</p>
+
+<p>test your backups I'm gonna go see what</p>
+
+<p>deactivated modules look at but I see</p>
+
+<p>what deactivates games I'm gonna see</p>
+
+<p>when the last time you user logged in</p>
+
+<p>and I'm gonna remove those because you</p>
+
+<p>don't put a user back right you</p>
+
+<p>deactivate their account you get rid of</p>
+
+<p>that account they come back and they</p>
+
+<p>need it you can always put them back but</p>
+
+<p>you minimize that attack surface by</p>
+
+<p>removing that user and they can't be</p>
+
+<p>compromised if they're not there or in</p>
+
+<p>Drupal you can also block the account</p>
+
+<p>that's well you're being used it'll</p>
+
+<p>prevent them from being able to login it</p>
+
+<p>also maintains any Content they've</p>
+
+<p>created under their authorship so it's a</p>
+
+<p>common practice to just block anyone</p>
+
+<p>that is no longer a needing access to</p>
+
+<p>the site and then if they need again if</p>
+
+<p>you need to give them access again it's</p>
+
+<p>easy to do that ah your homework you</p>
+
+<p>should do your homework on themes and</p>
+
+<p>moms you should research those themes</p>
+
+<p>and modules your installed it Drupal is</p>
+
+<p>better I will say this about Drupal with</p>
+
+<p>WordPress anybody can write a plug-in</p>
+
+<p>and get into public repository Drupal is</p>
+
+<p>better than that at least they attempt</p>
+
+<p>to do a true scan before they add in but</p>
+
+<p>how do you know for sure how well that</p>
+
+<p>theme or modules been coded</p>
+
+<p>all right unless you're gonna do your</p>
+
+<p>own island on top here here</p>
+
+<p>you're totally relying whoops it's good</p>
+
+<p>well your movie totally relying on</p>
+
+<p>somebody else to make sure that that</p>
+
+<p>code is secure so you should definitely</p>
+
+<p>do some research you can bring up okay</p>
+
+<p>yeah so one thing that the security team</p>
+
+<p>does is it maintains a list of modules</p>
+
+<p>that it automatically checks if it has</p>
+
+<p>that little shield there it means that</p>
+
+<p>what I was just saying that's what I was</p>
+
+<p>looking for word if you have a little</p>
+
+<p>green shield it means that your site is</p>
+
+<p>actively being monitored by the security</p>
+
+<p>team it is under its umbrella of</p>
+
+<p>protection basically there are other</p>
+
+<p>modules that can be added other tests</p>
+
+<p>experimental things or really edge cases</p>
+
+<p>that are not all that common if you</p>
+
+<p>visit a site it'll probably I think it's</p>
+
+<p>yellow if it's not currently being</p>
+
+<p>monitored it doesn't have the little</p>
+
+<p>shield and it's a there's a big warning</p>
+
+<p>that says this is not being monitored</p>
+
+<p>you know by the security team you can</p>
+
+<p>still report any issues that exist with</p>
+
+<p>those and they will jump in but it's</p>
+
+<p>it's one thing to be aware of as you are</p>
+
+<p>going through and researching which</p>
+
+<p>themes or modules you might want to use</p>
+
+<p>so how does it reduce risk well every</p>
+
+<p>piece of code no matter where it comes</p>
+
+<p>from</p>
+
+<p>even from Drupal directly every piece of</p>
+
+<p>code you added increases your attack</p>
+
+<p>service right you're increasing the</p>
+
+<p>available area for an attacker to attack</p>
+
+<p>every piece of code that you add it has</p>
+
+<p>that potential to add or introduce a new</p>
+
+<p>vulnerability into your system and the</p>
+
+<p>security principle in play here is to be</p>
+
+<p>paranoid and be skeptical all your</p>
+
+<p>paranoia is exhausting that's that being</p>
+
+<p>paranoid is really a security principle</p>
+
+<p>I spent let's say you</p>
+
+<p>should treat all third party code as</p>
+
+<p>hostile all right when you introduce new</p>
+
+<p>code into your system you are data not</p>
+
+<p>just Kovac data as well you should just</p>
+
+<p>automatically assume or take a stay at</p>
+
+<p>that that code that data is hostile</p>
+
+<p>you're introducing potential problems</p>
+
+<p>into your system some bonus steps here</p>
+
+<p>for those of you in higher ed I strongly</p>
+
+<p>strongly strongly urge you to take</p>
+
+<p>advantage of dork BOTS the University of</p>
+
+<p>Texas has a program in place where they</p>
+
+<p>will scan your environment on routine</p>
+
+<p>basis yeah it's a circle flip back of it</p>
+
+<p>it's a security guy you Texas dot edu</p>
+
+<p>slash dork bot we're pretty much me</p>
+
+<p>search for dork by you'll find it too</p>
+
+<p>but once you give them so you got a</p>
+
+<p>whitelist them because they are going to</p>
+
+<p>be running simulated attacks so you got</p>
+
+<p>a white listed in your network once</p>
+
+<p>you've whitelist them they'll run</p>
+
+<p>routine on it on your network looking</p>
+
+<p>for common vulnerabilities and then</p>
+
+<p>notify you of those common</p>
+
+<p>vulnerabilities so it has been fantastic</p>
+
+<p>I don't know about you University of</p>
+
+<p>Missouri is completely decentralized the</p>
+
+<p>web on our campus has grown organically</p>
+
+<p>over the last thirty years it is</p>
+
+<p>complete mess we have we don't even know</p>
+
+<p>how many sites we have so this has been</p>
+
+<p>a godsend in somebody contacting us</p>
+
+<p>letting us know hey you have to site</p>
+
+<p>it's got a sequel injection</p>
+
+<p>vulnerability and now we can go out and</p>
+
+<p>get that patched you know we didn't even</p>
+
+<p>know it was there</p>
+
+<p>right and it's not specific to Drupal or</p>
+
+<p>WordPress right it's just scanning</p>
+
+<p>everything in your network and it is</p>
+
+<p>free for hiring so if you're in higher</p>
+
+<p>ed take advantage of it's fantastic if</p>
+
+<p>you can you should run that third-party</p>
+
+<p>third-party food through PHP code</p>
+
+<p>sniffer and their security on it you can</p>
+
+<p>automate that part of the CI stuff he</p>
+
+<p>was talking about you can just have all</p>
+
+<p>that code running through that security</p>
+
+<p>our flag potential vulnerabilities and</p>
+
+<p>if you can have your developers run</p>
+
+<p>static code analysis as they're</p>
+
+<p>developing to kind of flag potential</p>
+
+<p>problematic areas</p>
+
+<p>all right limited user roles I think</p>
+
+<p>you're gonna talk about this a little</p>
+
+<p>bit there yep so when I mean you want to</p>
+
+<p>say it's it's kind of like with the file</p>
+
+<p>permissions when you give somebody an</p>
+
+<p>account on your site you should give</p>
+
+<p>them the bare minimum permission they</p>
+
+<p>need in order to perform the functions</p>
+
+<p>that are supposed to do no more how many</p>
+
+<p>of you go into Drupal to add content as</p>
+
+<p>an administrator this is it this is a</p>
+
+<p>safe space you can admit I do so why did</p>
+
+<p>you do that oh really you should you</p>
+
+<p>should only log in with a higher</p>
+
+<p>privileged account when you need the</p>
+
+<p>permission that higher privileged</p>
+
+<p>account nice to have in order to do</p>
+
+<p>those other functions a similar question</p>
+
+<p>might be how many people login as user</p>
+
+<p>one Oh</p>
+
+<p>after the site's been build which if you</p>
+
+<p>don't know the first user is the one</p>
+
+<p>that has and then it ignores all</p>
+
+<p>permission checks so you automatically</p>
+
+<p>get that's an account that you should</p>
+
+<p>create you know when you set up the</p>
+
+<p>account and maybe use it to build this</p>
+
+<p>site but then it should go like not go</p>
+
+<p>away but you should never use it unless</p>
+
+<p>you're doing a major improvement in</p>
+
+<p>something yes and that and so that</p>
+
+<p>security principle again ending with the</p>
+
+<p>file permissions that security of least</p>
+
+<p>privilege and it's not just in Drupal</p>
+
+<p>it's also in whatever system you're</p>
+
+<p>using to manage your site itself</p>
+
+<p>so in pantheon yeah you know I don't</p>
+
+<p>know if we ever if I ever got you there</p>
+
+<p>out uses for this but let's so in</p>
+
+<p>Pantheon both at the site level you can</p>
+
+<p>choose people on your team so here I</p>
+
+<p>have I have people on my team and you</p>
+
+<p>can choose at this level what access</p>
+
+<p>they have you can choose between</p>
+
+<p>developer our team member or admin as a</p>
+
+<p>developer you can write commits but you</p>
+
+<p>can't actually deploy them up to like</p>
+
+<p>the live site or the test site so that's</p>
+
+<p>good for developers on your team that</p>
+
+<p>don't need to do that deployment or for</p>
+
+<p>contractors you might be working with</p>
+
+<p>where maybe you need to review their</p>
+
+<p>work before you can get it up to the</p>
+
+<p>live site so that level exists here at</p>
+
+<p>the site level but it also exists at the</p>
+
+<p>agency level or the ORA global so you</p>
+
+<p>can set up that tiered</p>
+
+<p>at that level as well give people access</p>
+
+<p>to all of your sites at whatever tier is</p>
+
+<p>appropriate so how does it reduce risk</p>
+
+<p>again well it's gonna minimize the</p>
+
+<p>damage of an account is compromised</p>
+
+<p>right so if somebody compromises an</p>
+
+<p>account you're minimizing because it</p>
+
+<p>being compromised the author accountable</p>
+
+<p>all we're gonna be able to do is change</p>
+
+<p>content it also reduces the opportunity</p>
+
+<p>for a rogue user so if you've got an</p>
+
+<p>employee who's fired and you forgot they</p>
+
+<p>were fired and they're upset about it</p>
+
+<p>well if you've limited what they can do</p>
+
+<p>you've minimized how much damage and</p>
+
+<p>this is one that most people forget it's</p>
+
+<p>just somebody making a mistake right I</p>
+
+<p>mean do you want somebody on Pantheon to</p>
+
+<p>be able to go in and deployed a lie if</p>
+
+<p>they're really not somebody that should</p>
+
+<p>be deploying to live they might not even</p>
+
+<p>meet you they might just like click the</p>
+
+<p>button by accident not know what they're</p>
+
+<p>doing so by minimizing those roles</p>
+
+<p>you're also reducing the opportunity for</p>
+
+<p>somebody to make a mistake inadvertently</p>
+
+<p>and cause a problem so obviously we were</p>
+
+<p>looking at an Theon for these but the</p>
+
+<p>Drupal level also it's super super easy</p>
+
+<p>to create different rules that are for</p>
+
+<p>each unique thing yeah it's easy to do</p>
+
+<p>that so easy that you shouldn't feel</p>
+
+<p>like you have to give someone advanced</p>
+
+<p>permissions if they just need to do one</p>
+
+<p>particular thing it's so easy to grant</p>
+
+<p>like create a new role give them that</p>
+
+<p>permission and then ya know that they're</p>
+
+<p>just doing that and ya don't take the</p>
+
+<p>easy way out every there said I needed</p>
+
+<p>this and you don't just go that's fine I</p>
+
+<p>can either Minister take the time give</p>
+
+<p>them a custom role make sure they have</p>
+
+<p>just what they need I didn't get a duty</p>
+
+<p>on it go back and look and see how many</p>
+
+<p>administrators are have on this site how</p>
+
+<p>many other roles do I have and is ever</p>
+
+<p>is all are all these people active are</p>
+
+<p>they you do they still need the</p>
+
+<p>permission that I gave them at some</p>
+
+<p>point maybe they changed roles in their</p>
+
+<p>job and I no longer need those elevated</p>
+
+<p>privileges so again another routine</p>
+
+<p>audit just add into that second routine</p>
+
+<p>basis</p>
+
+<p>protecting says we kind of touched on</p>
+
+<p>this earlier you should</p>
+
+<p>protect the settings file you should add</p>
+
+<p>rules prevent direct access move the</p>
+
+<p>file somewhere that's not publicly</p>
+
+<p>accessible if you can do that I'm workin</p>
+
+<p>well we talked about this but it</p>
+
+<p>contains no database credentials and</p>
+
+<p>danger salt and you don't want to</p>
+
+<p>accidentally expose that to the world</p>
+
+<p>and bonus points if you can set the</p>
+
+<p>permissions again to 400 which basically</p>
+
+<p>just means the owner whatever process is</p>
+
+<p>running the PHP processor only the owner</p>
+
+<p>of that can read one piece to add to</p>
+
+<p>this - yeah that's good right is if</p>
+
+<p>you're working locally on your computer</p>
+
+<p>is easy to set up a local settings about</p>
+
+<p>PHP files so that you don't have to like</p>
+
+<p>get the credentials for the server on</p>
+
+<p>your computer or kind of biax lose all</p>
+
+<p>the time it's easier than some people</p>
+
+<p>expect any questions so far I want to</p>
+
+<p>make sure cause because again you're</p>
+
+<p>kind of all there's sleepy-looking</p>
+
+<p>okay</p>
+
+<p>and that's faint and that is fantastic</p>
+
+<p>make sure double check always make sure</p>
+
+<p>SSL</p>
+
+<p>what is simply a DSL or TLS SSL</p>
+
+<p>certificate to your site it does not</p>
+
+<p>encrypt your site there's a lot of</p>
+
+<p>confusion with this it doesn't encrypt</p>
+
+<p>your site it encrypts the data</p>
+
+<p>transmission between your site and the</p>
+
+<p>end-user that's what it does so as they</p>
+
+<p>send you information as you process the</p>
+
+<p>site processes the information and sends</p>
+
+<p>it back</p>
+
+<p>that's what's encrypted doesn't encrypt</p>
+
+<p>your site but it does protect those</p>
+
+<p>credentials because if a user is logging</p>
+
+<p>in what are they sending to your site</p>
+
+<p>yeah password right that's an asset we</p>
+
+<p>want to protect that asset so what</p>
+
+<p>that's calls worrying drifting in trans</p>
+
+<p>in transit we're encrypting that</p>
+
+<p>information as it goes across with it</p>
+
+<p>somebody sitting out on the web can't</p>
+
+<p>sniff that information as it goes by so</p>
+
+<p>in that case looking we're minimizing</p>
+
+<p>that attack service we're reducing the</p>
+
+<p>ability we're reducing the areas that</p>
+
+<p>someone can attack some bonus steps if</p>
+
+<p>you can you should just enforce HTTPS</p>
+
+<p>Everywhere yep and this isn't as big of</p>
+
+<p>a deal as it was a couple years ago it's</p>
+
+<p>actually much much easier now to add an</p>
+
+<p>SSL cert and I believe</p>
+
+<p>well yeah it's getting much easier</p>
+
+<p>across the web but Pantheon also</p>
+
+<p>provides it for free automatically every</p>
+
+<p>site every environment and it's it is</p>
+
+<p>easy to update like a redirect rule and</p>
+
+<p>your settings not PHP or through some</p>
+
+<p>other process you know HT access if you</p>
+
+<p>have a different hosting provider so it</p>
+
+<p>always redirects your traffic to the</p>
+
+<p>HTTPS version because as Paul said here</p>
+
+<p>you want that to be for the entire site</p>
+
+<p>not just your login page</p>
+
+<p>even if you don't care about security it</p>
+
+<p>will help your SEO yes Hugh amount takes</p>
+
+<p>into account whether or not your you've</p>
+
+<p>got that search so we have some content</p>
+
+<p>here on strong passwords but I'd say</p>
+
+<p>let's skip through this a little bit my</p>
+
+<p>colleague here Dan</p>
+
+<p>has a talk tomorrow at 9:00 a.m. about</p>
+
+<p>well why don't you tell us about this</p>
+
+<p>real quick a little bit about just</p>
+
+<p>general personal internet security or</p>
+
+<p>just we're gonna talk a lot about</p>
+
+<p>password we're gonna talk about a little</p>
+
+<p>bit about HTTPS encryption and that type</p>
+
+<p>of thing too just some things you can be</p>
+
+<p>aware of whether you are being secure or</p>
+
+<p>not I think it's um 3:12 a.m. go to his</p>
+
+<p>so you should use a password that's long</p>
+
+<p>and we're it contains randomized Alpha</p>
+
+<p>characters digits special characters</p>
+
+<p>doesn't contain any common name words in</p>
+
+<p>the dictionary how does it reduce the</p>
+
+<p>risk well historically we've seen what I</p>
+
+<p>call brute force attacks where they try</p>
+
+<p>every possible combination right I'm</p>
+
+<p>gonna just scan through and just try</p>
+
+<p>every possible combination of letters</p>
+
+<p>and characters and numbers so it makes</p>
+
+<p>it more difficult it prevents</p>
+
+<p>unauthorized access again compromising</p>
+
+<p>that account but my slide catches up</p>
+
+<p>with me even more important than</p>
+
+<p>complexity is life simply by adding</p>
+
+<p>three or four more characters to your</p>
+
+<p>password has the same entropy that same</p>
+
+<p>randomness or are available combinations</p>
+
+<p>as adding special characters or more</p>
+
+<p>complex carriers so what you want to do</p>
+
+<p>is you want a really long password</p>
+
+<p>alright so this is your new password yes</p>
+
+<p>don't don't actually use this as your</p>
+
+<p>app we have given this presentation</p>
+
+<p>before and it is out there on the</p>
+
+<p>Internet so so using this password this</p>
+
+<p>so you see them a hundred billion</p>
+
+<p>guesses per second it's going to take</p>
+
+<p>six point two two million trillion</p>
+
+<p>trillion trillion centuries to</p>
+
+<p>brute-force it okay I'm going to use</p>
+
+<p>that password on all of my sites it also</p>
+
+<p>has to be unique it's got to be unique</p>
+
+<p>for every say every account you have no</p>
+
+<p>matter where it is no matter how you're</p>
+
+<p>using it should have a unique password</p>
+
+<p>for it the reason why as a 20-17 the end</p>
+
+<p>of 2017 7 billion billion with ABI</p>
+
+<p>credentials have been leaked you are</p>
+
+<p>definitely on a list somewhere with some</p>
+
+<p>credentials in fact you've never heard</p>
+
+<p>of having been poned</p>
+
+<p>you should check that site they keep a</p>
+
+<p>track of all these and that's a great</p>
+
+<p>one actually if you go there and you</p>
+
+<p>take em your email addresses it will</p>
+
+<p>notify you every time that it detects</p>
+
+<p>your email address and password being</p>
+
+<p>used on the internet and some sort of a</p>
+
+<p>leak to list somewhere so go through at</p>
+
+<p>all of your email addresses that you use</p>
+
+<p>and then go and reset the passwords from</p>
+
+<p>those places whenever they've been</p>
+
+<p>denounced because we dork BOTS it makes</p>
+
+<p>you dork buck that's another nice thing</p>
+
+<p>about dork bags when these lists are</p>
+
+<p>leaked and they're finally publicly</p>
+
+<p>available if any of them match your</p>
+
+<p>domains they will email you the list and</p>
+
+<p>say hey you've got 13,000 accounts that</p>
+
+<p>have shown up on these these leak lists</p>
+
+<p>you need to check we just literally less</p>
+
+<p>than a month ago got a collection of</p>
+
+<p><br>
+now it's only four out of thirteen</p>
+
+<p>thousand that's pretty good but we</p>
+
+<p>started going back and looking at the</p>
+
+<p>ones that looked like we might be</p>
+
+<p>legitimate passwords and sure enough</p>
+
+<p>when we contacted a random selection of</p>
+
+<p>people and said hey have you ever used</p>
+
+<p>this as a password they're like oh yeah</p>
+
+<p>that was the one I used here like last</p>
+
+<p>year or that's the one I'm still using</p>
+
+<p>over here at this other site so every</p>
+
+<p>site needs a unique password I won't go</p>
+
+<p>too far there too much farther into that</p>
+
+<p>credential stuffing I mentioned earlier</p>
+
+<p>about historically they do a brute force</p>
+
+<p>instead now they do credential stuffing</p>
+
+<p>and what that is</p>
+
+<p>leafless they go through that's been</p>
+
+<p>analyzed they pull out the most common</p>
+
+<p>thousand ten thousand and then they just</p>
+
+<p>try all of those passwords it's much</p>
+
+<p>much faster than trying to brute force</p>
+
+<p>because now I've got a collection of</p>
+
+<p>commonly used passwords that I can go</p>
+
+<p>through much faster and that's how in a</p>
+
+<p>lot of situations we compromise counts</p>
+
+<p>now someone goes to these pretty quick</p>
+
+<p>you should use password excuse me a</p>
+
+<p>password manager hey how many of you can</p>
+
+<p>remember thirty two completely random</p>
+
+<p>characters times a thousand for all your</p>
+
+<p>sites</p>
+
+<p>it's impossible the only way to do this</p>
+
+<p>as humans the only way to do this now is</p>
+
+<p>a password manager you have to use a</p>
+
+<p>password manager and not just for</p>
+
+<p>yourself but then enforce these strong</p>
+
+<p>passwords for all your users in every</p>
+
+<p>one of your sites if you can a lot of us</p>
+
+<p>on in higher ed have single sign-on</p>
+
+<p>systems either using Shibboleth of Cass</p>
+
+<p>LDAP I mean whatever one you're you</p>
+
+<p>eighty tie into your single sign-on</p>
+
+<p>systems if you can because those systems</p>
+
+<p>are designed to handle credentials so</p>
+
+<p>let them handle those pieces and force</p>
+
+<p>those strong passwords tie into those</p>
+
+<p>systems that's it I'm gonna speed up</p>
+
+<p>just look at the closeout of time you</p>
+
+<p>should lock accounts that have too many</p>
+
+<p>family tips cuz he a credential stuffing</p>
+
+<p>if I get your let's say you log in with</p>
+
+<p>gills on P you know that's your login</p>
+
+<p>name and I grant I started trying all</p>
+
+<p><br>
+there and allow me to try to guess</p>
+
+<p><br>
+no even if it's not gonna match even if</p>
+
+<p>I've got a really good password what's</p>
+
+<p>it doing to your system as I'm doing</p>
+
+<p>that talking of resources it's taking</p>
+
+<p>away from servicing your customers and</p>
+
+<p>your clients so what you want to do is</p>
+
+<p>you want to lock down or block access to</p>
+
+<p>an account or to an IP address if</p>
+
+<p>they've had too many failed attempts</p>
+
+<p>reduces risk because it treats if that</p>
+
+<p>threat is an unauthorized access excuse</p>
+
+<p>me and then that weakness is a</p>
+
+<p>vulnerability or common password to</p>
+
+<p>reduce the ability of threat agent to</p>
+
+<p>exploit that vulnerability and we're</p>
+
+<p>minimizing the attack surface again two</p>
+
+<p>factors kind of the same thing I simply</p>
+
+<p>adds a secondary or multiple step that</p>
+
+<p>has to be completed in order to</p>
+
+<p>authenticate so even if the password is</p>
+
+<p>in the common list and they get that</p>
+
+<p>well then they stop your stop the next</p>
+
+<p>baby positive reduced risk and this is</p>
+
+<p>why we get your it has an extra layer in</p>
+
+<p>the fence and the security principle is</p>
+
+<p>defense in depth so I'm talking about</p>
+
+<p>defense in depth real quick how many of</p>
+
+<p>you have ever played whoa hey where's my</p>
+
+<p>oh well here we'll skip to it because</p>
+
+<p>we're almost at dynamic group have one</p>
+
+<p>slide away but how many of you ever play</p>
+
+<p>cornhole knowing that is all right it's</p>
+
+<p>a game where you've got a board it's got</p>
+
+<p>a hole in it you got beanbags you're</p>
+
+<p>trying to get it into the hole let's say</p>
+
+<p>it's a modified game or a carnival the</p>
+
+<p>board is vertical it's spinning it's got</p>
+
+<p>a pole in it you got three beat back and</p>
+
+<p>your objective is to get one of the</p>
+
+<p>beanbags through the hole and you win</p>
+
+<p>the prize so how hard is it to get that</p>
+
+<p>feedback to the whole heart impossible</p>
+
+<p>no all right let's say it's not one</p>
+
+<p>board it's two boards the second board</p>
+
+<p>is spinning in the opposite direction</p>
+
+<p>the hole is slightly different size and</p>
+
+<p>it slightly to the location now how hard</p>
+
+<p>is it to get my beam back to the hole</p>
+
+<p>it's definitely hard right not</p>
+
+<p>impossible I can watch get a feel for</p>
+
+<p>where they line it up and if I time my</p>
+
+<p>throat just right I'm gonna getting in</p>
+
+<p>there let's say it's not - let's say</p>
+
+<p>it's three it's four it's five it's</p>
+
+<p>eight boards almost anything opposite</p>
+
+<p>direction from each other oh now how</p>
+
+<p>hard is it you said what I wanted to</p>
+
+<p>hear that's exponentially hard okay that</p>
+
+<p>is defense in depth defense in depth</p>
+
+<p>acknowledges that every layer of defense</p>
+
+<p>everything that you can do has a</p>
+
+<p>vulnerability has a possible exploit</p>
+
+<p>that's just the way it is but if we can</p>
+
+<p>layer them one on top of the other we're</p>
+
+<p>gonna slow down an attackers because if</p>
+
+<p>he or she gets through one they're gonna</p>
+
+<p>get a second one they get through that</p>
+
+<p>they might hit a third and a fourth what</p>
+
+<p>we're trying to do is slow them down or</p>
+
+<p>possibly stop but at least slow them</p>
+
+<p>down and convince them to give up and</p>
+
+<p>move on to the next easier target</p>
+
+<p>all right now watching you come</p>
+
+<p>analyzing my target that's that's more</p>
+
+<p>an example of a a singular focused</p>
+
+<p>attack let's say let's say instead that</p>
+
+<p>somebody shows up in the game with an</p>
+
+<p>automatic beanbag gun just ways like</p>
+
+<p>that's like an automated attack where</p>
+
+<p>you're just gonna get hit they're just</p>
+
+<p>throwing everything in your sight hoping</p>
+
+<p>to finally land that one perfect shot</p>
+
+<p>all the way through your defenses</p>
+
+<p>because how many times does an attacker</p>
+
+<p>have to be successful to win once how</p>
+
+<p>many times you have to be successful all</p>
+
+<p>right um I think we can skip right to</p>
+
+<p>the end at this point yeah we won't have</p>
+
+<p>about four minutes left so we should</p>
+
+<p>probably stop for questions soon that's</p>
+
+<p>the summary so real quick the summary</p>
+
+<p>just give to you all at once just all of</p>
+
+<p>you thinking in terms of how you can</p>
+
+<p>minimize risk</p>
+
+<p>remember that risk is that those assets</p>
+
+<p>you got to protect so the fewer assets</p>
+
+<p>you have that lowers the risk what are</p>
+
+<p>the threats the more you can reduce the</p>
+
+<p>stress you minimize that risk if you can</p>
+
+<p>lower the impact of a threat occurring</p>
+
+<p>you're lowering that risk so always be</p>
+
+<p>thinking in terms and how you can</p>
+
+<p>minimize risk minimize the attack</p>
+
+<p>surface reduce the available area that</p>
+
+<p>can be attacked use print</p>
+
+<p>least privileged use defense-in-depth</p>
+
+<p>don't use the phone with no</p>
+
+<p>vulnerabilities be paranoid begin</p>
+
+<p>thinking in terms of okay as this system</p>
+
+<p>or as this code comes in as this data</p>
+
+<p>comes in I have to treat it as if it's</p>
+
+<p>already bad</p>
+
+<p>um and I hope this is the most visited</p>
+
+<p>the most important thing it's just know</p>
+
+<p>that it's a continual process it's not</p>
+
+<p>I'm gonna I'm gonna do this thing I'm</p>
+
+<p>gonna do some security stuff and now I'm</p>
+
+<p>done I don't want to do anything anymore</p>
+
+<p>it's not it's a continuous process that</p>
+
+<p>you always have to revisit because the</p>
+
+<p>landscape is always changing attackers</p>
+
+<p>are always coming up with new in</p>
+
+<p>different ways to compromise oops what</p>
+
+<p>questions do you have for us</p>
+
+<p>oh sorry before we get worried in front</p>
+
+<p>call for questions uh please do give us</p>
+
+<p>feedback visit the URL if you can do it</p>
+
+<p>now or like you know right away that</p>
+
+<p>would be even better let us know we can</p>
+
+<p>improve and all those things also if you</p>
+
+<p>would like the slides I know that</p>
+
+<p>there's a few links there's a lot of</p>
+
+<p>content that we talked about today not</p>
+
+<p>currently available on this this site</p>
+
+<p>right here on the the page for this talk</p>
+
+<p>but it will be yeah before the end of</p>
+
+<p>the day I'm going to get this tied up</p>
+
+<p>into a PDF and put up on the website</p>
+
+<p>also I will be tweeting at it at David</p>
+
+<p>Needham I'll send out a tweet with a</p>
+
+<p>link and you can get it from there yeah</p>
+
+<p>if you have after after this and give</p>
+
+<p>questions I am really really easy to</p>
+
+<p>find online it's GI l zo w just like it</p>
+
+<p>sounds yells oh and I am gills Oh</p>
+
+<p>everywhere there's like fifteen gills</p>
+
+<p>those in the US and they're all related</p>
+
+<p>to me so if you get the wrong one</p>
+
+<p>they're gonna find me so I'm really easy</p>
+
+<p>to find did everybody learn at least one</p>
+
+<p>new thing anyway do you might not learn</p>
+
+<p>one new thing cuz we didn't we can stay</p>
+
+<p>after and I'll help you will learn</p>
+
+<p>something okay any questions for</p>
+
+<p>anything at all sure it's also training</p>
+
+<p>it so absolutely yes yep yes in fact</p>
+
+<p>that was the light bulb for me I was a</p>
+
+<p>developer and I had built an application</p>
+
+<p>system for human resources and it was</p>
+
+<p>attacked at that time we stored Social</p>
+
+<p>Security numbers and it was compromised</p>
+
+<p>and at that point I got mad that</p>
+
+<p>somebody did that to me I went in</p>
+
+<p>training got my GSE gsa at the time</p>
+
+<p>whichever this answer is got my standard</p>
+
+<p>learned about security and that's what</p>
+
+<p>and then all of a sudden was like the</p>
+
+<p>light bulb went off on my whoa this is</p>
+
+<p>this is how they do this so you</p>
+
+<p>absolutely train it's crucial and we</p>
+
+<p>don't do enough of it interestingly in</p>
+
+<p>education you can use depending on</p>
+
+<p>depending on the option that you choose</p>
+
+<p>you can do this two-factor</p>
+
+<p>authentication with that also which will</p>
+
+<p>give you another layer make sure that</p>
+
+<p>password is as secure as it can be also</p>
+
+<p>it all goes back down to minimizing risk</p>
+
+<p>which is riskier having the same</p>
+
+<p>password in a bunch of places using a</p>
+
+<p>really easy to guess password everywhere</p>
+
+<p>or having really really super secure</p>
+
+<p>passwords in 99.999% of the place and</p>
+
+<p>then have one password that gets into</p>
+
+<p>those it's a trade-off right you're</p>
+
+<p>absolutely right if somebody gets my</p>
+
+<p>password manager password then yes all</p>
+
+<p>they've got the keys to everything</p>
+
+<p>Jayda it is it is it's you go out</p>
+
+<p>depending edge beaches right I can't</p>
+
+<p>speak to every password manager I should</p>
+
+<p>be encrypted but if they yeah your</p>
+
+<p>password to that encrypted database you</p>
+
+<p>can decrypt it then they get everything</p>
+
+<p>but again as long as your one password</p>
+
+<p>that you're using is secure it's long</p>
+
+<p>make it as long as you can you can even</p>
+
+<p>have that one store in another security</p>
+
+<p>password maybe really complicated with</p>
+
+<p>it but as long as you're protecting that</p>
+
+<p>one and routinely changing it like you</p>
+
+<p>should go in and update every office but</p>
+
+<p>every so often it's it's a it's a trade</p>
+
+<p>off but I think it's still one that far</p>
+
+<p>outweighs your part and companies like</p>
+
+<p>Pantheon we also have a few bikies which</p>
+
+<p>are like ethical yet physical device</p>
+
+<p>have you plug into your computer and</p>
+
+<p>push a button to authorize a login so in</p>
+
+<p>traditional where they yeah so we're</p>
+
+<p>actually out of time thank you all for</p>
+
+<p>coming today</p>
+
+<p>and we will move to the side actually</p>
+
+<p>we're gonna move to the panthéon booth</p>
+
+<p>presenter can come on in and set up but</p>
+
+<p>if you have any other questions we'd</p>
+
+<p>love to talk to you more</p></div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-269a33f55ed14ea4c40554018f53f3be712092d8a53c2340168f061642c30ea3">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/342">https://mid.camp/342</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-0c1b4e073546bbef9561c4e773177919744f4af8c63138bb8b61d32f795ee56e">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/pantheon.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-11/pantheon-logo-color@2x.png" width="960" height="354" alt="Pantheon" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/elevated-third.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-11/elevated-third-logo_0.png" width="220" height="220" alt="elevated third logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/acquia.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2019-03/Acquia_no_tagline.png" width="450" height="94" alt="Acquia" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#f891969e97b895919c9b999588d6978a9f"><span class="__cf_email__" data-cfemail="3e575058517e53575a5d5f534e10514c59">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/342","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_llBcjrkrgAu2wT1DR7VGL_iP6geJyiTnF_8O5ZD57VI.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJxLz89Pz0mNT8xLzKksyUwu1k9HE9DJSCwpSS3ST8_JT0rM0c0qBgAByBPW"></script>
+
+  </body>
+</html>

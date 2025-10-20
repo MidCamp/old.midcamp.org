@@ -1,0 +1,1759 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="Asking members of your team to spin up local copies of your Drupal application can result in an assorted array of solutions to the same problem: Some may spin up virtual machines while others may cobble together their favorite combination of Docker Containers. Some may struggle with native solutions on their machines while others may be entirely uncertain on where to begin. Adding common services and development tools such as xdebug, mailhog, or Drush may pose additional problems to even the more savvy members of your team." />
+<link rel="canonical" href="level-your-development-experience-lando.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Level Up Your Development Experience with Lando | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Level Up Your Development Experience with Lando | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_Qoyy92GHt9RyGOt8N3WS_9HRsJcJBywJ2IhXudzvST4.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJw1jFEOgzAMQy9U1iOhtDGsUkqmugOx068C8WM961nOJuQZkxAh31xBygo-fXMdzhsGtSpWfghv6R0truZJbMpk4MmOeh_tReEzaoLOS4FpbODHN5Yd0yXHBAfjla_q-jX8AXwTNZQ.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_mK2of_t7UFymkfbTHeA-kHdMPWzqc3DZQCYtX-tC0BA.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJw1jFEOgzAMQy9U1iOhtDGsUkqmugOx068C8WM961nOJuQZkxAh31xBygo-fXMdzhsGtSpWfghv6R0truZJbMpk4MmOeh_tReEzaoLOS4FpbODHN5Yd0yXHBAfjla_q-jX8AXwTNZQ.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJw1jFEOgzAMQy9U1iOhtDGsUkqmugOx068C8WM961nOJuQZkxAh31xBygo-fXMdzhsGtSpWfghv6R0truZJbMpk4MmOeh_tReEzaoLOS4FpbODHN5Yd0yXHBAfjla_q-jX8AXwTNZQ.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJw1jFEOgzAMQy9U1iOhtDGsUkqmugOx068C8WM961nOJuQZkxAh31xBygo-fXMdzhsGtSpWfghv6R0truZJbMpk4MmOeh_tReEzaoLOS4FpbODHN5Yd0yXHBAfjla_q-jX8AXwTNZQ.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="level-your-development-experience-lando.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-hatter-midcamp2019navigation-menu" id="block-hatter-midcamp2019navigation" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-midcamp2019navigation-menu">Midcamp 2019 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" title="About MidCamp" data-drupal-link-system-path="node/191">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--venue">
+        <a href="../about/venue.html" data-drupal-link-system-path="node/192">Venue</a>
+            </li>
+          <li class="primary-nav__sublist-item item--travel">
+        <a href="../about/travel.html" title="Travel and Accommodations" data-drupal-link-system-path="node/188">Travel</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../about/lunch.html" title="Lunch options" data-drupal-link-system-path="node/189">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--volunteer">
+        <a href="../article/volunteer-help-midcamp.html" title="Volunteer!">Volunteer!</a>
+            </li>
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2019/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../../2020/news.html" data-drupal-link-system-path="2020/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--attendees">
+        <a href="../attendees.html" data-drupal-link-system-path="2019/attendees">Attendees</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" data-drupal-link-system-path="2019/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--spread-the-word">
+        <a href="../article/spread-word.html" data-drupal-link-system-path="node/371">Spread the Word</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" title="Sponsors" data-drupal-link-system-path="node/197">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--become-a-sponsor">
+        <a href="../sponsor-midcamp.html" title="Sponsor MidCamp" data-drupal-link-system-path="node/186">Become a Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../../jobs.html" title="Jobs" data-drupal-link-system-path="jobs">Jobs</a>
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" title="Schedule" data-drupal-link-system-path="node/190">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--all-sessions">
+        <a href="../sessions.html" data-drupal-link-system-path="2019/sessions">All Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--summits--training-wed">
+        <a href="../schedule/wednesday.html" title="Summits &amp; Training (Wednesday)" data-drupal-link-system-path="2019/schedule/wednesday">Summits &amp; Training (Wed)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-thu">
+        <a href="../schedule/thursday.html" title="Sessions (Thursday)" data-drupal-link-system-path="2019/schedule/thursday">Sessions (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-fri">
+        <a href="../schedule/friday.html" title="Sessions (Friday)" data-drupal-link-system-path="2019/schedule/friday">Sessions (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--contribution-sat-">
+        <a href="../contribution-day.html" title="Contribution Day" data-drupal-link-system-path="node/332">Contribution (Sat) </a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-terms-and-conditions">
+        <a href="../../speaker-terms-and-conditions.html" title="Speaker Terms and Conditions" data-drupal-link-system-path="node/21">Speaker Terms and Conditions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../../speaker-resources.html" title="Speaker Resources">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--topic-tracks">
+        <a href="../../topic-tracks.html" title="Topic Tracks" data-drupal-link-system-path="node/10">Topic Tracks</a>
+            </li>
+  </ul>
+
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2019.html" hreflang="en">MidCamp 2019</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Level Up Your Development Experience with Lando</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="313" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2019-03-22T18:35:00Z" class="datetime">Friday, 1:35 pm CDT</time>
+ - <time datetime="2019-03-22T19:05:00Z" class="datetime">Friday, 2:05 pm CDT</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-82" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-field-link field--type-link field--label-hidden field__item"><a href="https://zoom.us/my/midcamp314b" target="_blank" class="button--primary">Go to Room 314B - old</a></div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>Asking members of your team to spin up local copies of your Drupal application can result in an assorted array of solutions to the same problem: Some may spin up virtual machines while others may cobble together their favorite combination of Docker Containers. Some may struggle with native solutions on their machines while others may be entirely uncertain on where to begin. Adding common services and development tools such as xdebug, mailhog, or Drush may pose additional problems to even the more savvy members of your team.</p>
+
+<p>Whether you need to simulate infrastructure(e.g. redis, nginx, solr), helper services(e.g. mailhog, phpmyadmin, xdebug), development tools(e.g. grunt, drush, composer), or common automation tasks(CI, testing, building deployment artifacts), Lando provides a solution to quickly specify and painlessly spin up the services and tools needed to develop your projects. It's a free, open source, cross-platform, local development environment and DevOps tool built on Docker container technology. Designed to work with most major languages, frameworks and services, Lando provides an easy way for developers of all types to specify simple or complex requirements for their projects, and then quickly get to work on them.</p>
+
+<p>In this presentation, you will learn some Lando basics, including how to use Lando's built-in recipes to quickly spin up Drupal environments. You will learn how to define your development stack in a simple Lando configuration file that can be committed to your code repository and shared with other team members. You will learn how Lando can easily push and pull code, database, and files from hosting services such as Pantheon. You will learn how Lando can perform automation tasks and how easily it can do testing and CI. You will also learn how Lando can be used to build a decoupled Drupal/Gatsby development stack in just minutes. Most importantly, you will leave this session knowing that after making the switch to Lando, your team will never need to configure a virtual machine or install another local development tool for any of your projects.</p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/ghxpT6fAQA0?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Aaron Feledy</h4>
+
+      Principal Architect
+
+
+          @
+              <a href="https://arrow.one">Arrow One Solutions</a>
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p><span><span><span><span><span><span>Aaron is a tireless problem solver who takes a significant interest in a wide range of technical topics.&nbsp; Working with Drupal since 2009 has given him significant experience and a deep understanding of the systems involved in operating, developing, supporting, and troubleshooting Drupal applications. He has been involved in countless Drupal development projects for a wide range of organizations, including The Michael J. Fox Foundation, Six Flags Entertainment, Arizona State University, and Michigan State University. Through regular speaking engagements and the leading of training sessions at conferences and Drupal events across North America, he maintains an active role in the Drupal community.</span></span></span></span></span></span></p></div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2023-01/profile_8-22-full-zoom.jpg%3Fitok=qIOOZfYd" width="220" height="220" alt="Aaron Feledy&#039;s profile" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Back-End</div>
+          <div class="field__item">DevOps</div>
+              </div>
+      </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p>is level up your development experience</p>
+
+<p>with Lando I am Aaron fella D I do</p>
+
+<p>freelance Drupal development and</p>
+
+<p>consulting under the name of Aaron</p>
+
+<p>solutions I mainly do embed myself in</p>
+
+<p>with agencies or companies that already</p>
+
+<p>have web development teams but need to</p>
+
+<p>be supplemented with someone that has</p>
+
+<p>Drupal expertise and I go in and out of</p>
+
+<p>all sorts of different agencies and</p>
+
+<p>companies work on all sorts of different</p>
+
+<p>websites so just have a lot of</p>
+
+<p>experience of doing a whole lot of</p>
+
+<p>different types of things from</p>
+
+<p>troubleshooting to full-out development</p>
+
+<p>to sometimes I even have to play with</p>
+
+<p>Photoshop all right then I'm here to</p>
+
+<p>talk about Lando but not that Lando I'm</p>
+
+<p>also not that Landale this Lando</p>
+
+<p>but before I get into the specifics of</p>
+
+<p>Lando I'm going to talk about brief</p>
+
+<p>history of the options you may have had</p>
+
+<p>a short time ago and got see really</p>
+
+<p>really close so local development one of</p>
+
+<p>the ways that people have done it and</p>
+
+<p>I've actually gone into an environment</p>
+
+<p>that this is how they did it and it took</p>
+
+<p>IT forever to set me up so I could</p>
+
+<p>terminal in to do anything and they stay</p>
+
+<p>wouldn't let me have a copy of their</p>
+
+<p>code I could only manipulate stuff on</p>
+
+<p>the development server and this is how</p>
+
+<p>their team was doing it they were using</p>
+
+<p>FTP and SSH directly into it alter code</p>
+
+<p>and and I've heard of this before and</p>
+
+<p>I've seen it myself and probably one of</p>
+
+<p>the worst ways to do it it's awful for</p>
+
+<p>collaboration everybody stepping on each</p>
+
+<p>other's toes over writing each other's</p>
+
+<p>code even if you are using like get your</p>
+
+<p>you still can have multiple people in</p>
+
+<p>the server at a time trying to change</p>
+
+<p>things at the same time it's a mess I'm</p>
+
+<p>also maintaining an in-house server is</p>
+
+<p>expensive you gotta have an IT guy to</p>
+
+<p>maintain the thing machine itself is</p>
+
+<p>thousands of dollars but the benefit is</p>
+
+<p>you can have an exact copy of your</p>
+
+<p>production server in your office so some</p>
+
+<p>people do it</p>
+
+<p>your other option is in native solutions</p>
+
+<p>so you locally install your Apache PHP</p>
+
+<p>your whole stack just read on your</p>
+
+<p>machine your your laptop is essentially</p>
+
+<p>your server this makes it so you can't</p>
+
+<p>really change things easily because</p>
+
+<p>everything's like installed if you</p>
+
+<p>install PHP seven that's the one that's</p>
+
+<p>installed</p>
+
+<p>yeah the uninstall it install different</p>
+
+<p>one if you need to work on a different</p>
+
+<p>project or change versions for any</p>
+
+<p>reason and it creates a situation where</p>
+
+<p>if you have a team of people like you</p>
+
+<p>can't be certain that everyone's</p>
+
+<p>operating on the same stack when they're</p>
+
+<p>working on your app that leaves all</p>
+
+<p>kinds of problems mostly the it works on</p>
+
+<p>my machine and there's the integrated</p>
+
+<p>packages which kind of ease the process</p>
+
+<p>a little bit of getting all these things</p>
+
+<p>installed in your computer still</p>
+
+<p>essentially the same concept you're</p>
+
+<p>still installing PHP on your computer</p>
+
+<p>you're still installing the various</p>
+
+<p>pieces but this man zamp Wham I'm sure</p>
+
+<p>yeah I could have def desktop I'm sure a</p>
+
+<p>lot of you have used these things most</p>
+
+<p>of you probably but you know you can't</p>
+
+<p>change versions easily because you have</p>
+
+<p>to uninstall things makes it a little</p>
+
+<p>easier because this kind of handles that</p>
+
+<p>process for you configure seams for you</p>
+
+<p>so it's a step in the right direction</p>
+
+<p>but again you can have teams with</p>
+
+<p>different configurations unless you're</p>
+
+<p>standing at the machine making sure</p>
+
+<p>they're clicking the right boxes every</p>
+
+<p>time</p>
+
+<p>then you have your virtual machines so</p>
+
+<p>these okay a little more portable you</p>
+
+<p>can have someone set up a virtual</p>
+
+<p>machine that very closely mimics your</p>
+
+<p>production environment you can pass</p>
+
+<p>these around to your team problem is</p>
+
+<p>there they're big files and you're gonna</p>
+
+<p>run into issues everybody getting them</p>
+
+<p>installed properly but there's tools for</p>
+
+<p>helping people manage the configuration</p>
+
+<p>like vagrant and puppet and ansible</p>
+
+<p>help you kind of standardize on a</p>
+
+<p>configuration set and share it with the</p>
+
+<p>rest of your team</p>
+
+<p>[Music]</p>
+
+<p>there's drupal vm which manages a lot of</p>
+
+<p>the setting things up for you so that</p>
+
+<p>eases things a bit but again like I said</p>
+
+<p>it's difficult to configure initially</p>
+
+<p>and big files and these things can be</p>
+
+<p>resource intensive so then there's the</p>
+
+<p>latest greatest thing that ever went was</p>
+
+<p>getting into whether they should or not</p>
+
+<p>it's containers this is docker the most</p>
+
+<p>popular method of doing containers it</p>
+
+<p>basically allows you to mix and match</p>
+
+<p>your configuration they're already</p>
+
+<p>pre-configured set up services</p>
+
+<p>essentially you have a PHP container and</p>
+
+<p>you have an Apache container and you can</p>
+
+<p>have different versions of these and you</p>
+
+<p>can theoretically mix and match them and</p>
+
+<p>everything kind of plays nice together</p>
+
+<p>and you don't have to do a whole lot of</p>
+
+<p>configuration well you do initially once</p>
+
+<p>you have two containers you can</p>
+
+<p>do what you're doing and then there's a</p>
+
+<p>they give you a docker compose which is</p>
+
+<p>a file you can answer all of your</p>
+
+<p>configuration in and then share that</p>
+
+<p>file so that we use it any way you like</p>
+
+<p>you define your PHP versions or Pacha</p>
+
+<p>versions everything in a single file</p>
+
+<p>share around everybody who has docker</p>
+
+<p>can run the commands he'll spin up the</p>
+
+<p>write containers and they'll have the</p>
+
+<p>same stack as you so big improvement but</p>
+
+<p>it's still the press that still gets a</p>
+
+<p>little cumbersome so you still have to</p>
+
+<p>wire up ports and things and there's</p>
+
+<p>still quite a bit of configuration to</p>
+
+<p>initially but another benefit is it's</p>
+
+<p>also cross-platform your team can you</p>
+
+<p>don't have to have everybody on the same</p>
+
+<p>system you have windows and mac and</p>
+
+<p>linux and as far as your app is</p>
+
+<p>concerned as far as your Drupal sites</p>
+
+<p>concerned here you're running on the</p>
+
+<p>same same server as everybody else</p>
+
+<p>[Music]</p>
+
+<p>which brings me to Lando which is a free</p>
+
+<p>open-source cross-platform local</p>
+
+<p>development and DevOps tool</p>
+
+<p>it runs command-line it's built on</p>
+
+<p>docker technology and it is essentially</p>
+
+<p>a wrapper for your development stack it</p>
+
+<p>kind of takes all the parts that work</p>
+
+<p>umbers them of setting things up and</p>
+
+<p>tries to make it easier for you so what</p>
+
+<p>can Lando do it can easily mimic</p>
+
+<p>production locally standardized</p>
+
+<p>development environments and tooling</p>
+
+<p>across all your various systems</p>
+
+<p>it's got integration for hosting the</p>
+
+<p>writers like Pantheon it allows you to</p>
+
+<p>do like and say the command is a Lando</p>
+
+<p>pull and it'll pull down your whole site</p>
+
+<p>you can specify okay I want the read</p>
+
+<p>latest database just type one command it</p>
+
+<p>loads it in here from your production or</p>
+
+<p>we can send up for dead as well but pull</p>
+
+<p>down from Pantheon directly into your</p>
+
+<p>local single command</p>
+
+<p>your configuration it's all one file all</p>
+
+<p>of the config can go in one file for</p>
+
+<p>everything you used up all of your your</p>
+
+<p>port mapping all of your I'm gonna</p>
+
+<p>custom commands and your holdings staff</p>
+
+<p>is defined there to get their version</p>
+
+<p>control do projects share it with the</p>
+
+<p>team and your buddy's got Lando these</p>
+
+<p>state Lando spins up the stack and yeah</p>
+
+<p>that allows you to define your own tools</p>
+
+<p>like I mentioned we couldn't say I want</p>
+
+<p>to have a deployment script instead of</p>
+
+<p>having a bandolier underscore deployment</p>
+
+<p>scripting mega party Orlando package so</p>
+
+<p>if you're sharing with your team - tell</p>
+
+<p>your team is well the scripts already in</p>
+
+<p>the projects are just state Lando deploy</p>
+
+<p>and your team member can just say</p>
+
+<p>languor deploy push whatever they're</p>
+
+<p>working on to dev automatically everyone</p>
+
+<p>set it up</p>
+
+<p>so Lando is the base concept of Lando</p>
+
+<p>configuration is recipes they're</p>
+
+<p>pre-configured start states that</p>
+
+<p>basically give you a common sense</p>
+
+<p>defaults for any kind of development</p>
+
+<p>you're wanting to do recipes that it</p>
+
+<p>comes with and full of Drupal recipes</p>
+
+<p>wordpress or just you want to lamp or</p>
+
+<p>limb stack you just tell Lando that</p>
+
+<p>that's where you want to start and it'll</p>
+
+<p>give you all the kind of sense the pulse</p>
+
+<p>that most people will probably be happy</p>
+
+<p>with give you a good starting place</p>
+
+<p>and they're the the base languages that</p>
+
+<p>it supports PHP Python no Ruby net and</p>
+
+<p>go these are basic built-in</p>
+
+<p>pre-installed you spin up you do to</p>
+
+<p>finding your lambda file you just say I</p>
+
+<p>want PHP they'll install teach me some</p>
+
+<p>point to automatically for you or</p>
+
+<p>whichever language you like it's already</p>
+
+<p>ready to go</p>
+
+<p>and then you look at</p>
+
+<p>I think one of my slides get overwritten</p>
+
+<p>okay well I'll try to remember what that</p>
+
+<p>one is but I'll continue on so here's an</p>
+
+<p>example of the Lando config file single</p>
+
+<p>piano file in this example we've defined</p>
+
+<p>that the project is named Drupal tests</p>
+
+<p>but the recipe it's going to use is</p>
+
+<p>Drupal 8 which means it's gonna already</p>
+
+<p>find the whole stack I'm saying Drupal</p>
+
+<p>is true because the Drupal recipe comes</p>
+
+<p>with a gerbil console as an option and I</p>
+
+<p>want to turn down config I say ok my web</p>
+
+<p>root within my project folder is called</p>
+
+<p>da crew to mimic what's on production</p>
+
+<p>and so now it will automatically set up</p>
+
+<p>a patchy sub-points browser to the</p>
+
+<p>finals in that group and this I want to</p>
+
+<p>override I want to be HB 7.0 because 7.2</p>
+
+<p>is too new for this particular project</p>
+
+<p>now the next 50 bug turned on because I</p>
+
+<p>might do some debugging and the cool</p>
+
+<p>thing about the ex debug lift this is it</p>
+
+<p>just works you don't have to do anything</p>
+
+<p>say XD book true if you've got like a</p>
+
+<p>peach peach storm or an IDE like that</p>
+
+<p>you just listen for connections and it's</p>
+
+<p>already wired up</p>
+
+<p>services in this particular project that</p>
+
+<p>I want male hog to catch all the the</p>
+
+<p>male I'm so I just define it and it's</p>
+
+<p>available I think this was my missing</p>
+
+<p>slide some of the services that were</p>
+
+<p>that are available you can mail hog and</p>
+
+<p>PHP my admin or my school my high school</p>
+
+<p>my anyway there's a bunch of different</p>
+
+<p>like the programs you might have</p>
+
+<p>installed on your server that you want</p>
+
+<p>available and they're all installed</p>
+
+<p>pretty much like this you say services</p>
+
+<p>male hog you name it mail hug you say</p>
+
+<p>it's tight mag it installs it for you</p>
+
+<p>and this one database is actually one of</p>
+
+<p>the default services that gets installed</p>
+
+<p>with the Drupal recipe and I'm here just</p>
+
+<p>defining that I want it to be overridden</p>
+
+<p>to be nice to all five point seven</p>
+
+<p>instead of whichever version it would</p>
+
+<p>have installed late fall and then I can</p>
+
+<p>set up proxies to handle routing the</p>
+
+<p>domains that's kind of cumbersome in</p>
+
+<p>other system but with glam though you</p>
+
+<p>just right here to find a proxy</p>
+
+<p>I'm actually mining that should be named</p>
+
+<p>mail hug but you'd say proxy mail hog</p>
+
+<p>give it that address when you go ahead</p>
+
+<p>and browser and it takes you to that</p>
+
+<p>service automatically it's worse</p>
+
+<p>and all these things that I say it just</p>
+
+<p>works you can override drill that all of</p>
+
+<p>it it's there's nothing keeps it super</p>
+
+<p>simple if you okay I want to start off</p>
+
+<p>with a default go in your config it's</p>
+
+<p>good to go but you want to change</p>
+
+<p>versions you want to alter config files</p>
+
+<p>you can pop those in define it here</p>
+
+<p>Easy's can be</p>
+
+<p>one of the big features is advanced</p>
+
+<p>tooling so essentially you can as I</p>
+
+<p>mentioned earlier make your own commands</p>
+
+<p>for Lando in this example I've got a</p>
+
+<p>Drupal 8 that also has a node installed</p>
+
+<p>this actually came from a project that I</p>
+
+<p>worked on where we're using a tool</p>
+
+<p>called fractal which maintained all of</p>
+
+<p>our all the elements for the theme</p>
+
+<p>everything was there called the design</p>
+
+<p>library I'm a front-end guy so but</p>
+
+<p>anyways we set it up so that you could</p>
+
+<p>say Lando install and it would do a</p>
+
+<p>composer install install all the Drupal</p>
+
+<p>stuff you need then it would run on the</p>
+
+<p>node service it would run yarn fractal</p>
+
+<p>install which would run that fractal</p>
+
+<p>program then compile which would compile</p>
+
+<p>all the assets for our theme and then</p>
+
+<p>ultimately sync it so it's essentially</p>
+
+<p>you're running a scripts but you'd apply</p>
+
+<p>it right here in the same Lando file as</p>
+
+<p>everything else you can also call the</p>
+
+<p>script here if you just want to have it</p>
+
+<p>last</p>
+
+<p>Wow</p>
+
+<p>this one actually just another example</p>
+
+<p>here type of Lando D be reset so the</p>
+
+<p>previous one was probably four okay that</p>
+
+<p>you're just getting started you do plan</p>
+
+<p>to install gives everything up and</p>
+
+<p>running for you you're good to go</p>
+
+<p>yeah something like this you could set</p>
+
+<p>up to where DB reset if you've got a zip</p>
+
+<p>file in your directory this script just</p>
+
+<p>to look at it's probably a database dump</p>
+
+<p>so we're gonna use Lando's built-in</p>
+
+<p>helper script that imports it in your</p>
+
+<p>app automatically and then we run the</p>
+
+<p>cache rebuilds and then such to get you</p>
+
+<p>up and running</p>
+
+<p>this is not what I mentioned where you</p>
+
+<p>could just go straight into a strict in</p>
+
+<p>this particular one came from a project</p>
+
+<p>that would deploy Drupal to hack the</p>
+
+<p>environment</p>
+
+<p>it runs the deploy scripts you typed</p>
+
+<p>Lando through the pleasurable but it</p>
+
+<p>also asks you which environment gives</p>
+
+<p>you the option seriousness this is lando</p>
+
+<p>doing this briefing pass through the an</p>
+
+<p>environment variable essentially based</p>
+
+<p>on a question and you could pass those</p>
+
+<p>switches anything else to your scripts</p>
+
+<p>that you need just by defining here in</p>
+
+<p>your Lando file</p>
+
+<p>and that fellow that broken you know</p>
+
+<p>they came very prepared here all right</p>
+
+<p>so you know what I'm gonna do I am here</p>
+
+<p>I did it once successfully live demo</p>
+
+<p>this so I might do it again here I think</p>
+
+<p>I'm talking too fast I'm skipping over</p>
+
+<p>things with a little nervous but so yeah</p>
+
+<p>if you wanted to do like a decoupled</p>
+
+<p>hope that's not you can't see that let's</p>
+
+<p>see if I can fix it</p>
+
+<p>yes my primary browser is Firefox</p>
+
+<p>okay so Benji Fisher - this this was</p>
+
+<p>based on I believe he mentioned in the</p>
+
+<p>chat that was based on a trouble ticket</p>
+
+<p>I was working on in the land of Q if you</p>
+
+<p>have to be going he he would a lot</p>
+
+<p>further so I'm just gonna show it what</p>
+
+<p>he did so yeah essentially this is</p>
+
+<p>basically if you want to do a decoupled</p>
+
+<p>environment as an example of them GATS</p>
+
+<p>me for example</p>
+
+<p>well okay you need essentially the node</p>
+
+<p>server and PHP Apache server to run</p>
+
+<p>Drupal two separate apps this one sets</p>
+
+<p>up standard Drupal server sets up some</p>
+
+<p>end points for you with the proxy</p>
+
+<p>settings there</p>
+
+<p>and then he gives you so I get for not</p>
+
+<p>getting hurt before this so you also</p>
+
+<p>with lame-o get build steps that as</p>
+
+<p>you're spinning up so you say Lando</p>
+
+<p>start that spins up your app but you can</p>
+
+<p>also say the first time your app starts</p>
+
+<p>up install some app get to spent</p>
+
+<p>dependencies or you know run some</p>
+
+<p>scripts or whatever you whatever you</p>
+
+<p>need to run the first time Yuri Raph is</p>
+
+<p>watched on the local environment but</p>
+
+<p>then there's also tons of other places</p>
+
+<p>where you can kind of hook into the</p>
+
+<p>different processes you can tell Lando</p>
+
+<p>to do things when you're powering off</p>
+
+<p>and pop up a message are you sure things</p>
+
+<p>like that</p>
+
+<p>in this particular ones</p>
+
+<p>yeah</p>
+
+<p>so he's a great composer install sale to</p>
+
+<p>say it's on the app server which is the</p>
+
+<p>default name Drupal recipe for the lamp</p>
+
+<p>server essentially the true black he's</p>
+
+<p>followed</p>
+
+<p>no js' here I'm sure was running that</p>
+
+<p>gets the instance ready to find another</p>
+
+<p>versions of gas me and yarn there and</p>
+
+<p>then the run will display a message in</p>
+
+<p>the rum yard install the first time you</p>
+
+<p>run it</p>
+
+<p>he's also got some nginx configuration</p>
+
+<p>going on there</p>
+
+<p>and then tooling this is basically</p>
+
+<p>what's gonna make it over so now you</p>
+
+<p>could say Lando NPN Orlando node Orlando</p>
+
+<p>Gatsby can run any of those commands</p>
+
+<p>that would typically run if you had</p>
+
+<p>these tools and so lovely so you don't</p>
+
+<p>need an piano door Gatsby installed on</p>
+
+<p>your local machine they exist in docker</p>
+
+<p>containers separate from your machine</p>
+
+<p>and if you run through land values you</p>
+
+<p>don't have to ssa to the machinery and</p>
+
+<p>your local terminal you say Lando Gatsby</p>
+
+<p>if you're in your project directory it</p>
+
+<p>will run the Gatsby command on that</p>
+
+<p>node.js container for you so it's been</p>
+
+<p>up your gatsby site the drupal recipes</p>
+
+<p>i'm Drupal for you automatically and so</p>
+
+<p>then all you have to do is it's work on</p>
+
+<p>your endpoints and such and the like</p>
+
+<p>thing that's basically how you need this</p>
+
+<p>is gonna run both servers both apps in</p>
+
+<p>separate dish environments and give you</p>
+
+<p>everything you need</p>
+
+<p>[Music]</p>
+
+<p>man time 24 minutes so about five</p>
+
+<p>minutes left</p>
+
+<p>[Music]</p>
+
+<p>we do questions</p>
+
+<p>you can't see that</p>
+
+<p>in other ways</p>
+
+<p>there we go any questions yes so I have</p>
+
+<p>friends with windows yes and I'm trying</p>
+
+<p>to so the question was what's my</p>
+
+<p>experience using windows and what</p>
+
+<p>version do I have I running Windows 10</p>
+
+<p>Pro that is a one of the requirements of</p>
+
+<p>Lando is that you do have to run pro</p>
+
+<p>because I'm making use of a native file</p>
+
+<p>sharing solution that is not available</p>
+
+<p>in the home version of Windows but my</p>
+
+<p>experiences has always been good that's</p>
+
+<p>part why I'm here advocating for this</p>
+
+<p>because it is the first solution on</p>
+
+<p>Windows that works great and I go and I</p>
+
+<p>embed myself with other development</p>
+
+<p>teams that have whatever solutions</p>
+
+<p>they're using and I convince some news</p>
+
+<p>Lando and they're using a variety of</p>
+
+<p>different systems and they're all right</p>
+
+<p>up to what I'm doing and they're loving</p>
+
+<p>it and there were some growing pains but</p>
+
+<p>oh you've used Lando in the past few</p>
+
+<p>months they've tried a ton of new</p>
+
+<p>releases so a lot of the bugs have been</p>
+
+<p>squashed a lot of the issues are patched</p>
+
+<p>up so it's pretty stable works pretty</p>
+
+<p>well now is it a up lot of processor or</p>
+
+<p>a gram</p>
+
+<p>nothing compared to like with the VMS</p>
+
+<p>and stuff I'd be running previously I</p>
+
+<p>mean I've been using them in doses back</p>
+
+<p>in the Kalibak days so run I'm running</p>
+
+<p>now it's pretty souped up but my laptop</p>
+
+<p>that I've been running up until I just</p>
+
+<p>recently bought this one was a $500</p>
+
+<p>Windows laptop it was a little sluggish</p>
+
+<p>but yeah so a lot of the a lot of the</p>
+
+<p>config is just a greatly simplified so</p>
+
+<p>if you unless you need some of the</p>
+
+<p>complexity they're going to get with the</p>
+
+<p>doctor stuff like say you just want a</p>
+
+<p>Drupal site up around you say you can</p>
+
+<p>tell there's two commands you say lando</p>
+
+<p>in it and Lando's Lango start so lando</p>
+
+<p>in it will pull up in the last few okay</p>
+
+<p>which recipe do I use take Drupal 8 it</p>
+
+<p>defines it essentially defines your</p>
+
+<p>docker compose file for you with</p>
+
+<p>everything you need everything wired up</p>
+
+<p>all your your your routing stuffs done</p>
+
+<p>you ready to go and then from there</p>
+
+<p>you'll write whatever little bits of</p>
+
+<p>config that you need</p>
+
+<p>and I add to that this a little bit I</p>
+
+<p>think one of them most important parts</p>
+
+<p>of having Lando is having that that</p>
+
+<p>proxy server that they ship with it</p>
+
+<p>and being able to just have that go on</p>
+
+<p>the fly because you don't have to go in</p>
+
+<p>and set up you know your FC hose or any</p>
+
+<p>of that it allows allows you to put in</p>
+
+<p>you know we don't blink like addresses</p>
+
+<p>to all your different containers on the</p>
+
+<p>plot I've read them quickly and just at</p>
+
+<p>that proxy definition that I mentioned</p>
+
+<p>you was done a couple of lines yeah yeah</p>
+
+<p>yeah from from the start yeah yeah you</p>
+
+<p>can it works without you doing anything</p>
+
+<p>new the proxies only necessary if you</p>
+
+<p>want to start overriding the Pioneer</p>
+
+<p>only from the get-go it'll it'll take a</p>
+
+<p>look at the ports that are available on</p>
+
+<p>your machine to find them on manic</p>
+
+<p>before you handle all that routing and</p>
+
+<p>just get you up and running pop out</p>
+
+<p>here's his URL you can use right now</p>
+
+<p>Kentucky was fine ports also</p>
+
+<p>yes hmm yeah I thought it would have</p>
+
+<p>been in that config file I was showing</p>
+
+<p>but Dayton you can pass your ports</p>
+
+<p>through anyway you have anywhere you</p>
+
+<p>want how does it handle once something</p>
+
+<p>feels so right now for the most part</p>
+
+<p>right right so if something fails how</p>
+
+<p>does it handle that currently it doesn't</p>
+
+<p>really it kind of falls back on a docker</p>
+
+<p>to do what docker would do so now if dr.</p>
+
+<p>can recover something it will land Oh as</p>
+
+<p>it currently is</p>
+
+<p>doesn't do what's that like once but</p>
+
+<p>there's a command you say Lando restart</p>
+
+<p>and it'll turn everything off turned</p>
+
+<p>back on and basically get you back up</p>
+
+<p>and running</p>
+
+<p>yep</p>
+
+<p>- Lando</p>
+
+<p>[Music]</p>
+
+<p>it doesn't it essentially like simulates</p>
+
+<p>that the way that would work now you</p>
+
+<p>don't actually even spit out a docker</p>
+
+<p>compose file for you but it does allow</p>
+
+<p>you if you have something that you know</p>
+
+<p>you can do in Dyer compose you can</p>
+
+<p>override things on your own</p>
+
+<p>but yeah you don't you don't get that to</p>
+
+<p>share that was just the initial like</p>
+
+<p>state yeah yeah yeah so I think that I</p>
+
+<p>think those might be like the initial</p>
+
+<p>State for the recipe but yeah so the</p>
+
+<p>question was whether or not I feel like</p>
+
+<p>I could use docker dr. composed better</p>
+
+<p>now that I've used lando or that I</p>
+
+<p>understand it more the answer is no</p>
+
+<p>because it does obfuscate it you as far</p>
+
+<p>as you know you've installed Lando and</p>
+
+<p>it just works yes yeah follow-up</p>
+
+<p>question did you feeling</p>
+
+<p>one want to know more about soccer when</p>
+
+<p>this was probably more a retort question</p>
+
+<p>to think about and be able to learned</p>
+
+<p>about dr. dr. bodis herself to better</p>
+
+<p>help yourself troubleshoot</p>
+
+<p>I'm not to take over the question for</p>
+
+<p>this yeah yeah if you want to have to go</p>
+
+<p>ahead Paulo we're did it so so doctor is</p>
+
+<p>not a precursor of learning really cool</p>
+
+<p>Tiki so they can get there it's a way to</p>
+
+<p>cut my keep doctor that's why I need it</p>
+
+<p>now cuz usually just did the PM's you</p>
+
+<p>know I had separate Center less</p>
+
+<p>computerized yeah that's a copy patient</p>
+
+<p>but then once I got to the doctor find</p>
+
+<p>out that I can have multiple sides to</p>
+
+<p>him</p>
+
+<p>jaqen simple support changes but doctor</p>
+
+<p>is also very complex research without</p>
+
+<p>the fear factor post file if you want</p>
+
+<p>second shell scripts out of it you know</p>
+
+<p>and</p>
+
+<p>Karpov a Libra meetup group for drupal</p>
+
+<p>and this was actually one of our</p>
+
+<p>discussions going back and forth for i</p>
+
+<p>was talking about dr the other guys</p>
+
+<p>talking about land uh we're trying to</p>
+
+<p>compare it to which is why it's asking</p>
+
+<p>here that question yeah so basically</p>
+
+<p>yeah the the whole idea is that you you</p>
+
+<p>don't need to know doctor you don't want</p>
+
+<p>to know doctor it's just a dependency so</p>
+
+<p>that way it's super easy to just share</p>
+
+<p>your environment with your team nobody</p>
+
+<p>needs to know anything</p>
+
+<p>it just gets done just works yeah maybe</p>
+
+<p>you're synthesizing all of these</p>
+
+<p>questions if you have a project that is</p>
+
+<p>already running on some hand rolled</p>
+
+<p>containers is there way to import it</p>
+
+<p>into the land of interface so the</p>
+
+<p>question was is there a way to import an</p>
+
+<p>existing Packer configuration into the</p>
+
+<p>lando interface not automatically as the</p>
+
+<p>answer you'd have to kind of convert</p>
+
+<p>that yourself but lando does give you</p>
+
+<p>the option to run your config files so</p>
+
+<p>you can set up to read hey I want this I</p>
+
+<p>want my app server to run this already</p>
+
+<p>defined configuration you can just tell</p>
+
+<p>it to a couple lines and it'll load that</p>
+
+<p>instead of its own</p>
+
+<p>and I think we're a little over on time</p>
+
+<p>any last minute questions alright well</p>
+
+<p>thank you</p>
+
+<p>[Applause]</p></div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-ee7def07596dbd88a927b4a73a3684f65c3d4dd02fec80a29986008747c16cca">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/313">https://mid.camp/313</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-a4c1a957efd56aa57e950662324d2f6387136d218eca6a24a8f5619cf6d29bdc">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/pantheon.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-11/pantheon-logo-color@2x.png" width="960" height="354" alt="Pantheon" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/acquia.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2019-03/Acquia_no_tagline.png" width="450" height="94" alt="Acquia" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/elevated-third.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-11/elevated-third-logo_0.png" width="220" height="220" alt="elevated third logo" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#5d34333b321d3034393e3c302d73322f3a"><span class="__cf_email__" data-cfemail="c9a0a7afa689a4a0adaaa8a4b9e7a6bbae">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/313","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_llBcjrkrgAu2wT1DR7VGL_iP6geJyiTnF_8O5ZD57VI.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJxLz89Pz0mNT8xLzKksyUwu1k9HE9DJSCwpSS3ST8_JT0rM0c0qBgAByBPW"></script>
+
+  </body>
+</html>

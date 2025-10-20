@@ -1,0 +1,740 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="DDEV features and add-ons could ease your developer workflow. However, you might already be using Lando and be an expert at it. This talk provides you with a quick DDEV intro as well as a side-by-side comparison of 3 Lando config files and what would it take to get the same features on DDEV." />
+<link rel="canonical" href="lando-ddev-side-side-migration.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="From Lando to DDEV: A side by side migration | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>From Lando to DDEV: A side by side migration | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_gt5LiAM1qLGUH5e845uOb7R_lJ9dUwTXmnhGDR2yY20.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OgzAMgy8E7ZFQSg1UShrUdDB2-lX87GUviZ0vkj0ymR0-kKEbLz0l_mmBGc2wx2eNjWlBU0WI0wfdQrWi-Jk1EPej2XMRWoO-OzusQq6ILUXoAAmIw5TA0RfYqtnShv6E7QW7-XM.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_QAC1R0aFoF1mIVQtLAaSE24B2iwnT2ZCa0cZDeZsPV0.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OgzAMgy8E7ZFQSg1UShrUdDB2-lX87GUviZ0vkj0ymR0-kKEbLz0l_mmBGc2wx2eNjWlBU0WI0wfdQrWi-Jk1EPej2XMRWoO-OzusQq6ILUXoAAmIw5TA0RfYqtnShv6E7QW7-XM.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OgzAMgy8E7ZFQSg1UShrUdDB2-lX87GUviZ0vkj0ymR0-kKEbLz0l_mmBGc2wx2eNjWlBU0WI0wfdQrWi-Jk1EPej2XMRWoO-OzusQq6ILUXoAAmIw5TA0RfYqtnShv6E7QW7-XM.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OgzAMgy8E7ZFQSg1UShrUdDB2-lX87GUviZ0vkj0ymR0-kKEbLz0l_mmBGc2wx2eNjWlBU0WI0wfdQrWi-Jk1EPej2XMRWoO-OzusQq6ILUXoAAmIw5TA0RfYqtnShv6E7QW7-XM.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+<link rel="stylesheet" media="all" href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.css" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="lando-ddev-side-side-migration.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-midcamp2024navigation-menu" id="block-midcamp2024navigation" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-midcamp2024navigation-menu">MidCamp 2024 navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" data-drupal-link-system-path="node/8477">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--by-the-numbers">
+        <a href="../../2020/about/by-the-numbers.html" data-drupal-link-system-path="node/6252">By the Numbers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--venue">
+        <a href="../venue/depaul-university-lincoln-park-student-center.html" data-drupal-link-system-path="node/8482">Venue</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../speaker-resources.html" data-drupal-link-system-path="node/8485">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--volunteer-opportunities">
+        <a href="../article/midcamp-needs-you.html" data-drupal-link-system-path="node/8593">Volunteer Opportunities</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../../2025/organizers.html" data-drupal-link-system-path="2025/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--travel">
+        <a href="../travel.html" data-drupal-link-system-path="node/8564">Travel</a>
+            </li>
+          <li class="primary-nav__sublist-item item--accommodations">
+        <a href="../accommodations.html" data-drupal-link-system-path="node/8562">Accommodations</a>
+            </li>
+          <li class="primary-nav__sublist-item item--tickets">
+        <a href="../tickets.html" data-drupal-link-system-path="node/8563">Tickets</a>
+            </li>
+          <li class="primary-nav__sublist-item item--health--safety">
+        <a href="../health-safety.html" data-drupal-link-system-path="node/8640">Health &amp; Safety</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" data-drupal-link-system-path="node/8478">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--sessions-wed">
+        <a href="../schedule/wednesday.html" data-drupal-link-system-path="node/8576">Sessions (Wed)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-thu">
+        <a href="../schedule/thursday.html" data-drupal-link-system-path="node/8577">Sessions (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--training-fri">
+        <a href="../training.html" data-drupal-link-system-path="node/8574">Training (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--contribution-day-fri">
+        <a href="../schedule/friday.html" data-drupal-link-system-path="node/8578">Contribution Day (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--unconference">
+        <a href="../unconference.html" data-drupal-link-system-path="node/8592">Unconference</a>
+            </li>
+          <li class="primary-nav__sublist-item item--topic-tracks">
+        <a href="../../topic-tracks.html" data-drupal-link-system-path="node/10">Topic Tracks</a>
+            </li>
+          <li class="primary-nav__sublist-item item--all-sessions">
+        <a href="../schedule/sessions.html" data-drupal-link-system-path="node/8579">All Sessions</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" data-drupal-link-system-path="node/8480">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--sponsor">
+        <a href="../sponsor-midcamp.html" data-drupal-link-system-path="node/8479">Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2024/news">News</a>
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../jobs.html" data-drupal-link-system-path="node/8594">Jobs</a>
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2024.html" hreflang="en">MidCamp 2024</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-midcamp2024schedulenav-2" class="block block-block-content block-block-contentf2becf96-513a-4419-8c1d-1c7e0b008859">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p><a href="../schedule/hybrid.html">Hybrid</a> | <a href="../schedule/wednesday.html">Sessions (Wed)</a> | <a href="../schedule/thursday.html">Sessions (Thu)</a> | <a href="../training.html">Training (Fri)</a> | <a href="../schedule/friday.html">Contribution Day (Fri)</a></p></div>
+      
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">From Lando to DDEV: A side by side migration</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="8550" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2024-03-21T18:00:00Z" class="datetime">Thursday, 1:00 pm CDT</time>
+ - <time datetime="2024-03-21T19:00:00Z" class="datetime">Thursday, 2:00 pm CDT</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-81" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-name field--type-string field--label-hidden field__item">Room 314A</div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>DDEV features and add-ons could ease your developer workflow. However, you might already be using Lando and be an expert at it. This talk provides you with a quick DDEV intro as well as a side-by-side comparison of 3 Lando config files and what would it take to get the same features on DDEV.</p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/_PmOiiF69Js?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-presenter-slides field--type-file field--label-above">
+    <div class="field__label">Presenter Slides</div>
+              <div class="field__item">
+<span class="file file--mime-application-pdf file--application-pdf"> <a href="../../sites/default/files/2024-03/Lando%20to%20DDEV.pdf" type="application/pdf" title="Lando to DDEV.pdf">PDF From lando to DDEV</a></span>
+</div>
+          </div>
+
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Bernardo Martinez</h4>
+
+      Front-End developer
+
+
+          @
+              <a href="https://www.vaultes.com">Vaultes</a>
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p>His computer science background has provided him with opportunities within a variety of software engineering tasks (devOps, sysadmin, mobile dev, qa, frontend). Over the last 5 years, he has specialized in CMS-based development, primarily Drupal and WordPress. Recently, &nbsp;he has taken advantage of said opportunities to share back at conferences and contribution days. Topics range from in-depth DDEV features to time-saving insights gathered from different Open Source projects.</p><p>Outside of technology he enjoys CrossFit, running, and other outdoor adventures.</p></div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2024-02/1621024073636.jpeg%3Fitok=Ol45w6RP" width="220" height="220" alt="Bernardo Martinez headshot." class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Back-End</div>
+          <div class="field__item">DevOps</div>
+          <div class="field__item">Front-End</div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-feedback-form field--type-webform field--label-above">
+    <div class="field__label">Feedback Form</div>
+              <div class="field__item"><form class="webform-submission-form webform-submission-add-form webform-submission-session-feedback-form webform-submission-session-feedback-add-form webform-submission-session-feedback-node-8550-form webform-submission-session-feedback-node-8550-add-form" data-drupal-selector="webform-submission-session-feedback-node-8550-add-form" action="lando-ddev-side-side-migration.html" method="post" id="webform-submission-session-feedback-node-8550-add-form" accept-charset="UTF-8">
+  
+    <div data-drupal-selector="edit-0" class="webform-message js-webform-message js-form-wrapper form-wrapper" id="edit-0"><div data-drupal-messages>
+    <div role="contentinfo" aria-label="Status message" class="messages messages--status">
+                  <h2 class="visually-hidden">Status message</h2>
+                    Sorry...This form is closed to new submissions.
+            </div>
+    </div>
+</div>
+<input autocomplete="off" data-drupal-selector="form-dqimpkivy4z32mgjrbmo9ixxyeasr-omt7vmq8k2hq8" type="hidden" name="form_build_id" value="form-dQiMpkiVY4z32MGjRBMO9IXXYeASr_OMt7VmQ8K2hQ8" />
+<input data-drupal-selector="edit-webform-submission-session-feedback-node-8550-add-form" type="hidden" name="form_id" value="webform_submission_session_feedback_node_8550_add_form" />
+<div class="url-textfield js-form-wrapper form-wrapper" style="display: none !important;"><div class="js-form-item form-item js-form-type-textfield form-type-textfield js-form-item-url form-item-url">
+      <label for="edit-url">Leave this field blank</label>
+        <input autocomplete="off" data-drupal-selector="edit-url" type="text" id="edit-url" name="url" value="" size="20" maxlength="128" class="form-text" />
+
+        </div>
+</div>
+
+
+  
+</form>
+</div>
+          </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p><span><span><span><span><span><span>So as a quick raise of hands, how many of you are primarily Lando and how many of you are needed? Good day. Lando people raise their hand. How many are DDEV? Ooh, seems to be close to 5050. Yeah. So that's going to be interesting.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>&gt;&gt;:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>What about those who do both? Okay, sure. Who does both at this point? Lando and DDEV and go back and forward. That seems to be a smaller subset of the crowd. I probably say maybe 20% or less.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>&gt;&gt;:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>I'm here because I'm trying to switch over. Well, if you're trying to switch or if you're trying to learn more about what DDEV does for you, and it provides and maybe a little bit of why people like it, this is kind of the presentation for you. I tried to make sure to include a lot of the stuff that is in the docs, and compare it not only to the Lando that I used in the past, but also to the Lando that is upcoming on beta nine. And why not with the Lando orchestrator? Just because, you know, being open source projects, I wanted to give it a fair shot and a fair comparison. And if later down the road somebody wants to do a DDEV to Lando, that'd be great. Uh, maybe some of the things that I was looking on the DDEV docs are harder to extrapolate just because of how Lando I mean, on the Lando docs or Lando is architecture. So if you know enough about Lando to do the reverse, uh, that'd be fantastic. And I will be sitting there kind of like asking questions and filling in some gaps. So who am I?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Uh, my name is Bernardo Martinez. I work as a front end developer at Voltus, which is a cybersecurity company based out of, uh, DC, and we primarily work on government contracts. Um, I'm a co-organizer for the Chattanooga Drupal, Drupal camp, which might be happening November 2nd this year. So be on the lookout in case you want to come to Chattanooga, Tennessee, and then check out our community. And why not? But did you start the recording? I did, I started it a little bit ago, so it should have everything hopefully. So let's get started from Lando to DDEV side by side migration. So what am I expecting you guys to potentially get out of this? Uh, I want to do a little bit of an overview of Lando and DDEV architecture. Some of it I heard from different consultant firms that have switched from Lando to DDEV and why they did it, and I'll mention some examples about that. I'm also covering a little bit of, uh, uh, where you will go if you have questions about DDEV, because I know Randy, uh, there is and I'll mention it a little later.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>There's a couple of different places where you can find support, but there is a recommended place, and if you go to the recommended one, it's more likely that you will have more people look at your issue the same way that you do with the Drupal slack. And if you're not on the Drupal slack, well, you know the Drupal slack is a great place for Drupal related questions. So what are we covering today? We are going to go a little bit into DDEV architecture and project structure. The Lando versus DDEV commands. Database management is a slightly different on how each project handles that. Lando events versus DDEV hooks. The plugins. The Lando plugins versus the DDEV atoms. Lando tooling versus custom commands, and a couple of other elements that I might toss in there as well. Um, I added the Lando auth versus the ssh auth because that's relevant in one of my examples. Personally, I don't know why sometimes, and you may relate those who have done Lando and maybe it's not much of a problem for you anymore, but Lando auth.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Sometimes you have to do a couple of different things to get the SSH keys to work, and for a little while it had a few glitches here and there where you're trying to load a different certificate, you have to point to it and whatnot. Whereas the DDEV SSH art usually doesn't get in the way of any of the bugs that I had. So that is just something to think about and something to keep in mind. Not necessarily, um, a deal breaker per se, but something to look for. So let's start with the architecture. What is different between DDEV and Lando? Lando when you create a site, um, usually includes an app server, includes a database and includes whatever else you added as a service, and that is fine. Um, though one of the issues that comes up with that is sometimes if you add 2 or 3 databases, you end up loading three different Docker images for those databases. But you may or may not know that MySQL can have a different database running on the same image, but Lando usually doesn't utilize that. And that's something that, uh, talking to the chromatic and they can probably tell you a little more.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>They found out that was an issue. Just because if you have too many databases that you're trying to load, then you're trying to spin up 20 different Docker containers for each one of those databases. Now, what does DDEV do in regards to that? DDEV has the DDEV database server, so it has a single database server. You pick whatever flavor you want, whether that is MySQL, Postgres or um, a MariaDB. And out of that it creates one, um, database container in which you can import those 2020 databases. So it makes it so depending on what your setup is, you could potentially see an improvement in performance just by the fact that you are not trying to build that many images all at the same time. But that's not the only thing. DDEV also comes with a single DDEV web server. The web server includes the multiple versions of PHP and a couple of different tools built inside of it, whereas Lando you would usually get the different plugins downloaded, and you may happen to have like 6 or 7 different containers depending on what you're calling.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And summoning the web server on a future update might be the couple to pull out some of the older versions of PHP, because right now I think it goes back all the way to 5.6. And, um, I know there's been some discussions in the DDEV community about making that web server image a little smaller. Not necessarily a VM. Uh, not as much as a virtual machine, but more as a self-contained web server that has kind of like the latest and greatest, but still gives you the flexibility of being able to utilize what you need now, something that comes, uh, a benefit that comes from the fact that DDEV has a single web server is that you never really have to do something like a Lando rebuild, because everything is already bundled on that image. You only have to do a Lando DDEV restart the restart swaps, whatever you have in there, and since it's available on that image, you have it right away. So it saves you a couple of seconds or potentially a couple of minutes, depending on what you're doing. Um, to just get up and running, because every time that I use Lando for every other team that was slightly complex, I will have to do a rebuild and the rebuild tends to take a little while.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Also, I added the links to the documentation on some of the pages. So if you look at the slides later on, you can just kind of look at kind of like where I got some of those resources at some of my slides. I kind of had to make them myself because on this slide they didn't one I got it straight from their website. So I know that's 100% reliable. The Lando one. I extrapolated that based on my experience and what I see when Docker Desktop is running. Not necessarily what might be happening, only because, uh, finding out a Lando architecture under the hood is a little trickier. Um, primarily because if, you know, or maybe you didn't, Randy did a video series of contributing to DDEV last year, and he kind of released the plans DDEV the underground. Everything has structure, so a lot of the data can be gathered from the videos, the blog posts and other things. Um, the one, the one last thing I will mention about the Lando one is Lando has now, as of the latest release, the Lando orchestrator, which may make some of that some of these changes in the future, and maybe that will improve and potentially make it easier to set up and make it more performant.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>But at the time of this recording, for me personally, the Lando orchestrator didn't necessarily have. I don't feel like it has improved the experience as much, because now you have to do a Lando setup every time you kind of try a new recipe, and then that's one step that sometimes the output of the terminal doesn't tell you about. So I found myself trying to start a lamb recipe from their website, and then just failing a little bit just because I was missing the Lando setup. So if you are a Lambda user, which commands should you know? The three commands that are going to be your bread and butter are the DDEV start DDEV describe and DDEV restart. Restart takes over Lando restart and rebuild because it does kind of like the same thing in most cases. Uh DDEV. Describe I go a little more. I talked a little more in the next slide because that does a couple of different things, but it takes the place of the lando.info and the Lando. Um, the Lando describe the config. Um, so let's look at that now project structure wise, what is different between Lando and DDEV?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Ah, I should have mentioned this. If you happen to have a question and you feel like it's a weird question, while I'm going through the different sections that you guys saw in the table of contents, feel free to raise your hand. And if it is something quickly, I will address it here. If it is something that's a little more time consuming, we could probably do a follow up in the next session. I know Tim was talking about that yesterday, and then just have a little bit of an unconference and then just go through your Lando file, or perhaps in depth concern that you have or something that you haven't been able to achieve with DDEV. Um, perhaps just because of the different project structure and the setup and some of the things that may be assumed, and we could try to improve the docs based on that. So if you start a project with Lando, you usually get the Lando YAML file, which is all the way over there on the left. And that is great, except for when you have to actually change it. I mean, I remember moving from Drupal VM into Lando.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Lando made things so much simpler when it worked, but then, you know, that was the little thing. If it didn't work, you had the problem that you had to kind of figure it out, what you wanted to add into it, and then go to the docs and figure it out if that was the current version. Because of course, as the project evolves, they might put something in and out. But this simplicity that Lando has, I think has probably been, was maybe biting it back a little bit just because it gives you a nice clean file. But how do you add a proxy URL to that? Well, you have to go to the docs. So you happen to do like 20 trips to the docs, potentially just to figure out how to change the alias, how to add the Drush UI to make your site a little more easier to see, and maybe how to change the database version. But what does DDEV give you out of the box? If you launch the app, you get a directory so you don't get a file. It's not a single file. So that's something that you you are swapping. You're swapping a single file for a directory.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And that directory has a bunch of different things inside of it. But the main file is the config.yaml file. And the config.yaml file has something special about it. The thing that's special about it is that it not only does it include what most likely be the things that you potentially change, but it also includes 263 lines of commented out code and explanations about those keys that are on top. So you never really have to exit out of VS code or Phpstorm or whatever tool you're using to look at, uh, what you need to change because it includes examples and it includes what needs to go into those sections. So at least for me, that has seen a little time, because I just don't happen to have to go back and forward into like, oh, what does the additional Fqdns mean? And how do I actually add something in there? Because they need to be in this syntax. In that sentence there is an example towards the bottom of the page. Now let's talk about Lando this graph. I mean, DDEV describe DDEV describe is a slightly different version.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Uh, if you type DDEV describe, you will get an output similar to what lando.info does. And you can see that on this picture right here. It gives you what the web container URL is and any of the other services that come with it. But you may be wondering how about Lando config, because that sometimes tells you, um, extra information that you may or may not need to know. How do you get some of that information? Well, because DDEV works in a container and a project based fashion, you can go to the DDEV folder. And when your container is built, it generates that DDEV dot DDEV slash docker Composer uh, dash full, and that contains all the information that your Lando config will give you. So if for any reason I never found myself going to the Lando config as much, uh, but for any reason you needed to dig extra information out of that. You can see the actual Dockerfile. Can you get the docker file out of Lando? I'm not sure. I don't know if it is in a hidden place, or maybe it is the root directory, but I've never been able to see what the output of the docker compose file is for Lando itself.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Lando I think it's.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>&gt;&gt;:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>In your home directory under dot Lando. Okay, cool. Um, yeah, that would be something to see and see how that compares. But basically because you have access to it here inside of your project, you don't have to exit out or move anywhere else. But just for the recording, uh, Benji just pointed out that it's usually on a hidden, uh, user folder. Cool. Ah, one little thing. Uh, you see those, uh, directories? Uh, files with the period in front of it? Those usually. And that's documented on the docs. On the DDEV docs. Those files are auto generated by DDEV. So in DDEV, you can attach stuff to the compose files at the beginning and at the end if you need it to, if you needed to add some sort of PHP module or something else that you wanted to load, that doesn't come by default on the image. And we'll talk a little bit about that, but if you see a period on it, it is a hidden file and it's not necessarily meant for you to change it there. There are ways to change it, but you shouldn't change it directly on that file.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So what are some of the DDEV perks? Uh, NPM is built in. That was something that I usually just happen to spend a little time every time I did. Lando. Um, because you needed the npm command, and you need the npm command to run inside a container. And people do that in Lando a bunch of different ways. Sometimes you can do that as a service. Sometimes you install it with a build command, sometimes you do it a couple of other ways, but you don't have to worry about that. That's going to be on the first example that's taken care of for you. Xdebug is built out. I mean, at my previous job at the university, I had to use Xdebug every now and then and then. Just getting it to work was tricky, just because there's so many different, different template files and so many different ways people were doing it. So if you're dealing with Xdebug, you don't have to worry about touching anything on the config.yaml or on the site itself. The Drush alias. You don't have to do anything for that either. I think mosh added that a while back, and so automatically, um, uses whatever you have your folder name and you can change it if you like, but in most cases you can leave it be.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>You have the, the database snapshots. Um, I know coming from Lando, I don't use that feature as much, but I know Matt Gleim and a couple of others have posted about using that with CI. And why not just to kind of like speed it up and test some back end settings? Now these two are a little bit of a killer for me. It has full offline support. Now, I know Lando I think has improved on that, I haven't I didn't test it on a flight, but like we did it, I can just go on an airplane and then boot up whichever project I want and it's ready to go. It may ask you to put in your password if it has to modify your local host, uh, your host file and whatnot, and put the DNS in there. But that is about it. And then you can do bash conditional logic, which I haven't figured out. If you can do that in Lando. Does anybody know if you can do bash conditional logic in Lando. And we will see that in a little example. Um, but yeah, so let's look at our first migration. So for this one we're going to go from events to hooks.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>We're going to move some tooling from the DDEV, uh, from the Lando tooling to DDEV custom commands. We're going to do some, uh, uh, change a, add a port. And this is actually this example is actually what is powering ddev.com. And I kind of worked a little bit with Randi to add it to the Astra project, because I felt like it was important to be able to run Docker and DDEV itself on the website. And then it talks a little bit about the conditional logic itself. So let's talk about custom commands. So on that side you have the tooling command that you may be used to in Lando. And on this side you have an example of what DDEV already comes with. So I didn't really have to do anything. So if you go into the data directory inside of web, you have a bunch of commands that are already pre set up and give you kind of like a heads up of what you can do, uh, with DDEV itself. Like if you needed to find out how the npm command works because you want to, uh, add a gulp command or something else, you can go look into that folder and there's two places where you could find it.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>You can find it under global, or you could find it under the container itself. Because in some cases you may not want it to have be a global command. You may just want to run it locally. Um, but this example right here just exemplifies kind of like what you have to do. And it's already running because that's the Lando npm command. I mean the npm command. So you could just go there, copy that and extend it if you needed to support gulp or anything else. Now events versus hooks. What is the difference between a Lando event versus a DDEV hook? Uh, inside of Lando events, sometimes you can do a build, but this comes down to the architecture on how Lando and DDEV load and load your files. So let's say you have a project. If you have your project and you are trying to modify some file will be probably the easier way of explaining that when you are, uh, when you are using the Lando build the way that Lando knows that you have a package.json and a package dot lock in your project is that it loads your home directory and the directory where the code lives into the container before it builds the container, and that generates some warnings from Docker desktop for me.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Um, DDEV does slightly different DDEV doesn't load the code and the. That you need until it builds the Docker file, and that makes it so you don't really have a build command, but you can work around the build command by either using the hooks or by using just the snippets inside of Docker desktop. I don't know if that's clear, but one of them will load your code first, and then the docker file, and the other one will load the docker file and then your code. If that makes sense. Um, so let's look at the proxy. So what does the proxy do. Um, in DDEV is very explicit. Uh, in Lando. Usually, sometimes assumes that you want to redirect a port. And I'm going to explain the DDEV side for those that maybe are not familiar with that. So if you happen to have been running on container port 3000, you just tell it what you want the output port to be and that's what you will get on your machine. And that should be it. DDEV you can on Lando you can do something similar. And sometimes if you have to redirect it, you can do a colon.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>But on DDEV it's just the same four lines of code that you're seeing there. So when it comes to the amount of code, it's kind of the same. Um, now custom images. Why would you want to add an extra setting to a container? Um, you may you may want to, um, think about potentially having some conditional logic if you need some build steps that are set in a row. But I think this is probably a better exemplified later. So let me move to the next slide. So environment variables. Um, this is important because sometimes you went alone. You want to know if your project is running inside of Lando or if it's running inside a DDEV. DDEV gives you a bunch of environment variables for you to find out if the project is DDEV. If there's anything you don't have to do anything to get this, you just do the dollar sign. And then you said, uh, DDEV project and that actually it does it automatically for you out of the box. And that's why sometimes adding DDEV to a project tends to be a little easier, because it takes over your settings dot PHP file.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>If you don't disable a setting and it just adds your file in there and it makes it so it will read it only if you're running inside of DDEV. Lando has similar settings, but for some reason they don't have a specific setting for like is it a Lando project? Um, I ask uh, a friend from or a Drupal user's group, and he told me, oh, he does it with Lando, but, um, you can see it in the example as we come to it. So conditional logic, why would we want that? Um, at least on this example, what I was trying to do is I was trying to make sure that I installed the NPM after my after the container is ready. I was trying to make sure I will install the npm packages, and then when it finished telling me that it was installed sequentially, I wanted it to be able to just build it because you cannot run npm run build if your files are not there, but that just leaves on the project that I have. So my project has to be mounted inside of the container. So you can do that with some bash logic and just do bash dash C.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So if you have done some dot scripts you can do that. And now you have the same kind of structure that you will do with uh, build inside of Lando but with bash itself. So let's look at an example. This is the same site that I'm going to show you. But in Lando. Uh it's DDEV. Com basically. And Lando just running astronaut node version, version 20. And then just kind of adding the proxy at the end. The reason why I went back and did it with Lando as well is because I thought, well, you know, we're going to compare it should be a fair comparison and I should have both files. So you kind of can make your decision about what you like and maybe what you dislike, and also see the before and the after. So what are we adding? What are we doing here? We are adding the node service exposing it installing it. Uh, creating the new URL and just adding npm as a command. Now here's the DDEV version of that. And that is actually what's powering Datacom local setup. So you can actually see that on the repo.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>But this does the same thing. Now there are some settings I didn't have to touch because they come out of the box like that. Uh, one of the settings that you may see in there is one that turns the database off, um, that it makes it so it doesn't have a database container because we don't need it for this. And then the other three commands that are in there is just mapping the ports, installing the packages, put it placing them in a back on thread I like that. Uh, in Lando you don't have to worry about placing anything on a background thread. It kind of does it for you. But then if you didn't want to have that, then I don't know how you will actually just tell it to be in the main thread, but this will put it in the back thread and then just install it and run that when you execute the command. So that will make it if you went to. If you want to see a practical example of this, just go to DDEV. Com and then do a DDEV star and you will see what the output of that file is. So let's go into the second one.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>The first one was just an astral project. Now let's move into, uh, a Drupal project. For this, we're going to look at moving services into a custom command. We're going to look into build steps. And whether you use the Docker image or hooks, we're going to look at the disabled settings management in case that setting is important primarily if you're trying to support both Lando and DDEV. I'm in a project right now where, you know, I mean the communities themselves. There are people who are strong about Lando and using it. And I don't feel like, you know, I mean, if they want to use that tool with this setting, you could potentially make it so you make make it compatible with both. So if they want to use DDEV, they can use DDEV. If they want to use Lando, they can use Lando without having any issues. We look at the database and then just creating the project itself. Now there's a couple quickly database management as I mentioned a little earlier. And if you are handling a multi-site, depending on how many, uh, how big your multi-site is, Lando may be like, I know I have a friend from the local users group who was a little concerned because he has a database that might be 30 gigs and it's not his main database, but he's importing it.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>I don't know, there might be because I haven't reached that point. A performance issue when you run just one image container, if you're running databases that are gigantic. But as far as I've seen from what I heard from other consultants, as long as the databases are pretty consistent, the DDEV database server, even though it's only one image, can run all your MySQL databases together. Inside of that one image, you would just create them and attach them to it. Any questions so far? No. Okay. Let's keep going. Is it possible to break out the database and run two database servers? That is a great question. So my friend asked Randy that as well. He was like, well, but what if I want to have another one? Or if for whatever reason you want to have MariaDB and also a progress SQL database? Uh, right now, as it stands, if you needed to have both of them, you have to add a custom Docker container for it, which, you know, I granted my friend didn't want to do that because he just increases the complexity of the project and you don't necessarily get it out of the box with that.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>You could also just have a separate project and then just link them and then do another project that just has that database. Um, but yeah, those are kind of like the two current options. Now, I know I was talking to Randy about potentially having an add on that will add a second database just in case that you needed it, but that is an architectural pattern. DDEV doesn't, uh, tries to make sure you just don't have a bunch of random databases added to your project. It's like one database, which should be your main one, and then you can add more into that image container, but not necessarily have as many images as you want, unless, you know, you have, uh, that need and that requirement and are knowledgeable enough to actually customize your own Docker compose file. Anything else. So something that is nice about DDEV and I don't know, I don't know about you all, but when I was working at the university, sometimes you will add a module and you want to see how many tables did this module mess up with because you don't want to necessarily break your site, and some modules just happen to add a lot of extra cruft.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>That could potentially be dangerous because you might not be able to rip them out easily. Now with Lando, usually I will have to do a Lando config or a Lando info and figure out what the port is and try to map the port to either table plus or something else. If you just run DDEV table plus, it detects that you have that software installed on your machine and it launches the software with the ports and everything ready. So you don't really have to mess around with the info file or try to gather the ports or anything else. So it's just a little convenience that at least for me, it saves me some time because with SQL Pro or something else I don't have to worry about. Oh, you know, what was the port? Did it change because we Lando every time you rebuild? Or I remember if it is when you restart, sometimes it changes what port the database is listening to, unless you set it to be a static, uh, but if he does that, then you have to keep going back and forward into like, oh, what port is listening on right now?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So now let's talk about environment variables. But the user provided ones because you may have a Google Maps key that you may need to provide or something like that that you would like to have. There's a couple of different ways you can do it, but like if you needed to have them as a file in Lando, as you can see over there in the left in dark mode, you can just set the environment underscore file as a key and then just give it the file location in DDEV there's a couple of different ways you can do it. You can either set a web environment key inside of the Config.yaml, or you can just define a dot env inside of the dot DDEV folder, and that will pick up your environment variables. And then you put them in there and it's the dot env is ignored by default. So you wouldn't have any issues if you are using the complete DDEV settings the manager settings. So here is a simple Drupal website, uh, running on DDEV. Um, let me point some things out as we're looking at them. So you see that I am providing the Drush options you are at.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>The only reason why I'm doing that is because I told DDEV, uh, to not. I told DDEV to let me to set up the manage settings as false, and if you have the managed settings as false, then it will require you to actually define what the Drush options is, and having it as false makes it so it doesn't take over your settings as PHP file. So and by doing that, it means that you have to do this one extra step. But that's the only step that you really have to do if you disable the management settings. Why do you want to disable the management settings? Because if you don't disable the management settings, then DDEV will attach itself to the settings of PHP and add a statement. And I think I have another screen slide with that statement that will say if it is a DDEV environment. So if you don't want to touch the settings of PHP file and you want to use settings dot local, you can disable that, but you just give it the what the Drush URI is in there. Now this is an example of where you will find the environment variables.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So if you happen to have a Google Maps API or some other type of API, you can just add a dot env file right here. Done. You don't even have to tell it what the path is, because since DDEV has its own directory, it will automatically look for that file if it exists. It doesn't have a file like that by default, but if you add the file then you are done. Now let's look at an example, um, on this one right here. What is four things that I always have to do with Lando? Well first I have to install node some sort of way. Then I have to add the Drush UI option. And as far as I know, up to up till now, there's not an easy way to just tell Lando just do that for me. And then you have to add Xdebug if you're going to use it and potentially patch any bugs that might have come out since. Now, I went back to a previous project and looked at this file because I was trying to kind of see what things I might be able to reference. And then hopefully you can see the screen. I notice that at least for Lando, I struggle that I always had was, well, go ahead and find out.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Lando dot YAML example online. Like everybody does the same stuff, but it's rare that you find a Lando dot YAML example that is open source and that you can copy and potentially just add your stuff, because it's still a Drupal site. You may be using npm on one more thing, but if you just had a template and a starter, you should be good to go. I don't necessarily know why Lando didn't really publish some of those. I think that would have been a fantastic idea, but maybe they didn't want to do some maintenance on them. What you will notice on this screen is this is my file. I don't like the file I used at a previous job at a university. I happened to stumble upon the file that inspired my file, and that was based on something that Mike Madison had done for Drupal, for golf. And I imagine if you did something similar to what I did back in the day, and maybe even now, your file is inspired by some other file that somebody gave you or you found somewhere, which is good except for you. Never clean the crap out of that Lando file, do you?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Because, yeah, good luck cleaning the crap you were going to blow it up with and you'll be like, ah, uh, so that's one of those things. So this is actually a real example that I use. I don't even know if the SSH fix here still is relevant, but I wouldn't touch that because it was working, you know, when I left. So I was like, why bother? That's something you usually don't have to struggle with. DDEV and maybe you won't have to with the newer version of Lando once they come out with 4.0 and it's stable. Uh, but as of now, that's something you don't have to worry about because all the keys work. And if they didn't, he could take them out or make sure he, Randy will clean them in the next release. But you might be asking, well, where are npm and xdebug? I know we talked about, you know, them being built up and why not? Um, if you look into global commands. And the other reason why I'm going back to this is because you have the examples I always wanted to add with Lando a little bit, because I love the simplicity.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>I don't love the fact that I have an empty file that I don't know anything about, and that only the docs can potentially help me if they are relevant and they are still up to date and they do a decent job, but still, you know, keeping the docs up to date as a whole different challenge altogether. Uh, so if you went to DDEV, you see global commands, all the global commands that you have for the latest version of DDEV. And if any of those commands doesn't inspire you to just tweak it a little bit and make your own, um, you can look into some extra commands that he has added on the, on the website itself. And then over here, this setting, this is the setting that I was talking about a little earlier. Disable settings management. You only really need that if you're trying to support both Lando and DDEV. In my experience, at least so far, if you let it be as it is and you are migrating, you can just leave that out and then you don't need the Drush options. URI because, um, DDEV will do that for you.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Though you may want to use the web environment here. If you're just changing what the Drupal private path or the convincing folder is, you could put it on the web, but that is another alternate option to have. I don't know if having it here is recommended, because I mean the convincing, the convincing. Maybe it will be a little bit of a security issue at some point if you just had it there. Maybe not. Um, not sure, but uh, you could have the variables there. If you don't have any concerns when it comes to the security in the config. Yeah. If it is something that is private and you don't want to have any issues, just put it in the dot env file and then it will just be on your local. Excuse me. Go ahead. Can you help me understand global commands. There's global commands mean for all my DDEV projects. Or does it just mean the default commands within a project? And global commands are the commands that come with all the projects. Yeah, but the directory is within my project, isn't it? That is correct.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So when you do a DDEV config, it will load all those commands by default and it won't issue them in the terminal because you see it has the artisan command. But I'm not doing Laravel, it just has the example for you to potentially look into it. If you had to do something similar to what artisan does inside of data, it automatically detects that I don't have artisan. If I was to do a DDEV, uh, commands or just a plain DDEV, it will tell me a data list. He will tell me which commands I have available, whether that is the Magento one, if I'm running Magento or the WordPress one. But I can still look at that and reference it. But that will be in all the projects that you have that's included in your directory, as you do at DDEV config. Same thing as you do at DDEV in it. This comes with it, but it doesn't apply to you. Then you can just leave it there. Does that make sense? I see the global plants in my home directory, not in the project directory. Oh well. I was pretty sure maybe. Are you running the latest version?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Because I took this screenshot from my project directory and I know it has the globe. It has that globe commands, which is a hidden folder, and then it has a commands because you can also localize them. So they are not global and they can run just in your um, uh, project itself. Like sometimes I just do it for my web host because you can set commands only to run on the database or commands that only run on your web container. So what does this do? What disables management do is it doesn't generate the settings that the, uh, that DDEV file, which is the way. So this piece of code right here is what Randy added. So when you do a DDEV config, do a Drupal project, you don't have to worry about messing up with your settings. Dot php file this thing right here. You don't even have to uncomment the settings dot local because it will take over the file, but you may not want it to take over because then you will have a git diff that has a change on the settings dot php file, and if you just disable that, then this won't go in here.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>You won't have the settings that the settings that DDEV. Um, and then you just have to do that on your own. But you may just want to do this first so you can have that file. They don't come in this. And then that way you have all the boilerplate that you need. And you can still just reference this. You can copy this as a piece of code and put it into your settings dot local. And then that way you can have support for both Lando and DDEV. Now, is there a, uh, is Lando project? I haven't found it, but this is the closest thing that I found that I told you. The guy from my local user group pointed out to me. I mean, he just did a Lando info and decoded that JSON to figure it out, whether it was a Lando environment and kind of wrap it with that. If you do that in your settings, uh, dot local, then you can have support for both Lando and DDEV because you could switch environments depending on which one it is, and make some of the Lando users happy and some of the DDEV users happy. They want to use both.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So that's something out there, something to keep in mind. And you don't have to if are a little harder to have both. But like if somebody is very passionate about one of them and this is his, uh, uh, Drupal user, uh, username, in case you were wondering. So at least at the university, I challenged that we had. As we use BLT, which you may or may not use, it was a project that was sponsored by Acquia, and they kind of just killed it, kind of lightning and a couple of other things. But anyway, that's a separate rant. Um, so BLT uh, was great because it did a couple of different things. It had like import database and a couple of different things that were specific to Acquia environments. But let's say that you wanted to have a command like that. Uh, in Lando you will have it under tooling, and then you would just tell it that you wanted to attach that to the app server service, and then just by the command that you want, it was on DDEV, you could either go see what DDEV does with Drush under the global commands, or you could just run it on the web host under commands and then just have those options.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And indeed it kind of gives you this code, this, uh, boilerplate as default. Um, if it says DDEV generated, don't touch it unless you want to remove that. But then you have to maintain it. So if it is your own file and you're trying to support BLT or any other project, then you can just copy this, get rid of the DDEV generated and then just make it match. Just, uh, yeah, just change the annotation to be whatever the description you want and then change some of the settings there. So that's the second one. Oh I'm starting to run out of time. So let's try to go quickly uh through the third one. So the third one does something very similar except for the mentions a little bit the add on services. Um, okay. So for this one, let's say that you need to do something the Docker image, but it is something that is independent of your project. Sometimes you may want to add a PHP module to the Docker image that you don't have by default on DDEV, or like in the example from DDEV. Com like you want to add the Gatsby c.l.i and the Gatsby CLI not available, and you want to have it pre-installed inside of the container.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>One thing you can do is modify the docker file itself. To add that by extending it. And I added a link to that. It's just basically you add the snippet of the of code that you need inside of this file, inside of the Docker file. You can prepend it because. So there's two ways of doing it. You can override what the Docker file is going to have. If you want it to take over the whole docker file that DDEV builds and modify the whole thing yourself. But you can actually prepaid and postpaid, and that's one way to do it. But you have to keep in mind that you couldn't do this for like um, npm install, uh, npm install from your project, like the astro project that I showed you earlier. You couldn't do that with this because then my project hasn't loaded into the container. This is done before that your folder that is in your home directory or wherever you have it. It's only loaded after Docker finishes building up the image. So that's something to keep in mind. Um, the Lando plugins versus DDEV add ons.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Um, DDEV Adams. There's a bunch of them out there. You can have phpMyAdmin, you can have a Storybook. Um, blog. You can have I. Well, the thing is, mail hog, uh, I think just got replaced by Mail Pit because. Uh, like that though. Yeah. Emails. Yes. So Mail Pit comes as part of the web server image by default now. So you don't even have to do anything. If you do a DDEV describe it will tell you mail the URL. Is it used to be, uh, an add on that Tyler, 36, had? I don't know if you guys are familiar with that username, but he's a big contributor to DDEV and also to Drupal itself. Um, he used to have an atom, but then Randy incorporated that because he felt like that was important. And that's where a lot of the Laravel and PHP community geared towards, especially because mail was a under security. Um, well, it was unsupported basically. So anyway, so you have it out of the box, so you don't really have to do that for a mail feed anymore. But for some other things, you may want to have to add the atom and adding the atom is just as easy as just you can do that DDEV add uh, add on and then the name, and then you have it, and then it's just running on your container.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>&gt;&gt;:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>So here's a. Little example of that. Uh, you have the this is the Lando example of that. You have an environment file, you have a PHP, uh, my admin service. And where you are defining that in there you have the custom Drush UI male host service, gulp and npm. And you may be wondering, well, how will that look inside of DDEV? In DDEV? You don't have to do anything when it comes to the environment file. You don't have to define where it is, you just have to put this file here. Just create the file. It's done. You don't have to define the customer. Drush UI. If you are just doing a straight DDEV, uh, project, or if you're just going to only going to support it, if you're done with that, the npm command, you have to do anything the mail out service, it already comes with mail bin. And you can actually just do DDEV launch dash M and it will, uh, basically append melt it for you in the browser window. And then you can just start exploring and looking at some of that information. But what about phpMyAdmin?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>You might be wondering. Oh, well, I do want that. I don't know why you would. Because data used to have it built as part of the web image, and it was in core. But, Randy, they took it out and put it as a side thing, because now people use table plus or something that is a little faster and it doesn't look a little outdated because my admin looked outdated back in the day. So you can imagine that nowadays a little extra and then go, so then you can do DDEV dash list and it will list all of the data points. And this one is PHP Miami. If you just run that command, it will add a phpMyAdmin, that container. And then you can just access that from scratch and then just have access to your information. Now you might be wondering is there a question? Okay. You might be wondering how about the Gulf Command? What if I need to add Gulf? I have one project that uses Gulf nowadays. Well, well, if you went to the web directory and then you looked into some of the commands that are in there, whether that's on the global command, usually the global command is a good one to reference because you can go into commands and commands, doesn't have as many examples because it's just what is running on your local, but that one does.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Then you can just look at what Randy does for the npm command. And that's basically what I use and what I copied to support DDEV Gulf. And then I just changed my variables. The add symbol just tells it pass the arguments. Because, you know, you may want to run something specific that Gulf has like your update odds or update something. I use us odds. So sometimes they have their own specific gulf and settings. So then you can just pass those, um, and you can have that inside of the web directory which is inside of the customs command, if you wanted to have it a, I mean, inside of the commands folder, if you wanted to have it just on the web directory. But if you wanted to make it global and you want it to target a path, you can also give that command a path. If you just wanted to run globally, kind of like what Lando does, and then just run it from your home directory instead of having to CD into themes and specifically where that gulf file is. And you don't have to go all the way or have another terminal if you didn't need to.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So on that. So you're saying that if I wanted to run, if I wanted to have a Gulf Command, I'd have to create a file in web. And then that would be the contents of the file on the right. That is correct. If you wanted to have the Gulf Command show up as part of the DDEV commands, you would just go look into the global commands to a command that's very similar to your to your needs. And then you wouldn't necessarily have to add it inside a web, I believe, uh, the docs reference, I mean, inside of global commands, you can just do it under commands because both of them are directories. And then you can just add this here. And if you add this, the annotation work similar to like the Drupal annotation. We automatically picks and reads some of this information. And it knows that it has flags. And you can use dash dash help or why not to figure out if there's something else and it tells you the description. Oops. But yeah. And the file name is what the command would be. Uh, the file name. I think you could name the file whatever.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>But I usually follow the, the file name being the same as the command, because gulp is not provided out of the box. So if it's not something that's there. Thanks. So some extra resources in case that you wanted to know. Uh, well, you know, all these projects need more contributors. I know I follow Lando and their Lando channel as well, and they've been asking for people to get more input. And why not? So if you're passionate about Lando, uh, make sure to take some time to help them out and test some of their, their releases and then contribute with code marketing or something else. Uh, but if you're contributing with code, this slide is for you. Something that I really like that I did last year, and Randy said that he was going to do this year as well, is that he posted training on all the different parts of DDEV, and you can see that at DDEV. Com on one of the blog posts. And so if you wanted to learn more about how it's tested, if you wanted to learn more about how to support it, then marketing, uh, this is actually how I got familiar with DDEV.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Com and kind of became involved because I saw the video of Matsin, who actually created the Astro project, and that kind of inspired me to like, oh, well, you know, I mean, if I can, I mean, if you can already get started and if they explain a little bit to you, you have an easier time potentially giving back to the community. Um, Lando recipes versus DDEV Quickstarts I tried to do a Lando recipe and not necessarily to bash on the Lando theme, but I tried to do the Drupal ten one, but for some reason it didn't work and I powered off DDEV and I make sure everything, and I don't know if it's because they are targeting the dev branch for Drupal. But if you just want to get started with, uh DDEV quickly just go here and then just copy that stuff and paste it. I use that all the time for contribution when I need to have a Drupal, uh, VM. Just stand up. If you don't want to use, uh, any other system, uh, just copy that and you're good to go. It will, it will log you in and launch with. Just open the browser window for you.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>One quick note if you go see the DDEV docs, make sure you pay attention to that yellow bar on the top, because sometimes the DDEV latest shows up on the Google search result, uh, search results a little faster than the stable. The latest. Sometimes the command may not work, because that's not code that has been released on a stable release of DDEV. That is code that is upcoming. And Randy has a release. So I know that's something that we were working on the other day, just adding that warning, the yellow warning and the dark mode support for that. So you got the stable. Stable has everything and everything should work in stable. Uh, check out the DDEV store if you want to get some goodies, this t shirts and a bunch of other stuff. Uh, you can buy some there and support the project. All the proceeds go to the DDEV Foundation. It's not a lot of proceeds, but, you know, it's mostly for marketing purposes, because if people show a little bit of their love, you know, people know which tool you're using and why not.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Same as any other team. And feel free to connect with us. Uh, at the Chattanooga Drupal users Group or meetup is actually one of the few that still does a hybrid mode, I think. So if you want to join in, we have it once a month on the third week of every month. Uh, Lee Walker usually leads that one, and we just hang out and talk a little bit about Drupal and different things that we're working on. Um, and then we may be having the Drupal camp November 2nd, so be on the lookout for that. And. Um, that icon on the top, that's this chord right there. And that is where the deaf community lives. And Randy has been trying to get most people from any community, really, but most of the Drupal people to pose their questions there because it's easier for everybody, uh, to give feedback. So if you're having some issues and you want to have some support, download that app. And if you tell your kids or grandkids or anybody else, I'm sure they're going to think you're hip because that is like, you know, slack for little kids.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Uh, but yeah, so that was a little tidbit right there. Let's make sure, uh, to add in your feedback and any questions before I wrap up. If not, then thank you.</span></span></span></span></span></span></p>
+
+<p>&nbsp;</p></div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-8e14660182521e64828093bba95ff5225f05718f58780b66a9595513208c7f0d">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/8550">https://mid.camp/8550</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+  <section class="map-banner">
+      <div class="views-element-container block block-views block-views-blockevent-venue-block-1" id="block-hatter-views-block-event-venue-block-1">
+  
+    
+      <div><div class="container view view-event-venue view-id-event_venue view-display-id-block_1 js-view-dom-id-2b08c893c2bc318eefbbf4a05ec3c2c3d4b8281eadef2233875a2f32754e3324">
+  
+    
+      
+      <div class="view-content">
+          <div class="views-row">
+
+
+<div class="map-overlay">
+  <span class="map__label">Location</span>
+  <h2 class="map__title"><span class="field field--name-title field--type-string field--label-hidden">DePaul University - Lincoln Park Student Center</span>
+</h2>
+  
+            <div class="field field--name-field-address field--type-address field--label-hidden field__item"><p class="map__address" translate="no">
+          2250 N Sheffield Ave. <br>
+            Chicago, IL 60614<br>
+  </p>
+</div>
+      
+  <a href="../venue/depaul-university-lincoln-park-student-center.html" class="cta-link--yellow">Learn more  <span class="cta-arrow"></span></a>
+</div>
+<div id='map' class="map"></div>
+</div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-10afa1ddd4719125f48482d16c8ad8c6ad419703b7cbc98bd6a90f957d571138">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/acquia.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2024-02/Acquia%20Droplet%20Blue.png" width="2000" height="2000" alt="The Acquia logo" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#ddb4b3bbb29db0b4b9bebcb0adf3b2afba"><span class="__cf_email__" data-cfemail="adc4c3cbc2edc0c4c9ceccc0dd83c2dfca">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/8550","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"ajaxTrustedUrl":{"form_action_p_pvdeGsVG5zNF_XLGPTvYSKCf43t8qZYSwcfZl2uzM":true},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_U1jmi93nTJG2lPAKzexs4tMZWFR2YMMoIoiPckW421U.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJx1yksKgDAMRdENabskSfUZK2kjTfCzeyfiQHB04XBZlQUDVZLL82iRP9At5I4WWTSR9OsLhbakZ3cgzdpKfBogKKgeJjhlsWC043cqMCPGDa0vM_I"></script>
+<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.js"></script>
+<script src="../../sites/default/files/js/js_RAkHj2z9vY4q-6RsYuiXkqPbxgsRWrLsVQRz36mKiGA.js%3Fscope=footer&amp;delta=2&amp;language=en&amp;theme=hatter&amp;include=eJx1yksKgDAMRdENabskSfUZK2kjTfCzeyfiQHB04XBZlQUDVZLL82iRP9At5I4WWTSR9OsLhbakZ3cgzdpKfBogKKgeJjhlsWC043cqMCPGDa0vM_I"></script>
+
+  </body>
+</html>

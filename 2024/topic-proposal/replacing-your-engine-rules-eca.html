@@ -1,0 +1,745 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="Rules was the easiest way for a site builder to create conditionally triggered actions (reactive rules) in Drupal 7. However, Rules development has been slower for Drupal 8+ and is still in alpha release eight years after Drupal 8’s release. While Rules is more known and still has more installs, a new rules engine for creating reactive rules has emerged with a ton of steam and support behind it in Drupal 10 and beyond: ECA: Event - Condition - Action." />
+<link rel="canonical" href="replacing-your-engine-rules-eca.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Replacing Your Engine: Rules to ECA | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Replacing Your Engine: Rules to ECA | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_gt5LiAM1qLGUH5e845uOb7R_lJ9dUwTXmnhGDR2yY20.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OgzAMgy8E7ZFQSg1UShrUdDB2-lX87GUviZ0vkj0ymR0-kKEbLz0l_mmBGc2wx2eNjWlBU0WI0wfdQrWi-Jk1EPej2XMRWoO-OzusQq6ILUXoAAmIw5TA0RfYqtnShv6E7QW7-XM.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_QAC1R0aFoF1mIVQtLAaSE24B2iwnT2ZCa0cZDeZsPV0.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OgzAMgy8E7ZFQSg1UShrUdDB2-lX87GUviZ0vkj0ymR0-kKEbLz0l_mmBGc2wx2eNjWlBU0WI0wfdQrWi-Jk1EPej2XMRWoO-OzusQq6ILUXoAAmIw5TA0RfYqtnShv6E7QW7-XM.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OgzAMgy8E7ZFQSg1UShrUdDB2-lX87GUviZ0vkj0ymR0-kKEbLz0l_mmBGc2wx2eNjWlBU0WI0wfdQrWi-Jk1EPej2XMRWoO-OzusQq6ILUXoAAmIw5TA0RfYqtnShv6E7QW7-XM.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OgzAMgy8E7ZFQSg1UShrUdDB2-lX87GUviZ0vkj0ymR0-kKEbLz0l_mmBGc2wx2eNjWlBU0WI0wfdQrWi-Jk1EPej2XMRWoO-OzusQq6ILUXoAAmIw5TA0RfYqtnShv6E7QW7-XM.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+<link rel="stylesheet" media="all" href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.css" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="replacing-your-engine-rules-eca.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-midcamp2024navigation-menu" id="block-midcamp2024navigation" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-midcamp2024navigation-menu">MidCamp 2024 navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" data-drupal-link-system-path="node/8477">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--by-the-numbers">
+        <a href="../../2020/about/by-the-numbers.html" data-drupal-link-system-path="node/6252">By the Numbers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--venue">
+        <a href="../venue/depaul-university-lincoln-park-student-center.html" data-drupal-link-system-path="node/8482">Venue</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../speaker-resources.html" data-drupal-link-system-path="node/8485">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--volunteer-opportunities">
+        <a href="../article/midcamp-needs-you.html" data-drupal-link-system-path="node/8593">Volunteer Opportunities</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../../2025/organizers.html" data-drupal-link-system-path="2025/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--travel">
+        <a href="../travel.html" data-drupal-link-system-path="node/8564">Travel</a>
+            </li>
+          <li class="primary-nav__sublist-item item--accommodations">
+        <a href="../accommodations.html" data-drupal-link-system-path="node/8562">Accommodations</a>
+            </li>
+          <li class="primary-nav__sublist-item item--tickets">
+        <a href="../tickets.html" data-drupal-link-system-path="node/8563">Tickets</a>
+            </li>
+          <li class="primary-nav__sublist-item item--health--safety">
+        <a href="../health-safety.html" data-drupal-link-system-path="node/8640">Health &amp; Safety</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" data-drupal-link-system-path="node/8478">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--sessions-wed">
+        <a href="../schedule/wednesday.html" data-drupal-link-system-path="node/8576">Sessions (Wed)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-thu">
+        <a href="../schedule/thursday.html" data-drupal-link-system-path="node/8577">Sessions (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--training-fri">
+        <a href="../training.html" data-drupal-link-system-path="node/8574">Training (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--contribution-day-fri">
+        <a href="../schedule/friday.html" data-drupal-link-system-path="node/8578">Contribution Day (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--unconference">
+        <a href="../unconference.html" data-drupal-link-system-path="node/8592">Unconference</a>
+            </li>
+          <li class="primary-nav__sublist-item item--topic-tracks">
+        <a href="../../topic-tracks.html" data-drupal-link-system-path="node/10">Topic Tracks</a>
+            </li>
+          <li class="primary-nav__sublist-item item--all-sessions">
+        <a href="../schedule/sessions.html" data-drupal-link-system-path="node/8579">All Sessions</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" data-drupal-link-system-path="node/8480">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--sponsor">
+        <a href="../sponsor-midcamp.html" data-drupal-link-system-path="node/8479">Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2024/news">News</a>
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../jobs.html" data-drupal-link-system-path="node/8594">Jobs</a>
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2024.html" hreflang="en">MidCamp 2024</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-midcamp2024schedulenav-2" class="block block-block-content block-block-contentf2becf96-513a-4419-8c1d-1c7e0b008859">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p><a href="../schedule/hybrid.html">Hybrid</a> | <a href="../schedule/wednesday.html">Sessions (Wed)</a> | <a href="../schedule/thursday.html">Sessions (Thu)</a> | <a href="../training.html">Training (Fri)</a> | <a href="../schedule/friday.html">Contribution Day (Fri)</a></p></div>
+      
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Replacing Your Engine: Rules to ECA</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="8555" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2024-03-20T18:30:00Z" class="datetime">Wednesday, 1:30 pm CDT</time>
+ - <time datetime="2024-03-20T19:30:00Z" class="datetime">Wednesday, 2:30 pm CDT</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-84" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-name field--type-string field--label-hidden field__item">Room 325</div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>Rules was the easiest way for a site builder to create conditionally triggered actions (reactive rules) in Drupal 7. However, Rules development has been slower for Drupal 8+ and is still in alpha release eight years after Drupal 8’s release. While Rules is more known and still has more installs, a new rules engine for creating reactive rules has emerged with a ton of steam and support behind it in Drupal 10 and beyond: ECA: Event - Condition - Action.<br>
+<br>
+In this session, we’ll dive into the process of creating reactive rules in ECA, how that compares and contrasts with Rules, and see how easy it is to rebuild your reactive rules with this new engine in Drupal 10. Afterwards, you'll be able to:</p>
+
+<ul>
+	<li>Create reactive rules on your Drupal 10 site using a GUI</li>
+	<li>Rebuild your Drupal 7 Rules in Drupal 10 ECA models</li>
+	<li>Develop reactive rules using different available ECA modelers</li>
+</ul>
+
+<p><strong>Target audience: </strong>Site builders looking to migrate their Rules-intensive Drupal 7 sites to Drupal 10; also intermediate site builders looking to take the next step by creating reactive rules on their sites</p>
+
+<p><strong>Prerequisites: </strong>Site builders with experience using the Drupal admin interface; experience creating Rules in Drupal 7 is encouraged but not required</p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/foL8V6MCXrM?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-presenter-slides field--type-file field--label-above">
+    <div class="field__label">Presenter Slides</div>
+              <div class="field__item">
+<span class="file file--mime-application-pdf file--application-pdf"> <a href="../../sites/default/files/2024-03/MidCamp%202024%20-%20Replacing%20Your%20Engine.pdf" type="application/pdf">MidCamp 2024 - Replacing Your Engine.pdf</a></span>
+</div>
+          </div>
+
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Jake Ineichen</h4>
+
+      Digital Services Librarian
+
+
+          @
+              <a href="https://www.madisonpubliclibrary.org/">Madison Public Library</a>
+        
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2024-03/headshot-400x400.jpg%3Fitok=wQS4Q8ha" width="220" height="220" alt="Jake Ineichen" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Site Building</div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-feedback-form field--type-webform field--label-above">
+    <div class="field__label">Feedback Form</div>
+              <div class="field__item"><form class="webform-submission-form webform-submission-add-form webform-submission-session-feedback-form webform-submission-session-feedback-add-form webform-submission-session-feedback-node-8555-form webform-submission-session-feedback-node-8555-add-form" data-drupal-selector="webform-submission-session-feedback-node-8555-add-form" action="replacing-your-engine-rules-eca.html" method="post" id="webform-submission-session-feedback-node-8555-add-form" accept-charset="UTF-8">
+  
+    <div data-drupal-selector="edit-0" class="webform-message js-webform-message js-form-wrapper form-wrapper" id="edit-0"><div data-drupal-messages>
+    <div role="contentinfo" aria-label="Status message" class="messages messages--status">
+                  <h2 class="visually-hidden">Status message</h2>
+                    Sorry...This form is closed to new submissions.
+            </div>
+    </div>
+</div>
+<input autocomplete="off" data-drupal-selector="form-upvmisdfrmdzhq57udeqortmnsyaanqd1g9eknzxoi0" type="hidden" name="form_build_id" value="form-UPVMISdFRMdzHQ57UdeQortmNsYaanQD1G9ekNzXoi0" />
+<input data-drupal-selector="edit-webform-submission-session-feedback-node-8555-add-form" type="hidden" name="form_id" value="webform_submission_session_feedback_node_8555_add_form" />
+<div class="url-textfield js-form-wrapper form-wrapper" style="display: none !important;"><div class="js-form-item form-item js-form-type-textfield form-type-textfield js-form-item-url form-item-url">
+      <label for="edit-url">Leave this field blank</label>
+        <input autocomplete="off" data-drupal-selector="edit-url" type="text" id="edit-url" name="url" value="" size="20" maxlength="128" class="form-text" />
+
+        </div>
+</div>
+
+
+  
+</form>
+</div>
+          </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p><span><span><span><span><span><span>Uh. Hello, everyone. Welcome to your afternoon session. Um, so this is, uh, replacing your engine, uh, rules to ECA. Um, and, uh, I think it goes without saying. If you don't want to be in this session, you know, feel free to run away and find something better. That works great, too. Uh, so I am Jake Ineichen. I'm the digital services librarian at Madison Public Library in Wisconsin. Uh, and what that means is I'm the web developer for the library. So I do kind of basic web management of our websites and then also build, um, digital tools for both our patrons and our staff to use. Um, and I have been using Drupal for over a decade now, uh, which is surprising to say. Um, uh, from before I've even began at the library, uh, and started on Drupal seven, and we're still in the process of upgrading some of our sites to Drupal ten. So kind of the same, the full spectrum of the past decade of Drupal experiences. Um, uh, great. So first, I want to say, just like a few people in the audience who's here, um, like just a little bit of, like, rules ECA experience.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Uh, so who do we have any, like, brand new Drupal ers? I don't think so. Okay. Uh, who has, like, a little experience but hasn't used rules or ECA before? Okay. Um, who has experience with rules but not ECA? Okay, great. Most everybody. Um, and then it might be a couple of people, um, uh, left with the lots of experience in everything, and that's great too. Uh, so we are talking about conditionally triggered actions or reactive rules, which those of you who said you've experienced with rules, you know what that means. We have an event. We have a condition that is applied on that. And if that condition passes, an action is triggered and occurs. Um, and so and in Drupal seven, we did that with rules, uh, the kind of the scope of this talk and kind of my experience as a Drupal Drupal is I consider myself an ambitious site builder. Um, so I know, uh, you know, now now I know a little bit more than just enough code to break things. I can fix things occasionally. Um, but definitely not a developer.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Um, and when, um, Drees, uh, kind of talked about Drupal being for, like, one of the audiences as those ambitious site builders who don't want to do everything in custom code but don't need the simplicity they want to be, they want to build a kind of ambitious digital experiences, but with a a guy with a graphical interface. And I felt really seen when he talked about that at I think that was Drupalcon Portland, maybe. Um, and uh, because that's, you know, how I saw myself, like when I first started and like, really got into learning how to use Drupal. I felt like you give me Drupal seven core views and the API flag panels and rules, and I could build anything, um, like, it felt like the sky is just the limit. Uh uh, where are we? Here? Um, yeah. And so now, as I've said, over the years, I've gained more knowledge about how to actually do things. I've learned better at coding or gotten better at some coding aspects. And, you know, uh, one of the mantras, I think, in Drupal is like, you can build the same thing 15 different ways, and it's just picking the best way for you.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Um, and so we've definitely found that there are some things that require or not require are better in like built in custom stuff. But over that entire experience, rules have still always been the way that I, you know, sent notifications and, uh, did kind of automated processes on my sites. Um, it was flexible. It was configurable. It had a graphical interface, uh, and no custom code necessary. And I could do tons of different things. Uh, so where are we now? Uh, with rules and kind of Drupal eight and beyond up to Drupal ten now, uh, Drupal seven released January of 2011, and we had a stable production ready, uh, release of Rules in October of that year. Uh, compared with Drupal eight, November of 20 or 2015 rules, it seems, um, like it was a good start. You know, we had an alpha release in March of that next year. Uh, and I thought, uh, you know, rules is such a well used module. It's definitely going to get a lot of maintenance and push from the community to, uh, you know, get a stable, uh, eight and above release for it.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>It had, you know, over 300,000 like, uh, registered installs from, uh, update status was the 19th most installed module in like 2016. Um, and I thought, well, great, you know, this is a great thing for me to kind of invest in. Um, as someone who's not a developer, you know, I, I help out in the issue queues by applying patches and then saying they don't work. Like, that's that's the extent of my, um, kind of issue help. Uh, but here we are, still eight years on. Um, and we still have just alpha releases for rules. Uh, and there are still people developing on it. Um, there's still there's a bunch of maintainers. Uh, but it doesn't have the same, I think, oomph that, um, this other module that I started to hear about has, which is ECA, uh, event, condition, action. Um, and probably heard about it at drupalcon or maybe previous mid camp. I'm not sure. Um, but it's got a lot going for it going in kind of this rules engine, um, aspect. Uh, it's production stable. It had its 1.0 release in July of 2022.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>It's had regular releases since then. We're up to 1.1.5 in January of this year. Uh, small, but still very small but growing user base that has tripled since last March. So looking and judging that by the registered installs on update status. Uh, it has supporting organizations from lake drops and open campus. And two of the maintainers are from those companies which I believe are. Um, I think they're German companies or European companies. Um, and, uh, I do think the documentation for it could be better. It's a very expansive documentation, um, that the that the maintainers have built. But it does it is kind of missing the I used rules and I don't know what I'm doing, but I want to use this like bridge. Um, but they have a very responsive support community on Drupal Slack. The the ECA channel is very active, and the maintainers on there are constantly asking questions, answering questions that are asked of them from the community, which is really cool. So. Uh, so we've started moving over, um, a number of our rules as I'm, uh, migrating our sites into Drupal ten.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Uh, we had one site that was migrated first, and so that's still using rules, but I've migrated some of those rules into ECA. When I build a new, like, reactive rule, I build it in ECA, not in rules. And then when I get around to migrating, like our giant sites, um, that, that use a lot of rules will be building those in ECA, I think. Um, uh, so, uh, it's been working for us so far, and it might work for you, maybe. Uh, so when we're installing and using ECA, uh, you install not just the, the main module, ECA, which is the processing engine, but also basically UI or at least one of the modelers. Um, so there are three currently available modelers BPMN, IO, which they describe as a BPMN module with a feature rich UI, Camunda, which is a Bpn BPMN modeler, desktop client, um, for designing and deploying automated processes. And so it's like a connector to the desktop client. And then ECA classic, which is a simple modeler that uses the Drupal form API. Um, and I think from the description you might know which one that the maintainers think you should use.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Um. Uh, so we're going to be talking about the classic modeler and the BPMN, IO modeler in this talk. So the classic modeler is the closest we're going to get to the interface of rules as it is the the user interface. So on the left we've got our rules interface. And on the right we've got the ECA classic modeler interface looks pretty similar at first glance. We've got events at the top, we've got conditions in the middle and we've got actions on the bottom. There's also a lot more spacing in the theme in classic, but I shrunk it down to fit everything on there. Um, uh, so very similar things we add on new events. We can add on conditions to those, we can use tokens inside of them and we add on actions. Now the big difference between these two interfaces is you might see it in very small. In the top is this successors section of our events. And this really threw me as a rules user the first time I installed this and tried to use it. Um, the way that we add on these models or reactive rules in ECA is you create your event, you create your conditions, you create your actions, and then you have to go back to the event and connect your, uh, actions and conditions through this successor functionality requirement.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Um, and that was, uh, you know, a pretty funky to me. Um, the first thing, the first time I tried it. Um, but, uh, as we'll see, this does kind of make sense once we look at the bpmn.io module or, uh, well, module and modeler and how the, the way the maintainers think of how the module should function and work, um, because they really, uh, they really don't think that it's the best way to use this is to, to use as sorry, the maintainers really don't think that the classic modeler is the best way to implement ECA. They really want you to use the BPMN, IO module, um, which they, they, uh, mention. I think it's, it's funny, they mention a bunch of times whenever they're answering questions in slack, um, they'll be like, uh oh, like, you know, share the config. And then we can look at it and then they're like, oh, you're using the, the classic modeler. Why? Uh, it's so much better than the other one. So, uh, so and they describe it as kind of a low level modeling tool for kind of simple, um, uh, execution chains.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Whereas in the BPMN modeler we can get really fancy. Uh, so, uh, let's look at the BPMN, IO module. We'll look at more at the classic during the demo portion of the talk. Uh, so this is um, the uh, uses the business process model and notation standard, which is a standard for modeling things like organizational structures, functional breakdowns and data models. Um, and this was from some, uh oh. Now I'm forgetting a kind of generically named, like, organ like consortium of the big companies. So like Apple, IBM all contributed to this standard. Uh, and in so in this model type, uh, it uses, um, these kind of diagrams that look like this and each um, icon and symbol has a specific meaning inside of this, um, uh, business model. And so in the Drupal implementation we're going to use a subset of those options. Um, uh, which are the flow objects, which are we're going to use these circles, which are our events, the equivalent of our events in rules, the things that happen, the triggers. So node save, node update, user login, things like that.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Uh, activities which are the round cornered rectangles. Those are our, um, our actions. Those are something that occur. Those are, those are done after our triggers. Uh, things like set value, send mail, um, those different things. There are also gateways, which are diamonds, as you can see one of them on here, which represent kind of a forking or merging of paths. And currently in ECA 1.1.5, the version one um gateways are not implemented up to like BPM standards. Uh, they are um, really more used for uh, the kind of basic or they are basically empty actions which are more used for kind of visualizing the different forks. Um, but they don't actually function as a specific type of gateway, like this is. So this, this x through this, um, diamond on here means that this is an exclusive gateway, which means that only one of the possible exits from it will trigger and function and occur, um, kind of a, uh, an if else statement. Uh, but there are inclusive gateways that where all of the possible paths from it will all trigger and be followed.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So in version one, um, there it doesn't work according to like the specific standard, but they are working on the maintainers have several issues about this and have been talking about implementing kind of further structures of those different gateways in version two, which is in development. Uh, the other thing we'll be using is connecting objects and specifically a solid line with an arrowhead. This is a sequence flow, um, and represents kind of shows the order of activities that are performed. Um, these are and these are in Drupal where we'll be putting in the conditions on our, um, reactive rules. Um, user has role comparing field values, things like that. Um, the one other thing that we'll be using are annotations, which is a artifact and is represented by an opening square bracket, which we don't see on this model, but we'll see further on. And that annotation is just what it says. It's a description or help text, and I've seen it used and I like to use it for the describing the conditions that are applied on those sequences.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>It makes it look a little nicer. Okay. So BPM the the BPM is this standard bpm.io is a web based tool for editing BPM objects. Um, or and other things that is maintained by uh, camunda, which is um, that's the, uh, they make the desktop client that we mentioned earlier. That's one of the currently available, uh, modelers. Um, and this I was definitely a little hesitant at first when I first, like, looked at this and tried to install it because I thought that meant it was going to be a subscription model or something like that. But, um, BPM IO is just a JavaScript library that the module implements, and it's pretty slick, I think. Um, so here is that same, um, uh, rule that we kind of built in ECA classic or model, um, uh, built in bpm.io. Uh, when we look on here, the far left, uh, rectangle, that's the tool palette. So you can ignore that part. Um, the actual reactive rule is that diagram in the middle. So on the left side we've got our event, our circle, uh, which in this case is a new article is created on the right.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>We've got our round cornered rectangle, which is our activity. The action that is occurring in this case display a notification to the user and then connecting them. Is that sequence flow that um, uh, solid line with an arrow head. And that's where we put our condition on here. So in this example we've got um, we're checking to see if a field has a particular value. So if this tag has um, contest as a, as a tag on it, if the article has the tag contest on it then. And that is what the annotation looks like on here. You can and we'll look at it and we'll see this, um, uh, just add on like a label for the um, sequence flow that arrow. Uh, but it doesn't look as good as the annotation. Um. So looking at this. I think maybe we can get a better sense of like why the classic modeler has that kind of like funky successor functionality and requirement in that, uh, the module, like ECA is really built around this kind of flow of events and actions and subsequent actions and triggering new events to occur and kind of this, this real flow of things that have successors and successor, um, successive events and things.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Um, and, uh, you know, it has this like, um, if this then do this, then do this or do this, if this, this, if this or this of this, um, which is really pretty great that I found and had kind of answered a issue that I had been finding which may be more experienced rules users. You could already do this. Um, but it allows you to kind of set different actions, um, and associated conditions that all trigger on the same event, kind of all in the same model. Um, so I don't have to like, redo all like the first half of all of my rules when I'm generating kind of new emails based on different, um, uh, field values. Um, and so that's something I can never figure out how to do in rules. I think I'm sure you could, but I couldn't figure it out to do it. Um, again, that kind of overly ambitious site builder not really knowing how to do things, but trying. Um, and so that's kind of the basics of the module itself. Um, but I did want to show you a couple of resources before we get into the demo portion.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Um, so the ECA module has a bunch of links to different places. The documentation, which is this ECA guide. Um, they have kind of the external documentation that has a bunch of information about the concepts. Um, now, a number of these, uh, and kind of what I was talking about, the documentation, some, some somewhat being limited a bit, is that some of these pages, um, are just like Wikipedia, like, uh, stubs. Um, you know, they're like, do this later is kind of like the what's unwritten on some of them. Um, uh, but it has information about the different modelers. Uh, it has information. Um, really useful that the different plugins that are available. Uh, and all of the different, um, events and actions that are available for these different plugins. Um, because as we'll see, when, when, when the module is installed, um, there aren't a lot of actions and events available until you start turning on all of the plugins. Each one is implemented in its own custom or sub submodule. Um, there's also this expansive kind of library of examples of um models, and some of them have uh, diagrams that are associated with them.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Um, and kind of show you like what the, uh, what the diagram should look like. But then it also talks about, um, some of them have a lot more stuff. Um, talk about the different dependencies, the different events and actions used. Um, and kind of link around. Um, yeah. So that's the the guide. Um, if you start using it and have a question, you should definitely go to the Drupal Slack. Um, and the ECA channel, because like I said, they're very responsive. It's pretty cool. Um, okay, so let's get into our demo. Uh oh. Actually, I wanted to keep that open for one more second. So for our installation, I took a like. I use a DDEV for my local environment and there should be a com in there. That's good. Uh, and so I took a fresh install and installed these things. So like Jin admin theme, Jin toolbar, admin toolbar, those admin stuff. Um, some useful contrib modules specifically. Uh, so token, which I think you're all familiar with, which is great. Um, super useful. Uh, and then web form, web form views and web form ECA, which is that kind of connecting module between them.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Uh, and then I've installed ECA, the classic modeler, and the BPMN, IO modeler, and then a number of the sub modules to access those events, conditions and actions for those particular types of entities. Uh, so like HBase has a couple, there's core which accesses kind of the Drupal core actions and stuff, uh, form content, user views. Um, things like that. Uh, okay. So. Any questions before I get into the demo? Great. Uh, okay. So we'll get rid of that. Um. Oh, no. There's one more. One more page on this. Uh, so a couple things. I've also added some content and some config. So it's not just a clean install. I've added the new web form for a registration. Uh, a content type. Oh, that's actually I renamed it to gathering so that it wasn't confusing. Um, so gathering, uh, which has a date and a web form field as well as the Editorial workflow added a new view, um, which is of the web form submissions submitted to, uh, or submitted to the gathering content type. Uh, and the and a couple content items.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So, um, this one gathering, uh, pizza party, which is unpublished at the moment or it might not be published, actually, uh, and then a number of web form submissions to that, uh, piece of content. Uh, okay. That is all of that for now. Uh. So this is what my. Let's, um, zoom in a little bit. A fresh install looks like, um, and, uh, to start, let's just kind of create a simple notification rule. Um, so we're going to go into our configuration under workflow and ECA. And then I've got a number of examples that I've already built. Um, but those are just test ones. So we're going to add a new model. And then we select the type of modeler that we want to use. So since I've installed both of them I can select either of them. So we're going to start with the classic. And similar to a lot of this part is going to be similar to rules. So we can name it. So you know send uh notification um or published uh content. Um, oh, I was going to add actually a take so published content, uh, with, uh, with a tag.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Um, I wanted to add that on here. Uh, and so now we just go through our normal process, we add our event, we add our actions, we add our conditions, and then we have to do that extra step and connect our actions to our events. So we are going to um we're going to use the workflow state transition. Add that for my gathering bundle or content type from, we're going to call it from draft to published. Those are the, you know, the keys for the basic editorial. Um, so we'll save that. We've now got our event there. We're going to add in a condition. And in this case we're looking for um, I want to I should have tried that. Uh, so I'm going to send we want to send an email when a piece of gathering, um, content type content with the tag party is published. Um, so I want to, uh, where is it? Um, compare field value. So I'm going to add on my condition and we're going to look for, you know, the tags fields, uh, and check the comparison value. In this case, the ID for my party tag is the number two.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Uh, and then it has the normal, um, like, negate things that we can use. So we're going to save that. We've now got our condition. Let's add on our action. And I wanted to send an email. And I think I just put in some random stuff for this because it doesn't actually matter. So no email at email.com. Uh, and, uh, what did I say we're doing? Uh, uh, new party content published. Um, and then we can just put in our message, you know, uh, content published with tag party so we can go ahead and save this. And as this warning says, uh, this, you know, uh, this rule, this this model will not work. Um, it's not going to do anything until you connect those successors. So we're going to go into my event, uh, and edit the operations, and now we can add our accessor, our successors, because we have things to add to it. So we're going to add an item, uh, based on my one condition, uh, you can name these things a little bit more readable things. Uh, and my action. Go ahead and save that. And it says it's not enabled.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So let's enable it. Go ahead and save. Uh, and then, um, I believe, I think I actually I forgot to unpublish this. So we're going to go ahead and archive this, um, because we need it to be in draft form first. So to draft. Okay. Uh, love the workflow module, but it does, uh, the difference in the like most recent version and like drafts and uh, is, uh, I'm still having trouble wrapping my head around. So we've now got a draft item for this. And when I set this to published, uh, we get our notification. Um, so, uh, you know, content published. Not a lot there because I didn't put much in there, but so pretty simple to actually build that rule right there. Uh, similar to rules interface. Add your event, add your condition, add your action, connect it to your event and enable it. Um, so let's, uh, we're not actually going to disable that one and we'll add a new model, uh, or the same model, but in the BPMN, IO modeler to show you what that looks like and what the maintainers think you should do.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So in this we get this kind of, um. Oh, I'm forgetting a canvas. There we go. Uh, and we've got our basic information on the right, um, our tool palette on the left. So we're going to say the same thing. Um, so, you know, send, um, uh, notification. Uh. On published. Uh, gather. There we go. Um, and this is where we can set whether or not it's enabled. Over here in the edit interface. You can also disable it from the the main overview menu. Uh, I'm going to go ahead and save this just so it populates. And then now we can just put in our our event, our action that we want and the condition that's applied to it. So we're going to add in our event, um, which in this case um we are calling why don't we just do uh uh gathering published gathering. Um, is this maybe I'll zoom in a little bit more for you. Okay. Uh, gathering published. Uh, and then the important thing here is we add kind of a blank object, and then we apply a template to it. Uh, and these are all of the, um, uh, the actions or in this case, the events that are available based on the plugins that we've installed.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And so I've installed a bunch of them. We've got base, we've got content, um, uh, form user, web form and workflow. And so that's what I'm going to use. Um, and there's, you can't see it because I've zoomed in a lot, but this is a, um, what is that is it chosen? Is that the JavaScript library. Um, so workflow we want to state transition. And um, that's to close, uh, we want to set the type, um, to be our, uh, gathering content. And then we use that same, um, basically, this is the same fields that we filled in on the kind of rules like interface in the classic modeler. So from draft to oh, actually, I'm going to leave this blank, um, to so I have to click less buttons in the workflow. Um, so anything else to or we'll go archived archived to published. Uh, and then I do think zooming in is a little difficult. Okay. Uh, we can go ahead and save that. Um, and then on here you can either add a new object from the palette, or you can add it from the object itself that automatically adds the connector from it, which is nice.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So you can either do this, um, and then add on like an arrow from both sides or from the object. You can just add in a new action right from it. And that adds in our sequence flow. And then we can add on our new things. Uh, so in here, um, I clicked off of it. There we go. Uh, this is our, you know, send email and we just apply my new template. This one has different things. So this we want to send our mail from our Drupal core options. And this has all the same fields that we looked at before. So it recipient email address and we can use tokens for this. So let's actually put in the node author you know mail um uh subject. So um gathering updated uh and our message uh, again we can use tokens for this. So let's go ahead and put in our node title. Uh, and just for fun, the node body, um, and this, this replace tokens option, which you can't really read because it's too small. Um, but uh, is only used for some cases, as this says, a lot of times it'll replace the tokens. This is like replace the tokens before doing the thing in order to use it.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Use them in different ways. But so we don't need this for our case in this example. Uh, so I'm going to go ahead. And you don't need to save this as often as I do. But um, I like to uh, and then on our sequence flow is where we add our new condition, so we, um, can add our name to this, so, like, you know, has tag, um, which adds it there. Uh, like I said, I like to add it as an annotation because I think it looks better. Um, uh, we'll we'll leave it there just so I can show you what that looks like. Uh, and then add our template and we're going to do the same. Compare that we did. So compare our fields. Uh, again, the same fields that we had on the rules interface rules like interface. So field uh, tag uh tags. I think it's tags. I believe so, yeah. Okay. Um, expected field value. Again. We're doing two, which is our party tag. Um, and leaving all the rest there. So this will now trigger and function. But what I like to do, like I said, is add the description of the condition as an annotation, which.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So you select the um, sequence, flow the object, the line, and then add on an annotation to it. Um, because I think it just looks nicer. So hashtag uh party. And then I like to get rid of this because when you start moving this around it, then like it looks better in the annotation. Uh, when these get more complicated. So I'm going to go ahead and remove the name just so it's not there. Uh, okay. So we've saved that. It is it is enabled. Um, and when I go back to my pizza party content, uh, I'm going to archive this again and then, uh, set it to published. And we've got our new notification email that gets sent that includes all of our tokens that we added. So it's got the title and then, oh, this is the body. This is my my favorite Lorem ipsum is a cupcake cupcake ipsum. Um, which is just treats. So that's my favorite one. Okay, so we've got our basic notification sent. Um, you know, this is a simple one. It's got an event, it's got a condition and it's got our action. And we can build it really easily in the classic modeler.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>We can build it, I think, a little faster and a little slicker in the BPMN. IO modeler. Um, but it works. Uh let's see. We're at we're going to 230. Is that right? Correct. Okay. Um. How far? Oh, I gotta reload my notes because I've added stuff to it. I think we'll I had a couple more examples that were more basic, but I'm going to jump right into the really fancy one because it's really cool. Um, and, uh. Jump into my example. Uh, well, I didn't know. That's okay. Um, that's the one I have. Uh, okay. Uh, so similar to rules, we can build a whole bunch of different, um, you know, rather simple actions. You know, when something is published with this field or by this user, do this thing, you know, send a notification to this person or a different list or different things like that. Um, but one of the things, as I've said, I installed the web form module because that's how we use we do all of our event registrations for the library, um, is using web form. Um, and one of the things that we desperately are staff have desperately wanted is a reminder emails sent based on the like event of the date of the event, um, which is in a different custom entity.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And so it's like there's difficult that I've, I've found in passing them between those custom entities and the web form. Uh, but with ECA, we can do this. So I'm going to add a new model. Um, and we're going to build it in the BPMN, I o model modeler. Uh, and like I said, so we've got a, a gathering that has a web form on it that has been submitted to. Uh, so what we want to do is send a time based email. So like, say the day before an event happens or a gathering happens, we want to run cron and get a list of all of the submissions that haven't gotten a notification email yet, and send an email to each of them. Loop through and send an email to those. Um, and so the, uh, actually the first thing we need to do is generate that list of submissions. Um, and uh, which, you know, a list of submissions to gatherings, um, like, with a specific date. That sounds like a view to me. Uh, and so I've developed this registrations for ECA handling, which has some fields on it. But the important thing is this filter criteria.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So it's web form submissions to registration. Um, where the date on the submitted two content. So the gathering is less than one day. Uh and on the web form, on the registration web form, I've also added in a like admin only field that's called reminder sent. Um, that's just a Boolean field. And so when that field is set to false, uh, it will show up on this view. And so we've got three submissions to this registration. Uh, so we've got our view. Um, now, uh, we want to build our, uh, um, model. Uh, so I'm going to call this, you know, send, uh, day before reminder email. Uh, executable. Sure. Um, we'll save it. Just so the title show. Uh, and now the first thing we have to do is. So this is a time based, uh, um, event. So we want to we need to run cron and, well, check for cron to be run. So we add an event, uh, add a template and we use the cron run, um, uh, template. And so, you know, cron got to spell it right. We'll have to spell it right. But it's better. So you get a cron event from our cron event.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Uh, what we want to do is load our the list. Well we want to execute that view that we just built and grab the list of those so that we can then, uh, loop on each of those entities. Um, now, the first thing that you have to do when running this is add in what's called a switch user. Um, because, uh, ECA runs as an anonymous user. But if we want it to access certain things, we need to change the user to an admin or someone with suitable permissions to access those things. So like I set up a, I set up that view that has all of that, um, uh, like user information in it, but I've set it to only be visible to admin so that, you know, we get we can eliminate some of that privacy, um, uh, like leakage. So we change the, um, set it to run as I'm going to set to user two who I know is an admin. Um, and so switch user. From that, we can now, uh, we want to grab our web form submissions. So we're going to add on another action, uh, and execute a view. So execute our query. So grab our results. Um.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Uh, yeah. Okay. And so here we can name our token. So this is what we're, we're grabbing this result list and we got to name it something so that we can, you know, identify it and use it in further pieces of our model. So I'm going to call this, uh, I think we just called it notification list, something like that. Um, and we want the my ECA handling helper, the default view. You can also put arguments in here if you, um, want to, but we don't need that for my example. Uh, and so this is, um, uh, get, um, web form submissions. We'll save it from there. Um, we now we've got our list and the way that we're going to work this to to get our loop to work, we want to put these, each of these into a new, um. Uh, ECA event. Um, so we're going to build a, oops, um, annotation. Just kidding. Uh, we're going to add in a new custom event. Um, in here. Uh, and we want this, uh, entity where one specifically. And so this is. Uh. Ah. Um, uh. Trigger notification. Notification and identifying which, um, uh, event we actually want to trigger.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And so we're going to add on a new event. And so this is what I'm going to call it. Uh, and so we're going to call this reg notification, I'm going to spell it right so I can get it later. Um, and we're going to use our notification list entity, uh, to provide the values for it. Um, go ahead and save that. And so we've run cron, we've switched to an admin user who can get the values. We've gotten our web form submissions, and we've stored that in a token, uh, and triggered a new event that we're going to create now, which we're going to call it the same thing. So Reg. Oh, actually, this is our, um, our new notification. Notification. There we go. Uh, and this is our ECA custom event because we're creating a new one, uh, with that, that event ID that we just listed. So, Reg, um, notification. There we go. Notification. Um, and I'm going to go ahead and save that. And then from this um, now we're going to loop through those values and send an email from them. So we need to get the email address, send the email and then update the, uh, that field in our web form submission to indicate that the reminder has been sent so it doesn't get there anymore.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Yes. I think you might have had a typo on the name of the notification. I think he switched the two and a half, which I don't know if that will affect anything, but. Oh, it sure will. Oh, good. Okay, I got it. Notify case. No. There's so many, so many extra letters. Okay. How about let's do this now. We can't mess it up. There we go. It's definitely the same now. Uh, okay. Uh, so we're going to add on some events to some, uh, actions to our model. So we're going to add on this, uh, and our template that we're using is so we've generated a list like we've got a list of our entities that we want, but we need to get the data from them. So we're going to use, uh, get um, data from our web form model. Uh, and so this is I forget what I actually called this. It's just like, get, um, get emails. Uh, so from our field name, uh, and this is the field on our web form registration or a registration web form. So this is just called email. Uh, and then what we're going to store this as. So I'm going to store this as email address.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And this is since this is an like entity aware one, we don't need to change the entity listed on here because it's all from the same thing here. Uh, so I'm going to go ahead and save that. Uh, we're going to get the emails. We're going to send an email. Let's make sure that. That's right. Yep. So send email and send our mail. Um, and here, um, we can start using the tokens that we had. Uh, which. There is that? Oh, so this is where we need to use the, um, token that we just added. So email address. Uh. Let's see. Uh, day before reminder. Day before reminder. There we go. Um, there's a party tomorrow. You know, something like that. Um, and we don't need to, um, replace the tokens before things happen. So I'll go ahead and save that. Uh, and so now, um, this is active and would work and would send emails every time the cron was run, it would send an email to each of the people that have submitted that have submitted the registration. So we want to do one more thing, which is check that box on each of the submissions so that they don't get an email every time cron is run.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Uh, so we can continue the sequence flow, add on a new thing, uh, where we um, said, I think, uh, so on here we want to set a new submission value. Um, that's the other web form option, uh, or one of the other ones. Uh ECA. Web form. Here we go. Uh, set data. Um, and so set, uh, did I call it reminder sent or did I call it? Let me just check on that real quick. And my registration one, uh, notification sent. Okay. So the field name and the value that we want, we want to set a new value. So we want to set it to one because it's just a boolean operator whether or not the it was sent or not. Um, so uh check or um change to uh reminder sent. There we go. Let me go ahead and save that. And then now, an important thing that I ran into a lot and beat my head against the wall a bunch of times is that we've changed the value, but we haven't saved the entity, so it's not going to change until I add on one more action. Um, which is literally just, um, uh, like save the entity. Um, and so we're still in save web form, um, and it's still there, uh, save it and we can save this.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Uh, yeah. Because so we have we're, um, when cron is run, switch to admin, get all the submissions that filter into our view. Uh, trigger a new notification for each of those. Um, and then we've triggered this notification to get the emails from each of those submissions. Uh, send an email to each one and then change each one of those values to indicate that we've sent the email. So now, moment of truth. Uh, let's run cron. Oh, and it didn't work. Great. Um, okay. What did we do? Um, we've got our. Let's go back to here.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>&gt;&gt;:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Okay. Um. Uh. Actually. Ah, that's the problem. We need this custom, this entity aware. Um, uh, one. So we can just change the one that's applied to it. So we want custom event entity aware. And, um, we called that. Let's see. I didn't spell it right last time. So notification. There we go. Let's go ahead and let's try it one more time now.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>&gt;&gt;:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>I'm able to send. They'll shoot. Um, okay.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>&gt;&gt;:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Hum, um hum. Oh, when I removed. When I changed that, it changed off. No. Okay. Store it. Well, what we're going to do, um, instead is save that one, go into the one that worked previously. Um, and we're going to enable that, uh, and run the cron. Okay. What is going on now?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>&gt;&gt;:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Did it change all of your submissions to check that notifications sent to. Yes. So. Yes. Um, okay. Uh, so this is a useful thing that we can learn how to do is we can check the log, um, and, and see what happened. Um, so each user, we entered them. Okay. We've got the. Uh, that's the day before one. That's the other one. So I'm guessing when I must have changed a value. Huh? Darn. Okay. Switch user. Jennifer. Generate the list. Notification list on disk. We've got our notification. So it definitely it triggered this part. Um, but why didn't it send that email? Um.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>&gt;&gt;:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Receiving an email has a. Bracket. Yeah. So we can definitely put in tokens into each of these because that's the, the, the submission that we, that our user put in for it. Okay. Oh, I wonder if actually, that's an interesting thing. I wonder if it, um, triggered part of it but didn't send the email properly. That's that's probably what happened. Um, okay, so if we go to our pizza party, um, let's add in a new thing, uh, uh, <a href="https://www.midcamp.org/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="9bfef6faf2f7dbfef6faf2f7b5f8f4f6">[email&#160;protected]</a>. Um, uh, and so if you're not logged in as an admin, you wouldn't see that that button there. Uh, now, on our view, we should have a new one. Uh, and then if I run the cron now, there we go. Uh, it's entered. Okay, so I, uh, apparently I must have messed up this part of the, um, model when I was showing it to you, but, um, uh, everything worked enough to get to the second part so that it didn't send the emails, but it did change the values. Um. So weird. Uh, okay, I will have to. I guess I'll have to. Look, I probably just spelled something wrong. Um, somewhere.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Uh, you noticed a couple of them, but didn't get all of them. Uh, okay. Uh, a couple other things. Uh, we're out of time. But that, I wanted to say was, um, the way that you can do, uh, so this is kind of a more elaborate function where we're doing a bunch of actions kind of in a sequence and not adding any conditions on them, uh, in order to, um. But I do know that, like, when I'm using rules, uh, there are a number of, like, boolean stuff that I want to do and, or, um, kind of things. Um, and so you can definitely add multiple. Uh, let's go back to my examples that I made before you can add multiple, um. Uh, uh, sequences onto this. And this is how you would do an or kind of rule. So on user login if they're admin or they're a content editor, redirect to a particular URL. Um, to do an and function you need to uh, let's see, I think I built that in this one. Um. Oh that's grabbing the value. But to do an end function you need to either add on a gateway and so that you can get two different conditions on those different sequence values from your event to your action.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Uh, or there is a specific, um, uh, uh, activity and action that is called, um, uh, like explicit. And um, it's this chain action and condition, and that is the one that you'll need to use if you're using the classic modeler in order to do any sort of like and functions, um, you have to use that, um, uh, action and chain it through your, like successors in the classic modeler, which is, uh, gets pretty funky. Um, okay. Uh, we're basically out of time. Um, does anyone have any questions? Sure. Um, this is. Pretty complicated. We can set it up as complicated as possible. Will this affect the web page performance? Like the page load performance? Um, I mean, I can't really speak to that too much. Um, just because, you know, I'm. I'm really just a site builder. And if it works, that's like. That's good enough for me. Um, and, like, I work at a public library, so, like, I don't really need, you know, 10 million people to come to our website at the same time and get something to work fast. Um, so I kind of don't care about page response time.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Um, but, uh, it I would guess that it works similarly to rules. Um, and has has a similar, um, uh, processing the verb I want there. Um, or the word uh effect on it. Because in the past Drupal seven we used flag. And then in the rules we set a condition if flag has this certain things and then trigger some action. But flag itself the flag module. Slow down the page performance. Sure. So now we are at Drupal ten. We no longer use flag. Performance is much better, but I'm just wondering if I add this to it in a certain place. Will that slow. Down? I mean it definitely. I'm sure it will somewhat at least. I don't know to what extent though, because it does, you know, similar rules. It adds on that like, um, I'm forgetting the Drupal term for it, but, um, like, you know, every time something happens, it checks to see if there's a, a proper ECA model that's going to affect it. Um, yeah. Um, is there a way to.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>&gt;&gt;:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Conversion conversion this so either through configuration exporting or. Uh, can you like clone an existing rule set and then name it like version one, like that type of thing. What are our best practices there? Um. I, I don't know, the best practices. Um, uh, you definitely. Um, so all of these are config, um, so you can definitely, like, export them, import them, share them. Um, uh, and so you can definitely, definitely do some versioning control that way. Um, uh, I wonder if you can clone them. Oh, it looks like it. Look at that. Um, possible. Uh, I don't know that there's any sort of, uh. Yes. Uh, there is also a, like, a version field, which I think is in here. Yeah. So you could, um, uh, in the description, um, which I also found very confusing because if you don't have anything selected, that's the description for, like, the whole thing. And then anytime you touch it, it like changes over there. And that really threw me the first time as well. Um, but yeah. Was there another question?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>I know we're out of time. But you.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>&gt;&gt;:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Did say that configurable, uh, configuration exports and stuff like that. So we could actually set up recipes for certain tasks and whatnot? I think so, yeah. Um, yeah. Because, uh, it's it's definitely, you know, uses the same, uh, this is how much, um, config stuff I do. Uh, I did export it. I did export that model in case I broke it, um, because I like, just figured it out, you know, for this talk, um, and was like, this is going to change everything for the library. Um, uh, but so ECA model, um, the one that we created. So, like, um. Uh, which one? One of them is broken. This one's broken. Uh, but this one a day before notifications, uh, you know, has all of that stuff. And so it's stored, uh, you can see it's like BPM camunda because those are the, you know, they make the web, the BPM, IO web tool. So it's all stored in there. Um, namespace. Uh, if there were any any other questions wanted to jump back into, um, so a couple things, uh, you know, images from Unsplash, Wikimedia, and from Drew's website, the web form registration reminder rule that, you know, I got to work eventually, um, uh, was inspired by slash, copied directly from Josh Fabian, who, uh, works on bookable calendar.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Um, but didn't that doesn't use the web form module and so but I got that to work. So excited about that. Um, feedback. Uh, my ID 8555 uh, and contribution on Friday. Um, and we did the questions ready. But, uh, anything else? All right. Thank you.</span></span></span></span></span></span></p>
+
+<p>&nbsp;</p></div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-4027231fecf8ca6b879358f099556fa6ec9fa7290e36b6bc327f69c7658f03c3">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/8555">https://mid.camp/8555</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+  <section class="map-banner">
+      <div class="views-element-container block block-views block-views-blockevent-venue-block-1" id="block-hatter-views-block-event-venue-block-1">
+  
+    
+      <div><div class="container view view-event-venue view-id-event_venue view-display-id-block_1 js-view-dom-id-f8390a3c48a98fbbf62d95f16f30ebe2d0b9c218a4426618ad3381965fa23d69">
+  
+    
+      
+      <div class="view-content">
+          <div class="views-row">
+
+
+<div class="map-overlay">
+  <span class="map__label">Location</span>
+  <h2 class="map__title"><span class="field field--name-title field--type-string field--label-hidden">DePaul University - Lincoln Park Student Center</span>
+</h2>
+  
+            <div class="field field--name-field-address field--type-address field--label-hidden field__item"><p class="map__address" translate="no">
+          2250 N Sheffield Ave. <br>
+            Chicago, IL 60614<br>
+  </p>
+</div>
+      
+  <a href="../venue/depaul-university-lincoln-park-student-center.html" class="cta-link--yellow">Learn more  <span class="cta-arrow"></span></a>
+</div>
+<div id='map' class="map"></div>
+</div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-b1f30bb449170e4742023eeaedaa6f95b59f8a89b043384e8fe806665cde3ab2">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/acquia.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2024-02/Acquia%20Droplet%20Blue.png" width="2000" height="2000" alt="The Acquia logo" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#b2dbdcd4ddf2dfdbd6d1d3dfc29cddc0d5"><span class="__cf_email__" data-cfemail="9cf5f2faf3dcf1f5f8fffdf1ecb2f3eefb">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/8555","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"ajaxTrustedUrl":{"form_action_p_pvdeGsVG5zNF_XLGPTvYSKCf43t8qZYSwcfZl2uzM":true},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_U1jmi93nTJG2lPAKzexs4tMZWFR2YMMoIoiPckW421U.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJx1yksKgDAMRdENabskSfUZK2kjTfCzeyfiQHB04XBZlQUDVZLL82iRP9At5I4WWTSR9OsLhbakZ3cgzdpKfBogKKgeJjhlsWC043cqMCPGDa0vM_I"></script>
+<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.js"></script>
+<script src="../../sites/default/files/js/js_RAkHj2z9vY4q-6RsYuiXkqPbxgsRWrLsVQRz36mKiGA.js%3Fscope=footer&amp;delta=2&amp;language=en&amp;theme=hatter&amp;include=eJx1yksKgDAMRdENabskSfUZK2kjTfCzeyfiQHB04XBZlQUDVZLL82iRP9At5I4WWTSR9OsLhbakZ3cgzdpKfBogKKgeJjhlsWC043cqMCPGDa0vM_I"></script>
+
+  </body>
+</html>

@@ -1,0 +1,3222 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="Jenkins is the most venerated and widely-used open source automation tools. It has many similarities to Drupal with it&#039;s open source roots, vast plugin ecosystem, and slow but steady modernization. If you&#039;re not using Jenkins or any other automation tools to manage your Drupal sites, you&#039;re missing out! Or, if you already use Jenkins, what if I told you it could be better? What if you could build automation around your automation?" />
+<link rel="canonical" href="jenkins-or-how-i-learned-stop-worrying-and-love-automation.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Jenkins or: How I learned to stop worrying and love automation | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Jenkins or: How I learned to stop worrying and love automation | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_Qoyy92GHt9RyGOt8N3WS_9HRsJcJBywJ2IhXudzvST4.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJw9jWsOgzAMgy9U1iOhtDWsUkJQ3bGx0w-B2B_r80NyViH3mIQI-eKp6p8NpMzg7RcvR-cNBzUTrV-Ep_SOFmf1JDpk8k5M1uSfwJ0ddl1stcBHWEIZpwotsYGrL6wbhrM8JngznvowLy_.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_QAC1R0aFoF1mIVQtLAaSE24B2iwnT2ZCa0cZDeZsPV0.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJw9jWsOgzAMgy9U1iOhtDWsUkJQ3bGx0w-B2B_r80NyViH3mIQI-eKp6p8NpMzg7RcvR-cNBzUTrV-Ep_SOFmf1JDpk8k5M1uSfwJ0ddl1stcBHWEIZpwotsYGrL6wbhrM8JngznvowLy_.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJw9jWsOgzAMgy9U1iOhtDWsUkJQ3bGx0w-B2B_r80NyViH3mIQI-eKp6p8NpMzg7RcvR-cNBzUTrV-Ep_SOFmf1JDpk8k5M1uSfwJ0ddl1stcBHWEIZpwotsYGrL6wbhrM8JngznvowLy_.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJw9jWsOgzAMgy9U1iOhtDWsUkJQ3bGx0w-B2B_r80NyViH3mIQI-eKp6p8NpMzg7RcvR-cNBzUTrV-Ep_SOFmf1JDpk8k5M1uSfwJ0ddl1stcBHWEIZpwotsYGrL6wbhrM8JngznvowLy_.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+<link rel="stylesheet" media="all" href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.css" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="jenkins-or-how-i-learned-stop-worrying-and-love-automation.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-hatter-main-menu-menu" id="block-hatter-main-menu" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-main-menu-menu">Midcamp 2018 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" data-drupal-link-system-path="node/2">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--venue">
+        <a href="../../about/venue.html" title="Venue" data-drupal-link-system-path="node/7048">Venue</a>
+            </li>
+          <li class="primary-nav__sublist-item item--travel">
+        <a href="../travel.html" title="Travel and Accommodations" data-drupal-link-system-path="node/65">Travel</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../lunch.html" title="Lunch Near Campus" data-drupal-link-system-path="node/162">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2018/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" title="Meet the Team!" data-drupal-link-system-path="2018/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../../2023/about/lunch-options.html" data-drupal-link-system-path="node/6970">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--accommodations">
+        <a href="../../2023/about/accommodations.html" data-drupal-link-system-path="node/6948">Accommodations</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" data-drupal-link-system-path="node/9">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--become-a-sponsor">
+        <a href="../become-a-sponsor.html" title="Become a Sponsor" data-drupal-link-system-path="node/7">Become a Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../../jobs.html" title="Jobs" data-drupal-link-system-path="jobs">Jobs</a>
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" data-drupal-link-system-path="node/128">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--training-thu">
+        <a href="../training.html" data-drupal-link-system-path="node/195">Training (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--bofs-fri-sat">
+        <a href="../birds-feather-bofs.html" title="Birds of a Feather (BoFs)" data-drupal-link-system-path="node/167">BoFs (Fri/Sat)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-fri">
+        <a href="../schedule/friday.html" title="Friday Sessions" data-drupal-link-system-path="2018/schedule/friday">Sessions (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-sat">
+        <a href="../schedule/saturday.html" title="Saturday Sessions" data-drupal-link-system-path="2018/schedule/saturday">Sessions (Sat)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sprints-sun">
+        <a href="../../sprints.html" title="Sprints">Sprints (Sun)</a>
+            </li>
+  </ul>
+
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2018.html" hreflang="en">MidCamp 2018</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Jenkins or: How I learned to stop worrying and love automation</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="58" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2018-03-10T20:45:00Z" class="datetime">Saturday, 2:45 pm CST</time>
+ - <time datetime="2018-03-10T21:45:00Z" class="datetime">Saturday, 3:45 pm CST</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-84" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-name field--type-string field--label-hidden field__item">Room 325</div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>Jenkins&nbsp;is&nbsp;the most venerated and widely-used open source automation tools. It has many similarities to Drupal with it's open source roots, vast plugin ecosystem, and slow but steady modernization.</p>
+
+<p>If you're not using Jenkins or any other automation tools to manage your Drupal sites, you're missing out!</p>
+
+<p>Or, if you already use Jenkins,&nbsp;what if I told you it could be better? What if you could build automation around your automation?</p>
+
+<p>This session will walk through different ways I've implemented secure Jenkins installations for Drupal and other PHP projects, including:</p>
+
+<ul>
+	<li>Setting up Jenkins with Nginx and Let's Encrypt for https encryption.</li>
+	<li>Managing configuration and Jenkins jobs in code (along with an introduction to Pipelines).</li>
+	<li>Continuous Integration for your Jenkins environment (CI for your CI!).</li>
+	<li>Backing up and restoring Jenkins servers.</li>
+	<li>Integrating Jenkins with tools like Ansible and AWS CloudFormation to enhance your&nbsp;automation workflows.</li>
+</ul>
+
+<p>But the main takeaway will be the importance of automation. Any tasks you regularly perform on your Drupal projects—especially those which affect production and could impact revenue—should be automated (with or without Jenkins!).</p>
+
+<p>This session will be aimed at an intermediate audience, who may already be familiar with one or more of the following:</p>
+
+<ul>
+	<li>Basic automation tools like Drush, Drupal Console, or shell scripts.</li>
+	<li>Basic command line usage.</li>
+	<li>Configuration management systems like Ansible or Puppet.</li>
+</ul></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/7DZ3lZ4M7J4?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-presenter-slides field--type-file field--label-above">
+    <div class="field__label">Presenter Slides</div>
+              <div class="field__item">
+<span class="file file--mime-application-pdf file--application-pdf"> <a href="../../sites/default/files/2018-03/Jenkins%20or%20how%20I%20learned%20to%20stop%20worrying%20and%20love%20automation.pdf" type="application/pdf">Jenkins or how I learned to stop worrying and love automation.pdf</a></span>
+</div>
+          </div>
+
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Jeff Geerling</h4>
+
+      Senior Technical Architect
+
+
+          @
+              <a href="https://www.acquia.com">Acquia</a>
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p>Midwestern Drupalist living in St. Louis, MO. I co-organize the St. Louis Drupal Users Group, and do a lot of open source work in my spare time.</p>
+</div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2018-11/Social%20Media%20800px.jpg%3Fitok=Fzh15tkd" width="220" height="220" alt="Jeff Geerling" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">DevOps</div>
+              </div>
+      </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p>hopefully you're here for this</p>
+
+<p>presentation on Jenkins and not for</p>
+
+<p>something else a little bit about myself</p>
+
+<p>I have been working with Drupal since</p>
+
+<p><br>
+also write quite a bit I write blog</p>
+
+<p>posts I wrote a book I actually have a</p>
+
+<p>few little coupon things these say on</p>
+
+<p>them 25% off but I made the coupon 100</p>
+
+<p>percent off so throughout the</p>
+
+<p>presentation I'll try to try to give a</p>
+
+<p>few of these Cathy's out the cool thing</p>
+
+<p>about the way that I'm publishing this</p>
+
+<p>book it's only in pub so anytime that</p>
+
+<p>there's updates danceable I update the</p>
+
+<p>book the book has complete automated</p>
+
+<p>test coverage as well so I update the</p>
+
+<p>book examples and then you get them for</p>
+
+<p>free it's a nice nice model I also call</p>
+
+<p>myself an Automator of things because</p>
+
+<p>that's kind of what I do</p>
+
+<p>aqueous is what I do for my personal</p>
+
+<p>projects I wish I could do that for</p>
+
+<p>things like gardening because everything</p>
+
+<p>that I grow at my house ends up dying a</p>
+
+<p>year later or a week later but for the</p>
+
+<p>first one of these who knows the</p>
+
+<p>reference in this picture and in the</p>
+
+<p>title okay well someone else what's the</p>
+
+<p>what's the title of the movie</p>
+
+<p>yeah dr. strange like and that's</p>
+
+<p>what's-his-name all right so with this</p>
+
+<p>this presentation is going to be kind of</p>
+
+<p>simple but towards the end I figure I</p>
+
+<p>want to give everybody a good kind of</p>
+
+<p>broad overview of Jenkins because some</p>
+
+<p>people here who here has ever used</p>
+
+<p>Jenkins at all so there's there's a good</p>
+
+<p>number a lot of people never used it</p>
+
+<p>some people might have like used it on a</p>
+
+<p>project that they never set it up and</p>
+
+<p>they never configured it so I want to go</p>
+
+<p>from like the beginning of what is it</p>
+
+<p>how do you use it how do you set it up</p>
+
+<p>and then get into how to use it with</p>
+
+<p>Drupal and then finally at the end we</p>
+
+<p>can kind of get deeper into things if</p>
+
+<p>you want to see some of the examples and</p>
+
+<p>stuff like that so a little history on</p>
+
+<p>the project originally a long long time</p>
+
+<p>ago it was called Hudson and it was</p>
+
+<p>developed by a guy at Sun Microsystems</p>
+
+<p>unfortunately at some point in the</p>
+
+<p>history a big company called Oracle</p>
+
+<p>bought Sun Microsystems and they started</p>
+
+<p>screwing with all these open-source</p>
+
+<p>projects that were amazing and that led</p>
+
+<p>to some internal strife in the Hudson</p>
+
+<p>team and the guy who created it</p>
+
+<p>eventually Oracle says he forked it he</p>
+
+<p>says he renamed the project and Oracle</p>
+
+<p>Ford did but basically they came up with</p>
+
+<p>a new name and it was called Jenkins</p>
+
+<p>so eventually many years later Jenkins</p>
+
+<p>came under the purview of a company</p>
+
+<p>called cloud B's it's still completely</p>
+
+<p>open-source it's still primarily a Java</p>
+
+<p>based tool and it's like if you use Java</p>
+
+<p>it's like the shoo-in for anything CI</p>
+
+<p>but it's it's a Java based tool that</p>
+
+<p>that is well maintained has constant</p>
+
+<p>updates has a very large community</p>
+
+<p>and it's under the stewardship of</p>
+
+<p>cloudBees now for another one of these</p>
+
+<p>copies of the book who can tell me</p>
+
+<p>another popular software product that</p>
+
+<p>Oracle has bought out as part of their</p>
+
+<p>bio to son and kind of noisy boys I</p>
+
+<p>think yeah OpenOffice there's there's a</p>
+
+<p>number Sun Sun was highly productive and</p>
+
+<p>Oracle is highly seductive I guess in</p>
+
+<p>terms of money is great for causing of</p>
+
+<p>working if you want to get your coffins</p>
+
+<p>first project for then go to Oracle back</p>
+
+<p>in the early 2000s I forget like 2004 or</p>
+
+<p>something and when Hudson was originally</p>
+
+<p>made it became super popular and son it</p>
+
+<p>was open source it became super popular</p>
+
+<p>everywhere because see I was a pretty</p>
+
+<p>new thing at least open source see I was</p>
+
+<p>a pretty little thing back then and by</p>
+
+<p>like two thousand seven eight nine it</p>
+
+<p>was basically the only open source CI</p>
+
+<p>tool since Jenkins UI and paradigms and</p>
+
+<p>all that kind of just stayed the exact</p>
+
+<p>same from 2001 to 2011 twelve thirteen</p>
+
+<p>all the sudden people realized oh people</p>
+
+<p>want usability and people want to be</p>
+
+<p>able to do things in language besides</p>
+
+<p>Java so all these other things have</p>
+
+<p>since come into being and some of them</p>
+
+<p>integrate a little better a little worse</p>
+
+<p>with different products like Travis CI</p>
+
+<p>fees github travis circle CI some other</p>
+
+<p>tools or like click a button and you're</p>
+
+<p>all integrated jenkins a little bit more</p>
+
+<p>work but it is open source and free for</p>
+
+<p>private projects so that's nice</p>
+
+<p>but there's a lot more tools today so</p>
+
+<p>Jenkins has to be more competitive um</p>
+
+<p>getting started with getting Jenkins</p>
+
+<p>onto a server similar so you can start</p>
+
+<p>using it a few of the considerations</p>
+
+<p>that you need to make one is random</p>
+
+<p>Jenkins is a Hungry Butler it needs lots</p>
+
+<p>of RAM it's basically as much as you can</p>
+
+<p>give it it will run on a one gigabyte</p>
+
+<p>VPS or on like a one gigabyte virtual</p>
+
+<p>machine something like that but it</p>
+
+<p>doesn't run well and it will kill itself</p>
+
+<p>when it hits out of memory issues even</p>
+
+<p>if you're just doing things like cron</p>
+
+<p>jobs and stuff Jenkins Jenkins likes</p>
+
+<p>lots of RAM so two gigs four gigs</p>
+
+<p>minimum requirement if you're doing a</p>
+
+<p>lot of things a lot of Drupal sites you</p>
+
+<p>might want to go eight gig 16 gigs or</p>
+
+<p>also spread out jobs on multiple slaves</p>
+
+<p>I'm not going to get into that in this</p>
+
+<p>presentation CPU not usually that</p>
+
+<p>important to have like super beefy CPU</p>
+
+<p>on your server that runs Jenkins unless</p>
+
+<p>you have jobs that do tons and tons of</p>
+
+<p>work and PHP nodejs and stuff if it's</p>
+
+<p>just building a project and running</p>
+
+<p>tests it doesn't need to have something</p>
+
+<p>crazy another thing that's important is</p>
+
+<p>don't ever fill up the system disk</p>
+
+<p>Jenkins doesn't handle that too</p>
+
+<p>gracefully what it does is it just stops</p>
+
+<p>talking jobs and it doesn't tell you</p>
+
+<p>anything about it there might be a log</p>
+
+<p>message but make sure that you monitor</p>
+
+<p>these things so it has either just log</p>
+
+<p>in to the server</p>
+
+<p>on top or have a tool monitoring these</p>
+
+<p>things and make sure that you're not</p>
+
+<p>hitting your limits and if you are you</p>
+
+<p>might need to upgrade your server also I</p>
+
+<p>do run Jenkins a lot of times on a</p>
+
+<p>really small server like a 512 maybe PS</p>
+
+<p>just because it's super duper cheap and</p>
+
+<p>if we didn't have it running we wouldn't</p>
+
+<p>want anything so have something it's</p>
+
+<p>better than nothing so in the</p>
+
+<p>presentation which I'll link later</p>
+
+<p>there's a shell script that I have that</p>
+
+<p>I've run as a cron job on those smaller</p>
+
+<p>servers which is on it just on github</p>
+
+<p>gist that you can copy and paste and it</p>
+
+<p>just make sure the service is running</p>
+
+<p>and this projector does this in this</p>
+
+<p>room I don't</p>
+
+<p>so installing Jenkins it's really simple</p>
+
+<p>right you just install Java installed</p>
+
+<p>Jenkins and you're done it's just like</p>
+
+<p>Apache Solr except Jenkins Jenkins is is</p>
+
+<p>a lot more complex beast and one thing</p>
+
+<p>that some people might not realize is</p>
+
+<p>when you automate things with Jenkins</p>
+
+<p>you put all your keys and API keys and</p>
+
+<p>your SSH keys and all these things into</p>
+
+<p>Jenkins if somebody gets controller it's</p>
+
+<p>going to completely own and demolish</p>
+
+<p>your infrastructure because they have</p>
+
+<p>the keys to the kingdom so of the people</p>
+
+<p>who have ramas Jenkins server have you</p>
+
+<p>ever seen a Jenkins server look like</p>
+
+<p>this after a year or two anybody I have</p>
+
+<p>I know pretty much every Jenkins server</p>
+
+<p>I've ever seen ends up like this the</p>
+
+<p>problem is people don't update it people</p>
+
+<p>don't maintain the server people don't</p>
+
+<p>have any sort of testing for things they</p>
+
+<p>do so they add in a plugin and it messes</p>
+
+<p>everything up and when their Jenkins is</p>
+
+<p>hosts forever I've been at a lot of</p>
+
+<p>organizations where so they have like a</p>
+
+<p>list of their Jenkins servers and then</p>
+
+<p>there's a column that says has it been</p>
+
+<p>hacked yet and like 90% of them are yes</p>
+
+<p>because they're running like a three</p>
+
+<p>year old version of Jenkins because</p>
+
+<p>everybody's scared of upgrading because</p>
+
+<p>they have these plugins that are three</p>
+
+<p>years old that all their stuff is</p>
+
+<p>dependent on but the server's hacked but</p>
+
+<p>it still has to run because they're</p>
+
+<p>dependent on it to do their business</p>
+
+<p>operations it's not a good situation</p>
+
+<p>it's I mean it's like a Drupal site if</p>
+
+<p>you I know people who have not updated</p>
+
+<p>their Drupal sites from seven point six</p>
+
+<p>or eight or whatever it is Phenix Drupal</p>
+
+<p>I mean if you're running Drupal 6 and</p>
+
+<p>you have drop garden my drop guard job</p>
+
+<p>my drop lizard that's it you that I</p>
+
+<p>would still get into Drupal 7 as soon as</p>
+
+<p>you can but but it's it's the name of</p>
+
+<p>the game and software is updating so</p>
+
+<p>there's the way that I recommend</p>
+
+<p>installing Jenkins and the way that I do</p>
+
+<p>it is you want it to be secure first of</p>
+
+<p>all because if you're like let's say</p>
+
+<p>you're on the wonderful open Wi-Fi here</p>
+
+<p>and you log into your Jenkins server and</p>
+
+<p>it's on HTTP anybody with a laptop here</p>
+
+<p>could immediately pick up your login</p>
+
+<p>credentials get into your Jenkins server</p>
+
+<p>and do anything that you could including</p>
+
+<p>like deleting a code base or deploying</p>
+
+<p>new code or changing the checked out of</p>
+
+<p>branch on a Drupal site or if it's a</p>
+
+<p>more boring server just running your via</p>
+
+<p>tests and seeing how cool that yeah yeah</p>
+
+<p>VPN is an option but I for public server</p>
+
+<p>like a lot of times it's a group of</p>
+
+<p>people that's remote or something's I'm</p>
+
+<p>working with so I have nginx and let's</p>
+
+<p>encrypt let's encrypt generates a cert</p>
+
+<p>and keeps the cert active and nginx</p>
+
+<p>proxies little traffic the Jenkins and</p>
+
+<p>you can also do some other things to</p>
+
+<p>make the installation a little bit more</p>
+
+<p>secure with that but in general having</p>
+
+<p>it behind the HTTPS only it's nice and I</p>
+
+<p>think that because it's still recording</p>
+
+<p>believe me but it just keeps hiding</p>
+
+<p>itself on the screen engine X is just a</p>
+
+<p>proxy so the other thing that I</p>
+
+<p>encourage is Jenkins as a CI tool and</p>
+
+<p>you're going to start using CI as a</p>
+
+<p>cultural thing it's your company or for</p>
+
+<p>your projects wouldn't be good to have</p>
+
+<p>CI for your CI so that you can actually</p>
+
+<p>make sure that your testing and your</p>
+
+<p>integration and your deployments work</p>
+
+<p>before you make updates to all that</p>
+
+<p>stuff so I always make sure that there's</p>
+
+<p>actual CI for the Jenkins instance so I</p>
+
+<p>don't have</p>
+
+<p>and I'm just deploying update to Jenkins</p>
+
+<p>and hope you know as I think Chris Urban</p>
+
+<p>yesterday and our other presentation</p>
+
+<p>what was the code like cross your</p>
+
+<p>fingers pray</p>
+
+<p>if it if it works it's in prod and it's</p>
+
+<p>done that's not how that's not how I</p>
+
+<p>want my Jenkins server drone especially</p>
+
+<p>if I'm dependent on it for code deploys</p>
+
+<p>or 4 4 code builds things like that</p>
+
+<p>don't look dumb luck yeah I don't want</p>
+
+<p>dumb luck</p>
+
+<p>managing my Drupal sites so and you know</p>
+
+<p>you wouldn't develop a Drupal site in</p>
+
+<p>production would you so why would you</p>
+
+<p>develop all of your automation in</p>
+
+<p>production that sounds like a recipe for</p>
+
+<p>disaster</p>
+
+<p>if you run a job and you accidentally</p>
+
+<p>had the wrong parameter and you had prod</p>
+
+<p>in where it should be dev all sudden</p>
+
+<p>your prod at an Armin gets locked off</p>
+
+<p>and for all them bad things can happen</p>
+
+<p>so you want to be able to test things</p>
+
+<p>locally and to run Jenkins locally and</p>
+
+<p>make changes locally and then put them</p>
+
+<p>on to production in an automated fashion</p>
+
+<p>repeatedly if you want to skip ahead</p>
+
+<p>about a thousand steps I have a github</p>
+
+<p>repo that I've built for this</p>
+
+<p>presentation unfortunately I was going</p>
+
+<p>to do a few more things with it but I</p>
+
+<p>ended up in the hospital a couple weeks</p>
+
+<p>ago so I did not get to do a couple of</p>
+
+<p>those things but it's pretty complete</p>
+
+<p>and I'm gonna keep working on it after</p>
+
+<p>this because I'm actually now using it</p>
+
+<p>to manage some of my Drupal sites</p>
+
+<p>because better than the old Jenkins</p>
+
+<p>server setup that I was easy</p>
+
+<p>if you want to do something that's a</p>
+
+<p>little easier for Jenkins management you</p>
+
+<p>can there is a platform or product</p>
+
+<p>business service service as a service I</p>
+
+<p>don't look CIA as a service through</p>
+
+<p>fabi's so you can get all the same stuff</p>
+
+<p>with Jenkins but managed hosted by them</p>
+
+<p>with some of their security and tools</p>
+
+<p>and things and the guarantee that it's</p>
+
+<p>always up to date they have you have</p>
+
+<p>engineers available it's a bit more</p>
+
+<p>expensive though I'm having an open</p>
+
+<p>source tool it's kind of the same thing</p>
+
+<p>it's like if you ran if you're on their</p>
+
+<p>site through Squarespace a Twix you're</p>
+
+<p>paying a lot more than if you use Drupal</p>
+
+<p>which is free but you're responsible for</p>
+
+<p>Drupal updates and stuff like that but</p>
+
+<p>they have it's basically the name of the</p>
+
+<p>game if you want hosts of Jenkins if you</p>
+
+<p>want to use it right now during this</p>
+
+<p>presentation and stop listening to me</p>
+
+<p>you can use docker this command and</p>
+
+<p>that'll bring up their their basic like</p>
+
+<p>the latest demo</p>
+
+<p>docker container running Jenkins with</p>
+
+<p>blue ocean talk a little bit more about</p>
+
+<p>the ocean in a bit so you have Jenkins</p>
+
+<p>setup let's say using that docker thing</p>
+
+<p>or using the linked linked project that</p>
+
+<p>I was working on once you're in there's</p>
+
+<p>a few things that you might need to</p>
+
+<p>configure some of them are more pressing</p>
+
+<p>than others but this is another reason</p>
+
+<p>why I like doing it locally before I go</p>
+
+<p>to production because if you build a</p>
+
+<p>Jenkins server in production at least in</p>
+
+<p>the old days it used to not even be</p>
+
+<p>protected there was no admin login by</p>
+
+<p>default so you to install Jenkins and</p>
+
+<p>then if somebody else got to it before</p>
+
+<p>they could lock you out of it that's</p>
+
+<p>never a good thing</p>
+
+<p>or sometimes you install Jenkins you log</p>
+
+<p>in and you change a 70 minute</p>
+
+<p>you have that's not good either so it's</p>
+
+<p>good to do this locally first get your</p>
+
+<p>get your feet wet the first thing that</p>
+
+<p>you'll probably want to do and it's</p>
+
+<p>something that you'll do forever</p>
+
+<p>basically when you're using Jenkins is</p>
+
+<p>start evaluating what plugins are</p>
+
+<p>necessary for your work plugins are very</p>
+
+<p>much like Drupal modules and that's a</p>
+
+<p>good thing and a bad thing just like</p>
+
+<p>this Drupal modules that's a good thing</p>
+
+<p>and a bad thing some plugins break</p>
+
+<p>everything every few months other</p>
+
+<p>plugins are stable and reliable and</p>
+
+<p>awesome all the time but you'll end up</p>
+
+<p>using at least 5 or 10 plugins sometimes</p>
+
+<p><br>
+instance to help make things faster</p>
+
+<p>easier more convenient and plugins do</p>
+
+<p>everything from like making it so you</p>
+
+<p>can interact with github directly so you</p>
+
+<p>can have commits on github trigger</p>
+
+<p>builds and Jenkins or do things like put</p>
+
+<p>timestamps in your build log so you can</p>
+
+<p>see how long things take that kind of</p>
+
+<p>stuff one of the biggest plugins Suites</p>
+
+<p>which is slowly becoming basically I'm</p>
+
+<p>guessing with like Jenkins 3.0 will be</p>
+
+<p>this called blue ocean and like I said</p>
+
+<p>earlier Jenkins was the name of the game</p>
+
+<p>and the state of the art in 2004-2005</p>
+
+<p>like two thousand nine ten eleven but a</p>
+
+<p>lot of people started realizing that</p>
+
+<p>some of these other new tools circles</p>
+
+<p>yeah get live CI and Travis CI and all</p>
+
+<p>these other ones some of some of them</p>
+
+<p>even open-source they were a lot more</p>
+
+<p>usable they were a lot more user</p>
+
+<p>friendly and also did things like</p>
+
+<p>instead of having to click through an</p>
+
+<p>interface to build a job you could just</p>
+
+<p>throw a file in your repository and then</p>
+
+<p>when you added it to the system it would</p>
+
+<p>start building it automatically Jenkins</p>
+
+<p>has that now through blue ocean blue</p>
+
+<p>ocean and pipelines but there's still</p>
+
+<p>the the major effort went into it and</p>
+
+<p>what was it 20 14 15 16</p>
+
+<p>and it's still not the default so the</p>
+
+<p>default is still the old ancient</p>
+
+<p>interface which they have retina</p>
+
+<p>graphics which is nice but it's still</p>
+
+<p>this ancient like if you used Hudson and</p>
+
+<p>Jenkins today a lot of it is just</p>
+
+<p>exactly the same just nicer icons so</p>
+
+<p>blue ocean is just a complete rewrite of</p>
+
+<p>the interface and it's a lot more usable</p>
+
+<p>it's a lot more friendly towards the</p>
+
+<p>people that will actually build the jobs</p>
+
+<p>like the old Jenkins interface is really</p>
+
+<p>friendly for the people that build your</p>
+
+<p>automation but you should if you build</p>
+
+<p>automation rightly you're doing it like</p>
+
+<p>for two percent of the time and you're</p>
+
+<p>using it like 98 percent of times so</p>
+
+<p>it's better to target the 98 percent so</p>
+
+<p>there's there's an issue if you want to</p>
+
+<p>follow it it's linked in here eventually</p>
+
+<p>it's going to be the default so instead</p>
+
+<p>of logging into Jenkins and getting that</p>
+
+<p>old interface you get the new one and</p>
+
+<p>that'll be nice because the only way to</p>
+
+<p>do that now is to use nginx and to</p>
+
+<p>rewrite requests to slash blue and</p>
+
+<p>that's kind of annoying to me another</p>
+
+<p>thing that's important in configuring a</p>
+
+<p>Jenkins server because generally</p>
+
+<p>speaking and I would recommend this</p>
+
+<p>Jenkins should be completely separate</p>
+
+<p>from like your Drupal server or any</p>
+
+<p>other service that you're running for</p>
+
+<p>many reasons isolation and the fact that</p>
+
+<p>I'll get to it in a minute but basically</p>
+
+<p>you're going to be putting things into</p>
+
+<p>Jenkins to let you be able to access</p>
+
+<p>other tools and code bases and things so</p>
+
+<p>one thing to keep in mind there is if</p>
+
+<p>you can don't give it the keys of the</p>
+
+<p>kingdom give it the keys that it needs</p>
+
+<p>just to do it it needs to do so like if</p>
+
+<p>it just needs to check out the code base</p>
+
+<p>on github and deploy it you don't need</p>
+
+<p>to give it push access to your github</p>
+
+<p>codebase so use a github deploy key with</p>
+
+<p>read-only access</p>
+
+<p>don't use your like personal key that</p>
+
+<p>can do anything to any github repo that</p>
+
+<p>you own seen that happen a lot of times</p>
+
+<p>and that's an easy way to get hacked API</p>
+
+<p>keys and things like that usually what</p>
+
+<p>you would do is store them in the</p>
+
+<p>Jenkins home directory</p>
+
+<p>there's other ways to do it you can also</p>
+
+<p>use key storage systems and things but</p>
+
+<p>there's some plugins for it but it gets</p>
+
+<p>kind of complicated and doesn't work</p>
+
+<p>with everything so one thing to keep in</p>
+
+<p>mind is that you need to be careful and</p>
+
+<p>vigilant about who has admin level</p>
+
+<p>access to Jenkins because all these</p>
+
+<p>things basically their files on a file</p>
+
+<p>system that somebody could read if they</p>
+
+<p>get access let's see and this is the</p>
+
+<p>interface that comes with Jenkins for if</p>
+
+<p>you need to add like an SSH key you can</p>
+
+<p>either enter it in directly and it</p>
+
+<p>stores it in a little file in the</p>
+
+<p>Jenkins home folder you can have it</p>
+
+<p>stored somewhere on the Jenkins server</p>
+
+<p>and it could read it in you can also add</p>
+
+<p>usernames and passwords and API keys and</p>
+
+<p>things and then Jenkins gives these</p>
+
+<p>these credentials to any job that needs</p>
+
+<p>them there's ways to make them more</p>
+
+<p>limited so you can like the credential</p>
+
+<p>that only these jobs can use in a</p>
+
+<p>credential in these jobs use but that's</p>
+
+<p>a little more complicated than I'm going</p>
+
+<p>to get into today and like I said</p>
+
+<p>earlier be careful who has access to</p>
+
+<p>Jenkins as basically if you have if you</p>
+
+<p>have a default Jenkins instance you just</p>
+
+<p>installed it and you create a new user</p>
+
+<p>account that new user account has all</p>
+
+<p>privileges and rights just like you do</p>
+
+<p>so basically unlike Drupal where every</p>
+
+<p>new user just has like admin area</p>
+
+<p>authenticated user and it has like two</p>
+
+<p>permissions and Jenkins every user gets</p>
+
+<p>basically two Jenkins and so if you have</p>
+
+<p>files in your Jenkins home that have</p>
+
+<p>credentials in them that new user could</p>
+
+<p>write a Jenkins job that cats a file out</p>
+
+<p>and then they could grab your keys and</p>
+
+<p>do things with it so another thing</p>
+
+<p>that's important in a Jenkins server is</p>
+
+<p>making sure that you have a good access</p>
+
+<p>control</p>
+
+<p>so the way that I usually do this is</p>
+
+<p>using the role strategy plugin and if</p>
+
+<p>you use Drupal this is like I don't know</p>
+
+<p>it's like halfway between what Drupal's</p>
+
+<p>groups and the users are not groups what</p>
+
+<p>is it called</p>
+
+<p>is it groups roles you have permissions</p>
+
+<p>and roles</p>
+
+<p>it's kind of like drupal's permissions</p>
+
+<p>and roles but it can be a little bit</p>
+
+<p>more daunting at first because it's like</p>
+
+<p>you want to do it by Jabra globally and</p>
+
+<p>it's like that's the only option so you</p>
+
+<p>can do it by job and like every single</p>
+
+<p>job you have to configure who has access</p>
+
+<p>to read/write see the workspace run it</p>
+
+<p>see the builds all that kind of stuff</p>
+
+<p>another thing to be careful of is the</p>
+
+<p>workspace itself when you're when you're</p>
+
+<p>setting up permissions for a Jenkins</p>
+
+<p>server if somebody has access to the</p>
+
+<p>workspace and part of your code build</p>
+
+<p>job does something that like writes a</p>
+
+<p>file to the code base that has an API</p>
+
+<p>key or access key in it and then it puts</p>
+
+<p>that code on to your production server</p>
+
+<p>or something like that</p>
+
+<p>anybody with read access to the</p>
+
+<p>workspace could technically get at that</p>
+
+<p>key so one thing I usually do is I have</p>
+
+<p>there's a plug-in called the workspace</p>
+
+<p>cleanup plug-in it deletes the workspace</p>
+
+<p>after a job sometimes that's not</p>
+
+<p>something you want to do actually but</p>
+
+<p>you have to be careful about who has</p>
+
+<p>access to the workspace for anything</p>
+
+<p>that would do something that that writes</p>
+
+<p>secrets to the workspace got a quick</p>
+
+<p>drink</p>
+
+<p>backing up Jenkins is actually</p>
+
+<p>surprisingly easy Jenkins does</p>
+
+<p>everything under the Sun inside its</p>
+
+<p>Jenkins home folder there are very</p>
+
+<p>specialized advanced to use cases where</p>
+
+<p>that's not the case but 99.9 percent of</p>
+
+<p>the time everything that you need in a</p>
+
+<p>Jenkins installation is inside Jenkins</p>
+
+<p>home so you literally just zip that home</p>
+
+<p>folder put it somewhere and you have a</p>
+
+<p>backup so what I usually do is I just I</p>
+
+<p>have an Amazon s3 bucket it cost like</p>
+
+<p>seven cents a month to have you know</p>
+
+<p>like 60 days of backups unless we have</p>
+
+<p>gargantuan code bases that you're</p>
+
+<p>backing up which is a really bad idea</p>
+
+<p>and get a reason that clean up your</p>
+
+<p>workspaces but anyway there's I have an</p>
+
+<p>ant scible playbook I think this is let</p>
+
+<p>me click on it it's an en civil playbook</p>
+
+<p>that grabs the Jenkins home it makes</p>
+
+<p>sure there's a bucket name bucket named</p>
+
+<p>Jenkins backup in my case it sinks the</p>
+
+<p>contents there's actually an ansible</p>
+
+<p>module for this but Amazonas s3 sync was</p>
+
+<p>causing your tissues and then it makes</p>
+
+<p>sure that it's there and for sadly</p>
+
+<p>here's where your backup is so that's</p>
+
+<p>nice and that's that's what I usually do</p>
+
+<p>is I put that playbook on the server and</p>
+
+<p>the Jenkins home folder and then I have</p>
+
+<p>a Jenkins job that runs every night and</p>
+
+<p>it just does that and it zips it up with</p>
+
+<p>a timestamp and if your Jenkins home is</p>
+
+<p>small it's like I said like pennies to</p>
+
+<p>do backups on its three if your Jenkins</p>
+
+<p>home is huge you might want to change</p>
+
+<p>your change the way that you use the</p>
+
+<p>backup for you - I think that script</p>
+
+<p>actually excludes workspaces but you'll</p>
+
+<p>have to see in your own a decision</p>
+
+<p>so finally jenkins and drupal that's why</p>
+
+<p>we're here what are some things that we</p>
+
+<p>can do with jenkins in drupal well</p>
+
+<p>anything that you do manually you can do</p>
+
+<p>it this jenkins anything that you do in</p>
+
+<p>Travis CI or other things you can do it</p>
+
+<p>with Jenkins to some of the most common</p>
+
+<p>things are on here running tests</p>
+
+<p>building dependencies so a lot of people</p>
+
+<p>use Jenkins like Acquia we have a tool</p>
+
+<p>called BLT build and launch tools and it</p>
+
+<p>actually by default uses Travis CI but</p>
+
+<p>you can use it with Jenkins and it in</p>
+
+<p>your codebase you just have a composer</p>
+
+<p>JSON your tests and custom code like</p>
+
+<p>that's all you have in your codebase so</p>
+
+<p>your codebase could be like 100</p>
+
+<p>kilobytes you don't have to include</p>
+
+<p>Drupal core all the modules and patches</p>
+
+<p>and all that junk and then what blt does</p>
+
+<p>is every time you commit code it builds</p>
+
+<p>the code base on Travis or Jenkins or</p>
+
+<p>wherever and then it runs your tests and</p>
+
+<p>then it does everything and if you have</p>
+
+<p>it configured it'll also deploy it to</p>
+
+<p>your development environment so that's</p>
+
+<p>one thing that a lot of people use</p>
+
+<p>Jenkins for because it's really annoying</p>
+
+<p>to have to do that my hand and your</p>
+
+<p>options are basically either somebody</p>
+
+<p>does that by hand every time you deploy</p>
+
+<p>code or you automated in Jenkins and you</p>
+
+<p>don't have to worry about it ever again</p>
+
+<p>another thing that Jenkins can be useful</p>
+
+<p>for is running cron a lot of people just</p>
+
+<p>set up a cron job on a server or if</p>
+
+<p>you're using a hosting provider you can</p>
+
+<p>run cron usually in their interface</p>
+
+<p>somewhere but you might need more</p>
+
+<p>specialized control over the crowd or</p>
+
+<p>scheduling Jenkins has pretty flexible</p>
+
+<p>scheduling you can also set it so that</p>
+
+<p>like cron could be run after certain</p>
+
+<p>things happen so a lot of people who</p>
+
+<p>need more advanced things done with</p>
+
+<p>crime end up running it through a tool</p>
+
+<p>like Jenkins instead you can also deploy</p>
+
+<p>new sites so any example that I'm giving</p>
+
+<p>I'm doing a multi-site install so I had</p>
+
+<p>I I didn't this is one of the things I</p>
+
+<p>didn't get to do do before today but you</p>
+
+<p>can</p>
+
+<p>have a playbook or script or something</p>
+
+<p>that sets up the new database installs</p>
+
+<p>Drupal and make sure everything's in</p>
+
+<p>line for a new multi-site site or even</p>
+
+<p>if you're using like Amazon route 53 you</p>
+
+<p>could do everything like say I need a</p>
+
+<p>new website I need Jeff Garlin's Jenkins</p>
+
+<p>stuff com</p>
+
+<p>just type in the website name and it</p>
+
+<p>would do everything from giving you a</p>
+
+<p>domain name to building this folder and</p>
+
+<p>everything in your codebase pulling the</p>
+
+<p>codebase building the database building</p>
+
+<p>your site it's it's like a it could be a</p>
+
+<p>performance way of getting like an</p>
+
+<p>automated site builder tool doing</p>
+
+<p>another thing that a lot of people do is</p>
+
+<p>deploying updates so instead of just</p>
+
+<p>automatically deploying things to dev or</p>
+
+<p>stage or prod if you have multiple</p>
+
+<p>environments like what I usually do is I</p>
+
+<p>have one production server and in my</p>
+
+<p>local environment for a Drupal site so</p>
+
+<p>when I want to deploy something I commit</p>
+
+<p>things to my code base and then I click</p>
+
+<p>a button jenkins and it deploys it to my</p>
+
+<p>production site instead of doing it</p>
+
+<p>automatically I like doing it on my own</p>
+
+<p>and so for a quick little demo I think</p>
+
+<p>I'm doing a little bit fast but for a</p>
+
+<p>quick little demo I have my my Jenkins</p>
+
+<p>project set up and I'm gonna use it on</p>
+
+<p>my Midwestern Mac that will see a</p>
+
+<p>website which is on a server that's</p>
+
+<p>actually running Drupal 7 I have one</p>
+
+<p>that's running Drupal 8 but there's only</p>
+
+<p>one side on it so it didn't get to test</p>
+
+<p>like multi-site stuff and it has six</p>
+
+<p>different sites on and here's a quick</p>
+
+<p>demo of how I have that set up using</p>
+
+<p>this this installation so let me go</p>
+
+<p>quickly to give</p>
+
+<p>drupal jenkins multi-site so this is the</p>
+
+<p>project i was mentioning earlier and it</p>
+
+<p>has as i said it you can install locally</p>
+
+<p>so you can test things out and build</p>
+
+<p>things locally before you go to</p>
+
+<p>production it also has a production set</p>
+
+<p>up so that you can use like VPS anywhere</p>
+
+<p>as long as you have root access you can</p>
+
+<p>do it and it will build everything the</p>
+
+<p>same way in production as you have on</p>
+
+<p>local the local set up uses docker and a</p>
+
+<p>fun thing i just found out last night is</p>
+
+<p>that you can actually run docker</p>
+
+<p>containers inside docker containers so</p>
+
+<p>like i can do all my CI stuff inside</p>
+
+<p>docker</p>
+
+<p>that uses doctor and i didn't think I'd</p>
+
+<p>be able to do that so that is cool and</p>
+
+<p>it has an MIT license so if you want to</p>
+
+<p>take this code and completely modify it</p>
+
+<p>for your needs go ahead and fork it I'm</p>
+
+<p>completely happy with that and this this</p>
+
+<p>setup depends on an antipope playbook</p>
+
+<p>that uses a bunch of money ansible rules</p>
+
+<p>so there's a lot of these girl and guy</p>
+
+<p>roles but it sets up a bunch of</p>
+
+<p>different things for my Jenkins server</p>
+
+<p>that I use as tools to help me automate</p>
+
+<p>a little easier so I'm using ansible</p>
+
+<p>I'll show you how to use that in a</p>
+
+<p>minute a cert bot is the tool that gets</p>
+
+<p>certificates from let's encrypt I use</p>
+
+<p>docker containers to do things like</p>
+
+<p>build compose dependencies that way I</p>
+
+<p>don't have to install PHP and composer</p>
+
+<p>and all these other tools on the Jenkins</p>
+
+<p>server I try to limit the Jenkins server</p>
+
+<p>to just like Java Jenkins nginx thing as</p>
+
+<p>small as possible now there's some other</p>
+
+<p>tools you might be like git but keeping</p>
+
+<p>it keeping the attack surface small on</p>
+
+<p>the server is a very good thing when you</p>
+
+<p>have the keys of the kingdom on your</p>
+
+<p>server</p>
+
+<p>so then there's there's Java and Jenkins</p>
+
+<p>of course Java is required to run</p>
+
+<p>Jenkins and then I have get nginx and</p>
+
+<p>Gen X which is just used to serve the</p>
+
+<p>SSL for the site basically it's a</p>
+
+<p>reverse proxy then I have a security</p>
+
+<p>role that that does what I called it and</p>
+
+<p>everybody calls it the first five type</p>
+
+<p>setup steps it locks down SSH access it</p>
+
+<p>installs steal failed to ban so that if</p>
+
+<p>somebody tries for brute force in your</p>
+
+<p>server though this block some of those</p>
+
+<p>kind of things</p>
+
+<p>sets up automated security updates for a</p>
+
+<p>month two or more sent to us and then I</p>
+
+<p>got a firewall that's it's just sets up</p>
+
+<p>IP tables rules for so that you can only</p>
+
+<p>get access to like Jenkins and that's it</p>
+
+<p>and SSH and then pip is used with</p>
+
+<p>ansible to do a few of the automation</p>
+
+<p>steps so once you get all that setup it</p>
+
+<p>installs the Jenkins server and I had</p>
+
+<p>enough time to get these four jobs done</p>
+
+<p>just to show you a sample of some of the</p>
+
+<p>jobs that I would build personally my</p>
+
+<p>convention is always they have snake</p>
+
+<p>snake case is it</p>
+
+<p>yeah not camel case it's snake case</p>
+
+<p>where it's all lowercase with under</p>
+
+<p>lines instead of spaces because when</p>
+
+<p>you're automating things with Jenkins</p>
+
+<p>you can use spaces but spaces cause all</p>
+
+<p>kinds of weird issues so I use this kind</p>
+
+<p>of format for jobs other people don't</p>
+
+<p>but as a simple example</p>
+
+<p>I actually made an update to my code</p>
+
+<p>base that multi-site code base if I go</p>
+
+<p>to midwestern mat.com I go to available</p>
+
+<p>updates</p>
+
+<p>I find that honey pots out-of-date so I</p>
+
+<p>just grabbed the module this is a Drupal</p>
+
+<p><br>
+downloaded the module and drugged and</p>
+
+<p>drugged it into my codebase</p>
+
+<p>it was very barbarian feeling but anyway</p>
+
+<p>so I did all that and I committed it now</p>
+
+<p>I'm going to deploy that code since this</p>
+
+<p>is a multi-site there's six Drupal sites</p>
+
+<p>but there's one code base so code deploy</p>
+
+<p>is just literally putting that code on</p>
+
+<p>the server and then running updates and</p>
+
+<p>clearing caches for each of those sites</p>
+
+<p>so I'll show you how that's I'll</p>
+
+<p>actually let's do it first</p>
+
+<p>so Jenkins gives you a nice live view of</p>
+
+<p>what's going on on the server and gives</p>
+
+<p>you counsel out but and I use a plug-in</p>
+
+<p>to give timestamp so I can see how long</p>
+
+<p>things take and you can see it deployed</p>
+
+<p>the code before this was the commit on</p>
+
+<p>the server and after that was to commit</p>
+
+<p>so that's all nice and good and now it's</p>
+
+<p>going through all the sites on the</p>
+
+<p>server midwestern Mac Jeff Garlin calm</p>
+
+<p>carry of ours before I do SDL so it's</p>
+
+<p>going through all these sites and it's</p>
+
+<p>running database updates and then it's</p>
+
+<p>clearing caches each one using brush and</p>
+
+<p>I'll show you how that's done in just a</p>
+
+<p>minute once it's finished</p>
+
+<p>there we go and at the end it's always</p>
+
+<p>wonderful to see that success so if I go</p>
+
+<p>back to the project I can show you how</p>
+
+<p>does this set up I used to do it like</p>
+
+<p>for something simple like this I used to</p>
+
+<p>do a lot of things using like an SSH</p>
+
+<p>wrapper for a command or something but</p>
+
+<p>that was always more complicated things</p>
+
+<p>always got messed up so now I use</p>
+
+<p>ansible I call this the formatting</p>
+
+<p>sensible where you're not actually using</p>
+
+<p>like ansible playbooks you just</p>
+
+<p>literally use ansible to run a command</p>
+
+<p>on the server and the way this is set up</p>
+
+<p>is there's what ansible calls an</p>
+
+<p>inventory file it says MN for midwestern</p>
+
+<p>Mac and then is here it just tells you</p>
+
+<p>here's the server it's out there</p>
+
+<p>midwestern Mac comma or whatever so I</p>
+
+<p>say ansible and then I tell it what</p>
+
+<p>servers to work on in this case just mmm</p>
+
+<p>is the one server and then use the git</p>
+
+<p>module and then these are arguments to</p>
+
+<p>answer all to tell it what to do so it's</p>
+
+<p>saying go to my git repository and then</p>
+
+<p>check out the master branch the latest</p>
+
+<p>version of master make sure it updates</p>
+
+<p>to the latest commit and stick it into</p>
+
+<p>this folder make sure that it's there so</p>
+
+<p>a cool thing about the way that ansible</p>
+
+<p>does this is it it actually will check</p>
+
+<p>and see is that already done if it is it</p>
+
+<p>will say changed equals false and it</p>
+
+<p>will just tell you like it do anything</p>
+
+<p>because it's already there but in our</p>
+
+<p>case it did see enough they say they saw</p>
+
+<p>the commit has changed and it said</p>
+
+<p>changed equals true and then I have just</p>
+
+<p>an array here of all the different</p>
+
+<p>websites that are on that multi-site and</p>
+
+<p>it loops through the array and runs</p>
+
+<p>brush-up DB and drush CC all that could</p>
+
+<p>have been a little more fancy and used</p>
+
+<p>my gift aliases which are actually in</p>
+
+<p>that code base but I didn't have this</p>
+
+<p>Jeb used the code base kind of</p>
+
+<p>intentionally cuz</p>
+
+<p>few minutes so that's this is like super</p>
+
+<p>simple and using ansible it makes it</p>
+
+<p>really easy just run commands on a</p>
+
+<p>remote server as long as you have SSH</p>
+
+<p>access to the server and for if it's</p>
+
+<p>local like if you did do something</p>
+
+<p>against my recommendation and run</p>
+
+<p>Jenkins and Drupal on the same server</p>
+
+<p>which would often end up in the Jenkins</p>
+
+<p>blowing up or Drupal blowing up then you</p>
+
+<p>wouldn't even need to use ansible and</p>
+
+<p>couldn't see stress directly but I don't</p>
+
+<p>anyway so that's how that works and then</p>
+
+<p>there's another couple jobs here cron</p>
+
+<p>run this is just to show how simple it</p>
+
+<p>is to run from a remote server with</p>
+
+<p>Jenkins I use the same thing ansible</p>
+
+<p>operate on the midwestern maxover and</p>
+
+<p>then if you don't provide so ansible sit</p>
+
+<p>like this is a module if you don't</p>
+
+<p>provide a module it defaults to the</p>
+
+<p>command module which literally runs the</p>
+
+<p>string as a command on the server so I</p>
+
+<p>just haven't run drush core cron and I</p>
+
+<p>have a variable here website so I can</p>
+
+<p>choose which of the six web sites it</p>
+
+<p>runs crown on so if I go back here and</p>
+
+<p>build it I can choose which website I'm</p>
+
+<p>gonna run crown on Jeff Garlin back comm</p>
+
+<p>go here and I can watch the output</p>
+
+<p>and of course it goes with there we go</p>
+
+<p>okay so if I go to Jeff Keeling that</p>
+
+<p>comment should show that cron run ran</p>
+
+<p>very recently I got a status report last</p>
+
+<p>around 17 seconds ago so benefice oh and</p>
+
+<p>I'll show you I'll prove that the</p>
+
+<p>midwestern Mac update has been applied</p>
+
+<p>if I get available updates honeypot</p>
+
+<p>should be up-to-date that's good too so</p>
+
+<p>it for something like cron like I said</p>
+
+<p>earlier it's something that Jenkins can</p>
+
+<p>automate and and have it have it run</p>
+
+<p>like every five minutes or every hour or</p>
+
+<p>whatever and there's a plug-in called</p>
+
+<p>build periodically with parameters it's</p>
+
+<p>the parameterised trigger plugin because</p>
+
+<p>out of the box that comes with this</p>
+
+<p>build periodically and you can just say</p>
+
+<p>like run it every five minutes but if</p>
+
+<p>you have parameters like which website</p>
+
+<p>you might want to have like every five</p>
+
+<p>minutes for Jeff gala calm but every day</p>
+
+<p>for something else that doesn't get much</p>
+
+<p>traffic so you can actually add</p>
+
+<p>schedules for each parameter and it</p>
+
+<p>gives you the syntax for that here</p>
+
+<p>see so let me go to deploy to try and</p>
+
+<p>run database backup is another one</p>
+
+<p>that's I swear you can like if you're</p>
+
+<p>using what's the module backup and</p>
+
+<p>migrate freezing that which I also don't</p>
+
+<p>recommend but if you are using that you</p>
+
+<p>can have it like build a zip file if</p>
+
+<p>your tar ball or something of your</p>
+
+<p>codebase and database and then ship it</p>
+
+<p>somewhere or you can used rush rush now</p>
+
+<p>has the ability to build like your</p>
+
+<p>entire code base and files in your</p>
+
+<p>database and put it somewhere but I</p>
+
+<p>usually backup everything separate so</p>
+
+<p>this one just does the database it's</p>
+
+<p>again very simple it has the selection</p>
+
+<p>of the website as a parameter and then</p>
+
+<p>it uses ansible first it does a rush</p>
+
+<p>SQL dump and it compresses it and it</p>
+
+<p>dumps it into a particular file and then</p>
+
+<p>it copies it to this server so it copies</p>
+
+<p>it from the from the destination like</p>
+
+<p>from the web server to the Jenkins</p>
+
+<p>server and then it deletes it from the</p>
+
+<p>web server and then I didn't implement</p>
+
+<p>this because I didn't get time to stick</p>
+
+<p>my Amazon credentials for Jenkins into</p>
+
+<p>here yet but the last step would be</p>
+
+<p>copying it up to s3 and deleting it from</p>
+
+<p>the server so that's another thing and</p>
+
+<p>just like with the cron usually you'd</p>
+
+<p>want to do that like daily or weekly or</p>
+
+<p>whatever the schedule is that you need</p>
+
+<p>let's see the last one so the last test</p>
+
+<p>takes five minutes to run so I'm gonna</p>
+
+<p>be kicking that one off and then getting</p>
+
+<p>back to the end of my presentation I'll</p>
+
+<p>show you all the wonderful magic</p>
+
+<p>now there was a good presentation on</p>
+
+<p>behalf that I highly recommend if you</p>
+
+<p>need to know more about behavioral</p>
+
+<p>testing by Steve Kirsh yeah it was a</p>
+
+<p>little bit earlier today I'm sure that</p>
+
+<p>Kevin Poole already has it up on YouTube</p>
+
+<p>pretty much but this one this will take</p>
+
+<p>fraud that Drupal um this production</p>
+
+<p>demo website actually has like it's kind</p>
+
+<p>of like my canary in the coal mine for</p>
+
+<p>Drupal VM it's it's a live production</p>
+
+<p>website that's running on Drupal VMs</p>
+
+<p>stuff on a digitalocean droplet and the</p>
+
+<p>code base has B hat tests and it has</p>
+
+<p>integration with varnish and a bunch of</p>
+
+<p>other things I'm kind of just using it</p>
+
+<p>to make sure that everything I do and</p>
+
+<p>hopefully em doesn't blow up everybody's</p>
+
+<p>stuff all the time</p>
+
+<p>which it hasn't because I have this</p>
+
+<p>thing that tells me when it does so</p>
+
+<p>that's nice but it comes with some B hat</p>
+
+<p>tests and I have this job that will</p>
+
+<p>schedule it and start it will do is it</p>
+
+<p>actually uses Jenkins git integration</p>
+
+<p>and it plumbs the repository into the</p>
+
+<p>Jenkins workspace it it builds a docker</p>
+
+<p>container which it's doing right now or</p>
+
+<p>gold roof will be M it builds a docker</p>
+
+<p>container it builds the codebase inside</p>
+
+<p>the docker container using composer and</p>
+
+<p>then it uses B hat to run you know then</p>
+
+<p>it installs Troopa with josh then it</p>
+
+<p>uses we have to run all the behavioral</p>
+
+<p>tests so that every time that I commit</p>
+
+<p>code I can have that we had to solve run</p>
+
+<p>automatically</p>
+
+<p>I didn't integrate this directly with</p>
+
+<p>github so that every commit triggers a</p>
+
+<p>build but you can do that if you're on a</p>
+
+<p>public server if you're on your</p>
+
+<p>localhost github can't call local host</p>
+
+<p>because</p>
+
+<p>or its local to you and not github so</p>
+
+<p>anyway while this goes it takes a while</p>
+
+<p>because downloading every dependency</p>
+
+<p>ever well that goes I'll show you it</p>
+
+<p>really quick how it works and then we'll</p>
+
+<p>get back to the the tail end of the</p>
+
+<p>presentation and open it up for us in</p>
+
+<p>discussion so this one again is pretty</p>
+
+<p>darn simple instead of using ansible</p>
+
+<p>this time it's using docker to do</p>
+
+<p>everything the first step is it</p>
+
+<p>integrates with git so this is a github</p>
+
+<p>repository you can actually clone it and</p>
+
+<p>it includes as a bonus all of the</p>
+
+<p>secrets encrypted with ansible vaults so</p>
+
+<p>if you can crack ansible vault you could</p>
+
+<p>have all of the keys to the kingdom for</p>
+
+<p>Tripp will be on live they're all in the</p>
+
+<p>codebase but I don't think you'll be</p>
+
+<p>able to do that until you have a quantum</p>
+
+<p>computer so so this uses if they get</p>
+
+<p>integration to check out the master</p>
+
+<p>branch you can also have it check out</p>
+
+<p>multiple branches or check out a</p>
+
+<p>different branch or have a parameter as</p>
+
+<p>the branch name that kind of thing and</p>
+
+<p>then it uses docker composed to build</p>
+
+<p>that the built in docker compose file</p>
+
+<p>that comes with Drupal VM and then it</p>
+
+<p>installs the composer dependencies that</p>
+
+<p>just uses composer install then it</p>
+
+<p>installs the site using dress and then</p>
+
+<p>it uses me hat to run the B hat docker</p>
+
+<p>configuration which I can't scroll very</p>
+
+<p>well it runs that we had docker</p>
+
+<p>configuration which just tells it which</p>
+
+<p>tests and where to look for things and</p>
+
+<p>all that and once it finishes you'll be</p>
+
+<p>able to see see the wonderful result of</p>
+
+<p>that</p>
+
+<p>so before you get to see that since it's</p>
+
+<p>going to take a few minutes and I'm glad</p>
+
+<p>I plugged in my computer because the CPU</p>
+
+<p>is like 400% now I will go to the end so</p>
+
+<p>one thing that I often run into is I'm</p>
+
+<p>like man I just did that thing two times</p>
+
+<p>I should spend like six hours automating</p>
+
+<p>it sometimes actually do that and I</p>
+
+<p>realized oh I've only never done that</p>
+
+<p>three times and it takes like five</p>
+
+<p>minutes</p>
+
+<p>I shouldn't have spent six hours</p>
+
+<p>automating it so of course there's this</p>
+
+<p>wonderful xkcd comic that gives you a</p>
+
+<p>good chart that's like when you're</p>
+
+<p>thinking about automating something you</p>
+
+<p>do with Drupal make sure that it's the</p>
+
+<p>what is it the risk/reward not from</p>
+
+<p>screw or make sure that that ends</p>
+
+<p>justify the means</p>
+
+<p>all right make sure that ROI is there</p>
+
+<p>yes that's business speak I don't ever</p>
+
+<p>remember anyways so you know a lot of</p>
+
+<p>the things like running Drupal cron it's</p>
+
+<p>a very quick thing if you want to go in</p>
+
+<p>the interface into it but you're gonna</p>
+
+<p>do it every five minutes through the</p>
+
+<p>night you don't want to be up at night</p>
+
+<p>clicking run crown on your Drupal site</p>
+
+<p>so automated but if you you know it's</p>
+
+<p>like restoring a database if you have a</p>
+
+<p>big website you probably want to</p>
+
+<p>automate that for safety's sake but if</p>
+
+<p>you have a website that has very low</p>
+
+<p>traffic I like some of the sites that I</p>
+
+<p>want on my thing get like 12 visits a</p>
+
+<p>day I don't need to have automation for</p>
+
+<p>a database or store I can just be like</p>
+
+<p>oh the websites down and like a day</p>
+
+<p>later and spend some time and if the</p>
+
+<p>database back up there</p>
+
+<p>so anyway that is that's all that I had</p>
+
+<p>in this presentation but there's there's</p>
+
+<p>tons of great information I want to give</p>
+
+<p>a special shout-out to chromatic a</p>
+
+<p>little about who like a lot of times</p>
+
+<p>when I'm stuck on something in Jenkins</p>
+
+<p>I'm like searching on Google and it's</p>
+
+<p>like Oh chromatic has an article on that</p>
+
+<p>Oh chromatic has an article on this so</p>
+
+<p>there are definitely a lot of Drupal</p>
+
+<p>companies using a lot of Jenkins and a</p>
+
+<p>lot of a lot of the companies do a great</p>
+
+<p>job of like showing here's the best way</p>
+
+<p>to do this here's how we did this and</p>
+
+<p>another thing that I didn't touch on</p>
+
+<p>much is Drupal 8 specific stuff because</p>
+
+<p>this particular site that I was demoing</p>
+
+<p>is a Drupal 7 site but what chromatic</p>
+
+<p>has some good information on how they do</p>
+
+<p>deploys and backups and things Phil</p>
+
+<p>Norton also has an old presentation from</p>
+
+<p><br>
+I said rupal or Jenkins hasn't really</p>
+
+<p>changed since 2004 terms of the UI so</p>
+
+<p>once once blue ocean comes out</p>
+
+<p>everything you've learned about the way</p>
+
+<p>that you click around in Jenkins becomes</p>
+
+<p>worthless but you know that's that's</p>
+
+<p>life in software though so that is all</p>
+
+<p>that I have I'm going to switch back to</p>
+
+<p>the demo over here and let it run but</p>
+
+<p>questions in discussion</p>
+
+<p>and Jenkins has a huge system of plugins</p>
+
+<p>that that get lab still doesn't match</p>
+
+<p>perfectly the other thing that that</p>
+
+<p>seems to be yeah the other thing that I</p>
+
+<p>don't like all the time about get lab</p>
+
+<p>and get lab CI in particular the</p>
+
+<p>resource usage has been worse than</p>
+
+<p>Jenkins sometimes for me and a lot of</p>
+
+<p>some of the things that they use are</p>
+
+<p>really complicated they're very cool but</p>
+
+<p>they're really complicated and Jenkins</p>
+
+<p>it's like it's literally a Java blob of</p>
+
+<p>Java and it spits out a very detailed</p>
+
+<p>log and when things go wrong it's pretty</p>
+
+<p>easy to figure out that went wrong 99%</p>
+
+<p>of the time it's out of memory with get</p>
+
+<p>labs sometimes I've hit issues that took</p>
+
+<p>longer to debug it's getting a lot</p>
+
+<p>better the last time I really who's</p>
+
+<p>getting Ivan earnest was about a year</p>
+
+<p>ago and things have gotten a lot better</p>
+
+<p>but if you're completely new to it at</p>
+
+<p>all</p>
+
+<p>I wouldn't say definitely is Jenkins I'd</p>
+
+<p>say look at a couple options use the</p>
+
+<p>quick start like run the Jenkins docker</p>
+
+<p>container around the get lab docker</p>
+
+<p>container see which one really fits with</p>
+
+<p>your model of how things should work</p>
+
+<p>because it should be pretty easy to get</p>
+
+<p>the first couple things going you know</p>
+
+<p>if it if it takes you six hours to get</p>
+
+<p>cron running through your CI tool you</p>
+
+<p>might not want to use that CIT</p>
+
+<p><br>
+Drupal you know which for a lot of</p>
+
+<p>people it does then is it really so</p>
+
+<p>we're working on that though there's a</p>
+
+<p>core issue for oh this finished so at</p>
+
+<p>the end it installed Drupal here and</p>
+
+<p>then it runs a test Drupal context and</p>
+
+<p>in order to prove that the head is</p>
+
+<p>working correctly as a developer I need</p>
+
+<p>to run a simple interface test it says</p>
+
+<p>given I'm on the home page then I should</p>
+
+<p>see a no front page content it's been</p>
+
+<p>created yet that's about it you know</p>
+
+<p>very simple but if you had a suite of</p>
+
+<p>tests you could have different parts of</p>
+
+<p>it run by tags or you can run them all</p>
+
+<p>you can also what a lot of people do is</p>
+
+<p>they have like they're essential to us</p>
+
+<p>like every time we commit we want to run</p>
+
+<p>ten or twenty tests that make sure</p>
+
+<p>little things are working but when we</p>
+
+<p>before we go to prod we want to make</p>
+
+<p>sure everything works and it's like a</p>
+
+<p>three hour test it you know sometimes</p>
+
+<p>for some sites you do have lots of tests</p>
+
+<p>around and things like that and they</p>
+
+<p>take forever so you can split that out</p>
+
+<p>and have two jobs one that is like for</p>
+
+<p>every commit and then one that's like</p>
+
+<p>I'm deploying the prod do everything for</p>
+
+<p>me and yet the other cool thing with</p>
+
+<p>Jenkins that get loud I think kind of</p>
+
+<p>has this now ansible and has a 2x which</p>
+
+<p>is similar but a little different a lot</p>
+
+<p>of the tools are getting up to speed on</p>
+
+<p>it but Jenkins is pretty good about like</p>
+
+<p>if you have a QA team that they should</p>
+
+<p>only have access to QA environments and</p>
+
+<p>QA jobs and if we had like a Java team</p>
+
+<p>that should only do Java things and a</p>
+
+<p>PHP team that does Drupal things you can</p>
+
+<p>split that access up pretty easy making</p>
+
+<p>these jenkins folders and jenkins tabs</p>
+
+<p>in the interface to sort things a little</p>
+
+<p>better so that is one thing that I like</p>
+
+<p>about Jenkins if you have a large team</p>
+
+<p>of people</p>
+
+<p>it's it's pretty good for that case it's</p>
+
+<p>almost so what their sample does it have</p>
+
+<p>those building figs in it just for like</p>
+
+<p>reference yeah that's another thing I</p>
+
+<p>completely forgot to mention so as I</p>
+
+<p>said if you're not if you're developing</p>
+
+<p>in production that's not I don't like</p>
+
+<p>doing that ever so what I do and since</p>
+
+<p>like your entire jenkins history and</p>
+
+<p>everything is in the Jenkins home folder</p>
+
+<p>to to get those in your codebase all you</p>
+
+<p>have to do is create a jobs folder in</p>
+
+<p>your Jenkins codebase and stick all the</p>
+
+<p>config files so this is the config file</p>
+
+<p>for the b-hat run test that I just ran</p>
+
+<p>you can see the script is in here</p>
+
+<p>they're just their XML files</p>
+
+<p>that's what Java EE earned that's what</p>
+
+<p>Jenkins uses and you can see with all</p>
+
+<p>the things that it's doing so I just I</p>
+
+<p>log in to the server I copy the config</p>
+
+<p>file out of out of that job and put it</p>
+
+<p>in a code base and then in Hansel</p>
+
+<p>there's there is it so there's there's</p>
+
+<p>an ansible task right here that</p>
+
+<p>literally just copies that jobs folder</p>
+
+<p>to the Jenkins home jobs folder and</p>
+
+<p>that's it and you can have structures</p>
+
+<p>and folders in there it doesn't matter</p>
+
+<p>one cool thing too is with the way that</p>
+
+<p>an Sable's copy module works if you have</p>
+
+<p>like four jobs under version control and</p>
+
+<p>somebody had to create an emergency job</p>
+
+<p>on Jenkins and you push an update they</p>
+
+<p>won't delete that job because it's not</p>
+
+<p>in your local code base it'll leave that</p>
+
+<p>there it's also kind of a curse because</p>
+
+<p>if somebody's going wrong and adding</p>
+
+<p>jobs in your life Jenkins server you</p>
+
+<p>have to like sculpt them and delete it</p>
+
+<p>yourself but that's how that's set up so</p>
+
+<p>all these jobs are in the codebase you</p>
+
+<p>guys can access them I'm going to be</p>
+
+<p>making them like I think right now I</p>
+
+<p>have now this is hard-coded the list</p>
+
+<p>yeah this list is hard-coded so if you</p>
+
+<p>tried running this on your site inside</p>
+
+<p>would be I don't have Jeff curing that</p>
+
+<p>kind of that's stupid</p>
+
+<p>we have group of VM running in prod for</p>
+
+<p>our accountable commerce demos and we</p>
+
+<p>have a multi-site for future payment</p>
+
+<p>gateway and this I have a hack job like</p>
+
+<p>circle CI setup but I want more control</p>
+
+<p>backups and yeah this is yeah I mean</p>
+
+<p>like I said this is literally what I'm</p>
+
+<p>moving all my stuff to because I have an</p>
+
+<p>old Jenkins server but it was that was</p>
+
+<p>when I was first learning Jenkins and</p>
+
+<p>it's it was one of where is that that</p>
+
+<p>was one of these servers it is one of</p>
+
+<p>these servers I haven't unpacked but and</p>
+
+<p>I keep it updated but it's just not in</p>
+
+<p>good shape so but yeah I'm gonna make</p>
+
+<p>this this will be a template instead of</p>
+
+<p>a just straight-up XML file and the list</p>
+
+<p>of servers will be a configuration</p>
+
+<p>variable thing with jinkins if you're</p>
+
+<p>using docker you can add a deacons</p>
+
+<p>container</p>
+
+<p>yeah</p>
+
+<p>and in the way that I have this set up</p>
+
+<p>is it uses a docker it uses a docker</p>
+
+<p>container as the base so if I go to dr.</p>
+
+<p>compose it just grabs it grabs a copy as</p>
+
+<p>of 1 to 16</p>
+
+<p>I actually just add an 1804 yesterday so</p>
+
+<p>probably works on there I haven't tested</p>
+
+<p>the Jenkins role yet but anyway it grabs</p>
+
+<p>the bunt to 16 with ansible inside it</p>
+
+<p>already so that you can run this</p>
+
+<p>playbook inside the docker container and</p>
+
+<p>set up all the services and it has like</p>
+
+<p>a mock systemd set up in there so you</p>
+
+<p>can run it as if it were a live server</p>
+
+<p>one thing that that does requires that</p>
+
+<p>you use the privileged option in docker</p>
+
+<p>which some people are a little nervous</p>
+
+<p>about but as long as you don't poke them</p>
+
+<p>access to your computer to the outside</p>
+
+<p>it's not I don't feel it's a big deal</p>
+
+<p>any other questions yeah what was the</p>
+
+<p>login shows in console the timestamps</p>
+
+<p>I think it's called timestamp er it's in</p>
+
+<p>let me look at the config list here</p>
+
+<p>timestamp er yeah and so that this setup</p>
+
+<p>also the way that might Jenkins role</p>
+
+<p>works is you give it a list of plugins</p>
+
+<p>and it will install them all for you so</p>
+
+<p>you don't have to go in that list and</p>
+
+<p>check a bunch of boxes and click install</p>
+
+<p>so some of the ones that I always always</p>
+
+<p>always use is get because everything I</p>
+
+<p>do is with get an see color adds colors</p>
+
+<p>to the console otherwise it's always</p>
+
+<p>black and white and I really hate black</p>
+
+<p>and white I like color although dr.</p>
+
+<p>strangelove was black and white so so</p>
+
+<p>you sort of I to name this presentation</p>
+
+<p>roll strategy is the one that gives you</p>
+
+<p>the ability to have good permissions</p>
+
+<p>broken out by different roles</p>
+
+<p>parameterised schedule or lets you have</p>
+
+<p>parameters in your schedules so that you</p>
+
+<p>can have multiple schedules on one job</p>
+
+<p>that do different things</p>
+
+<p>timestamp Brett's time stamps WS cleanup</p>
+
+<p>is workspace clean up and that makes it</p>
+
+<p>easy like a lot of people in look like</p>
+
+<p>writing a thing that says like RM</p>
+
+<p>darkish are everything inside this</p>
+
+<p>folder but a that's dangerous because</p>
+
+<p>you could have the wrong path like what</p>
+
+<p>if you CD it into a different folder</p>
+
+<p>they deleted something you want to and B</p>
+
+<p>if something in your job fails and it</p>
+
+<p>doesn't get to that point then you know</p>
+
+<p>here you're out of luck Jenkins also has</p>
+
+<p>the ability I think I have it in here</p>
+
+<p>you can run a task after the build a</p>
+
+<p>post build tasks whoops</p>
+
+<p>a post build task and you can say it</p>
+
+<p>uses regular expressions to say like</p>
+
+<p>when should I run so in this case I</p>
+
+<p>always wanted to run I have done dot</p>
+
+<p>masterís which means no matter what the</p>
+
+<p>output says always do this when I</p>
+
+<p>haven't removed the docker container</p>
+
+<p>because even if my job fails I wanted to</p>
+
+<p>remove that docker container so I don't</p>
+
+<p>have like a thousand docker containers</p>
+
+<p>which I accidentally did a couple years</p>
+
+<p>ago and then that filled up the disk and</p>
+
+<p>the RAM and the CPU Jenkins server died</p>
+
+<p>and it was like not running jobs for a</p>
+
+<p>day and then anyway so now I always make</p>
+
+<p>sure I removed our containers after the</p>
+
+<p>jobs over job that starts failing that</p>
+
+<p>runs and you know that lots of docker</p>
+
+<p>containers</p>
+
+<p>why is the CPU my CPU is still going</p>
+
+<p>insane</p>
+
+<p>at least was something in doctor</p>
+
+<p>yeah Dockers doing something like</p>
+
+<p>anyways any other questions</p>
+
+<p>what time is it we're good on time I</p>
+
+<p>think all right well thanks everybody</p>
+
+<p>[Applause]</p></div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-e5a66f6c7b9d62e3efe69111accffd201893973bc19c06869a2d7bed5a52d45e">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/58">https://mid.camp/58</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+  <section class="map-banner">
+      <div class="views-element-container block block-views block-views-blockevent-venue-block-1" id="block-hatter-views-block-event-venue-block-1">
+  
+    
+      <div><div class="container view view-event-venue view-id-event_venue view-display-id-block_1 js-view-dom-id-989a0d1880082570ac5e618d445fa08beac6b3f4851d260703eec11f652de4c2">
+  
+    
+      
+      <div class="view-content">
+          <div class="views-row">
+
+
+<div class="map-overlay">
+  <span class="map__label">Location</span>
+  <h2 class="map__title"><span class="field field--name-title field--type-string field--label-hidden">DePaul University - Lincoln Park Student Center</span>
+</h2>
+  
+            <div class="field field--name-field-address field--type-address field--label-hidden field__item"><p class="map__address" translate="no">
+          2250 N Sheffield Ave. <br>
+            Chicago, IL 60614<br>
+  </p>
+</div>
+      
+  <a href="../venue/depaul-university-lincoln-park-student-center.html" class="cta-link--yellow">Learn more  <span class="cta-arrow"></span></a>
+</div>
+<div id='map' class="map"></div>
+</div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-2938613dcdab1f9dacce65952dd4114a8ae41bc7d0a0d9a5e7ef9d1d4d41ef01">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/acquia.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-02/Acquia_no_tagline.png" width="450" height="94" alt="Acquia" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/pantheon.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-11/pantheon.png" width="500" height="157" alt="Pantheon" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/platformsh.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-02/platform.png" width="400" height="79" alt="Platform.sh" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#bbd2d5ddd4fbd6d2dfd8dad6cb95d4c9dc"><span class="__cf_email__" data-cfemail="4b22252d240b26222f282a263b6524392c">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/58","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_llBcjrkrgAu2wT1DR7VGL_iP6geJyiTnF_8O5ZD57VI.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJxLz89Pz0mNT8xLzKksyUwu1k9HE9DJSCwpSS3ST8_JT0rM0c2CC-QmFiTlVwAAPmAZQA"></script>
+<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.js"></script>
+<script src="../../sites/default/files/js/js_pODGOpSPRR3Y_Zt-7Fy-5B_pNv18oFAWhyhwUPCQZu4.js%3Fscope=footer&amp;delta=2&amp;language=en&amp;theme=hatter&amp;include=eJxLz89Pz0mNT8xLzKksyUwu1k9HE9DJSCwpSS3ST8_JT0rM0c2CC-QmFiTlVwAAPmAZQA"></script>
+
+  </body>
+</html>

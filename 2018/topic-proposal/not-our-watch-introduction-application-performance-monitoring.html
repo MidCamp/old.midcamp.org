@@ -1,0 +1,2790 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="How do you debug an inexplicable glitch on your website? How do you find the point(s) of failure in your application if and when they occur? Where do you turn to troubleshoot these problems? In addition to the variety of performance-related modules in Drupal, the growing number of third-party products and services available to analyze and maintain the operational health of your site can be daunting." />
+<link rel="canonical" href="not-our-watch-introduction-application-performance-monitoring.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Not on Our Watch: an Introduction to Application Performance Monitoring | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Not on Our Watch: an Introduction to Application Performance Monitoring | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_Qoyy92GHt9RyGOt8N3WS_9HRsJcJBywJ2IhXudzvST4.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJw1jGsOgzAMgy9U1iOhtPVYpYSgumNjp18F4o_1-SFnFfKISYiQLzaQsoC3X72MzhsGNROtP4SX9I4WF_UkOmXyTky25N_Agx123e61wGdYQpmfFVpiAzdfWXdMZzkm-DCe-jAvb8UfjYM.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_mK2of_t7UFymkfbTHeA-kHdMPWzqc3DZQCYtX-tC0BA.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJw1jGsOgzAMgy9U1iOhtPVYpYSgumNjp18F4o_1-SFnFfKISYiQLzaQsoC3X72MzhsGNROtP4SX9I4WF_UkOmXyTky25N_Agx123e61wGdYQpmfFVpiAzdfWXdMZzkm-DCe-jAvb8UfjYM.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJw1jGsOgzAMgy9U1iOhtPVYpYSgumNjp18F4o_1-SFnFfKISYiQLzaQsoC3X72MzhsGNROtP4SX9I4WF_UkOmXyTky25N_Agx123e61wGdYQpmfFVpiAzdfWXdMZzkm-DCe-jAvb8UfjYM.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJw1jGsOgzAMgy9U1iOhtPVYpYSgumNjp18F4o_1-SFnFfKISYiQLzaQsoC3X72MzhsGNROtP4SX9I4WF_UkOmXyTky25N_Agx123e61wGdYQpmfFVpiAzdfWXdMZzkm-DCe-jAvb8UfjYM.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+<link rel="stylesheet" media="all" href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.css" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="not-our-watch-introduction-application-performance-monitoring.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-hatter-main-menu-menu" id="block-hatter-main-menu" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-main-menu-menu">Midcamp 2018 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" data-drupal-link-system-path="node/2">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--venue">
+        <a href="../../about/venue.html" title="Venue" data-drupal-link-system-path="node/7048">Venue</a>
+            </li>
+          <li class="primary-nav__sublist-item item--travel">
+        <a href="../travel.html" title="Travel and Accommodations" data-drupal-link-system-path="node/65">Travel</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../lunch.html" title="Lunch Near Campus" data-drupal-link-system-path="node/162">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2018/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" title="Meet the Team!" data-drupal-link-system-path="2018/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../../2023/about/lunch-options.html" data-drupal-link-system-path="node/6970">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--accommodations">
+        <a href="../../2023/about/accommodations.html" data-drupal-link-system-path="node/6948">Accommodations</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" data-drupal-link-system-path="node/9">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--become-a-sponsor">
+        <a href="../become-a-sponsor.html" title="Become a Sponsor" data-drupal-link-system-path="node/7">Become a Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../../jobs.html" title="Jobs" data-drupal-link-system-path="jobs">Jobs</a>
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" data-drupal-link-system-path="node/128">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--training-thu">
+        <a href="../training.html" data-drupal-link-system-path="node/195">Training (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--bofs-fri-sat">
+        <a href="../birds-feather-bofs.html" title="Birds of a Feather (BoFs)" data-drupal-link-system-path="node/167">BoFs (Fri/Sat)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-fri">
+        <a href="../schedule/friday.html" title="Friday Sessions" data-drupal-link-system-path="2018/schedule/friday">Sessions (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-sat">
+        <a href="../schedule/saturday.html" title="Saturday Sessions" data-drupal-link-system-path="2018/schedule/saturday">Sessions (Sat)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sprints-sun">
+        <a href="../../sprints.html" title="Sprints">Sprints (Sun)</a>
+            </li>
+  </ul>
+
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2018.html" hreflang="en">MidCamp 2018</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Not on Our Watch: an Introduction to Application Performance Monitoring</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="86" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2018-03-10T22:00:00Z" class="datetime">Saturday, 4:00 pm CST</time>
+ - <time datetime="2018-03-10T23:00:00Z" class="datetime">Saturday, 5:00 pm CST</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-83" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-name field--type-string field--label-hidden field__item">Room 324</div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>How do you debug an inexplicable glitch on your website? How do you find the point(s) of failure in your application if and when they occur? Where do you turn to troubleshoot these problems? In addition to the variety of performance-related modules in Drupal, the growing number of third-party products and services available to analyze and maintain the operational health of your site can be daunting.</p>
+
+<p>Take the mystery out of your application’s performance and squash small problems before they balloon into bigger messes by monitoring your site’s resources and runtime with an option that fits your needs. From free, open-source tools to full-on enterprise solutions, there's something for everyone no matter what your size and budget.</p>
+
+<p>Topics will include:</p>
+
+<ul>
+	<li>The value of gaining visibility into resource utilization.</li>
+	<li>Application performance monitoring options in the current landscape.</li>
+	<li>Best practices for monitoring.</li>
+	<li>Integration strategies for automating monitoring tasks and customizing metrics.</li>
+</ul>
+
+<p>This session is for anyone who wants to explore the simple and in-depth ways to understand and ultimately optimize their website's performance.</p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/lCepOXCCaP8?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Clare Ming</h4>
+
+    
+              
+        
+  </div>
+    <div class="l-66-33--2"></div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">DevOps</div>
+              </div>
+      </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p>welcome to the session not on our watch</p>
+
+<p>an introduction to application</p>
+
+<p>performance monitoring my name is Claire</p>
+
+<p>Ming here contact info if anyone wants</p>
+
+<p>to reach out at some point after the</p>
+
+<p>talk I am a developer with chromatic we</p>
+
+<p>are a fully distributed digital agency</p>
+
+<p>and we are also one of the sponsors here</p>
+
+<p>at the camp so shout out to chromatic I</p>
+
+<p>have the slides available here if anyone</p>
+
+<p>has trouble seeing this you can just go</p>
+
+<p>to that link and download the PDFs for</p>
+
+<p>this I'll just leave that up for a few</p>
+
+<p>seconds</p>
+
+<p>yeah we're all set</p>
+
+<p>so again welcome and before we get into</p>
+
+<p>what application performance monitoring</p>
+
+<p>is and what it can do for us I want to</p>
+
+<p>just take a moment here to talk about</p>
+
+<p>where we've come in this industry in</p>
+
+<p>terms of speed and delivery of our apps</p>
+
+<p>and sites over the years as our</p>
+
+<p>technology stacks and tools evolve one</p>
+
+<p>of the biggest concerns for all of us</p>
+
+<p>involved in building apps and sites is</p>
+
+<p>and remains of course performance so</p>
+
+<p>let's take a look at how performance</p>
+
+<p>expectations on the Internet have</p>
+
+<p>changed over the years</p>
+
+<p>here are some choices quotes from a</p>
+
+<p>woman named Maile Ohye</p>
+
+<p>she until very recently was the</p>
+
+<p>developer programs tech lead at Google</p>
+
+<p>and since the mid Ott's some of you</p>
+
+<p>might be familiar with who she is she's</p>
+
+<p>done a lot of popular YouTube videos on</p>
+
+<p>the internet about SEO search rankings</p>
+
+<p>anyway she says two seconds is a</p>
+
+<p>threshold for e-commerce website</p>
+
+<p>acceptability a fast site increases</p>
+
+<p>conversions and site performance is a</p>
+
+<p>factor in google rankings so what's</p>
+
+<p>interesting about these quotes is that I</p>
+
+<p>pulled them from a YouTube video that</p>
+
+<p>Miley o a did back in the spring of 2010</p>
+
+<p>so that's nearly eight years ago now</p>
+
+<p>here's a fellow named John Muller Muller</p>
+
+<p>I'm not sure how to say his name he is a</p>
+
+<p>webmaster trends analyst at Google and</p>
+
+<p>here he's tweeting in response to</p>
+
+<p>someone asking him about optimal page</p>
+
+<p>load limits so he says there's no limit</p>
+
+<p>per page make sure they load fast for</p>
+
+<p>your users I often check webpagetest.org</p>
+
+<p>and aim for under two to three seconds</p>
+
+<p>no no no if you can see the date but</p>
+
+<p>note that he's tweeting this at the end</p>
+
+<p>of 2016 so interestingly enough this</p>
+
+<p>metric of two to three seconds for page</p>
+
+<p>load times hasn't really changed much</p>
+
+<p>over the years</p>
+
+<p>but what has changed however is the</p>
+
+<p>relevance of mobile sites and mobile</p>
+
+<p>devices earlier this year in January</p>
+
+<p>Google made an announcement on their</p>
+
+<p>webmaster central blog saying that</p>
+
+<p>Google is switching to a mobile first</p>
+
+<p>index this summer</p>
+
+<p>PageSpeed will be a ranking factor for</p>
+
+<p>mobile mobile searches starting this</p>
+
+<p>July</p>
+
+<p>and according to double-click which is</p>
+
+<p>Google's digital marketing platform they</p>
+
+<p>published some reach research in the</p>
+
+<p>fall of 2016 and in that they said to</p>
+
+<p>keep mobile to keep people engaged</p>
+
+<p>mobile sites must be fast and relevant</p>
+
+<p>and in that research they did an</p>
+
+<p>analysis of an analysis of more than</p>
+
+<p><br>
+most mobile sites actually don't meet</p>
+
+<p>this bar</p>
+
+<p>in that research they said the average</p>
+
+<p>load time for mobile sites is 19 seconds</p>
+
+<p>over 3G connections so to put those 19</p>
+
+<p>seconds in context that's basically as</p>
+
+<p>long as it takes to sing the alphabet so</p>
+
+<p>quite some time and in that study they</p>
+
+<p>said that 53 percent of mobile site</p>
+
+<p>visits are abandoned if pages take</p>
+
+<p>longer than 3 seconds to load so the</p>
+
+<p>obvious takeaway here is that slow</p>
+
+<p>loading sites frustrate users and</p>
+
+<p>negatively impact product owners and</p>
+
+<p>publishers</p>
+
+<p>think with Google is a platform where</p>
+
+<p>Google shares the latest marketing</p>
+
+<p>research Digital Trends and consumer</p>
+
+<p>insights last month they published an</p>
+
+<p>article with the new industry benchmarks</p>
+
+<p>for both mobile PageSpeed and so there's</p>
+
+<p>an infographic from that study that they</p>
+
+<p>put out in that article talking about</p>
+
+<p>mobile page load times so you can see as</p>
+
+<p>page load time goes from 1 to 3 seconds</p>
+
+<p>the probability of balance increases 30%</p>
+
+<p>tack on 2 more seconds and the bounce</p>
+
+<p>probability triples to 90 percent and so</p>
+
+<p>on and so forth you can see how the</p>
+
+<p>numbers go the good news is though that</p>
+
+<p>since that time that Google looked at</p>
+
+<p>mobile page speeds about a year ago the</p>
+
+<p>average time it takes to fully load a</p>
+
+<p>mobile page dropped by 7 seconds but</p>
+
+<p>even with that gain</p>
+
+<p>the bad news is that it still takes</p>
+
+<p>about 15 seconds according to their new</p>
+
+<p>analysis and that's just way too slow</p>
+
+<p>when you consider that more than half</p>
+
+<p><br>
+that takes longer than 3 10 seconds to</p>
+
+<p>load and Google's data shows that while</p>
+
+<p>more than half of overall web traffic</p>
+
+<p>traffic comes from mobile Mobile</p>
+
+<p>conversions are lower than desktop so</p>
+
+<p>the Internet has a lot of work to do or</p>
+
+<p>there's the half of the mobile sites</p>
+
+<p>that are out there in the wild</p>
+
+<p>and then in a similar article that think</p>
+
+<p>with Google published just a month ago</p>
+
+<p>in February they looked at eleven</p>
+
+<p>million mobile ads landing pages</p>
+
+<p>spanning more than two hundred countries</p>
+
+<p>and the results of their study revealed</p>
+
+<p>some pretty disquieting observations and</p>
+
+<p>it confirmed their thesis that even as</p>
+
+<p>most traffic is now occurring on 4G over</p>
+
+<p><br>
+sites are still slow and bloated with</p>
+
+<p>way too many elements</p>
+
+<p>[Music]</p>
+
+<p>so all this is to say that lower is</p>
+
+<p>better when it comes to how quickly a</p>
+
+<p>mobile page should display content to</p>
+
+<p>users so as of February 2018 less than a</p>
+
+<p>week ago the best practice is to serve</p>
+
+<p>Mable mobile pages in under three</p>
+
+<p>seconds along with desktop as we all</p>
+
+<p>know</p>
+
+<p>[Music]</p>
+
+<p>in an article called the need for mobile</p>
+
+<p>speed how mobile latency impacts</p>
+
+<p>publisher revenue double-click again</p>
+
+<p>which is a property owned by Google</p>
+
+<p>shared that publishers whose mobile</p>
+
+<p>sites load in five seconds earn up to</p>
+
+<p>two times more mobile ad revenue than</p>
+
+<p>those whose sites load in nineteen</p>
+
+<p>seconds and in that thing with Google</p>
+
+<p>piece from last month about mobile page</p>
+
+<p>speed industry benchmarks the basic</p>
+
+<p>premise and the conclusion backed by</p>
+
+<p>their data and their research is that</p>
+
+<p>speed ultimately equals revenue and</p>
+
+<p>faster is better and less is more</p>
+
+<p>just to get a read on sort of where</p>
+
+<p>everyone's at it has everyone familiar</p>
+
+<p>with a p.m. or application yeah some</p>
+
+<p>folks I think so</p>
+
+<p>because this is an introduction let's</p>
+
+<p>maybe define some terms and get into</p>
+
+<p>what exactly is application performance</p>
+
+<p>monitoring or I should say management</p>
+
+<p>the M can refer to both in the acronym</p>
+
+<p>most people consider application</p>
+
+<p>performance monitoring a subset</p>
+
+<p>application performance management</p>
+
+<p>according to week Wikipedia a PM is the</p>
+
+<p>monitoring and management of performance</p>
+
+<p>and availability of software</p>
+
+<p>applications so the purpose of it is to</p>
+
+<p>detect and diagnose complex application</p>
+
+<p>performance problems to maintain an</p>
+
+<p>expected level of service APM ultimately</p>
+
+<p>is the translation of IT metrics into</p>
+
+<p>real business meaning or value like as</p>
+
+<p>we saw earlier speed you know definitely</p>
+
+<p>being tied to revenue for most</p>
+
+<p>businesses</p>
+
+<p>so what in essence can ap APM do for all</p>
+
+<p>of us looking at this so simply it can</p>
+
+<p>do several key things measure and</p>
+
+<p>monitor application performance find the</p>
+
+<p>root causes of application problems and</p>
+
+<p>identify ways to optimize application</p>
+
+<p>performance</p>
+
+<p>and to get a little bit more granular</p>
+
+<p>here's a definition of APM according to</p>
+
+<p>Gartner which is a technology research</p>
+
+<p>firm they identify five main functional</p>
+
+<p>demand dimensions for the components of</p>
+
+<p>APM software and/or hardware</p>
+
+<p>the first being end user experience</p>
+
+<p>monitoring APM strives to capture user</p>
+
+<p>based data to gauge how well the</p>
+
+<p>application is performing and identify</p>
+
+<p>potential performance problems second</p>
+
+<p>application topology discovery and</p>
+
+<p>visualization which basically means the</p>
+
+<p>visual expression of the application in</p>
+
+<p>a flow map or graph graphically to</p>
+
+<p>establish all the different components</p>
+
+<p>of the application and how they interact</p>
+
+<p>with each other and then the third user</p>
+
+<p>defined transaction profiling this is</p>
+
+<p>using the software to examine specific</p>
+
+<p>interactions to recreate conditions that</p>
+
+<p>lead to performance problems for the</p>
+
+<p>purposes of testing then we have</p>
+
+<p>application component deep deep dive so</p>
+
+<p>collecting performance metrics</p>
+
+<p>pertaining to the individual parts of</p>
+
+<p>the application identified in the second</p>
+
+<p>dimension which was the visualization of</p>
+
+<p>performance and lastly IT operations</p>
+
+<p>analytics which is taking everything</p>
+
+<p>that your companies learned in all the</p>
+
+<p>previous four dimensions and discovering</p>
+
+<p>usage patterns identifying performance</p>
+
+<p>problems and anticipating potential</p>
+
+<p>problems in order to avoid them and</p>
+
+<p>preamp them before they happen</p>
+
+<p>[Music]</p>
+
+<p>so before we dive a little bit further</p>
+
+<p>into the weeds of APM I want to take a</p>
+
+<p>moment here just tell you all story this</p>
+
+<p>is the story of how and why I became an</p>
+
+<p>APM evangelist</p>
+
+<p>so last year I was working on a dev team</p>
+
+<p>for a major online content publisher it</p>
+
+<p>was a d7 site and during the course of</p>
+
+<p>my time on that project we encountered</p>
+
+<p>some strange phenomenon that was totally</p>
+
+<p>perplexing all of us like we couldn't</p>
+
+<p>figure it out so in the next series of</p>
+
+<p>slides I'm just going to share some</p>
+
+<p>screenshots from the APM tool that we</p>
+
+<p>used to help us diagnose and ultimately</p>
+
+<p>solve a really hard problem I actually</p>
+
+<p>blogged about it</p>
+
+<p>so you can go to chromatics website and</p>
+
+<p>get all the gory details of what</p>
+
+<p>happened and what we did but in a</p>
+
+<p>nutshell</p>
+
+<p>this client has their application wired</p>
+
+<p>to an enterprise APM solution called New</p>
+
+<p>Relic so what we're looking at here is a</p>
+
+<p>view of web transactions over a targeted</p>
+
+<p>period of time and so you'll notice</p>
+
+<p>enough that you can see it all these</p>
+
+<p>vertical lines on the graph those are</p>
+
+<p>warnings lots of them lots and lots of</p>
+
+<p>warnings over a period of time so we</p>
+
+<p>knew something was up because we kept</p>
+
+<p>getting alerts from the system from from</p>
+
+<p>New Relic but one thing I wanted to</p>
+
+<p>point out here is on the WHI the</p>
+
+<p>vertical axis the y-axis of this graph</p>
+
+<p>that's milliseconds of response time so</p>
+
+<p>our response times were good we were</p>
+
+<p>coming in under 700 milliseconds which</p>
+
+<p>is seven tenths of one second and so</p>
+
+<p>remember when we were first reviewing</p>
+
+<p>like what performance metrics and how</p>
+
+<p>they changed over the years</p>
+
+<p>you know keep it under two to three</p>
+
+<p>seconds so we were fine then we were</p>
+
+<p>doing really great but we kept getting</p>
+
+<p>these alerts and it was driving us mad</p>
+
+<p>so it motivated us to try to get to the</p>
+
+<p>bottom of what was going on and based on</p>
+
+<p>what New Relic was telling us we began a</p>
+
+<p>process of just deeply examining the</p>
+
+<p>application analyzing its queries what</p>
+
+<p>were its longest transactions and trying</p>
+
+<p>to eliminate inefficiencies wherever we</p>
+
+<p>found them so with this information you</p>
+
+<p>know we started whittling down problems</p>
+
+<p>in the codebase doing everything we</p>
+
+<p>could to just stave off these warnings</p>
+
+<p>interestingly enough with everything</p>
+
+<p>that we do you just kept getting these</p>
+
+<p>alerts and couldn't it was driving us</p>
+
+<p>nuts like what is going on</p>
+
+<p>so then one fateful day we got a spike</p>
+
+<p>in our tooling that nearly brought us</p>
+
+<p>down to our knees but not for too long</p>
+
+<p>thankfully because what happened at that</p>
+
+<p>moment was that we got some really</p>
+
+<p>critical information that ultimately led</p>
+
+<p>us out of the darkness and into the</p>
+
+<p>light so there was a silver lining in</p>
+
+<p>that big spike and because of the</p>
+
+<p>granularity with which we could drill</p>
+
+<p>down into the APM software and into the</p>
+
+<p>infra in interface we could see what</p>
+
+<p>transactions were taking way too long</p>
+
+<p>and that it was then that we finally got</p>
+
+<p>the clue that led us to the resolution</p>
+
+<p>to solving this grand mystery around</p>
+
+<p>these alerts</p>
+
+<p>[Music]</p>
+
+<p>so what we're looking at here now is the</p>
+
+<p>aftermath of all the work that we did</p>
+
+<p>that we put into optimizing the code</p>
+
+<p>cleaning up slow queries all the things</p>
+
+<p>that we tried and did to get the</p>
+
+<p>application back on track</p>
+
+<p>and so you can see that the frequency of</p>
+
+<p>alerts dropped significantly thank</p>
+
+<p>goodness and that was a huge relief for</p>
+
+<p>us tremendous tremendous really disabled</p>
+
+<p>the external yeah that was it that was</p>
+
+<p>it that was important well there there</p>
+
+<p>was a reason for those being there and</p>
+
+<p>then we finally identified both what</p>
+
+<p>needed to be turned off for that but</p>
+
+<p>what I want to highlight here is that</p>
+
+<p>even though you know early on we were</p>
+
+<p>getting decent page load times at 700</p>
+
+<p>milliseconds previously all the efforts</p>
+
+<p>that we went to to troubleshoot all the</p>
+
+<p>alerts led to this phenomenal decrease</p>
+
+<p>in page load times we went from 700</p>
+
+<p>milliseconds on average or just below</p>
+
+<p>that down to 200 milliseconds and that</p>
+
+<p>was a over a 70 percent decrease in page</p>
+
+<p>load times so that is 71.4% to be exact</p>
+
+<p>so needless to say our client was</p>
+
+<p>thrilled</p>
+
+<p>we not only solved this mystery with the</p>
+
+<p>alerts but we brought significant</p>
+
+<p>performance gains to their application</p>
+
+<p>just by using the information that we</p>
+
+<p>were getting from the APM so that is the</p>
+
+<p>story of how I became a true believer in</p>
+
+<p>APM because in all honesty I don't know</p>
+
+<p>if we would have been able to solve that</p>
+
+<p>problem had it not been for the</p>
+
+<p>information that New Relic was giving us</p>
+
+<p>so let's pivot back to the null</p>
+
+<p>nuts-and-bolts of a p.m. and so have the</p>
+
+<p>big question is how do we measure</p>
+
+<p>metrics</p>
+
+<p>I'm sorry performance over time and the</p>
+
+<p>answer is application performance</p>
+
+<p>metrics</p>
+
+<p>[Music]</p>
+
+<p>so here are some key application</p>
+
+<p>performance metrics the top one being</p>
+
+<p>user satisfaction which we'll get into</p>
+
+<p>in just a second but it's measured by</p>
+
+<p>something that's called app deck scores</p>
+
+<p>then we have average response time error</p>
+
+<p>rates application instance counts a</p>
+
+<p>request rate application server CPU and</p>
+
+<p>application availability</p>
+
+<p>so let's start with this first key</p>
+
+<p>metric the optics core and the optics</p>
+
+<p>core is an application performance index</p>
+
+<p>and I'd like to spend a little bit time</p>
+
+<p>exploring apdex here because I think all</p>
+
+<p>things being equal I personally feel</p>
+
+<p>that apdex scores are the most revealing</p>
+
+<p>metric for the health of an application</p>
+
+<p>so again from Wikipedia apdex is an open</p>
+
+<p>standard developed by an alliance of</p>
+
+<p>companies it defines a standard method</p>
+
+<p>for reporting and comparing performance</p>
+
+<p>of software applications in computing</p>
+
+<p>the purpose of apdex is to convert</p>
+
+<p>measurements into insights about user</p>
+
+<p>satisfaction so this is done by</p>
+
+<p>specifying a uniform way to analyze and</p>
+
+<p>report that on the degree to which</p>
+
+<p>measured performance meets user</p>
+
+<p>expectations</p>
+
+<p>and here is a definition according to</p>
+
+<p>New Relic apdex</p>
+
+<p>is an industry standard to measure users</p>
+
+<p>satisfaction with the response time of</p>
+
+<p>web applications and services so it's</p>
+
+<p>basically a simplified service level</p>
+
+<p>agreement solution at an SLA that gives</p>
+
+<p>application owners better insight into</p>
+
+<p>how satisfied their users are</p>
+
+<p>optics is a measure of response time</p>
+
+<p>based against a set threshold it</p>
+
+<p>measures the ratio of satisfactory</p>
+
+<p>response times to unsatisfactory</p>
+
+<p>response times and response time here is</p>
+
+<p>measured from the time an asset is</p>
+
+<p>requested to complete it delivery back</p>
+
+<p>to the requester so when we talk about</p>
+
+<p>user satisfaction in the context of a</p>
+
+<p>p.m. we know that it's measured by an</p>
+
+<p>abducts core and that has become the</p>
+
+<p>industry standard for tracking the</p>
+
+<p>relative performance of an application</p>
+
+<p>and it works by specifying a goal for</p>
+
+<p>how long a specific web transaction</p>
+
+<p>should take</p>
+
+<p>[Music]</p>
+
+<p>here's some information from a company</p>
+
+<p>called sacrified they're kind of like a</p>
+
+<p>mid low to mid range affordable APM</p>
+
+<p>solution but that's more for it like in</p>
+
+<p>the.net Java space but they had some</p>
+
+<p>good information there too</p>
+
+<p>and they talked about rep requests being</p>
+
+<p>bucketed into a few different categories</p>
+
+<p>satisfied tolerating too slow and failed</p>
+
+<p>and all that can be represented in a</p>
+
+<p>math formula where you can wherein you</p>
+
+<p>would determine your apdex score going</p>
+
+<p>from zero to one and zero obviously</p>
+
+<p>being or maybe not obvious but zero is</p>
+
+<p>the worst possible score you can have</p>
+
+<p>where hundred percent of response times</p>
+
+<p>are frustrated for the end-user and one</p>
+
+<p>is the best possible score where the</p>
+
+<p>hundred percent of the response times</p>
+
+<p>are satisfied so here's a visual</p>
+
+<p>representation of the abducts formula</p>
+
+<p>it's the optics score is a ratio of</p>
+
+<p>satisfied requests plus tolerating</p>
+
+<p>requests over the total requests made</p>
+
+<p>the total number and you'll notice that</p>
+
+<p>and I think this is just a convention</p>
+
+<p>from from the industry but satisfied the</p>
+
+<p>requests are considered one are counted</p>
+
+<p>as one whole thing while each tolerating</p>
+
+<p>requests is considered half of one</p>
+
+<p>satisfied requests</p>
+
+<p>so for example let's take a look at what</p>
+
+<p>that formula would happen if you had say</p>
+
+<p>a sample of 100 requests with a target</p>
+
+<p>time delivery of say 3 seconds right so</p>
+
+<p>of 100 samples we can say that 60 60</p>
+
+<p>requests came in below the threshold of</p>
+
+<p><br>
+arbitrary you know that you would set</p>
+
+<p>these against for your own application</p>
+
+<p>or for your own company but 60 requests</p>
+
+<p>came in and satisfied page load times</p>
+
+<p>within 3 seconds then say 30 requests</p>
+
+<p>came in and we're within the response</p>
+
+<p>time of say between 3 and 10 seconds and</p>
+
+<p>so we're going to split that in half and</p>
+
+<p>then maybe there's like 10 remaining of</p>
+
+<p>the hundred hundred samples that didn't</p>
+
+<p>make the cut and we're giving response</p>
+
+<p>times in excess of 10 or 12 seconds or</p>
+
+<p>you know whatever you want to make that</p>
+
+<p>mark so when we plug in the numbers into</p>
+
+<p>the aplex formula we end up with an</p>
+
+<p>optics score of point 7 5</p>
+
+<p>so to refer back to the case study that</p>
+
+<p>we just went through you know we were</p>
+
+<p>getting those alerts because our</p>
+
+<p>threshold which we set at a certain</p>
+
+<p>index was falling below that and so for</p>
+
+<p>a period of time we just kept getting</p>
+
+<p>alerts over and over again because our</p>
+
+<p>apdex score was what was coming in lower</p>
+
+<p>than where we had threat set the</p>
+
+<p>threshold so hopefully apdex score makes</p>
+
+<p>sense that's again like a cross industry</p>
+
+<p>standard that almost every APM tool uses</p>
+
+<p>to determine where your applications</p>
+
+<p>[Music]</p>
+
+<p>here where I'm at application might have</p>
+
+<p>been somewhere between like point seven</p>
+
+<p>point eight</p>
+
+<p>parents so now let's move on to the rest</p>
+
+<p>of the key application performance</p>
+
+<p>metrics the second one in that list was</p>
+
+<p>average response time which is a very</p>
+
+<p>traditional metric that's defined as the</p>
+
+<p>amount of time an application takes to</p>
+
+<p>return a request to a user so in theory</p>
+
+<p>an application should be tested under</p>
+
+<p>many different circumstances you know</p>
+
+<p>for example the number of concurrent</p>
+
+<p>users the number of transactions</p>
+
+<p>requested and typically this metric is</p>
+
+<p>measured from the start of a quest</p>
+
+<p>request to the time the last byte is</p>
+
+<p>sent and this what this does is it</p>
+
+<p>allows us to view the performance of our</p>
+
+<p>application over time this metric</p>
+
+<p>ultimately enables us to understand</p>
+
+<p>what's normal so that we can begin to</p>
+
+<p>determine what's abnormal for an</p>
+
+<p>application so say for example you were</p>
+
+<p>able to capture the average response</p>
+
+<p>time of key web service calls over a</p>
+
+<p>period of couple days or a couple weeks</p>
+
+<p>you could compare the current response</p>
+
+<p>times of those web service calls to</p>
+
+<p>their historical response times and</p>
+
+<p>raise an alert if the current response</p>
+
+<p>times say and it was more than two</p>
+
+<p>standard deviations away from the</p>
+
+<p>historical mean but it's important to be</p>
+
+<p>cautious about this as a metric in terms</p>
+
+<p>of its accuracy because you can think of</p>
+
+<p>I the way I like to visualize average</p>
+
+<p>response time it's sort of like in a</p>
+
+<p>bell curve right but there are factors</p>
+
+<p>like geographic location of the user or</p>
+
+<p>the complexity of the information that's</p>
+
+<p>being requested that can all affect the</p>
+
+<p>average response time right and so all</p>
+
+<p>these should be considered when you're</p>
+
+<p>evaluating or making an evaluation of</p>
+
+<p>application performance it can be skewed</p>
+
+<p>by just a few very long response times</p>
+
+<p>moving on third is error rates so</p>
+
+<p>they're different there are three</p>
+
+<p>different ways to track application</p>
+
+<p>errors HTTP error percentage which is</p>
+
+<p>the number of web requests that end in</p>
+
+<p>an error logged exceptions which is the</p>
+
+<p>number of unhandled and logged errors</p>
+
+<p>from the application and thrown</p>
+
+<p>exceptions which is the number of all</p>
+
+<p>exceptions that have been thrown</p>
+
+<p>application instances count so if your</p>
+
+<p>application scales up and down in the</p>
+
+<p>cloud it's really important to know how</p>
+
+<p>many server and application instances</p>
+
+<p>you have running a lot of times</p>
+
+<p>including cloud hosting solutions you</p>
+
+<p>have auto scaling enabled and so you</p>
+
+<p>know that's to ensure that your</p>
+
+<p>application scales to meet demand and</p>
+
+<p>then like during off peak demand you</p>
+
+<p>ought turn off peak times you know lower</p>
+
+<p>lower them but this can create a couple</p>
+
+<p>unique monitoring chance challenges so</p>
+
+<p>if your application automatically scales</p>
+
+<p>up based on say CPU usage you might</p>
+
+<p>never see your CPU get high and instead</p>
+
+<p>you would see the number of server</p>
+
+<p>instances get high and potentially</p>
+
+<p>increased hosting costs so it's</p>
+
+<p>important definitely to keep an eye on</p>
+
+<p>that especially for how-to applications</p>
+
+<p>then there's request rate understanding</p>
+
+<p>how much your traffic how much traffic</p>
+
+<p>your application receives will impact</p>
+
+<p>the success of your application and</p>
+
+<p>potentially all other performance</p>
+
+<p>metrics are affected by increases and</p>
+
+<p>decreases in traffic which makes sense</p>
+
+<p>request weight rates can be useful to</p>
+
+<p>correlate to other application</p>
+
+<p>performance metrics to understand the</p>
+
+<p>dynamics of how your application scales</p>
+
+<p>monitoring request rate can also be</p>
+
+<p>really good to watch for spikes or even</p>
+
+<p>inactivity so for example if you have a</p>
+
+<p>busy API that suddenly gets no traffic</p>
+
+<p>that could be a really bad sign that</p>
+
+<p>something is wrong and it's something to</p>
+
+<p>watch out for so that can be very</p>
+
+<p>revealing in that way if your CPU usage</p>
+
+<p>on your server is extremely high I</p>
+
+<p>guarantee you you have a problem with</p>
+
+<p>your application performance so</p>
+
+<p>monitoring the CPU usage of your server</p>
+
+<p>and applications is a very basic and</p>
+
+<p>critical metric virtually all server and</p>
+
+<p>application monitoring tools can track</p>
+
+<p>your cpu usage and provide monitoring</p>
+
+<p>alerts it's important to protract them</p>
+
+<p>per server but also as an aggregate</p>
+
+<p>across all your individually deployed</p>
+
+<p>instances of your application</p>
+
+<p>and then lastly application availability</p>
+
+<p>you definitely want to monitor if your</p>
+
+<p>application is online and available and</p>
+
+<p>so it's a key metric to be tracked most</p>
+
+<p>companies use this as a way to measure</p>
+
+<p>uptime for theirs SLA s their service</p>
+
+<p>level agreements and if you have a web</p>
+
+<p>application the easiest way to monitor</p>
+
+<p>application availability is by a simple</p>
+
+<p>regularly scheduled HTTP check so now</p>
+
+<p>that we've wrapped up the discussion on</p>
+
+<p>key application performance metrics</p>
+
+<p>let's talk about what comprises the</p>
+
+<p>components of a complete application</p>
+
+<p>performance management solution so what</p>
+
+<p>should an APM have an APM solution</p>
+
+<p>should allow you to analyze the</p>
+
+<p>performance of individual web web</p>
+
+<p>requests or transactions they should</p>
+
+<p>enable you to see the performance and</p>
+
+<p>the usage of all application</p>
+
+<p>dependencies like databases web services</p>
+
+<p>caching all that jazz and it should also</p>
+
+<p>that you see detailed transaction traces</p>
+
+<p>to see what your code is actually doing</p>
+
+<p>optimally it should allow for code level</p>
+
+<p>performance profiling it should have</p>
+
+<p>basic server metrics like CPU memory it</p>
+
+<p>should have application framework</p>
+
+<p>metrics like performance counters and</p>
+
+<p>queues</p>
+
+<p>custom application metrics that's an</p>
+
+<p>important one an APM solution should</p>
+
+<p>definitely allow dev teams or anyone</p>
+
+<p>actually from the business side product</p>
+
+<p>owners to create and customize metrics</p>
+
+<p>application log data should enable you</p>
+
+<p>to aggregate search and manager logs and</p>
+
+<p>it should allow you to set up robust</p>
+
+<p>reporting and alerting for application</p>
+
+<p>errors so ultimately it should</p>
+
+<p>facilitate real user monitoring to see</p>
+
+<p>what your users are experiencing in real</p>
+
+<p>time before you move on I just wanted to</p>
+
+<p>take a moment to talk about custom</p>
+
+<p>metrics there's typically three ways in</p>
+
+<p>which custom metrics might be applied</p>
+
+<p>the first one sum or average which can</p>
+
+<p>be used to count how often a certain</p>
+
+<p>event might happen you could count the</p>
+
+<p>number of times an item is hitting an</p>
+
+<p>API you could set up conditional metrics</p>
+
+<p>and count those then time monitoring how</p>
+
+<p>long transactions or processes take so</p>
+
+<p>you could track you know track the</p>
+
+<p>processing of cube messages or calculate</p>
+
+<p>latencies and then there's gauge engage</p>
+
+<p>for example you could track concurrent</p>
+
+<p>operations or the current number of</p>
+
+<p>connections to something or how many</p>
+
+<p>jobs are executing concurrently</p>
+
+<p>good good enterprise APM solutions</p>
+
+<p>should allow customers to create and</p>
+
+<p>apply customer metrics one way we did</p>
+
+<p>this recently on a client site was to</p>
+
+<p>track deployments so we could see in</p>
+
+<p>real time how deployments affected and</p>
+
+<p>user response times this was or this is</p>
+
+<p>enormous enormous ly helpful just to see</p>
+
+<p>right away like when you introduce a new</p>
+
+<p>code how does it affect your</p>
+
+<p>applications performance and it's also a</p>
+
+<p>great way like and knowing right away</p>
+
+<p>like as soon as you roll out a</p>
+
+<p>deployment and something goes haywire</p>
+
+<p>you know that the code is in that</p>
+
+<p>release so let's segue into best</p>
+
+<p>practices for APM here's a short list</p>
+
+<p>that I consolidated from when I was</p>
+
+<p>researching this topic plan and</p>
+
+<p>configure alerts that work for you</p>
+
+<p>remember that monitoring tools only do</p>
+
+<p>what you tell them to do and all these</p>
+
+<p>solutions are only as good as how we</p>
+
+<p>make them good monitoring tools will</p>
+
+<p>allow for granular alerting which is</p>
+
+<p>often used for escalation alerting this</p>
+
+<p>means that you can set up alerts and</p>
+
+<p>thresholds based on the number of</p>
+
+<p>failures for any particular metric set</p>
+
+<p>your priority is classify your systems</p>
+
+<p>based on importance so not all systems</p>
+
+<p>are critical or or not as critical as</p>
+
+<p>others so identify the most important</p>
+
+<p>systems and be sure to alert be sure</p>
+
+<p>that they're alerting is a bit more</p>
+
+<p>sensitive than the others</p>
+
+<p>never allow a single point of failure</p>
+
+<p>this is more again referring to more</p>
+
+<p>enterprise solutions but you know</p>
+
+<p>on-premise solutions are single point of</p>
+
+<p>failure so who's going to monitor the</p>
+
+<p>monitoring solution if you have a cloud</p>
+
+<p>application or SAS software as-a-service</p>
+
+<p>monitoring tools provide more than one</p>
+
+<p>location so you should be using more</p>
+
+<p>than one location know your audience</p>
+
+<p>know what kind of media will get your</p>
+
+<p>attention if you're on a dev team this</p>
+
+<p>is key to a successful monitoring</p>
+
+<p>solution monitoring tools that provide a</p>
+
+<p>wide range of alerting methods will</p>
+
+<p>ensure that when alert comes in someone</p>
+
+<p>in the chain will catch it and hear it</p>
+
+<p>and that's definitely important and</p>
+
+<p>periodically verify and test your</p>
+
+<p>alerting and escalation protocols</p>
+
+<p>[Music]</p>
+
+<p>this got me once never make sure never</p>
+
+<p>to set up email filters for your alerts</p>
+
+<p>that's only something you don't want to</p>
+
+<p>do very few systems have hundred percent</p>
+
+<p>of time right so downtime is sometimes</p>
+
+<p>unavoidable so keep an eye on your</p>
+
+<p>monitoring tool and if you don't receive</p>
+
+<p>an alert for a stretch double check that</p>
+
+<p>everything's still configured correctly</p>
+
+<p>create a process for how to handle</p>
+
+<p>alerts allows for the quickest</p>
+
+<p>resolution and holds everyone in the</p>
+
+<p>chain accountable and ask for help</p>
+
+<p>good vector good vendors have really</p>
+
+<p>good support and technical staff that</p>
+
+<p>are there to help their customers take</p>
+
+<p>advantage of their product knowledge and</p>
+
+<p>their experiences with other customers</p>
+
+<p>and again on the enterprise level</p>
+
+<p>they'll even review your setup and give</p>
+
+<p>you advice so that you can preempt</p>
+
+<p>failure and preempt faulty setups and</p>
+
+<p>lastly are our favorite document</p>
+
+<p>everything you want to document how</p>
+
+<p>you've set up your monitoring tools and</p>
+
+<p>why and you want to make sure that</p>
+
+<p>documentation is readily available and</p>
+
+<p>accessible to your dev team</p>
+
+<p>so just as a tag onto that some key</p>
+
+<p>considerations when you're looking and</p>
+
+<p>choosing an APM solution obviously the</p>
+
+<p>programming language support you know is</p>
+
+<p>your stack supported by you know</p>
+
+<p>whatever tool or vendor that you're</p>
+
+<p>looking at does it offer cloud supports</p>
+
+<p>does it provide support for SAS or your</p>
+
+<p>on-premise application pricing obviously</p>
+
+<p>and then ease of use some of these tools</p>
+
+<p>can get really really complicated and</p>
+
+<p>hard to configure so you know when what</p>
+
+<p>kind of interface are you going to be</p>
+
+<p>working with to configure all your</p>
+
+<p>metrics and set your thresholds so when</p>
+
+<p>I started researching this topic I was</p>
+
+<p>completely floored by the immeasurable</p>
+
+<p>variety of APM vendors tools and</p>
+
+<p>solutions that were out there it turns</p>
+
+<p>out that since the first half of 2013</p>
+
+<p>APM entered a period of intense</p>
+
+<p>competition of technology and strategy</p>
+
+<p>with a multiplicity of vendors and</p>
+
+<p>viewpoints so this call caused a huge</p>
+
+<p>upheaval in the marketplace</p>
+
+<p>so in some sense like over time APM's</p>
+
+<p>become a really diluted term and it sort</p>
+
+<p>of evolved into this concept where</p>
+
+<p>application performance management</p>
+
+<p>across a lot of diverse computing</p>
+
+<p>platforms has become the norm rather</p>
+
+<p>than just a single marketplace</p>
+
+<p>but the interesting thing about going</p>
+
+<p>down the rabbit hole</p>
+
+<p>comparing APM vendors is the dizzying</p>
+
+<p>spectrum of options in terms of</p>
+
+<p>complexity and hence pricing so here's a</p>
+
+<p>fraction of vendors on the enterprise</p>
+
+<p>level one article I came across I think</p>
+
+<p>listed 100 vendors products and services</p>
+
+<p>and every day when I was researching</p>
+
+<p>APM's I would just run into new ones all</p>
+
+<p>the time the ones that I had never heard</p>
+
+<p>of before and then just to note these I</p>
+
+<p>filtered down that apply to PHP</p>
+
+<p>applications so any Drupal site will</p>
+
+<p>should be able to handle they should be</p>
+
+<p>able to handle historically APM pricing</p>
+
+<p>has been really prohibitive right so I</p>
+
+<p>mean so much so that many development</p>
+
+<p>teams maybe until recently couldn't</p>
+
+<p>afford them and the top APM vendors are</p>
+
+<p>still really really expensive which</p>
+
+<p>leads us to the question doesn't have to</p>
+
+<p>be well the good thing is that</p>
+
+<p>innovation and competition makes it such</p>
+
+<p>that there is a pretty wide range of</p>
+
+<p>pricing for an equally wide range of</p>
+
+<p>options in fact there even turns out to</p>
+
+<p>be open source</p>
+
+<p>APM solutions that you can look into so</p>
+
+<p>here's a short list of some pretty</p>
+
+<p>futuristic sounding projects and they</p>
+
+<p>provide either a full or partial toolset</p>
+
+<p>that you can piece together for</p>
+
+<p>integrating a custom open-source APM</p>
+
+<p>solution but of course that requires a</p>
+
+<p>dev team at your disposal or a developer</p>
+
+<p>that can can bring that together and as</p>
+
+<p>the industry has matured it's no</p>
+
+<p>surprise that there are more and more</p>
+
+<p>affordable APM options coming onto the</p>
+
+<p>market so there's a lot of mid to low</p>
+
+<p>range sass options that are continually</p>
+
+<p>popping up as I mentioned before that</p>
+
+<p>are actually getting more and more</p>
+
+<p>sophisticated and surprisingly</p>
+
+<p>moderately priced so the upside to the</p>
+
+<p>intense competition in this space is</p>
+
+<p>that nearly every APM</p>
+
+<p>that I looked at or our studied had free</p>
+
+<p>trial versions and free options to</p>
+
+<p>test-drive which is a good way to narrow</p>
+
+<p>down the choices and try to find a</p>
+
+<p>couple contenders for your business or</p>
+
+<p>your organization but ultimately</p>
+
+<p>whatever you end up doing you definitely</p>
+
+<p>have to do your research because there</p>
+
+<p>is a lot out there to come through to</p>
+
+<p>find the right solution for your</p>
+
+<p>situation so even though the premise of</p>
+
+<p>this talk is to talk about the relevance</p>
+
+<p>and importance and the promise of a p.m.</p>
+
+<p>maybe we need to take a step back a</p>
+
+<p>little bit and ask this more elemental</p>
+
+<p>question of do you really need a PM for</p>
+
+<p>your site my recommendation is that if</p>
+
+<p>you have a lot of custom code you need a</p>
+
+<p>PM so some of the following scenarios if</p>
+
+<p>your company develops custom IT</p>
+
+<p>application solutions from scratch you</p>
+
+<p>need a PM or say if you have lots of</p>
+
+<p>systems that interact with a lot of</p>
+
+<p>other custom IT solutions maybe your IT</p>
+
+<p>custom application is a major revenue</p>
+
+<p>generator or it's really important to</p>
+
+<p>your business processes maybe your</p>
+
+<p>application is out of regular vendor</p>
+
+<p>service and and and some legacy system</p>
+
+<p>and you need your own internal IT team</p>
+
+<p>to support it in all those use cases I</p>
+
+<p>would definitely Lobby hard for getting</p>
+
+<p>some kind of APM in place but if none of</p>
+
+<p>these use cases apply to you then maybe</p>
+
+<p>you don't need a fully automated</p>
+
+<p>sophisticated complex and expensive APM</p>
+
+<p>system</p>
+
+<p>[Music]</p>
+
+<p>so if your site isn't complicated like I</p>
+
+<p>said before with a lot of custom code</p>
+
+<p>you might be able to get away with just</p>
+
+<p>a lot of free online tools on also</p>
+
+<p>there's actually a lot of free versions</p>
+
+<p>that vendors offer you know with</p>
+
+<p>obviously the option to upgrade but a</p>
+
+<p>lot of these will just take your domain</p>
+
+<p>and spit back to you</p>
+
+<p>statistics insights about your site and</p>
+
+<p>so in theory you could even just use</p>
+
+<p>Google Analytics to alert you about paid</p>
+
+<p>slow page speeds so if here's a short</p>
+
+<p>list of website and page load speed</p>
+
+<p>tests and tools and I'm gonna see if I</p>
+
+<p>can try I was thinking for kicks we</p>
+
+<p>should just plug in the mid camp URL and</p>
+
+<p>see what happens I actually did it it</p>
+
+<p>wasn't too bad but I'll just do it since</p>
+
+<p>I was right here for a second so what</p>
+
+<p>can you guys you probably can't see that</p>
+
+<p>so here we have set up there okay so</p>
+
+<p>here's here's one of the tools that was</p>
+
+<p>in that previous list that PageSpeed</p>
+
+<p>insights so if we plug in mid camped org</p>
+
+<p>let's see what happens</p>
+
+<p>[Music]</p>
+
+<p>I know maybe it's choking</p>
+
+<p>oh here we go so I thought PageSpeed</p>
+
+<p>insights was great</p>
+
+<p>I wasn't even super aware of all the</p>
+
+<p>tools that are out there but you know</p>
+
+<p>here we have mobile and desktop tabs and</p>
+
+<p>you know they offer some optimization</p>
+
+<p>suggestions and I anyway I was really</p>
+
+<p>impressed with this you know they'll</p>
+
+<p>show you you know make suggestions about</p>
+
+<p>how to optimize images and even tells</p>
+
+<p>you what optimizations that you've</p>
+
+<p>already done so looking pretty good on</p>
+
+<p>mobile with a score of 78 desktop could</p>
+
+<p>use a little work</p>
+
+<p>but there we have it with PageSpeed and</p>
+
+<p>then I think I lost the rest of my</p>
+
+<p>slides how to get in there but I think</p>
+
+<p>at this point I'll just open it up for</p>
+
+<p>Q&amp;A sorties about I won't mention the</p>
+
+<p>clients name but</p>
+
+<p>the publication that was having a</p>
+
+<p>particular issue you talked about it</p>
+
+<p>being a Drupal thing you can really go</p>
+
+<p>uncover what it was</p>
+
+<p>mm-hmm I think the audience might be</p>
+
+<p>interested in what the actual issue is</p>
+
+<p>it's a core issue it has the Cordish you</p>
+
+<p>have a lot of files on your site we did</p>
+
+<p>so yeah okay so like I said this online</p>
+
+<p>content publisher this was a client of</p>
+
+<p>ours had a d7 site and it is it's a</p>
+
+<p>court issue with d7 where the file</p>
+
+<p>system if you have more than a certain</p>
+
+<p>number of files in any one directory in</p>
+
+<p>your file system I should backtrack the</p>
+
+<p>back traffic just a little bit and say</p>
+
+<p>that this was hosted by aqueous an</p>
+
+<p>aqueous cloud hosting solution so in</p>
+
+<p>their best practices Docs in Afiya is</p>
+
+<p>how I finally eventually saw this if you</p>
+
+<p>have more than 2500 files in any one</p>
+
+<p>folder in your file system</p>
+
+<p>it causes performance problems so what</p>
+
+<p>we uncovered in our clients file system</p>
+
+<p>was that we had one single folders that</p>
+
+<p>had 50,000 files and then 60000 files in</p>
+
+<p>it so that was what was going on like it</p>
+
+<p>wasn't it wasn't our code per se or any</p>
+
+<p>of our custom code it was the fact that</p>
+
+<p>they were that none of the files were</p>
+
+<p>being distributed properly for all their</p>
+
+<p>assets and again because there were a</p>
+
+<p>prolific content producing tons of</p>
+
+<p>content their editors were just</p>
+
+<p>uploading images thousands of images</p>
+
+<p>every day so that was the issue with</p>
+
+<p>that and and when we found the memcache</p>
+
+<p>errors and you know some of the</p>
+
+<p>transaction profiling around that that's</p>
+
+<p>when we started supplying solutions to</p>
+
+<p>distribute and reduce all the file the</p>
+
+<p>counts in the files to show that they</p>
+
+<p>were below 2000 files per directory</p>
+
+<p>that was a very humbling experience the</p>
+
+<p>core issue is that Drupal out of the box</p>
+
+<p>will right yeah will not solve for this</p>
+
+<p>so that exactly I got a file filled the</p>
+
+<p>default is just to throw them all in one</p>
+
+<p>folder wondering exactly yeah I need to</p>
+
+<p>configure that the Drupal seven for a</p>
+
+<p>field otherwise this can happen right 98</p>
+
+<p>salsa yeah no dance</p>
+
+<p>yeah so out-of-the-box d8 resolves this</p>
+
+<p>for you but d7 with I mean I think the</p>
+
+<p>core issue is still growing so yeah if</p>
+
+<p>you well ready to go for file type and</p>
+
+<p>you have thousands of pieces of content</p>
+
+<p>yeah a really used like tokens or</p>
+
+<p>something to say to thrown a directory</p>
+
+<p>such that because you really it's sort</p>
+
+<p>of like the application lineup if it's</p>
+
+<p>fine if you will teach this tipping</p>
+
+<p>chart and then you start to see it's</p>
+
+<p>terrible</p>
+
+<p>they constantly atrocious indicates like</p>
+
+<p>that do you see the performance issues</p>
+
+<p>just want someone trying to get a list</p>
+
+<p>of bottles metal or just even just try</p>
+
+<p>to load a file I'm sorry triggers what</p>
+
+<p>triggers the performance issues it just</p>
+
+<p>went like it happen once they just</p>
+
+<p>trying to load a file with that's a good</p>
+
+<p>question I you know when we started</p>
+
+<p>getting those alerts I think it was you</p>
+
+<p>know anytime in an editor was in the</p>
+
+<p>admin interface thing one thing that</p>
+
+<p>they did on that particular use case was</p>
+
+<p>that they were fault uploading assets so</p>
+
+<p>they had this bulk uploader were you</p>
+
+<p>know their editors would upload ten big</p>
+
+<p>images at a time and so just over time I</p>
+
+<p>think it just became an issue in terms</p>
+
+<p>of accessing the files directory and you</p>
+
+<p>know locating them and forms issue to</p>
+
+<p>just because the OS fast is looking at</p>
+
+<p>such a large them you know so I believe</p>
+
+<p>that it actually ends up being a like a</p>
+
+<p>NOS issue but right we're back Drupal is</p>
+
+<p>a factor in that play yeah yeah I mean I</p>
+
+<p>haven't seen it as similar as you at</p>
+
+<p>some sites where if they're using like</p>
+
+<p>the IMC violence's right right that</p>
+
+<p>starts to out there like its timing out</p>
+
+<p>just drive the local allows for sharable</p>
+
+<p>yes for sharing it sure</p>
+
+<p>yes you mentioned about the apt export I</p>
+
+<p>mean you've had it sent between 17.8 is</p>
+
+<p>there like an industry standard in terms</p>
+
+<p>of why like I guess by closer to what is</p>
+
+<p>the best right I mean I think you know</p>
+
+<p>you know we didn't actually end up</p>
+
+<p>tweaking the thrush of the the threshold</p>
+
+<p>New Relic comes with a lot of defaults</p>
+
+<p>and I think probably a lot of these</p>
+
+<p>enterprise solutions comes with defaults</p>
+
+<p>for that are set again I can't remember</p>
+
+<p>off the top of my head it was somewhere</p>
+
+<p>between like between 0.7 and 0.8 was the</p>
+
+<p>threshold but you can you can manually</p>
+
+<p>adjust that when you can to fine-tune</p>
+
+<p>your application and say you know you</p>
+
+<p>really want you want it to be hot you</p>
+
+<p>want to be as close to one as possible</p>
+
+<p>so I think it just you know I think it</p>
+
+<p>just depends on the client or your</p>
+
+<p>organization how you want to set it</p>
+
+<p>[Music]</p>
+
+<p>yeah triple defiance nature you know</p>
+
+<p>especially that walked into its kind of</p>
+
+<p>bypassed attention and that's a lot of</p>
+
+<p>resources because I had served with</p>
+
+<p>myself I found that using the rally to</p>
+
+<p>visually relevant floors but using the</p>
+
+<p>relic was really important because</p>
+
+<p>otherwise the server would be slow it</p>
+
+<p>could take 10-15 seconds to load a page</p>
+
+<p>and then it actually gave me some ideas</p>
+
+<p>about what to do one of the things I</p>
+
+<p>discovered too which is if you actually</p>
+
+<p>are a fluid who's sober administration</p>
+
+<p>is unique also official office because</p>
+
+<p>supposed to use certain traffic these</p>
+
+<p>days is box it's not request and Fox</p>
+
+<p>come freely cause big issues</p>
+
+<p>and just depends on oversight how much</p>
+
+<p>you think it's awful policy it's a</p>
+
+<p>requirement but unless you get some</p>
+
+<p>insight once we have this Drupal will</p>
+
+<p>not tell you those morons and yeah you</p>
+
+<p>can see errors it's just great I mean</p>
+
+<p>it's great to be able to see errors but</p>
+
+<p>what we're all triple volumes did you</p>
+
+<p>take five seconds you're preaching to</p>
+
+<p>the choir I totally agree with you I</p>
+
+<p>think the you know but again I think</p>
+
+<p>what's the issue for a lot of operations</p>
+
+<p>is cost and like I think a canoe relic</p>
+
+<p>is one of the most expensive options out</p>
+
+<p>there on the market so yeah so but again</p>
+
+<p>like I think the competition is such</p>
+
+<p>that like there I mean there are there a</p>
+
+<p>gazillion options out there and it does</p>
+
+<p>take time to research them and try them</p>
+
+<p>you know even even if you download ten</p>
+
+<p>trial versions you've got to spend the</p>
+
+<p>time working with them so it's not easy</p>
+
+<p>it's definitely a tough thing yeah</p>
+
+<p>a wide variety of graphs and charts in</p>
+
+<p>there there are timezones a 12 this</p>
+
+<p>looks like it probably represents a</p>
+
+<p>problem but how do I find out if this</p>
+
+<p>really is a change yeah I you know I</p>
+
+<p>again like one one thing that helped us</p>
+
+<p>with you know when we were working with</p>
+
+<p>new relic in particular was again like</p>
+
+<p>tying its deployments like to be able to</p>
+
+<p>see like when we rolled out new code or</p>
+
+<p>when you know we put out a release we</p>
+
+<p>could see the results right away like if</p>
+
+<p>something was going haywire or something</p>
+
+<p>was going wrong and so then at that</p>
+
+<p>moment we'd be like okay revert that get</p>
+
+<p>that out of there you know but yeah I</p>
+
+<p>know it's tricky I think it's it's it's</p>
+
+<p>sort of getting to know the tool and</p>
+
+<p>getting to use at night you know even in</p>
+
+<p>the time that I spent on that project</p>
+
+<p>you know I felt like I was just barely</p>
+
+<p>touching the surface of what New Relic</p>
+
+<p>could do but there's their support is</p>
+
+<p>great and so I would definitely ask the</p>
+
+<p>vendors you know what you know and if</p>
+
+<p>it's particularly if it's New Relic and</p>
+
+<p>you know some kind of other Enterprise</p>
+
+<p>Solution ask their support you know what</p>
+
+<p>else can I do to you know figure out</p>
+
+<p>what's going on but for us the two point</p>
+
+<p>you know tying deployments and tracking</p>
+
+<p>them on the graph was enormous ly</p>
+
+<p>helpful in pinpointing problems</p>
+
+<p>and you can do that you can actually do</p>
+
+<p>that from your version control you can</p>
+
+<p>do that from github ty there's a couple</p>
+
+<p>different ways you can integrate that</p>
+
+<p>but you can do it within the neural</p>
+
+<p>interface or you can do it every time</p>
+
+<p>you kick off a release from github or</p>
+
+<p>bitbucket or whatever SVN you're using</p>
+
+<p>and New Relic will capture that and Mark</p>
+
+<p>it on that graph and show you oh you</p>
+
+<p>just deploy it at this time and then see</p>
+
+<p>the graph accordingly of how performance</p>
+
+<p>responds</p>
+
+<p>[Music]</p></div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-1570c99463fe41937a5bba530c1f240ddf53d7a6dcfe23fe17534bed1a75bca2">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/86">https://mid.camp/86</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+  <section class="map-banner">
+      <div class="views-element-container block block-views block-views-blockevent-venue-block-1" id="block-hatter-views-block-event-venue-block-1">
+  
+    
+      <div><div class="container view view-event-venue view-id-event_venue view-display-id-block_1 js-view-dom-id-eb8658a9f5b98bc93d4a1d36b2962556262520afd0b7a5090961f43c0a2d54db">
+  
+    
+      
+      <div class="view-content">
+          <div class="views-row">
+
+
+<div class="map-overlay">
+  <span class="map__label">Location</span>
+  <h2 class="map__title"><span class="field field--name-title field--type-string field--label-hidden">DePaul University - Lincoln Park Student Center</span>
+</h2>
+  
+            <div class="field field--name-field-address field--type-address field--label-hidden field__item"><p class="map__address" translate="no">
+          2250 N Sheffield Ave. <br>
+            Chicago, IL 60614<br>
+  </p>
+</div>
+      
+  <a href="../venue/depaul-university-lincoln-park-student-center.html" class="cta-link--yellow">Learn more  <span class="cta-arrow"></span></a>
+</div>
+<div id='map' class="map"></div>
+</div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-6639d7a799195830cc2a44c9636a340c2a754b5c4b76ca776b714ba23e4d3030">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/platformsh.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-02/platform.png" width="400" height="79" alt="Platform.sh" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/pantheon.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-11/pantheon.png" width="500" height="157" alt="Pantheon" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/acquia.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-02/Acquia_no_tagline.png" width="450" height="94" alt="Acquia" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#8ce5e2eae3cce1e5e8efede1fca2e3feeb"><span class="__cf_email__" data-cfemail="7910171f163914101d1a18140957160b1e">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/86","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_llBcjrkrgAu2wT1DR7VGL_iP6geJyiTnF_8O5ZD57VI.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJxLz89Pz0mNT8xLzKksyUwu1k9HE9DJSCwpSS3ST8_JT0rM0c2CC-QmFiTlVwAAPmAZQA"></script>
+<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.js"></script>
+<script src="../../sites/default/files/js/js_pODGOpSPRR3Y_Zt-7Fy-5B_pNv18oFAWhyhwUPCQZu4.js%3Fscope=footer&amp;delta=2&amp;language=en&amp;theme=hatter&amp;include=eJxLz89Pz0mNT8xLzKksyUwu1k9HE9DJSCwpSS3ST8_JT0rM0c2CC-QmFiTlVwAAPmAZQA"></script>
+
+  </body>
+</html>

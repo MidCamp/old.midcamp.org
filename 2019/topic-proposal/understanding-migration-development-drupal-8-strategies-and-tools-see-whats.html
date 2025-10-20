@@ -1,0 +1,2384 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="Migrations in Drupal can be challenging for developers because the tools and strategies to get started and peer behind the curtain are different than those used in most backend development. Who is this for? This is an intermediate topic intended for developers who have a basic understanding of Drupal 8 concepts including plugins and the way entities and fields are used in Drupal to manage content. How do you get started and where do you look?" />
+<link rel="canonical" href="understanding-migration-development-drupal-8-strategies-and-tools-see-whats.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Understanding migration development in Drupal 8: Strategies and tools to see what&#039;s happening | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Understanding migration development in Drupal 8: Strategies and tools to see what&#039;s happening | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_Qoyy92GHt9RyGOt8N3WS_9HRsJcJBywJ2IhXudzvST4.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJw9jFEKwzAMQy-ULkcqTqx2AaceUdbRnX6hpfsRTzyhbEIeMQkR8sVLsT9XkLKCd99ch_OGQa2KlS_CU3pHi6t5EpsyGXiwo16ne1H4jJqg81JgGhv48o1lx3TKMcGH8cxHdX0bfg1uOh4.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_QAC1R0aFoF1mIVQtLAaSE24B2iwnT2ZCa0cZDeZsPV0.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJw9jFEKwzAMQy-ULkcqTqx2AaceUdbRnX6hpfsRTzyhbEIeMQkR8sVLsT9XkLKCd99ch_OGQa2KlS_CU3pHi6t5EpsyGXiwo16ne1H4jJqg81JgGhv48o1lx3TKMcGH8cxHdX0bfg1uOh4.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJw9jFEKwzAMQy-ULkcqTqx2AaceUdbRnX6hpfsRTzyhbEIeMQkR8sVLsT9XkLKCd99ch_OGQa2KlS_CU3pHi6t5EpsyGXiwo16ne1H4jJqg81JgGhv48o1lx3TKMcGH8cxHdX0bfg1uOh4.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJw9jFEKwzAMQy-ULkcqTqx2AaceUdbRnX6hpfsRTzyhbEIeMQkR8sVLsT9XkLKCd99ch_OGQa2KlS_CU3pHi6t5EpsyGXiwo16ne1H4jJqg81JgGhv48o1lx3TKMcGH8cxHdX0bfg1uOh4.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="understanding-migration-development-drupal-8-strategies-and-tools-see-whats.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-hatter-midcamp2019navigation-menu" id="block-hatter-midcamp2019navigation" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-midcamp2019navigation-menu">Midcamp 2019 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" title="About MidCamp" data-drupal-link-system-path="node/191">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--venue">
+        <a href="../about/venue.html" data-drupal-link-system-path="node/192">Venue</a>
+            </li>
+          <li class="primary-nav__sublist-item item--travel">
+        <a href="../about/travel.html" title="Travel and Accommodations" data-drupal-link-system-path="node/188">Travel</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../about/lunch.html" title="Lunch options" data-drupal-link-system-path="node/189">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--volunteer">
+        <a href="../article/volunteer-help-midcamp.html" title="Volunteer!">Volunteer!</a>
+            </li>
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2019/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../../2020/news.html" data-drupal-link-system-path="2020/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--attendees">
+        <a href="../attendees.html" data-drupal-link-system-path="2019/attendees">Attendees</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" data-drupal-link-system-path="2019/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--spread-the-word">
+        <a href="../article/spread-word.html" data-drupal-link-system-path="node/371">Spread the Word</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" title="Sponsors" data-drupal-link-system-path="node/197">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--become-a-sponsor">
+        <a href="../sponsor-midcamp.html" title="Sponsor MidCamp" data-drupal-link-system-path="node/186">Become a Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../../jobs.html" title="Jobs" data-drupal-link-system-path="jobs">Jobs</a>
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" title="Schedule" data-drupal-link-system-path="node/190">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--all-sessions">
+        <a href="../sessions.html" data-drupal-link-system-path="2019/sessions">All Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--summits--training-wed">
+        <a href="../schedule/wednesday.html" title="Summits &amp; Training (Wednesday)" data-drupal-link-system-path="2019/schedule/wednesday">Summits &amp; Training (Wed)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-thu">
+        <a href="../schedule/thursday.html" title="Sessions (Thursday)" data-drupal-link-system-path="2019/schedule/thursday">Sessions (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-fri">
+        <a href="../schedule/friday.html" title="Sessions (Friday)" data-drupal-link-system-path="2019/schedule/friday">Sessions (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--contribution-sat-">
+        <a href="../contribution-day.html" title="Contribution Day" data-drupal-link-system-path="node/332">Contribution (Sat) </a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-terms-and-conditions">
+        <a href="../../speaker-terms-and-conditions.html" title="Speaker Terms and Conditions" data-drupal-link-system-path="node/21">Speaker Terms and Conditions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../../speaker-resources.html" title="Speaker Resources">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--topic-tracks">
+        <a href="../../topic-tracks.html" title="Topic Tracks" data-drupal-link-system-path="node/10">Topic Tracks</a>
+            </li>
+  </ul>
+
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2019.html" hreflang="en">MidCamp 2019</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Understanding migration development in Drupal 8: Strategies and tools to see what&#039;s happening</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="262" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2019-03-21T16:40:00Z" class="datetime">Thursday, 11:40 am CDT</time>
+ - <time datetime="2019-03-21T17:10:00Z" class="datetime">Thursday, 12:10 pm CDT</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-82" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-field-link field--type-link field--label-hidden field__item"><a href="https://zoom.us/my/midcamp314b" target="_blank" class="button--primary">Go to Room 314B - old</a></div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>Migrations in Drupal can be challenging for developers because the tools and strategies to get started and peer behind the curtain are different than those used in most backend development.</p>
+
+<p><strong>Who is this for?</strong></p>
+
+<p>This is an intermediate topic intended for developers who have a basic understanding of Drupal 8 concepts including plugins and the way entities and fields are used in Drupal to manage content.</p>
+
+<p><strong>How do you get started and where do you look?</strong></p>
+
+<p>This will cover the basic concepts of the migration system including configuration files, source, destination, and process plugins.</p>
+
+<p><strong>How do I know what's happening inside the black box?</strong></p>
+
+<p>This will also cover strategies for quick iteration by reloading configuration files, running migrations on sample data, and debugging with custom process plugins, print statements, and&nbsp;xdebug.</p>
+
+<p><strong>How do I test for regressions?</strong></p>
+
+<p>An introduction to Behat testing for migrations. See&nbsp;https://github.com/palantirnet/palantir-behat-extension.</p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/eToSXN_xYdA?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-presenter-slides field--type-file field--label-above">
+    <div class="field__label">Presenter Slides</div>
+              <div class="field__item">
+<span class="file file--mime-application-pdf file--application-pdf"> <a href="../../sites/default/files/2019-03/Midcamp%202019_%20Understanding%20migration%20development%20in%20Drupal%208.pdf" type="application/pdf">Midcamp 2019_ Understanding migration development in Drupal 8.pdf</a></span>
+</div>
+          </div>
+
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Dan Montgomery</h4>
+
+      Senior Engineer and Technical Architect
+
+
+          @
+              <a href="https://www.palantir.net">Palantir.net</a>
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p>Technical Architect with an interest in Drupal and frontend technologies like React. Outside of work I love playing board games and video games and trying out different craft hobbies.</p>
+</div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2018-12/dan-portrait-square.jpg%3Fitok=btzgkb9C" width="220" height="220" alt="Dan Montgomery" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Back-End</div>
+              </div>
+      </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p>- [Dan] Hi, so this is<br>
+Understanding migration,</p>
+
+<p>- [Producer] Good, you're good.</p>
+
+<p>- We're good, okay.</p>
+
+<p>This is Understanding migration<br>
+development in Drupal 8.</p>
+
+<p>Hopefully you're in the right room.</p>
+
+<p>The talk is gonna cover<br>
+some strategies and tools</p>
+
+<p>that I use and we use</p>
+
+<p>in our group to develop migrations.</p>
+
+<p>So there's probably gonna be a lot a stuff</p>
+
+<p>and none of it's gonna go too deep.</p>
+
+<p>The intended audience are people that know</p>
+
+<p>a bit about Drupal 8 development</p>
+
+<p>but not necessarily that<br>
+much about migration.</p>
+
+<p>So we will cover some high-level topics</p>
+
+<p>and then kinda talk about a<br>
+lot of things that are involved</p>
+
+<p>in this sort of development process.</p>
+
+<p>I get a lot of value from</p>
+
+<p>sort of getting awareness from talks,</p>
+
+<p>so these slides are all available online,</p>
+
+<p>on the session page, so if you<br>
+wanna look at any specifics,</p>
+
+<p>don't feel like you have to write it down,</p>
+
+<p>or take pictures or anything.</p>
+
+<p>Some of the pages we'll go<br>
+through a little bit quickly</p>
+
+<p>to just say, Here's a thing.</p>
+
+<p>But the details of it, if you<br>
+wanna reference back later</p>
+
+<p>you can kinda take a look.</p>
+
+<p>Yeah, so thanks, everyone,<br>
+for coming and we'll jump in.</p>
+
+<p>So, again, my name's Dan Montgomery</p>
+
+<p>and I'm a senior engineer<br>
+and technical architect</p>
+
+<p>at Palantir.net.</p>
+
+<p>This is a picture of Palantir.</p>
+
+<p>We are a, I'm gonna try to get this right,</p>
+
+<p>so we are a digital<br>
+consultancy with a focus</p>
+
+<p>on higher education,<br>
+government, and healthcare</p>
+
+<p>with, you know, pretty<br>
+much anything as well,</p>
+
+<p>but that's the focus.</p>
+
+<p>And there is currently job<br>
+postings on the MidCamp site</p>
+
+<p>so if you're interested<br>
+there's other sessions</p>
+
+<p>that we're having as well</p>
+
+<p>and there's a booth out at the front.</p>
+
+<p>All right, so these are the<br>
+topics that we're gonna go over.</p>
+
+<p>At the beginning, we're<br>
+gonna cover a brief overview</p>
+
+<p>of sort of what is<br>
+involved with migration.</p>
+
+<p>We'll talk about automated testing</p>
+
+<p>and using automated<br>
+testing as a way of doing</p>
+
+<p>test-driven development in a sense.</p>
+
+<p>Talk about the process of<br>
+actually building a migration</p>
+
+<p>and then how to plan for manual<br>
+content migration cleanup</p>
+
+<p>after you kind of do that automated work</p>
+
+<p>and you pass it onto content<br>
+editors that are gonna have to</p>
+
+<p>fill in the gaps.</p>
+
+<p>All right, so for the overview,</p>
+
+<p>migrations are basically,<br>
+I might get some of this</p>
+
+<p>a little bit off from<br>
+the official definitions</p>
+
+<p>and Mike's here so I'm a<br>
+little bit nervous about it,</p>
+
+<p>but this is how I understand things.</p>
+
+<p>You basically have your source data</p>
+
+<p>and you wanna take that source data</p>
+
+<p>and create destination content or entities</p>
+
+<p>in the Drupal 8 site.</p>
+
+<p>And migration is the<br>
+process of doing that.</p>
+
+<p>So what does that look like?</p>
+
+<p>So your source, what<br>
+we mean by source data,</p>
+
+<p>it could be source database,<br>
+Drupal 6 and 7 databases</p>
+
+<p>are very well-supported.</p>
+
+<p>It could be a set of flat files</p>
+
+<p>or some combination of all these things.</p>
+
+<p>So, YAML files,</p>
+
+<p>we're pretty used to<br>
+dealing with in Drupal 8.</p>
+
+<p>You can use CSV files, JSON files,</p>
+
+<p>pretty much anything that you want.</p>
+
+<p>The destination sources<br>
+that we're talking about,</p>
+
+<p>it's a pretty flexible<br>
+system that we'll talk about</p>
+
+<p>but primarily nodes, like if<br>
+you're making articles or pages</p>
+
+<p>translations of nodes, individual files,</p>
+
+<p>how they bundle up into media<br>
+files or media entities,</p>
+
+<p>it could be custom modules<br>
+that provide their own entities</p>
+
+<p>like paragraphs, where if<br>
+you create your own entities</p>
+
+<p>as well, that extend certain classes,</p>
+
+<p>you can migrate into those.</p>
+
+<p>The migration that we're<br>
+gonna be talking about</p>
+
+<p>is primarily a custom migration module</p>
+
+<p>that you'll be developing</p>
+
+<p>and then it'll be supported<br>
+by core and contributed</p>
+
+<p>plugins, essentially,<br>
+pieces from core and contrib</p>
+
+<p>including Migrate Plus.</p>
+
+<p>We'll kinda assume that most<br>
+of this is using Migrate Plus</p>
+
+<p>as well as the core Drupal migrate module.</p>
+
+<p>And then, for things like<br>
+paragraphs, you know,</p>
+
+<p>paragraphs comes with<br>
+some of it's own plugins.</p>
+
+<p>All right, so automated testing.</p>
+
+<p>The use case for this that we've done</p>
+
+<p>is creating tests first<br>
+with example content.</p>
+
+<p>And then running those tests,</p>
+
+<p>write the migration,<br>
+keep running those tests</p>
+
+<p>until the tests pass.</p>
+
+<p>And at that point you've<br>
+kind of shown that</p>
+
+<p>with your example content, you know,</p>
+
+<p>that exists in the new system</p>
+
+<p>exactly as you'd expected it.</p>
+
+<p>This can also be used<br>
+to reduce regressions.</p>
+
+<p>So, if you're writing custom<br>
+plugins within a system</p>
+
+<p>and you wanna make sure<br>
+they're still working,</p>
+
+<p>those automated tests are really helpful</p>
+
+<p>to just kind of repeatedly run</p>
+
+<p>throughout the development process</p>
+
+<p>or maybe you've made some<br>
+changes to content types</p>
+
+<p>and you wanna kinda run it again.</p>
+
+<p>It can be pretty difficult<br>
+to test content migration</p>
+
+<p>because of all the content pieces,</p>
+
+<p>so having something to do<br>
+that in an automated fashion</p>
+
+<p>can be really helpful.</p>
+
+<p>We use Behat as a testing framework</p>
+
+<p>that's part of Drupal 8.</p>
+
+<p>Well, I don't know if<br>
+it's part of Drupal 8.</p>
+
+<p>It's a pretty common framework.</p>
+
+<p>We use static source data,<br>
+so maybe like a snapshot</p>
+
+<p>of the database that's<br>
+from a given point in time,</p>
+
+<p>that we know is gonna be consistent</p>
+
+<p>and then we test the data<br>
+directly on the new site.</p>
+
+<p>So this isn't how it's<br>
+being presented on the page</p>
+
+<p>but just the actual data source.</p>
+
+<p>So, one thing that's helpful with that is</p>
+
+<p>the open source Palantir Behat extension</p>
+
+<p>which let's you look at the data directly.</p>
+
+<p>So we'll show some examples.</p>
+
+<p>This is an example test.</p>
+
+<p>So this is a feature with a scenario</p>
+
+<p>and the highlighted bits are the,</p>
+
+<p>kinda the important parts here.</p>
+
+<p>So you can load example<br>
+nodes of a specific type,</p>
+
+<p>so in this case, an article<br>
+node with a certain title,</p>
+
+<p>and then you can test<br>
+field values against it.</p>
+
+<p>So this is really easy to write</p>
+
+<p>before you've even written the migration.</p>
+
+<p>It's not looking at specific,</p>
+
+<p>I mean you're just looking at field names,</p>
+
+<p>but you can kinda fill those in as you go.</p>
+
+<p>And you can test that just<br>
+sort of like the core value</p>
+
+<p>of that field is a specific thing.</p>
+
+<p>This can also work with paragraph.</p>
+
+<p>So you can test for that a certain field</p>
+
+<p>has a type of paragraph<br>
+and you can also test</p>
+
+<p>that a certain field on a<br>
+paragraph has certain values.</p>
+
+<p>So this can be really, you know,</p>
+
+<p>you can kind of extend it as you need</p>
+
+<p>to handle different types of fields</p>
+
+<p>or different types of entities.</p>
+
+<p>All right, so that's how we kind of use</p>
+
+<p>the automated testing framework.</p>
+
+<p>When we're actually building the migration</p>
+
+<p>to past those tests,</p>
+
+<p>we, like one of the<br>
+processes that I go through</p>
+
+<p>is to kinda of scaffold out the module</p>
+
+<p>just like I would kind of a lot of work.</p>
+
+<p>We'll look at what a<br>
+completed migration looks like</p>
+
+<p>so that we know kinda what<br>
+we're building towards.</p>
+
+<p>Explore a lot, a lot of the<br>
+work is exploring the data,</p>
+
+<p>either the source or the destination data.</p>
+
+<p>And then making a map</p>
+
+<p>between that source and destination data.</p>
+
+<p>And then lastly, the migrations<br>
+that have dependencies</p>
+
+<p>on other migrations, you know,</p>
+
+<p>how do we kinda manage<br>
+those relationships?</p>
+
+<p>So if there's articles that<br>
+require media entities,</p>
+
+<p>like how do you make sure</p>
+
+<p>that those are all kinda being<br>
+connected together correctly?</p>
+
+<p>Okay, so the migration module<br>
+is gonna be made up of mostly</p>
+
+<p>configuration files, just<br>
+like a lot of Drupal code</p>
+
+<p>and custom plugins.</p>
+
+<p>So the configuration files, most of them.</p>
+
+<p>Sorry.</p>
+
+<p>For the configuration<br>
+files, they're gonna include</p>
+
+<p>a lot of content in them,<br>
+but the core content</p>
+
+<p>that they're gonna describe<br>
+is the source, the destination</p>
+
+<p>and then kinda how do<br>
+we process each field</p>
+
+<p>so that we get the correct<br>
+values in the destination</p>
+
+<p>from the correct values in the source.</p>
+
+<p>The plugins that we might<br>
+develop are gonna match up</p>
+
+<p>to those three parts of the process.</p>
+
+<p>So we might develop,</p>
+
+<p>we will either find or create our own</p>
+
+<p>source, destination, and process plugins.</p>
+
+<p>So if we have a special kind of file</p>
+
+<p>that's not supported or<br>
+special kinda of database,</p>
+
+<p>you might create a source plugin.</p>
+
+<p>If you have a special kind of entity</p>
+
+<p>that you need handling for,</p>
+
+<p>you might create a destination one.</p>
+
+<p>And we'll cover some of<br>
+the process stuff as well.</p>
+
+<p>So, just like most modules,<br>
+you know, it's an info file,</p>
+
+<p>we can set up a folder<br>
+where we're gonna put</p>
+
+<p>all of our configuration files</p>
+
+<p>and a folder where we're<br>
+gonna put all our plugins.</p>
+
+<p>We, one thing that I will usually do is</p>
+
+<p>set up an uninstall hook so that,</p>
+
+<p>because we're dealing with<br>
+a lot of configuration,</p>
+
+<p>it's helpful to be able to uninstall that</p>
+
+<p>when you want to install the module.</p>
+
+<p>And so just having a system<br>
+for doing that automatically</p>
+
+<p>without, you know, that's<br>
+a common bottle neck</p>
+
+<p>that you might hit, you<br>
+disable module, enable it again</p>
+
+<p>to try to get the configuration back</p>
+
+<p>and it gives you an error<br>
+because there's a conflict,</p>
+
+<p>because the configuration already exists.</p>
+
+<p>So that can be helpful.</p>
+
+<p>You can also set up migration groups.</p>
+
+<p>And that's something I'll usually do</p>
+
+<p>before I even write the migrations.</p>
+
+<p>And this can kinda tie<br>
+together shared configuration</p>
+
+<p>including database configuration.</p>
+
+<p>So let's say you have a Drupal 7 database</p>
+
+<p>in your Drupal 8 environment.</p>
+
+<p>You can set up the connection<br>
+details and settings</p>
+
+<p>on PHP, then create a<br>
+configuration file that</p>
+
+<p>kind of links the two and<br>
+defines a migration group</p>
+
+<p>and then in each of your migration files,</p>
+
+<p>you can specify that<br>
+it's part of that group</p>
+
+<p>and it'll inherit that connection.</p>
+
+<p>So a lot of that work is just<br>
+kind of connected for you.</p>
+
+<p>All right, so that's kind of a lot.</p>
+
+<p>What does the actual migration look like?</p>
+
+<p>So, these configurations files,<br>
+more or less look like this.</p>
+
+<p>So, there's one file per migration.</p>
+
+<p>They've got an ID, they're<br>
+part of that group,</p>
+
+<p>if it makes sense.</p>
+
+<p>They might have<br>
+dependencies, so for example,</p>
+
+<p>like if an article's<br>
+dependent on a media file</p>
+
+<p>you might, we'll come back to that,</p>
+
+<p>but you might wanna add<br>
+that as a dependency.</p>
+
+<p>And then they have the same sort of</p>
+
+<p>destination, source, and process</p>
+
+<p>that we've been talking<br>
+about a little bit.</p>
+
+<p>So the destination is the first<br>
+thing that I'll usually add</p>
+
+<p>and figure out like, What am I<br>
+creating from this migration?</p>
+
+<p>So in this case, we're<br>
+gonna create a node.</p>
+
+<p>Where am I getting this data from?</p>
+
+<p>So the source in this<br>
+case is a Drupal 7 node.</p>
+
+<p>So this ID d seven node<br>
+is an ID for a plugin</p>
+
+<p>that's gonna be able to<br>
+read in intelligently</p>
+
+<p>a Drupal 7 node.</p>
+
+<p>And then the process<br>
+that includes, you know,</p>
+
+<p>this is the destination field</p>
+
+<p>and then this is the source field,</p>
+
+<p>so, How am I gonna map the two together?</p>
+
+<p>So this is a very simple example</p>
+
+<p>where we have a title<br>
+field in the destination</p>
+
+<p>and a title field in the source,</p>
+
+<p>and that's kinda all that's needed.</p>
+
+<p>If there's additional<br>
+plugins that are being used,</p>
+
+<p>you specify that there's a plugin</p>
+
+<p>and then what the plugin's name is</p>
+
+<p>and then the plugin usually has<br>
+parameters that you pass in.</p>
+
+<p>This is a simple one where,</p>
+
+<p>if you just wanna set<br>
+a value for everything,</p>
+
+<p>you can just use the default value plugin</p>
+
+<p>and just say that the type<br>
+is always gonna be article.</p>
+
+<p>All right, so this is, more or less,</p>
+
+<p>what we'll be creating.</p>
+
+<p>But like, how do you<br>
+fill in all these values,</p>
+
+<p>is what we'll talk through next.</p>
+
+<p>So, the first thing you know,</p>
+
+<p>we're gonna have to<br>
+identify the destination,</p>
+
+<p>what do I type in there?</p>
+
+<p>If possible, we want to copy some examples</p>
+
+<p>and then we wanna identify the source</p>
+
+<p>and figure out, like, where's<br>
+this data coming from?</p>
+
+<p>I need to know what the ID is.</p>
+
+<p>So for all this, it's<br>
+kinda the same thing.</p>
+
+<p>Like, Drupal 8 has this<br>
+nice system of annotation</p>
+
+<p>and it has this sort of<br>
+structured method for its plugins.</p>
+
+<p>So a lot of these plugins<br>
+that we're, sorry.</p>
+
+<p>For destinations, they're all<br>
+gonna be defined by classes</p>
+
+<p>in Drupal 8.</p>
+
+<p>And you can find a lot of these classes</p>
+
+<p>in the Drupal migrate module.</p>
+
+<p>You can also find a lot in other modules</p>
+
+<p>by looking in this common path</p>
+
+<p>source plugin migrate destination.</p>
+
+<p>So, this stage is kinda<br>
+like an exploratory phase.</p>
+
+<p>It's like you can either look online</p>
+
+<p>or you can just kinda look<br>
+around in your code editor</p>
+
+<p>and try to find like,</p>
+
+<p>What are my options for creating things?</p>
+
+<p>Do any of these, you know, make sense?</p>
+
+<p>Like, if I'm tryin' to<br>
+migrate into a node,</p>
+
+<p>like, is there one that<br>
+exists that it's called node?</p>
+
+<p>Or if it's a paragraph, does<br>
+it, is it called paragraph?</p>
+
+<p>And then this at migrate<br>
+destination annotation</p>
+
+<p>is another way you can find.</p>
+
+<p>That'll be present in all the<br>
+classes that kinda define it.</p>
+
+<p>So once you've found a<br>
+class that makes sense</p>
+
+<p>or that might make sense,</p>
+
+<p>you'll look for this<br>
+part of the annotation</p>
+
+<p>that says, This is the ID for that.</p>
+
+<p>And this is the name that's<br>
+used in those migration files.</p>
+
+<p>So, the ID, yeah.</p>
+
+<p>So it's say ID equals,<br>
+in this case, URL alias,</p>
+
+<p>so if you're creating URL aliases,</p>
+
+<p>this is the one that you want to use.</p>
+
+<p>And you can find example<br>
+migrations that might be in the</p>
+
+<p>in the code base that<br>
+people have written like</p>
+
+<p>test migrations, to say like,</p>
+
+<p>Okay, this is the source, so<br>
+if we go back a couple pages</p>
+
+<p>and say like, the plugin,<br>
+in this case it would say</p>
+
+<p>URL alias, you might be able<br>
+to find one that somebody</p>
+
+<p>has already written and use<br>
+that as a starting point.</p>
+
+<p>So, you might not always<br>
+find ones that match 100%.</p>
+
+<p>So, one thing that<br>
+important to be aware of is</p>
+
+<p>derivative classes.</p>
+
+<p>So, they're very common,<br>
+particularly because entities</p>
+
+<p>and any entity revisions, like nodes,</p>
+
+<p>use this deriver class.</p>
+
+<p>So before we saw that it was,</p>
+
+<p>I think it was called entity node,</p>
+
+<p>and so, in this case,<br>
+we have this colon here</p>
+
+<p>and that's indicating that<br>
+the ID is actually the entity</p>
+
+<p>and then the parameter<br>
+it's getting is node.</p>
+
+<p>So, in this case, you're<br>
+gonna find an entity class</p>
+
+<p>but you're not gonna find<br>
+one that's just called node</p>
+
+<p>and you're not gonna find<br>
+one that's called article.</p>
+
+<p>All right, so that's<br>
+something to be aware of.</p>
+
+<p>Once you do find that, yeah,<br>
+you'll see, for example,</p>
+
+<p>entity or entity revision and<br>
+then the colon and the name.</p>
+
+<p>So once you do that, you<br>
+can do a search for plugin</p>
+
+<p>just like we saw before with the ID</p>
+
+<p>and you'll probably find<br>
+something that already exists.</p>
+
+<p>In this case, with the URL alias,</p>
+
+<p>there's something called d seven URL alias</p>
+
+<p>and that's a good example<br>
+of like how you migrate</p>
+
+<p>URL aliases from Drupal 7 to Drupal 8.</p>
+
+<p>And so that's gonna be<br>
+a really useful example</p>
+
+<p>to copy from.</p>
+
+<p>If you can't find one in there,</p>
+
+<p>you probably can find something online</p>
+
+<p>that has a good starting point.</p>
+
+<p>So, the same process is what you'll do</p>
+
+<p>for identifying the source.</p>
+
+<p>So pretty much, you<br>
+need to find, you know,</p>
+
+<p>this is what it looks like,</p>
+
+<p>and you're gonna need to<br>
+understand what the ID is.</p>
+
+<p>And the ID can be found<br>
+in the same sort of places</p>
+
+<p>with the same annotations<br>
+as the destination classes.</p>
+
+<p>All right, so, once we<br>
+kinda make that scaffolding</p>
+
+<p>like, what's the process<br>
+of running migration?</p>
+
+<p>So when we're developing<br>
+migrations, we run them</p>
+
+<p>and then we kinda rerun them repeatedly</p>
+
+<p>like, as we add additional fields,</p>
+
+<p>as things are working, and<br>
+things are maybe not working.</p>
+
+<p>So, a lot of this can<br>
+be done pretty easily</p>
+
+<p>with Drush.</p>
+
+<p>There's the admin interface<br>
+that you can use as well,</p>
+
+<p>but Drush has a lot of useful tools.</p>
+
+<p>So, probably the most<br>
+important one that here is</p>
+
+<p>Drush Migrate Import, or<br>
+the short version is MIM.</p>
+
+<p>And then you can list the<br>
+name of your migration</p>
+
+<p>which was the ID that you defined.</p>
+
+<p>And it'll just run the whole thing.</p>
+
+<p>So that's pretty useful.</p>
+
+<p>If you need to rerun it, you could,</p>
+
+<p>cuz maybe you've updated the<br>
+files since its configuration,</p>
+
+<p>an easy way to do that is<br>
+to uninstall the module</p>
+
+<p>and then reinstall the module<br>
+and you'll get an update.</p>
+
+<p>If you don't do that, you can make changes</p>
+
+<p>and it's not gonna reimport your changes,</p>
+
+<p>so you won't see your<br>
+migration get updated.</p>
+
+<p>Another way to do this is<br>
+to use a contributor module</p>
+
+<p>called config devel which<br>
+will provide an easier way</p>
+
+<p>of reloading that configuration.</p>
+
+<p>It has a screen where you<br>
+can put in all the files</p>
+
+<p>that you want to reload.</p>
+
+<p>And then whenever you<br>
+want to open the browser</p>
+
+<p>it will just reload them for you.</p>
+
+<p>So that goes a lot quicker<br>
+than the other process.</p>
+
+<p>So that's one way to speed things up.</p>
+
+<p>You can also speed things up</p>
+
+<p>by limiting the data<br>
+that you're migrating.</p>
+
+<p>So, in this case, we<br>
+talked about sample data.</p>
+
+<p>So some common parameters<br>
+are doing things like</p>
+
+<p>specifying a list of source IDs.</p>
+
+<p>So you could say, I only<br>
+wanna import source 123</p>
+
+<p>because that one has a lot of the fields</p>
+
+<p>and I don't need to process all of them</p>
+
+<p>cuz that takes too long.</p>
+
+<p>You can also limit it, in this case.</p>
+
+<p>This could be slow because the way,</p>
+
+<p>it is faster than the<br>
+alternative, but it can be slow</p>
+
+<p>because it reads through all<br>
+of the source data fields</p>
+
+<p>until, all the source entities,</p>
+
+<p>until it gets to that specific one.</p>
+
+<p>So there's actually a way<br>
+that I will usually use</p>
+
+<p>which is modifying the<br>
+source plugin directly</p>
+
+<p>either in a contrib module,</p>
+
+<p>which is probably not the best idea,</p>
+
+<p>or by making my own extended<br>
+version of the plugin</p>
+
+<p>and then adding a condition to say,</p>
+
+<p>as part of the query stage,</p>
+
+<p>I'm only gonna ever query that one node,</p>
+
+<p>and then I just delete<br>
+this line at the end.</p>
+
+<p>So that kinda speeds the whole thing up</p>
+
+<p>because the system's only ever aware</p>
+
+<p>of that one piece of content<br>
+that I'm interested in</p>
+
+<p>and the whole thing just<br>
+runs very, very quickly.</p>
+
+<p>All right, so we kinda have</p>
+
+<p>in this sense, like we<br>
+know how to run migrations,</p>
+
+<p>we know like the overall structure,</p>
+
+<p>but before we can make that mapping</p>
+
+<p>we need to really understand<br>
+the destination and the source.</p>
+
+<p>So the ways that you<br>
+can do that, you know,</p>
+
+<p>you can open up the admin structure page</p>
+
+<p>and just kinda look at the<br>
+content in your Drupal 8 site</p>
+
+<p>and start listing the fields, you know,</p>
+
+<p>what are the fields?</p>
+
+<p>What are the field types<br>
+that I need to create?</p>
+
+<p>Devel has a really nice<br>
+way of having a tab.</p>
+
+<p>You can create an example piece of content</p>
+
+<p>and then you can go look at that</p>
+
+<p>and see what's there.</p>
+
+<p>So this is an example of the devel output</p>
+
+<p>and you can see that there's a body field</p>
+
+<p>and it has a value and a format.</p>
+
+<p>And the summary is sort<br>
+of an optional field.</p>
+
+<p>So we know that, if we're<br>
+gonna be migrating into this,</p>
+
+<p>this is basically the structure</p>
+
+<p>that we're gonna need to create.</p>
+
+<p>So, devel has a limitation<br>
+that those tabs only show up</p>
+
+<p>on page-based content.</p>
+
+<p>So if you have pageless<br>
+content like paragraphs,</p>
+
+<p>there is a tab, if you<br>
+wanna use the browser,</p>
+
+<p>you can enable devel and PHP</p>
+
+<p>and you can just paste PHP in there.</p>
+
+<p>And you can start printing messages.</p>
+
+<p>So this is something that's<br>
+useful for like paragraphs</p>
+
+<p>where you're loading a specific entity</p>
+
+<p>in a specific paragraph</p>
+
+<p>and it just prints it to the screen.</p>
+
+<p>So that's helpful.</p>
+
+<p>You don't need to install any<br>
+extra tools except for devel.</p>
+
+<p>Another option is</p>
+
+<p>you could use,</p>
+
+<p>if it's a Drupal site, you<br>
+could use those methods.</p>
+
+<p>If it's a non-Drupal site,</p>
+
+<p>you can't use those methods<br>
+for the source, like,</p>
+
+<p>oh sorry.</p>
+
+<p>If you're exploring the source</p>
+
+<p>you could use the same methods.</p>
+
+<p>They're available on Drupal 7 or Drupal 6,</p>
+
+<p>but they're not available<br>
+for maybe, you know,</p>
+
+<p>a WordPress site or a CSV file.</p>
+
+<p>So a common pattern that we use is to use</p>
+
+<p>debug process plugin.</p>
+
+<p>So creating process<br>
+plugins in pretty simple.</p>
+
+<p>The key is that you provide<br>
+an ID, you create a class,</p>
+
+<p>and then you have a transform method.</p>
+
+<p>And this takes in a<br>
+value that it gets passed</p>
+
+<p>and then you kinda do something<br>
+to it and return a value.</p>
+
+<p>We're not really using<br>
+it for that in this case.</p>
+
+<p>We're just printing to the screen</p>
+
+<p>or to the terminal, whatever<br>
+is the content of that value.</p>
+
+<p>So this can be used to say,</p>
+
+<p>Hey, we're gonna have a field name,</p>
+
+<p>and we're gonna get this<br>
+field that's called name</p>
+
+<p>and then we're just gonna print it.</p>
+
+<p>And so when you run that Drush command,</p>
+
+<p>it's just gonna print<br>
+every value that it hits</p>
+
+<p>to the screen in sort of<br>
+like a nice-ish format.</p>
+
+<p>And you can look at, you know,</p>
+
+<p>what is the source data that I'm getting?</p>
+
+<p>What was the destination data?</p>
+
+<p>How can I match them?</p>
+
+<p>This is the same, this is an option for it</p>
+
+<p>in that specific one that we created</p>
+
+<p>where you can also just print</p>
+
+<p>what are all the values of the row?</p>
+
+<p>Instead of just the specific one,</p>
+
+<p>I wanna know what the<br>
+whole content looks like.</p>
+
+<p>So the third option is to use Xdebug.</p>
+
+<p>So if you use Xdebug as a debugger,</p>
+
+<p>this is a really good<br>
+option that you can use</p>
+
+<p>with migration.</p>
+
+<p>Things to keep in mind are that</p>
+
+<p>you're gonna need somewhere<br>
+to put a break point.</p>
+
+<p>So process plugins are<br>
+really a good place for that.</p>
+
+<p>You can add that debug<br>
+plugin and then you can</p>
+
+<p>put a break point in it.</p>
+
+<p>Because it's Xdebug, one of<br>
+the easier ways to trigger that</p>
+
+<p>is to run the migrations<br>
+through the user interface.</p>
+
+<p>So mostly I run them through the console,</p>
+
+<p>but if you run it through<br>
+the user interface,</p>
+
+<p>you can add that URL<br>
+parameter, startup Xdebug,</p>
+
+<p>and then trigger the migration</p>
+
+<p>and it'll stop where you are</p>
+
+<p>and you can look at the destination,</p>
+
+<p>you can look at the source,<br>
+you can look at the values,</p>
+
+<p>kind of explore anything as you want</p>
+
+<p>instead of kinda of<br>
+continually rerunning things.</p>
+
+<p>All right, so once we have an idea</p>
+
+<p>of the source and the destination,</p>
+
+<p>we need to kind of map the two.</p>
+
+<p>So the first thing I do<br>
+in that process is say,</p>
+
+<p>Here's all my destination fields,</p>
+
+<p>I'm gonna just list them all<br>
+in that configuration file.</p>
+
+<p>Once I've done that, I kind of</p>
+
+<p>look through the source data and then</p>
+
+<p>piece by piece map them up.</p>
+
+<p>Refresh the page, run the migration again.</p>
+
+<p>And then just see if that's working.</p>
+
+<p>So like, field by field,<br>
+make sure each one's going.</p>
+
+<p>You can use that automated<br>
+testing framework</p>
+
+<p>to do that a little bit quicker for you,</p>
+
+<p>and then just keep running<br>
+that automated migration</p>
+
+<p>and eventually it's gonna<br>
+say, Everything passed.</p>
+
+<p>And you have a pretty good<br>
+idea that things are working.</p>
+
+<p>Yeah, so at this point, the key thing</p>
+
+<p>that you're gonna be dealing with,</p>
+
+<p>cuz you've already identified<br>
+the source and the destination</p>
+
+<p>is process plugins.</p>
+
+<p>So just like source and<br>
+destination plugins,</p>
+
+<p>process plugins can be<br>
+found in the same way.</p>
+
+<p>And there's a lot of<br>
+really good documentation</p>
+
+<p>online for that.</p>
+
+<p>So here are some links to drupal.org.</p>
+
+<p>They'll define every single version</p>
+
+<p>of the process plugins that you can use,</p>
+
+<p>examples of how those can be used,</p>
+
+<p>what the parameters are, things like that.</p>
+
+<p>If you write a custom one, that could be,</p>
+
+<p>if you're not finding something<br>
+that's working for you</p>
+
+<p>or it's becoming way too complicated,</p>
+
+<p>custom process plugins are<br>
+not that hard to write.</p>
+
+<p>And you have access to things</p>
+
+<p>like the value that<br>
+you're being passed in,</p>
+
+<p>and also the whole source rows.</p>
+
+<p>So, if you need to combine<br>
+multiple source rows</p>
+
+<p>into a specific value,</p>
+
+<p>that might be a way that you can do it.</p>
+
+<p>There are ways that<br>
+you can kind of combine</p>
+
+<p>existing process plugins,</p>
+
+<p>but if you're struggling with that,</p>
+
+<p>it might be worth trying<br>
+a custom process plugin.</p>
+
+<p>All right, so, yeah.</p>
+
+<p>The last topic, sorry,<br>
+second to last topic</p>
+
+<p>is managing relationships.</p>
+
+<p>So, let's say you've got<br>
+your migration completed</p>
+
+<p>and you've written the node migration</p>
+
+<p>and it needs those<br>
+media entities to exist.</p>
+
+<p>So there's kind of like two main ways</p>
+
+<p>that you can go about doing this.</p>
+
+<p>You can either specify<br>
+them all as dependencies</p>
+
+<p>and say that I need to run<br>
+them in a specific order.</p>
+
+<p>So I need to run that<br>
+media migration first</p>
+
+<p>so that when the node migration is running</p>
+
+<p>and those references exist,<br>
+it can find the other entities</p>
+
+<p>and it can recreate those references.</p>
+
+<p>That's definitely a valid option.</p>
+
+<p>There are some limitations.</p>
+
+<p>Another option is to say, I'm<br>
+gonna run them in any order</p>
+
+<p>and I'm gonna use the stub process.</p>
+
+<p>So when you write those<br>
+references you can say,</p>
+
+<p>If it doesn't exist just create a stub.</p>
+
+<p>And it's an empty version<br>
+of that with just an ID.</p>
+
+<p>And then when it, let's say you<br>
+wrote the article migration,</p>
+
+<p>it'll create those stubs</p>
+
+<p>and when it runs the media migration</p>
+
+<p>it'll see that there's<br>
+already a stub created</p>
+
+<p>with the ID that matches</p>
+
+<p>and it'll just fill in all<br>
+the fields for that content.</p>
+
+<p>So, some reasons that you might,</p>
+
+<p>some things that you might<br>
+hit in that case is that</p>
+
+<p>you know, maybe neither of those works.</p>
+
+<p>And in that case you<br>
+might just run migrations</p>
+
+<p>multiple times with the update flag.</p>
+
+<p>One particular case where I<br>
+found this to be very helpful</p>
+
+<p>is if nodes are referencing other nodes.</p>
+
+<p>It might not know what<br>
+kind of stub to create</p>
+
+<p>and so you might wanna just<br>
+have things run multiple times.</p>
+
+<p>And that can kind of, you know,</p>
+
+<p>not create stubs when they're not needed</p>
+
+<p>and it just kinda fills stuff in.</p>
+
+<p>Yeah, so, the last piece of this is that,</p>
+
+<p>eventually like you're<br>
+gonna write your migration</p>
+
+<p>and you're gonna pass it on,</p>
+
+<p>and it's gonna be somewhere between like</p>
+
+<p>nothing was migrated<br>
+in an automated fashion</p>
+
+<p>and everything was, but it's<br>
+never gonna hit that everything</p>
+
+<p>so a thing that we found valuable</p>
+
+<p>is to tag content as we're migrating it</p>
+
+<p>and to create a vocabulary<br>
+for that purpose.</p>
+
+<p>So we create a vocabulary, create a field</p>
+
+<p>on all the content types<br>
+that we're migrating</p>
+
+<p>and then as we're<br>
+processing those entities,</p>
+
+<p>identify things like,</p>
+
+<p>this has embedded HTML,<br>
+or this has an image,</p>
+
+<p>or this has a link<br>
+that's an absolute link.</p>
+
+<p>And these are flags that<br>
+people can come back to</p>
+
+<p>as they're doing content editing,</p>
+
+<p>and kind of filter all their content</p>
+
+<p>and then say like, Oh,<br>
+I need to review this</p>
+
+<p>in a hand by hand manner.</p>
+
+<p>Yeah, so,</p>
+
+<p>that is it for now.</p>
+
+<p>Hopefully I've left<br>
+enough time for comments.</p>
+
+<p>Again, my name's Dan Montgomery</p>
+
+<p>and I wanted to kinda<br>
+open it up to questions.</p>
+
+<p>Thank you.</p>
+
+<p>(applause)</p>
+
+<p>- [Participant] One<br>
+quick question I have is,</p>
+
+<p>is there a good resource<br>
+online where you can</p>
+
+<p>find examples of, cuz, I know<br>
+you did a lot of high-level,</p>
+
+<p>but if there's, you know, some examples of</p>
+
+<p>how do you write the code for<br>
+migrating from seven to eight?</p>
+
+<p>- [Dan] Yeah, I would recommend,</p>
+
+<p>I think there are a<br>
+lot of good blog posts.</p>
+
+<p>So there's some information<br>
+I think on drupal.org,</p>
+
+<p>a lot of the references<br>
+I mentioned are kind of</p>
+
+<p>kinda like API documentation.</p>
+
+<p>So it's like you have<br>
+a list of the plugins</p>
+
+<p>and then you would kinda<br>
+look at specific things.</p>
+
+<p>A lot of the Drupal 7 migrations<br>
+also have documentation</p>
+
+<p>within, like, within those migration files</p>
+
+<p>so they provide an example of like,</p>
+
+<p>Here's a very basic version</p>
+
+<p>or representative version of doing like,</p>
+
+<p>this type of migration.</p>
+
+<p>And you can usually just copy those over</p>
+
+<p>and then change some<br>
+things that apply to you.</p>
+
+<p>I don't have, nothing's jumping out like,</p>
+
+<p>for that particular purpose,<br>
+but I think there is a lot</p>
+
+<p>of stuff around that specific topic.</p>
+
+<p>Cool. Mike.</p>
+
+<p>- [Mike] How, so you know, when<br>
+you have the node migration,</p>
+
+<p>you know, then you need to<br>
+create a media migration,</p>
+
+<p>you have media, what's your<br>
+process for figuring out</p>
+
+<p>how many different migrations you need?</p>
+
+<p>And then, part of that is<br>
+if you have to do estimate,</p>
+
+<p>estimations, for like<br>
+how long the migration's</p>
+
+<p>gonna take you to build.</p>
+
+<p>How do you work that out?</p>
+
+<p>- [ Dan] Yeah, migrations<br>
+are really tricky</p>
+
+<p>for the estimation process.</p>
+
+<p>I think for the number of the entities,</p>
+
+<p>it kinda comes down to like,</p>
+
+<p>yeah, it really, it really depends.</p>
+
+<p>I think there is a lot of<br>
+similarity between projects</p>
+
+<p>but some of the things,<br>
+is like you're splitting</p>
+
+<p>apart content types or<br>
+you're combining things,</p>
+
+<p>there might be tricky<br>
+ways that you can like,</p>
+
+<p>write one migration<br>
+that dynamically handles</p>
+
+<p>a bunch of things at once,</p>
+
+<p>or just like split 'em up to keep things</p>
+
+<p>a little bit easier to read.</p>
+
+<p>I think there is some like,</p>
+
+<p>figuring what works for<br>
+you and iterating on it.</p>
+
+<p>In terms of the estimation,<br>
+I think when projects,</p>
+
+<p>like there's typically a budget</p>
+
+<p>that's associated with migration.</p>
+
+<p>And you can give like a high-level,</p>
+
+<p>These are the primary<br>
+content types based on</p>
+
+<p>you know, this is the quantity of them</p>
+
+<p>and the complexity of them</p>
+
+<p>that you wanna allocate to migration.</p>
+
+<p>And I think there's<br>
+just a lot of discussion</p>
+
+<p>that has to happen of like,</p>
+
+<p>Okay, if we were to<br>
+spend more effort, like,</p>
+
+<p>what are we gonna get the benefit from?</p>
+
+<p>And making sure that that works</p>
+
+<p>with the clients that you have.</p>
+
+<p>So, it's not like a great answer,</p>
+
+<p>but it is definitely one where,</p>
+
+<p>it's a very different thing<br>
+from like, Drupal development,</p>
+
+<p>and so I think there is<br>
+a lot of communication</p>
+
+<p>that has to happen with<br>
+the content editors</p>
+
+<p>who might not be the people<br>
+you're normally talking to</p>
+
+<p>on a project.</p>
+
+<p>Yeah.</p>
+
+<p>- [Participant] I have<br>
+a blog post that kinda</p>
+
+<p>talks about that, so<br>
+how to manage this, so,</p>
+
+<p>come find me if you wanna<br>
+read it, or pointed to it.</p>
+
+<p>- [Dan] Yeah, thanks.</p>
+
+<p>- [Participant] Have you ever<br>
+run across a scenario where</p>
+
+<p>your Behat tests are looking<br>
+at the actual database content</p>
+
+<p>but the Drupal formats are filtering out</p>
+
+<p>so you're not getting the<br>
+same result that you set,</p>
+
+<p>the taxonomy that you talked about?</p>
+
+<p>Flag those or how do you do that?</p>
+
+<p>- [Dan] Yeah, that's a really good point.</p>
+
+<p>So, like, we're,</p>
+
+<p>as a developer at this<br>
+stage of the process,</p>
+
+<p>we're interested in like,<br>
+the value came across.</p>
+
+<p>But yes, it is really<br>
+good to kinda of work</p>
+
+<p>with the content team<br>
+and let them know that</p>
+
+<p>what's presented on<br>
+the page passes through</p>
+
+<p>like several other stages.</p>
+
+<p>And so you might think that<br>
+all your content got deleted</p>
+
+<p>but you need to look at<br>
+like, the source code</p>
+
+<p>or something like that.</p>
+
+<p>So I think, I might have<br>
+missed your question,</p>
+
+<p>but I think the thing that<br>
+I would recommend doing</p>
+
+<p>is just kind of working with that team</p>
+
+<p>and as they identify<br>
+examples for you to work with</p>
+
+<p>like, they might provide<br>
+examples that you're then using</p>
+
+<p>and they're expecting to see things,</p>
+
+<p>so as long as you have that<br>
+like shared set of examples</p>
+
+<p>and show them like, this is how to look,</p>
+
+<p>this is how to verify it on your end,</p>
+
+<p>cuz they're probably not gonna run</p>
+
+<p>those automated migrations,<br>
+although you could show that</p>
+
+<p>as part of a demo, and<br>
+clients usually like to see</p>
+
+<p>things that they don't<br>
+necessarily understand,</p>
+
+<p>but they kind of see the things working</p>
+
+<p>and they're like, Oh, that's cool.</p>
+
+<p>I don't know if that<br>
+answered your question.</p>
+
+<p>- [Participant] I think he<br>
+was, sorry, you were asking if</p>
+
+<p>the Behat test itself is<br>
+testing for live content</p>
+
+<p>- [Dan] Yeah</p>
+
+<p>- [Participant] that<br>
+might have changed so,</p>
+
+<p>I think that answer to that...</p>
+
+<p>- [Dan] The answer for the<br>
+one's that I use is, No.</p>
+
+<p>But you could definitely do it.</p>
+
+<p>So those are just like, the<br>
+standard Drupal Behat libraries</p>
+
+<p>will test for the what's<br>
+presented on the page.</p>
+
+<p>So if you wanna test for those as well,</p>
+
+<p>I think those would be good tests.</p>
+
+<p>But, yeah, in this case, because, maybe</p>
+
+<p>you're doing it before<br>
+all that work's been done</p>
+
+<p>or because, you know,<br>
+there's all that other stuff.</p>
+
+<p>Yeah, I think it's just<br>
+something to keep in mind.</p>
+
+<p>All right, I think we're at<br>
+the time, but I'm also around.</p>
+
+<p>And, you know, happy to<br>
+answer questions and stuff.</p>
+
+<p>So, yeah.</p>
+
+<p>Thanks, everyone.<br>
+Captions made possible by ClarityPartners.com<br>
+Chicago area Drupal consultants</p>
+
+<p><br>
+(applause)</p>
+
+<p>Captions made possible by ClarityPartners.com. Chicago area Drupal consultants</p>
+
+<p><a href="../sponsor/clarity-partners.html"><img src="../../sites/default/files/2020-02/CFDFAA23-5C59-4C07-9C66-CAFFE0CF3854.png" style="max-width:300px;"></a></p>
+</div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-6e3cfbd7cdfba1dc71f8a45ab6f5fcf4a2e6d95bc259fca382ae43947658b5e4">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/262">https://mid.camp/262</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-10d89aa6d8ebb96a505ef23d588fa772001c56dbc6dea3e53f716e7b630c2ac3">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/elevated-third.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-11/elevated-third-logo_0.png" width="220" height="220" alt="elevated third logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/acquia.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2019-03/Acquia_no_tagline.png" width="450" height="94" alt="Acquia" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/pantheon.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-11/pantheon-logo-color@2x.png" width="960" height="354" alt="Pantheon" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#5c35323a331c3135383f3d312c72332e3b"><span class="__cf_email__" data-cfemail="7f161119103f12161b1c1e120f51100d18">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/262","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_llBcjrkrgAu2wT1DR7VGL_iP6geJyiTnF_8O5ZD57VI.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJxLz89Pz0mNT8xLzKksyUwu1k9HE9DJSCwpSS3ST8_JT0rM0c0qBgAByBPW"></script>
+
+  </body>
+</html>

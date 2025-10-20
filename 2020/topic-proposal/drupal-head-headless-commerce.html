@@ -1,0 +1,987 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="With all the talk of headless Drupal is there still a use for Drupal as the head in a headless system? Of course! We&#039;ll take a couple steps back from the bleeding edge to look at how a modern Drupal site can make sense as the front end in a headless system. Once we know the why we&#039;ll walk through the how. Using a commerce site as the example we&#039;ll go over integration approaches and specific patterns to keep in mind when writing the integration. Along the way I&#039;ll call out lessons learned that can save developers a lot of pain and confusion." />
+<link rel="canonical" href="drupal-head-headless-commerce.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Drupal as the head in headless commerce | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter_2019/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Drupal as the head in headless commerce | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_gt5LiAM1qLGUH5e845uOb7R_lJ9dUwTXmnhGDR2yY20.css%3Fdelta=0&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlj90OwiAMhV9oA_XOp1lgHDaSQg3FLfPph_sxGm_a03Oa5mtPRmTR1giaftc-0EdHiJgBcs6JXc04o6ocDYUXmtGUgtzdLte7HoitobYXOe33Ze05lV_na1EWKYg7whQcuEO0cJ.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_UMuvjHSQ9iJFDCuYZXW-ThtEaBNBWxN9AUvYSTjbZi4.css%3Fdelta=1&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlj90OwiAMhV9oA_XOp1lgHDaSQg3FLfPph_sxGm_a03Oa5mtPRmTR1giaftc-0EdHiJgBcs6JXc04o6ocDYUXmtGUgtzdLte7HoitobYXOe33Ze05lV_na1EWKYg7whQcuEO0cJ.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_JumHJ3UqLO9Mdu1kygD5e19MOiNh5iD_a9p0FH6QrHQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlj90OwiAMhV9oA_XOp1lgHDaSQg3FLfPph_sxGm_a03Oa5mtPRmTR1giaftc-0EdHiJgBcs6JXc04o6ocDYUXmtGUgtzdLte7HoitobYXOe33Ze05lV_na1EWKYg7whQcuEO0cJ.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_LovagMoZZFoM80YhT0zgW4b6oNarRMdF8ooxvYiQ9tA.css%3Fdelta=4&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlj90OwiAMhV9oA_XOp1lgHDaSQg3FLfPph_sxGm_a03Oa5mtPRmTR1giaftc-0EdHiJgBcs6JXc04o6ocDYUXmtGUgtzdLte7HoitobYXOe33Ze05lV_na1EWKYg7whQcuEO0cJ.css" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="drupal-head-headless-commerce.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-2019-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-hatter-2019-midcamp2020navigation-menu" id="block-hatter-2019-midcamp2020navigation" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-2019-midcamp2020navigation-menu">Midcamp 2020 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" data-drupal-link-system-path="node/403">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../news.html" title="News" data-drupal-link-system-path="2020/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" data-drupal-link-system-path="2020/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--virtual-camp">
+        <a href="../article/midcamp-2020-going-digital.html" title="MidCamp is going virtual" data-drupal-link-system-path="node/6689">Virtual Camp</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsor">
+        <a href="../sponsor-midcamp.html" data-drupal-link-system-path="node/6250">Sponsor</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--community-organizations">
+        <a href="../sponsor/community-organization-introduction.html" data-drupal-link-system-path="node/6251">Community Organizations</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sponsors">
+        <a href="../sponsors.html" data-drupal-link-system-path="node/6253">Sponsors</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" data-drupal-link-system-path="node/6258">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--sessions-thu">
+        <a href="../schedule/thursday.html" data-drupal-link-system-path="2020/schedule/thursday">Sessions (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-fri">
+        <a href="../schedule/friday.html" data-drupal-link-system-path="2020/schedule/friday">Sessions (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--contribution-sat">
+        <a href="../contribution-day.html" title="Contribution Day" data-drupal-link-system-path="node/6378">Contribution (Sat)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--accepted-sessions">
+        <a href="../accepted-sessions.html" data-drupal-link-system-path="2020/accepted-sessions">Accepted Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../../2023/speaker-resources.html" data-drupal-link-system-path="node/345">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-terms-and-conditions">
+        <a href="../../speaker-terms-and-conditions.html" data-drupal-link-system-path="node/21">Speaker Terms and Conditions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--topic-tracks">
+        <a href="../../topic-tracks.html" data-drupal-link-system-path="node/10">Topic Tracks</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--donate">
+        <a href="https://tickets.midcamp.org/" title="Register for MidCamp">Donate</a>
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-2019-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2020.html" hreflang="en">MidCamp 2020</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-hatter-2019-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Drupal as the head in headless commerce</span>
+</h1>
+
+
+  </div>
+<div id="block-hatter-2019-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="6406" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2020-03-20T19:30:00Z" class="datetime">Friday, 2:30 pm CDT</time>
+ - <time datetime="2020-03-20T20:30:00Z" class="datetime">Friday, 3:30 pm CDT</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-80" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-name field--type-string field--label-hidden field__item">Room 312</div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>With all the talk of headless Drupal is there still a use for Drupal as the head in a headless system? Of course! We'll take a couple steps back from the bleeding edge to look at how a modern Drupal site can make sense as the front end in a headless system. Once we know the why we'll walk through the how. Using a commerce site as the example we'll go over integration approaches and specific patterns to keep in mind when writing the integration. Along the way I'll call out lessons&nbsp;learned that can save developers a lot of pain and confusion.</p>
+
+<h2>Attendees will leave with:</h2>
+
+<ul>
+	<li>An understanding of Drupal’s strenghts as the front end in a headless system</li>
+	<li>Integration patterns to maximize system stability</li>
+	<li>Workarounds for common issues that may arise during development</li>
+</ul>
+
+<h2 id="target-audience">Target Audience&nbsp;(how technical is this talk going to be?):</h2>
+
+<p>While this talk will delve into some of the technical aspects of this approach, anyone with an interest in commerce or headless systems will find value in its contents.</p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/xxb5gGYdqTQ?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-presenter-slides field--type-file field--label-above">
+    <div class="field__label">Presenter Slides</div>
+              <div class="field__item">
+<span class="file file--mime-application-pdf file--application-pdf"> <a href="../../sites/default/files/2020-03/Drupal%20as%20the%20Head%20in%20Headless%20Commerce%20-%20Midcamp%202020.pdf" type="application/pdf">Drupal as the Head in Headless Commerce - Midcamp 2020.pdf</a></span>
+</div>
+          </div>
+
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Kyle Einecker</h4>
+
+      Founder &amp; Principal 
+
+
+          @
+              <a href="https://truesummit.dev">True Summit</a>
+        
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2023-01/Kyle%20Einecker.png%3Fitok=v3TDaxNd" width="220" height="220" alt="Kyle Einecker" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Back-End</div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-feedback-form field--type-webform field--label-above">
+    <div class="field__label">Feedback Form</div>
+              <div class="field__item"><form class="webform-submission-form webform-submission-add-form webform-submission-session-feedback-form webform-submission-session-feedback-add-form webform-submission-session-feedback-node-6406-form webform-submission-session-feedback-node-6406-add-form" data-drupal-selector="webform-submission-session-feedback-node-6406-add-form" action="drupal-head-headless-commerce.html" method="post" id="webform-submission-session-feedback-node-6406-add-form" accept-charset="UTF-8">
+  
+    <div data-drupal-selector="edit-0" class="webform-message js-webform-message js-form-wrapper form-wrapper" id="edit-0"><div data-drupal-messages>
+    <div role="contentinfo" aria-label="Status message" class="messages messages--status">
+                  <h2 class="visually-hidden">Status message</h2>
+                    Sorry...This form is closed to new submissions.
+            </div>
+    </div>
+</div>
+<input autocomplete="off" data-drupal-selector="form-fd46kbslhpqicwl-0wseovhrpsusofm1kksuntpnsoi" type="hidden" name="form_build_id" value="form-fD46KBSLhPQIcWL_0wsEovHrPSUsOfM1KksuntpNsOI" />
+<input data-drupal-selector="edit-webform-submission-session-feedback-node-6406-add-form" type="hidden" name="form_id" value="webform_submission_session_feedback_node_6406_add_form" />
+<div class="url-textfield js-form-wrapper form-wrapper" style="display: none !important;"><div class="js-form-item form-item js-form-type-textfield form-type-textfield js-form-item-url form-item-url">
+      <label for="edit-url">Leave this field blank</label>
+        <input autocomplete="off" data-drupal-selector="edit-url" type="text" id="edit-url" name="url" value="" size="20" maxlength="128" class="form-text" />
+
+        </div>
+</div>
+
+
+  
+</form>
+</div>
+          </div>
+
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <h3 class="field__label">Transcript</h3>
+              <div class="field__item" tabindex="0"><p>&gt;&gt; KYLE EINECKER: &nbsp;All right. &nbsp;Welcome. &nbsp;This is Drupal as the head in headless commerce. &nbsp;</p>
+
+<p>And let's see. &nbsp;There we go. &nbsp;</p>
+
+<p>I am Kyle Einecker, also known as ctrlAdel, but not on Twitter. &nbsp;</p>
+
+<p>I am the Drupal lead at a company called Avionos. &nbsp;When I'm not doing Drupal programming things, I like to spend time outdoors doing backpacking and, like, long distance backpacking. &nbsp;I've done a couple of trips, 200 miles or so, a couple of weeks in the wilderness. &nbsp;It's nice to disconnect. &nbsp;</p>
+
+<p>If you haven't heard of Avionos before, we're an agency that does enterprise‑level experience management and commerce. &nbsp;Mostly B2B commerce, but any commerce implementation, as well as&nbsp;‑‑ [indistinct]&nbsp;‑‑ really, we just&nbsp;‑‑ we make on challenging projects, and we try to make a difference for our clients, and drive their business forward, increase the revenues, just help them run their business better. &nbsp;We've been in the Drupal space for a couple of years. &nbsp;We've got a couple of nomination for&nbsp;‑‑ Acquia words. &nbsp;We have a couple of positions available. &nbsp;We're hiring. &nbsp;</p>
+
+<p>The topic. &nbsp;Drupal as the head. &nbsp;Really, I'm going to start by addressing elephant in the room. &nbsp;And that is there's this tall Belgian dude. &nbsp;You might have recognized him. &nbsp;So he's been talking for a while, as well as Matt who spoke yesterday. &nbsp;They've been talking for a while, both of them, about using Drupal headlessly, and decoupled, that raises the question, if we use headlessly, why would we use it as the head for the commerce system? &nbsp;</p>
+
+<p>And the answer is there's a lot of commerce systems out there. &nbsp;Right? &nbsp;There's Centarre, Commercetools, and stuff like elasticpath, Magento, there's a lot of commerce systems out there. &nbsp;</p>
+
+<p>And not all of them support, you know, headless operation as well as Drupal. &nbsp;Not all as forward‑thinking. &nbsp;Some of them think that you should use what they provide, and use them as your front end. &nbsp;And in that situation, Drupal actually makes a lot of sense as the head. &nbsp;</p>
+
+<p>And honestly, even though we technically in this room are biased towards Drupal, the technology that a business is going to choose will come down to a lot of practical considerations. &nbsp;Right? &nbsp;</p>
+
+<p>For integrations, things like payment gateways, shipping providers&nbsp;‑‑ [indistinct]&nbsp;‑‑ PIMs, taxes, marketing automation, these are all things like for mature e‑commerce business, they already have answers to all of these, they have systems in place. &nbsp;If they're doing a new commerce site or if they're replatforming, they're not going to want to replatform their entire business. &nbsp;</p>
+
+<p>So these often that way are technical biases in choosing what commerce system we're going to use. &nbsp;And there's also back end functionality. &nbsp;</p>
+
+<p>Like how their businesses with customer service, invoices, user management, account management and promotions. &nbsp;All these are consideration that a business will take into&nbsp;‑‑ take into account when they're choosing what commerce system they're going to use, even if they wanted to do a headless system, it has to work for their business or else they won't get what they want .&nbsp;</p>
+
+<p>And that's why Drupal, the first&nbsp;‑‑ [indistinct]&nbsp;‑‑ Drupal commerce is not our commerce platform. &nbsp;Because life would be too easy if that's the case. &nbsp;</p>
+
+<p>The use case is a business that's decided to do commerce, and they're not going to use Drupal commerce. &nbsp;</p>
+
+<p>But they want to do it headlessly. &nbsp;</p>
+
+<p>They've chosen one that supports headless use as our next assumption. &nbsp;</p>
+
+<p>And even though they're happy with the commerce functionality, our business is not happy with the CMS compatibilities of their commerce platform. &nbsp;They want to have a rich customer experience. &nbsp;They want to have all the marketing material. &nbsp;They want to have the ability for their content authors to really promote their products and get their customers engaged. &nbsp;</p>
+
+<p>And whatever commerce platform they've chosen, they've decided it's insufficient for the use case. &nbsp;We have the platform chosen. &nbsp;We know what we want. &nbsp;And now the business is looking for a CMS. &nbsp;So why Drupal? &nbsp;</p>
+
+<p>And the answer to that&nbsp;‑‑ there's plenty of talks and blog posts and reasons for why Drupal as a CMS. &nbsp;Drupal is a fully featured, future CMS. &nbsp;There's not reason not to use it. &nbsp;</p>
+
+<p>But in this situation, I think Drupal is in a unique position, a unique value proposition. &nbsp;Because Drupal has Drupal commerce. &nbsp;</p>
+
+<p>Which is a commerce system with a flexible data model that's really been built&nbsp;‑‑ has been built in such a way that it can be used as an integration point for another commerce system. &nbsp;</p>
+
+<p>And in the commerce systems I've worked with, the handful of them, I've never seen another commerce system like Drupal commerce. &nbsp;I've never seen one that's really built in such a flexible way that the data model would support being the front end for another commerce system. &nbsp;</p>
+
+<p>And that's really unique. &nbsp;And I think Centarre and Drupal has done a good job of maintaining the data flexibility that allows this case of, we have a commerce platform chosen and now we need to get commerce into our CMS. &nbsp;Just plop Drupal commerce in the middle. &nbsp;</p>
+
+<p>I think that's a very unique value proposition when it comes to Drupal, Drupal as the head in headless commerce. &nbsp;Especially against other CMSs. &nbsp;With that in mind, we're going to say our business has chosen Drupal as the CMS. &nbsp;So those are kind of assumptions for our use case. &nbsp;</p>
+
+<p>And now we're onto our architecture considerations. &nbsp;We have two systems, how are they going to talk to each other? &nbsp;What does the data flow look like? &nbsp;What functionality lives where, that kind of stuff. &nbsp;</p>
+
+<p>So the first real consideration you have to make is authentication. &nbsp;</p>
+
+<p>And I'm not talking about authentication of the user. &nbsp;I'm talking about APL authentication. &nbsp;Does the platform that's chosen recommend using an integration user or does it support customer authentication? &nbsp;This is a really, really big one. &nbsp;If the commerce platform only supports integration user, then your customers cannot interact directly with the commerce API. &nbsp;You have to have something in the middle, otherwise you're exposing them, essentially a superuser for the API to all your customers, and that's not secure. &nbsp;</p>
+
+<p>Whereas if the commerce platform has customer authentication, then a customer can directly use the commerce API and your integration will look significantly different because they can talk directly to the commerce system without having to have the middle layer. &nbsp;That's the first consideration. &nbsp;Authentication for your commerce API. &nbsp;</p>
+
+<p>The next one is disconnected behavior. &nbsp;Another way of looking&nbsp;‑‑ or saying this is, what parts of the site or how functional should the site be if the two systems aren't connected together? &nbsp;If Drupal cannot talk to the commerce platform, how functional should the Drupal side be? &nbsp;There are a couple. &nbsp;User authentication and checkout. &nbsp;If the customer is the identity provider for user authentication, if they're not connected, the user can't log in. &nbsp;</p>
+
+<p>Drupal as the head doesn't have a say in checkout. &nbsp;So, like, it can't say whether an order&nbsp;‑‑ or a cart with transition from a cart to an order. &nbsp;You can't do that without the integration in place. &nbsp;But then there's gray areas. &nbsp;Yes, you should still be able to browse a product detail page even if the system isn't connected to Drupal. &nbsp;Should you still be able to search? &nbsp;Yes. &nbsp;The business might have another answer. &nbsp;Should catalog and product listing pages still work? &nbsp;I think they should. &nbsp;I think that a user in this system where Drupal is the head and there's a commerce back end, the user shouldn't know if it's not connected until they try to take an action. &nbsp;</p>
+
+<p>So product detail pages should be available. &nbsp;Search and product listing pages should be available. &nbsp;That's my opinion. &nbsp;Businesses might have different requirements. &nbsp;</p>
+
+<p>And then there's two very gray areas in the carting and pricing. &nbsp;</p>
+
+<p>If you're not connected, should you be able to cart something? &nbsp;</p>
+
+<p>Well, you could say no. &nbsp;You shouldn't be, because what if the commerce system has rules that say you shouldn't be able to cart this together or a user can't purchase this for whatever reason. &nbsp;</p>
+
+<p>And if you have specific or complicated carting logic, the answer is no. &nbsp;A user should not be able to cart thing if they're disconnected. &nbsp;But if you have a fairly simple business model, if you're selling online products, you know they're always going to be in stock. &nbsp;You don't have all that many access checks or all that much logic around adding to cart, sure. &nbsp;Let them cart it, and let Drupal and the commerce system figure it out once they reconnect. &nbsp;</p>
+
+<p>And the same goes for pricing. &nbsp;If you have a simple pricing model that doesn't change that much, if you don't have that many B2B pricing rules for different accounts and users&nbsp;‑‑ [cough]&nbsp;‑‑ then import your base price, your list price, and show that, and then let Drupal and the commerce system handle it after they reconnect. &nbsp;</p>
+
+<p>Now, obviously a user is going to hit a point where they can't continue in this process. &nbsp;Even if they can cart and they are seeing a price, if the systems aren't connected, check&nbsp;‑‑ they can't enter checkout. &nbsp;</p>
+
+<p>But that&nbsp;‑‑ that's expected. &nbsp;</p>
+
+<p>These two systems, in ideal world, are always connected together. &nbsp;In a worst‑case scenario, there's an unexpected outage on your platform, you want your site to still be usable but not totally functional. &nbsp;</p>
+
+<p>And there's the middle case of, every once in a while, our API drops out. &nbsp;Like, you know, once an hour for a second or something. &nbsp;In that case, you want your site to still with usable. &nbsp;You want your user experience to be impacted, and you still want a use&nbsp;‑‑ you want the two systems to be able to recover from that, you know, one‑second outage every hour and continue on through checkout without the user being aware of it. &nbsp;So that's really&nbsp;‑‑ this is&nbsp;‑‑ even though this is an edge case, it's an edge case that really has to be thought through and planned for. &nbsp;</p>
+
+<p>And this brings me to my first implementation tip. &nbsp;So as we go through these slides I'm going to kind of call out some tips that I've learned through implementing how these systems, and hopefully they save you a lot of pain and time. &nbsp;Because all of these have been learned through blood, sweat, and tears. &nbsp;</p>
+
+<p>So implementation tip #1 is write a health checker and notification checker, or notification for your connection between Drupal and your commerce system. &nbsp;</p>
+
+<p>And for dev and stage, make the notification that you get a banner on every page. &nbsp;</p>
+
+<p>Because you don't want to do a deployment and then have a user&nbsp;‑‑ have a tester go into dev and say nothing works. &nbsp;</p>
+
+<p>And then find out, once they open 40 ticket, that nothing worked because the two systems weren't connected together. &nbsp;Make sure everybody who's doing testing on dev and stage know the state of the system, and know to report it's not connected if they're expecting it to be connected. &nbsp;And it also goes for production. &nbsp;You don't want to do a full‑page banner display. &nbsp;But at an end point, and be able to monitor it through new relic or some other monitoring service to know when your systems are not connected and if you need to take any action to correct that. &nbsp;</p>
+
+<p>So that is the first implementation tip. &nbsp;</p>
+
+<p>Going to the next architecture consideration. &nbsp;The commerce API itself and the usage and flexibility of it. &nbsp;Is it fully featured for headless use? &nbsp;What are the API usage limits? &nbsp;Does it support querying? &nbsp;Will the business logic fit within existing endpoints? &nbsp;I've never built a commerce site that didn't have custom business logic that had to be Exposed in one way or another to a customer. &nbsp;So just make sure that the customizations you know, you need to write, fit within the end points. &nbsp;</p>
+
+<p>Or the next one, you can write custom end points. &nbsp;</p>
+
+<p>And for this commerce platform, there a PHP&nbsp;SDK or library available? &nbsp;Will you be writing your own API? &nbsp;Good things to know. &nbsp;Are there web hooks or will you be polling for updates? &nbsp;General considerations. &nbsp;Because everything between the two systems will be done through the API. &nbsp;You need to know the limitations and what to architect around before you really start getting into your integration. &nbsp;</p>
+
+<p>And the next consideration is data ownership. &nbsp;This is something that should be established before any code is ever written. &nbsp;Figuring out what system owns what data. &nbsp;</p>
+
+<p>So generally users are owned by the commerce system. &nbsp;It's the identity provider for users, unless the business already has another identity provider in place. &nbsp;</p>
+
+<p>Like some type of&nbsp;‑‑ I don't know&nbsp;‑‑ user portal or user, online user access system that does the identity provider for their current e‑commerce solution. &nbsp;Something like that. &nbsp;And then, you know, orders, carts, products, product attributes, all of that data is also owned by commerce. &nbsp;As well as inventory. &nbsp;</p>
+
+<p>You don't want to be modifying or customizing that in Drupal. &nbsp;But things like content and catalog structure, content is definitely owned by Drupal. &nbsp;And what's content versus what's data&nbsp;‑‑ or what's content versus what's commerce data is also an interesting discussion for product. &nbsp;Because there can be a lot of overlap there. &nbsp;</p>
+
+<p>And sometimes, like, products have metadata, but they lack a rich content data, and it can be added into Drupal to a product. &nbsp;And catalog structure, if it has a catalog, use it. &nbsp;If not, maybe that's something you have to add in Drupal to really get what you want. &nbsp;</p>
+
+<p>And implementation tip #2. &nbsp;</p>
+
+<p>Respect the decisions you make here, and respect them always. &nbsp;Do not make any exceptions. &nbsp;</p>
+
+<p>And I really view this as when you do your integration, you can manipulate data from the commerce system. &nbsp;You can manipulate it to make it fit within Drupal, but never customize it. &nbsp;</p>
+
+<p>And by that, I mean never&nbsp;‑‑ never significantly change the data that comes through. &nbsp;Right? &nbsp;</p>
+
+<p>If something comes in as red, and really the business wanted to display it as burgundy on the front end, that's a commerce data issue. &nbsp;Even though 30 second to write an if statement in Drupal, don't customize your data. &nbsp;</p>
+
+<p>Always&nbsp;‑‑ always correct it in the right system, in the system that owns it. &nbsp;</p>
+
+<p>And that brings us to the next step. &nbsp;Make friends with all the teams. &nbsp;Because you have two systems, it's likely that you will have two architects at least, if not more. &nbsp;</p>
+
+<p>And just make sure you're friendly with everybody. &nbsp;You have the communication channels. &nbsp;And you have that working relationship where if something needs to be corrected, you can get it corrected in the place it needs to be corrected, instead of doing a work‑around or doing a customization on Drupal. &nbsp;</p>
+
+<p>Because that's just going to create more technical debt and make the integration more complicated, versus correct it go at the source. &nbsp;</p>
+
+<p>So just be friendly with people, you know. &nbsp;Make sure that if you have a small ask, you can ask them, you know the process, and you have the procedures in place to correct everything. &nbsp;</p>
+
+<p>Next&nbsp;‑‑ oh. &nbsp;All right. &nbsp;That's the last architecture consideration. &nbsp;Now we will get into the possible architectures, after we've taken all these considerations into place. &nbsp;</p>
+
+<p>The first one is doing a fully headless implementation. &nbsp;This is Drupal, Drupal serves a page. &nbsp;And then say this is a product detail page. &nbsp;</p>
+
+<p>Where you have your header, and on the top right you have your cart. &nbsp;</p>
+
+<p>And then you have some product content, and then you have your&nbsp;‑‑ this other&nbsp;‑‑ this bigger green box is your add to cart, your pricing, your variation selection, and your&nbsp;‑‑ [indistinct]&nbsp;‑‑ content or whatever with Drupal! &nbsp;So fully headless, and this is fully headless commerce, not fully headless Drupal. &nbsp;And fully headless commerce, Drupal doesn't know anything about the commerce system at all. &nbsp;And really, you're just using JavaScript to render different parts of the commerces&nbsp;‑‑ commerce platform on a Drupal page. &nbsp;</p>
+
+<p>This is&nbsp;... &nbsp;this is possible if your commerce platform has a strong headless offering, and if it has customer authentication for the API. &nbsp;</p>
+
+<p>If you have an integration user, you can't do this architecture. &nbsp;</p>
+
+<p>Because it would&nbsp;‑‑ it requires exposing the commerce API directly to the customer. &nbsp;</p>
+
+<p>So that's fully headless. &nbsp;Obviously we're not going to talk about this because it's not the topic of the session. &nbsp;The next one is partially headless. &nbsp;</p>
+
+<p>So this is similar to last one. &nbsp;But we've decided that the product details we really want those to live in Drupal. &nbsp;We want to be able to search with them through solar. &nbsp;We want to be able to reference the products as products and not content. &nbsp;We want to build a paragraph that has a grid of three products. &nbsp;</p>
+
+<p>So we need to import those products into Drupal, and Drupal will handle displaying those products. &nbsp;</p>
+
+<p>But our cart and our checkout are still going to be headless. &nbsp;</p>
+
+<p>And that&nbsp;‑‑ that's also going to be driven by commerce platform. &nbsp;</p>
+
+<p>Once again, you need a strong&nbsp;‑‑ you need a commerce platform with a strong headless offers offering, as well as customer authentication. &nbsp;</p>
+
+<p>And then&nbsp;... &nbsp;</p>
+
+<p>Really, the cart and the checkout for this&nbsp;‑‑ for this architecture will be driven by the commerce platform. &nbsp;And the content&nbsp;‑‑ and products will be viewed as content that's imported from the commerce system into Drupal and displayed by Drupal. &nbsp;</p>
+
+<p>The next possible architecture is what I'm going to call a full commerce integration. &nbsp;In this one you have your commerce platform, and then you have Drupal commerce, Centarre, and you have Drupal that's responsible for displaying all of it. &nbsp;</p>
+
+<p>So in this one you're taking data out of your commerce platform, shoving it into Drupal commerce, and then just using Drupal commerce's functionality and display methods and cart and checkout to allow you&nbsp;‑‑ the user to, you know, do the e‑commerce, add to cart, product search, all that good stuff! &nbsp;So this one is great, because if your commerce platform does not have a strong API or headless offering or recommended using as integration user instead of customer authentication, then there's a lot more flexibility in your PHP back end to work around API limitations. &nbsp;</p>
+
+<p>Around getting data into Drupal. &nbsp;</p>
+
+<p>And then letting Drupal&nbsp;‑‑ letting Drupal commerce really handle exposing that data to the user, regardless of the limitations you actually have with your commerce platform API. &nbsp;</p>
+
+<p>And the next one, this is&nbsp;‑‑ this is more of a thought experiment. &nbsp;But I can see as Drupal commerce expands its commerce API functionality, I could see a really strong argument to be made for taking&nbsp;‑‑ a commerce platform doesn't necessarily have a great API. &nbsp;</p>
+
+<p>Moving the data into Drupal commerce, and, you know, doing content in Drupal, and then doing a fully headless Drupal site. &nbsp;Right? &nbsp;</p>
+
+<p>So, like, a Drupal site that has&nbsp;‑‑ a Drupal&nbsp;‑‑ a headless site using reactor node that is using&nbsp;‑‑ or leveraging Drupal commerce's APIs, all the data and all the business logic is still being driven by that back end commerce platform that is now two layers deep instead of one layer. &nbsp;</p>
+
+<p>I think this is really interesting use case for the future, and I think it's only going to get better as Drupal commerce gets more API‑friendly. &nbsp;Those are the four architectures for headless commerce and Drupal as the head in headless commerce. &nbsp;We're going with #3, the full commerce integration. &nbsp;It leverages Drupal commerce's unique data model. &nbsp;</p>
+
+<p>It really supports even the most underwhelming commerce platform API. &nbsp;That's what we're going to look at. &nbsp;We've got our architecture. &nbsp;We're going to do a full commerce integration. &nbsp;And now we're looking into integration considerations&nbsp;‑‑ integration considerations and approaches for individual parts of the site. &nbsp;</p>
+
+<p>Like, how do you build a robust integration for the cart or pricing or products? &nbsp;</p>
+
+<p>And what do you want to do and what do you want to consider there? &nbsp;</p>
+
+<p>The main&nbsp;‑‑ this comes down to data. &nbsp;How often does data change? &nbsp;Why do you need the data? &nbsp;When do you need the data? &nbsp;And who owns the data? &nbsp;</p>
+
+<p>So the answers to these questions are really going to determine how often you need to fetch the data, how important is it that it's accurate, and what areas you actually need it in. &nbsp;Once you answer all these questions, it will be obvious what integration approach to use to really keep your integration logical and performance and secure. &nbsp;</p>
+
+<p>The first integration approach is import, or one way sync. &nbsp;This is going to be really the slowest and the most&nbsp;‑‑ it's going to be the slowest and for data that is mostly static. &nbsp;For an import, all the&nbsp;‑‑ you're bringing data out of the commerce platform, and you're importing it into the Drupal data model. &nbsp;</p>
+
+<p>So you're bringing products in as products. &nbsp;You're bringing product attributes. &nbsp;For accounts&nbsp;‑‑ I'm not talking about users but business or company accounts. &nbsp;</p>
+
+<p>Really, more of a B2B feature. &nbsp;But this is stuff that's not going to change that often. &nbsp;But it's also stuff that Drupal is going to use all the time. &nbsp;</p>
+
+<p>And it's going to show up a lot, and you're going to be querying for it a lot, and you don't want to take the performance of going out to the commerce platform every time you need the information. &nbsp;</p>
+
+<p>And it's&nbsp;‑‑ just not that important for it to be fetched on demand, because it's not going to change. &nbsp;</p>
+
+<p>Things like product you aren't going to change randomly. &nbsp;Don't do a call for that every time. &nbsp;Just import it once. &nbsp;</p>
+
+<p>And so implement this, I highly, highly, highly recommend doing a message queue system where either the commerce platform pushes messages to Drupal through an end point, or Drupal pulls the product data or the data out of the commerce platform, and then schedules individual jobs for individual pieces of data, like the individual products. &nbsp;</p>
+
+<p>This is the most scaleable solution in the long‑term, because you're processing each product as an individual job, instead of, you know, writing some custom class that does a query out and imports 500 product at once. &nbsp;That's not very scaleable. &nbsp;You will run into issues eventually. &nbsp;</p>
+
+<p>And they also allow, like, it allows you to have a job fail and to continue processing additional jobs. &nbsp;It's just&nbsp;‑‑ it's an all‑around flexible system, and I highly advise doing this kind of approach through, like, ultimate‑kron (phonetic) in Drupal, instead of doing a one big method of God‑class to handle it. &nbsp;And I've been experimenting with using Migrate to use this. &nbsp;I would say, use it at your own caution. &nbsp;</p>
+
+<p>Because commerce data is complicated, and there's a lot of relations. &nbsp;And unless you're a migrate wizard, and the team that's going to be maintaining your site are migrate wizards, the migration gets complicated really fast and it's not as straightforward. &nbsp;It's reading PHP data, this&nbsp;‑‑ [indistinct]&nbsp;‑‑ coming in, coming out. &nbsp;And that brings us to our next implementation tip. &nbsp;</p>
+
+<p>And this applies to all the integration approaches. &nbsp;This just happens to be our first one that you're looking at. &nbsp;</p>
+
+<p>Don't fail silently. &nbsp;Log everything. &nbsp;</p>
+
+<p>So every time you make an API call, wrap it in a trap cache. &nbsp;In that cache statement have a log error or a log message. &nbsp;If you're failing silently, it means that you don't know what's wrong with your system. &nbsp;Or you don't know what the exceptions are in your data. &nbsp;</p>
+
+<p>Or you don't know what your customers are experiencing or doing. &nbsp;</p>
+
+<p>So never leave a situation where something can fail and throw an exception, and you don't catch it. &nbsp;It's extremely important, especially because these systems are semiorganic. &nbsp;Right? &nbsp;</p>
+
+<p>With a dev, a stage, and a prod, you have three environments. &nbsp;Really, you have six because you have a commerce and a Drupal environment for each&nbsp;‑‑ for each dev stage and prod, and that means things can be different in all of them, and you need to be able to know what's different when. &nbsp;</p>
+
+<p>So don't fail silently. &nbsp;Log everything. &nbsp;There's a useful trait, I believe it's the logger work channel trait? &nbsp;Where you can use any class and it injects the logger service for you, instead of having to do the whole dependence injection route. &nbsp;</p>
+
+<p>That&nbsp;‑‑ that's haul I have to say about&nbsp;‑‑ that's all I have to say about that. &nbsp;</p>
+
+<p>The next one is import and export. &nbsp;Don't do the two‑way sync, two systems manipulating the same data and expecting the other system to know about it. &nbsp;If Drupal is doing something with the cart and your commerce system is doing something with your cart, and you're expecting Drupal to know about what the commerce system is doing with the cart, you end up in a very cyclical&nbsp;‑‑ you don't know who actually owns the data and why they own it. &nbsp;Even though all the approaches I'm about to talk about are actually two‑way syncs, you never want to get into a situation where they're&nbsp;... &nbsp;</p>
+
+<p>Where both systems are acting independently of each other. &nbsp;You always want to think about as one system is acting. &nbsp;The next system is interpreting that action, and then the original system is reacting to the response. &nbsp;</p>
+
+<p>Never get into a situation where they're acting independently. &nbsp;</p>
+
+<p>The next approach is lazy load. &nbsp;</p>
+
+<p>So this is useful for data that you want to store in Drupal but you don't need it until you need it. &nbsp;Right? &nbsp;</p>
+
+<p>It's like, you don't need to load every user. &nbsp;You probably do not need to load every user into Drupal. &nbsp;You just need the users that are going to log into your system. &nbsp;</p>
+
+<p>So lazy load them. &nbsp;</p>
+
+<p>The same&nbsp;‑‑ coupons are another example. &nbsp;Drupal only needs to know about the ones that people are trying to apply and people are trying to use. &nbsp;</p>
+
+<p>So in general, if you can lazy load it, lazy load it. &nbsp;It's convenient. &nbsp;</p>
+
+<p>For this, the general approach is usually a storage override or subscribers. &nbsp;For users, this is, like, if you're using an X and raw authentication method, that's a standard lining for&nbsp;‑‑ [indistinct]&nbsp;‑‑ there's an external off module that handle linking or creating new users, registers users, all that good stuff, as well as bringing data over for the user. &nbsp;</p>
+
+<p>So use the external off module if you're using users. &nbsp;</p>
+
+<p>But for other entities, especially commerce entities, you will have to override the entity storage provider to make it lazy load based off the commerce platform data, instead of references the Drupal database. &nbsp;</p>
+
+<p>And that brings us to the next implementation tip. &nbsp;Make sure you can debug on production. &nbsp;Because you have data deploying randomly and not loading all of it at once so you can monitor it, if you have an issue, an environment, make sure you can debug on that environment without doing a deployment. &nbsp;Because there's really nothing worse than sitting on a call with the business owners. &nbsp;"We know this isn't working but I have to do a deployment to figure out why." &nbsp;Make sure you be enable debug on production. &nbsp;</p>
+
+<p>A good example is an API I've worked with recently. &nbsp;</p>
+
+<p>In order&nbsp;‑‑ when something failed on the API side, the response you got back was, essentially, such and such failed. &nbsp;And then turn on debugging to view more information. &nbsp;Which is great. &nbsp;Except for your own production, and debug's not turned on, because you want your site to be performance. &nbsp;</p>
+
+<p>And their answer to that is, well, send a debug parameter. &nbsp;In your&nbsp;‑‑ in your API call. &nbsp;And we'll send you everything back. &nbsp;</p>
+
+<p>That's also great. &nbsp;That's useful. &nbsp;Expect all your API calls are hard‑coded in your PHP classes, and you can't change that without doing a deployment. &nbsp;</p>
+
+<p>So what I did is, in that integration there's a debug submodule. &nbsp;When it's turned on, it injects that debug parameter to all the API calls that the integration makes. &nbsp;Even though our users will&nbsp;‑‑ will notice a performance impact when that's on, it allows me to debug production without doing a deployment and to get all the data I need to correct the issue without having to always take the performance impact and without having to do the deployment out to production. &nbsp;Make sure you know how you can turn on debugging without doing deployments. &nbsp;</p>
+
+<p>All right. &nbsp;The next method. &nbsp;On demand. &nbsp;</p>
+
+<p>So this is for&nbsp;‑‑ on demand could be called&nbsp;‑‑ this is really for data that Drupal has no need to know about, or no need to care about. &nbsp;</p>
+
+<p>So for order history, that's pretty obvious. &nbsp;There's no reason to load in all your past orders into the Drupal head. &nbsp;</p>
+
+<p>If you can write a custom block that does an API call out to your commerce platform, and just returns all the orders for that user. &nbsp;</p>
+
+<p>That's a whole bunch of data you don't have to worry about importing into Drupal. &nbsp;Do the query on demand and display in a block and be done with it. &nbsp;I've taken it a step further in. &nbsp;Checkout, the cart, once it transitions to the order, I have the opinion that Drupal should not care about that order ever. &nbsp;</p>
+
+<p>So even on the order confirmation page, all that data is pulled through a query from the commerce platform. &nbsp;Because that way, it's always accurate. &nbsp;It's one less failure point and one less integration point I have to care about. &nbsp;</p>
+
+<p>So even on order confirmation, just pull it all in. &nbsp;And there's things like shipping methods and inventory. &nbsp;Inventory is obvious in that the commerce platform maintains the inventory and that's a dynamic thing. &nbsp;If you have to display inventory status, you want to be fetching that as necessary, and not&nbsp;‑‑ not storing in Drupal, not letting Drupal determine that something is in stock or not. &nbsp;</p>
+
+<p>But having Drupal reference out to the commerce platform for the total, tell you that. &nbsp;</p>
+
+<p>And shipping methods are actually interesting example in that with a commerce system, there's integrations out to other systems like your shipping providers or your payment providers or taxes. &nbsp;</p>
+
+<p>And the question is, do you maintain separate integrations on the head, which is Drupal, and&nbsp;‑‑ or do you maintain integrations with Drupal as the head, and in the commerce platform as separate integrations, or are there end points available to tell you that shipping&nbsp;‑‑ what shipping methods are available for our cart? &nbsp;</p>
+
+<p>And the most recently I worked on, the shipping methods were available through the commerce platform. &nbsp;So I didn't have to maintain like a UPS or a FedEx integration. &nbsp;I just called out to the API to say, what shipping methods are available for this cart, and I got them back. &nbsp;Which is very convenient. &nbsp;</p>
+
+<p>But for payment methods, that doesn't work. &nbsp;For payment methods, you have to maintain two integrations. &nbsp;Because you have to collect the credit card information on the front end and tokenize it, and send that token out to the commerce platforms. &nbsp;Because you can never have that credit card hit your server. &nbsp;</p>
+
+<p>So this is one of those ones where depending on the platform and use, there might be anon demand one or you might have to write a separate integration and keep the two in sync, like for UPS or FedEx. &nbsp;And really, mostly for approach, mostly our custom blocks or event subscribers or just custom plugins within Drupal commerce. &nbsp;For, like, the shipped method one I wrote a custom shipping method plugin that queries out to the commerce platform. &nbsp;</p>
+
+<p>And it gets back the shipping methods, and Drupal commerce treats it as any other shipping method the same as FedEx or UPS and just displays it. &nbsp;</p>
+
+<p>And that brings us to the next implementation tip, which is, if you're loading it lazily or on demand, you should be able to delete it from Drupal. &nbsp;Drupal should not care about that data at all. &nbsp;</p>
+
+<p>And if you delete it, nothing bad should happen. &nbsp;It shouldn't delete thing on the remote system. &nbsp;It shouldn't just fail to load it or need be told that it exists. &nbsp;</p>
+
+<p>Integration should be able to tell, oh, I need to load this now that it's been requested, and it should be able to load it successfully without any prior knowledge that it existed, or without any prior data loading. &nbsp;</p>
+
+<p>Just keep that in mind. &nbsp;Don't get into the trap where you lazily&nbsp;‑‑ or you do an on demand load of your order history. &nbsp;But when you display the order details, you're reference Drupal product commerce entities. &nbsp;Because that's no longer decoupled. &nbsp;You're now tying your detail to the products in Drupal, and what if, like, you have an order that's three years old, and that product is no longer offered, and there's nothing to reference? &nbsp;</p>
+
+<p>Then you have an issue because you don't have data in Drupal that you need to display that order detail, even though you shouldn't need it if your query is correct. &nbsp;That's just one consideration. &nbsp;Make sure that if you're doing things lazily or on demand you're separating out concerns ask not tying the two together accidently. &nbsp;And last integration&nbsp;‑‑ second to last integration method is transactional. &nbsp;These are simply API calls where you send data out and you get a response. &nbsp;It's usually true or false or success or failure, or, you know, here's the tags or here's the price. &nbsp;These are simple. &nbsp;Happen all the time. &nbsp;User authentication, password, right or wrong. &nbsp;Checkout. &nbsp;</p>
+
+<p>Usually for checkout, the&nbsp;... &nbsp;the steps are validization step between cart and checkout to make sure you can enter checkout. &nbsp;And Drupal commerce handle all the checkout steps and collecting all of the information. &nbsp;And then after order review, doing a place transition from the Drupal system out to the remote system. &nbsp;</p>
+
+<p>And then, you know, was that successful or not, and do you need to&nbsp;‑‑ does the user need to collect more data. &nbsp;</p>
+
+<p>And then, you know, things like taxes. &nbsp;You send the order out, and you get the taxes back, and you add the adjustment to the Drupal commerce order and pricing for products, Drupal commerce has a great concept of resolvers, which are plugins. &nbsp;So they have a price resolver that uses Drupal plugins. &nbsp;If you want to do a prying system, you write a price resolver plugin that makes the API call out as needed. &nbsp;Any time you display a price as calculated, it displays that. Any time you do a calculated price in Drupal commerce it runs through the resolvers. &nbsp;And gets the price in the remote system. &nbsp;</p>
+
+<p>All right. &nbsp;That is transactional. &nbsp;</p>
+
+<p>And then synchronization. &nbsp;This is probably the most conflicted one, the two‑way sync that I said don't do. &nbsp;But it can't be avoided, and it's okay as long as you maintain that act, interpret, react, and not a cyclical act, react, act between both systems. &nbsp;For profile data, the commerce systems owns the data but Drupal at the head is responsible for collecting new information. &nbsp;So you have to import the data from the commerce system to Drupal, and then you have to return that&nbsp;... &nbsp;</p>
+
+<p>You have to import it to Drupal&nbsp;‑‑ you have to modify it, and send any updates out to the remote system. &nbsp;</p>
+
+<p>So even though that's&nbsp;‑‑ you know, import, export, it's a very direct&nbsp;‑‑ import it, present it, change it, export it. &nbsp;It's not&nbsp;‑‑ the commerce system changes something, Drupal knows about that change, user updates something, and then you have two changes to worry about. &nbsp;It's not that type of deal. &nbsp;</p>
+
+<p>And the cart's another one. &nbsp;If you're maintaining a Drupal cart, and a remote&nbsp;‑‑ well, if Drupal&nbsp;‑‑ if Drupal commerce is maintaining the presentation of the cart, and you have&nbsp;‑‑ the commerce system is maintaining the state of the cart, then what do you do, add to cart in Drupal, Drupal has to add the cart to your commerce platform to see if it was successful or not, and then act correctly. &nbsp;</p>
+
+<p>And that's keeping two carts in sync. &nbsp;</p>
+
+<p>Address book and payment methods, that's just data that you need to import. &nbsp;And then present during checkout. &nbsp;So the you've can use it. &nbsp;If they update it, you need to send the information out like profile data. &nbsp;</p>
+
+<p>Typically do with subscribes and&nbsp;‑‑ [indistinct]&nbsp;‑‑ hooks, and actions like presave, update, delete, that kind of stuff. &nbsp;</p>
+
+<p>And external entities. &nbsp;This one is once again a thought experiment. &nbsp;</p>
+
+<p>I haven't got a chance to implement it, but I think there's a strong use case for standard data, or data that is fairly standardized. &nbsp;And is never needed outside of an odd‑man situation. &nbsp;</p>
+
+<p>So that's for things like address book and payment methods where that data always has to be correct. &nbsp;</p>
+
+<p>It always has to be accurate. &nbsp;It always has to be available. &nbsp;</p>
+
+<p>But Drupal really has no need to know that information, because the only time you display it is on the user profile page or during checkout. &nbsp;</p>
+
+<p>And if Drupal doesn't need to know about it, why write an import process for it if you can override the storage handler and just import it as&nbsp;‑‑ to Drupal, as an internal entity that's really stored else where? &nbsp;</p>
+
+<p>This is an interesting one, where it's a complex solution that ultimately simplifies the other integrations, because you're not having to worry about import and export and API updates if you're writing directly out to your remote system. &nbsp;</p>
+
+<p>All right. &nbsp;That is all the integration approaches. &nbsp;I'm going to walk through kind of an sample in a product detail page, just to show you how many API calls you can&nbsp;‑‑ how many integration points you can really have on what seems like a simple interaction. &nbsp;</p>
+
+<p>So let's say that a user is on a PDP page and they decide to log in. &nbsp;They're going from anonymous to authenticated. &nbsp;</p>
+
+<p>The first one is, there's an SSO tool to authenticate user. &nbsp;Simple enough. &nbsp;</p>
+
+<p>Next, you load the profile data or the user data through synchronization, pulling the information out so that's available. &nbsp;But in if this user doesn't exist in Drupal yet, you have to do the lazy load to retrieve the information and then do the profile load. &nbsp;You have a lazy load in there for certain situations. &nbsp;</p>
+
+<p>And then you finally end up on the product detail page. &nbsp;Once you're there, you could&nbsp;‑‑ you're going to have a transactional call to price on your products on the page because now they're authenticated and you can't use the base price. &nbsp;You have to use their user pricing, if you have it. &nbsp;</p>
+
+<p>You're going to have a synchronization call for the cart state. &nbsp;What if that anonymous user had a cart, and the&nbsp;‑‑ what if the anonymous user had a cart, and then once they logged in, they already had a cart? &nbsp;How do you reconcile the two? &nbsp;Not only between the two carts but between the two calls still. &nbsp;If they hit "add to cart" you have to send the update out to the remote system to update that cart. &nbsp;If you're deploying inventory on the cart page, around the product detail page, that's going to be an on demand call to see if it's in stock, and if not, what do I do about it, how do I change the display of the page. &nbsp;</p>
+
+<p>And maybe&nbsp;‑‑ maybe that's because the anonymous user did not have a store selected, and once they logged in, they have a default store. &nbsp;Now you're doing inventory calls on this page. &nbsp;</p>
+
+<p>And then there's probably a product access check too. &nbsp;If you have additional B2B offerings or variations available to certain authentication users. &nbsp;</p>
+
+<p>Are those available now? &nbsp;That's a transactional call. &nbsp;</p>
+
+<p>So even though a user logging in and going to the same page they're already on can seem simple, there's a lot of data that can change once they log in. &nbsp;Like, most of these calls don't need to be made for the anonymous user. &nbsp;</p>
+
+<p>Actually&nbsp;... &nbsp;</p>
+
+<p>Let's walk through that. &nbsp;</p>
+
+<p>So for anonymous user, the product pricing call doesn't need to be made because you can store the price in Drupal commerce. &nbsp;There's no API call there. &nbsp;</p>
+
+<p>Cart state, you're still maintaining a cart state for the anonymous user if they have a cart. &nbsp;That one would still exist. &nbsp;</p>
+
+<p>Inventory depends what you're doing for the inventory, displaying the inventory for the anonymous user as well. &nbsp;This one probably exists. &nbsp;Product access, you can maintain the product access for an anonymous user in Drupal itself. &nbsp;It's the B2B uses that you want to make sure to capture in an API call. &nbsp;</p>
+
+<p>So really, we've cut out two to three calls, and&nbsp;‑‑ for an anonymous user, we might just be maintaining the state. &nbsp;And for an authenticated user, we might have to deal with all of these different integration points. &nbsp;</p>
+
+<p>So that's just kind of an example of what all could be going on, on a page. &nbsp;There's certainly more complex examples, like, what's going on with the cart page or the checkout page. &nbsp;</p>
+
+<p>This seemed like a good walk through. &nbsp;</p>
+
+<p>And a reminder, implementation tip #2. &nbsp;Respect data ownership. &nbsp;</p>
+
+<p>Even though it's tempting to customize your data, don't do it. &nbsp;Because each one of these blue clouds represents&nbsp;‑‑ if you make a data customization, by that I mean you get data from your remote system and you import it, but you change that value doing import or during the API call response, each one of these blue clouds represents a point where you have to maintain that customization or you potentially have to maintain that customization. &nbsp;</p>
+
+<p>Whereas if the data is correct, you don't have to worry about it because you know your getting the data correctly from the remote system. &nbsp;</p>
+
+<p>Keep in mind. &nbsp;Do not customize your data because there's so many integration points that you end up having to duplicate your customization all over the place and it becomes a mess to maintain. &nbsp;</p>
+
+<p>And with that, I am done. &nbsp;Have any questions? &nbsp;</p>
+
+<p>All right. &nbsp;I see there's some chat going. &nbsp;</p>
+
+<p>&gt;&gt; AUDIENCE MEMBER: &nbsp;So contextualize, my question there was actually about&nbsp;‑‑ about your remote entities. &nbsp;</p>
+
+<p>&gt;&gt; KYLE EINECKER: &nbsp;Yeah. &nbsp;All right. &nbsp;Kris. &nbsp;</p>
+
+<p>Sorry. &nbsp;I'm not seeing the question&nbsp;... &nbsp;</p>
+
+<p>&gt;&gt; AUDIENCE MEMBER: &nbsp;I think I'm the last one&nbsp;‑‑&nbsp;</p>
+
+<p>&gt;&gt; KYLE EINECKER: &nbsp;Here we go. &nbsp;All right. &nbsp;Can't you just do this as cached data locally with a web hook for invalidation, and then let it get re‑received from the source? &nbsp;Yeah. &nbsp;If your platform supports web hooks and you have the capability from the remote system out. &nbsp;Does that answer the question? &nbsp;</p>
+
+<p>&gt;&gt; AUDIENCE MEMBER: &nbsp;Yeah. &nbsp;I guess, like, I seen a lot of people try to do remote entities over the years with various levels of success. &nbsp;And so I was just&nbsp;‑‑ I was just kind of curious what your take on it was. &nbsp;I've also done similar things, where we&nbsp;‑‑ we don't even have an entity. &nbsp;We just do the API calls and cache&nbsp;‑‑ the render layer with appropriate tags. &nbsp;</p>
+
+<p>&gt;&gt; KYLE EINECKER: &nbsp;Yeah, I would&nbsp;‑‑&nbsp;</p>
+
+<p>&gt;&gt; AUDIENCE MEMBER: &nbsp;But you can't do views data or things like that. &nbsp;</p>
+
+<p>&gt;&gt; KYLE EINECKER: &nbsp;I would not want to do that with the current Drupal 8 implementation. &nbsp;That's why you need the entity in the first place, to make it easier to work with in Drupal commerce. &nbsp;Right now, I usually do, like, a cred operation where they import and export. &nbsp;It's annoying to maintain but it's simple than external entities. &nbsp;</p>
+
+<p>All right. &nbsp;</p>
+
+<p>Scrolling up. &nbsp;</p>
+
+<p>Looks like Matt around Benji's question. &nbsp;Networks are not always reliable, and you want to be able to recover from any failure state you run into. &nbsp;</p>
+
+<p>Migrated API. &nbsp;I touched on, Benji's. &nbsp;I'm not sure if you're happy with my answer. &nbsp;</p>
+
+<p>&gt;&gt; AUDIENCE MEMBER: &nbsp;I like getting your honest answer. &nbsp;</p>
+
+<p>&gt;&gt; KYLE EINECKER: &nbsp;I have tried to build a migrate import process, and I found it just wasn't maintainable for larger developers. &nbsp;It wasn't obvious. &nbsp;</p>
+
+<p>All right. &nbsp;If there's no other questions, I will remind you about&nbsp;... &nbsp;providing feedback&nbsp;‑‑&nbsp;</p>
+
+<p>&gt;&gt; AUDIENCE MEMBER: &nbsp;I have one more question for you, Kyle. &nbsp;In all of this, what was, like, the biggest challenge? &nbsp;Like, the biggest singular challenge that&nbsp;‑‑ or that thing that rears its head over and over again? &nbsp;</p>
+
+<p>&gt;&gt; KYLE EINECKER: &nbsp;Um&nbsp;... &nbsp;caching. &nbsp;</p>
+
+<p>So&nbsp;‑‑ because to minimize&nbsp;‑‑ was it caching? &nbsp;</p>
+
+<p>I think&nbsp;... &nbsp;yeah. &nbsp;It's either caching or we had some problems with the check&nbsp;‑‑ I had some problems with checkout APIs. &nbsp;</p>
+
+<p>So caching is mostly around just making sure you're validating pretty well for, like, pricing. &nbsp;In a system where you're importing the products and resolving the price and cashing that so you don't have to resolve it every time the page loads, invalidate it correctly. &nbsp;When the platform doesn't have the web hooks it send out validation events, touch make sure that your cache is short enough to catch any changes, and also, any actions that the user takes on the front end that should invalidate caches actually does. &nbsp;</p>
+
+<p>&gt;&gt; AUDIENCE MEMBER: &nbsp;Thanks. &nbsp;</p>
+
+<p>&gt;&gt; KYLE EINECKER: &nbsp;All right. &nbsp;I see Kathryn posted the link to feedback. &nbsp;That would be much appreciated. &nbsp;</p>
+
+<p>And reminder about categorize day tomorrow, 10 a.m. to 4 p.m. Central. &nbsp;There will be a training from 10 a.m. to noon. &nbsp;If you haven't contributed, I highly encourage it. &nbsp;I will be there to help do commerce work for Matt. &nbsp;There's a time, I'm sure it will be a bit different virtually, but we will see how it goes.</p>
+</div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+
+</div>
+  </section>
+
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-aaa082cca3c1d13e37179bec8af354b67c6977ebfa26b2dd4fd71afa468beed7">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/bounteous.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2019-11/Bounteous_indigo_large.png" width="1676" height="279" alt="Bounteous logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/clarity-partners.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2020-02/CFDFAA23-5C59-4C07-9C66-CAFFE0CF3854.png" width="1534" height="387" alt="Clarity Partners logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/palantirnet.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2020-02/palantirnet-logo.png" width="1200" height="198" alt="Palantir.net logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/pantheon.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2020-02/pantheon-logo-tagline-black.png" width="1200" height="370" alt="Pantheon logo" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-2019-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#f79e999198b79a9e9394969a87d9988590"><span class="__cf_email__" data-cfemail="2f464149406f42464b4c4e425f01405d48">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-2019-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-2019-footer-menu" id="block-hatter-2019-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-2019-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/6406","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"ajaxTrustedUrl":{"form_action_p_pvdeGsVG5zNF_XLGPTvYSKCf43t8qZYSwcfZl2uzM":true},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_sul8js76f3THBVtv8nspP93BoCHSgntyTCisS6lai4M.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter_2019&amp;include=eJx1ykEKgDAMBdELaavuPI2k-o1K2kITFG_vRkQEVwOP4ZxZMFAiOW0d1fMHqoXMUIauaXvPkgNJvT0aSPHSA2HOJfq7DoKIZG6C0SrqlHb8ThGqxLgAGZ04Cw"></script>
+
+  </body>
+</html>

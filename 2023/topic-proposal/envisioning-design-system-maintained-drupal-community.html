@@ -1,0 +1,735 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="The Generic Drupal Web Components project aims to create a library of web components that are accessible, framework agnostic, possible to style, and easy to use with data provided by Drupal. In support of the Decoupled Menus initiative, an initial menu component was created as a proof of concept. This talk will focus on the lessons learned creating this menu component, and how this model could be followed to create a full design system that could be maintained by the Drupal community at large. Topics will include:" />
+<link rel="canonical" href="envisioning-design-system-maintained-drupal-community.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Envisioning a Design System Maintained by the Drupal Community | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Envisioning a Design System Maintained by the Drupal Community | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_gt5LiAM1qLGUH5e845uOb7R_lJ9dUwTXmnhGDR2yY20.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OhDAIhC9U2yMZakdtAmJKV9c9_Tb-PPkCAx8ZZmAyO0IkgxsuLTCjCfbMi6bGtKCpIsT5BzdTrShhYo3E3WD2bITWqF9nh1XIZbvlBO0hEakfMziFAlt1sbyhO2E7wW7hrF40fRh.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_mK2of_t7UFymkfbTHeA-kHdMPWzqc3DZQCYtX-tC0BA.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OhDAIhC9U2yMZakdtAmJKV9c9_Tb-PPkCAx8ZZmAyO0IkgxsuLTCjCfbMi6bGtKCpIsT5BzdTrShhYo3E3WD2bITWqF9nh1XIZbvlBO0hEakfMziFAlt1sbyhO2E7wW7hrF40fRh.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OhDAIhC9U2yMZakdtAmJKV9c9_Tb-PPkCAx8ZZmAyO0IkgxsuLTCjCfbMi6bGtKCpIsT5BzdTrShhYo3E3WD2bITWqF9nh1XIZbvlBO0hEakfMziFAlt1sbyhO2E7wW7hrF40fRh.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OhDAIhC9U2yMZakdtAmJKV9c9_Tb-PPkCAx8ZZmAyO0IkgxsuLTCjCfbMi6bGtKCpIsT5BzdTrShhYo3E3WD2bITWqF9nh1XIZbvlBO0hEakfMziFAlt1sbyhO2E7wW7hrF40fRh.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+<link rel="stylesheet" media="all" href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.css" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="envisioning-design-system-maintained-drupal-community.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-midcamp2023navigation-menu" id="block-midcamp2023navigation" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-midcamp2023navigation-menu">MidCamp 2023 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" data-drupal-link-system-path="node/6857">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--by-the-numbers">
+        <a href="../../2020/about/by-the-numbers.html" data-drupal-link-system-path="node/6252">By the Numbers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--venue">
+        <a href="../../about/venue.html" title="Venue" data-drupal-link-system-path="node/7048">Venue</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../speaker-resources.html" data-drupal-link-system-path="node/345">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--health--safety">
+        <a href="../health-safety.html" data-drupal-link-system-path="node/6973">Health &amp; Safety</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../about/lunch-options.html" data-drupal-link-system-path="node/6970">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--volunteer-opportunities">
+        <a href="../article/volunteer-help-midcamp.html" data-drupal-link-system-path="node/6975">Volunteer Opportunities</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" data-drupal-link-system-path="2023/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--travel">
+        <a href="../about/travel.html" data-drupal-link-system-path="node/6865">Travel</a>
+            </li>
+          <li class="primary-nav__sublist-item item--accommodations">
+        <a href="../about/accommodations.html" data-drupal-link-system-path="node/6948">Accommodations</a>
+            </li>
+          <li class="primary-nav__sublist-item item--registration">
+        <a href="../register.html" data-drupal-link-system-path="node/6977">Registration</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" data-drupal-link-system-path="node/6860">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--sponsor">
+        <a href="../sponsor-midcamp.html" data-drupal-link-system-path="node/6858">Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" data-drupal-link-system-path="node/6859">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--hybrid-sessions">
+        <a href="../schedule/hybrid.html" data-drupal-link-system-path="node/7053">Hybrid Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-wed">
+        <a href="../schedule/wednesday.html" data-drupal-link-system-path="2023/schedule/wednesday">Sessions (Wed)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-thu">
+        <a href="../schedule/thursday.html" data-drupal-link-system-path="2023/schedule/thursday">Sessions (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--birds-of-a-feather-bofs">
+        <a href="../schedule/bofs.html" data-drupal-link-system-path="node/7054">Birds of a Feather (BoFs)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--contribution-day-fri">
+        <a href="../schedule/friday.html" data-drupal-link-system-path="2023/schedule/friday">Contribution Day (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--topic-tracks">
+        <a href="../../topic-tracks.html" data-drupal-link-system-path="node/10">Topic Tracks</a>
+            </li>
+          <li class="primary-nav__sublist-item item--all-sessions">
+        <a href="../schedule/sessions.html" data-drupal-link-system-path="2023/schedule/sessions">All Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--session-submission">
+        <a href="../submit-session.html" data-drupal-link-system-path="node/14">Session Submission</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2023/news">News</a>
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../../jobs.html" data-drupal-link-system-path="jobs">Jobs</a>
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2023.html" hreflang="en">MidCamp 2023</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-midcamp2023schedulenav" class="block block-block-content block-block-contente066b47a-a80d-432a-8edd-6c60b28b7c95">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><div class="schedule__nav">
+<p><a href="../schedule/hybrid.html">Hybrid</a>&nbsp;|&nbsp;<a href="../schedule/wednesday.html">Wednesday</a> | <a href="../schedule/thursday.html">Thursday</a> | <a href="../schedule/friday.html">Friday</a></p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Envisioning a Design System Maintained by the Drupal Community</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="6924" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2023-04-26T16:00:00Z" class="datetime">Wednesday, 11:00 am CDT</time>
+ - <time datetime="2023-04-26T17:00:00Z" class="datetime">Wednesday, 12:00 pm CDT</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-81" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-name field--type-string field--label-hidden field__item">Room 314A</div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>The Generic Drupal Web Components project aims to create a library of web components that are accessible, framework agnostic, possible to style, and easy to use with data provided by Drupal. In support of the Decoupled Menus initiative, an initial menu component was created as a proof of concept. This talk will focus on the lessons learned creating this menu component, and how this model could be followed to create a full design system that could be maintained by the Drupal community at large. Topics will include:</p>
+
+<ul>
+	<li>How using web components allows us to offer a single set of components that can be used in a variety of front ends, from popular JavaScript frameworks like React, to Drupal’s Twig based templating engine.</li>
+	<li>Structuring components to allow a variety of styling options, while still taking advantage of scoped styles.</li>
+	<li>State management and approaches to handling data from a wide variety of data sources.</li>
+	<li>Thinking ahead to the possible impact of a community driven design system.</li>
+	<li>Learning from similar efforts within the Drupal ecosystem.</li>
+	<li>Keys to success for this project, and how you can help.</li>
+</ul></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/kARRIS_9GyA?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Brian Perry</h4>
+
+      Founding Engineer
+
+
+          @
+              <a href="https://www.actual.ai/">Actual AI</a>
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p>Brian is a versatile developer with experience building complex, interactive web applications in support of large-scale localized sites. Recently he has focused his efforts on evolving Drupal front-end development practices, decoupled Drupal, and style guide development techniques and has spoken on the topic at various Drupal events. Brian is a Drupal 7 and Drupal 8 Acquia Certified Grand Master and loves all things Nintendo.</p>
+</div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2018-12/profile_crop.jpg%3Fitok=oEUbNaMX" width="220" height="220" alt="Brian Perry" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Community</div>
+          <div class="field__item">Front-End</div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-feedback-form field--type-webform field--label-above">
+    <div class="field__label">Feedback Form</div>
+              <div class="field__item"><form class="webform-submission-form webform-submission-add-form webform-submission-session-feedback-form webform-submission-session-feedback-add-form webform-submission-session-feedback-node-6924-form webform-submission-session-feedback-node-6924-add-form" data-drupal-selector="webform-submission-session-feedback-node-6924-add-form" action="envisioning-design-system-maintained-drupal-community.html" method="post" id="webform-submission-session-feedback-node-6924-add-form" accept-charset="UTF-8">
+  
+    <div data-drupal-selector="edit-0" class="webform-message js-webform-message js-form-wrapper form-wrapper" id="edit-0"><div data-drupal-messages>
+    <div role="contentinfo" aria-label="Status message" class="messages messages--status">
+                  <h2 class="visually-hidden">Status message</h2>
+                    Sorry...This form is closed to new submissions.
+            </div>
+    </div>
+</div>
+<input autocomplete="off" data-drupal-selector="form-ofrx3sjfet10i-nxctpz8mphghucrqho-ln9-klxmp4" type="hidden" name="form_build_id" value="form-ofRX3sJfET10i-nxCtPZ8mpHGHuCrqhO-Ln9_klXMP4" />
+<input data-drupal-selector="edit-webform-submission-session-feedback-node-6924-add-form" type="hidden" name="form_id" value="webform_submission_session_feedback_node_6924_add_form" />
+<div class="url-textfield js-form-wrapper form-wrapper" style="display: none !important;"><div class="js-form-item form-item js-form-type-textfield form-type-textfield js-form-item-url form-item-url">
+      <label for="edit-url">Leave this field blank</label>
+        <input autocomplete="off" data-drupal-selector="edit-url" type="text" id="edit-url" name="url" value="" size="20" maxlength="128" class="form-text" />
+
+        </div>
+</div>
+
+
+  
+</form>
+</div>
+          </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>This time. And this is envisioning a design system maintained by the Drupal community. I'm Brian Perry. As I mentioned before, there's a link, a Bitly link to these slides. If you want to check them out or save them for later. Yeah, Brian Perry, I am a staff software engineer at Pantheon. I am a former initiative coordinator for Drupal Decoupled Menus Initiative. That initiative is complete. I live in the Chicago suburbs, so I had a really nice, slow, almost 90-minute drive in this morning. It was great. I enjoy Drupal, JavaScript, and all things Nintendo. Very jealous of seeing a recent trip to the Super Nintendo world. In the world of video games, I recently finished judging by the (UNKNOWN) here, Metroid Prime remastered for Switch, which is amazing and it's my favorite game of all time. And the remaster was awesome. Waiting for the new Zelda game in a couple of weeks. That'll be the only thing I play for a while. And the other completely random video game-related suggestion I have is there is a documentary from this studio called Double Fine who made like Psychonauts and Broken Age.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>It is a 20-hour documentary on the production of one of their games. And it's also really interesting from the perspective of just developing software. So cool stuff. I also own the domain web components.wtf. Currently not doing anything with it, but seemed relevant for some of the stuff we'll be talking about today. I am on the internet in a variety of places and would gladly internet with you. As I mentioned, I work for Pantheon. Main thing that I wanna mention is that not all, but many of the things that we will be talking about Pantheon has sponsored some of the open source work for, so I thank them for that. Also, I'm focused on their Frontend Sites project, which can be used for decoupled hosting for Drupal or WordPress, so we'd love to talk more about that. And then for no particular reason after that slide as an individual, I would just like to mention that I don't support hatred. It's weird that I have to say that. Perhaps you could say that I don't have the right to say that, but as an individual, that's my stance.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And if you wanna talk more about this or are confused by this, I would be happy to talk more. So back to the task at hand, the title of this talk is Envisioning a Design system maintained by the Drupal Community. So we'll be asking a number of what-if questions and envisioning a handful of different things here. So the first thing, these are somewhat leading questions, but what if there were a set of Drupal-friendly components that anybody could use and you could use them in Twig and you can use the same components with any JavaScript framework and it was easy to extend them, contribute new ones, change them. That obviously would be wonderful from my perspective. And what if web components made this possible? So here when we're talking about web components, we're not necessarily talking about the JavaScript frameworks like React or Vue. When you explain web components kind of at this level, you've probably already lost. But here we're talking about web components as a set of web platform APIs, three main pieces, custom elements, the Shadow DOM and HTML templates, and we'll touch on all of those things along the way here.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And since this is these are core Web platform APIs, they're not tied to a particular framework. So let's just jump in and look at an example of a Web component. So this is a card component from a project called Generic Drupal Web Components that will be seeing some examples of today. But on the right-hand side, you can see it's just a card, it has an image headline, body text, a link, a very common component. In this JavaScript file here we're importing a JavaScript file and then also a style sheet. And then if we just look at the markup. So this is a code sandbox, just an HTML document in this case. So in the markup, you'll see now we have this GDWC-card element that we can just use in our markup, and we're also passing in a few different properties like the image source headline, body text and etc. And if we change those things, the component re-renders. The other interesting thing worth noting here is that below the card, there's just a traditional paragraph and you'll notice that the card component has its own styling, but the paragraph below it has just the styling of the document, which in this case is nothing.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So it's just default browser styling. But those things don't, in this case, cross paths. So with that simple HTML example, let's look at a few... The same component in a few different contexts. So this is a screenshot of the same card used as a teaser view for content in a Olivero subtheme. It looks exactly the same, except in this case content from Drupal is coming through. And here's a quick look at what has to happen behind the scenes for that. So you need to create a library to import the stylesheet and JavaScript file for the component. And then in the Node article teaser, that HTML twig templates, you basically just can use that custom element like any other markup that you would in your twig template. And you can still do all of the things that you're used to doing in Twig. So we're using attributes. You can use twig filters and things like that and reference content from Drupal. An exciting kind of future Drupal development. Anybody? I don't know if anybody is familiar with the work that's been done recently around single directory components, but that is something that I believe landed in Drupal ten one.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And without going too deep into it, that feature will actually make this even easier. If you just put your CSS JavaScript and your template in one directory, Drupal will just pick that up and make a component out of it, which is really exciting. So this is yet another context. This is the same component used in a JavaScript framework, in this case, Vue. So if we look at our Vue file here, there is a template up top. We're using the same custom element this time statically passing in some values. There's also a completely unrelated component there. And then we're essentially doing the same thing, importing our JavaScript and importing our stylesheets. And again, the card looks the same. So seeing that one web component used in a few different contexts, I definitely think there are some pros to using web components like this. So one, as I've already touched on, is that there are core Web APIs. The different frameworks all have their slightly different APIs, slightly different takes on things.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Some of their APIs change over time. Like for example, a couple of years ago at this point, React introduced Hocks, which kind of changed how everybody approached building components in React. But this is just something that's part of the browser and the web platform now. There is wide browser support for this. That wasn't always the case, but now in all evergreen browsers, especially now that IE11 is dead and we can all dance on its crave. It supported, yeah, in all evergreen browsers. And then there's also the concept of the shadow DOM, which we'll dig into via a few examples, but that really does allow you to create a component that is truly encapsulated like we saw, we saw that same card without really doing much of anything. It looked the same in all the different contexts. We used it. Part of that is the shadow DOM, which is its own kind of allowing components to have its own isolated DOM outside of the global DOM and document. Yeah. And all that really does give you a component that you can write once and use everywhere, even across JavaScript frameworks, which is awesome.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>It's just a new HTML thing you can use. However, not without some potential cons. So partially because this is a core browser technology, the developer ergonomics, in my opinion, are a little rough without using a supporting library. So you can write web components using just vanilla JavaScript without bundling anything. But I find that it's more pleasant using a library like Lit. I kind of lit a Google project. I kind of associate it 1 to 1 with building web components, but it adds some things like templating that I've just become used to as a front-end developer, helps you avoid some boilerplate handles, some common things about properties and attributes updating just makes the whole deal more pleasant. Styling can potentially be unintuitive depending on how you use the different features of web components. And it's really just because they introduce features about scoping and encapsulation that were not the way we thought about styling in CSS traditionally. All CSS usually is part of just the global document, so can conflict in different places.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>You have to do certain things to scope using classes or specificity. And this definitely changes the game, which requires you to think about things a little bit differently. You know, kind of touched on this in the first one, but because this is a core web technology and is not a framework, it doesn't necessarily have some of the developer experience things that you'd have in React like it doesn't have opinions about bundling your code or anything like that. Increasingly, bundling is not necessary with web components, and I hope that continues. But regardless. And then also this is these components are JavaScript at the end of the day. So for them to be fully interactive and mounted on the page, JavaScript needs to load, which means that there are potentially some server-side rendering issues. That is something that is also improving with the web component spec, but something to be mindful of and we'll talk about that a little bit towards the end. So but I think that on an infinite time scale, these types of browser native components are gonna be an important part of building for the web.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Using components is not something that's going to go away anytime soon. The thing that as I learned about web components I had my doubts about is like if this particular approach to it is the thing that is going to survive. I do think that it's gonna continue to evolve, but I am more and more confident that this is the thing that is going to represent components in general browser tech. However, on a much shorter time scale, I think that all of us will be running into web components either in our actual browsing of the Internet or if we're building on the front end more and more. So your bundle, if you pull down a library from NPM, maybe you're looking for a component even to use in a React project. It may be that behind the scenes it's actually a web component so that it can be used with different frameworks, but it does the thing that you wanted to do and you don't really have to care one way or the other. But I think that over time, more and more of the things that you work with, even if you're not explicitly seeking them out, we'll use this technology.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>There's a lot more to talk about related to Web components. I gave a talk in the past at a couple days that was just a deeper dive on web components. There's a link to that if you wanna check that out. There's been other great talks in the community, Andy at Lullabot at New England Drupal camp, I believe, gave another great talk on the topic. So if you're interested, check that out. So going back to more of a actual use case here, what if we made a menu web component for Drupal? So I mentioned previously that I was involved with the decoupled Menus initiative and part of that project was building a new endpoint that also is gonnam be added in Drupal ten one to expose menu data from Drupal in a way that is easier to use on the front end. But another thing that we did is that at a past DrupalCon, we got a bunch of front-end developers together and did kind of like a hackathon thing and encouraged everybody to try to build a bunch of front-end components that consume data from this new endpoint.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So what I wanted to work on, I was just starting to learn about web components. I wanted to see what would it be like if I built a web component to achieve this. So this is that component you'll see on the right-hand side, there's the menu. The styling is intentionally stripped down, which we'll talk about a little bit more in a sec. But, we can expand and collapse the menu within the mobile view because the viewport is a little smaller here, but we can expand and collapse elements. And then if we look at the markup, similar thing where there is this GDWC menu custom element and we can pass in data. So the branding is the title and the header. Perhaps more interesting is that base URL there. So that is the root of a Drupal instance with this menu endpoint enabled. So that's what allows this component to go reach out to Drupal and get the menu data, parse it and display it like this. There's also the menu ID that's the name of the menu. So if we change that to the account menu, you'll see that it gets data from Drupal again.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Since we're not authenticated, the account menu just has a login link, but we'll change it back to mean so it has a little more stuff. And then also there is this theme attribute as well. So that had... that allows some basic ways to affect the look and feel of this component. So right now it's the horizontal theme, but we can remove it. And if we remove that theme, it just has very light styling to make the expand and collapse possible. But alternatively, there also is a... oops that was the wrong one, a theme of Unstyled. And if we do that, it literally just is an unordered list whose styling you can override. So as kind of a first step, dipping toes into the water there, that seemed like a really interesting use of web components, something that could be useful for Drupal projects. So within that generic Drupal Web components project, we immediately were like, OK, how can we build more of these things? But found pretty quickly that some of the things that we did in that initial proof of concept component proved kind of hard to scale.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So the first thing we touched on a little bit with the theming, but what if we wanted to restyle these components? The examples that we'll look at here are all in the storybook for this project, which is on the Drupal GitLab pages at that link, if you ever want to play around with them. But we'll also just open it up here. Alright. OK. Yes. We're looking back at the menu component again that we saw there. And here we were definitely exploring with web components and some of the things that make their styling different, like how could we create a component that people could adapt to the look and feel of their site? So we already talked about the different theme attributes, but there are a handful of other ways that you can affect the styling from the outside. So first off, in this component, we're using the shadow DOM, which means that the styles of this component are scoped to just that component. So there are some exceptions to this, but the basic idea is that styles don't come in and they don't go out beyond this component.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So there are some ways that you can reach in and allow that outside styling to happen. This first one is the idea of a shadow part, which is a new CSS selector, so you can explicitly define a part in the markup for your component and then do something like this part menu level selector here. So there's a menu level and a menu item, and that is what allows us to override either a full section of the menu or an individual menu item to make it ugly pink and dotted like we have there. But basically, you can using that selector if you expose that style it however you want from outside of the component. There also is the concept of slots in web components. So that is basically a place where you can put markup. All web components have a default slot, but also you can create name slots as well that might have a specific purpose or a specific landing point in your markup. So there is a slot for the branding here which essentially allows you to override the entire markup of the header, pass in whatever markup you want.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>That markup is markup from the traditional DOM or light DOM. So it means that you can also override the styling of that from outside of the component. So that's another way into it. And without getting too deep into this, web, components are JavaScript classes. So assuming that the code allows this, it's not like a private class or something. You can also extend the class and override it however you want. You can change the render method to completely change the markup, override the styling completely. So that's a pretty big hammer. But you also have a lot of control there as well. And a couple last things. So another option is using CSS variables or CSS custom properties. So I mentioned that in general the rule is things don't come in and things don't come out. The big exception to that are inherited properties in your CSS. So those do go through the shadow DOM They do cascade down from the rest of your document. So for example, things like colors or font styles will do that. But another thing that is inherited are CSS variables.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So you can also set define particular CSS variables in your component that are honored. So like we have one to set the font family here and that allows you to set that value either at the component itself or higher up in the document and have that cascade down. So you could share variables across these components and the rest of your document to do things like use the same set of colors or spacing or something like that. And then the other last thing, which we didn't do a ton of this, but you can also just use classes in your markup as well. So you can define a class and then use the existence of that class in your styles to effect how things look. So obviously, that is a lot. It's many, many options. If you're using this new kind of scoped styling and for a lot of them, it does seem to put a lot of responsibility on the person who's consuming and using the component. And all of them require introducing some particular styling hook or API. So we talked about a lot of them custom properties, classes, shadow parts, and slots.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>But the thing that we gravitated towards and I'm seeing a lot of similar web component libraries also do is using CSS custom properties. So, they are inherited and do cascade into the shadow DOM. But the biggest thing from my perspective is that it really does provide a level playing field for the entire DOM. So like I said, you could set it a variable for a particular component and just make it blue or whatever, but you could instead set those at the root of the document and it would be used by anything on that document, including your web components that direct access. But still, you do have to kind of create a system for this and build those things in to allow that level of control. And then one other thing that we ran into while trying to develop a system like this for these components is this project open props and definitely some personal opinion here. But I think of open props as kind of Tailwind, just the good parts. The reason for that is I definitely understand. So Tailwind is a CSS library that uses atomic classes, so they use a lot of classes in your markup to define how things look and feel and not write things in a CSS file.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>I understand how that is really useful to developers and how that might help with productivity. For me because I learned how to style things through CSS, it's just not the way my brain works, so it actually slows me down at the moment. So that's why I'm not a huge fan of that particular approach. But the thing that I do think is a really amazing part of Tailwind is its set of design tokens, like its spacing scales and its color variables, and providing a really well-defined system for those things is really amazing. So open props actually is just focused on that piece of the puzzle, a set of CSS variables that you can use anywhere in your application and your styling. And it has things like sets of colors, gradients, spacing scales, animations, media queries, all kinds of wonderful stuff that you can just use to rather than having to invent a system like this, yeah, you can follow. So yeah, I already talked about a lot of this, but it also does have essentially a default set of styles, like a reset style sheet, and it can be scoped to either the main DOM or the shadow DOM for web components, which actually was a feature that they added by our request, which was awesome.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And then thinking of a component library like the project that we've been dipping in and out of here. By adapting this, it allows us to have a consistent way to make those theme controls available to a variety of different components. So if we look back at the card component here, we can see like what that actually means. So here's our card. Similar to what we saw before. That's what it looks like by default. But in Storybook, we have essentially all of the variables that this library now recognizes as controls here. So we can actually pretty quickly really change how this thing looks so we can change the font family. We can change the heading text here. And then let's see, we can make the background, we can pretty quickly get into some kind of ugly things that could be worse. But we can add padding to this. That's maybe too much padding a little bit better. Round out the corners of the card. Give it a drop shadow etc. So by allowing these components to kind of hook into that set of variables, you can use them.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And again, it could be this here is at the level of the component. But if you wanted to say that all of your headings are that color, you could set that to the document and it would cascade down to anything in the document that recognizes it and all of these web components. So really can kind of drastically change the look and feel here. And if we just clear it out, goes back to what it was before. So, to be able to develop a library of components like this that you want to be able to have a consistent look and feel and match some other application really helpful. OK. And yeah, this is just one other example in context that shows how this can be useful a little bit. This is our View app again that we saw before. Depending on how front-end detail-oriented you are, you may notice that the font stack is a little bit different between the card and the rest of the app, and depending on your personality, that might drive you insane. But using that variable, it actually makes it really easy again, to set it at the root and have it cascade down so we can briefly break the whole application, but set the font family and just copy the font stack here.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And then you'll see that that just cascades right into the component as well. And it matches a lot better. So back to some more what-ifs. So thinking again about components that can also work well with Drupal, either in a twig template or outside of a twig template and a decoupled application. What if the components in this library could work with any data but optionally knew a few things about Drupal? So to explore that, we're gonna look at this link component. And to get this out of the way up front, creating a custom element for a link on its own is not very useful. You could just use the link element. So but we do have that. We have a link here that has all of the properties on a regular link href, title etc. But where this gets a little bit more interesting is if you think about a link here in a decoupled application that is sourcing data from Drupal. For example, if you're using JSON API, the data that you get back for a link field is not something that you can just use to immediately print out a link.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So you'll have to do a little bit to get the right data from that object. And then also in Drupal links, there are still some Drupal-specific things like there is I can't remember if this. Yeah, this does have an example of it. So in this data object here, you'll see that there's that internal prefix for internal links and outside of the context of Drupal that actually doesn't really mean anything. So what was added to this link component is the data property here. So you can just pass in the object. In this case, it's the data for a link object, link field in Drupal, and rather than having to specify those properties individual individually, it's going to look at that data object and use it to render a link. So that's the case where having a link element that knows a little bit about Drupal can save you some of that processing and extra work there. So looking just a little bit more closely at how that actually works in this component. So in the render method for the component here, we just check to see if that data attribute exists.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And if it does, we run this process data function, and then when we render the markup, it is just a link element, but we just use the values that are set within the component. So this is the actual process data function and it doesn't do a whole lot but just does a little bit of processing. So if there is a URI, it strips out the Drupal-specific things, so it can give you a link that would actually make sense outside of Drupal. And then for something like the title, if that is in the link object, it just sets that property in the web component. Again, so you don't necessarily have to. And so getting into the data there, that also kind of gets a little bit into just more thinking about a decoupled application of some kind but managing data from Drupal across a series of components. So yeah, what if we wanted to manage our application state across multiple components? So we're looking back here at the menu component that we saw before. And one of the interesting things that that does is you can pass in that base URL and it uses that to actually go talk to Drupal, get the data that it needs, and render out the menu hierarchy, which is nice.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>This is a little bit of the detail of what is actually happening behind the scenes. So when the custom element mounts, it runs this fetch data method and takes in the base URL and also the menu ID, the machine name, and it uses that to construct the endpoint that it should talk to. And then it just uses fetch to go talk to Drupal, get the data back. There's some lite error handling and then it parses the results into a hierarchy that can be more easily rendered in the component. So, again, not a ton of code, but nice that the component can handle that for you. But if you start to think outside of just that one component, it doesn't really scale. So if we think about our card from before. For a card, if you have one card that could be one fetch card ten cards, it's ten, you have 100 cards, or an infinite scroll, you're potentially running into some problems. So the solution for that is you want to take the data that you get back from Drupal and store it at some higher level that these components can share.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>But how do the components in this library that their intent is to make it as easy to work with Drupal as possible? Like how could they consistently do that rather than embedding that sort of logic into the component like we did for the menu? So at the time that we were trying to solve that problem, there really weren't a lot of solutions for libraries to talk to Drupal APIs or anything with opinions on managing application state like this. Since then there have been some other similar solutions that have been developed in parallel with this library. But we built something called Drupal States. And so the idea with Drupal State, it's it's a node package that is framework agnostic and universal, so you can use it on the server and on the client and it will talk to JSON API and it will pull data from JSON API. But then for all future requests it will just get it from a local data store so it can cut down on the API request that you need to make back to Drupal. And it also deserializes and kind of flattens out the structure of the response.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>If you have worked with JSON API, there still is a little bit of Drupal that kind of comes through some things are under like an attributes object. You have to traverse things a little bit if you have reference entities. So this simplifies that a little bit. A lot more about this library. The decisions that were made and kind of how it was built in a past DrupalCon talk if you're interested. But for the sake of this, we'll just look at a quick example of what this actually looks like in practice. So here in our JavaScript file, we're importing Drupal State and then that allows us to create an instance of that's probably a little hard to see with the like. Sorry about that, but an instance of the Drupal state that is our store and we again pass in the base of our Drupal endpoint. It uses JSON API as a prefix by default, but you can also pass in a value for that. And then with the store you can do things like this, await store.getObject. So that just gets a particular object from JSON API and then specify the object name.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So in this case it's node recipe. So what that'll do is it'll make a request out to JSON API and get all of the recipe data back and also store that in our local data store. So if later on we needed to get one particular recipe based on its ID, we can do the same get object call here, provide an ID, But what the library does is it checks a local state first. It says, "Oh, I already have a recipe with that ID," a recipe object with that ID, and I'll just return that rather than talking to Drupal. Saving you some API requests. And again, you can see the response on the right-hand side, which is definitely a little bit more flat, especially if you're familiar with what you get out of JSON API. So that brings us to, how could we use that within a library like this? So, kind of pushing a little bit there. We asked what if we created a Web component itself that could actually source data from Drupal. So this is kind of what that little experiment looks like. We added two additional components a store and a provider.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So the store basically is an interface to the Drupal State store that we saw before. It has a lot of the same properties you can pass in your API base, a prefix, a language, and then that is where the data is stored. It handles going out and talking to JSON API and then within the store you can have one or more providers and those essentially are an interface to that get object called we saw. So it lets you go get specific pieces of data from JSON API. So we have object name in this case an ID for a particular recipe. You can also pass along parameters that JSON API recognizes. So you can include additional data, sort things like that. And then what that allows you is that... so inside of the provider that you can just use an HTML template. It might be a little hard to see, but just a template element. And inside of that, you can use any markup. So it could be custom elements. We see here we have a card component, but it also can be just any regular markup. So we have just some static markup there for the template.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And then also, as you'll see in here, you can also reference any of the data that comes back to that provider. So we can reference the summary field to spit out the summary for the recipe. And our headline right now is static, but we can use the double curly braces, kind of a twig-friendly type thing, and reference the title field here and now we see the actual title of the recipe. And a few other things that this can do. I'll actually remove this static markup for now, but so if it gets a single result back, it'll spit out the template. If we remove the ID here to get all recipes, if multiple results come back, it iterates over that template for every result. So you see here, here are all of our recipes. And then because this template is an HTML template, we can do anything we can do with HTML, including adding a style element here. So we add a few lines of code to style this as a grid using CSS grid. And then because this system recognizes those CSS custom properties, we can also set a few of those to tweak the styles of the cards themselves.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So, that was a whole lot in just in code to be able to get a set of data back just in markup here to be able to display a grid of cards. So, there's a lot of ways that a concept like this could be shared across components. But it seemed to be an interesting way to be able to use this technology to share data from Drupal across a whole system of components. Alright, so we're just about wrapping up. I know that we should have time for a few questions, but also I know that we're keeping everybody away from the school cafeteria. But so given these experiments, kind of what's next for a project like this. Speaking completely honestly, I think that at this point I need to revisit if a project like this in its current state really makes sense. We definitely have had outside contributions, but maybe not enough to really sustain a library like this. And I also have limited time. So wondering from that perspective. But also, given some of the things that we learned here and some of the things that are going on in Drupal right now, I'm wondering if maybe the better focus are things more broadly for Drupal that can make it easier to work with web components or easier to work with these types of decoupled projects in general?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So some of those things are... I've talked about this on and off before in various contexts and you obviously worked on that library, Drupal State, but I've always had the dream of trying to get a variety of different people together to create an actual official JavaScript client for Drupal. And hopefully, I'm gonna finally make a kind of last push to see if we can get some momentum around that. So if you want to learn more, I'll be around and at the contrib days, love to talk more about that. Also in ten one that experimental single directory components really does change the way that you can build with components in Drupal. It doesn't solve all of the problems but certainly does solve some of them. And I think we'll make it easier to use web components in Drupal, which is awesome. And then just in general, anything that we can do to make Drupal more friendly for web components I believe would be a good thing in general. Which brings us to this last little bit related to that, I think something that could be worked on with the community that I think would have a lot of value is trying to solve issues with server-side rendering of web components in PHP.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So I mentioned before that web components are JavaScript at the end of the day. So in the default use case, for it to be fully interactive, JavaScript has to load on your page. However, there have been some changes within the actual APIs for Web components and also supporting tools around it. For a feature called declarative Shadow DOM, all of these web components things have wild names, but that is gaining browser adoption. I think it's already supported in Chrome and Edge and I believe Safari recently and I think Firefox finally has official intent to support it. But basically what declarative shadow DOM is, is it allows you to define a web component in static markup that will render on the page even if JavaScript doesn't load. So as long as you have the server-side rendered markup component, it will still render on the page. There are definitely certain things that you would only get from a progressive enhancement standpoint if JavaScript does load because those things are JavaScript, but you don't have the situation where for example, if the JavaScript doesn't load or JavaScript breaks, the component just doesn't display, which is great.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And that would be really great for Drupal because Drupal is a thing that server-side renders and right now there really isn't a great way to server-side render web components in Drupal. A lot of the current solutions to take advantage of this declarative shadow DOM stuff is all written in Node, so I'm really not sure what the answer is there, but I do think if there was a way that Drupal could also have a similar solution where you can easily server-side render web components that work with or without JavaScript, it would be great for Drupal. It would allow us to take advantage of web components more broadly in Drupal and would also just be good for the PHP community in general. Also do want to take a second to thank contributors to these projects. Be it the menu web component is part of the decoupled menus initiative. We had somebody within the summer of code last year contributing, people who contribute to generic Drupal web components, Drupal State. And if I missed you, I'm very, very sorry and still appreciate your contributions.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And last, what if question. What if the talk was over, but you had questions? So, yeah. Do you have some time for questions? Thanks, everybody. I hope this was interesting.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENTS:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>(APPLAUSE)</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Any questions? What sort of things do you want for lunch?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>I've one question, so your definition of what component that you went over with the custom tag custom elements. That's different than single directory components, right? And the definition of what a component is.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yes. So, yeah, the question was your definition of a web component that's different from single directory components. Yes. So the way that I defined web components, in the beginning, was browser APIs. That is the custom element, shadow DOM and HTML templates, and then single directory components, what that is in Drupal is a new way that you can define a reusable component in Drupal. Basically, it's called the single directory component. So it's a way that if you put markup CSS JavaScript in one directory, Drupal can recognize that and say, oh, this is a component and then you can with a twig function, render that throughout your templates. So those two things are not really directly related. However, there are ways that I think single directory components does lend itself to that web component use case. The absolute simplest part of it is to be able to have that custom element that you can use. You need to load a JavaScript file and developers who are not as familiar with Drupal like they would have to create a library, they don't know what that is, etc.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Single directory components as I understand it, allow you to just put a JavaScript file in a directory next to a template and it works. So that streamlines the whole deal with web components. If somebody knows how to write a web component, they can do it in a JavaScript file, drop it in this directory, and then they can just use their custom element that they just created with whatever name they want, which rules in my opinion. Any other questions? Alright, thanks, everybody. And I'll be around if you want to talk more.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENTS:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>(APPLAUSE)</span></span></span></span></span></span></p></div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-b7212c3e330107ba0fee962fcdf215d552be5cd6a8145f51f16f51389f6944b0">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/6924">https://mid.camp/6924</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+  <section class="map-banner">
+      <div class="views-element-container block block-views block-views-blockevent-venue-block-1" id="block-hatter-views-block-event-venue-block-1">
+  
+    
+      <div><div class="container view view-event-venue view-id-event_venue view-display-id-block_1 js-view-dom-id-ceea9e7110d4d00f025bb23e63d477016181daac4e84478f497451000d854b96">
+  
+    
+      
+      <div class="view-content">
+          <div class="views-row">
+
+
+<div class="map-overlay">
+  <span class="map__label">Location</span>
+  <h2 class="map__title"><span class="field field--name-title field--type-string field--label-hidden">DePaul University - Lincoln Park Student Center</span>
+</h2>
+  
+            <div class="field field--name-field-address field--type-address field--label-hidden field__item"><p class="map__address" translate="no">
+          2250 N Sheffield Ave. <br>
+            Chicago, IL 60614<br>
+  </p>
+</div>
+      
+  <a href="../../about/venue.html" class="cta-link--yellow">Learn more  <span class="cta-arrow"></span></a>
+</div>
+<div id='map' class="map"></div>
+</div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-2b7b3c45fd19342e6e101efdc93a197c9cc46b93ac1d00ef1fa7a0b2622db999">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/debug-academy.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2023-02/Final%20Logo-in-color.png" width="1010" height="864" alt="Debug Academy logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/evolving-web.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2023-04/evolvingweb%20(3).png" width="1517" height="371" alt="Evolving Web" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/bounteous.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2023-01/BounteousIndigoSmall.png" width="403" height="67" alt="Bounteous logo" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#0d64636b624d6064696e6c607d23627f6a"><span class="__cf_email__" data-cfemail="7e171018113e13171a1d1f130e50110c19">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/6924","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"ajaxTrustedUrl":{"form_action_p_pvdeGsVG5zNF_XLGPTvYSKCf43t8qZYSwcfZl2uzM":true},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_U1jmi93nTJG2lPAKzexs4tMZWFR2YMMoIoiPckW421U.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJx1yksKgDAMRdENabskSfUZK2kjTfCzeyfiQHB04XBZlQUDVZLL82iRP9At5I4WWTSR9OsLhbakZ3cgzdpKfBogKKgeJjhlsWC043cqMCPGDa0vM_I"></script>
+<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.js"></script>
+<script src="../../sites/default/files/js/js_RAkHj2z9vY4q-6RsYuiXkqPbxgsRWrLsVQRz36mKiGA.js%3Fscope=footer&amp;delta=2&amp;language=en&amp;theme=hatter&amp;include=eJx1yksKgDAMRdENabskSfUZK2kjTfCzeyfiQHB04XBZlQUDVZLL82iRP9At5I4WWTSR9OsLhbakZ3cgzdpKfBogKKgeJjhlsWC043cqMCPGDa0vM_I"></script>
+
+  </body>
+</html>

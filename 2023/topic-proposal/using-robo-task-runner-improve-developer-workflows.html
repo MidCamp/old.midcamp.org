@@ -1,0 +1,769 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="Learn how to use the Robo PHP task runner to transform your project’s complicated, multi-step processes into simple commands so your team can preserve their sanity and become more efficient in the process." />
+<link rel="canonical" href="using-robo-task-runner-improve-developer-workflows.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Using the Robo Task Runner to Improve Developer Workflows | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Using the Robo Task Runner to Improve Developer Workflows | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_gt5LiAM1qLGUH5e845uOb7R_lJ9dUwTXmnhGDR2yY20.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OhDAIhC9U2yMZakdtAmJKV9c9_Tb-PPkCAx8ZZmAyO0IkgxsuLTCjCfbMi6bGtKCpIsT5BzdTrShhYo3E3WD2bITWqF9nh1XIZbvlBO0hEakfMziFAlt1sbyhO2E7wW7hrF40fRh.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_mK2of_t7UFymkfbTHeA-kHdMPWzqc3DZQCYtX-tC0BA.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OhDAIhC9U2yMZakdtAmJKV9c9_Tb-PPkCAx8ZZmAyO0IkgxsuLTCjCfbMi6bGtKCpIsT5BzdTrShhYo3E3WD2bITWqF9nh1XIZbvlBO0hEakfMziFAlt1sbyhO2E7wW7hrF40fRh.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OhDAIhC9U2yMZakdtAmJKV9c9_Tb-PPkCAx8ZZmAyO0IkgxsuLTCjCfbMi6bGtKCpIsT5BzdTrShhYo3E3WD2bITWqF9nh1XIZbvlBO0hEakfMziFAlt1sbyhO2E7wW7hrF40fRh.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OhDAIhC9U2yMZakdtAmJKV9c9_Tb-PPkCAx8ZZmAyO0IkgxsuLTCjCfbMi6bGtKCpIsT5BzdTrShhYo3E3WD2bITWqF9nh1XIZbvlBO0hEakfMziFAlt1sbyhO2E7wW7hrF40fRh.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+<link rel="stylesheet" media="all" href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.css" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="using-robo-task-runner-improve-developer-workflows.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-midcamp2023navigation-menu" id="block-midcamp2023navigation" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-midcamp2023navigation-menu">MidCamp 2023 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" data-drupal-link-system-path="node/6857">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--by-the-numbers">
+        <a href="../../2020/about/by-the-numbers.html" data-drupal-link-system-path="node/6252">By the Numbers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--venue">
+        <a href="../../about/venue.html" title="Venue" data-drupal-link-system-path="node/7048">Venue</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../speaker-resources.html" data-drupal-link-system-path="node/345">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--health--safety">
+        <a href="../health-safety.html" data-drupal-link-system-path="node/6973">Health &amp; Safety</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../about/lunch-options.html" data-drupal-link-system-path="node/6970">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--volunteer-opportunities">
+        <a href="../article/volunteer-help-midcamp.html" data-drupal-link-system-path="node/6975">Volunteer Opportunities</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" data-drupal-link-system-path="2023/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--travel">
+        <a href="../about/travel.html" data-drupal-link-system-path="node/6865">Travel</a>
+            </li>
+          <li class="primary-nav__sublist-item item--accommodations">
+        <a href="../about/accommodations.html" data-drupal-link-system-path="node/6948">Accommodations</a>
+            </li>
+          <li class="primary-nav__sublist-item item--registration">
+        <a href="../register.html" data-drupal-link-system-path="node/6977">Registration</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" data-drupal-link-system-path="node/6860">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--sponsor">
+        <a href="../sponsor-midcamp.html" data-drupal-link-system-path="node/6858">Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" data-drupal-link-system-path="node/6859">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--hybrid-sessions">
+        <a href="../schedule/hybrid.html" data-drupal-link-system-path="node/7053">Hybrid Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-wed">
+        <a href="../schedule/wednesday.html" data-drupal-link-system-path="2023/schedule/wednesday">Sessions (Wed)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-thu">
+        <a href="../schedule/thursday.html" data-drupal-link-system-path="2023/schedule/thursday">Sessions (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--birds-of-a-feather-bofs">
+        <a href="../schedule/bofs.html" data-drupal-link-system-path="node/7054">Birds of a Feather (BoFs)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--contribution-day-fri">
+        <a href="../schedule/friday.html" data-drupal-link-system-path="2023/schedule/friday">Contribution Day (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--topic-tracks">
+        <a href="../../topic-tracks.html" data-drupal-link-system-path="node/10">Topic Tracks</a>
+            </li>
+          <li class="primary-nav__sublist-item item--all-sessions">
+        <a href="../schedule/sessions.html" data-drupal-link-system-path="2023/schedule/sessions">All Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--session-submission">
+        <a href="../submit-session.html" data-drupal-link-system-path="node/14">Session Submission</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2023/news">News</a>
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../../jobs.html" data-drupal-link-system-path="jobs">Jobs</a>
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2023.html" hreflang="en">MidCamp 2023</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-midcamp2023schedulenav" class="block block-block-content block-block-contente066b47a-a80d-432a-8edd-6c60b28b7c95">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><div class="schedule__nav">
+<p><a href="../schedule/hybrid.html">Hybrid</a>&nbsp;|&nbsp;<a href="../schedule/wednesday.html">Wednesday</a> | <a href="../schedule/thursday.html">Thursday</a> | <a href="../schedule/friday.html">Friday</a></p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Using the Robo Task Runner to Improve Developer Workflows</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="6876" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2023-04-27T14:15:00Z" class="datetime">Thursday, 9:15 am CDT</time>
+ - <time datetime="2023-04-27T15:15:00Z" class="datetime">Thursday, 10:15 am CDT</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-80" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-name field--type-string field--label-hidden field__item">Room 312</div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>Learn how to use the Robo PHP task runner to transform your project’s complicated, multi-step processes into simple commands so your team can preserve their sanity and become more efficient in the process.<br>
+<br>
+Have your projects become festooned with scripts and complex multi-step documentation to support tasks such as deployments, code linting, tests, database backups, and multi-site creation? Perhaps it’s time to consider the role of a “task runner” to replace these difficult-to-maintain linchpins. A task runner such as PHP’s Robo will allow you to consolidate this functionality, maintain it in the primary language of your project, expose it to users easily, and even share it across multiple projects!</p>
+
+<p>At the end of this session, attendees will be able to:<br>
+1. Understand what a task runner is, what it is used for, and why Robo is a good choice for a Drupal/PHP project.<br>
+2. Transform scripts and multi-step operations into Robo commands.<br>
+3. Automate complicated configuration changes such as modification of configuration files.</p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/z13C-fb0huA?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Mark Dorison</h4>
+
+      Chief Technology Officer, Partner
+
+
+          @
+              <a href="https://chromatichq.com">Chromatic</a>
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p>Mark is Chief Technology Officer and Partner&nbsp;at Chromatic, a distributed agency that specializes in complex content migrations. He is an accomplished technical architect and open-source advocate with a portfolio of experience on the web and iOS, and an expert in building and leading high-performing remote teams. Previous to joining Chromatic in 2014, he served as the Director of Application Development at Martha Stewart Living Omnimedia. Mark has written and spoken publicly about topics ranging from technical to interpersonal, at events such as DrupalCon and Slack’s Spec conference, among others.</p>
+
+<p>Some of his current and past projects include Outside Magazine, Berkman Klein Center at Harvard University, Emerils.com, City Notes, and FedEx Newsroom.&nbsp;</p>
+
+<p>Away from Chromatic, Mark is an avid traveler, cyclist, amateur TV critic, and dog lover.</p></div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2023-01/md-41-sq%20copy.jpeg%3Fitok=35GkdYU1" width="220" height="220" alt="Headshot of Mark Dorison in a tan shirt" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Back-End</div>
+          <div class="field__item">DevOps</div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-feedback-form field--type-webform field--label-above">
+    <div class="field__label">Feedback Form</div>
+              <div class="field__item"><form class="webform-submission-form webform-submission-add-form webform-submission-session-feedback-form webform-submission-session-feedback-add-form webform-submission-session-feedback-node-6876-form webform-submission-session-feedback-node-6876-add-form" data-drupal-selector="webform-submission-session-feedback-node-6876-add-form" action="using-robo-task-runner-improve-developer-workflows.html" method="post" id="webform-submission-session-feedback-node-6876-add-form" accept-charset="UTF-8">
+  
+    <div data-drupal-selector="edit-0" class="webform-message js-webform-message js-form-wrapper form-wrapper" id="edit-0"><div data-drupal-messages>
+    <div role="contentinfo" aria-label="Status message" class="messages messages--status">
+                  <h2 class="visually-hidden">Status message</h2>
+                    Sorry...This form is closed to new submissions.
+            </div>
+    </div>
+</div>
+<input autocomplete="off" data-drupal-selector="form-5hzlslkbddlbbtfzg7ghjtugfotyqqaeqhi5bj64kpc" type="hidden" name="form_build_id" value="form-5HZlsLkBddlBbtfzg7GHjTUgFOTYqQaEQhi5bJ64Kpc" />
+<input data-drupal-selector="edit-webform-submission-session-feedback-node-6876-add-form" type="hidden" name="form_id" value="webform_submission_session_feedback_node_6876_add_form" />
+<div class="url-textfield js-form-wrapper form-wrapper" style="display: none !important;"><div class="js-form-item form-item js-form-type-textfield form-type-textfield js-form-item-url form-item-url">
+      <label for="edit-url">Leave this field blank</label>
+        <input autocomplete="off" data-drupal-selector="edit-url" type="text" id="edit-url" name="url" value="" size="20" maxlength="128" class="form-text" />
+
+        </div>
+</div>
+
+
+  
+</form>
+</div>
+          </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p><span><span><span><span><span><span>MARK DORISON:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Good morning. Welcome. This is what we're talking about. Using the Robo Task Runner. I'm Mark Dorison, CTO at Chromatic. Chromatic has been working with Drupal building complicated Drupal sites and Drupal adjacent sites for over 15 years. And that is what I get to work on. We're starting off with a warning. There going to be a number of code slides in this talk. The good news is that it's purely to show concepts. You don't need to read every line or copy anything down. Hopefully I've done a decent job of making it very readable. If you see a slide with clearly too much code on it, it will quickly move to one where we zoom in on the important areas. So don't panic. And all but a few lines that you'll see today are in public repositories that I'll mention. So, if you're interested in looking more closely, you'll be able to check those out. So what's the problem that we are going to talk about today? If you're like me, you like to automate things and you've worked on a lot of projects that end up getting festooned with Bash Scripts.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>They add up. And lots of people love Bash. I use it in situations where there's not, I can't assume that there's another runtime available. It's great for that. It's relatively ubiquitous. But if we're working in a PHP project like probably most of us here are, I'd rather use PHP. If I'm working in JavaScript project, I'd rather use JavaScript. I want to kind of keep things correlated with the language of what we can expect when someone's going onto a project. This is a PHP project. If you want to work on some of these automation, some of these, some of this tooling it would be great if it was in the same language. So, what do we need? We need a PHP task runner if we're talking about a Drupal project. And in this case Robo to the rescue, we're going to talk about Robo. So Robo calls itself a modern and simple task runner inspired by Gulp and Rake aimed to automate common tasks. So, you might already be using Robo and not know about it. Maybe you've heard about this tool. Drush is built on top of Robo.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So it's likely if you're using symphonic Drupal and you're using composer and you're pulling in Drush, you already have robot installed in your project and you could make more direct use of it. Robo was first included in Drush in 2016. It first shipped in Drush 9.0. That feels like it should be relatively recently, but Drush 9.0 came out seven years ago. Drush 12 is being prepped for release right now to put some context around that. So a lot has changed in Drush since 9.0 and Robo has been there for all of that. So some of the use cases that you can use Robo for. Certainly not limited to these, but automation, testing builds and deployments, backups and restores. Anything where you currently have a complicated bash script Robo could be a good replacement for it and probably more stuff that you're not doing yet. It gives you better access to PHP packages since it's written in PHP. If you want to, you know, if you need to make API calls out to something, you can pull in Guzzle. I think we'll look at that a little bit later.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And anything else like that, you can pull in all kinds of stuff via composer just like you do for your Drupal site. You can then use it in your tooling. Better readability both for developer and for the user and the logs. For the user running the calls it's a lot easier to give great output to the command line. Better error handling, better developer experience and user experience. So to sort of set the table, I'm going to show some of the tasks that are built in to Robo. This is some of the easy, like, things that it gives you out of the box that it's going to make easier for you. That said, you can also do anything that you can do in PHP. You're not limited to any of this stuff, but it's got great support for working with files, replacing content in files, merging files, file system options, copying directories, cleaning directories. Composer operations, you can run from within PHP. So we'll look at that later too. So you can do things like run composer update, really elegantly. Run composer validate to make sure those composer update changes that you did get your composer JSON file validates as you expect it to.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Working with version control. If you're using Git (UNKNOWN) support for SVN or HG mercurial. And then more general purpose stuff. So if there's not something built in, you can just call out to the to the command line using task exec or parallel exec, which if you're dealing with, you know, long running operations and things that can be paralyzed, this I found to be very useful and way nicer, way more elegant than dealing with the parallel command directly. So let's talk about the typical setup if you want to use Robo on your project. What you need to do is require consolidation Robo. Again, if you're on a Drupal project and requiring Drush, this is already there. And all you need to do is create a Robo File dot php in your repository root. This is what the most basic implementation of a Robo command in that Robo file can look like. So you've got a class, Robo file extends Robo tasks command. And then we have our command. Why is this command? This is a command because it is a public method.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Any method in your Robo file that is public is going to be exposed as a command. This, the method name becomes your command name and you'll see how that breaks down in a second. We have an argument for our command. With the documentation and the doc block and we happen to give this one an alias. And we'll see that on the next slide. And then we have an example of some nicely supported user feedback for the command line. So we're off to the races with this. And, this is how it all gets parsed out. So if we just run Robo, it's going to parse what it can find and expose our commands and we'll see it here on the last line. Hello, colon, MidCamp is our command. We have hi, is the alias and then we have our documentation that's parsed out here. From the dock block to our command. And if we run this command, This is what we get. Hello MidCamp 2023. Our argument that we passed in. This is as simple as it gets. You can add all kinds of commands to your Robo file. You can make them quite complicated.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>You can have helper methods. You can make those protected or private then they won't show up as public commands. And you'll add, you'll start to love this. You'll add more and more. And before you know it, you'll have a robo file that's hundreds, many hundreds of lines long and it's got commands that don't really have anything to do with each other. Replacing those bash scripts you've got things for. Database backups next to things for test running your tests. So it starts to get a little overwhelming. If we're working in modern PHP, we're probably used to object oriented programming. We're used to separating concerns amongst classes. So that's what I wanted to do. I got to the point where this is unwieldy. I don't want to work in this way. I want to separate my commands just like I would my class classes in a module. So, auto loading to the rescue. We don't have to use that Robo file. We can, we can empty it out. Add an autoload directive for where we want things to live. And then in our repository, see here we've broken out a whole bunch of different commands with their own classes or groups of commands, let's say.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Because each of these classes, maybe they have multiple commands if they're related. So this was the next step on my journey with this. I was like, OK, I've gotten what I wanted. Everything makes sense. It's in different classes. But then I started to realize, I started duplicating this across projects, and some of these commands were specific to the project, but some of them were pretty similar, if not identical. Some of those database backups, some database downloads. So for example, with a single command, you could build your site locally, pull in the latest database dump from production, import that to your site. I wanted a similar operation across all of our projects at Chromatic. So we created a collection of commands that we call Usher. Usher is a public repository. The definition of Usher, to show or guide someone somewhere. It's also American singer, songwriter, businessman and dancer, Usher Raymond. So you can you can use Usher. You can also build your own version of Usher for shared commands or you could include, just include your commands and your individual projects.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And you can mix and match those two. You can have some commands that are shared and then some that are specific to an individual project. So you can require composer Usher. And those were the three approaches we've gotten. Robo file, commands within the project, separated (UNKNOWN) classes, and then we could share commands across projects. So now I'm going to go through a couple examples in a little more detail of how we have used Usher to help on some of our projects or many of our projects. So when chromatic projects we build every PR in a preview environment using Tugboat. Shout out to the Tugboat folks. Tugboat is also available on Drupal dot org. If you're not aware you can enable Tugboat on any contrib project. All you need to do is add a Tugboat config file and any merge request that's created, it will build a Tugboat environment for that. So you can then test the merge request changes, see that it built, see it in a live environment without pulling that in locally. It's really great.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So when we build an environment, we want to make sure, among other things, one of the things we want to make sure is that the Drupal configuration status matches what's in code. So this is a Drush command config status and it displays what's not in sync between the configuration in the database to the configuration that you've exported it to disk, or it'll tell you if it matches. And we wanted to run this on every PR so that before, while we're doing the review, before we actually do the review, before we get to approve and merge, we can have feedback that says yes, config matches, database to code. We feel confident in it and if it doesn't, we want to mark the PR as failed. So this is what a typical PR looks like that uses this. It just so happens, I don't think I did this intentionally. It is a PR that is updating Usher, but that's irrelevant. What is relevant is down here. And is all of our checks and the check that we're talking about today is the configuration check. So we'll also note that there is a check below this called Drupal Status Report, which is a very similar, we're doing a very similar thing.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>We're using a Drush command to check the state of something that's going on in the Drupal database and that in that case is the status report. And in this case it's the config check. And that's important because we ended up with pretty similar bash scripts when this was originally written. So this bash script, which you don't need to read or know anything about what's going on, you should just be overwhelmed by the side of it. And it's actually not even as complicated as it should be, because if I'll point out that at the bottom, it actually is already running a Robo command. So this, everything above all this bash code is just the code that talks to the GitHub API. So the actual running of the Drush command and dealing with giving some good output to the command line and all that, that's already handled. But when we first implemented the integration with GitHub, it was written in Bash and then when I came along and said, I want to do a different version of this a second for those two commands, I ended up with a lot of very similar code.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And I wasn't comfortable enough with Bash to abstract it easily so that it could be reusable. So I wanted I didn't want to have all that duplicate code. I didn't want it to be in Bash. I wanted it to be more maintainable. This is gross. We're escaping strings. We're calling out to (UNKNOWN).</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Have you ever tried to do JSON and bash before?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>MARK DORISON:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>I shudder just to think about it. So we're going to look at a few pieces of this that is broken up now. Here we'll go through a couple pieces. We see that we have a class for validate config commands. We're using a trait, a GitHub status trait. So all of that GitHub talk communication code that was in bash we put into a trait. So it could be shared across multiple commands. We'll see that trait in a second. We get to use things like constants and then we get to use all of this. Then we get to use things like PHP stand to do static analysis because it's in PHP instead of bash. So as we move on, this is our command. There's a lot of DocBlock up at the top to tell Robo what it should be expecting. But really, we can see all of it down here in the last three lines. We have a command which is going to get parsed out to validate colon Drupal dash config. It is a public method, so it is going to be called as the command. And then we have one argument which has a default and then we have an array of options, only one options which is essentially gets parsed by Robo and turned into a flag.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So on this command, if we run dash, dash, set, PR status, then it will flip from false to true and then we can change the, how it's going to be executed in the code. Any questions on this slide? This is maybe a good point to... Alright. Good. Cool. So, now we move on to our trait. Here's our GitHub status trait that's going to contain all of the code that was in that messy, disgusting looking bash screen. And this is some of the code in that trait. So we get to see, we have some, we've created some helper methods, set GitHub status pending. Set GitHub status access. So for example, when this first starts to run, this gets called, it sets the PR to say that it's pending. So we know just by looking at the PR, OK, this this has started, it's running, we should expect a response back. And then if it succeeds, we put some nice output on the command line. So if you're reviewing the logs, you can easily tell that. But then we actually call set GitHub status which we'll see in a second. And there's a similar method for failure and any other states.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Those are the only three states I believe. So now this and the next slide shows our... This is the meet. This is what we replaced all of that bash code with. And, all of this is the setup. So we have our set Github status. We have some arguments we're passing in. We're using some environment variables, grabbing things from the (UNKNOWN) environment. These are all things that we are going to use when we call GitHub so that you know what GitHub knows, what repo we're talking about, what PR we're trying to set the status for. So it's all just set up here. Setting the base URL. What URL we're going to call. But this is the best. This is the best part. We get to use Guzzle instead of cURL and everything that comes with it. This is when we're actually making the requests. We're taking all of those items that we set on the previous slide, the URL that we're calling out to, the access token. So GitHub knows that we are allowed to set this and then the body of the of the requests. And then we also have nice error handling if something goes wrong.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So the second example I'm going to show is one that I actually built while I was working on this talk. I was like, I forget what the exact catalyst of it was, but we use a lot of different environments when we're on most of our sites. So we use (UNKNOWN) for local development. Tugboat I mentioned we use on every project. We use GitHub actions to run all our CI checks that don't require a Drupal database. So stuff that does require a database and a live site we use Tugboat, but things like static analysis and CI we run at GitHub actions among other things like, if we need to do any custom deployment stuff. So this is a project that has a lot of GitHub actions on it. So but all of these environments... And also most of our projects, if they are hosted on places like Platform dot SH or somewhere else, they, these are all configured with YAML files, which is fantastic. And most of those contain the PHP version that we're running. That we want to run in. So when it comes time to make that change, we were ready to go from 8.0 to 8.1 or soon, from 8.1 to 8.2, someone has to update those YAML files and all those cases.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And there's also, typically it's set in the composer dot JSON summary as well. So, you know, somebody goes, makes a PR, you've got multiple change files with 8.0 to 8.1 and I get a review request to take a look at that. I go look at the PR and I say, hey, I got a bunch of files changed. They all show strings change from 8.0 to 8.1, but it's not so easy to remember. Like, how many files we actually need to change? Is there eight of them or five of them? It's it's easy to miss one. And all of a sudden, three weeks later, you're like, wait, why are we still running 8.0 in this environment? Or why didn't the README get updated that you need this version of PHP? So this to me was like, OK, this is a problem that we can solve with some tooling. So, this is the entire command. You don't need to read this. I'm going to zoom in, but this is the command I wrote and it's config update PHP version. So within this there's a fair bit of user feedback to the command line. So if we pull that out, this is really all that's left.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>What I wanted to do was let people specify a number of files that were where we set the PHP version. And then replace those strings from the version that it was to the version that you want it to. So we have our command up here. It's a public method. So that is our command. We have one argument, the version string that we want to change it to. And then we have one option flag to skip composer update. And that's false by default. So we need to know what the current version is. So if we're going from 8.0 to 8.1, we need to know 8.0. And I didn't want people to have to specify that when they call the command. So we're going to store that somewhere. I'll show that in just a second. So we get the current version and then we get to config the paths where we want to check. So those are the two things that we need to, the two inputs that aren't provided by the user when they call the command and those look like this. We store those in in a YAML file. In a Robo dot YAML file. And this, is important for sharing across projects.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So if you weren't going to share this across projects or didn't want to, you could just put this in your command. I think probably the first version of the command that I wrote just had the (UNKNOWN) in an array and then we would loop through them. But I wanted this to be able to run on all of our projects. So it got moved to Usher, and then we show that set for whatever project you're on. Set the config paths, put whatever you want in here. We have a read me, composer JSON and all those YAML files that we were just referencing. So then we go back to the command. This is really it. This is all what it's doing. It's inside a loop for those config files. But all we're doing is using one of Robo's tasks, which we called out earlier in the talk, replacing file. Giving it the path, the current PHP version 8.1 and the version that we would like to update it to, 8.2. This was a little bit extra just for composer dot JSON. So if one of those files is Composer dot JSON and we changed the references to 8.1 and composer dot JSON, we want to run a composer update for the lock file to make sure that, because the hash is going to change and composer dot lock.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So I wanted that to be included as well. So as long as we haven't said skip composer update, if someone does run a width skip composer update will output that and move on to the next file. But if they haven't, we find the composer dot JSON file, we run again using Robo's composer update tasks with the dash dash lock option and then we run the validate command just to make sure that it likes what has been done. And this is what it looks like. We're ready to move from PHP 8.1 to 8.2. So we pass in 8.2. It detects that it's set to 8.1. Here to limit some of the output. I skipped composer update, but then it shows you all the files that have been changed and how many items have been replaced. It's nice. I like it. This is what it looks like. If it doesn't go so well you cant tell at 8.1. It says you're already on 8.1. And we get some clear, clear feedback for what's going on and what's gone wrong. Questions on any of that? So here we've used Robo to replace Bash Scripts. We've moved Robo commands into classes.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>We've shared commands across projects and then we looked at two examples, Drupal config validation and PHP version changes. I'm sure you can imagine a lot of others and how that could be, how you could share that code across different ones. That's the meat of it. I will be around later for (UNKNOWN) time. If anyone wants to look at more of these Robo commands or questions, I'd be thrilled to to show them off and go through it with you. This is some unrelated promotion. If you don't know, we have a new podcast, the Drupal Seven End of Life podcast. It is not about the, not so much about the technical side of what you need to do to move off Drupal Seven. That is well documented. This is more about what life is going to be like for folks who are still on Drupal Seven at or after the end of life date and understanding sort of more of the less technical implications of having 400,000 sites still on Drupal Seven. And as we approach Life Day. It's been super interesting for me, I thought that we wouldn't have that much to talk about and we've had already great interviews with (UNKNOWN) and Tim Lennon and we already have a couple more lined up, so it's been great.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>I have stickers for this too, if you're interested. And that's it. Does anybody have any questions?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>OK. I just had a comment. There you were talking about, in the very beginning, like Drush has built on it or uses it like we've been using the BLT, BLT project. And that was my first introduction to the Robo commands as well. And yeah. (INAUDIBLE)</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>MARK DORISON:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Good question.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>I was wondering if you ever do some analysis before writing the commands to think about what's the level of effort between making these automated commands versus just manually (INAUDIBLE). Is there like a level of effort where you would make a decision to go one way or the other?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>MARK DORISON:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>That's a great question that I don't have an easy answer for. I think... I kind of respond to pain and where things have become painful. I try to put myself in the shoes of all the different users of the project. So the person who is writing these commands is often not always the target user of the command. So I am much more typically by trade, more back end focus and clearly more DevOps focus. I often try to think about someone who is more front end focused and what their experience is like coming on to a project or using a project. So what are the things... And maybe they're even like not super Drupaly, for example. Like, what are the things? We have an (UNKNOWN). So there's a number of commands that we use on our projects that are related to... I kind of alluded to this at the beginning. ..Related to just setting up the project locally. So, running composer install, you know, downloading a latest version of the database, importing that database, running Drush deploy. Those are all things that if it was just for me, I didn't write those commands for me.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And so it's a number of commands that are then wrapped up in one (UNKNOWN) command. So they can run, they can clone a repo and then essentially run a single command and then have a running Drupal site when that command is done. I didn't write that command for me, I was like, this is fine for me. I know the six commands I need to run to get this up and running. I wrote it for the less Drupaly people who are working on the project so that they would feel confident. OK, I know enough of this, but I can be confident I can run a single command and I know I should have, if everything works as expected, I should have a running Drupal site with config imported and a database update hooks run and all of that stuff. So I try to think about those people when I'm running the commands. And I think there's a bit of it that's just like...</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>It's done.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>MARK DORISON:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>I think there's a bit of it that's, you just have to believe it a little bit. Like if you believe that it's going to save time and effort and expense, like, you know, deep down, I think. Like, whether it's worth it. Yeah. I don't know if that's like...</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>I think it's a very good perspective, especially to be thinking about not just the backend developer and whether it saves some time, but all the people who will be using it.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>MARK DORISON:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah. And also about building confidence and being like, OK, you know, like the change PHP config command, you know, that's not a complicated operation. We're talking about finding a replace or something like that. But maybe there's someone that's like, well... You know, if you did a find and replace on that project, the example project that I was showing that has that command, the string 8.1 appears a lot of other places beyond the, you know? Even in just like SAS files and things like that, it showed up in all kinds of strange place. So I'm like, OK, you could write some documentation that says the things that that command contains. It could say (UNKNOWN) in these files and all that stuff. But again, how many times do you go through that and somebody misses one and then the developer time spent going back and forth on the PR is like...</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>And if it's applicable to multiple projects that becomes....</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>MARK DORISON:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yes. So and well, and that's actually something that is worth calling out. That project that drives a lot of the, some of these commands is a very complicated project and has a number of developers working on it. And so it has the... That project drives a lot of the worthwhile-ness of creating these moments. Well, it's worthwhile to create it for this project. Now, if we can, if it makes sense to build it for that project. But then we get to share it across all of our projects, even the projects that are really tiny and don't have a lot of hours allotted to them, then we can become way more efficient on those projects. We can spend our time on more valuable things that are delivering more value, more impact to our clients. And so that's where I think if you can approach it in that way, it goes beyond just the individual project, the individual implementation of where it's created. So that's what I get excited about.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>It's (UNKNOWN) with a different opinion. That's not always bad.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>MARK DORISON:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>We have no shortage of opinions. Yeah. Any other question? Yeah.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>What are some of the limitations of Robo? Because I was thinking like we had a (UNKNOWN) certain things for what you want to use it, but maybe you want a (UNKNOWN) unit or something else. And I imagine Robo fits its own kind of category when it comes to like automation. Where you might be like, I (UNKNOWN0 Robo, but maybe I should do something else just to have a performance increase. Or for some reason maybe, that side is not as developed.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>MARK DORISON:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>I think... I mean, the items you mentioned like (UNKNOWN) or what was the other thing? Yeah. I mean, so we call in, call out to all those things from Robo. So, we're triggering our, you know, PHP CS, PHP stand, PHP unit, all from Robo commands. Those are very simple robot commands. But it all runs through Robo. So people, because we have this kind of full suite, it can run similar commands for all of these things. And so for... This is kind of like the... Robo's like the orchestration piece of what we're calling out to. But to answer your original question, like when would it not make sense? I think.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>I mentioned (INAUDIBLE), you know, there's multiple solutions you can have or testing. And I imagine for Robo there might be like multiple solutions that you can have in different levels of the stack. So at which point you like go all the way down to Robo and at which point there might be like another solution that is close by, but it's a higher level and you might switch to that next? If that has come across, 'cause you might have seen some of that while digging into it.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>MARK DORISON:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Not... I don't know specifically if I have, but I think there's a balance and there's a value and consistency too. It's like, well, this is just the way we do it. So everyone knows, OK, this is where we look. This is where the commands are stored. This is the tool we use for this. And if there is another way to go about it that is significantly better in its approach and its results, absolutely, we should do that. But if it's relatively comparable, consistency wins in a way so that, you know, we know where all the bodies are buried and where to find things. So that's what works for us. But your mileage may vary. And just to to circle back to what I said at the beginning is, kind of relates. Like where Robo doesn't make sense is where, for me, is when PHP is not readily available. So I don't want to have to install PHP in an environment just to run Robo commands. I want to run Robo and use Robo because I'm working with PHP already. So that sometimes gets tricky when you are dealing with projects that have multiple stacks.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So if you have a PHP stack and a JavaScript stack separately within a project, sometimes that doesn't matter if the environments have both of those things, but sometimes if we're talking about containerized environments, they don't necessarily have all those things. So for me it's really gone the other way, but in our setups, sometimes you're in an environment where, we need to build a JavaScript, we need JavaScript to build a theme, for example, and we use a, like our front end team will build all of that with a JavaScript task runner. But then again, Robo sits above that and (UNKNOWN) when we build it into our (UNKNOWN) for like spinning up the entire site. That's part of what Robo does. It calls out to that piece. Now, that can be troublesome if you're like, well, we don't have JavaScript in this environment or a node, for example, in this environment it's a PHP. OK, what do we do? Do we install node in this environment so that we can build the theme here? And so sometimes occasionally we'll run into that.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>But yeah. Anything else? Awesome. Yeah. Yeah.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Equivalent for JavaScript when it comes to...</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>MARK DORISON:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Sorry, what was it?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Is there an equivalent in JavaScript, like?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>MARK DORISON:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah. Rake I think. Or what was the one? Gulp? I think so, Gulp. Yeah. Yeah. There's no shortage, I think of... Yeah. It's the question of what your...</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>How many 100 words we spew out. (UNKNOWN) between Rake and Gulp.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>MARK DORISON:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Of course. Of course. I think there... So I think the ecosystem is actually much more broad in the JavaScript community for tools like that. I don't see, I haven't seen like 20 alternatives to Robo for PHP test runners, for example. But you do see that in JavaScript. Yeah. Alright, that's it.</span></span></span></span></span></span></p></div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-c81432c406d80cdcfdad0a8d7db9f43ef2f1ae60f657ae6ae6c65acfd46a0a7f">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/6876">https://mid.camp/6876</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+  <section class="map-banner">
+      <div class="views-element-container block block-views block-views-blockevent-venue-block-1" id="block-hatter-views-block-event-venue-block-1">
+  
+    
+      <div><div class="container view view-event-venue view-id-event_venue view-display-id-block_1 js-view-dom-id-e217c15ca86f9ffa0dca0af1df2ee192fda8bae35098db77b77087d71470f179">
+  
+    
+      
+      <div class="view-content">
+          <div class="views-row">
+
+
+<div class="map-overlay">
+  <span class="map__label">Location</span>
+  <h2 class="map__title"><span class="field field--name-title field--type-string field--label-hidden">DePaul University - Lincoln Park Student Center</span>
+</h2>
+  
+            <div class="field field--name-field-address field--type-address field--label-hidden field__item"><p class="map__address" translate="no">
+          2250 N Sheffield Ave. <br>
+            Chicago, IL 60614<br>
+  </p>
+</div>
+      
+  <a href="../../about/venue.html" class="cta-link--yellow">Learn more  <span class="cta-arrow"></span></a>
+</div>
+<div id='map' class="map"></div>
+</div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-f7b87a5c351a74769cbb721dd6bd88a63dd2f5add66cb5b0f284457f56b0bce5">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/bounteous.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2023-01/BounteousIndigoSmall.png" width="403" height="67" alt="Bounteous logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/debug-academy.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2023-02/Final%20Logo-in-color.png" width="1010" height="864" alt="Debug Academy logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/evolving-web.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2023-04/evolvingweb%20(3).png" width="1517" height="371" alt="Evolving Web" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#6d04030b022d0004090e0c001d43021f0a"><span class="__cf_email__" data-cfemail="f891969e97b895919c9b999588d6978a9f">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/6876","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"ajaxTrustedUrl":{"form_action_p_pvdeGsVG5zNF_XLGPTvYSKCf43t8qZYSwcfZl2uzM":true},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_U1jmi93nTJG2lPAKzexs4tMZWFR2YMMoIoiPckW421U.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJx1yksKgDAMRdENabskSfUZK2kjTfCzeyfiQHB04XBZlQUDVZLL82iRP9At5I4WWTSR9OsLhbakZ3cgzdpKfBogKKgeJjhlsWC043cqMCPGDa0vM_I"></script>
+<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.js"></script>
+<script src="../../sites/default/files/js/js_RAkHj2z9vY4q-6RsYuiXkqPbxgsRWrLsVQRz36mKiGA.js%3Fscope=footer&amp;delta=2&amp;language=en&amp;theme=hatter&amp;include=eJx1yksKgDAMRdENabskSfUZK2kjTfCzeyfiQHB04XBZlQUDVZLL82iRP9At5I4WWTSR9OsLhbakZ3cgzdpKfBogKKgeJjhlsWC043cqMCPGDa0vM_I"></script>
+
+  </body>
+</html>

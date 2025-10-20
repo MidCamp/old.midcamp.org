@@ -1,0 +1,634 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="Layout Builder, which was released as a stable addition to Drupal in 8.7.0, has dramatically changed how Drupal websites are built. Introduction to Layout Builder In the first half of the session, we&#039;ll introduce Layout Builder:" />
+<link rel="canonical" href="layout-builder-introduction-and-current-developments.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Layout Builder: An Introduction and Current Developments | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter_2019/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Layout Builder: An Introduction and Current Developments | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_gt5LiAM1qLGUH5e845uOb7R_lJ9dUwTXmnhGDR2yY20.css%3Fdelta=0&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlj90OwiAMhV9oA_XOp1lgHDaSQg3FLfPph_sxGm_a03Oa5mtPRmTR1giaftc-0EdHiJgBcs6JXc04o6ocDYUXmtGUgtzdLte7HoitobYXOe33Ze05lV_na1EWKYg7whQcuEO0cJ.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_UMuvjHSQ9iJFDCuYZXW-ThtEaBNBWxN9AUvYSTjbZi4.css%3Fdelta=1&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlj90OwiAMhV9oA_XOp1lgHDaSQg3FLfPph_sxGm_a03Oa5mtPRmTR1giaftc-0EdHiJgBcs6JXc04o6ocDYUXmtGUgtzdLte7HoitobYXOe33Ze05lV_na1EWKYg7whQcuEO0cJ.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_JumHJ3UqLO9Mdu1kygD5e19MOiNh5iD_a9p0FH6QrHQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlj90OwiAMhV9oA_XOp1lgHDaSQg3FLfPph_sxGm_a03Oa5mtPRmTR1giaftc-0EdHiJgBcs6JXc04o6ocDYUXmtGUgtzdLte7HoitobYXOe33Ze05lV_na1EWKYg7whQcuEO0cJ.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_LovagMoZZFoM80YhT0zgW4b6oNarRMdF8ooxvYiQ9tA.css%3Fdelta=4&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlj90OwiAMhV9oA_XOp1lgHDaSQg3FLfPph_sxGm_a03Oa5mtPRmTR1giaftc-0EdHiJgBcs6JXc04o6ocDYUXmtGUgtzdLte7HoitobYXOe33Ze05lV_na1EWKYg7whQcuEO0cJ.css" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="layout-builder-introduction-and-current-developments.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-2019-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-hatter-2019-midcamp2020navigation-menu" id="block-hatter-2019-midcamp2020navigation" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-2019-midcamp2020navigation-menu">Midcamp 2020 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" data-drupal-link-system-path="node/403">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../news.html" title="News" data-drupal-link-system-path="2020/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" data-drupal-link-system-path="2020/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--virtual-camp">
+        <a href="../article/midcamp-2020-going-digital.html" title="MidCamp is going virtual" data-drupal-link-system-path="node/6689">Virtual Camp</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsor">
+        <a href="../sponsor-midcamp.html" data-drupal-link-system-path="node/6250">Sponsor</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--community-organizations">
+        <a href="../sponsor/community-organization-introduction.html" data-drupal-link-system-path="node/6251">Community Organizations</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sponsors">
+        <a href="../sponsors.html" data-drupal-link-system-path="node/6253">Sponsors</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" data-drupal-link-system-path="node/6258">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--sessions-thu">
+        <a href="../schedule/thursday.html" data-drupal-link-system-path="2020/schedule/thursday">Sessions (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-fri">
+        <a href="../schedule/friday.html" data-drupal-link-system-path="2020/schedule/friday">Sessions (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--contribution-sat">
+        <a href="../contribution-day.html" title="Contribution Day" data-drupal-link-system-path="node/6378">Contribution (Sat)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--accepted-sessions">
+        <a href="../accepted-sessions.html" data-drupal-link-system-path="2020/accepted-sessions">Accepted Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../../2023/speaker-resources.html" data-drupal-link-system-path="node/345">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-terms-and-conditions">
+        <a href="../../speaker-terms-and-conditions.html" data-drupal-link-system-path="node/21">Speaker Terms and Conditions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--topic-tracks">
+        <a href="../../topic-tracks.html" data-drupal-link-system-path="node/10">Topic Tracks</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--donate">
+        <a href="https://tickets.midcamp.org/" title="Register for MidCamp">Donate</a>
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-2019-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2020.html" hreflang="en">MidCamp 2020</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-hatter-2019-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Layout Builder: An Introduction and Current Developments</span>
+</h1>
+
+
+  </div>
+<div id="block-hatter-2019-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="6346" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2020-03-20T18:45:00Z" class="datetime">Friday, 1:45 pm CDT</time>
+ - <time datetime="2020-03-20T19:15:00Z" class="datetime">Friday, 2:15 pm CDT</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-83" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-name field--type-string field--label-hidden field__item">Room 324</div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p><span><span>Layout Builder, which was released as a stable addition to Drupal in 8.7.0, has dramatically changed how Drupal websites are built.</span></span></p>
+
+<h2><span><span>Introduction to Layout Builder</span></span></h2>
+
+<p>In the first half of the session, we'll introduce&nbsp;Layout Builder:</p>
+
+<ul type="disc">
+	<li>How to enable and configure Layout Builder for a given view mode</li>
+	<li>How to use Layout Builder Restrictions (contrib module) to restrict available layouts and blocks</li>
+	<li>How to use Layout Builder Modal (contrib module) to move certain forms into modals</li>
+	<li>When to use Layout Builder and when to use core templates</li>
+</ul>
+
+<h2>Current Developments</h2>
+
+<p>In the second half of the&nbsp;session, we'll&nbsp;focus on current developments.&nbsp;<span><span>New issues are being filed. Competing issues are being filed. New functionality is being reviewed and committed. Should you wait for Drupal 8.9 to be released for a new feature or should you patch now?&nbsp;Like a lot of things in Drupal 8, keeping up with Layout Builder is like trying to keep up with a moving train. We'll chase down that train.</span></span></p>
+
+<p>Some of the topics that will be covered include the following:</p>
+
+<ul>
+	<li>Section&nbsp;reordering</li>
+	<li>Component visibility&nbsp;control</li>
+	<li>Third-party settings for components (which is needed for Block Class integration)</li>
+</ul></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/Q1gftmuaD38?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-presenter-slides field--type-file field--label-above">
+    <div class="field__label">Presenter Slides</div>
+              <div class="field__item">
+<span class="file file--mime-application-pdf file--application-pdf"> <a href="../../sites/default/files/2020-03/Layout%20Builder%20-%20An%20Introduction%20and%20Current%20Developments.pdf" type="application/pdf">Layout Builder - An Introduction and Current Developments.pdf</a></span>
+</div>
+          </div>
+
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Christopher Burge</h4>
+
+      Web Applications Developer
+
+
+          @
+              <a href="https://dxg.unl.edu/">University of Nebraska-Lincoln</a>
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p>Burge, a full-stack web developer, has specialized in Drupal since 2011. Prior to joining the Digital Experience Group (DXG) at the University of Nebraska-Lincoln, he spearheaded a number of higher-ed and enterprise projects as a freelance developer. He maintains a number of modules on Drupal.org and is an active member of the open-source community. As a member of DXG, he is engaged in migrating UNLcms to Drupal 8.</p>
+</div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2020-01/Burge.jpg%3Fitok=WsPxy2Lv" width="220" height="220" alt="Christopher Burge" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Front-End</div>
+          <div class="field__item">Site Building</div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-feedback-form field--type-webform field--label-above">
+    <div class="field__label">Feedback Form</div>
+              <div class="field__item"><form class="webform-submission-form webform-submission-add-form webform-submission-session-feedback-form webform-submission-session-feedback-add-form webform-submission-session-feedback-node-6346-form webform-submission-session-feedback-node-6346-add-form" data-drupal-selector="webform-submission-session-feedback-node-6346-add-form" action="layout-builder-introduction-and-current-developments.html" method="post" id="webform-submission-session-feedback-node-6346-add-form" accept-charset="UTF-8">
+  
+    <div data-drupal-selector="edit-0" class="webform-message js-webform-message js-form-wrapper form-wrapper" id="edit-0"><div data-drupal-messages>
+    <div role="contentinfo" aria-label="Status message" class="messages messages--status">
+                  <h2 class="visually-hidden">Status message</h2>
+                    Sorry...This form is closed to new submissions.
+            </div>
+    </div>
+</div>
+<input autocomplete="off" data-drupal-selector="form-sjuf-ybitiipgsggolq-ega0to-t4qczvfgzmsfud3m" type="hidden" name="form_build_id" value="form-sJuF-YbITiIPGsggoLQ-Ega0TO-T4qcZvfGzmsfuD3M" />
+<input data-drupal-selector="edit-webform-submission-session-feedback-node-6346-add-form" type="hidden" name="form_id" value="webform_submission_session_feedback_node_6346_add_form" />
+<div class="url-textfield js-form-wrapper form-wrapper" style="display: none !important;"><div class="js-form-item form-item js-form-type-textfield form-type-textfield js-form-item-url form-item-url">
+      <label for="edit-url">Leave this field blank</label>
+        <input autocomplete="off" data-drupal-selector="edit-url" type="text" id="edit-url" name="url" value="" size="20" maxlength="128" class="form-text" />
+
+        </div>
+</div>
+
+
+  
+</form>
+</div>
+          </div>
+
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <h3 class="field__label">Transcript</h3>
+              <div class="field__item" tabindex="0"><p>&gt;&gt; All righty.&nbsp;All right.&nbsp;It's going to be a fairly introdetect&nbsp;‑‑ introductory presentation.&nbsp;This is me.&nbsp;This is the required speaker slide.&nbsp;UNL, university of Nebraska Lincoln for about a year now.&nbsp;If you want to read the rest of that, the slides are posted.&nbsp;So starting out first, what is layout builder?&nbsp;This is from Drupal.org.&nbsp;[&nbsp;Reading definition from Drupal.org&nbsp;]&nbsp;</p>
+
+<p>Or if you have been working with people who are familiar withdrew pal, and they used panels, I just tell them this.&nbsp;Layout builder is panels in Drupal core, basically.&nbsp;We don't quite have feature parity yet, but this is a huge step forward.&nbsp;And that feature parity is coming.&nbsp;</p>
+
+<p>So what are we going to talk about today?&nbsp;We're going to implement layout builder for content type.&nbsp;We're going to allow per‑entity customizations.&nbsp;We're going to layout builder modal and enable builder restrictions. We will talk about inline blocks and a live demo.&nbsp;</p>
+
+<p>This is 884 with a standard install profile.&nbsp;At this point, I have also created the second custom block type.&nbsp;So the first thing when we talk about layout builder is we need to talk about view modes, because that's where layout builder works, that's the level that it works at.&nbsp;A view mode is something that you can use on content.&nbsp;If you are not familiar with them, it's a different way to display the same content differently, depending on where it is.&nbsp;So things that have view modes are nodes, taxonomy terms, users and custom blocks to name a few.&nbsp;An example of where you might use these is let's say you have an article content type.&nbsp;We all know what we expect the page to look at.&nbsp;When we go there and we look at the node.&nbsp;Basically all the content is going to be there.&nbsp;Maybe there's tags.&nbsp;Maybe there's a featured image.&nbsp;It's very prominent on the page.&nbsp;We might also use a teaser view mode.&nbsp;Same content, but maybe it's put together with a view, and maybe it will include summary text, a headline and a smaller version of that picture.&nbsp;So these are things that are turned on by default in Drupal core.&nbsp;We can use layout builder for them.&nbsp;We're going to go to manage, display for basic page.&nbsp;And all of us who have built sites have seen this screen before.&nbsp;And it's going to be a table of fields.&nbsp;We can re‑order them.&nbsp;How do we want them to be formated, labeled, etc.&nbsp;When I turn on layout builder, we have a check box, and we're going to check the box.&nbsp;We will talk about the second box here in a second.&nbsp;I'm going to click save.&nbsp;And now that table disappeared.&nbsp;When you click manage layout, it's going to take us to layout builder.&nbsp;So let's click the button.&nbsp;The first thing I will mention about layout builder is it's always presented on the frontend themes and not necessarily on the backend.&nbsp;So as you are working you get to see in realtime what you're doing, which is a cool feature.&nbsp;When we look at&nbsp;‑‑ when we just checked our box, all it did is take the existing fields and dropped them into a single column, layout.&nbsp;So to the end user right now, as far as they're concerned, nothing has changed.&nbsp;There's also a toggle here to show content preview.&nbsp;When you go to the box, you get the labels for them.&nbsp;This can be useful.&nbsp;A lot of times I'm building, I may toggle this on and off several times.&nbsp;Because we're not actually working with a particular node here, Drupal is dropping in Lorem&nbsp;Ipsum to represent the body.&nbsp;</p>
+
+<p>Okay.&nbsp;So let's go ahead and add a section.&nbsp;So we have layouts.&nbsp;In this case, we have four and this is what Drupal core ships with.&nbsp;This is a bit of Drupalism.&nbsp;You may need to train your users on that terminology.&nbsp;Let's insert a two‑column section.&nbsp;So we have this pops up on the right‑hand side.&nbsp;And we have configuration that is available to us.&nbsp;We're just going to read this 50/50.&nbsp;There is an option to add an administrative label.&nbsp;This is only something that shows up on the back‑end.&nbsp;Some would call it a section.&nbsp;Now we can start adding blocks to it.&nbsp;I want to go back for just a second.&nbsp;You can write your own layouts.&nbsp;And if you are building a site, you will probably get this anyway.&nbsp;What ships probably won't meet exactly what your designer wants you to implement.&nbsp;The instructions for it online are super easy to use.&nbsp;Really all you need is a few things.&nbsp;You need a yml definition, what the name of it is.&nbsp;Machine name.&nbsp;Then you have a twig template that renders out the mark‑up.&nbsp;You will need CSS, of course.&nbsp;Seems you will extend the layout default class, which is what you're seeing right here.&nbsp;That allows you the opportunity to go ahead and you can add additional fields here.&nbsp;If you want to add classes to a section.&nbsp;Maybe you're working with a design system where classes will be used. Maybe you want to&nbsp;‑‑ maybe not give them that much power, so maybe they can select a background color for the section.&nbsp;You can go and refer to the settings and respond accordingly.&nbsp;Okay.&nbsp;Blocks.&nbsp;So anything that is a block can be inserted into the layout builder. &nbsp;So let's click add a block.&nbsp;And we get everything.&nbsp;So this is by default what you get from Drupal.&nbsp;And 95% of these, your users will never use.&nbsp;So, there's a module we can use to pair this down.&nbsp;If any of you watched Susanne's presentation this is one of the things she identified.&nbsp;I would never give all of this to every user.&nbsp;I always use layout builder restrictions.&nbsp;So let's say for this particular basic page we want to insert&nbsp;‑‑ this is a demonstration.&nbsp;I don't care about the settings, but there is configuration.&nbsp;And then you want to, you know&nbsp;‑‑ yeah.&nbsp;So if we save this, let's go add a basic page.&nbsp;The zoom thing is trying to hide my tabs.&nbsp;There is some lorem&nbsp;ipsum.&nbsp;So it will save it.&nbsp;And so, the way it's configured right now, that layout would just set up is going to be used for every basic page on the site.&nbsp;Effectively, what we've done is something we might have done previously with Twig templates for a particular content type.&nbsp;This allows us to do it in browser using layouts that we have available.&nbsp;I will point out that we have neutral tabs here.&nbsp;When we check the second box, we will get another tab there.&nbsp;Let's check the second box.&nbsp;This allows each content item basically to override the default.&nbsp;When you create a new node that is layout builder enabled, by default, it's still going to use that layout to find.&nbsp;Now we have the layout tab, so we can override it.&nbsp;This is unique to this particular piece of content.&nbsp;So next thing we're going to do&nbsp;‑‑ let's set up block.&nbsp;So there's these things called&nbsp;‑‑ it says create custom blocks.&nbsp;And then it calls it an inline block.&nbsp;It's just a custom block.&nbsp;But it's special.&nbsp;It is special in that it is an inline block and created inside of layout builder.&nbsp;And it's tied to one and only one entity.&nbsp;In this case a node.&nbsp;So it gets revisioned along with the particular nodes.&nbsp;That's all an inline block is.&nbsp;When you go to add one of these.&nbsp;Before I click add block, I want to add that this tiny settings tray is not a great place for this.&nbsp;We're going to fix this for a second.&nbsp;Okay.&nbsp;So it's been inserted. Now save it.&nbsp;There are some settings.&nbsp;And they also allow you to insert CSS from 7.&nbsp;Whatever your theme is will be loaded on this page, and maybe you want to override it.</p>
+
+<p>That's a huge UX improvement.&nbsp;On every site that I have layout builder enabled, this module is also enabled.</p>
+
+<p>All righty.&nbsp;And there is a settings page.&nbsp;Layout builder restrictions uses plugins.&nbsp;So it ships with one plugin enabled already.&nbsp;You can write your own.&nbsp;And I don't know if any exist, but it would certainly be possible in which you can have your own module that provides a layout restriction.&nbsp;</p>
+
+<p>So now you load this page and we get more configuration options.&nbsp;So by default, everything is still allowed.&nbsp;We can restrict this.&nbsp;Let's say we want folks to be able to use one, two, and three column layouts.&nbsp;In terms of blocks, these are all the different categories. &nbsp;So let's go ahead and pair these down.&nbsp;What I'm doing is if you check the button for choose specific whatever, and don't check any box, you have effectively disallowed that entire category.&nbsp;Okay.&nbsp;Going to go ahead and safe that.&nbsp;Next we're going to talk about&nbsp;‑‑ okay.&nbsp;So now that we have a new tool, we have the issue of where do we use this tool?&nbsp;Do we use it everywhere?&nbsp;Do we just stop using Twig templates for all of the content types, etc.?&nbsp;Well, it kind of depends.&nbsp;You need to look at the individual use cases.&nbsp;What you're building, what it needs to do.&nbsp;And in my case, at university of Nebraska, the CMS that we're building, the decision we have made at this point is we're only using layout builder for one content type.&nbsp;We have other content types that we're still using the traditional twig templates.&nbsp;That's the decision we have made there.&nbsp;I have done some freelance sites where I have implemented layout builder.&nbsp;There's one instance where I used it fairly extensively as I was building things out.&nbsp;The reason being is that in terms of the layouts that I needed, I already had everything that I needed.&nbsp;I didn't need to reinvent the wheel.&nbsp;And it was quick and easy in that particular case to go ahead and use existing layouts to drop content like I showed here.&nbsp;Like I said, it was quick and easy, and kind of a benefit, too.&nbsp;It saved me a decent amount of time.&nbsp;I never needed to touch code or template files at the node level.&nbsp;So that's what I have done on some freelance projects.&nbsp;As you get into it and you start using layout builder more and more in your projects, you may find the same thing.&nbsp;You have to review it on an entity by entity basis.&nbsp;I think at this point, we need to talk about current issues.&nbsp;I knew there was more to talk about.&nbsp;The first one is you currently can't reorder sections. &nbsp;So that page that I started to build there, if I changed my mind and wanted to move that two column below the one column, you can't currently do that.&nbsp;I would have had to add a new section and make sure I have my section settings copied to the new one, too.&nbsp;And I would have had to drag and drop, move all of my content down to the new section and then delete the old section, which is kind of a huge UX nightmare.&nbsp;So there is an issue out there.&nbsp;I have done some work on it.&nbsp;And somebody posted another version this morning.&nbsp;The next one is visibility controls.&nbsp;They need to log in and see content on that page.&nbsp;You can toggle that behavior based on the user this functionally works.&nbsp;The tests all passed.&nbsp;I think it probably needs somebody's user expertise to use it and take a look at it.&nbsp;I'm not sure if I like the work flow the way it is right now.&nbsp;If you want to use it on your site, that's great.&nbsp;Hopefully if we take it a step further and this is an opportunity for some of you out there to contribute back to Drupal core as well and take it for a test drive and post your feedback.&nbsp;</p>
+
+<p>The next one, support for third‑party settings for components.&nbsp;When you place a block in layout builder, technically it's referred to as a component, even though that's not the language they use on the frontend.&nbsp;This can be foreign.&nbsp;You know how you can have settings that you can add to sections?&nbsp;This would allow you to do the same thing for blocks.&nbsp;The most obvious case is if you want to use the block class module.&nbsp;So, this is something, we haven't deployed this yet.&nbsp;But to add to the CMS, which is wrapping up development this month and it will be something that we need and I imagine many of you will need that, too.&nbsp;</p>
+
+<p>And then we get to the issues with form names. &nbsp;So this first one, basically what that's for is in the settings tray, you have a form in there.&nbsp;The form doesn't pass validation.&nbsp;Validation works in the sense that it refuses to accept the submission, but it fails silently.&nbsp;The user gets no feedback.&nbsp;They click the submit button and nothing happens.&nbsp;They never get displayed the error.&nbsp;So that first one fixes that one.&nbsp;The second one, this one's a nasty bug.&nbsp;This is actually pretty bad.&nbsp;The page I was building there, I could revert the node to a previous revision basically we will call it a revision mismatch validation.&nbsp;I can no longer edit those blocks.&nbsp;So the only way that I can edit those in my blocks is to delete them and recreate them.&nbsp;So that's a big boo boo.&nbsp;That's a big problem.&nbsp;Unfortunately this one, there's no patch.&nbsp;It's being blocked by an upstream issue also in Drupal core.&nbsp;If anybody has coding experience and wants to tackle those, this is a big need for layout builder right now, because it's a bad bug.&nbsp;</p>
+
+<p>Okay.&nbsp;That wraps up the presentation.&nbsp;Don't forget contribution day is Saturday.&nbsp;And then if you would like to provide your feedback on this presentation, here is a link.&nbsp;So there is that.&nbsp;And now we have time for questions.&nbsp;Because Chris did leave a little bit of time.&nbsp;I think you all should be able to unmute yourselves.&nbsp;Is that right?&nbsp;</p>
+
+<p>&gt;&gt; Yes, we can unmute ourselves.&nbsp;</p>
+
+<p>&gt;&gt; Okay.&nbsp;I want to see if there is anything in chat here?&nbsp;</p>
+
+<p>&gt;&gt; What are your thoughts about inline blocks versus paragraphs?&nbsp;</p>
+
+<p>&gt;&gt; Okay.&nbsp;So I purposely didn't bring up paragraphs, because it's hard to talk about paragraphs without bashing the way that some people still use them and I used them before we had layout builder.&nbsp;Paragraphs, the only way that I use them now is for basically repeatable fields.&nbsp;If there are complex data structures where things might be nested, I use them in that place in layout builder.&nbsp;But I don't use paragraphs like I did in sites before we had layout builder.&nbsp;</p>
+
+<p>&gt;&gt; [&nbsp;Off mic&nbsp;].&nbsp;</p>
+
+<p>&gt;&gt; Original want?&nbsp;</p>
+
+<p>&gt;&gt; Content edit point?&nbsp;</p>
+
+<p>&gt;&gt; It is a big change.&nbsp;I think that for users that are not technical, it will take a little bit more training.&nbsp;Once they did it, they have liked it.&nbsp;They just dive right in.&nbsp;For those of you who watched Susanne's research presentation, if you haven't watched it, go back and watch that video.&nbsp;It was very, very good.&nbsp;She talked about dropping users in and, you know, different points at which you might need to.&nbsp;One area that she identified is add a custom block to the very top of the add block form.&nbsp;A lot of you&nbsp;‑‑ not block.&nbsp;Some users needed to block them.&nbsp;We can't currently do that.&nbsp;I don't know if there's an issue for that.&nbsp;If there's not, I would be curious for someone to open that.&nbsp;I suppose it's just a matter of time before we will need that, too.&nbsp;</p>
+
+<p>&gt;&gt; Chris, one other question in the chat.&nbsp;When you use layout builder restrictions, do you have to go back and allow specific blocks whenever you add them?&nbsp;</p>
+
+<p>&gt;&gt; So&nbsp;‑‑ there is actually an issue about that right now.&nbsp;It's a little complicated.&nbsp;If a new category shows up, if I to do a web form, and the current behavior would be allowed by default.&nbsp;Users do that instantaneously.&nbsp;If I add a new, if there's a new block that becomes available, a specific category that's already&nbsp;‑‑&nbsp;</p>
+
+<p>&gt;&gt; Sorry, Chris.&nbsp;I had to mute everybody, and that muted you as well.&nbsp;</p>
+
+<p>&gt;&gt; Okay.&nbsp;I'm unmuted again though, right?&nbsp;</p>
+
+<p>&gt;&gt; Yes, you are.&nbsp;</p>
+
+<p>&gt;&gt; Okay.&nbsp;So I think I just barely finished answering that question before the mute thing happened.&nbsp;</p>
+
+<p>&gt;&gt; Maybe.&nbsp;That's cool.&nbsp;There's a module.&nbsp;I will have to take a look at that.&nbsp;</p>
+
+<p>&gt;&gt; So if everyone will unmute themselves and let's give Chris a big round of applause.&nbsp;That was really awesome.</p>
+
+<p>[ Applause ] </p>
+
+<p>&gt;&gt; All right.&nbsp;Thanks.</p>
+</div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+
+</div>
+  </section>
+
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-34448183a80b37296564f91e564764517eee5984192773e1e24bf3cb504d7e39">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/palantirnet.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2020-02/palantirnet-logo.png" width="1200" height="198" alt="Palantir.net logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/bounteous.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2019-11/Bounteous_indigo_large.png" width="1676" height="279" alt="Bounteous logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/clarity-partners.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2020-02/CFDFAA23-5C59-4C07-9C66-CAFFE0CF3854.png" width="1534" height="387" alt="Clarity Partners logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/pantheon.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2020-02/pantheon-logo-tagline-black.png" width="1200" height="370" alt="Pantheon logo" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-2019-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#0861666e674865616c6b69657826677a6f"><span class="__cf_email__" data-cfemail="e68f888089a68b8f8285878b96c8899481">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-2019-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-2019-footer-menu" id="block-hatter-2019-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-2019-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/6346","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"ajaxTrustedUrl":{"form_action_p_pvdeGsVG5zNF_XLGPTvYSKCf43t8qZYSwcfZl2uzM":true},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_sul8js76f3THBVtv8nspP93BoCHSgntyTCisS6lai4M.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter_2019&amp;include=eJx1ykEKgDAMBdELaavuPI2k-o1K2kITFG_vRkQEVwOP4ZxZMFAiOW0d1fMHqoXMUIauaXvPkgNJvT0aSPHSA2HOJfq7DoKIZG6C0SrqlHb8ThGqxLgAGZ04Cw"></script>
+
+  </body>
+</html>

@@ -1,0 +1,3206 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="This session will provide an introduction to using Views to create dynamic displays of different types of content (nodes, users, terms, and just about any entity you can think of). We&#039;ll go over the basics of Views, some of Views possible applications, and how to actually set up some of those different use cases with the Views admin interface. After that introduction, we&#039;ll look at some of the contributed modules that extend Views and allow for some really fancy displays." />
+<link rel="canonical" href="intro-views-creating-dynamic-lists-content.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Intro to Views - Creating Dynamic Lists of Content | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Intro to Views - Creating Dynamic Lists of Content | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_Qoyy92GHt9RyGOt8N3WS_9HRsJcJBywJ2IhXudzvST4.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJw9jFEKwzAMQy-ULkcqTqx2AaceUdbRnX6hpfsRTzyhbEIeMQkR8sVLsT9XkLKCd99ch_OGQa2KlS_CU3pHi6t5EpsyGXiwo16ne1H4jJqg81JgGhv48o1lx3TKMcGH8cxHdX0bfg1uOh4.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_QAC1R0aFoF1mIVQtLAaSE24B2iwnT2ZCa0cZDeZsPV0.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJw9jFEKwzAMQy-ULkcqTqx2AaceUdbRnX6hpfsRTzyhbEIeMQkR8sVLsT9XkLKCd99ch_OGQa2KlS_CU3pHi6t5EpsyGXiwo16ne1H4jJqg81JgGhv48o1lx3TKMcGH8cxHdX0bfg1uOh4.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJw9jFEKwzAMQy-ULkcqTqx2AaceUdbRnX6hpfsRTzyhbEIeMQkR8sVLsT9XkLKCd99ch_OGQa2KlS_CU3pHi6t5EpsyGXiwo16ne1H4jJqg81JgGhv48o1lx3TKMcGH8cxHdX0bfg1uOh4.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJw9jFEKwzAMQy-ULkcqTqx2AaceUdbRnX6hpfsRTzyhbEIeMQkR8sVLsT9XkLKCd99ch_OGQa2KlS_CU3pHi6t5EpsyGXiwo16ne1H4jJqg81JgGhv48o1lx3TKMcGH8cxHdX0bfg1uOh4.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="intro-views-creating-dynamic-lists-content.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-hatter-midcamp2019navigation-menu" id="block-hatter-midcamp2019navigation" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-midcamp2019navigation-menu">Midcamp 2019 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" title="About MidCamp" data-drupal-link-system-path="node/191">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--venue">
+        <a href="../about/venue.html" data-drupal-link-system-path="node/192">Venue</a>
+            </li>
+          <li class="primary-nav__sublist-item item--travel">
+        <a href="../about/travel.html" title="Travel and Accommodations" data-drupal-link-system-path="node/188">Travel</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../about/lunch.html" title="Lunch options" data-drupal-link-system-path="node/189">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--volunteer">
+        <a href="../article/volunteer-help-midcamp.html" title="Volunteer!">Volunteer!</a>
+            </li>
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2019/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../../2020/news.html" data-drupal-link-system-path="2020/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--attendees">
+        <a href="../attendees.html" data-drupal-link-system-path="2019/attendees">Attendees</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" data-drupal-link-system-path="2019/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--spread-the-word">
+        <a href="../article/spread-word.html" data-drupal-link-system-path="node/371">Spread the Word</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" title="Sponsors" data-drupal-link-system-path="node/197">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--become-a-sponsor">
+        <a href="../sponsor-midcamp.html" title="Sponsor MidCamp" data-drupal-link-system-path="node/186">Become a Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../../jobs.html" title="Jobs" data-drupal-link-system-path="jobs">Jobs</a>
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" title="Schedule" data-drupal-link-system-path="node/190">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--all-sessions">
+        <a href="../sessions.html" data-drupal-link-system-path="2019/sessions">All Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--summits--training-wed">
+        <a href="../schedule/wednesday.html" title="Summits &amp; Training (Wednesday)" data-drupal-link-system-path="2019/schedule/wednesday">Summits &amp; Training (Wed)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-thu">
+        <a href="../schedule/thursday.html" title="Sessions (Thursday)" data-drupal-link-system-path="2019/schedule/thursday">Sessions (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-fri">
+        <a href="../schedule/friday.html" title="Sessions (Friday)" data-drupal-link-system-path="2019/schedule/friday">Sessions (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--contribution-sat-">
+        <a href="../contribution-day.html" title="Contribution Day" data-drupal-link-system-path="node/332">Contribution (Sat) </a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-terms-and-conditions">
+        <a href="../../speaker-terms-and-conditions.html" title="Speaker Terms and Conditions" data-drupal-link-system-path="node/21">Speaker Terms and Conditions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../../speaker-resources.html" title="Speaker Resources">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--topic-tracks">
+        <a href="../../topic-tracks.html" title="Topic Tracks" data-drupal-link-system-path="node/10">Topic Tracks</a>
+            </li>
+  </ul>
+
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2019.html" hreflang="en">MidCamp 2019</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Intro to Views - Creating Dynamic Lists of Content</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="273" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2019-03-22T14:00:00Z" class="datetime">Friday, 9:00 am CDT</time>
+ - <time datetime="2019-03-22T15:00:00Z" class="datetime">Friday, 10:00 am CDT</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-81" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-name field--type-string field--label-hidden field__item">Room 314A</div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>Have you just started using Views and asked yourself one of the following:</p>
+
+<ul>
+	<li>How do I get only the content I want to display?</li>
+	<li>Why can't I add other fields about the author of the article?</li>
+	<li>Why does my view keep displaying duplicate entries?</li>
+	<li>How do I make this into a slideshow?</li>
+	<li>What on Earth is a contextual filter?</li>
+</ul>
+
+<p>If you have, this session is for you. The Views module is <em>the</em> way to create lists of content in Drupal. To a beginning Drupal user, though, the admin interface can be pretty overwhelming. This session will provide an introduction to using Views to create dynamic displays of different types of content (nodes, users, terms, and just about any entity you can think of). We'll go over the basics of Views, some of Views possible applications, and how to actually set up some of those different use cases with the Views admin interface. After that introduction, we'll look at some of the contributed modules that extend Views and allow for some really fancy displays.</p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/edf2YkAe8nQ?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-presenter-slides field--type-file field--label-above">
+    <div class="field__label">Presenter Slides</div>
+              <div class="field__item">
+<span class="file file--mime-application-pdf file--application-pdf"> <a href="../../sites/default/files/2019-03/MidCamp%202019%20-%20Intro%20to%20Views.pdf" type="application/pdf" title="MidCamp 2019 - Intro to Views.pdf">Intro to Views</a></span>
+</div>
+          </div>
+
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Jake Ineichen</h4>
+
+      Digital Services Librarian
+
+
+          @
+              <a href="https://www.madisonpubliclibrary.org/">Madison Public Library</a>
+        
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2024-03/headshot-400x400.jpg%3Fitok=wQS4Q8ha" width="220" height="220" alt="Jake Ineichen" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">End users / Content Admin</div>
+          <div class="field__item">Site Building</div>
+              </div>
+      </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p>morning good morning everybody so you</p>
+
+<p>are in interpret views creating dynamic</p>
+
+<p>lists of contacts very excited so my</p>
+
+<p>name is Jake Anakin would be the</p>
+
+<p>presenter today and we have a lot to</p>
+
+<p>cover we're just gonna be going to</p>
+
+<p>high-level introduction everything so</p>
+
+<p>you're not going to get really detailed</p>
+
+<p>on anything but you'll get to see some</p>
+
+<p>of the capabilities that fuse can do so</p>
+
+<p>I'm gonna have to talk fast so we can</p>
+
+<p>get to construct contextual filters</p>
+
+<p>which are really exciting those at the</p>
+
+<p>end of the session so certain start a</p>
+
+<p>little bit as I said my name is Jake in</p>
+
+<p>the digital services librarian at</p>
+
+<p>Madison Public Library in Madison</p>
+
+<p>Wisconsin and digital services librarian</p>
+
+<p>what does that mean I'm the web</p>
+
+<p>developer for the library and in drupal</p>
+
+<p>terms i'm the site builder i don't do a</p>
+
+<p>lot of coding myself i do a lot of</p>
+
+<p>configuring building so I've been doing</p>
+
+<p>that for four years and so I built</p>
+
+<p>Drupal websites for our staff for our</p>
+
+<p>users I oversee daily web services</p>
+
+<p>there's a broken link on the website I</p>
+
+<p>fix it and train other users to actually</p>
+
+<p>add content create documentation for</p>
+
+<p>them and troubleshoot issues so today</p>
+
+<p>I'm going to introduce you to views</p>
+
+<p>we're gonna I'm gonna give you some of</p>
+
+<p>the terminology we're going to go over</p>
+
+<p>and look at what each part of the</p>
+
+<p>interface of the drupal the views UI</p>
+
+<p>looks like we're going to create a few</p>
+
+<p>views of various configurations and then</p>
+
+<p>look at a couple modules that extend</p>
+
+<p>views and can make for some really</p>
+
+<p>dynamic</p>
+
+<p>expensive interesting displays so we're</p>
+
+<p>gonna start gentleman Oh gage who's an</p>
+
+<p>audience so who here is learning Drupal</p>
+
+<p>for the first time or it's like a really</p>
+
+<p>new user to journal okay great</p>
+
+<p>who here has used Drupal for a little</p>
+
+<p>bit but hasn't used views a bunch a</p>
+
+<p>couple okay anyone say they're more</p>
+
+<p>experienced really experienced at views</p>
+
+<p>and is just waiting to six minutes days</p>
+
+<p>okay I hope all of you get what you want</p>
+
+<p>not a decision so we're gonna start just</p>
+
+<p>what is views and because views is a</p>
+
+<p>confusing term in Drupal because we use</p>
+
+<p>it everywhere it's also a word that you</p>
+
+<p>use pretty commonly so you might hear</p>
+
+<p>someone's we know one would say this but</p>
+
+<p>you could say after expelled views are</p>
+
+<p>used views to create a bunch of new</p>
+
+<p>views and those are all accurate</p>
+
+<p>descriptions like uses of the term views</p>
+
+<p>so we can talk about views as a module</p>
+
+<p>so it's in core in Drupal Drupal 8 which</p>
+
+<p>is great it's a contributor to 7 and</p>
+
+<p>below and everyone use it in Drupal 7 so</p>
+
+<p>it's great that is in court it is also</p>
+
+<p>kind of described as the tool that we</p>
+
+<p>use to create dynamic lists if you think</p>
+
+<p>of it as kind of the user interface of</p>
+
+<p>views I used views then when we're</p>
+
+<p>talking about dynamic lists that means</p>
+
+<p>the content changes based on what</p>
+
+<p>content you have added new content new</p>
+
+<p>filters that you add and we also use the</p>
+
+<p>view term views to describe the list it</p>
+
+<p>sets so the list of things which could</p>
+
+<p>be content or users or taxonomy terms</p>
+
+<p>blocks almost any sort of entity I'm</p>
+
+<p>gonna use that term entity and</p>
+
+<p>throughout the talk to talk about kind</p>
+
+<p>of a a contained self-contained item</p>
+
+<p>which could be a piece of content a user</p>
+
+<p>and I'd like to say that it's not just a</p>
+
+<p>list of things because when someone says</p>
+
+<p>you can make lists I get a very specific</p>
+
+<p>picture of what that means like I get</p>
+
+<p>three dots and then that's my list but</p>
+
+<p>with views you can create a series of</p>
+
+<p>things so so any number of things in</p>
+
+<p>some sort of order so these are all</p>
+
+<p>examples of views so over on the top</p>
+
+<p>left we got a list of content most</p>
+
+<p>recent content we've got a list of users</p>
+
+<p>in the middle we've got an RSS feed of</p>
+
+<p>content that is also created with a view</p>
+
+<p>and we've got a slideshow of content</p>
+
+<p>which is also a few just a series of</p>
+
+<p>images that scroll through so as I said</p>
+
+<p>Drupal views is in core in Drupal 8</p>
+
+<p>which is great and it mean and the</p>
+
+<p>people who have built worked on core</p>
+
+<p>decided to do something I think really</p>
+
+<p>really makes sense now that the users in</p>
+
+<p>core we should just build all of the</p>
+
+<p>admin interfaces with views and so that</p>
+
+<p>means that they're all they're all</p>
+
+<p>available for you to edit which is</p>
+
+<p>really powerful and very dangerous um</p>
+
+<p>and so using views it's like just living</p>
+
+<p>on the edge a little bit and so this is</p>
+
+<p>the default admin content view that you</p>
+
+<p>see when you go to just admin staff</p>
+
+<p>content but we're gonna go over kind of</p>
+
+<p>what each of the pieces of this you can</p>
+
+<p>actually read because it's too small</p>
+
+<p>we're gonna go the pieces of this and</p>
+
+<p>I'm gonna talk about what each section</p>
+
+<p>of this interface does and then we'll go</p>
+
+<p>in later and actually build some views</p>
+
+<p>so at the top of our view on the top</p>
+
+<p>left we have a list of the displays of</p>
+
+<p>the view now this is the second</p>
+
+<p>confusing thing about views is that a</p>
+
+<p>view is kind of a series of content as I</p>
+
+<p>said but you can have multiple displays</p>
+
+<p>of that series of content</p>
+
+<p>to allow them to be created and built in</p>
+
+<p>different ways and there's a number of</p>
+
+<p>types of displays so there's a page</p>
+
+<p>which has a URL you can go to it blocks</p>
+
+<p>which you can add throughout on your</p>
+
+<p>site on different pieces in different</p>
+
+<p>regions of your site feeds like I said</p>
+
+<p>an RSS feed there's so much more you can</p>
+
+<p>make and then the reference views which</p>
+
+<p>allow you to enhance the create like the</p>
+
+<p>content creation forms by getting more</p>
+
+<p>specific instead if there's nothing a</p>
+
+<p>giant list of every thing in a specific</p>
+
+<p>field so that's up in the top left are</p>
+
+<p>the lists of the displays that you have</p>
+
+<p>Oh in a really good example of why you</p>
+
+<p>might have multiple displays on a single</p>
+
+<p>view is you can think of like having you</p>
+
+<p>know a standard blog the front page of</p>
+
+<p>the blog is a list of you know the</p>
+
+<p>recent posts that you've had kind of in</p>
+
+<p>reverse order it's a teaser to the full</p>
+
+<p>post but you might also want to have the</p>
+
+<p>RSS feed for your blog so that's a but</p>
+
+<p>it uses the same configurations as your</p>
+
+<p>or much of the same configurations as</p>
+
+<p>your page so you want to use it in the</p>
+
+<p>same view so if you change anything it</p>
+
+<p>changes to cross all the displays</p>
+
+<p>instead of just the Bible you might also</p>
+
+<p>want to have a block of just the five</p>
+
+<p>most recent posts unlike just the titles</p>
+
+<p>and put those on you know in a block in</p>
+
+<p>the sidebar when you're looking at a</p>
+
+<p>full post and if you use all of those in</p>
+
+<p>the same view now this is great because</p>
+
+<p>it's very powerful because it can change</p>
+
+<p>things across many different spots with</p>
+
+<p>just changing one configuration also</p>
+
+<p>again very dangerous because you can and</p>
+
+<p>will want to make specific changes to</p>
+
+<p>individual displays and you have to be</p>
+
+<p>careful not to make changes to the whole</p>
+
+<p>view but so at the top left that lists</p>
+
+<p>all of the available displays that you</p>
+
+<p>have the admin content default view just</p>
+
+<p>has one page and the top right the very</p>
+
+<p>top is the view actions so you can edit</p>
+
+<p>it change the title</p>
+
+<p>delete it dangerous duplicate it great</p>
+
+<p>so below that is the current display</p>
+
+<p>settings so the current display is the</p>
+
+<p>page that we're on and that has all the</p>
+
+<p>options that we're gonna talk about in</p>
+
+<p>we're going to go into after this but</p>
+
+<p>have title format fields filters store</p>
+
+<p>options and then the very top right is</p>
+
+<p>the display options so above that you</p>
+
+<p>can delete the whole view in this one</p>
+
+<p>you can just delete the display and you</p>
+
+<p>can keep the view itself or make</p>
+
+<p>duplicates and actually a link to be</p>
+
+<p>with the display as well below that is a</p>
+
+<p>running preview of what your changes in</p>
+
+<p>view are doing and so you kind of get</p>
+
+<p>it's not meant to be literal but it does</p>
+
+<p>get you are you to see what your changes</p>
+
+<p>are but what effect they're having so in</p>
+
+<p>the display configuration we've got the</p>
+
+<p>display name and my default just goes to</p>
+
+<p>the type of display it is so this is a</p>
+
+<p>page so the display name defaults to</p>
+
+<p>page and you can generally leave that</p>
+
+<p>alone unless you add another page</p>
+
+<p>because then the next one's just going</p>
+
+<p>to be page two and you're gonna want to</p>
+
+<p>change that so you can identify them in</p>
+
+<p>the display list of the time below that</p>
+
+<p>is the title of the view so or the title</p>
+
+<p>of the display so this could be the page</p>
+
+<p>title the block title the feet title</p>
+
+<p>depends on what display you have bar</p>
+
+<p>family everything below that is the</p>
+
+<p>format now this is another turn that</p>
+
+<p>we're going to use we're talking about</p>
+
+<p>views is a view as I said it is a made</p>
+
+<p>up of a series of things each of those</p>
+
+<p>things views calls a row and so the</p>
+
+<p>format you can choose how those rows are</p>
+
+<p>displayed so by default in core you get</p>
+
+<p>four types to choose from you get the</p>
+
+<p>grid which is pretty self-explanatory</p>
+
+<p>you get to choose how many columns and</p>
+
+<p>it looks like HTML list which actually</p>
+
+<p>wraps each entire view in a a list</p>
+
+<p>element and then each</p>
+
+<p>is its own list item so an ally tank</p>
+
+<p>below that is a table which each row is</p>
+
+<p>a row and each field that you have is a</p>
+
+<p>column that's what the default content</p>
+
+<p>view is the table and below that is</p>
+
+<p>unformatted list which just wraps each</p>
+
+<p>row in a div tag and that is the most</p>
+
+<p>customizable I do most of my work with</p>
+
+<p>unfermented lists because then I can</p>
+
+<p>phim it however I want because it's just</p>
+
+<p>a dip now below that there's nothing</p>
+
+<p>here for the table view but for most</p>
+
+<p>formats there's also a shell setting</p>
+
+<p>which allows you to select the row style</p>
+
+<p>and you just elect to have three options</p>
+
+<p>so content fields or search results and</p>
+
+<p>now content allows you to display kind</p>
+
+<p>of the entity itself so if you have a</p>
+
+<p>and using one of its I don't know</p>
+
+<p>they're confusing term one of its</p>
+
+<p>display view modes that's the term that</p>
+
+<p>they chose to use even though views is</p>
+
+<p>pink and when we're thinking about that</p>
+
+<p>displaying a showing content that's like</p>
+
+<p>showing the teaser format or the or the</p>
+
+<p>the teaser mode or the full content mode</p>
+
+<p>or the any custom mode that you add to</p>
+
+<p>your set the other option is fields</p>
+
+<p>which allows you to select individual</p>
+
+<p>pieces of your entity and display them</p>
+
+<p>in whatever order you want and not on</p>
+
+<p>any preset mode search results is also</p>
+
+<p>an option but I've never used it and</p>
+
+<p>when I looked in the issue queue trying</p>
+
+<p>to figure out what it's for it seems to</p>
+
+<p>be broken so maybe don't use that there</p>
+
+<p>are other ways to make search results so</p>
+
+<p>I'm not really sure I'm never sure with</p>
+
+<p>this one so below that if your display</p>
+
+<p>or Yoram row style or format allows for</p>
+
+<p>fields they'll show up there if you</p>
+
+<p>don't if you're using the con</p>
+
+<p>display room setting you'll get just</p>
+
+<p>this little note that says the current</p>
+
+<p>role fund doesn't support feels so great</p>
+
+<p>that whereas you can select and choose</p>
+
+<p>what actually shows up in the view below</p>
+
+<p>that is the filter criteria so you</p>
+
+<p>define which content is actually</p>
+
+<p>included in the view because by default</p>
+
+<p>a view is just a grabbing a like a base</p>
+
+<p>entity whether that's content or users</p>
+
+<p>or blocks or search results and then it</p>
+
+<p>allows you to filter it to when in</p>
+
+<p>almost infinite different ways to filter</p>
+
+<p>to get a very specific grouping of</p>
+
+<p>content in your in your view you can</p>
+
+<p>also expose each filter to make it</p>
+
+<p>interactive for your users and for your</p>
+
+<p>staff below that is the sort criteria to</p>
+
+<p>find what order they show up in you can</p>
+
+<p>expose these as well to make it</p>
+
+<p>interactive one thing to note is that</p>
+
+<p>the table format also has other sort</p>
+
+<p>options which allow you to like click on</p>
+
+<p>the label field the field for them the</p>
+
+<p>column label and then it will sort that</p>
+
+<p>way so the table has other sort options</p>
+
+<p>other than what's available right here</p>
+
+<p>the middle section of the view is the</p>
+
+<p>display specific settings and so this is</p>
+
+<p>contextual based on the display you've</p>
+
+<p>chosen so a page and a block are</p>
+
+<p>different things so they have different</p>
+
+<p>settings a lot of the same but some</p>
+
+<p>different so for a page you have a path</p>
+
+<p>for example because it has a URL a block</p>
+
+<p>doesn't have a URL so you don't have the</p>
+
+<p>path setting you can also add a menu</p>
+
+<p>item right here from the view now of</p>
+
+<p>course you could go back in later and</p>
+
+<p>edit your menu and add a link to the</p>
+
+<p>view with a specific URL but you can</p>
+
+<p>create the menu item right here below</p>
+
+<p>that is access permission so you can</p>
+
+<p>define who can actually see this view</p>
+
+<p>the default is just to anybody who has</p>
+
+<p>the permission view published content</p>
+
+<p>but you can change that to other</p>
+
+<p>specific permissions</p>
+
+<p>or it can be role-based below that our</p>
+
+<p>header and footer stuff pretty</p>
+
+<p>self-explanatory can add stuff to the</p>
+
+<p>top of the view as to the bottom of the</p>
+
+<p>view in Drupal 8 the no results behavior</p>
+
+<p>are also here in Drupal 7 there over</p>
+
+<p>here in the advanced column</p>
+
+<p>that's where the no results behavior</p>
+
+<p>again pretty self-explanatory what</p>
+
+<p>happens when there's no content does the</p>
+
+<p>view just not display does it show a</p>
+
+<p>note that says like there is no content</p>
+
+<p>right now at some and then below that is</p>
+
+<p>the page and so the pager actually</p>
+
+<p>defines how many items are in your view</p>
+
+<p>and that also allows you to add and</p>
+
+<p>define what happens when there's more</p>
+
+<p>than that so you can have a pager and</p>
+
+<p>just show 10 pieces of content but if</p>
+
+<p>there's 11 what happens do you add a</p>
+
+<p>more link to a different page that lists</p>
+
+<p>everything do you have a mini pager a</p>
+
+<p>full pager now over here in the advanced</p>
+
+<p>settings which is collapsed by default I</p>
+
+<p>think because they thought it was scary</p>
+
+<p>maybe there are a whole bunch of things</p>
+
+<p>we're not going to talk about everything</p>
+
+<p>but I'm gonna go over each of those</p>
+
+<p>they're some of most of those so there's</p>
+
+<p>at the top is the contextual filters</p>
+
+<p>which allow you to filter the view based</p>
+
+<p>on the context of where it is or</p>
+
+<p>variables that you're passing to it will</p>
+
+<p>see an example of what that is at the</p>
+
+<p>end of the session and I'm below that</p>
+
+<p>are relationships which allow you to</p>
+
+<p>grab fields from other entities that are</p>
+
+<p>related to the content that you're</p>
+
+<p>looking at a really good example of this</p>
+
+<p>is relating content to the author that</p>
+
+<p>created it so the student grant</p>
+
+<p>additional fields about the author we'll</p>
+
+<p>look at an example of that later on this</p>
+
+<p>one below that is the exposed form so we</p>
+
+<p>can change how that exposed filter or</p>
+
+<p>expose sort options appear and display</p>
+
+<p>and their their actions there's also</p>
+
+<p>things like the machine</p>
+
+<p>so for this display has its own you know</p>
+
+<p>ID the you can just select whether it</p>
+
+<p>uses Ajax or not</p>
+
+<p>so whether when you change a filter or</p>
+
+<p>click Next on the pager visit reload the</p>
+
+<p>entire page or is just reload that part</p>
+
+<p>of the page with the content in it</p>
+
+<p>aggregation which allows you to do a</p>
+
+<p>little bit of math sometimes um wanted</p>
+
+<p>to squish content together and then</p>
+
+<p>count them it also allows you to do some</p>
+
+<p>sometimes can allow you to remove</p>
+
+<p>duplicates sometimes below that there's</p>
+
+<p>also like caching options query setting</p>
+
+<p>options that are more kind of advanced</p>
+
+<p>and then a fields for CSS classes where</p>
+
+<p>you can add a class to just this view</p>
+
+<p>you can also add classes to each of the</p>
+
+<p>rows to individual fields it's great for</p>
+
+<p>theming</p>
+
+<p>alright so let's build some views okay</p>
+
+<p>on my demo site that I'm going to show</p>
+
+<p>you now it's got a now outdated version</p>
+
+<p>of Drupal I installed just to</p>
+
+<p>contributed modules so admin toolbar CH</p>
+
+<p>so I have a drop down and view slideshow</p>
+
+<p>along with its sub module view slideshow</p>
+
+<p>cycle and of install the required jQuery</p>
+
+<p>libraries so you're gonna the jQuery</p>
+
+<p>libraries it's just an image but just a</p>
+
+<p>couple changes to the site content</p>
+
+<p>itself or the content types</p>
+
+<p>so I added a field to the user entity I</p>
+
+<p>added a new content type of location I</p>
+
+<p>added a ending reference field to the</p>
+
+<p>article content type that links to my</p>
+
+<p>new location in content type and I</p>
+
+<p>filled the site with some article</p>
+
+<p>content from my library's website just a</p>
+
+<p>little bit okay so let's go ahead and</p>
+
+<p>open up my site so</p>
+
+<p>as we can see it's just got the default</p>
+
+<p>homepage on the front and this is</p>
+
+<p>actually a view so we can edit this if</p>
+
+<p>we wanted to but we're gonna start wanna</p>
+
+<p>show you the whole process so we're</p>
+
+<p>gonna create it from scratch</p>
+
+<p>so we would go up into structure and as</p>
+
+<p>I said I've installed admin toolbar so I</p>
+
+<p>have that back down otherwise you just</p>
+
+<p>click on structure and then click on</p>
+
+<p>views okay and we can see a list of all</p>
+
+<p>of the views that are on the site and so</p>
+
+<p>many of these are the admin interfaces</p>
+
+<p>which again that's great but if you're</p>
+
+<p>gonna edit it I would highly recommend</p>
+
+<p>duplicating it first so that you can</p>
+
+<p>test your changes without breaking</p>
+
+<p>something important so we're gonna go</p>
+
+<p>ahead and click out of you and after</p>
+
+<p>clicking this it brings us to this kind</p>
+
+<p>of wizard to help us build the view</p>
+
+<p>without having to go into all of the</p>
+
+<p>settings so we're gonna give it a view</p>
+
+<p>name I like to use this naming</p>
+
+<p>convention so it is content and I want</p>
+
+<p>to just show articles give it a</p>
+
+<p>description Oh</p>
+
+<p>article content and then our view</p>
+
+<p>settings so we want to show the</p>
+
+<p>alternate name that you owe like users</p>
+
+<p>or blocks just kind of just</p>
+
+<p>differentiating what the base entity of</p>
+
+<p>the content is of the view is and so</p>
+
+<p>that's what I'm saying I'm selecting</p>
+
+<p>right here so I want this to be content</p>
+
+<p>and I want it to be a type article and I</p>
+
+<p>don't want to add a tag yet and want to</p>
+
+<p>be sorted with newest first and so this</p>
+
+<p>is going to fill in a bunch of the</p>
+
+<p>fields in our air face without us having</p>
+
+<p>to go through each one below that we can</p>
+
+<p>kind of quick create a page or a block</p>
+
+<p>I'm going to go ahead and open up the</p>
+
+<p>page settings we get the page title I'm</p>
+
+<p>gonna call it articles we get the path</p>
+
+<p>I'm just gonna use that as articles as</p>
+
+<p>well we get the format to choose what we</p>
+
+<p>want to actually show as so we get the</p>
+
+<p>four default that I said and I said I</p>
+
+<p>installed the slideshow so that's also</p>
+
+<p>an option</p>
+
+<p>let's go ahead and make this a grid and</p>
+
+<p>it gives us a couple row style style</p>
+
+<p>choices to have frame so if we teasers</p>
+
+<p>full posts files fields leaked titles</p>
+
+<p>we're gonna go with the teasers oh there</p>
+
+<p>we go</p>
+
+<p>and I'm gonna change this to six because</p>
+
+<p>I have eight pieces of content so I want</p>
+
+<p>you to show show you what the page looks</p>
+
+<p>like use a pager we can add a menu item</p>
+
+<p>right here so that it to the main</p>
+
+<p>navigation I'm going to call it articles</p>
+
+<p>and we're going to click Save and edit</p>
+
+<p>and poof wheeze out of you as we said</p>
+
+<p>kind of here here are the page displays</p>
+
+<p>then options we just have a page right</p>
+
+<p>now we it gave us a title that we chose</p>
+
+<p>it's a grid in teaser format it is the</p>
+
+<p>filter criteria it defaults to published</p>
+
+<p>content since we chose article it adds</p>
+
+<p>this content type filter sorted by</p>
+
+<p>newest first</p>
+
+<p>the path is articles the menu item that</p>
+
+<p>we added is right here and it uses a</p>
+
+<p>mini major and if we scroll down we've</p>
+
+<p>got our kind of grid format and this is</p>
+
+<p>what the page looks like if you want to</p>
+
+<p>change that to a full pager I would just</p>
+
+<p>click right there and change it to a</p>
+
+<p>full pager you know I got a bunch of</p>
+
+<p>settings we'll just kind of skip through</p>
+
+<p>those if I scroll down we now have you</p>
+
+<p>know all the page listings as well</p>
+
+<p>instead of just the next and previous</p>
+
+<p>buttons question</p>
+
+<p>yes we'll do that yeah the one thing I</p>
+
+<p>do want to do is I'm gonna change the</p>
+
+<p>column since I have six pieces of</p>
+
+<p>content it makes sense to have three</p>
+
+<p>columns so we're gonna do that they're a</p>
+
+<p>bunch of settings in here that are just</p>
+
+<p>for the grid format so a number of</p>
+
+<p>columns automatic with alignment in</p>
+
+<p>classes go ahead and click apply and now</p>
+
+<p>when I scroll down I just have three</p>
+
+<p>instead so I'm gonna click Save and</p>
+
+<p>we'll take a look at what this view</p>
+
+<p>looks like on a page to the grid or does</p>
+
+<p>that CSS that you would hit through CSS</p>
+
+<p>yes so that's what I was gonna say is</p>
+
+<p>we've got our view like we can see</p>
+
+<p>everything it looks kind of terrible</p>
+
+<p>because the teaser format is not great</p>
+
+<p>by default in the grid format but we've</p>
+
+<p>got we got our view we've got our pager</p>
+
+<p>up at the top we now have a new menu</p>
+
+<p>item in the main navigation which was</p>
+
+<p>cool but as you said this looks come bad</p>
+
+<p>so let's go back and change the format</p>
+
+<p>to unformatted list it's good because</p>
+
+<p>that makes the pager looks or the teaser</p>
+
+<p>looks a little better in that format so</p>
+
+<p>to change the format we just click on</p>
+
+<p>the format that we have right now and I</p>
+
+<p>can choose from any of these options and</p>
+
+<p>click apply now it brings us to the</p>
+
+<p>unformatted list options which is</p>
+
+<p>basically just add a class and we're</p>
+
+<p>gonna click apply and now it looks like</p>
+
+<p>this instead of our grid and go ahead</p>
+
+<p>and click Save we'll reload this page</p>
+
+<p>and now it looks almost exactly like the</p>
+
+<p>homepage of the site and looks a lot</p>
+
+<p>better</p>
+
+<p>but let's say that we really liked that</p>
+
+<p>grid format this is like I said the</p>
+
+<p>teaser format doesn't look very good in</p>
+
+<p>that grid format but we can separate</p>
+
+<p>separate it out and just use the fields</p>
+
+<p>style instead so when I go back and edit</p>
+
+<p>this we're going to change the format</p>
+
+<p>back to grit set it to 3 and we're going</p>
+
+<p>to change the show row style from</p>
+
+<p>content to fields and then there are a</p>
+
+<p>couple rows style options but we're</p>
+
+<p>gonna go ahead and click apply and now</p>
+
+<p>when I scroll down</p>
+
+<p>we've got just the titles because that's</p>
+
+<p>what it defaults when you switch from</p>
+
+<p>content to fields it just adds in the</p>
+
+<p>title but so what things we might want</p>
+
+<p>when I thought I want the image we want</p>
+
+<p>a teaser of the body or a trimmed</p>
+
+<p>version of the body and the tags so</p>
+
+<p>let's go ahead and add that in and when</p>
+
+<p>I click on add fields we get this modal</p>
+
+<p>window everything in views is in a modal</p>
+
+<p>window usually and there's a whole bunch</p>
+
+<p>of stuff that we can add to this so you</p>
+
+<p>can filter by category but even when we</p>
+
+<p>select content there's still a ton of</p>
+
+<p>stuff so we're going to use the search</p>
+
+<p>bar so we're look for the image select</p>
+
+<p>it we're gonna look for the body if I</p>
+
+<p>can spell button and we're gonna add D</p>
+
+<p>tags and we can see it it started this</p>
+
+<p>little list of things are about to app</p>
+
+<p>sure</p>
+
+<p>so this first one is the actual tax this</p>
+
+<p>one is the the Delta the order of the</p>
+
+<p>tax so that's like you would get it's a</p>
+
+<p>little confusing but it would be like</p>
+
+<p>it's like the idea of the array for that</p>
+
+<p>tag so if you have three tags on it the</p>
+
+<p>like Delta for the third tag is going to</p>
+
+<p>be two so delivered I've almost never</p>
+
+<p>used the Delta in the fields section</p>
+
+<p>we're going ahead and click Add and then</p>
+
+<p>it brings us to the setting settings for</p>
+
+<p>each of the fields that we've just</p>
+
+<p>chosen now notice I select an image</p>
+
+<p>first but it's giving you the body first</p>
+
+<p>because it's inevitable order even that</p>
+
+<p>in the order that I chose but for all of</p>
+
+<p>the fields are about to add we can add a</p>
+
+<p>bunch of things so we can add a label to</p>
+
+<p>it we can choose to exclude it from the</p>
+
+<p>display which would be useful for as</p>
+
+<p>this says here grouping fields or using</p>
+
+<p>as tokens in other fields we can combine</p>
+
+<p>fields together which is pretty cool</p>
+
+<p>click sorting for a table it's not a</p>
+
+<p>table format so we don't worry about</p>
+
+<p>that we've got the formatter and this is</p>
+
+<p>based on the field type it is so the</p>
+
+<p>body is a long text so we've got the</p>
+
+<p>formatter of default somewhere your</p>
+
+<p>trimmed returned we're gonna leave it up</p>
+
+<p>default there also a bunch of collapsed</p>
+
+<p>groupings of settings there's these</p>
+
+<p>style settings which allows us to</p>
+
+<p>customize the HTML of the field wrap it</p>
+
+<p>in the new element so like I could wrap</p>
+
+<p>the body in a details or a blockquote</p>
+
+<p>element instead of its default based on</p>
+
+<p>the template it's using we can also add</p>
+
+<p>a class to just this field that would</p>
+
+<p>show up on every row in our in our view</p>
+
+<p>so they can style it very cool look at</p>
+
+<p>the style settings this rewrite rule</p>
+
+<p>results which allows us to override the</p>
+
+<p>actual output of the field and make it</p>
+
+<p>kind of whatever it was this is where we</p>
+
+<p>would use tokens like we can add and</p>
+
+<p>combine fields that were before it</p>
+
+<p>we can also make the whole field into a</p>
+
+<p>link which is not great for the body</p>
+
+<p>code but can be really useful for images</p>
+
+<p>that don't have links or making links</p>
+
+<p>for specific items trim the field you</p>
+
+<p>can also do it in the rewrite I like to</p>
+
+<p>do this here because this has more</p>
+
+<p>options so we're going to say 250</p>
+
+<p>characters trim only a word boundary add</p>
+
+<p>an ellipsis at the end and we can add a</p>
+
+<p>read more link if we want and this is</p>
+
+<p>the really important one field can</p>
+
+<p>contain HTML if we just use this</p>
+
+<p>trimmed format up here sometimes the</p>
+
+<p>view that is delay outbreaks because it</p>
+
+<p>doesn't properly close a tag if you have</p>
+
+<p>rich text so my selecting this it'll</p>
+
+<p>properly close the tags after it trims</p>
+
+<p>that of our characters we can strip HTML</p>
+
+<p>tags remove white space divert new lines</p>
+
+<p>to break their break tags there's also</p>
+
+<p>this no results behavior which similar</p>
+
+<p>to the notary's also behavior for the</p>
+
+<p>display we can set it to hide if there's</p>
+
+<p>no content in it</p>
+
+<p>or to show a little note if we want to</p>
+
+<p>do that instead I'm also great about</p>
+
+<p>this we can count the number 0 as empty</p>
+
+<p>so why is that useful for boolean fields</p>
+
+<p>mean when it's not selected in the in</p>
+
+<p>the database it's listed as 0 it's not</p>
+
+<p>an empty field but we can tell it that 0</p>
+
+<p>is empty so that when we have a boolean</p>
+
+<p>field it doesn't display and then when</p>
+
+<p>it is selected it does display and I'm</p>
+
+<p>tired of them to hide rewriting if empty</p>
+
+<p>so we can change that off so we could we</p>
+
+<p>could turn that off and have it rewrite</p>
+
+<p>no matter what even if there's no this</p>
+
+<p>administrative title just allows to</p>
+
+<p>change the title in the interface and</p>
+
+<p>that's useful because we add the field</p>
+
+<p>multiple times and you could use</p>
+
+<p>different for matters and labeling them</p>
+
+<p>is very useful we're gonna go ahead and</p>
+
+<p>apply and add the continue so I move on</p>
+
+<p>to the image 1 it's got a bunch of the</p>
+
+<p>same options except it's got a different</p>
+
+<p>format or option because it's an image</p>
+
+<p>inside of a body or a long text the one</p>
+
+<p>thing that we're gonna change is going</p>
+
+<p>to change the image style to large just</p>
+
+<p>so that it doesn't bring us the whole</p>
+
+<p>image you know it's gonna be in a grid</p>
+
+<p>format so they're gonna be smaller so</p>
+
+<p>they don't need to be huge and we're</p>
+
+<p>gonna link the image to the cons that</p>
+
+<p>the images partners so if you click on</p>
+
+<p>the image goes theoretical weight we're</p>
+
+<p>gonna leave everything else that</p>
+
+<p>defaults and we've now got the tags</p>
+
+<p>which that formatter since a tag is an</p>
+
+<p>entity taxonomy term we can just have</p>
+
+<p>the label which is just the tag itself</p>
+
+<p>with a link to it or we can render the</p>
+
+<p>entity itself and use one of its display</p>
+
+<p>view modes again confusing but can be</p>
+
+<p>really useful the</p>
+
+<p>yes so in your content type so like you</p>
+
+<p>have content types</p>
+
+<p>you also have display modes for each of</p>
+
+<p>those so like the base view modes for</p>
+
+<p>content is like the full content the</p>
+
+<p>teaser oh I made this address one RSS</p>
+
+<p>for like users there's compact user</p>
+
+<p>account and so we can actually display</p>
+
+<p>the entire entity in the view instead of</p>
+
+<p>just displaying its label this one also</p>
+
+<p>has this multiple field settings and</p>
+
+<p>that's because you can add multiple tags</p>
+
+<p>to an article and so you need to tell it</p>
+
+<p>what field of view what to do with those</p>
+
+<p>multiple types by default it has display</p>
+
+<p>them all on the same row so we can</p>
+
+<p>uncheck this and have an article with</p>
+
+<p>three tags show up three times each one</p>
+
+<p>with a different tag but by default it</p>
+
+<p>combines them together</p>
+
+<p>and then it asks us what to do so we can</p>
+
+<p>have just a list of the tags or we can</p>
+
+<p>separate them with a separator and so</p>
+
+<p>this is just a comma and a space so when</p>
+
+<p>I click apply and scroll down we've got</p>
+
+<p>my title that's already there the trend</p>
+
+<p>body the image and my tags separated by</p>
+
+<p>commas which is cool and the one thing</p>
+
+<p>that I'm going to do is as the 40 by 40</p>
+
+<p>yes so this is 40 by 40 and then shrink</p>
+
+<p>down a little bit because it only fits</p>
+
+<p>in a three column</p>
+
+<p>but what we're going to do is just a</p>
+
+<p>couple things that I wanna do before we</p>
+
+<p>take a look at it on the site we're</p>
+
+<p>gonna change the field HTML of the title</p>
+
+<p>to wrap it in an h2 tag so on the click</p>
+
+<p>apply when we scroll down now they're</p>
+
+<p>much bigger much better for</p>
+
+<p>accessibility because we now have h2</p>
+
+<p>tags for each of them and I'm going to</p>
+
+<p>change the order so we can add new</p>
+
+<p>fields we can also change the order by</p>
+
+<p>clicking on the Actions menu and</p>
+
+<p>clicking rearrange so I'm gonna put the</p>
+
+<p>came into the top and that's all gonna</p>
+
+<p>change click apply I'm go ahead and</p>
+
+<p>click Save I'm gonna reload this page</p>
+
+<p>and now we've got this unformatted list</p>
+
+<p>now again as you said there's like</p>
+
+<p>fixing issues so what we can do is add a</p>
+
+<p>class to this view and to use some</p>
+
+<p>pre-made CSS that I added to the theme</p>
+
+<p>so we'll be open up advanced and add a</p>
+
+<p>CSS class example fluid grid for my</p>
+
+<p>class name notice it doesn't have to</p>
+
+<p>change anything in the admin theme</p>
+
+<p>because I only added the theme rules to</p>
+
+<p>the site theme know the head and click</p>
+
+<p>Save</p>
+
+<p>and we love page oh it's in a it's in a</p>
+
+<p>grid alright so I want to change this to</p>
+
+<p>on for many lists so that I can theme it</p>
+
+<p>the way that I wanted to didn't do that</p>
+
+<p>alright we'll go ahead click Save</p>
+
+<p>now you've got this kind of a lot nicer</p>
+
+<p>looking card layout again it's still not</p>
+
+<p>perfect but it looks a lot better than</p>
+
+<p>the teaser format that we said earlier</p>
+
+<p>yes you know I don't know of any someone</p>
+
+<p>else maybe although it's better yeah</p>
+
+<p>yeah I own so I don't I don't know if</p>
+
+<p>any that's built in the core</p>
+
+<p>okay let's catch up with my notes</p>
+
+<p>okay so we've got this view we've got it</p>
+
+<p>a little nicer looking but let's say</p>
+
+<p>that we actually don't want to show all</p>
+
+<p>of the articles on the site we just want</p>
+
+<p>to show articles that have this tag</p>
+
+<p>reading we're gonna library so those are</p>
+
+<p>the tags we have so I'm gonna go into</p>
+
+<p>the view and the only thing we have to</p>
+
+<p>do is add a new filter so in the filter</p>
+
+<p>criteria we're gonna go ahead and click</p>
+
+<p>Add again we get this giant list so I'm</p>
+
+<p>just going to search for tags and the</p>
+
+<p>first one not the Delta and we're going</p>
+
+<p>to add and configure and then I would</p>
+
+<p>get the option how we're gonna select it</p>
+
+<p>we can even have a drop-down or an</p>
+
+<p>autocomplete field I like to use the</p>
+
+<p>drop down just so I can see you click</p>
+
+<p>apply</p>
+
+<p>and then now we get a bunch of operator</p>
+
+<p>options so we can choose it to filter</p>
+
+<p>for multiple tags to be one of multiple</p>
+
+<p>tags it has to be all of them we can</p>
+
+<p>have it selected so that things that</p>
+
+<p>have or that don't have tags</p>
+
+<p>we can just filter for those we can</p>
+
+<p>filter for things that just have tags</p>
+
+<p>there's just the sky's the limit but</p>
+
+<p>we're gonna do is one of and scroll down</p>
+
+<p>and select reading now notice we also</p>
+
+<p>have this expose option which will allow</p>
+
+<p>it to make it interactive</p>
+
+<p>let's take a look that in an exam in a</p>
+
+<p>little bit but if I could apply and I</p>
+
+<p>scroll down there are now just three</p>
+
+<p>items that have my reading tag and now</p>
+
+<p>we can do that we could filter for just</p>
+
+<p>about anything this is really powerful</p>
+
+<p>but we're gonna go ahead and change the</p>
+
+<p>settings for this and expose it so that</p>
+
+<p>I can actually click we can what our</p>
+
+<p>users select what content they want to</p>
+
+<p>see so go ahead and change the label and</p>
+
+<p>we're gonna leave everything else at</p>
+
+<p>defaults by when I have it exposed the</p>
+
+<p>defaults will I can select it to have a</p>
+
+<p>default setting instead of just show</p>
+
+<p>everything right click Save</p>
+
+<p>and then when I reload the page oh I</p>
+
+<p>didn't I yeah okay so we've got this</p>
+
+<p>tags drop down that I can select and so</p>
+
+<p>it's filtering right now to just the</p>
+
+<p>reading articles I can filter it to just</p>
+
+<p>the history articles and it reloads the</p>
+
+<p>whole page and shows down filter to just</p>
+
+<p>the events and now we have a whole bunch</p>
+
+<p>yeah so this is this was with my</p>
+
+<p>unformatted list this is a flexbox and</p>
+
+<p>so when there's two it fills in the</p>
+
+<p>whole of a lot of to fill in the whole</p>
+
+<p>screen and when there's three it tricks</p>
+
+<p>know yeah and when there's one I think</p>
+
+<p>the Accord there's one equity event in</p>
+
+<p>these eight fills up the whole thing and</p>
+
+<p>that's just the flexbox CSS I chose</p>
+
+<p>you i way to change that CSS right yes</p>
+
+<p>so the question was in order to change</p>
+
+<p>those kind of CSS settings you would</p>
+
+<p>actually change those in the theme not</p>
+
+<p>in the view right here and that's a lot</p>
+
+<p>of scope of this okay so we've got that</p>
+
+<p>we've exposed it</p>
+
+<p>okay so we created view with an exposed</p>
+
+<p>filter now what I want to go into is</p>
+
+<p>adding a relationship to this view so</p>
+
+<p>let's say that we wanted to add content</p>
+
+<p>about we had information about the</p>
+
+<p>author of the article to the view so</p>
+
+<p>what I could do is like look in the</p>
+
+<p>fields and look for stuff about the</p>
+
+<p>author so if I type in author spell it</p>
+
+<p>right there are only a few options and</p>
+
+<p>the only one that really counts is this</p>
+
+<p>authored by which actually just gives us</p>
+
+<p>the username or the user ID of the</p>
+
+<p>author which isn't helpful to people</p>
+
+<p>looking at the same so what we can do is</p>
+
+<p>add a relationship over in the Advanced</p>
+
+<p>Settings so click add a relationship and</p>
+
+<p>I'm going to type in author and so we</p>
+
+<p>can select content author and this</p>
+
+<p>allows us to relate to this content to</p>
+
+<p>the user that created it now when I</p>
+
+<p>click add and configure relationships</p>
+
+<p>and we can change what to call it and</p>
+
+<p>required everyone we're going to go</p>
+
+<p>ahead and click apply and now nothing</p>
+
+<p>actually changes in the view yet when I</p>
+
+<p>scroll down but if I add a new field</p>
+
+<p>there's now a new category in here</p>
+
+<p>called user because I've added a</p>
+
+<p>relationship to the user that created</p>
+
+<p>the content and now I have a whole bunch</p>
+
+<p>of new fields about the user and the one</p>
+
+<p>that I want is this display name that's</p>
+
+<p>the custom field that I said I added to</p>
+
+<p>the user entity and this is just a plain</p>
+
+<p>text field some time ago I could add and</p>
+
+<p>configure and up at the top since I have</p>
+
+<p>relationships we can now select to use a</p>
+
+<p>relationship since this is a user field</p>
+
+<p>it defaults to the to the author</p>
+
+<p>relationship go ahead and click apply</p>
+
+<p>and then now when I scroll down it has</p>
+
+<p>this display name instead of a confusing</p>
+
+<p>user name or user name so we've got you</p>
+
+<p>know me Harry</p>
+
+<p>uni with the next one and</p>
+
+<p>to me again and so I could rearrange</p>
+
+<p>this will put the author right below the</p>
+
+<p>title click apply and save week and</p>
+
+<p>let's go ahead and move it to events so</p>
+
+<p>there's more stuff and then now we've</p>
+
+<p>got a much more nice-looking information</p>
+
+<p>about the user that created this content</p>
+
+<p>so this was a custom feel that I added</p>
+
+<p>to the user entity called display name</p>
+
+<p>yeah but we can add the we can grab all</p>
+
+<p>information about the user so their</p>
+
+<p>email address when they were created</p>
+
+<p>know if they're currently logged on I'm</p>
+
+<p>you know a whole bunch of different</p>
+
+<p>stuff okay now that's relating just to</p>
+
+<p>the user that created this economy but</p>
+
+<p>relationships can actually go so much</p>
+
+<p>farther than that we can actually add</p>
+
+<p>since this is an article and I said that</p>
+
+<p>I added an entity reference field to the</p>
+
+<p>article content type that links to the</p>
+
+<p>location the location content type that</p>
+
+<p>I created so the example of this would</p>
+
+<p>be that I have articles I have library</p>
+
+<p>locations</p>
+
+<p>I have articles that might be about the</p>
+
+<p>library location so I could link them</p>
+
+<p>together and so I can add a relationship</p>
+
+<p>to this view of articles and I'm going</p>
+
+<p>to type in location because that's my</p>
+
+<p>field name and we can link it kind of</p>
+
+<p>both ways so we can either wing it to</p>
+
+<p>the content referenced from the field or</p>
+
+<p>the content using the field we want to</p>
+
+<p>link to the content that's referenced</p>
+
+<p>from it so the particle is referencing</p>
+
+<p>locations we want a link to that so I'm</p>
+
+<p>going to click add and configure and</p>
+
+<p>apply and then now what I can do is I</p>
+
+<p>can add fields about the location that</p>
+
+<p>is referenced from the article itself so</p>
+
+<p>I'm going to put in the address fields</p>
+
+<p>that I added to the location again a</p>
+
+<p>custom field on the custom content a go</p>
+
+<p>ahead and click Add and I'm going to use</p>
+
+<p>the relationship to grab the address</p>
+
+<p>field from this content and click apply</p>
+
+<p>and now when I scroll down the first</p>
+
+<p>item doesn't actually have a location so</p>
+
+<p>it doesn't have an address but the</p>
+
+<p>second one happens at Central Library so</p>
+
+<p>it's now pulling in the address from the</p>
+
+<p>location content or the location content</p>
+
+<p>piece of content it's rolling a little</p>
+
+<p>farther Women's History Month there's an</p>
+
+<p>event at I think that's a Sherman</p>
+
+<p>library now here's the problem with</p>
+
+<p>relationships we've got duplicates and</p>
+
+<p>that is because this article is linked</p>
+
+<p>to three different locations and views</p>
+
+<p>interprets that as three different rows</p>
+
+<p>of distinct pieces of content which it</p>
+
+<p>kind of is in a way now there are a</p>
+
+<p>bunch of ways there there are several</p>
+
+<p>ways that we can attempt to kind of</p>
+
+<p>remove these as I said there is the</p>
+
+<p>aggregation setting which works</p>
+
+<p>sometimes but can be a little confusing</p>
+
+<p>it's much better for grouping and then</p>
+
+<p>counting rather than collapsing but can</p>
+
+<p>be used there is a setting in the query</p>
+
+<p>settings for distinct which again works</p>
+
+<p>sometimes it tries to make the entry</p>
+
+<p>distinct but in this case as we'll see</p>
+
+<p>it's still the same because they're kind</p>
+
+<p>of distinctive because they have</p>
+
+<p>different addresses we can</p>
+
+<p>there was a great Drupal 7 module called</p>
+
+<p>views distinct which allowed you to</p>
+
+<p>filter on whatever field you want and</p>
+
+<p>kind of and then choose what to do with</p>
+
+<p>the content that has multiple fields</p>
+
+<p>after you proofing them I'm still hoping</p>
+
+<p>for a drupal 8 release but who knows and</p>
+
+<p>so we can also add a filter on the like</p>
+
+<p>Delta of the location rent reference and</p>
+
+<p>so just choose you know the first one</p>
+
+<p>that's referenced but then we're just</p>
+
+<p>going to get one thing with one address</p>
+
+<p>not great but can be use so sometimes</p>
+
+<p>and in this case what I would do instead</p>
+
+<p>of adding this relationship is add the</p>
+
+<p>location</p>
+
+<p>and instead of rendering just a label</p>
+
+<p>which would be the library name I would</p>
+
+<p>render the entity and use that custom</p>
+
+<p>view mode of address that I created that</p>
+
+<p>just shows well right now it shows the</p>
+
+<p>title and the address and they would</p>
+
+<p>probably get rid of the title but if we</p>
+
+<p>add at this I'm gonna go ahead and</p>
+
+<p>remove this other address and remove the</p>
+
+<p>relationship so that it won't make the</p>
+
+<p>duplicates anymore</p>
+
+<p>and when I scroll down it's now showing</p>
+
+<p>the rendered entity of the location with</p>
+
+<p>the library location and the address</p>
+
+<p>that's the custom View mode that I</p>
+
+<p>created so it I I had selected leaving</p>
+
+<p>it simple filtered but each of these is</p>
+
+<p>like its own big article element so it's</p>
+
+<p>going to be spaced out so I probably do</p>
+
+<p>is change the multiple settings to like</p>
+
+<p>importer an unordered list maybe no when</p>
+
+<p>I scroll down we've know that this list</p>
+
+<p>in stone I probably feel it a lot</p>
+
+<p>differently yeah that's one option so as</p>
+
+<p>I said you know relationships are hard</p>
+
+<p>both times and so sometimes the best way</p>
+
+<p>is to just not use a relationship and</p>
+
+<p>use the new view modes that are in your</p>
+
+<p>plate which is great for the new in</p>
+
+<p>court</p>
+
+<p>okay so relations are also great for</p>
+
+<p>things that reference one thing like the</p>
+
+<p>author there's only one author so you're</p>
+
+<p>not gonna get duplicates like that all</p>
+
+<p>right so let's make a slideshow because</p>
+
+<p>that's a little easier before we go into</p>
+
+<p>contextual filters</p>
+
+<p>so we're gonna add a new block well with</p>
+
+<p>some snake a page so we're going to add</p>
+
+<p>a new page and we can see that it now is</p>
+
+<p>called page two so I'm going to change</p>
+
+<p>that so I've changed the display name by</p>
+
+<p>clicking on it we're going to call this</p>
+
+<p>page slideshow and apply and all we have</p>
+
+<p>to do really great is just change the</p>
+
+<p>format to slideshow and notice we now</p>
+
+<p>have another display so now on many of</p>
+
+<p>our selections or settings we're going</p>
+
+<p>to have this option to change it for all</p>
+
+<p>the displays or change it for just this</p>
+
+<p>display and we want to change it for</p>
+
+<p>just this display so that we still have</p>
+
+<p>the old article page but we have a new</p>
+
+<p>one with this my job so I'm go ahead and</p>
+
+<p>apply and we have a couple options for</p>
+
+<p>the slideshow format the sub-module this</p>
+
+<p>new slideshow cycle is the only type</p>
+
+<p>that I have installed if you have more</p>
+
+<p>types you'd have a longer drop down with</p>
+
+<p>different settings you can add a widget</p>
+
+<p>and a pager or controls for the</p>
+
+<p>slideshow we're going to leave that at</p>
+
+<p>default for now just click apply some</p>
+
+<p>things we'll need to do we could change</p>
+
+<p>the title so particles slideshow and</p>
+
+<p>again just this page change the path</p>
+
+<p>articles legislature let's go ahead and</p>
+
+<p>add another menu item so normal</p>
+
+<p>Sly Joe main navigation and then now</p>
+
+<p>when I scroll down this will start</p>
+
+<p>cycling through the content and it looks</p>
+
+<p>a little weird with like all the fields</p>
+
+<p>that we had before so let's get rid of</p>
+
+<p>everything except for the image so go</p>
+
+<p>back up in the fields click rearrange</p>
+
+<p>we're gonna get rid of the title get rid</p>
+
+<p>of your name get rid of the tags the</p>
+
+<p>location the body and just for this page</p>
+
+<p>see you again dangerous good if I could</p>
+
+<p>have changed everything</p>
+
+<p>click apply it and now when you scroll</p>
+
+<p>down it's just the image now the other</p>
+
+<p>thing that we want to do is we might</p>
+
+<p>want to add a pager and this can be a</p>
+
+<p>little confusing at first because pager</p>
+
+<p>for a slideshow what I'm talking about</p>
+
+<p>is like it adds a a small piece of the</p>
+
+<p>content that we can then select to like</p>
+
+<p>bring up in the slideshow so we want to</p>
+
+<p>do is add another image field that can</p>
+
+<p>be formatted differently because we</p>
+
+<p>don't want it to be the big one we want</p>
+
+<p>to be much smaller so I'm going to add</p>
+
+<p>the image field again and the only thing</p>
+
+<p>that I'm going to do is change the image</p>
+
+<p>style instead of the large one get</p>
+
+<p>selected</p>
+
+<p>I'm gonna make it a thumbnail and also</p>
+
+<p>going to change the administrative title</p>
+
+<p>so that it's different from the other</p>
+
+<p>image so the pager image click apply and</p>
+
+<p>now it shows up here we actually want it</p>
+
+<p>to not display in the fields right now</p>
+
+<p>this is a confusing thing but we can</p>
+
+<p>exclude this and then use it in the</p>
+
+<p>slideshow settings so now if we scroll</p>
+
+<p>down it's not there right now but then</p>
+
+<p>when I go into the slideshow settings</p>
+
+<p>and scroll all the way to the bottom</p>
+
+<p>we're gonna add a pager widget and it</p>
+
+<p>tells me to select what field I want to</p>
+
+<p>make into the widget and so I wanted to</p>
+
+<p>be the pager image click apply and then</p>
+
+<p>now when I scroll down</p>
+
+<p>they've got the pager that I can click</p>
+
+<p>on to activate and move through the</p>
+
+<p>slideshow yes I wonder wonder if the</p>
+
+<p>slideshow has a theme that works so now</p>
+
+<p>I'm going to reload this page and we're</p>
+
+<p>gonna see that there's now a new link up</p>
+
+<p>here for slideshow by clicking on it</p>
+
+<p>let's see yeah so that is a CSS setting</p>
+
+<p>that you have - mm-hmm</p>
+
+<p>okay so really simple just choose</p>
+
+<p>slideshow from the format if you do then</p>
+
+<p>solve everything and you can okay so now</p>
+
+<p>the last thing that we're gonna do that</p>
+
+<p>we have time for is to show how a</p>
+
+<p>contextual filter works so what we could</p>
+
+<p>do and what we might what we might want</p>
+
+<p>to do for you know my library's website</p>
+
+<p>is have the events that happen at a</p>
+
+<p>location on that locations individual</p>
+
+<p>page it should be great and we know how</p>
+
+<p>to do this we can add a filter criteria</p>
+
+<p>for that specific location and then have</p>
+
+<p>a block that just has that and add that</p>
+
+<p>to the location page for it now we could</p>
+
+<p>do that we could create four blocks or</p>
+
+<p>ten or 30 or 50 if your Denver Public</p>
+
+<p>Library and have 50 branches but that is</p>
+
+<p>a nightmare</p>
+
+<p>to create that many blocks so what we</p>
+
+<p>can do is we want to add a contextual</p>
+
+<p>filter that says alright what page of my</p>
+
+<p>on use that ID and filter on that which</p>
+
+<p>is really powerful but so to do that</p>
+
+<p>we're gonna go ahead and add a new block</p>
+
+<p>and I'm going to change the title so</p>
+
+<p>that it's helpful change it to this</p>
+
+<p>black I'm going to get rid of all these</p>
+
+<p>fields except for the title because</p>
+
+<p>that'll be the one that's most useful</p>
+
+<p>for this like a sidebar block of</p>
+
+<p>articles just on this block I'm gonna</p>
+
+<p>add in the authored on date and that's</p>
+
+<p>something that's different interpolate I</p>
+
+<p>wasn't confused about first created was</p>
+
+<p>what it said in Drupal 7 was the name of</p>
+
+<p>the lake when the article is created but</p>
+
+<p>it's authored on in Drupal 8 so we're</p>
+
+<p>gonna go ahead and apply leave it at the</p>
+
+<p>medium format and then now we've got</p>
+
+<p>just this table list I'm also going to</p>
+
+<p>get rid of the tags for just this</p>
+
+<p>blocked remove and I'm gonna change I'm</p>
+
+<p>going to change the title so instead of</p>
+
+<p>using the h2 the way that the Bartik</p>
+
+<p>theme uses stuff in the sidebar it uses</p>
+
+<p>h2s already so we want to use it have a</p>
+
+<p>sub heading and so now we've got our</p>
+
+<p>list and now we want to do is go over to</p>
+
+<p>advanced click on add a contextual</p>
+
+<p>filter and what we want to filter on is</p>
+
+<p>the library location so we're in you</p>
+
+<p>know the article we want to link to the</p>
+
+<p>location that it's referencing in its</p>
+
+<p>content</p>
+
+<p>so I scroll down click on a field</p>
+
+<p>location just this block</p>
+
+<p>now we're changing a lot of things in</p>
+
+<p>here so I mean we may have actually</p>
+
+<p>wanted to create a new view because</p>
+
+<p>we're doing a whole bunch of like</p>
+
+<p>overriding this specific setting now</p>
+
+<p>adding in textual filter doesn't really</p>
+
+<p>do a lot at first because we need to</p>
+
+<p>tell the view what to use as the</p>
+
+<p>contextual filter and so really common</p>
+
+<p>to do is click this provide default</p>
+
+<p>value and the one that we want is this</p>
+
+<p>Content ID from URL so we're telling</p>
+
+<p>this view to you know grab this article</p>
+
+<p>look at the location field and then look</p>
+
+<p>at the ID based on the URL so look at</p>
+
+<p>the path aliens and define what content</p>
+
+<p>page work on and then show all of the</p>
+
+<p>events that have that location selected</p>
+
+<p>so we go ahead and click quite and now</p>
+
+<p>when we scroll down there's nothing</p>
+
+<p>there because we don't have a contextual</p>
+
+<p>filter yet but if I add it in the ID for</p>
+
+<p>one of my locations 9 is the node we've</p>
+
+<p>now got just the articles about that</p>
+
+<p>current library if I change it to 10 we</p>
+
+<p>get a different list of articles that</p>
+
+<p>are just at Ashland and 11 we just get</p>
+
+<p>the ones at Hawthorne library so I'm</p>
+
+<p>gonna go ahead and click Save</p>
+
+<p>and since this is a block we now have to</p>
+
+<p>add it to our page let me just use the</p>
+
+<p>normal block structure so we go ahead</p>
+
+<p>and go up here go into the block layout</p>
+
+<p>and we'll put it over in the first</p>
+
+<p>sidebar that's what Bartok does and if</p>
+
+<p>we scroll down we can see the views that</p>
+
+<p>I created</p>
+
+<p>there's we just have this content of</p>
+
+<p>articles one so that's the only block</p>
+
+<p>that I've created and we just want it to</p>
+
+<p>show up on the location content types</p>
+
+<p>so when I go ahead and click Save it's</p>
+
+<p>now there and then I can go to my</p>
+
+<p>central page and over here in the side</p>
+
+<p>part oh it's got that weird grid format</p>
+
+<p>still so I want to get rid of that CSS</p>
+
+<p>class for just this block so that it</p>
+
+<p>just shows up in that list and reload</p>
+
+<p>the page and now we've got just the</p>
+
+<p>articles about this current library over</p>
+
+<p>here in the sidebar and if I change it</p>
+
+<p>to</p>
+
+<p>Ashman it just has those two and this</p>
+
+<p>works whether or not you know the path</p>
+
+<p>alias or not so like if I go to node 10</p>
+
+<p>which is Hawthorne library nope note 11</p>
+
+<p>is a Hawthorne right it shows just those</p>
+
+<p>articles so it's connecting the name of</p>
+
+<p>the library with the ID yeah yeah it's</p>
+
+<p>using yeah the path that you added to</p>
+
+<p>the content to understand what the idea</p>
+
+<p>of it is which is great so forth there</p>
+
+<p>are a couple other things we can do with</p>
+
+<p>the contextual filter which like if</p>
+
+<p>you're not looking at the specific page</p>
+
+<p>that you're on like that specific piece</p>
+
+<p>of content but you can you can grab like</p>
+
+<p>a raw value from the URL so like if</p>
+
+<p>somewhere in the URL you have like the</p>
+
+<p>idea of a tag you can grab that from</p>
+
+<p>like say it's in the third um</p>
+
+<p>component you can grab that to filter on</p>
+
+<p>which is pretty cool but so I really use</p>
+
+<p>this Content ID you can also use this</p>
+
+<p>user ID so you can filter for just</p>
+
+<p>content that the current user who's</p>
+
+<p>logged in can see or like so you could</p>
+
+<p>use that too what I've done on our on</p>
+
+<p>our site is added in a table that has</p>
+
+<p>all of the content that the currently</p>
+
+<p>logged in user has created so that's on</p>
+
+<p>their user home page when they first log</p>
+
+<p>in so they can see all of the stuff and</p>
+
+<p>just like go back in and edit it right</p>
+
+<p>away okay</p>
+
+<p>um so that is a lot of time we've got</p>
+
+<p>through the contextual filters yeah</p>
+
+<p>[Music]</p>
+
+<p>so I've got a couple of things left just</p>
+
+<p>a few view view modules that extend</p>
+
+<p>views and I to do really cool things so</p>
+
+<p>we added in the slideshow and that's a</p>
+
+<p>contributed module there's a data export</p>
+
+<p>which allows you to export content the</p>
+
+<p>CSV I think is the most useful one so</p>
+
+<p>you can just like grab all of them your</p>
+
+<p>site export it into a PDF a CSV file</p>
+
+<p>there's views infinite scroll which</p>
+
+<p>gives you a twitter like interface like</p>
+
+<p>you scroll to the bottom and then you</p>
+
+<p>can have it auto load the next ten or</p>
+
+<p>have a button to like load the next ten</p>
+
+<p>which is pretty cool on the same page oh</p>
+
+<p>and music export is in beta for Drupal 8</p>
+
+<p>right now the infinite scroll is stable</p>
+
+<p>entity queue which allows you to</p>
+
+<p>manually select different types of</p>
+
+<p>entities so specific content to add to a</p>
+
+<p>list and then you can use that edit EQ</p>
+
+<p>to populate your view so like we use</p>
+
+<p>that for our main slide show unlike our</p>
+
+<p>homepage instead of using the like</p>
+
+<p>promoted to front page setting in the</p>
+
+<p>content we have an NVQ that we just add</p>
+
+<p>whatever we want to that's an alpha</p>
+
+<p>version right now that does have a</p>
+
+<p>company sponsor so I think that we'll</p>
+
+<p>get to the stable version eventually</p>
+
+<p>there are some calendars the main 107 is</p>
+
+<p>just calendar but that does not have a</p>
+
+<p>Drupal 8 release yet it's in it's in</p>
+
+<p>development kind of if I don't know</p>
+
+<p>nothing mincing um there are two full</p>
+
+<p>calendar views modules that use the full</p>
+
+<p>calendar javascript library full</p>
+
+<p>calendar view is stable as of last night</p>
+
+<p>at like 11:00 p.m. and then full</p>
+
+<p>calendar is an alpha but those are those</p>
+
+<p>one they're both like active development</p>
+
+<p>being on them which is you know Drupal</p>
+
+<p>modules do the same thing but yeah make</p>
+
+<p>sure we need yeah which allows you to</p>
+
+<p>use JavaScript grid that has a release</p>
+
+<p>candidate and that's I'll show you an</p>
+
+<p>example what that looks like and isotope</p>
+
+<p>which is the dynamic filtering</p>
+
+<p>javascript library and just to really</p>
+
+<p>quick I can show you the Wisconsin Book</p>
+
+<p>Festival site which is one of the sites</p>
+
+<p>that I manage I didn't build it first</p>
+
+<p>but this is what masonry allows you to</p>
+
+<p>do so like each of these is its own</p>
+
+<p>piece of content and then isotope allows</p>
+
+<p>you to do this so masonry isotope</p>
+
+<p>doesn't have a Drupal 8 version yet</p>
+
+<p>that's also somewhat in development but</p>
+
+<p>has a great Drupal 7 person okay I think</p>
+
+<p>I think we're done</p>
+
+<p>but does any questions</p>
+
+<p>I've used using seven regular in it</p>
+
+<p>trouble no so much right and start</p>
+
+<p>getting an eight but I'm not positive</p>
+
+<p>there's a book on abuser seven and break</p>
+
+<p>bad readings because they came out but</p>
+
+<p>in seven the first version w7 was</p>
+
+<p>changed so the book was out of whack but</p>
+
+<p>they said get the Drupal if there's a</p>
+
+<p>Drupal eight use book together because</p>
+
+<p>it was very similar to sevens like that</p>
+
+<p>that books I would recommend more ever</p>
+
+<p>more mastering and they go through all</p>
+
+<p>those examples and the one way I had had</p>
+
+<p>to learn this thing best was to actually</p>
+
+<p>take an example go through and do it and</p>
+
+<p>so the question or comment was saying</p>
+
+<p>there's a great book called mastering of</p>
+
+<p>Drupal eight views if you're interested</p>
+
+<p>in learning more about views there are</p>
+
+<p>also a ton of tutorials on YouTube there</p>
+
+<p>are many actually several mid camp a lot</p>
+
+<p>of them sessions on views from previous</p>
+
+<p>years then I watch to help prepare get</p>
+
+<p>to prepare for this session so that's</p>
+
+<p>one thing that a little bit of time for</p>
+
+<p>this but um watching Drupal cam</p>
+
+<p>recordings from previous years great way</p>
+
+<p>to learn right I think we have I think</p>
+
+<p>that's it thanks</p></div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-cc6360891421a5344f2dd5b50464102e289bbe48291946d90b4aa033923ae89f">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/273">https://mid.camp/273</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-48f070d339c6d0598d6ba4e759c1c8fb12a1357470c48300047c9ac5f189c5c2">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/acquia.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2019-03/Acquia_no_tagline.png" width="450" height="94" alt="Acquia" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/elevated-third.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-11/elevated-third-logo_0.png" width="220" height="220" alt="elevated third logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/pantheon.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-11/pantheon-logo-color@2x.png" width="960" height="354" alt="Pantheon" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#84edeae2ebc4e9ede0e7e5e9f4aaebf6e3"><span class="__cf_email__" data-cfemail="01686f676e416c686562606c712f6e7366">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/273","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_llBcjrkrgAu2wT1DR7VGL_iP6geJyiTnF_8O5ZD57VI.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJxLz89Pz0mNT8xLzKksyUwu1k9HE9DJSCwpSS3ST8_JT0rM0c0qBgAByBPW"></script>
+
+  </body>
+</html>

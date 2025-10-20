@@ -1,0 +1,867 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="In this 60-minute session, the audience is introduced to Kubernetes, and open source container orchestrator." />
+<link rel="canonical" href="return-clustering-kubernetes-drupal.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Return of the Clustering: Kubernetes for Drupal | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter_2019/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Return of the Clustering: Kubernetes for Drupal | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_gt5LiAM1qLGUH5e845uOb7R_lJ9dUwTXmnhGDR2yY20.css%3Fdelta=0&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlT9EOwiAM_KEN1De_hsC4bSSFGopb5teLY0s0vrTXu0t7HciKbNpZQTc0HCFiJ8g5J_ZV44yKcrQUXuhmWwqyuV2udz0RO0v9IHLSn2165FR-mS-jbFIQ29kleLBBdPBmDCCvM-.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_q7cxd-C3noAE-s-u3xDxrLWFMO_wjpGZ5xcFfomX0n4.css%3Fdelta=1&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlT9EOwiAM_KEN1De_hsC4bSSFGopb5teLY0s0vrTXu0t7HciKbNpZQTc0HCFiJ8g5J_ZV44yKcrQUXuhmWwqyuV2udz0RO0v9IHLSn2165FR-mS-jbFIQ29kleLBBdPBmDCCvM-.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_JumHJ3UqLO9Mdu1kygD5e19MOiNh5iD_a9p0FH6QrHQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlT9EOwiAM_KEN1De_hsC4bSSFGopb5teLY0s0vrTXu0t7HciKbNpZQTc0HCFiJ8g5J_ZV44yKcrQUXuhmWwqyuV2udz0RO0v9IHLSn2165FR-mS-jbFIQ29kleLBBdPBmDCCvM-.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_LovagMoZZFoM80YhT0zgW4b6oNarRMdF8ooxvYiQ9tA.css%3Fdelta=4&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlT9EOwiAM_KEN1De_hsC4bSSFGopb5teLY0s0vrTXu0t7HciKbNpZQTc0HCFiJ8g5J_ZV44yKcrQUXuhmWwqyuV2udz0RO0v9IHLSn2165FR-mS-jbFIQ29kleLBBdPBmDCCvM-.css" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="return-clustering-kubernetes-drupal.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-2019-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-hatter-2019-midcamp2020navigation-menu" id="block-hatter-2019-midcamp2020navigation" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-2019-midcamp2020navigation-menu">Midcamp 2020 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" data-drupal-link-system-path="node/403">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../news.html" title="News" data-drupal-link-system-path="2020/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" data-drupal-link-system-path="2020/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--virtual-camp">
+        <a href="../article/midcamp-2020-going-digital.html" title="MidCamp is going virtual" data-drupal-link-system-path="node/6689">Virtual Camp</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsor">
+        <a href="../sponsor-midcamp.html" data-drupal-link-system-path="node/6250">Sponsor</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--community-organizations">
+        <a href="../sponsor/community-organization-introduction.html" data-drupal-link-system-path="node/6251">Community Organizations</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sponsors">
+        <a href="../sponsors.html" data-drupal-link-system-path="node/6253">Sponsors</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" data-drupal-link-system-path="node/6258">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--sessions-thu">
+        <a href="../schedule/thursday.html" data-drupal-link-system-path="2020/schedule/thursday">Sessions (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-fri">
+        <a href="../schedule/friday.html" data-drupal-link-system-path="2020/schedule/friday">Sessions (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--contribution-sat">
+        <a href="../contribution-day.html" title="Contribution Day" data-drupal-link-system-path="node/6378">Contribution (Sat)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--accepted-sessions">
+        <a href="../accepted-sessions.html" data-drupal-link-system-path="2020/accepted-sessions">Accepted Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../../2023/speaker-resources.html" data-drupal-link-system-path="node/345">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-terms-and-conditions">
+        <a href="../../speaker-terms-and-conditions.html" data-drupal-link-system-path="node/21">Speaker Terms and Conditions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--topic-tracks">
+        <a href="../../topic-tracks.html" data-drupal-link-system-path="node/10">Topic Tracks</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--donate">
+        <a href="https://tickets.midcamp.org/" title="Register for MidCamp">Donate</a>
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-2019-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2020.html" hreflang="en">MidCamp 2020</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-hatter-2019-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Return of the Clustering: Kubernetes for Drupal</span>
+</h1>
+
+
+  </div>
+<div id="block-hatter-2019-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="6301" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2020-03-20T15:15:00Z" class="datetime">Friday, 10:15 am CDT</time>
+ - <time datetime="2020-03-20T16:15:00Z" class="datetime">Friday, 11:15 am CDT</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-84" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-name field--type-string field--label-hidden field__item">Room 325</div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>In this 60-minute session, the audience is introduced to Kubernetes, and open source container orchestrator.</p>
+
+<p>Kubernetes has become hugely popular outside of Drupal, yet inside our community we continue to rely on Drupal-tailored Platform As A Service companies such as Acquia and Pantheon. While these PaaS offerings provide free tiers to get started, many organizations are finding the continued burden of their hosting expenses untenable. Yet, building and maintaining one's own hosting at a similar scale is difficult, requiring a broad swath of knowledge to integrate disparate technologies.</p>
+
+<p>This session introduces a simple and effecting Kubernetes architecture on which to host Drupal, and any PHP-based, website. Viewers are not expected to know what Kubernetes is, and only the general knowledge of what is a container is required. This session is particularly useful for organizations who require on-site hosting due to privacy concerns.</p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/VR2Iy255WQo?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Tess Flynn</h4>
+
+      DevOps Engineer
+
+
+          @
+              <a href="https://ten7.com">TEN7</a>
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p>Drupal, Docker, and occasional podcaster. Module maintainer for Flag and Healthcheck.</p>
+</div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2020-03/ten7_tess.jpg%3Fitok=Rtv8Gblr" width="220" height="220" alt="Tess Flynn" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">DevOps</div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-feedback-form field--type-webform field--label-above">
+    <div class="field__label">Feedback Form</div>
+              <div class="field__item"><form class="webform-submission-form webform-submission-add-form webform-submission-session-feedback-form webform-submission-session-feedback-add-form webform-submission-session-feedback-node-6301-form webform-submission-session-feedback-node-6301-add-form" data-drupal-selector="webform-submission-session-feedback-node-6301-add-form" action="return-clustering-kubernetes-drupal.html" method="post" id="webform-submission-session-feedback-node-6301-add-form" accept-charset="UTF-8">
+  
+    <div data-drupal-selector="edit-0" class="webform-message js-webform-message js-form-wrapper form-wrapper" id="edit-0"><div data-drupal-messages>
+    <div role="contentinfo" aria-label="Status message" class="messages messages--status">
+                  <h2 class="visually-hidden">Status message</h2>
+                    Sorry...This form is closed to new submissions.
+            </div>
+    </div>
+</div>
+<input autocomplete="off" data-drupal-selector="form-mlawmeeeh44festyvezys0wpbkrbqizojqew4b1ft0u" type="hidden" name="form_build_id" value="form-MLaWMeeEH44feSTYvEzyS0wpbKRbqiZoJQEw4B1fT0U" />
+<input data-drupal-selector="edit-webform-submission-session-feedback-node-6301-add-form" type="hidden" name="form_id" value="webform_submission_session_feedback_node_6301_add_form" />
+<div class="url-textfield js-form-wrapper form-wrapper" style="display: none !important;"><div class="js-form-item form-item js-form-type-textfield form-type-textfield js-form-item-url form-item-url">
+      <label for="edit-url">Leave this field blank</label>
+        <input autocomplete="off" data-drupal-selector="edit-url" type="text" id="edit-url" name="url" value="" size="20" maxlength="128" class="form-text" />
+
+        </div>
+</div>
+
+
+  
+</form>
+</div>
+          </div>
+
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <h3 class="field__label">Transcript</h3>
+              <div class="field__item" tabindex="0"><p>&gt;&gt; TESS FLYNN: &nbsp;All right. &nbsp;Let's get started in case you don't know what room you're in this is "Return of the Clustering: &nbsp;Kubernetes for Drupal". &nbsp;So the first question might be had is where can I find the links in this presentation yes this presentation is already online at socketwench.github.io/return-of-the-clustering. &nbsp;So take a moment to write that down and then we'll get going. &nbsp;Socketwench.github.io/return-of-the-clustering. &nbsp;How did the Jedi do this? &nbsp;This keeps falling down on my face. &nbsp;They must have special Jedi hairpins or something. &nbsp;Okay. &nbsp;So you might be wondering who is this weird person in front of you that's talking to you from your computer and why are they dressed like a Jedi. &nbsp;And well the answer to this is I'm Tess Flynn otherwise known as socket wench, that's wench not wrench I'm a blogger and DevOps engineering at TEN7. &nbsp;This is a full service Drupal web agency we create and care for Drupal powered Websites. &nbsp;We are based out of Minneapolis, Minnesota. &nbsp;Mostly. &nbsp;Actually we have several employees outside of Minnesota right now and we are fully remote distributed company. &nbsp;And if you are interested, we have just released a podcast helping you to give you tips on how to convert your business to work from home. &nbsp;</p>
+
+<p>You can find that at TEN7.com. &nbsp;We provide a number of different services, site and housing migration, Drupal 9 upgrades site audits and consultancy give us a hi for the wonderful humans@TEN7. &nbsp;TEN7.com. &nbsp;As you might guess from the name of this presentation this is part of a trilogy this is a series presentation I've been giving the first a ride the whale Docker for Drupalists tells you all about how to put Docker into your project workflow. &nbsp;And how to actually standardize your environment throughout your team. &nbsp;Also avoid deep hurting deployments beyond git which tells you how to create a new continuous integration distribution system for your site. &nbsp;And reduce any additional process overhead necessary to deploying new releases as you need. &nbsp;</p>
+
+<p>So a while ago my boss came to me and asked, hmmm, we already use Docker locally. &nbsp;But wouldn't it be great if we used Docker in production? &nbsp;</p>
+
+<p>And of course, you know, being a good DevOps person I said, sure, sure, it would. &nbsp;</p>
+
+<p>(Chuckles).</p>
+
+<p>&gt;&gt; TESS FLYNN: &nbsp;And then a tumbleweed passed between us. &nbsp;But well, let's talk about Docker in production. &nbsp;</p>
+
+<p>So earlier before that conversation I had been researching this Docker in production can't be that hard, right? &nbsp;You take a Linux server. &nbsp;You put Docker on it. &nbsp;We put containers on the Docker and that's it. &nbsp;You're Docker in production. &nbsp;Right? &nbsp;</p>
+
+<p>Well, I did some research. &nbsp;And there was a number of valid criticisms some people called it insecure. &nbsp;Some people had problems with its performance and some people had less constructive criticism about it. &nbsp;And then I realized it was going to be a little bit more complicated. &nbsp;In order to actually get this to work. &nbsp;</p>
+
+<p>So let's talk about the big one, Docker security. &nbsp;</p>
+
+<p>Docker maps the users between the host operating system and the container. &nbsp;Which means that whatever user the containers are running is the same user it's running on the host operating system and this is fine except most containers run as root. &nbsp;And this is really not good because now despite the fact that there's a number of different security sandboxing mechanisms within Docker to prevent access to the underlying host operating systems there are a number of security bugs which allow container escapes so this is actually a problem and we need to work around that so we don't want to use just any container we find. &nbsp;We want to secure any containers we use and we want to make sure that they never run as root. &nbsp;</p>
+
+<p>Another problem is passing configuration. &nbsp;Usually we're used to using Docker compose and doing that locally. &nbsp;And a lot of configuration is passed via environment variables. &nbsp;And this works locally because we really don't care too much about the security of our local development environment on our own laptops. &nbsp;We're mostly concerned about the security in a prod or a shared environment that has multiple people accessing it remotely. &nbsp;Environment variables are really not a great mechanism for that. &nbsp;And the reason why is because a lot of developers don't treat environment variables as securely as files you can see this easily by going to any hosted Drupal site and going to admin reports, status report, go to the PHP information and on several major Drupal hosting platforms you'll find your database log-in right there. &nbsp;</p>
+
+<p>That's not good. &nbsp;</p>
+
+<p>So instead we want to use a mechanism within Kubernetes called secrets and config maps actually Docker also supports secrets but we'll talk about that. &nbsp;</p>
+
+<p>Okay. &nbsp;So running the containers as non-root. &nbsp;We're not using environment variables to do any of our configuration. &nbsp;So now we can just put them all in a Docker host and -- wait a minute. &nbsp;What about multiple Docker hosts? &nbsp;Hmmm . . . so a single node Docker is really easy. &nbsp;All we have to do is install Docker on a single serve and run all of the containers on the same system and everything works the problem is that the scaling is vertical only. &nbsp;Your only choice when you need more resource is to make the server bigger. &nbsp;And that runs into a number of limitations very, very quickly. &nbsp;Some research has indicated that X 86 architecture tops out around 16 cores of CPU. &nbsp;Any more than that and performance goes down. &nbsp;Not up. &nbsp;</p>
+
+<p>The other problem is orchestration. &nbsp;We need some component to actually coordinate multiple Docker hosts to act as one so they can deploy instances, distribute load and deliver resources. &nbsp;</p>
+
+<p>Every -- it's not every individual server within the cluster for itself. &nbsp;They all have to act as one. &nbsp;</p>
+
+<p>Now, Docker does provide an orchestrator out of the box called swarm mode it's Docker's own orchestrator and it's in every installation of Docker even on your own laptop. &nbsp;It's built in. &nbsp;And it's free to use. &nbsp;</p>
+
+<p>So we'll use Docker swarm. &nbsp;That doesn't seem so wrong, right? &nbsp;We'll do that. &nbsp;Fine. &nbsp;</p>
+
+<p>So how Docker swarm works is that when you enable swarm mode on a Docker host, it becomes what's called a node. &nbsp;And here is where all of us Drupalists have to sigh a little bit. &nbsp;Yes, another node. &nbsp;Ugh . . .&nbsp;</p>
+
+<p>If we add another Docker host to the swarm, another node, that actually becomes our swarm and we can continue to add as many nodes as we need to in order to fill out all of our capacity. &nbsp;</p>
+
+<p>The problem is this isn't really a complete solution. &nbsp;In order to make it work, we need a front side load balancer that has the ability to know where the containers are within the swarm that need to receive the traffic. &nbsp;</p>
+
+<p>Once they receive and once the load balancer receives traffic it needs to route it to the particular ports within the swarm. &nbsp;</p>
+
+<p>Also we need to figure out persistent storage. &nbsp;Swarm mode doesn't care about storage at all. &nbsp;</p>
+
+<p>So we have to set up a SAN, an NFS, some kind of external storage mechanism that multiple containers can access simultaneously. &nbsp;</p>
+
+<p>So really swarm mode is only one piece of a cluster. &nbsp;It's not the whole cluster. &nbsp;</p>
+
+<p>Also swarm mode had a number of different problems. &nbsp;It had a lack of hosting choice. &nbsp;There was Docker cloud a few years ago. &nbsp;And it was way too expensive and that's probably why it doesn't exist anymore. &nbsp;</p>
+
+<p>But the other choice is that we could self-host Docker swarm and then sort out the load balancer and storage that's actually a perfectly valid option. &nbsp;</p>
+
+<p>The problem, though, for me personally is that Docker swarm just felt too uncontrolled. &nbsp;It made too many decisions for me. &nbsp;And made me modify my application versus the infrastructure. &nbsp;</p>
+
+<p>The problem is that containers were the only manageable unit within swarm mode. &nbsp;Everything had to be a container. &nbsp;And every container also got its own internal load balancer. &nbsp;And this created a number of different Drupal problems because you can't have multiple instances of MySQL go through a load balancer because it gets really confused. &nbsp;</p>
+
+<p>The same with Solar and in some cases memcache, as well. &nbsp;</p>
+
+<p>So after researching all of this, I just kind of felt like, that's it, I'm done. &nbsp;There's nothing more for me to do with containers. &nbsp;I might as well just go back to normal servers. &nbsp;That's all. &nbsp;</p>
+
+<p>But then, you know, I found something. &nbsp;Like a relic from a more fantastic age. &nbsp;And I knew that things were going to be different. &nbsp;</p>
+
+<p>So let's talk about kee-be-what is. &nbsp;It's Kubernetes it's down by the cloud compute foundation and the thing I really like about Kubernetes is it has expressive power. &nbsp;Pods are only one of many manageable objects Kubernetes. &nbsp;This allows you to tailor Kubernetes to your application rather than the other way around. &nbsp;And this is vital for Drupal sites because Drupal and a lot of times that we use it, functionally it's a black box. &nbsp;We don't modify core deeply in order to run it on every individual piece of infrastructure. &nbsp;</p>
+
+<p>We want to install modules and treat those modules more or less as a managed unit outside of ourselves. &nbsp;So it's much more important for us to tailor the infrastructure to Drupal rather than the other way around. &nbsp;</p>
+
+<p>So how does Kubernetes work? &nbsp;In Kubernetes we're going to have one or more servers that are worker nodes. &nbsp;These workers are going to run pods, which are our application. &nbsp;</p>
+
+<p>In order to make sure that all of these worker nodes work together, we also have a dedicated manager node. &nbsp;The manager node is going to monitor the health of the cluster and make sure that every node has an equal amount of work provision to it. &nbsp;</p>
+
+<p>We can add as many workers as we need to to the cluster and we can do this dynamically as we need to and even take nodes away when demand lessens and this is our Kubernetes cluster. &nbsp;</p>
+
+<p>We can connect the Kubernetes cluster directly to the Internet. &nbsp;We don't need a front side load balancer. &nbsp;</p>
+
+<p>Now, persistent storage is a bit complicated still for Kubernetes. &nbsp;But less so for a variety of reasons that we'll get into. &nbsp;</p>
+
+<p>The thing is this is just how Kubernetes works physically how does it work logically. &nbsp;So when we actually interact with Kubernetes, we're going to create a deployment object. &nbsp;That deployment object describes our application and the containers that it needs to run. &nbsp;In order for that deployment to be accessible to -- from the Internet or to access other services within the cluster, we defined another option called a service. &nbsp;</p>
+
+<p>Then if we need to access persistent volumes we can create something called a volume claim that represents the persistent storage. &nbsp;So our deployment can actually specify how you can access me and what storage I need from inside Kubernetes itself. &nbsp;It doesn't need any external information for that. &nbsp;</p>
+
+<p>If we want to actually connect multiple applications together, we can actually have different applications reference the other deployments service object and that way they can communicate to each other so this is a lot of ways to describe your workload and really this is only part of the Kubernetes model. &nbsp;</p>
+
+<p>There's a lot more that I haven't really covered in here. &nbsp;And it's taken me about a year to figure out just the pieces that we need in the Drupal world in order to make an effective architecture for Kubernetes. &nbsp;</p>
+
+<p>So let's go over these again. &nbsp;Deployments describe an application. &nbsp;Not just what containers to use. &nbsp;But the amount of copies of that application that are running called replicas. &nbsp;Any health checks to make sure that we need to restart the application when necessary. &nbsp;And where in the cluster to place those applications. &nbsp;</p>
+
+<p>Services are a consistent application endpoint. &nbsp;They can be internal, external, or load balanced application also persistent volume claims called PVCs, not a pipe these are a request for persistent storage how much from where and how sharable it is. &nbsp;</p>
+
+<p>So that's a lot of objects that we're already talking about. &nbsp;How do we actually get these into the cluster? &nbsp;How do we deploy this? &nbsp;</p>
+
+<p>Actually if you have worked with Drupal 8 configuration before you already know how to do this everything in Kubernetes is defined as declarative YAML and pushed to the manager node this YAML can be patched, diffed or even replaced. &nbsp;It's very much like git. &nbsp;It's really, really nice. &nbsp;When I saw this, I thought I never imagined there was this much DevOps in the entire galaxy although Hope probably gave me some commentary for that to be referenced. &nbsp;</p>
+
+<p>So we have this wonderful infrastructure. &nbsp;Now, this is all shiny. &nbsp;But where do we actually use this? &nbsp;</p>
+
+<p>(Chuckles).</p>
+
+<p>&gt;&gt; TESS FLYNN: &nbsp;So let's get into our -- let's go to Kube station we can always self-host which is a perfectly good option for Kubernetes and this might be the only option if you actually have an on-premises requirement or certainly legal obligations like HIPAA that requires your infrastructure to be in premises in a secure facility so you can do this an external and on existing hardware or if you can use an third party VPS service, you can take raw servers and create a Kubernetes cluster on a VPS service like DigitalOcean or Linode. &nbsp;</p>
+
+<p>There's a lot less lock-in with Kubernetes because there's no really reliance on special APIs. &nbsp;Kubernetes is Open Source. &nbsp;And one Kubernetes is pretty much like every other Kubernetes. &nbsp;It's not really that different. &nbsp;</p>
+
+<p>This -- the thing is, though, if you're going to run Kubernetes yourself, you still have to worry about having staff to manage the cluster, to set up storage. &nbsp;To make sure that the cluster is working correctly. &nbsp;And that everything is secured. &nbsp;This is very important because Kubernetes does not install as a secure by default configuration that's something that's very essential to know when you are running self-hosted Kubernetes. &nbsp;</p>
+
+<p>Storage is still tricky. &nbsp;Because you could set up a traditionally managed NFS. &nbsp;This becomes a single point of failure within your cluster but it still can be effective other options might be Ceph, rook or heketi that have native Kubernetes and are more fault tolerant so those are different options that you can look into. &nbsp;</p>
+
+<p>So when I did this once, I actually decided to set up Kubernetes over a weekend myself on Linode and it was a lot of resource just to run one site I was running three nodes at six gigabytes and it was a lot of resource and I'm a cheapskate, I just didn't want to do this and I didn't want to pay for the extra manager node either and I just thought, you know, there's got to be an easier way. &nbsp;</p>
+
+<p>And fortunately for us there is. &nbsp;</p>
+
+<p>Over the last two years managed Kubernetes has exploded as a service field. &nbsp;It's like a virtual private server but for Kubernetes workloads. &nbsp;Since you're not buying a single server you'll now by a cluster and config that to your needs typically you only pay for worker nodes instead of the manager node as well furthermore the storage configuration is typically baked in so you don't need to do it yourself. &nbsp;</p>
+
+<p>There's a number of different providers that you can find to do managed Kubernetes on your site, Amazon, Azure, DigitalOcean, Google GKE and a whole bunch of others there used to be a wonderful list of these around. &nbsp;Last night I found out that it no longer exists. &nbsp;So generally I can just tell you experiment. &nbsp;Go out and find each -- go and research each one. &nbsp;See which one of the pros and cons suits you best. &nbsp;</p>
+
+<p>Now, for us at TEN7 and for me personally we settled on DigitalOcean and the reason why is this is a worldwide Kubernetes provider Ty has a really straightforward rest based API but the most important part was the pricing was really, really obvious they literally will tell you how much a month your cluster will cost. &nbsp;Upfront. &nbsp;Before you allocate. &nbsp;You really can't get that from Amazon, Azure, or GKE. &nbsp;You basically have to wait for a bill for a lot of those. &nbsp;That might have changed. &nbsp;But that was the last time I looked at it. &nbsp;Yeah, you just have to wait for a bill. &nbsp;</p>
+
+<p>All right. &nbsp;So now we know where we're hosting this. &nbsp;Now we have to actually start interacting with our cluster. &nbsp;</p>
+
+<p>So let's figure out what our architecture is going to be to host our Drupal sites. &nbsp;Now, when I started out, I decided to use the smallest nodes available on DigitalOcean and create a three worker cluster of those notes. &nbsp;And the reason why is because I wanted to start small and see if I needed to scale up later. &nbsp;Also we're going to use TEN7's flight deck for containers mostly because we were already using them internally we were very familiar with them and if we needed to modify them at all to make it easier to work in Kubernetes we totally could do that it also helped that I wrote them and I was making the clusters. &nbsp;So I'm cheating. &nbsp;So first of all we start with a MySQL container. &nbsp;And we're going to back it up by a persistent volume claim disk. &nbsp;And that's going to be our database server in our cluster. &nbsp;Then we're going to have three memcache instances that will cache any queries from MySQL. &nbsp;We have one memcache instance per worker node so each one of those will be on their own independent hardware. &nbsp;So far, so good, already. &nbsp;Then we're going to have three web engines. &nbsp;Web engine? &nbsp;What the heck is this? &nbsp;This is something that's a big different from Docker. &nbsp;In Docker you only manage containers. &nbsp;But in Kubernetes you manage pods, a pod can be one or more containers. &nbsp;So our web engines are actually two different containers in a single pod one container for varnish and one container for Apache mod PHP we could also use varnish and use three different containers in the same pod. &nbsp;Varnish, nginx and PHP, there was no advantage with Kubernetes architecture with FPM versus mod PHP and some arguments to Apache being slightly better in that case.&nbsp;</p>
+
+<p>Then we can connect all of this to the Internet all right so let's look at some actual code so here we have a deployment that's going to describe our application. &nbsp;The first line that's going to be the API version. &nbsp;Now, this API version is not the version of your application, it's not the version of the file it's not the version of Kubernetes you're working with. &nbsp;It is the conversion of the API that this file is communicating to within Kubernetes. &nbsp;</p>
+
+<p>There's actually a page in -- buried in the documentation which could tell you which one you're supposed to use. &nbsp;But I have to look it up every time myself. &nbsp;</p>
+
+<p>For deployments, the standard one is apps/v1 also there's the kind which is the kind of object that this is. &nbsp;This is a deployment. &nbsp;So we just have deployment. &nbsp;</p>
+
+<p>Next we have the name of the deployment. &nbsp;In this case it's under the metadata section name is web so this deployment is called web. &nbsp;We have three different replicas. &nbsp;And we're going to also have a key value pair here that's going to be used by the service. &nbsp;Hmmm, let's get to that later. &nbsp;</p>
+
+<p>Then we're going to have the image to use which is TEN7/flight-deck-web then down at the bottom we say open port 80 so that we can communicate to Apache and port 6081 to communicate to varnish. &nbsp;All right so far so good now let's talk about that service. &nbsp;API Version 1 kind service metadata equals web. &nbsp;Wait a minute we have a deployment named web and a service named web, don't that conflict? &nbsp;And the answer is no, it doesn't. &nbsp;And the reason why it doesn't is because these are different object types. &nbsp;So as long as they are different object types the names don't conflict. &nbsp;</p>
+
+<p>I actually tend to name my services in my -- and my deployments the same name every time just so I know which one is associated with each other without having to open the definition. &nbsp;</p>
+
+<p>And how do we know they are not associated it turns out it's the selector down here the selector app equals web corresponds to the selector up here app equals web. &nbsp;In our deployment. &nbsp;</p>
+
+<p>And that's how the two are actually associated with each other. &nbsp;</p>
+
+<p>This service also is going to open port 80 and port 6081 and advertise that to the entire cluster we'll load balance that as well so that any time that traffic goes to our web engines, Kubernetes decides which one of those containers it's going to go to. &nbsp;</p>
+
+<p>So what else do we need to do? &nbsp;We need to figure out where to put the database log-in in all of this. &nbsp;Where do we put our configuration? &nbsp;So in Kubernetes we can define something called a secret. &nbsp;It's defined as its own object, not as part of container. &nbsp;And it is mounted into the deployment as a disk. &nbsp;</p>
+
+<p>So here is a secret. &nbsp;API Version 1 kind equals secret metadata name equals MySQL and afterwards we have a data section. &nbsp;Now this data section is going to be defined as one or more items which are key value pairs. &nbsp;Now, I tend to like naming the item name after a file name. &nbsp;Because this is how it's actualized inside of the cluster. &nbsp;</p>
+
+<p>So we have Drupal-db-name.txt and user and pass. &nbsp;And all of these must be base 64 encoding. &nbsp;</p>
+
+<p>Then we have our deployment so let's go ahead and get the secret in use. &nbsp;</p>
+
+<p>So we have our deployment, our web deployment, and way at the bottom we have a new volumes statement which says we're going to use the secret MySQL and we're going to mount that under the volume mounts section. &nbsp;Same volume name at secrets/MySQL so now this container -- the container will be able to find the files within secrets/MySQL slash whatever these file names are in order to get that particular information. &nbsp;Cool. &nbsp;All right. &nbsp;</p>
+
+<p>What else do we need to do? &nbsp;</p>
+
+<p>So it seems like we got pretty much all of this licked right now, now all we have to do is make a shared disk for all of our web engine replicas so they all have a place to put sites default files, right? &nbsp;It should be pretty easy. &nbsp;Right? &nbsp;Right? &nbsp;</p>
+
+<p>It's not easy. &nbsp;</p>
+
+<p>This is where I really had a hard time because one of the problems is that within a persistent volume claims in Kubernetes on managed hosting such as DigitalOcean, GKE and others, you can only have a single writer. &nbsp;So you can't actually share it between multiple web pods. &nbsp;This becomes a huge problem. &nbsp;Now, you could orchestrate a way of directing traffic only to the first web pod and that's the writer and everyone else is just a copy that does only reading. &nbsp;But that gets complex really, really quickly. &nbsp;</p>
+
+<p>So what we decided to do at TEN7 instead is just not use any attached storage for the web engines. &nbsp;Instead we decided to use fly system or S3FS and then back that by an object store such as AWS. &nbsp;DigitalOcean spaces or any other option that can work with S3 this way we no longer need a file system and the reason why this is actually important is because Drupal primarily manages static files. &nbsp;Now, this is static files from a cloud architecture perspective. &nbsp;We don't need block storage. &nbsp;And the reason why we don't need block storage for Drupal sites is because from a cloud architecture perspective, block storage is meant for high bandwidth frequently changing performant data after a bunch of research to uncover what that gobbledygook is supposed to mean I found out the good example was the files which make up a MySQL database. &nbsp;</p>
+
+<p>So we're not storing that insights default files we don't even need to worry about that so we don't need block storage, we don't need attached storage for this we can use S3 and it will work. &nbsp;</p>
+
+<p>And the nice thing is that object stores are multi-writer by default. &nbsp;We don't need to worry about multiple writers accessing the same endpoint because it is multi-writer out of the box. &nbsp;</p>
+
+<p>So what else do we need? &nbsp;Memcache and MySQL don't need any Kubernetes load balancing in fact we want to directly access these without any load balancing because load balance can confuse these services. &nbsp;</p>
+
+<p>The only problem is that we do need predictable hostnames within Kubernetes. &nbsp;Now, Kubernetes does not like giving you predictable hostnames by default. &nbsp;That's intentional. &nbsp;The reason why is to prevent you from building hard requirements within your containers. &nbsp;</p>
+
+<p>So one way around this is to use called a stateful set. &nbsp;It's a special kind of deployment. &nbsp;The host name is assigned deterministically rather than non-deterministically with a box of hexadecimal gobbledygook this allows you to access it -- directly to predict which container you want to talk to a stateful set kind of looks exactly like a deployment the only difference really is we'll have a service name field that's going to match whatever the service is after that everything else works exactly the same. &nbsp;So this is a stateful set for our memcache so API Version apps/V1 so kind stateful set, name memcache. &nbsp;Three replicas and then we have the memcached official container the Alpine version and then we expose the default memcache port of 11211. &nbsp;</p>
+
+<p>Okay. &nbsp;We need to expose this stateful set with a service, as well, so we can make it known to Kubernetes so again API Version 1 kind service metadata name equals memcache and then the ports and of course our selector. &nbsp;The important part is that with our stateful set we want to turn off Kubernetes load balancing and the way to do that is this weird line called cluster IP equals none. &nbsp;And what this does is it tells Kubernetes, yes, this service exists. &nbsp;Yes, please build DNS entries so people can actually access it but no don't use load balancing when people are accessing it instead. &nbsp;Let people directly access the underlying containers instead. &nbsp;</p>
+
+<p>So we have one more spot left in our infrastructure. &nbsp;We need HTTPS. &nbsp;So the thing is that we don't want to run certificates all the way down our infrastructure into our web engine. &nbsp;It would be far better if we could terminate SSL at the very front of our infrastructure. &nbsp;</p>
+
+<p>And what we can do for that is called an ingress. &nbsp;</p>
+
+<p>Now, an ingress is a Kubernetes edge load balancer. &nbsp;The maps domains names to Kubernetes services and it can terminate SSL. &nbsp;</p>
+
+<p>So here is what the ingress definition looks like API apps/V1 kind ingress metadata my-cluster-ingress we have a bunch of annotations here which allow us to configure the ingress to fix rewrites and cores, set the file upload size. &nbsp;And then afterwards, we have our host name. &nbsp;So any time that someone requests examples.com from our cluster, we're going to actually -- we're going to look for a service called web. &nbsp;At this particular path. &nbsp;And access it through 6081 which is our varnish port for TLS we can have TLS hosts, example.com and here is the secret that contains our certificate chain. &nbsp;</p>
+
+<p>What's that look like? &nbsp;So that ingress TLS secret provides the combined certificate chain and the private key so it looks like this API Version 1 it's actually a kind equals secret. &nbsp;And it has two different items TLS.crt and key both are base 64 encoded. &nbsp;That actually allows us to put a certificate within Kubernetes in order to actually SSL encrypt our traffic externally. &nbsp;And terminate it internally from our cluster. &nbsp;</p>
+
+<p>But there's a problem. &nbsp;And the problem is, well, what about let's encrypt? &nbsp;</p>
+
+<p>We don't want to pay for certificates because that just seems like a racket. &nbsp;So how do we get let's encrypt in this? &nbsp;Typically we'll use Certbot in order to actually go and request a new certificate and it does some configuration with Apache. &nbsp;But we're not doing that. &nbsp;We're using an ingress. &nbsp;How does this work? &nbsp;</p>
+
+<p>Well, actually a lot of people have the same problem and there's a product out there called cert manager it's an Open Source certificate store and certificate provisioner for let's encrypt you can find it at cert-manager.io. &nbsp;</p>
+
+<p>So we can see that in the ingress it's going to allow us to do name-based resolution. &nbsp;Like example.com or example2.com can go to different places within our cluster and that's fine. &nbsp;</p>
+
+<p>But how do we make sure that those different sites are separated from each other? &nbsp;How we do that in TEN7 is we actually assign each individual site its own namespace within the cluster. &nbsp;Named after the site URL. &nbsp;</p>
+
+<p>This allows consistent deployment and service names across every individual site, which makes it easier for us to manage. &nbsp;</p>
+
+<p>All right. &nbsp;To me all of this put together was really just DevOps happiness it allowed me to do everything I needed to do to run a site. &nbsp;And it was an effective infrastructure that was Kubernetes compliant without massive modifications to Drupal itself. &nbsp;Basically I only needed to configure memcache I only needed to set up fly system and I was good. &nbsp;</p>
+
+<p>So now that we know our cluster is going to look like, how do we actually get it into DigitalOcean? &nbsp;</p>
+
+<p>So let's get into our action we're going to talk about the build chain. &nbsp;So we need to deploy all of this YAML we were just writing how we can do this manually is we use the Kubernetes commandline application key control or Kube cuddle whatever makes you giggle there's five or six this kubectl apply and path to my object you can repeat this for every YAML file you want to deploy. &nbsp;Now, if you need to do this with namespaces because you're using our model for multi-tenancy you can use the dash dash namespace parameter on cube control and apply it only to a tib namespace the namespace has to exist first and this link will tell you how to do that. &nbsp;</p>
+
+<p>So the problem is, though, we can combine all of these files to make it easier but we really need to remove humans from the process. &nbsp;Humans can be tired, frazzled, fried, they can make mistakes and typos and that can cause us to have a very bad day we need to remove humans from this deployment process to make sure we can do this much more consistently with a lot less effort on our part so the thing is that almost every site that we work with is going to kind of the same. &nbsp;We need a repeatable cluster clients tend to only differ in sizes long-ins and some features like memcache versus Redis so in order to make this less repeatable and reduce work on ourselves we'll bring in another tool called Ansible and you can see avoid deep hurting which tells you all about ansible we'll use the K8s module within this in order to deploy YAML how it works our DevOps person will define a bunch of group variances which has a cluster this goes into git repository GitLab CI picks that up and reads the playbook that's inside that read file and gives it over to ansible which will interact with the DigitalOcean API to provide the hardware and kubectl in order to actually send out all of our resources all of our YAML. &nbsp;How do we authenticate this entire process? &nbsp;For DigitalOcean we can create a access token and pass it to DigitalOcean API as an HTTP header what about creating the cluster itself? &nbsp;Well, a lot of this is going to actually be done with post requests with JSON but it's a lot of work to figure that out and fortunately I've done all the work for you use the TEN7. &nbsp;digitalocean role on ansible galaxy this handles scaling node pools and a bunch of more options here is an example playbook which actually provisions a cluster so we have our ansible playbook DigitalOcean API token DigitalOcean clusters and here is what our cluster looks like it's going to be called my K8s cluster and the SF 02 region it has two node pools one will have 1 VCPU 2 gigabyte 3 servers and another server for 1 VCPU 2 gigabyte just one copy for the database and that's it that sets up the entire cluster for us and we don't have to do anything else and this can go right into our repos.&nbsp;</p>
+
+<p>So the problem, though, is we need to authorize kubectl and the thing is that when you create a cluster within DigitalOcean you'll get a kube config file that file only has a limited amount of life span those files are regularly rerolled by DigitalOcean as a security procedure to make sure we get a fresh kubectl every time we use another role called TEN7. &nbsp;digitalocean underscore kube config that interacts with the API via the access token to get our authentication, our kubectl to talk to the cluster. &nbsp;</p>
+
+<p>Here is what a playbook that uses that looks like. &nbsp;And it's just DigitalOcean kube config the name of the cluster and where to put the file and then we call the role. &nbsp;That's it that's the whole playbook. &nbsp;All right what about the Kubernetes YAML itself? &nbsp;We actually have another role that we use to deploy all of our sites called TEN7.flightdeck cluster it's going to create secrets deployments and services everything you need to run a flight deck Drupal flavored cluster in DigitalOcean in fact it should support virtually any kind of Kubernetes provider. &nbsp;Even self-hosted. &nbsp;</p>
+
+<p>You can find plenty of examples on GitHub.com at github.com/TEN7 --&nbsp;</p>
+
+<p>All right, finally after all of this time we can stand over -- oh we can stand over our enemy you've failed Lord hostedness for I am a deaf -- I'm a DevOps like my mentor before me. &nbsp;</p>
+
+<p>I should probably get the site on the cluster right now. &nbsp;Yeah, let's do that. &nbsp;</p>
+
+<p>We're all clear, K8s let's see deploy this thing and go home. &nbsp;We're already home. &nbsp;Well, let's keep going. &nbsp;</p>
+
+<p>(Chuckles).</p>
+
+<p>&gt;&gt; TESS FLYNN: &nbsp;Usually we're used to updating a site in place. &nbsp;The server remains permanent and fixed. &nbsp;And we just swap out the site code when we do an update. &nbsp;</p>
+
+<p>This is usually used for shared hosting and some VPSs. &nbsp;Typically we can deploy a site using this using SFTP, git deploy and some CI systems do this. &nbsp;</p>
+
+<p>The problem is on Kubernetes we have to deploy to each replica. &nbsp;And that's not simple. &nbsp;Sometimes we'll have three replicas which mean we have to do three different deploys. &nbsp;And those might be incongruent while we're deploying each one and that can be a problem. &nbsp;</p>
+
+<p>We could use NFS to host code so each one is updated simultaneously but that just ruins our performance in other ways. &nbsp;</p>
+
+<p>So the thing is that this is just not how the K8s works. &nbsp;What do we do instead? &nbsp;Well, the more I thought about it, the more I realized that the site is the application. &nbsp;It should be the container. &nbsp;</p>
+
+<p>So what we should do is not use a container that just has Apache PHP on it. &nbsp;But it should have Apache PHP, and all -- and all of our site code built into it. &nbsp;How does this work. &nbsp;So we have our developers. &nbsp;Developer is going to push the site code to a git repo. &nbsp;GitLab CI is going to pick up those changes to our site and inside of that repo is a Dockerfile that Dockerfile is going to be used to build our Drupal 8 site so it's going to run composer and MPM run, and anything else that it needs to in order to actually build the Drupal site code. &nbsp;</p>
+
+<p>Afterwards we're going to take that and we're going to get an image from it, a Docker image. &nbsp;In order to make sure that that code is going to be preserved accessible to Kubernetes we upload it to a private container registry. &nbsp;</p>
+
+<p>That registry just hosts the container mechanism. &nbsp;It's nothing particularly fancy. &nbsp;After that, kubectl can actually read from the registry to pull that custom image down and then it gets deployed to the cluster. &nbsp;</p>
+
+<p>Where can I find an example Dockerfile which builds a Drupal site you can find this at github.com/TEN7/flight-deck-Drupal. &nbsp;</p>
+
+<p>This creates the necessary directories and also builds Drupal itself within the container. &nbsp;You can -- it also customizes the entry point so every time the container starts up it writes the settings.PHP file so they all have access to the correct database. &nbsp;</p>
+
+<p>What about that private registry? &nbsp;Well, private registry just stores built, site-specific images. &nbsp;And Kubernetes needs an auth token that's passed in secrets in order to access it that's a lot to cover and we don't really have enough time to do it there's a wonderful tutorial on docs.Docker.com in order how to set up a container registry. &nbsp;Also a number of different providers such as DigitalOcean itself has a container registry which is currently in beta and a whole bunch of other providers which actually allow you to have private registries as a service rather than self-host it. &nbsp;</p>
+
+<p>So when we actually have our container custom built we need to modify our deployment. &nbsp;So now our deployment needs to actually have reference our custom registry. &nbsp;So my registry's port and then the container's name that has our site and whatever version it is. &nbsp;We actually don't use numeric versions for our containers we use the GitHub short commit ID instead because it's a lot more consistent in order for Kubernetes to understand which item to deploy. &nbsp;And the reason why is the tag names have to be different each time otherwise Kubernetes will not redeploy it, even if the container image has been overwritten. &nbsp;So it's important to know that the tag names are very, very important. &nbsp;</p>
+
+<p>Also we have the my registry key which is going to be a secret which is going to have our authentication token for our private registry. &nbsp;</p>
+
+<p>So the last thing that we need to worry about is how do we control the update? &nbsp;When we deploy this out, we don't want -- we want to minimize downtime. &nbsp;So we have three replicas that have three different web containers. &nbsp;Which are all going to get updated. &nbsp;If we do them all at once we have downtime. &nbsp;That might not be so bad. &nbsp;But is there a way that Kubernetes can fix this for us, too? &nbsp;And the answer is yes there's something called a rolling update. &nbsp;It replaces running containers with the new image. &nbsp;And it does so sequentially. &nbsp;In this -- and this reduces outages. &nbsp;Flight deck cluster does this out of the box and by default for any web container. &nbsp;So here is how it works. &nbsp;We're going to modify our deployment for our web deployment. &nbsp;And we're going to say there's a new strategy, type, rolling update and in that rolling update we're going to say allow one additional container in addition to the three ones that we already have. &nbsp;Make sure to only update one at a time. &nbsp;And then wait three minimum -- five minimum seconds after updating that container to make sure that before moving on to the next one to update. &nbsp;This way it reduces downtime. &nbsp;Every update is done sequentially. &nbsp;The best part about this is that the load balancing within Kubernetes is aware of the deployment process so if anything goes wrong with the first container deploying, it gets stuck. &nbsp;But your site never goes down because traffic is now going to the other two containers. &nbsp;Now, that was a lot that we have to further and if you want to learn more there's a wonderful book called Kubernetesbyexample.com it's free and online and tells you everything you need to know about Kubernetes than I covered here there's an interactive tutorial on Kubernetes.io and also we have our own class called hosting Drupal on Kubernetes on YouTube that also has all of the lab material and slides online for you to use and learn how to interact with Kubernetes directly.&nbsp;</p>
+
+<p>I want to take a moment here to tell a special thanks for having this event -- for having -- for having me here today at this event even though I'm in my own house for TEN7 for sponsoring -- also the wonderful patrons and my maker efforts and my fiction right you can find this at -- you can find this presentation at GitHub.io.</p>
+
+<p>&gt;&gt; DWAYNE McDANIEL: &nbsp;Thank you I'll unmute everyone at once and give a big round of applause. &nbsp;</p>
+
+<p>(Applause).</p>
+
+<p>&gt;&gt; DWAYNE McDANIEL: &nbsp;Back on mute you all go if you would like to ask a question, please raise your hand. &nbsp;And I will unmute you. &nbsp;And we will -- I'll unmute you, Tess. &nbsp;So please raise your hand and I'll mute you and we can have some conversation about this and again, please feel free to use that chat function to type out your question. &nbsp;</p>
+
+<p>I thought I saw someone raise their hand maybe they are just raising the roof. &nbsp;</p>
+
+<p>(Chuckles)&nbsp;</p>
+
+<p>&gt;&gt; DWAYNE McDANIEL: &nbsp;Any questions out there? &nbsp;If you're not familiar with Zoom -- there we go. &nbsp;Benji has a question so we'll unmute you and lower your hand you're on.</p>
+
+<p>&gt;&gt; Hi this is sort of a silly question but I notice your slides are on GitHub GitHub.io and of course you're the DevOps expert so I wonder if you have a DevOps process for your slides.</p>
+
+<p>&gt;&gt; TESS FLYNN: &nbsp;The slides are written in reveal.js I tried to use git flow with them but I got lazy last night and pushed directly to master but oh well but it is managed in git so I can do that. &nbsp;Also all of the slides are done with Open Source technologies only. &nbsp;So all of the graphics are actually made in either Gimp or Inkscape which is a lot of what the vector graphics are and the source files -- the source SVG files for those graphics are actually within the repo, as well so if you want to reuse them, go right ahead. &nbsp;They are -- I think I put them under Creative Commons so go ahead and reuse them if you need to.</p>
+
+<p>&gt;&gt; I do my slides using Markdown and then I convert them to reveal.js with pan doc and all in GitLab CI but I'm much lazier about my graphics than you are.</p>
+
+<p>&gt;&gt; TESS FLYNN: &nbsp;Yeah, I mean, I like doing the graphics. &nbsp;That's kind of half of the fun of doing these for me I guess. &nbsp;</p>
+
+<p>(Chuckles).</p>
+
+<p>&gt;&gt; TESS FLYNN: &nbsp;Yeah, I don't really build any particular automation around the deployment. &nbsp;I just code it directly in HTML. &nbsp;Because there's really not that much additional work in setting up the auto -- and settings up the automation just didn't seem like it was necessary plus it allows me to run this locally if I need to without having to run a build process. &nbsp;</p>
+
+<p>&gt;&gt; DWAYNE McDANIEL: &nbsp;All right. &nbsp;Thanks, Benji, we have a few more questions coming in over on the chat. &nbsp;So just curious why the choice of cache per node or per pod and not a separate cache architecture whether that's also hosted in Kubernetes or a global/mass cache like global flare cloud front Akamai.</p>
+
+<p>&gt;&gt; TESS FLYNN: &nbsp;Mostly because we wanted to simplify the architecture and make sure if you want to add additional components outside of that, you certainly could we do have a couple of clients at TEN7 which use Cloudflare and use that front side cache and then it gets moved over to Kubernetes. &nbsp;The idea behind this presentation was to present the simplest amount of architecture possible that allows you to build on top of it rather than a very complicated architecture that has dictated components.</p>
+
+<p>&gt;&gt; DWAYNE McDANIEL: &nbsp;Thank you very much. &nbsp;That was from Adam Arrowwood. &nbsp;Howard I skipped your question you asked first I apologize. &nbsp;Could you talk a little bit about performance compared with a single larger server? &nbsp;</p>
+
+<p>&gt;&gt; TESS FLYNN: &nbsp;So the biggest problem with this infrastructure that we're running into is the performance of the object store. &nbsp;Surprisingly, we found out that we could run four to six sites that have our traffic on it per cluster and we have them running I think 2 VCPUs per node 4 gigabytes memory and we're not anywhere near capacity on those systems so we have plenty of CPU performance, memory performance. &nbsp;The biggest bottleneck is going to be the object store. &nbsp;You have to make sure that the object store has a -- it has enough bandwidth and enough network location in order to access it quickly. &nbsp;Because imagine regeneration will really kill your performance really quickly. &nbsp;So that is the biggest challenge. &nbsp;</p>
+
+<p>We are looking into maybe using min &nbsp;IO for a lot of that and an external CDN instead of using some other solution like just a direct space that has access and the reason why is because that will reduce network hops and probably make image derivative generation a lot faster. &nbsp;</p>
+
+<p>&gt;&gt; DWAYNE McDANIEL: &nbsp;Thank you. &nbsp;And reminder, feel free to use that raise your hand button if you want to get on the air and talk here. &nbsp;And I've got another question from Howard. &nbsp;How do rolling updates work with db updates? &nbsp;Won't code be out of sync with the database? &nbsp;</p>
+
+<p>&gt;&gt; TESS FLYNN: &nbsp;It can be for a few seconds. &nbsp;But in Drupal 8 a lot of the traffic is going to be anonymous and it will hit the caches first so that's not going to typically be a big problem. &nbsp;So it doesn't completely solve the problem of outages. &nbsp;But it does reduce several major cases of outages that are due to deployments. &nbsp;And typically the deployments take about four to five minutes even for a large site so it's not that long an amount of time to be out if it has to be out. &nbsp;</p>
+
+<p>&gt;&gt; DWAYNE McDANIEL: &nbsp;Awesome. &nbsp;Here is another one from Pushpinder if I mispronounced your name do you see any issues with caching -- I'm sorry; do you see any issues with caching/configuration-import when you use this architecture in case if one pod goes down during deployment, another pod comes up? &nbsp;</p>
+
+<p>&gt;&gt; TESS FLYNN: &nbsp;So typically what happens is that when we do a deployment, if the first pod that's doing the deployment fails, it just gets stuck in a retry state and it doesn't actually serve any traffic when it's in the deploying phase. &nbsp;So Kubernetes takes it out of the deck entirely and only relies on the running existing pods. &nbsp;This happens a lot of times with our deployments if we have some problem or if some configuration doesn't work or we just make a typo somewhere and something gets screwed up. &nbsp;And that stuck deployment is actually timed out after five minutes and that's when it pings my phone to let me know that something went wrong. &nbsp;</p>
+
+<p>So it's actually worked out pretty well for us whenever we've had a deployment that didn't work out, the site never really goes down it's only in rare cases where the site actually continues to keep working and then something later fails on it. &nbsp;</p>
+
+<p>We've also had problems sometimes where an individual pod will have a problem. &nbsp;And the best solution isn't to try to troubleshoot the pod but rather just delete it and then have Kubernetes make a new one. &nbsp;And that typically also solves the problems, too. &nbsp;</p>
+
+<p>&gt;&gt; DWAYNE McDANIEL: &nbsp;Right on. &nbsp;Thank you very much. &nbsp;We got a thank you as well in there. &nbsp;From the asker. &nbsp;</p>
+
+<p>Any other questions out there in the world? &nbsp;While we have Tess in the hot seat. &nbsp;</p>
+
+<p>Here we go. &nbsp;This is from Adam Arrowwood if the content of a node is changed, how do you handle cache flushing of that node? &nbsp;Or do you just wait for the TTL to expire? &nbsp;</p>
+
+<p>&gt;&gt; TESS FLYNN: &nbsp;Typically we actually set our TTLs fairly low. &nbsp;That is one of the limitations of this simpler architecture. &nbsp;We have been looking at ways of actually making the varnish into its own tier within Kubernetes itself. &nbsp;That we can actually use much more complicated tagging architecture to individually flush particular pages. &nbsp;</p>
+
+<p>We started looking into that. &nbsp;We haven't really deployed that yet. &nbsp;We're still in early stages. &nbsp;</p>
+
+<p>But for the last few months -- last year, two years almost at this point, we have been running this with low TTLs and it's been fine. &nbsp;</p>
+
+<p>&gt;&gt; DWAYNE McDANIEL: &nbsp;Awesome. &nbsp;All right. &nbsp;So I'll put one more time out there, are there any other questions or comments? &nbsp;Speak now or you'll have to contact Tess offline or I guess online somewhere. &nbsp;</p>
+
+<p>It looks like that's wrapping it up. &nbsp;</p>
+
+<p>So thank you very much again, Tess. &nbsp;I'm going to do that one more time I know I caught everyone by surprise last time so everybody get ready give a big round of applause or tap your mic if you're in the office or whatnot so unmute all and thank you very much. &nbsp;Tess. &nbsp;</p>
+
+<p>(Applause).</p>
+
+<p>&gt;&gt; Whoo.</p>
+
+<p>&gt;&gt; DWAYNE McDANIEL: &nbsp;I think that might have been louder if the Zoom didn't have the auto canceling function. &nbsp;Trying not to have everyone touch over each other. &nbsp;So I'm going to unmute and I'm going to turn the ability to unmute yourself back on for the time being. &nbsp;And stop the recording. &nbsp;</p>
+
+<p>All right, great job, Tess, that was awesome.</p>
+
+<p>&gt;&gt; TESS FLYNN: &nbsp;Thank you. &nbsp;</p>
+</div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+
+</div>
+  </section>
+
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-142e6acd84d807d8189ef8f95f5579012b042f4a7264f80ec009198d49eef69b">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/bounteous.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2019-11/Bounteous_indigo_large.png" width="1676" height="279" alt="Bounteous logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/pantheon.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2020-02/pantheon-logo-tagline-black.png" width="1200" height="370" alt="Pantheon logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/palantirnet.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2020-02/palantirnet-logo.png" width="1200" height="198" alt="Palantir.net logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/clarity-partners.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2020-02/CFDFAA23-5C59-4C07-9C66-CAFFE0CF3854.png" width="1534" height="387" alt="Clarity Partners logo" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-2019-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#e68f888089a68b8f8285878b96c8899481"><span class="__cf_email__" data-cfemail="2c45424a436c4145484f4d415c02435e4b">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-2019-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-2019-footer-menu" id="block-hatter-2019-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-2019-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/6301","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"ajaxTrustedUrl":{"form_action_p_pvdeGsVG5zNF_XLGPTvYSKCf43t8qZYSwcfZl2uzM":true},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_sul8js76f3THBVtv8nspP93BoCHSgntyTCisS6lai4M.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter_2019&amp;include=eJx1ykEKgDAMBdELaavuPI2k-o1K2kITFG_vRkQEVwOP4ZxZMFAiOW0d1fMHqoXMUIauaXvPkgNJvT0aSPHSA2HOJfq7DoKIZG6C0SrqlHb8ThGqxLgAGZ04Cw"></script>
+
+  </body>
+</html>

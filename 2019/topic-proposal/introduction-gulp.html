@@ -1,0 +1,2561 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="For quite a while, I&#039;ve been working with pre-configured gulp files and using the command &quot;gulp watch&quot; to complile my SASS. Recently, I&#039;ve dug a little deeper to try and understand what Gulp is capable of, how I can customize my workflow with Gulp, and to better understand my alternatives. This session is a beginners guide to Gulp. We&#039;ll start with what Gulp is, what all it is capable of, and whether or not you should use it? We&#039;ll take apart the configuration file used by Gulp, gulpfile.js, and show you how to customize it. " />
+<link rel="canonical" href="introduction-gulp.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="An Introduction to Gulp | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>An Introduction to Gulp | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_Qoyy92GHt9RyGOt8N3WS_9HRsJcJBywJ2IhXudzvST4.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJw1jFEOgzAMQy9U1iOhtDGsUkqmugOx068C8WM961nOJuQZkxAh31xBygo-fXMdzhsGtSpWfghv6R0truZJbMpk4MmOeh_tReEzaoLOS4FpbODHN5Yd0yXHBAfjla_q-jX8AXwTNZQ.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_mK2of_t7UFymkfbTHeA-kHdMPWzqc3DZQCYtX-tC0BA.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJw1jFEOgzAMQy9U1iOhtDGsUkqmugOx068C8WM961nOJuQZkxAh31xBygo-fXMdzhsGtSpWfghv6R0truZJbMpk4MmOeh_tReEzaoLOS4FpbODHN5Yd0yXHBAfjla_q-jX8AXwTNZQ.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJw1jFEOgzAMQy9U1iOhtDGsUkqmugOx068C8WM961nOJuQZkxAh31xBygo-fXMdzhsGtSpWfghv6R0truZJbMpk4MmOeh_tReEzaoLOS4FpbODHN5Yd0yXHBAfjla_q-jX8AXwTNZQ.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJw1jFEOgzAMQy9U1iOhtDGsUkqmugOx068C8WM961nOJuQZkxAh31xBygo-fXMdzhsGtSpWfghv6R0truZJbMpk4MmOeh_tReEzaoLOS4FpbODHN5Yd0yXHBAfjla_q-jX8AXwTNZQ.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="introduction-gulp.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-hatter-midcamp2019navigation-menu" id="block-hatter-midcamp2019navigation" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-midcamp2019navigation-menu">Midcamp 2019 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" title="About MidCamp" data-drupal-link-system-path="node/191">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--venue">
+        <a href="../about/venue.html" data-drupal-link-system-path="node/192">Venue</a>
+            </li>
+          <li class="primary-nav__sublist-item item--travel">
+        <a href="../about/travel.html" title="Travel and Accommodations" data-drupal-link-system-path="node/188">Travel</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../about/lunch.html" title="Lunch options" data-drupal-link-system-path="node/189">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--volunteer">
+        <a href="../article/volunteer-help-midcamp.html" title="Volunteer!">Volunteer!</a>
+            </li>
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2019/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../../2020/news.html" data-drupal-link-system-path="2020/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--attendees">
+        <a href="../attendees.html" data-drupal-link-system-path="2019/attendees">Attendees</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" data-drupal-link-system-path="2019/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--spread-the-word">
+        <a href="../article/spread-word.html" data-drupal-link-system-path="node/371">Spread the Word</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" title="Sponsors" data-drupal-link-system-path="node/197">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--become-a-sponsor">
+        <a href="../sponsor-midcamp.html" title="Sponsor MidCamp" data-drupal-link-system-path="node/186">Become a Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../../jobs.html" title="Jobs" data-drupal-link-system-path="jobs">Jobs</a>
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" title="Schedule" data-drupal-link-system-path="node/190">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--all-sessions">
+        <a href="../sessions.html" data-drupal-link-system-path="2019/sessions">All Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--summits--training-wed">
+        <a href="../schedule/wednesday.html" title="Summits &amp; Training (Wednesday)" data-drupal-link-system-path="2019/schedule/wednesday">Summits &amp; Training (Wed)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-thu">
+        <a href="../schedule/thursday.html" title="Sessions (Thursday)" data-drupal-link-system-path="2019/schedule/thursday">Sessions (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-fri">
+        <a href="../schedule/friday.html" title="Sessions (Friday)" data-drupal-link-system-path="2019/schedule/friday">Sessions (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--contribution-sat-">
+        <a href="../contribution-day.html" title="Contribution Day" data-drupal-link-system-path="node/332">Contribution (Sat) </a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-terms-and-conditions">
+        <a href="../../speaker-terms-and-conditions.html" title="Speaker Terms and Conditions" data-drupal-link-system-path="node/21">Speaker Terms and Conditions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../../speaker-resources.html" title="Speaker Resources">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--topic-tracks">
+        <a href="../../topic-tracks.html" title="Topic Tracks" data-drupal-link-system-path="node/10">Topic Tracks</a>
+            </li>
+  </ul>
+
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2019.html" hreflang="en">MidCamp 2019</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">An Introduction to Gulp</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="276" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2019-03-22T19:25:00Z" class="datetime">Friday, 2:25 pm CDT</time>
+ - <time datetime="2019-03-22T20:25:00Z" class="datetime">Friday, 3:25 pm CDT</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-80" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-name field--type-string field--label-hidden field__item">Room 312</div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>For quite a while, I've been working with pre-configured gulp files and using the command "gulp watch" to complile my SASS. Recently, I've dug a little deeper to try and understand what Gulp is capable of, how I can customize my workflow with Gulp, and to better understand my alternatives.</p>
+
+<p>This session is a beginners guide to Gulp. We'll start with what Gulp is, what all it is capable of,&nbsp;and whether or not you should use it? We'll take apart the configuration file used by Gulp, gulpfile.js, and show you how to customize it.&nbsp;</p>
+
+<p>Our objective for this session is have participants take away an understanding of what Gulp is, how it can help them in their theming workflow, and how to customize it fully.&nbsp;</p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/wsnV1r59UCY?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Tim Erickson</h4>
+
+      CEO
+
+
+          @
+              <a href="http://www.triplo.co">Triplo LLC</a>
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p>I do Drupal and Backdrop CMS. My hobbies include juggling, board games, biking, storytelling, and improv (mostly as spectator).&nbsp;</p>
+
+<p>I am a member of the Backdrop CMS Project Management Committee.</p>
+
+<p>I love Midcamp!</p></div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2019-03/tim.jpg%3Fitok=QFVyWhux" width="165" height="220" alt="Tim in flowery red shirt" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Front-End</div>
+              </div>
+      </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p>again my name's tim ericsson welcome to</p>
+
+<p>go for beginners we did before we turned</p>
+
+<p>on the recording we pulled the people in</p>
+
+<p>the room a little bit about where they</p>
+
+<p>were at and develop experience we have a</p>
+
+<p>handful of people who well but half the</p>
+
+<p>room I think of at least used gulp</p>
+
+<p>subset of those maybe half that those</p>
+
+<p>have actually edited or updated to file</p>
+
+<p>and there's a number of people who've</p>
+
+<p>never used to before I get my name is</p>
+
+<p>Tamara come from the Twin Cities I'm</p>
+
+<p>also involved in Twin Cities Drupal Camp</p>
+
+<p>planning I'd love to invite you all to</p>
+
+<p>Twin Cities Drupal Camp if you haven't</p>
+
+<p>been there before if you have questions</p>
+
+<p>about it ask me later I and I have a</p>
+
+<p>small shop called trip low I have a</p>
+
+<p>couple of contractors who were put with</p>
+
+<p>me we're very small I personally</p>
+
+<p>consider myself kind of a hacker in the</p>
+
+<p>backend I do mostly either front-end</p>
+
+<p>development or project management you</p>
+
+<p>know and even there like I work with</p>
+
+<p>sass and CSS I don't do it so I'm not a</p>
+
+<p>deep coder and that sort of what led me</p>
+
+<p>to do this this presentation is well my</p>
+
+<p>goals for today are you know for those</p>
+
+<p>of you who aren't using golf or who've</p>
+
+<p>been wondering what it was to just make</p>
+
+<p>sure you can walk out of the room sort</p>
+
+<p>of understanding what it is and why it</p>
+
+<p>might be a value to you if you're</p>
+
+<p>already using it to maybe be mystifying</p>
+
+<p>a little bit again what when I first</p>
+
+<p>started doing some presentations at</p>
+
+<p>camps people said hey if you want to</p>
+
+<p>learn something so I enough to do good</p>
+
+<p>session on it and then dig in and it</p>
+
+<p>wasn't I had started to dig into gulp</p>
+
+<p>just to demystify it for myself and then</p>
+
+<p>I thought this would be a good session</p>
+
+<p>because I'm a beginner in a way to</p>
+
+<p>myself that has broken it apart to</p>
+
+<p>explain it to myself and explaining it</p>
+
+<p>to other people would be helpful</p>
+
+<p>at any point if any of you who use golf</p>
+
+<p>before want to contribute to how you're</p>
+
+<p>using it with other tools or to put this</p>
+
+<p>in context please do because I think</p>
+
+<p>that's really helpful I would feel</p>
+
+<p>successful today if I learn something</p>
+
+<p>from you folks today about golf or how</p>
+
+<p>maybe how I'm not using it</p>
+
+<p>oops the very basics of golf what golf</p>
+
+<p>is is a toolkit for automating painful</p>
+
+<p>or time-consuming tasks in your</p>
+
+<p>development workflow okay</p>
+
+<p>so repetitive things that you have to do</p>
+
+<p>over and over I think my well we're</p>
+
+<p>gonna get we're going to talk a few</p>
+
+<p>about what some of those things are I</p>
+
+<p>mean that compiling your SAS things like</p>
+
+<p>auto prefixing things linking we'll talk</p>
+
+<p>about that in a minute those are some of</p>
+
+<p>the kinds of things but basically golf</p>
+
+<p>is just a tool to help you automate</p>
+
+<p>things in your front-end workflow I got</p>
+
+<p>this I think from some of your comments</p>
+
+<p>can relate to this</p>
+
+<p>I like Drupal Drupal 7 I like Zen a lot</p>
+
+<p>and Zen has come with over time like the</p>
+
+<p>first versions of Zen I use didn't have</p>
+
+<p>any sass built in at all then I got than</p>
+
+<p><br>
+learned that if I typed install compass</p>
+
+<p>and compass watch that it did these</p>
+
+<p>mysterious things that made my sass</p>
+
+<p>pretty but I never really understood how</p>
+
+<p>that all worked and didn't care because</p>
+
+<p>it was getting my job done when we got</p>
+
+<p>to su call 6 I was very frustrated</p>
+
+<p>because compass watch didn't work</p>
+
+<p>anymore now I had to type compass skull</p>
+
+<p>or gulp watch and also it started doing</p>
+
+<p>a bunch of other things that I didn't</p>
+
+<p>understand but didn't bother me because</p>
+
+<p>they were there when I got to Drupal 8 I</p>
+
+<p>opened up the bootstrap theme and wanted</p>
+
+<p>to work with that and at the time and</p>
+
+<p>this was quite a while ago there was no</p>
+
+<p>SAS compiler built in so for the first</p>
+
+<p>time it was like oh I have to actually</p>
+
+<p>add sass to my own four to a theme if I</p>
+
+<p>want to use it I had to add</p>
+
+<p>I think what happened was according to</p>
+
+<p>my notes it came with rock but I'd</p>
+
+<p>already learned compass and I'd learned</p>
+
+<p>gulp I didn't want to learn drum so I</p>
+
+<p>went ahead and installed figured out how</p>
+
+<p>to install golf into my Drupal 8 theme I</p>
+
+<p>also do a lot of work with backdrop and</p>
+
+<p>I'm involved in the backdrop community</p>
+
+<p>theming and backdrop is the backdrop is</p>
+
+<p>very much like Drupal 7 the theming is a</p>
+
+<p>little bit different because of the way</p>
+
+<p>they do theming there's a lot fewer</p>
+
+<p>contributed themes and backdrop right</p>
+
+<p>now and none of them to my knowledge</p>
+
+<p>include sort of things tools I thought</p>
+
+<p>built in and I'm actually one of the</p>
+
+<p>things I'm hoping to do expand my own</p>
+
+<p>knowledge bassists actually contributing</p>
+
+<p>to backdrop that actually has tools like</p>
+
+<p>gulp built into it a lot of a number of</p>
+
+<p>the things that like say Sam would have</p>
+
+<p>had for for Drupal aren't necessary in</p>
+
+<p>backdrop and then some of them it's just</p>
+
+<p>not determined to market so anyways</p>
+
+<p>that's a little bit how I got here and</p>
+
+<p>why I started needing to learn more</p>
+
+<p>about golf but was I couldn't no longer</p>
+
+<p>rely on the fact that somebody else had</p>
+
+<p>built it into my theme and I could just</p>
+
+<p>get play this is basically just reset</p>
+
+<p>well this was saying is with the last</p>
+
+<p>gulp Proctor I still have a project in</p>
+
+<p>Zen that uses the golf built-in and</p>
+
+<p>every time I take gulp watch and if you</p>
+
+<p>don't know what that is we'll talk about</p>
+
+<p>it in a minute this all would go by on</p>
+
+<p>the screen and</p>
+
+<p>actually this was a successful gulp run</p>
+
+<p>for me despite all of those red errors</p>
+
+<p>because the bait the basic setup for</p>
+
+<p>golf was was checking for all kinds of</p>
+
+<p>style errors that I didn't care about it</p>
+
+<p>was trying to link things that I didn't</p>
+
+<p>care about I was trying to do all kinds</p>
+
+<p>of things that I didn't care about but</p>
+
+<p>at the end it would say your CSS has</p>
+
+<p>been compiled I was happy then I ignored</p>
+
+<p>the other four hundred lines of messages</p>
+
+<p>and that just didn't feel right to me so</p>
+
+<p>if I should know what's going on here I</p>
+
+<p>ought to be able to customize this and</p>
+
+<p>it make it work and then I sort of you</p>
+
+<p>know once I installed called myself I</p>
+
+<p>have the opposite problem of now I got</p>
+
+<p>to get it to do those things that I want</p>
+
+<p>you know it's not just eliminating</p>
+
+<p>things I don't want but what are the</p>
+
+<p>things I do want and how do I get it to</p>
+
+<p>do those I want to refer you there's a</p>
+
+<p>blog post and I have it open here</p>
+
+<p>Drupal theming 101 with golf and this is</p>
+
+<p>a great blog post if you've never</p>
+
+<p>installed golf I'm not going to go over</p>
+
+<p>this in detail but this is what I used</p>
+
+<p>and it's a great blog post that just</p>
+
+<p>sort of walks through the steps of</p>
+
+<p>installing golf but basically how many</p>
+
+<p>people are familiar with NPM package</p>
+
+<p>manager everybody basically this walks</p>
+
+<p>through the process of installing don't</p>
+
+<p>remember if I used homebrew or not but</p>
+
+<p>basically inside making sure I got NPM</p>
+
+<p>installed and then using the node</p>
+
+<p>package manager to install go up into my</p>
+
+<p>theme</p>
+
+<p>initializing it we're going to look a</p>
+
+<p>little bit at the theme file structure</p>
+
+<p>once you have creating your gulp file</p>
+
+<p>this is the key to a gulp installation</p>
+
+<p>we're not going to do all of this today</p>
+
+<p>but here is and there's some little</p>
+
+<p>things like some customizations that I</p>
+
+<p>couldn't even explain to exactly why I</p>
+
+<p>needed to do these but they're just</p>
+
+<p>certain some changes for their specific</p>
+
+<p>to triple that like the gullet the</p>
+
+<p>default sort of gulp install file does</p>
+
+<p>it work in Drupal when you need to do</p>
+
+<p>this to make it work there if anybody</p>
+
+<p>you know wants to explain those to me</p>
+
+<p>right now they're welcome to but they</p>
+
+<p>don't seem too important and I don't I</p>
+
+<p>wouldn't worry about it I think the last</p>
+
+<p>big thing in this blog post is that</p>
+
+<p>installing your specific modules which</p>
+
+<p>is going to take me back to where the</p>
+
+<p>way they were going go back to my slides</p>
+
+<p>I think my next</p>
+
+<p>there we go some of the things for each</p>
+
+<p>task you want to do in golf and there</p>
+
+<p>are hundreds of plug-ins for each one a</p>
+
+<p>test you want to do there's a plug-in</p>
+
+<p>bulb out of the box is a I guess it's</p>
+
+<p>called the task runner is that right</p>
+
+<p>sort of a category so it is a it sits in</p>
+
+<p>the sense its own framework right gulp</p>
+
+<p>doesn't do anything itself it gives you</p>
+
+<p>the ability to to automate a whole bunch</p>
+
+<p>of tasks if you have to decide which</p>
+
+<p>tasks you want and each one of those</p>
+
+<p>need their own totally there's hundreds</p>
+
+<p>of options right some of the obvious</p>
+
+<p>ones that I think people do most often</p>
+
+<p>and that we're most likely to run it</p>
+
+<p>into our work is compiling our SAS and</p>
+
+<p>how many people have not or have who's</p>
+
+<p>not use a spoofer</p>
+
+<p>or less just one to guess why you didn't</p>
+
+<p>understand my cup compilation question</p>
+
+<p>so let me give you a brief the quick</p>
+
+<p>definition of SAS although you may know</p>
+
+<p>what it is but just in case anybody</p>
+
+<p>doesn't SAS is a pre-processing length</p>
+
+<p>or way to pre-process your your CSS that</p>
+
+<p>allows you to do things like nest CSS to</p>
+
+<p>create variables in your CSS to create</p>
+
+<p>equations in your CSS to like calculate</p>
+
+<p>some of these things I think you could</p>
+
+<p>you know like equations I'm starting to</p>
+
+<p>see that you can do it straight CSS but</p>
+
+<p>bulb gives you or SAS gives you a few</p>
+
+<p>different or some things like that I</p>
+
+<p>think the I don't think there's any</p>
+
+<p>variables in regular CSS right now so I</p>
+
+<p>can define a variable you can define it</p>
+
+<p>that you can turn into just CSS</p>
+
+<p>okay so I'm still I don't know if you</p>
+
+<p>know if anybody in here knows where the</p>
+
+<p>trends are going if like SAS is becoming</p>
+
+<p>less necessary one of I like to use bulk</p>
+
+<p>because I also use it to our SAS because</p>
+
+<p>I use it to nest things where I put you</p>
+
+<p>know sort of rules within rules that</p>
+
+<p>wouldn't work in CSS but golf processes</p>
+
+<p>those and creates the correct rules out</p>
+
+<p>of it and I don't think I have time</p>
+
+<p>although at the end if we have time you</p>
+
+<p>know anybody's interested in that we</p>
+
+<p>could look at it I mean there's anybody</p>
+
+<p>heard is it that likes fast is becoming</p>
+
+<p>less necessary</p>
+
+<p>she was just commenting that that she's</p>
+
+<p>heard that that state might be in the</p>
+
+<p>works for CSS we've already identified</p>
+
+<p>that CSS is using variables but mix-ins</p>
+
+<p>is something that is another thing in</p>
+
+<p>SAS and what mix-ins are are sort of</p>
+
+<p>like snippets of CSS that you might want</p>
+
+<p>to deter my can include a PHP include</p>
+
+<p>statement right where you you put</p>
+
+<p>together a batch of CSS rules inside of</p>
+
+<p>a mixin and then you can just sort of</p>
+
+<p>say include this mixin than any of your</p>
+
+<p>other CSS rules that won't work in the</p>
+
+<p>CSS directly but you put that in your</p>
+
+<p>sash you run it through a compiler and</p>
+
+<p>the compiler generates CSS using that so</p>
+
+<p>if you want to if you have a</p>
+
+<p>particularly batch of CSS you're using</p>
+
+<p><br>
+change it once run it through the</p>
+
+<p>compiler and it changes everywhere so</p>
+
+<p>less is just a different version of it's</p>
+
+<p>a different language way of pre</p>
+
+<p>processing your ear set ears the CSS</p>
+
+<p>I've only used sass</p>
+
+<p>I don't know that lessons any better or</p>
+
+<p>worse it's just it engulfed is in</p>
+
+<p>deference it will compile either so I'm</p>
+
+<p>showing you SAS today but that's just</p>
+
+<p>because that's what I use SAS does CSS</p>
+
+<p>and JavaScript a great gulp the CSS and</p>
+
+<p>JavaScript aggregation for the most part</p>
+
+<p>Drupal does that for us</p>
+
+<p>but if you were the gulp file for a</p>
+
+<p>different project and you had 20</p>
+
+<p>different CSS files you wanted to</p>
+
+<p>aggregate you could rely on gulp to do</p>
+
+<p>that for you</p>
+
+<p>compressing and minifying your</p>
+
+<p>JavaScript optimizing your images</p>
+
+<p>linking which is just checking for style</p>
+
+<p>errors a lot of those airs in that when</p>
+
+<p>I ran gulp were style errors where if</p>
+
+<p>you you're not supposed to use 0px</p>
+
+<p>pixels that's a styling error but it it</p>
+
+<p>works i'm not pure enough to worry about</p>
+
+<p>that</p>
+
+<p>so my you know gulp file is pointing out</p>
+
+<p>a hundred places where I put 0px instead</p>
+
+<p>of just zero and I just ignored that</p>
+
+<p>now that's I'm not recommending this yes</p>
+
+<p>so that's another thing it will do warn</p>
+
+<p>you about deprecated code I would</p>
+
+<p>actually one of my goals is to actually</p>
+
+<p>use tests to improve my style by paying</p>
+
+<p>attention to those errors I'd like in</p>
+
+<p>the future to quit ignoring them and</p>
+
+<p>actually fix them there there is also</p>
+
+<p>there is a sort of a rule file in the</p>
+
+<p>sass where you can go in and specify</p>
+
+<p>which things you want this has to check</p>
+
+<p>for so for example you might decide that</p>
+
+<p>you don't care about the zero pixels</p>
+
+<p>thing but you do care about having two</p>
+
+<p>spaces before</p>
+
+<p>commander or something like that all</p>
+
+<p>these different stylers and you can turn</p>
+
+<p>on and off the ones you want and it will</p>
+
+<p>just check for the ones you want or you</p>
+
+<p>know I think there might even be some</p>
+
+<p>where we're like how how fine you wanted</p>
+
+<p>to check I can't think of any examples</p>
+
+<p>now other than for example you can you</p>
+
+<p>can check for browser compatibility and</p>
+
+<p>you can define like how many browsers</p>
+
+<p>versions of the back past browsers you</p>
+
+<p>want to detect them and you can actually</p>
+
+<p>tell it check for the last three</p>
+
+<p>versions or the last eight versions for</p>
+
+<p>compatibility any questions exactly</p>
+
+<p>this can help you standardize your</p>
+
+<p>workflow across the team because you</p>
+
+<p>create these files you can commit them</p>
+
+<p>to get as part of your theme and</p>
+
+<p>everybody is working under the same set</p>
+
+<p>of rules and processes anything else</p>
+
+<p>that anybody else does with dult so</p>
+
+<p>there's again there's hundreds of</p>
+
+<p>plugins and modules of things you can</p>
+
+<p>add your workflow with golf these are</p>
+
+<p>the kinds of things that I do most</p>
+
+<p>frequently don't nothing else I did is</p>
+
+<p>that that's not on this list is it oh</p>
+
+<p>okay I think we're going to demonstrate</p>
+
+<p>that in a minute</p>
+
+<p>so this is the basic process for getting</p>
+
+<p>started and this is in some ways a quick</p>
+
+<p>summary of what we</p>
+
+<p>of what we had in in that blog post we</p>
+
+<p>have to install gulp we need a gulp file</p>
+
+<p>and the gulp file is specific to the is</p>
+
+<p>what tells golf what to do</p>
+
+<p>your package.json file is what tell is</p>
+
+<p>what plugins you need so you can just in</p>
+
+<p>addition to like standardizing the rules</p>
+
+<p>you have a package.json file so when i</p>
+
+<p>commit that to my repo and benji</p>
+
+<p>downloads it he can just say npm install</p>
+
+<p>and it will install exactly the same set</p>
+
+<p>of modules the same versions and on his</p>
+
+<p>machine to run gulp and then at the end</p>
+
+<p>the last thing we need to do is well we</p>
+
+<p>need to install the plugins and as we</p>
+
+<p>install each plug-in it automatically</p>
+
+<p>gets added to the package JSON file I'm</p>
+
+<p>going to look at both of these things in</p>
+
+<p>a second so this is my package JSON file</p>
+
+<p>and basically this just defines that the</p>
+
+<p>installation this is the big thing here</p>
+
+<p>is it saying which which plugins were</p>
+
+<p>using so when I run npm install it's</p>
+
+<p>going to go through and install all of</p>
+
+<p>those are fine again I'm not an NPM</p>
+
+<p>expert I think it is an update you can</p>
+
+<p>do like NPM update or something or would</p>
+
+<p>you just do NPM install again like when</p>
+
+<p>you want to update your files ok but</p>
+
+<p>that's so</p>
+
+<p>I used a rule that said like you are</p>
+
+<p>when I said npm install' let's see if I</p>
+
+<p>think I can do this and I copied this</p>
+
+<p>from the blog post but if I go npm</p>
+
+<p>install there we go</p>
+
+<p>gulps a slanted it's Auto filling then</p>
+
+<p>there's this saved out at the end and</p>
+
+<p>I'm pretty sure what that saying is that</p>
+
+<p>I want to use the latest dev version</p>
+
+<p>does that make sense does anybody know</p>
+
+<p>this I'm still learning but that's sort</p>
+
+<p>of a clue if I wanted I wanted to do so</p>
+
+<p>very specific like I knew I needed a</p>
+
+<p>version of one of these plugins that was</p>
+
+<p>two versions back I would type that in</p>
+
+<p>here and say you know install that old</p>
+
+<p>version and then my gulp file would</p>
+
+<p>reflect that or my JSON file would if we</p>
+
+<p>go back to the okay we were looking at</p>
+
+<p>the screenshot I believe the little up</p>
+
+<p>arrow or the carrot before the version</p>
+
+<p>number is saying that that or greater so</p>
+
+<p>again if you have questions about this</p>
+
+<p>you can verify that this would be</p>
+
+<p>pictures that makes sense so that's</p>
+
+<p>defining basically the range and you can</p>
+
+<p>be more specific or more general however</p>
+
+<p>you want that's just what I've been</p>
+
+<p>doing</p>
+
+<p>so that's come up with a lot of change</p>
+
+<p>right a specific thing you know yeah if</p>
+
+<p>it spits out some these days deprecated</p>
+
+<p>now you might want updated but typically</p>
+
+<p>use bright happy it's working yeah or if</p>
+
+<p>you hear there's a fancy new feature</p>
+
+<p>that you don't want to give a hold on</p>
+
+<p>you might see cover there are two</p>
+
+<p>sections dependencies and death</p>
+
+<p>dependencies yes - - save saves as a</p>
+
+<p>regular dependency - - save - dev say -</p>
+
+<p>the second section is definitely check</p>
+
+<p>out good so there's still things I'm</p>
+
+<p>figuring out about how this works</p>
+
+<p>this is just the theme so it was kind of</p>
+
+<p>a magical moment for me when I first</p>
+
+<p>realized I could build my own theme from</p>
+
+<p>scratch originally I learned how to</p>
+
+<p>create sub themes right I started with</p>
+
+<p>then it had all this magic inside of it</p>
+
+<p>I would create a little sub theme and</p>
+
+<p>overwrite a few specific themes but I</p>
+
+<p>ran into like backdrop where maybe I</p>
+
+<p>want to start a theme absolutely from</p>
+
+<p>scratch and how do I add this and this</p>
+
+<p>is like an example of a theme that's not</p>
+
+<p>necessarily a sub theme although it</p>
+
+<p>could be but it's you know you might be</p>
+
+<p>building it from scratch and it's still</p>
+
+<p>pretty basic it doesn't have any grid</p>
+
+<p>system or anything like that built into</p>
+
+<p>it but it it does have cess and that's</p>
+
+<p>the main thing the node modules file we</p>
+
+<p>wouldn't commit that to get because that</p>
+
+<p>you know each developer can just run npm</p>
+
+<p>install in the package.json file right</p>
+
+<p>yes I've noticed that I have I have a</p>
+
+<p>site where we have a lot of sub themes</p>
+
+<p>because we're using domain access and I</p>
+
+<p>haven't quite figured out how to not</p>
+
+<p>install all the modules in every theme</p>
+
+<p>and it's I got to figure that out if</p>
+
+<p>anybody wants to help me afterwards</p>
+
+<p>what else about this so we have the so</p>
+
+<p>you know we I have a CSS folder well</p>
+
+<p>this isn't the light this is a</p>
+
+<p>screenshot we'll look at that in a</p>
+
+<p>minute we're going to start without</p>
+
+<p>there being any CSS in there in our sass</p>
+
+<p>file we're going to have some some basic</p>
+
+<p>sass files with a couple of really</p>
+
+<p>simple rules the info file that specific</p>
+
+<p>to the drupal but the other thing here</p>
+
+<p>is our call file we want to look at a</p>
+
+<p>gulp file</p>
+
+<p>why is that off the page okay when you</p>
+
+<p>create about file and we're going to</p>
+
+<p>look at a real gulp fly 11 for a live</p>
+
+<p>one in a minute this one's real the</p>
+
+<p>first thing that the gulp file does is</p>
+
+<p>just define what your what your plugins</p>
+
+<p>you're using this is I'd like the JSON</p>
+
+<p>file this doesn't mean they're installed</p>
+
+<p>and I had the reason we started a few</p>
+
+<p>minutes late was I had a panic attack</p>
+
+<p>when I ran gulp three minutes before a</p>
+
+<p>session start and I got a bunch of</p>
+
+<p>errors saying the gulp none of these</p>
+
+<p>packages were installed so I was quickly</p>
+
+<p>installing got packages for some reason</p>
+
+<p>I must have do I was doing some cleanup</p>
+
+<p>on my laptop and I think I inadvertently</p>
+
+<p>deleted these so I just ran NPM install</p>
+
+<p>for each one of these with that that</p>
+
+<p>command that you saw and reinstall them</p>
+
+<p>the the gulp is you know the basic thing</p>
+
+<p>browsersync I'm still a little bit</p>
+
+<p>confused on the purp this is something</p>
+
+<p>that I know comes with the Zen I think</p>
+
+<p>it does anybody want to explain what</p>
+
+<p>this does</p>
+
+<p>yes that's why I'm confused about it</p>
+
+<p>because well I'm not it working I have</p>
+
+<p>got it working what I think it is and</p>
+
+<p>then other times it doesn't seem to be</p>
+
+<p>working and it just kind of confuses me</p>
+
+<p>I think it does a few more things than</p>
+
+<p>that but that's one of them is like it</p>
+
+<p>just automatically refreshes your CSS</p>
+
+<p>for you</p>
+
+<p>I tend I think a lot of the times it's</p>
+
+<p>not working for me so I just reload the</p>
+
+<p>page you can build your clearing the</p>
+
+<p>cache into your workflow so every time</p>
+
+<p>you make a change</p>
+
+<p>gulp clears your cache and you don't</p>
+
+<p>have to worry about that</p>
+
+<p>so sass is the basic tool we're using to</p>
+
+<p>create our sass autoprefixer is going</p>
+
+<p>back and adding those prefixes for older</p>
+
+<p>versions of browsers you don't have to</p>
+
+<p>worry about that sass will do all of</p>
+
+<p>that for you</p>
+
+<p>does anybody know what source maps are</p>
+
+<p>reduce them yeah well it's gonna run</p>
+
+<p>it's got it you know many of us assets</p>
+
+<p>you don't really organize and be more</p>
+
+<p>component base when you're building</p>
+
+<p>offering off your destined sass rules</p>
+
+<p>and then live all compiles you can just</p>
+
+<p>ran CSS file you're expecting in the</p>
+
+<p>browser you don't know what line of sass</p>
+
+<p>you would go to edit that no comment</p>
+
+<p>right on each one there's also a way to</p>
+
+<p>do is a separate file</p>
+
+<p>don't have to keep by me or you can't</p>
+
+<p>commit it but that way at least when</p>
+
+<p>you're comparing differences around the</p>
+
+<p>road you don't get like a million lines</p>
+
+<p>and differences in your CSS just because</p>
+
+<p>you change one line of code</p>
+
+<p>exactly and I'm gonna repeat that back</p>
+
+<p>and sort of show so for those of you who</p>
+
+<p>haven't used sass one of the nice things</p>
+
+<p>about sass right and you can do this</p>
+
+<p>with CSS as well just to break your CSS</p>
+
+<p>into into different styles and I</p>
+
+<p>apologize I don't you know there are</p>
+
+<p>different systems for organizing your</p>
+
+<p>CSS and says this was something I had</p>
+
+<p>hopped through together so it may not</p>
+
+<p>fall into any system you've seen before</p>
+
+<p>like I have a CSS file for just or FC</p>
+
+<p>assess and with sass I think you can get</p>
+
+<p>by with either of those it's not</p>
+
+<p>prefetch it isn't the extensions s CSS</p>
+
+<p>or or sass they both work I've always</p>
+
+<p>used that CSS but so these are some just</p>
+
+<p>sample ones that I have in here they</p>
+
+<p>they compile well you can set your set</p>
+
+<p>your gulp file up to either compile</p>
+
+<p>these all into one sass file and then</p>
+
+<p>pre-process it or vice versa so you can</p>
+
+<p>make a bunch of CSS files and combine</p>
+
+<p>that afterwards into one but either way</p>
+
+<p>you end up with one long CSS file Drupal</p>
+
+<p>that has all of your CSS in it well if</p>
+
+<p>you're doing a browser inspect and you</p>
+
+<p>want to know which rule you have to edit</p>
+
+<p>to change something your browser tells</p>
+
+<p>you CSS line 1342 or says and sure and</p>
+
+<p>that's not helpful</p>
+
+<p>so what source Maps does is it it yet</p>
+
+<p>includes markup in the CSS file that</p>
+
+<p>shows where all of the sass is coming</p>
+
+<p>from so when I inspected my browser it</p>
+
+<p>tells me the line number and the sass</p>
+
+<p>file where I can find my original</p>
+
+<p>work and again you need you would either</p>
+
+<p>manually need to generate those with a</p>
+
+<p>tool or you can automatically process up</p>
+
+<p>with gulp Oh</p>
+
+<p>OTO prefix your alt environments</p>
+
+<p>did I put that one in there I don't</p>
+
+<p>remember what that one is anybody know</p>
+
+<p>what that is okay</p>
+
+<p>actually there's a couple of things in</p>
+
+<p>here an engine and don't remember what</p>
+
+<p>notify years I imagine it has something</p>
+
+<p>to do with messages that are being sent</p>
+
+<p>by gulp and then we actually have the</p>
+
+<p>the gulp SAS file or Herc dependency but</p>
+
+<p>those are some examples many others any</p>
+
+<p>questions here ok so I think that's</p>
+
+<p>we've looked at</p>
+
+<p>sort of we looked at the structure so I</p>
+
+<p>have basically the way I've set up my in</p>
+
+<p>there different ways of doing this but</p>
+
+<p>I've set up my theme to have right now</p>
+
+<p>it's an empty CSS file and I have a sass</p>
+
+<p>to our directory I have a sass directory</p>
+
+<p>and I have a subdirectory for components</p>
+
+<p>and most of these are empty I believe</p>
+
+<p>that I have don't want to go back to to</p>
+
+<p>here so most of them I just deleted all</p>
+
+<p>of the to complicate things I have a</p>
+
+<p>couple of simple things and then in my I</p>
+
+<p>have a Styles dot CSS a CSS file which</p>
+
+<p>basically identifies all of my my</p>
+
+<p>component directories and then when we</p>
+
+<p>when we when we run gulp it's going to</p>
+
+<p>find all of those as CSS files compile</p>
+
+<p>those into CSS and it's going to</p>
+
+<p>automatically generate a style sheet for</p>
+
+<p>me and we're going to just go ahead and</p>
+
+<p>do that now well first thing we're going</p>
+
+<p>to do actually I'm gonna dump in sort of</p>
+
+<p>live load all gulp is is running</p>
+
+<p>commands right so I actually like the</p>
+
+<p>first time I asked how to do this</p>
+
+<p>somebody couldn't tell me but I thought</p>
+
+<p>what is the gulp version of hello world</p>
+
+<p>just type hello and I basically created</p>
+
+<p>a golf task which is to say hello</p>
+
+<p>Chicago look at the gulp we'll go back</p>
+
+<p>to the gulp file cuz that's gonna show</p>
+
+<p>No okay now it's too big the last time I</p>
+
+<p>did this that was the complaint</p>
+
+<p>afterwards which meaning fumbling with</p>
+
+<p>my trying to get</p>
+
+<p>so here's the gulp file we're working</p>
+
+<p>with right now it in the first task so</p>
+
+<p>basically I'd this is JavaScript if you</p>
+
+<p>know JavaScript you're going to be</p>
+
+<p>comfor comfortable and about file than</p>
+
+<p>the rest of us but any you don't have to</p>
+
+<p>know JavaScript to know how to hack it</p>
+
+<p>right so gulp dot task is just saying</p>
+
+<p>hey Ram this is a task I want to run</p>
+
+<p>we're setting right here is the name of</p>
+
+<p>the task we want to run then we have the</p>
+
+<p>function here which is actually you know</p>
+
+<p>what we want to happen and I'm just</p>
+
+<p>doing a console thing so again what I</p>
+
+<p>when I run gulp hello</p>
+
+<p>it runs this task if I want to actually</p>
+
+<p>compile CSS and we're going to automate</p>
+
+<p>this even better in the future but I</p>
+
+<p>created a task called simple sass so I</p>
+
+<p>can go back here and say call simple</p>
+
+<p>sass I run that gulp apparently has done</p>
+
+<p>some things it says it's finished simple</p>
+
+<p>sass if I know but now go back to my my</p>
+
+<p>directory you're gonna notice there is</p>
+
+<p>now a the Styles a CSS sheet that wasn't</p>
+
+<p>there before so it's taken all of my</p>
+
+<p>then if I open it up in the in the</p>
+
+<p>browser this is the window that so maybe</p>
+
+<p>it has something I don't know if it has</p>
+
+<p>anything to do with the way it was</p>
+
+<p>created because sass created it that or</p>
+
+<p>gulp created it that it won't expand but</p>
+
+<p>I can't blow it up for you but it</p>
+
+<p>doesn't really matter because it's just</p>
+
+<p>it's some CSS and it's coming from</p>
+
+<p>multiple sass files if we go back</p>
+
+<p>we go back into our sass and we change</p>
+
+<p>I'm not sure you know the the cat's</p>
+
+<p>thing to read and if I save that and go</p>
+
+<p>back and pre-process by my sass again</p>
+
+<p>now if we go in we go into our CSS</p>
+
+<p>Styles cats has been changed and in red</p>
+
+<p>I would show this live but I don't know</p>
+
+<p>that it's you know on a site but I'm</p>
+
+<p>afraid that's gonna break and it's</p>
+
+<p>probably not gonna work</p>
+
+<p>what so let's move on to some of the</p>
+
+<p>other things just some of the other</p>
+
+<p>tasks we can put in our bub file Thank</p>
+
+<p>You forgeting so here is another</p>
+
+<p>basically a longer task</p>
+
+<p>it was not very creative in my naming</p>
+
+<p>and I called it SATs tests one this I'm</p>
+
+<p>gonna try making it a little smaller</p>
+
+<p>well I don't you can see anything more</p>
+
+<p>but to you know that I'm defining it by</p>
+
+<p>the name of sass test one it is creating</p>
+
+<p>and then returning a style for of a</p>
+
+<p>style CCS actually that's that's that's</p>
+
+<p>what the source that we're defining the</p>
+
+<p>source of where we're getting our SCSS</p>
+
+<p>we're passing the sass through the sass</p>
+
+<p>compiler we're passing it through the</p>
+
+<p>autoprefixer so we're going to auto</p>
+
+<p>prefix some things and then we're</p>
+
+<p>generating a CSS file at the end</p>
+
+<p>I actually let me we'll just delete the</p>
+
+<p>existing we don't have to delete it it</p>
+
+<p>will overwrite it but I think it's more</p>
+
+<p>visual if I actually get rid of it call</p>
+
+<p>what was it</p>
+
+<p>thanks it's ass test 1 yep</p>
+
+<p>who know that was the wrong name</p>
+
+<p>hope that was the right name so why did</p>
+
+<p>that not work</p>
+
+<p>well oh you're right you're right that's</p>
+
+<p>it I don't I did not it had been</p>
+
+<p>commented out I uncommented it and</p>
+
+<p>didn't save it so there we go it ran</p>
+
+<p>gulps ass one and now we have we once</p>
+
+<p>again we have a CSS file if we go down</p>
+
+<p>to example it's now added auto prefixes</p>
+
+<p>I can have any oh yeah I can have any</p>
+
+<p>prefixes for old browsers prior to us</p>
+
+<p>running man let's see what else okay it</p>
+
+<p>I deleted the old CSS so it created a</p>
+
+<p>new one but if I hadn't deleted the old</p>
+
+<p>one it would have just over run it it</p>
+
+<p>would have you know the existing one</p>
+
+<p>there it's not a problem and in fact</p>
+
+<p>what we're gonna do is we're going to</p>
+
+<p>turn on this a swatch or those called</p>
+
+<p>watch command in a minute</p>
+
+<p>where every time I save a file it</p>
+
+<p>automatically pre processes does all the</p>
+
+<p>tasks and overwrites the file and if</p>
+
+<p>you're using browser sync will actually</p>
+
+<p>refer you know reload the page in your</p>
+
+<p>browser and so you can just you know</p>
+
+<p>change blue to red hit save and your</p>
+
+<p>browser will will be will be affected</p>
+
+<p>you will see red blue instead of</p>
+
+<p>rounding your browser I mean you know</p>
+
+<p>within a few seconds</p>
+
+<p>so you don't want to like edit your CSS</p>
+
+<p>file directly right this is a good</p>
+
+<p>warning your CSS file is getting</p>
+
+<p>overwritten all the time if you want if</p>
+
+<p>you come into a theme that has sass in</p>
+
+<p>it and is using and it's being used it's</p>
+
+<p>using sass to generate the CSS or the</p>
+
+<p>CSS yes and you need to you don't know</p>
+
+<p>say how sir you don't you're not set up</p>
+
+<p>create a new CSS file and at that I mean</p>
+
+<p>there may be better solutions out there</p>
+
+<p>but this is would be my quick hack is to</p>
+
+<p>just create than a second CSS file with</p>
+
+<p>just your non you know your stuff that</p>
+
+<p>isn't coming from sass I've run into</p>
+
+<p>that situations where I didn't have wow</p>
+
+<p>I wasn't even sure how old the set the</p>
+
+<p>the sass files were and so rather than</p>
+
+<p>mess with them I just created a new CSS</p>
+
+<p>and competitive any other questions or</p>
+
+<p>comments</p>
+
+<p>that's less than 1% users I would love</p>
+
+<p>for anybody in the room to the question</p>
+
+<p>is how important it is is it to auto</p>
+
+<p>prefix your CSS I yes I think that's the</p>
+
+<p>roster depends on which way your client</p>
+
+<p>is and do they have a specific idea if I</p>
+
+<p>think it's really important if your</p>
+
+<p>client has lots of users on Internet</p>
+
+<p>explorer I think I know there are some</p>
+
+<p>people in the room that might be like</p>
+
+<p>why is even questioning this because for</p>
+
+<p>them it's like an absolute imperative I</p>
+
+<p>have to tell you that I often don't</p>
+
+<p>worry about it because my clients are</p>
+
+<p>small nonprofits that are their clients</p>
+
+<p>are generally using the chroming Firefox</p>
+
+<p>and their CSS works fine and I'm not</p>
+
+<p>doing real complicated things I think</p>
+
+<p>it's also more important if you are</p>
+
+<p>cutting edge you are right if you're</p>
+
+<p>doing kind of cutting edge CSS you're</p>
+
+<p>more likely to have backwards</p>
+
+<p>compatibility problems and Auto</p>
+
+<p>prefixing it my glasses yes</p>
+
+<p>so yes they about yes exactly</p>
+
+<p>so I wasn't sort of doing a lot of that</p>
+
+<p>manually partly maybe because I'd like</p>
+
+<p>to think I was confident to gulp doing</p>
+
+<p>it for me when I built my own themes</p>
+
+<p>I didn't haven't actually added</p>
+
+<p>autoprefixer mop plug-in yet but it is</p>
+
+<p>my intention to because there's no</p>
+
+<p>reason not to do it when you when you</p>
+
+<p>when you can automate it I'm sure that</p>
+
+<p>it also is there's probably</p>
+
+<p>accessibility benefits as well so it's a</p>
+
+<p>highly recommend ie10 right where is it</p>
+
+<p>I think they did that because if I put</p>
+
+<p>like two Brown versions back it wasn't</p>
+
+<p>giving me anything so I wanted to go</p>
+
+<p>back a bunch to make sure it did some</p>
+
+<p>auto pre flexing but yes you can I could</p>
+
+<p>right there in the configuration say how</p>
+
+<p>far back I wanted and how you know so</p>
+
+<p>any other questions about that</p>
+
+<p>so let's go back to our golf JS file the</p>
+
+<p>other thing we'll notice is I have I</p>
+
+<p>could run either simple sass or sass</p>
+
+<p>test 1 it'll do it will run either one</p>
+
+<p>of those let's do a source map quick so</p>
+
+<p>I'm just uncommenting this let's see if</p>
+
+<p>there's anything yes thank you if</p>
+
+<p>there's anything in the the jas here</p>
+
+<p>again I don't have to understand all of</p>
+
+<p>the J s here if anybody wants to explain</p>
+
+<p>any of that but basically it's running</p>
+
+<p>it's piping the my CSS CSS files well I</p>
+
+<p>think this is a little bit interesting</p>
+
+<p>because I have to tell you know the</p>
+
+<p>source where it is and basically I've</p>
+
+<p>got some wildcards there so it's</p>
+
+<p>basically saying in these duties any</p>
+
+<p>file that ends with SCSS should be pre</p>
+
+<p>processed and I have that problems where</p>
+
+<p>I imported maybe sass files that were si</p>
+
+<p>SS and Maya gulp was looking for a CSS</p>
+
+<p>so it didn't find any files I just had</p>
+
+<p>to change this in the in the gulp file</p>
+
+<p>to fix that and then it sits in this</p>
+
+<p>case it's creating a source map file and</p>
+
+<p>we'll see that in a second and then it's</p>
+
+<p>writing it in the CSS folder so again</p>
+
+<p>we do gulp we run that command it</p>
+
+<p>happens pretty quick we go back to the</p>
+
+<p>directory and now we see in our CSS</p>
+
+<p>directory is the styles and a style.css</p>
+
+<p>ma'am and basically what happens is your</p>
+
+<p>browser reads that dot map file and that</p>
+
+<p>dot mount map file Maps all of the the</p>
+
+<p>CSS to the proper s CSS files does that</p>
+
+<p>make sense okay</p>
+
+<p>fifteen minutes ten better let's</p>
+
+<p>I'm not like deliberately asking for</p>
+
+<p>questions because you're asking them as</p>
+
+<p>we go and you should keep it up I think</p>
+
+<p>probably the most important thing so I</p>
+
+<p>have a few other you know I have if you</p>
+
+<p>know JavaScript you could write this</p>
+
+<p>yourself I don't so I did copy and paste</p>
+
+<p>yes if you go to like let's let's do</p>
+
+<p>this quick because I think it's</p>
+
+<p>worthwhile if I want to resize my image</p>
+
+<p>using gulp right I'm going to Google</p>
+
+<p>Galt</p>
+
+<p>do they plug-in to resize images and I</p>
+
+<p>find gulp image resize this is going to</p>
+
+<p>be a package on NPM org and I'm pretty</p>
+
+<p>sure you know it's going to give me the</p>
+
+<p>the syntax for here how to save that you</p>
+
+<p>save it to your directory and it will</p>
+
+<p>automatically get added to your will</p>
+
+<p>automatically get added your Jazz JSON</p>
+
+<p>file but you'll have to add it to the</p>
+
+<p>gulp file if you're using golf and then</p>
+
+<p>I think in most cases if you go down</p>
+
+<p>they're gonna have an example code and</p>
+
+<p>so you can then cut and paste that</p>
+
+<p>example code and and tweak it that's</p>
+
+<p>where I'm at still so someday I'll be</p>
+
+<p>able to write that just because I'm</p>
+
+<p>smart</p>
+
+<p>want to go back to I think the probably</p>
+
+<p>the last big thing that's worth showing</p>
+
+<p>well actually let's do this one really</p>
+
+<p>quick linting I'm just gonna save that</p>
+
+<p>I'm gonna go to here and do the goal</p>
+
+<p>blending</p>
+
+<p>and so it's running all of the sass and</p>
+
+<p>it has generated a handful of errors</p>
+
+<p>pretty much two of them one of them or</p>
+
+<p>two different areas I think actually a</p>
+
+<p>couple of them that zero unit that I</p>
+
+<p>talked about before you're not supposed</p>
+
+<p>to have a 0px you're supposed to do if</p>
+
+<p>you're doing zero just to 0 so it's</p>
+
+<p>generating errors for each one of those</p>
+
+<p>rather than just tolerating these I</p>
+
+<p>should just go do a search and replace</p>
+
+<p>it fix it right</p>
+
+<p>no trailing whitespace allowed anyways</p>
+
+<p>so this doesn't change the actual M</p>
+
+<p>files and in this case actually I think</p>
+
+<p>this might have failed to generate the</p>
+
+<p>CSS because of some of some of these</p>
+
+<p>errors and you can also like I click</p>
+
+<p>change in the the configuration file I</p>
+
+<p>can change warn me about zeros but don't</p>
+
+<p>generate an error right so I expect that</p>
+
+<p>level of permission do I have that and</p>
+
+<p>that's here in my sass actually I got to</p>
+
+<p>go to my editor in the sassy Amal here's</p>
+
+<p>where you can see all of these rules and</p>
+
+<p>there's well ok it's not as long as I</p>
+
+<p>thought it was oh okay it's pretty long</p>
+
+<p>but you can go through 0 I think is</p>
+
+<p>turning editor well again our JavaScript</p>
+
+<p><br>
+one is true that it is running them you</p>
+
+<p>can do things like I'm the - I'm</p>
+
+<p>assuming this is a like a spacing or</p>
+
+<p>something you know how many spaces</p>
+
+<p>you'll know after a bang or before</p>
+
+<p>obeying</p>
+
+<p>okay don't take my word for it look up</p>
+
+<p>the exact the preferences what each of</p>
+
+<p>those numbers mean style guide that's</p>
+
+<p>something we haven't mentioned you can</p>
+
+<p>automatically generate style guides</p>
+
+<p>there's a module called is a KSS or ki</p>
+
+<p>SS k SS that create style guides with</p>
+
+<p>full from your CSS you actually have to</p>
+
+<p>just write some code into yours your</p>
+
+<p>sass and then when it will compile it</p>
+
+<p>and it will create a style guide sheet</p>
+
+<p>for you and it's pretty nice I found it</p>
+
+<p>I wasn't I didn't keep it up so we we</p>
+
+<p>did the lint thing the last thing I want</p>
+
+<p>to show you is watch because I don't</p>
+
+<p>want to have to every time I make the</p>
+
+<p>change I don't want to have to run golf</p>
+
+<p>in the command oh so there's two</p>
+
+<p>actually one other thing if I go down to</p>
+
+<p>my gulp I can just do if I just if I die</p>
+
+<p>can define that call up my default task</p>
+
+<p>so gulped as default hello means that if</p>
+
+<p>I just run call that's what I want to</p>
+
+<p>happen so now I don't have to write</p>
+
+<p>hello I can just say gulp I probably</p>
+
+<p>didn't save it</p>
+
+<p>yep I didn't save it</p>
+
+<p>just just run gulp and it should say</p>
+
+<p>hello Chicago there it is</p>
+
+<p>hello Chicago and I can add a series of</p>
+
+<p>tasks and I'm going to do that for the</p>
+
+<p>final thing which is my watch command</p>
+
+<p>we've done five minutes okay perfect</p>
+
+<p>I'm going to uncomment out my my my golf</p>
+
+<p>watch and this is doing so gulp task</p>
+
+<p>golf watch is compiling my sass it's</p>
+
+<p>running some linting so I think the</p>
+
+<p>weight and I'm going to share this with</p>
+
+<p>you because I ran in to a scenario where</p>
+
+<p>Golf by default will run processes in</p>
+
+<p>parallel so it was running into a</p>
+
+<p>problem where the it was compiling the</p>
+
+<p>CSS before it finished compiling the</p>
+
+<p>sass so I wasn't getting the right</p>
+
+<p>success because yeah it would just</p>
+
+<p>generate a CSS file based on the old</p>
+
+<p>sass and it wouldn't get my updates and</p>
+
+<p>I I added in this weight command</p>
+
+<p>and I'm trying to remember I would</p>
+
+<p>recommend googling this but but be aware</p>
+
+<p>of that as a problem</p>
+
+<p>so that basically I made sure that it</p>
+
+<p>did the weight allowed it to do the</p>
+
+<p>tasks in order in the cases where one</p>
+
+<p>task was dependent on another and I'm</p>
+
+<p>forgetting what what this line is about</p>
+
+<p>but but basically what we've done now is</p>
+
+<p>if I save this file I can go back to my</p>
+
+<p>call and I can say gulp watch and I hit</p>
+
+<p>save and now gulp is watching for any if</p>
+
+<p>any of my CSS files change it will</p>
+
+<p>automatically do all of those tasks I</p>
+
+<p>added so just to prove it because I</p>
+
+<p>don't know if you believe me the the</p>
+
+<p>styles is still caps is red up here if</p>
+
+<p>we were going to go back to to here and</p>
+
+<p>we're going to change to cats to purple</p>
+
+<p>I'm gonna just save it I'm gonna peek at</p>
+
+<p>my command line now didn't I save it I</p>
+
+<p>did say oh that's the problem</p>
+
+<p>okay well you'll all believe me right</p>
+
+<p>like we're almost done so I think I'm</p>
+
+<p>not gonna try and fix this but basically</p>
+
+<p>though this is the magic of golf right</p>
+
+<p>you don't want to have to run this</p>
+
+<p>command each time I know people who do</p>
+
+<p>who have told me they consciously don't</p>
+
+<p>use weight they prefer to run golf when</p>
+
+<p>they're ready for it I always use weight</p>
+
+<p>or called not wait i watch i always use</p>
+
+<p>watch every time I save a SAS file it</p>
+
+<p>recompiles my SAS for me so I can go</p>
+
+<p>right back to the browser and can save</p>
+
+<p>it go back to the browser I usually</p>
+
+<p>don't have the author the browser sync</p>
+
+<p>working so I have to reload the page but</p>
+
+<p>that still really nice any questions so</p>
+
+<p>I'm thinking that compass was more it</p>
+
+<p>work targeted at specific kinds of</p>
+
+<p>things it might be can somebody answer</p>
+
+<p>that question but it's weird possible</p>
+
+<p>inherited compass</p>
+
+<p>but if that means it okay now my</p>
+
+<p>understanding is that gulp and grunt are</p>
+
+<p>like two different tools that do very</p>
+
+<p>similar things but I'm here well well I</p>
+
+<p>think I think either of them would be</p>
+
+<p>considered enough from compass but I get</p>
+
+<p>the feeling that people are maybe moving</p>
+
+<p>more to gulp and drop that could be</p>
+
+<p>wrong sure and I'm sure that gulp and</p>
+
+<p>grunt are the only ones to do this there</p>
+
+<p>are other tools as well but the Drupal</p>
+
+<p>community does seem to be kind of</p>
+
+<p>settled around golf for some reason it</p>
+
+<p>works for me I'm happy with it does</p>
+
+<p>anything any other comments or questions</p>
+
+<p>so no well you've been a great audience</p>
+
+<p>thank you for helping out please give me</p>
+
+<p>feedback yeah</p></div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-ff94c03f8caabf652266b1df76a0210d5e60188261a6495a9bdadeae597eaf9a">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/276">https://mid.camp/276</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-65fe11cb7624181566b9199f78961969bfea3c03adebf467d2199f472e58d2a1">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/pantheon.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-11/pantheon-logo-color@2x.png" width="960" height="354" alt="Pantheon" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/elevated-third.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-11/elevated-third-logo_0.png" width="220" height="220" alt="elevated third logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/acquia.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2019-03/Acquia_no_tagline.png" width="450" height="94" alt="Acquia" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#442d2a222b04292d20272529346a2b3623"><span class="__cf_email__" data-cfemail="422b2c242d022f2b2621232f326c2d3025">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/276","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_llBcjrkrgAu2wT1DR7VGL_iP6geJyiTnF_8O5ZD57VI.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJxLz89Pz0mNT8xLzKksyUwu1k9HE9DJSCwpSS3ST8_JT0rM0c0qBgAByBPW"></script>
+
+  </body>
+</html>

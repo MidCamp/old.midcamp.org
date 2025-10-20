@@ -1,0 +1,1973 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="Nowadays, even the most basic sites aim to deliver media rich experiences. As of Drupal 8.4, media handling ships with core, but unfortunately achieving a truly workable solution for media requires a considerable amount of work. But using tools provided by one of Drupal’s most popular distributions, Panopoly, we can add the power of the Drupal’s media handling with minimal effort. Panopoly’s Media feature provides a robust solution for uploading and manding media, as well as generating media rich content to your users." />
+<link rel="canonical" href="panopoly-media-jumpstart-media-rich-drupal.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Panopoly Media: A Jumpstart to Media Rich Drupal | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Panopoly Media: A Jumpstart to Media Rich Drupal | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_Qoyy92GHt9RyGOt8N3WS_9HRsJcJBywJ2IhXudzvST4.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJw1jGsOgzAMgy9U1iOhtPVYpYSgumNjp18F4o_1-SFnFfKISYiQLzaQsoC3X72MzhsGNROtP4SX9I4WF_UkOmXyTky25N_Agx123e61wGdYQpmfFVpiAzdfWXdMZzkm-DCe-jAvb8UfjYM.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_mK2of_t7UFymkfbTHeA-kHdMPWzqc3DZQCYtX-tC0BA.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJw1jGsOgzAMgy9U1iOhtPVYpYSgumNjp18F4o_1-SFnFfKISYiQLzaQsoC3X72MzhsGNROtP4SX9I4WF_UkOmXyTky25N_Agx123e61wGdYQpmfFVpiAzdfWXdMZzkm-DCe-jAvb8UfjYM.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJw1jGsOgzAMgy9U1iOhtPVYpYSgumNjp18F4o_1-SFnFfKISYiQLzaQsoC3X72MzhsGNROtP4SX9I4WF_UkOmXyTky25N_Agx123e61wGdYQpmfFVpiAzdfWXdMZzkm-DCe-jAvb8UfjYM.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJw1jGsOgzAMgy9U1iOhtPVYpYSgumNjp18F4o_1-SFnFfKISYiQLzaQsoC3X72MzhsGNROtP4SX9I4WF_UkOmXyTky25N_Agx123e61wGdYQpmfFVpiAzdfWXdMZzkm-DCe-jAvb8UfjYM.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+<link rel="stylesheet" media="all" href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.css" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="panopoly-media-jumpstart-media-rich-drupal.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-hatter-main-menu-menu" id="block-hatter-main-menu" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-main-menu-menu">Midcamp 2018 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" data-drupal-link-system-path="node/2">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--venue">
+        <a href="../../about/venue.html" title="Venue" data-drupal-link-system-path="node/7048">Venue</a>
+            </li>
+          <li class="primary-nav__sublist-item item--travel">
+        <a href="../travel.html" title="Travel and Accommodations" data-drupal-link-system-path="node/65">Travel</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../lunch.html" title="Lunch Near Campus" data-drupal-link-system-path="node/162">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2018/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" title="Meet the Team!" data-drupal-link-system-path="2018/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../../2023/about/lunch-options.html" data-drupal-link-system-path="node/6970">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--accommodations">
+        <a href="../../2023/about/accommodations.html" data-drupal-link-system-path="node/6948">Accommodations</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" data-drupal-link-system-path="node/9">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--become-a-sponsor">
+        <a href="../become-a-sponsor.html" title="Become a Sponsor" data-drupal-link-system-path="node/7">Become a Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../../jobs.html" title="Jobs" data-drupal-link-system-path="jobs">Jobs</a>
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" data-drupal-link-system-path="node/128">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--training-thu">
+        <a href="../training.html" data-drupal-link-system-path="node/195">Training (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--bofs-fri-sat">
+        <a href="../birds-feather-bofs.html" title="Birds of a Feather (BoFs)" data-drupal-link-system-path="node/167">BoFs (Fri/Sat)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-fri">
+        <a href="../schedule/friday.html" title="Friday Sessions" data-drupal-link-system-path="2018/schedule/friday">Sessions (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-sat">
+        <a href="../schedule/saturday.html" title="Saturday Sessions" data-drupal-link-system-path="2018/schedule/saturday">Sessions (Sat)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sprints-sun">
+        <a href="../../sprints.html" title="Sprints">Sprints (Sun)</a>
+            </li>
+  </ul>
+
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2018.html" hreflang="en">MidCamp 2018</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Panopoly Media: A Jumpstart to Media Rich Drupal</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="103" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2018-03-09T20:45:00Z" class="datetime">Friday, 2:45 pm CST</time>
+ - <time datetime="2018-03-09T21:45:00Z" class="datetime">Friday, 3:45 pm CST</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-81" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-name field--type-string field--label-hidden field__item">Room 314A</div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p dir="ltr"><span>Nowadays, even the most basic sites aim to deliver media rich experiences. As of Drupal 8.4, media handling ships with core, but unfortunately achieving a truly workable solution for media requires a considerable amount of work. But using tools provided by one of Drupal’s most popular distributions, Panopoly, we can add the power of the Drupal’s media handling with minimal effort.</span></p>
+
+<p dir="ltr"><span>Panopoly’s Media feature provides a robust solution for uploading and manding media, as well as generating media rich content to your users.</span></p>
+
+<p dir="ltr"><span>In this session we’ll cover:</span></p>
+
+<ul>
+	<li><span>Adding Panopoly Media to an existing site, or non-Panopoly build</span></li>
+	<li><span>Producing a library of reusable Media content</span></li>
+	<li><span>The functionality/implementation of additional contributed modules</span></li>
+	<li><span>Embedding Media content into WYSIWYG content</span></li>
+	<li><span>Strategies for displaying Media content</span></li>
+</ul></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/DrG0rg6RKbE?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Will Long</h4>
+
+      Sr. Drupal Developer
+
+
+          @
+                <a href="../../taxonomy/term/562.html" hreflang="en">Kerasasi, Ltd.</a>
+
+
+        
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2025-05/will-long-headshot-resize-sm.png%3Fitok=QqdJqqgG" width="163" height="220" alt="Will Long - Kerasai, Ltd." class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">End users / Content Admin</div>
+          <div class="field__item">Site Building</div>
+              </div>
+      </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p>but out with me in a jump-start</p>
+
+<p>media-rich drupal so with interpolates</p>
+
+<p>media is a part of core it has been a</p>
+
+<p>part of core for quite some time mouth</p>
+
+<p>and methimazole this past week bro</p>
+
+<p>released so now it's official thing you</p>
+
+<p>know people have been using it for quite</p>
+
+<p>some time</p>
+
+<p>initiatives going on for years I'm</p>
+
+<p>trying to standardize on a basic way to</p>
+
+<p>handle media and Drupal and what more my</p>
+
+<p>websites are using media feels like</p>
+
+<p>every Drupal 8 like that I've worked on</p>
+
+<p>has used media to some extent so this is</p>
+
+<p>the solution that we've come to so this</p>
+
+<p>is me everybody here knows you pretty</p>
+
+<p>much but developer do a lot of</p>
+
+<p>consulting work for our various</p>
+
+<p>companies area recently and I'm joined</p>
+
+<p>with my gut wizard we're working on a</p>
+
+<p>platform where we use this cannot we</p>
+
+<p>need</p>
+
+<p>like this and finally on the various</p>
+
+<p>Drupal and social media site so Konami</p>
+
+<p>is a widely used Drupal distribution</p>
+
+<p>primarily it's been the second</p>
+
+<p>functionality it's being reported to</p>
+
+<p>Drupal 8 so there's the things that are</p>
+
+<p>quite ready yet there's a particularly</p>
+
+<p>the layout aspect of it using panels or</p>
+
+<p>layout there's some things that I'm</p>
+
+<p>going to cite it there but the general</p>
+
+<p>strategy in the meantime is to get a set</p>
+
+<p>of useful sub modules that ship with it</p>
+
+<p>media module they'll show you here today</p>
+
+<p>is one of those things</p>
+
+<p>you</p>
+
+<p>so the objectives for this presentation</p>
+
+<p>is going to show you how to use</p>
+
+<p>polimedia to get a working solution how</p>
+
+<p>to understand the basic way Drupal's</p>
+
+<p>dealing with media give you a landscape</p>
+
+<p>of what's going on trim the various</p>
+
+<p>modules to help deal with media and then</p>
+
+<p>how we can use kenapa media and then</p>
+
+<p>customize it from there to suit the</p>
+
+<p>needs of particular projects so we're</p>
+
+<p>talking about four does open aqua media</p>
+
+<p>gives us a demo and had some time for a</p>
+
+<p>Q&amp;A afterwards also feel free to jump in</p>
+
+<p>and get any questions of them talking</p>
+
+<p>about doesn't seem right or not specific</p>
+
+<p>enough what that means discuss it we're</p>
+
+<p>all friends right</p>
+
+<p>okay so the primary use cases of media</p>
+
+<p>and people we want to give our editors</p>
+
+<p>way to create various media assets that</p>
+
+<p>we use throughout the site we also want</p>
+
+<p>a library of these assets that we can</p>
+
+<p>manage and then reuse throughout content</p>
+
+<p>the way we're going to use this in the</p>
+
+<p>content is to feel like memory reference</p>
+
+<p>fields that we're going to reference</p>
+
+<p>that meeting entities as well as the</p>
+
+<p>ability to embed them into WYSIWYG and</p>
+
+<p>then the last part is actually</p>
+
+<p>delivering our media to the end user</p>
+
+<p>so these media are you referring to</p>
+
+<p>videos and photos or is it more than</p>
+
+<p>that I mean it can be anything really</p>
+
+<p>the sort of the core ships with files</p>
+
+<p>and images and I'll we're going to show</p>
+
+<p>you in the distribution here is the</p>
+
+<p>ability to use a better video also so</p>
+
+<p>that's going to be YouTube and Vimeo</p>
+
+<p>type videos and theory of use all sorts</p>
+
+<p>of other</p>
+
+<p>me and anything you can throw feel the</p>
+
+<p>Swedish could be delivered so the</p>
+
+<p>Kourtney basically just gives us media</p>
+
+<p>entities just standard Drupal entities</p>
+
+<p>just like any other Eckstein but feels</p>
+
+<p>on just like any other fields on any</p>
+
+<p>other entities so the media comes with a</p>
+
+<p>name and it comes with some type of</p>
+
+<p>source field we've got the ability to</p>
+
+<p>put additional fields on it and also the</p>
+
+<p>media functionality there's using entity</p>
+
+<p>functionality we get few modes for</p>
+
+<p>rendering it as well as form modes form</p>
+
+<p>displays for editing it and created and</p>
+
+<p>then the one kind of extra piece of</p>
+
+<p>functionality that media has in motion</p>
+
+<p>of source plugins so this is one of the</p>
+
+<p>fields on the media entity itself</p>
+
+<p>designated as a source field for</p>
+
+<p>instance on the image media entity</p>
+
+<p>there's an image field which then we can</p>
+
+<p>use as the media itself for instance</p>
+
+<p>this image field has dimensions they get</p>
+
+<p>resolution and any other information is</p>
+
+<p>included with it we can then use as</p>
+
+<p>additional field data or as as needed</p>
+
+<p>[Music]</p>
+
+<p>alright so the core functionality in</p>
+
+<p>terms of actually managing the media</p>
+
+<p>data is fairly good but the part that's</p>
+
+<p>not so great about it is the user</p>
+
+<p>experience so what we get here is have a</p>
+
+<p>box core experience we've got the</p>
+
+<p>standard density form for creating</p>
+
+<p>editing media it's just like any other</p>
+
+<p>NC form and then the way this would</p>
+
+<p>normally get utilized is with an ante</p>
+
+<p>reference field and what's not so great</p>
+
+<p>here is so this is our Andy reference</p>
+
+<p>field of note we've essentially got a</p>
+
+<p>two step process we would have to go</p>
+
+<p>back end create our media and then come</p>
+
+<p>in to our node that we're correcting and</p>
+
+<p>reference it via RFC reference field</p>
+
+<p>this is functional but it's not ideal</p>
+
+<p>for a couple reasons one was a two step</p>
+
+<p>process and two is when we're actually</p>
+
+<p>using it and our field here this is just</p>
+
+<p>really not useful it's not helpful it's</p>
+
+<p>going to be difficult for editors to be</p>
+
+<p>able to find they're looking for</p>
+
+<p>[Music]</p>
+
+<p>the whole thing Court does give us this</p>
+
+<p>very useful as the media library so all</p>
+
+<p>of our existing media is available view</p>
+
+<p>manage it</p>
+
+<p>editing creating stuff once again it's</p>
+
+<p>not super useful in terms of creating</p>
+
+<p>content one thing that Court does do</p>
+
+<p>well is the rendering of content so it's</p>
+
+<p>this media and I've seen the media</p>
+
+<p>itself as a field so all of the standard</p>
+
+<p>entity field rendering applies we can</p>
+
+<p>deliver to the user that fairly</p>
+
+<p>seamlessly in terms of general so once</p>
+
+<p>again we're good to be able to the</p>
+
+<p>ability to create media assets although</p>
+
+<p>it's not great because that two-step</p>
+
+<p>process we just discussed we've got the</p>
+
+<p>library existing media which is</p>
+
+<p>functional it's just not useful to</p>
+
+<p>editors in the context of creating</p>
+
+<p>content so that's any reference field it</p>
+
+<p>doesn't give us the ability to use this</p>
+
+<p>in the WYSIWYG at all it does give us</p>
+
+<p>the ability to render it to the</p>
+
+<p>end-users</p>
+
+<p>so in terms of solutions on how to</p>
+
+<p>handle this the seven way of handling</p>
+
+<p>this was just to put fields on our</p>
+
+<p>content right and ooh sorry but our node</p>
+
+<p>has a image we would put an image field</p>
+
+<p>on it can we use that the main</p>
+
+<p>limitation is we can't use additional</p>
+
+<p>attributes from that image for much of</p>
+
+<p>anything you don't have the ability to</p>
+
+<p>reuse it either so if two nodes use the</p>
+
+<p>same image we end up creating the same</p>
+
+<p>image twice I mean just our problem with</p>
+
+<p>nobody who's durable 70</p>
+
+<p>[Music]</p>
+
+<p>you know the another option is to do it</p>
+
+<p>yourself and there's be amazing maze of</p>
+
+<p>media and Drupal where do we start and</p>
+
+<p>then with the canonical media we're</p>
+
+<p>going to give you a starting point so</p>
+
+<p>essentially a outbox working solution</p>
+
+<p>for the files image type media and then</p>
+
+<p>the embed the video like I discussed</p>
+
+<p>we've got this reusable media library is</p>
+
+<p>also in the context of creating content</p>
+
+<p>so we can select our media while we're</p>
+
+<p>working with the nodes and you can</p>
+
+<p>easily create and selecting during the</p>
+
+<p>creation we can get it into the WYSIWYG</p>
+
+<p>so there's a lot of different options in</p>
+
+<p>terms of arranging your content so</p>
+
+<p>sudden panels people using paragraphs</p>
+
+<p>lots of different things for dealing</p>
+
+<p>with the layouts this will actually let</p>
+
+<p>us keep our main content like a body</p>
+
+<p>field for instance and click media right</p>
+
+<p>side and then this is just a starting</p>
+
+<p>point and always make changes to it suit</p>
+
+<p>forever subscribe</p>
+
+<p>[Music]</p>
+
+<p>any question</p>
+
+<p>alright so the canopic media itself once</p>
+
+<p>again it's just a module so Saddam</p>
+
+<p>drupal.org it's part of the canonically</p>
+
+<p>distribution that can be used</p>
+
+<p>independently monopoly</p>
+
+<p>it contains mostly just configuration</p>
+
+<p>BMO files for figuration for your site</p>
+
+<p>we would install the module</p>
+
+<p>configuration into play it's got some</p>
+
+<p>dependencies for other contributorily</p>
+
+<p>that give you this functionality and</p>
+
+<p>then there's a bit of custom glue code</p>
+
+<p>just some minor alterations to a few</p>
+
+<p>things and just makes it a better</p>
+
+<p>experience</p>
+
+<p>so the configuration that comes with</p>
+
+<p>come out with media once again we've got</p>
+
+<p>our media entities fields new mobile</p>
+
+<p>displays so we take the four commedia</p>
+
+<p>types we add video type and when we make</p>
+
+<p>some adjustments to the court action</p>
+
+<p>well come with some browser</p>
+
+<p>configuration we'll see that's what</p>
+
+<p>we're gonna use to create and select our</p>
+
+<p>media and then also the entity WYSIWYG</p>
+
+<p>so this is the entity browser what</p>
+
+<p>you're seeing from is actually many</p>
+
+<p>browser gives us this modal so this is a</p>
+
+<p>field women that would be used on a node</p>
+
+<p>for instance so the field widgets when</p>
+
+<p>you go to enter in your entity reference</p>
+
+<p>value instead of doing an autocomplete</p>
+
+<p>or checkboxes or whatever the widget you</p>
+
+<p>may have there's alternative widget</p>
+
+<p>which is the same browser opens in a</p>
+
+<p>mobile there are some other options on</p>
+
+<p>how to it doesn't have to be a more</p>
+
+<p>convenient and page for instance then</p>
+
+<p>the media NC browser provides a Hugh and</p>
+
+<p>some minor tweaks that go along with</p>
+
+<p>that in terms of selecting your media so</p>
+
+<p>this this image right here is the one</p>
+
+<p>we've selected for instance and this</p>
+
+<p>makes a nicer experience</p>
+
+<p>so the NC browser also provides the</p>
+
+<p>ability to create media from within this</p>
+
+<p>model so we've got this is the dropzone</p>
+
+<p>j/s widget drop zone as a well-known</p>
+
+<p>JavaScript library for uploading media</p>
+
+<p>images mostly and from there you</p>
+
+<p>actually can drag files right in the box</p>
+
+<p>or you can select them to be normal</p>
+
+<p>dialog and it will show up here you've</p>
+
+<p>got the ability that edits and feels on</p>
+
+<p>and would not create it right in this</p>
+
+<p>modal and selected for use to populate</p>
+
+<p>your reference field some additional</p>
+
+<p>stuff that's included here is the video</p>
+
+<p>on that field that's what we're using to</p>
+
+<p>integrate the YouTube Vimeo so the line</p>
+
+<p>you take URL I reference a video on</p>
+
+<p>YouTube or Vimeo duple then treat it as</p>
+
+<p>media there's some module that provides</p>
+
+<p>the source functionality not media also</p>
+
+<p>utilizes monopoly images which has a</p>
+
+<p>standard set of presets that are used</p>
+
+<p>throughout media handling for instance</p>
+
+<p>the preview you upload an image and get</p>
+
+<p>it in here the dropzone upload you have</p>
+
+<p>the ability to see that the preview of</p>
+
+<p>thumbnail</p>
+
+<p>in there and then the binoculars Ely is</p>
+
+<p>not technically a dependency canonical</p>
+
+<p>media but that's the actual WYSIWYG</p>
+
+<p>embedded functionality that also makes</p>
+
+<p>diplomat media usage useful so not</p>
+
+<p>technically dependency with it's got</p>
+
+<p>configuration that sets up your text</p>
+
+<p>formats and your ckeditor to have once</p>
+
+<p>again just to get this going</p>
+
+<p>just a module fold on Drupal a Borg just</p>
+
+<p>get it installed like a normal modules</p>
+
+<p>got appendices that will have to be met</p>
+
+<p>we use a composer based installation it</p>
+
+<p>will pull that it for you otherwise you</p>
+
+<p>have to click up open yourself to go</p>
+
+<p>along with this and then it technique</p>
+
+<p>configuration of</p>
+
+<p>[Music]</p>
+
+<p>all right so who's ready for demo</p>
+
+<p>all right so to start off are there any</p>
+
+<p>requests</p>
+
+<p>just do the media do you need okay so we</p>
+
+<p>saw the media library on one of the</p>
+
+<p>slides earlier so if we jump into our</p>
+
+<p>content administration screen you'll</p>
+
+<p>notice there is a as soon as it's done</p>
+
+<p>here</p>
+
+<p>[Music]</p>
+
+<p>our caches are clear</p>
+
+<p>[Music]</p>
+
+<p>all right so what is it going anybody</p>
+
+<p>have any questions away I think we've</p>
+
+<p>discussed Eric I'm just curious how this</p>
+
+<p>not only to be compared</p>
+
+<p>I'm not used lightning you used a day so</p>
+
+<p>they were doing media before the core</p>
+
+<p>media stuff was there I don't know if</p>
+
+<p>they've transitioned to the core media</p>
+
+<p>now but I imagine it's very very similar</p>
+
+<p>so though the Lightning media in Drupal</p>
+
+<p><br>
+so I'd imagine that Drupal 8 was similar</p>
+
+<p>at this point I'm not sure</p>
+
+<p>thank you thank you my friend I know I</p>
+
+<p>just walked through this this is a</p>
+
+<p>little bit is</p>
+
+<p>so Eric I know we're discussing now some</p>
+
+<p>media a little bit earlier today about</p>
+
+<p>non core media or media 1.0 I'm not sure</p>
+
+<p>exactly what right terminology is to go</p>
+
+<p>but this is essentially just a core</p>
+
+<p>media based solution it's if you want to</p>
+
+<p>use this you have to be a Drupal 8</p>
+
+<p>before or iron</p>
+
+<p>[Music]</p>
+
+<p>mommy</p>
+
+<p>[Music]</p>
+
+<p>oops</p>
+
+<p>[Music]</p>
+
+<p>[Music]</p>
+
+<p>[Music]</p>
+
+<p>there perhaps another environment just</p>
+
+<p>as soon as we're back and give up on</p>
+
+<p>this one here goes so the media library</p>
+
+<p>once again what we saw earlier is under</p>
+
+<p>the content administration menu media</p>
+
+<p>got some various pieces of media</p>
+
+<p>existing media in here videos files</p>
+
+<p>images</p>
+
+<p>[Music]</p>
+
+<p>got the ability to come in here and edit</p>
+
+<p>these this is a video typing idiot ass</p>
+
+<p>got the name it's got a through RL to</p>
+
+<p>the media description the kunafa media</p>
+
+<p>comes with tags also to tag media we'd</p>
+
+<p>like to utilize that functionality</p>
+
+<p>system here we can actually come in and</p>
+
+<p>create some content you can see this in</p>
+
+<p>an actual</p>
+
+<p>so we were to create a news post</p>
+
+<p>[Music]</p>
+
+<p>right in here we can add a featured</p>
+
+<p>image so this is our entity browser</p>
+
+<p>functionality we've got this view let's</p>
+
+<p>here to select our existing media we've</p>
+
+<p>got the ability to upload images here</p>
+
+<p>this is our drop zone plugin select a</p>
+
+<p>new piece of media and actually create</p>
+
+<p>thanks to krumitz so we drag it in there</p>
+
+<p>and here it filled out our form with the</p>
+
+<p>name we can add alt text and force to</p>
+
+<p>add alt text same type of information</p>
+
+<p>that you see on the media page this</p>
+
+<p>particular form can be customized you</p>
+
+<p>wanted to pare it down a little bit so</p>
+
+<p>there's not so much for editors there</p>
+
+<p>yes that's correct so I mean it's all</p>
+
+<p>just the standard media entity type</p>
+
+<p>stuff you can go in through the admin</p>
+
+<p>screens and just the form just the field</p>
+
+<p>it's just how it renders everything like</p>
+
+<p>that but you don't have to if it this</p>
+
+<p>stage this is just installed you have</p>
+
+<p>some media without any other</p>
+
+<p>configuration that's correct so this is</p>
+
+<p>literally just a fresh install of Drupal</p>
+
+<p>site with the knobbly media installed on</p>
+
+<p>top of it</p>
+
+<p>[Music]</p>
+
+<p>so let our alt text select our media</p>
+
+<p>we'll see it populates into featured</p>
+
+<p>image field</p>
+
+<p>and we can finish creating our games</p>
+
+<p>you can see here's our newly created</p>
+
+<p>node featured image so this is once</p>
+
+<p>again just standard field rendering</p>
+
+<p>there's a little crazy looking just that</p>
+
+<p>dimensions of this image but you can use</p>
+
+<p>image styles to format it however you</p>
+
+<p>desire one of the big things we are</p>
+
+<p>discussing little bit earlier it was the</p>
+
+<p>WYSIWYG embedding so we'll come in here</p>
+
+<p>we'll hit this I'll show you how that</p>
+
+<p>works this would be once again the</p>
+
+<p>WYSIWYG it's not technically included in</p>
+
+<p>this you'll have to setup your input</p>
+
+<p>format and your CK editor to use the</p>
+
+<p>embedded widget so here this is</p>
+
+<p>implemented this image icon you see we</p>
+
+<p>can use this existing media just like</p>
+
+<p>the other one or we can use images files</p>
+
+<p>or videos here as well one thing that's</p>
+
+<p>probably kind of common is putting</p>
+
+<p>videos inside of your content</p>
+
+<p>[Music]</p>
+
+<p>[Music]</p>
+
+<p>so we've got the video entity in there</p>
+
+<p>now this dialogue actually gives us a</p>
+
+<p>few options to do more things with it we</p>
+
+<p>can align it and give it a caption -</p>
+
+<p>I'll just leave it at none for now and</p>
+
+<p>more little better and everybody is a</p>
+
+<p>little blown out for this field you can</p>
+
+<p>see we've got the YouTube video embedded</p>
+
+<p>right in the WYSIWYG what about doing</p>
+
+<p>media files like mp3 so that's</p>
+
+<p>definitely doable maybe most people</p>
+
+<p>choose not to host things like that on</p>
+
+<p>the Drupal site just for dealing with</p>
+
+<p>large file sizes and streaming and</p>
+
+<p>things like that</p>
+
+<p>but it is doable and I know there's a</p>
+
+<p>video there's a monologue that provides</p>
+
+<p>a video source plugin for the media to</p>
+
+<p>where you can upload a video file and it</p>
+
+<p>will treat it as a locally hosted file</p>
+
+<p>it immediately device so so it's videos</p>
+
+<p>just like these videos except though</p>
+
+<p>it's a file upload to the site they'll</p>
+
+<p>be done outside right context such as</p>
+
+<p>this you'd probably just want to install</p>
+
+<p>that model that has that source you need</p>
+
+<p>to set up the media entity itself and</p>
+
+<p>then get it configured to work with Andy</p>
+
+<p>browser where you use it in the context</p>
+
+<p>of a student-athlete</p>
+
+<p>handle or so just all the steps of your</p>
+
+<p>snack talk through or like that's</p>
+
+<p>automatically media really save you it</p>
+
+<p>has all that already done for these</p>
+
+<p>preset we can also see that once we save</p>
+
+<p>the content the videos displayed right</p>
+
+<p>in the content we haven't done anything</p>
+
+<p>really to address the video itself</p>
+
+<p>that's all part of the video embed field</p>
+
+<p>module that has the field formatter that</p>
+
+<p>displays the videos and a playable</p>
+
+<p>format which I field formatter half size</p>
+
+<p>size</p>
+
+<p>settings you know I'm not positive</p>
+
+<p>exactly what it has but feel for minors</p>
+
+<p>are probably one of my favorite things</p>
+
+<p>to write alright any any questions about</p>
+
+<p>the demo anything else would like to see</p>
+
+<p>what they're missing anything awesome</p>
+
+<p>you're gonna show the IPTC stuff I</p>
+
+<p>certainly can</p>
+
+<p>well one thing we just developed into</p>
+
+<p>this was the ability to extract some</p>
+
+<p>metadata from the image itself the</p>
+
+<p>format most people are probably familiar</p>
+
+<p>with EXIF formats that's actually more</p>
+
+<p>like technical information with photo</p>
+
+<p>generally with the IPTC stuff we build a</p>
+
+<p>solution for IPTC is more like human</p>
+
+<p>information like a headline and</p>
+
+<p>description title things like that so we</p>
+
+<p>had a client that needed that done so we</p>
+
+<p>built it into paneling media so out of</p>
+
+<p>box you'll get that as well I'm going to</p>
+
+<p>show you an example of that and just to</p>
+
+<p>make this a little simpler I'm gonna</p>
+
+<p>come into</p>
+
+<p>[Music]</p>
+
+<p>so they're just right into the ad screen</p>
+
+<p>that have form for image media and let</p>
+
+<p>me find the right file please don't be</p>
+
+<p>anything embarrassing all right so this</p>
+
+<p>is one of the files that has some date</p>
+
+<p>on it so we can see we upload the image</p>
+
+<p>file right off the bat it fills in the</p>
+
+<p>name of a media entity the alt text and</p>
+
+<p>additionally description that's all</p>
+
+<p>information that was embedded literally</p>
+
+<p>in the image file what the jpg file and</p>
+
+<p>then the the Jane exosome was IPTC</p>
+
+<p>that's the name of the standard or</p>
+
+<p>protocol for a way understand the</p>
+
+<p>photographers themselves enter it</p>
+
+<p>through the camera some mechanism and</p>
+
+<p>then take the pictures</p>
+
+<p>yes it would not so that's a feature and</p>
+
+<p>a limitation so if you like it if I were</p>
+
+<p>to remove this image and upload a new</p>
+
+<p>image that had data as well</p>
+
+<p>the existing data would stay it was</p>
+
+<p>essentially just a one shot in this</p>
+
+<p>implementation if you wanted to out of a</p>
+
+<p>fresh image with its own data pulled in</p>
+
+<p>just to get a clear form and do the</p>
+
+<p>upload</p>
+
+<p>[Music]</p>
+
+<p>all right yes</p>
+
+<p>right now it's not really utilized at</p>
+
+<p>all but in your implementation however</p>
+
+<p>you render the media itself so it's an</p>
+
+<p>entity with the fields and this is just</p>
+
+<p>the field on the entity so if you've</p>
+
+<p>when you embed it if you choose to use a</p>
+
+<p>different display mode with it that has</p>
+
+<p>the description with it also than that</p>
+
+<p>show</p>
+
+<p>captioning file</p>
+
+<p>there's not okay that's next slide you</p>
+
+<p>know I think like if you were uploading</p>
+
+<p>it to YouTube that's where you would put</p>
+
+<p>the you would give them the closed</p>
+
+<p>captioning file and from the Drupal</p>
+
+<p>perspective you're just embedding the</p>
+
+<p>YouTube video you'd like you're thinking</p>
+
+<p>about putting the transcript in the</p>
+
+<p>description field kind of thing</p>
+
+<p>never defections it becomes a closed</p>
+
+<p>captioning option for the user</p>
+
+<p>[Music]</p>
+
+<p>it's also hearing issues that cannot</p>
+
+<p>convenience</p>
+
+<p>I don't know</p>
+
+<p>yeah like cannot believe me there just</p>
+
+<p>doesn't bedded video so you would be</p>
+
+<p>uploading that to female or YouTube if</p>
+
+<p>you were doing like a raw video file</p>
+
+<p>that I don't know Drupal things like</p>
+
+<p>that in some way or another I'm sure it</p>
+
+<p>could support it</p>
+
+<p>whether that already exists or how much</p>
+
+<p>effort it would take to do that</p>
+
+<p>can't careless a and so I just did this</p>
+
+<p>works hand in hand with monopoly we said</p>
+
+<p>that it's not dependent right it's not a</p>
+
+<p>family at all I mean Dave's our family</p>
+
+<p>experts</p>
+
+<p>he's a formula a number of sites use all</p>
+
+<p>sorts of these little sub modules of</p>
+
+<p>kenapa leading without using the</p>
+
+<p>distribution at all</p>
+
+<p>[Music]</p>
+
+<p>and it's Drupal 8 only do like a for not</p>
+
+<p>okay</p>
+
+<p>[Music]</p>
+
+<p>right</p>
+
+<p>it'll be worth showing that image</p>
+
+<p>gallery well description field I don't</p>
+
+<p>know do we do want to pull up an</p>
+
+<p>existing user they cool with that I</p>
+
+<p>think okay so I'm so they've just</p>
+
+<p>suggested that we pull up some image</p>
+
+<p>gallery functionality this is build as</p>
+
+<p>part of the platform around earthen my</p>
+
+<p>graph wizard has been working on but</p>
+
+<p>we've got a client that's presenting</p>
+
+<p>this media in an image gallery so they</p>
+
+<p>there we will actually see description</p>
+
+<p>as being used</p>
+
+<p>[Music]</p>
+
+<p>so you see they have an image gallery</p>
+
+<p>and we can click into its and there are</p>
+
+<p>a number of galleries here each one of</p>
+
+<p>these is a gallery</p>
+
+<p>it's a node a gallery type and then it's</p>
+
+<p>it references these various pieces of</p>
+
+<p>image media so here we can see this is a</p>
+
+<p>this is the Fremantle women versus GWS</p>
+
+<p>women's gallery node and then there are</p>
+
+<p>a number of images attached to it</p>
+
+<p>Fremantle vers GWS is the name of the</p>
+
+<p>image media and steam and then we can</p>
+
+<p>see it's got the description field down</p>
+
+<p>below on it as well</p>
+
+<p>and it's got an amazing color box</p>
+
+<p>functionality I think that comes from</p>
+
+<p>the description to the text I think</p>
+
+<p>that's right so this is just an example</p>
+
+<p>of how this media could be used outside</p>
+
+<p>of just the stock standard Drupal</p>
+
+<p>formatting that we saw on the</p>
+
+<p>but dem all be empty safe</p>
+
+<p>[Music]</p>
+
+<p>all right</p>
+
+<p>I noticed that when you were uploading</p>
+
+<p>images there was a caption field on the</p>
+
+<p>media if you filled in the caption and</p>
+
+<p>you built in the description while</p>
+
+<p>displaying it would you</p>
+
+<p>a chance to decide which to display in</p>
+
+<p>your view or with one override yeah</p>
+
+<p>thank you</p>
+
+<p>let me pull that up or do that wasn't</p>
+
+<p>I'm sorry I believe what you're</p>
+
+<p>referencing was when we embedded it into</p>
+
+<p>the WYSIWYG images big or whatever</p>
+
+<p>because people in that</p>
+
+<p>[Music]</p>
+
+<p>to make she added a video I'm not sure</p>
+
+<p>how panels caption in that sense I'm</p>
+
+<p>good it's more tend to be used for</p>
+
+<p>images I think it was we were actually</p>
+
+<p>creating logo okay remove this one we</p>
+
+<p>can create it</p>
+
+<p>[Music]</p>
+
+<p>we've got the existing version or we</p>
+
+<p>could select we're not presented with</p>
+
+<p>that edit form at that time so what was</p>
+
+<p>new one now you could edit the media</p>
+
+<p>this will not validate that body field</p>
+
+<p>condition to that there's a caption</p>
+
+<p>that's utilized when you embed it in the</p>
+
+<p>WYSIWYG so separate from the description</p>
+
+<p>field on the image media there's a</p>
+
+<p>caption field so it essentially get M</p>
+
+<p>embedded with it</p>
+
+<p>go sanic see we upload an image</p>
+
+<p>[Music]</p>
+
+<p>it's got the description field</p>
+
+<p>doesn't want to do much for us in this</p>
+
+<p>context if we go in here to the body</p>
+
+<p>field</p>
+
+<p>[Music]</p>
+
+<p>please</p>
+
+<p>sweetie cuts better image here and we</p>
+
+<p>can select it we could choose to left</p>
+
+<p>alignment for instance and here we could</p>
+
+<p>add caption and this is just essentially</p>
+
+<p>I'm a rapper and it is sent with with</p>
+
+<p>the image media when it gets rendered in</p>
+
+<p>in the body field</p>
+
+<p>this is our main image and then down</p>
+
+<p>below here you see</p>
+
+<p>caption before the image</p>
+
+<p>[Music]</p>
+
+<p>[Music]</p>
+
+<p>so we can see the caption that we typed</p>
+
+<p>in just for that in bed</p>
+
+<p>[Music]</p>
+
+<p>good luck with the layout it's</p>
+
+<p>all right so once again this is the kind</p>
+
+<p>of singer solution that we're moving</p>
+
+<p>forward with in terms of panoply one of</p>
+
+<p>the sub modules it's kind of wrapped up</p>
+
+<p>ready to go while the rest of monopolies</p>
+
+<p>look I'm on hold</p>
+
+<p>I'm a police whether used we'll see how</p>
+
+<p>it gets you some drew blades these sub</p>
+
+<p>modules I definitely fully functional</p>
+
+<p>though and could be used so right along</p>
+
+<p>with it</p>
+
+<p>Dave and I definitely believe in this so</p>
+
+<p>we're using it around earth platform so</p>
+
+<p>it's got various pieces of media</p>
+
+<p>handling built into its site we looked</p>
+
+<p>at a little bit earlier with the</p>
+
+<p>Australian football uses this that's</p>
+
+<p>we've got a handful customers already</p>
+
+<p>using this and then we plants are taking</p>
+
+<p>out a fairly large scale with customers</p>
+
+<p>using it a little ways down the road so</p>
+
+<p>this is the media solution we've settled</p>
+
+<p>on and should be fairly useful for</p>
+
+<p>pretty much all pieces</p>
+
+<p>and then that is it kind of a lot of</p>
+
+<p>good questions interaction anybody's</p>
+
+<p>still have any the routers platform the</p>
+
+<p>round earth platform is a Drupal 8 City</p>
+
+<p>CRM solution aimed for nonprofits I</p>
+
+<p>think that what they mean for nonprofits</p>
+
+<p>so right now it's a distribution we've</p>
+
+<p>got a number of clients already on its</p>
+
+<p>down the road we're trying to turn it</p>
+
+<p>into a solution where I suppose come in</p>
+
+<p>I spent their own utilize it oh there's</p>
+
+<p>a talk tomorrow morning about Cindy CRM</p>
+
+<p>in Drupal 8</p>
+
+<p>they've Davis Davis driving the car me</p>
+
+<p>and Elliot are riding shotgun and so</p>
+
+<p>there's no be more information about the</p>
+
+<p>city and blade and our rounders platform</p>
+
+<p>so you're surrounded and faceless City</p>
+
+<p>Sarah well it's it's based on Drupal 8</p>
+
+<p>City CRM in Drupal 8 or not we think</p>
+
+<p>it's it's pretty much the first and only</p>
+
+<p>instance of it it's alright uh no that's</p>
+
+<p>not true anymore they've been a couple</p>
+
+<p>more we I think we probably launched the</p>
+
+<p>first drupelets of his harem sites but</p>
+
+<p>there's been a couple more now</p>
+
+<p>no problem all right thanks</p></div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-01794688cd0e0551478ea2505d97720c2b923909259f75952b85b3b697b6e108">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/103">https://mid.camp/103</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+  <section class="map-banner">
+      <div class="views-element-container block block-views block-views-blockevent-venue-block-1" id="block-hatter-views-block-event-venue-block-1">
+  
+    
+      <div><div class="container view view-event-venue view-id-event_venue view-display-id-block_1 js-view-dom-id-ec34ff5dffcc44bb045c881ea01a2c565dd89ba4b8bbba08a9d65a376c00ff09">
+  
+    
+      
+      <div class="view-content">
+          <div class="views-row">
+
+
+<div class="map-overlay">
+  <span class="map__label">Location</span>
+  <h2 class="map__title"><span class="field field--name-title field--type-string field--label-hidden">DePaul University - Lincoln Park Student Center</span>
+</h2>
+  
+            <div class="field field--name-field-address field--type-address field--label-hidden field__item"><p class="map__address" translate="no">
+          2250 N Sheffield Ave. <br>
+            Chicago, IL 60614<br>
+  </p>
+</div>
+      
+  <a href="../venue/depaul-university-lincoln-park-student-center.html" class="cta-link--yellow">Learn more  <span class="cta-arrow"></span></a>
+</div>
+<div id='map' class="map"></div>
+</div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-cd27c1abb81e3a7eed1dde66083c84fc20a4c7765dd768fd46c65a8eba981729">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/acquia.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-02/Acquia_no_tagline.png" width="450" height="94" alt="Acquia" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/platformsh.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-02/platform.png" width="400" height="79" alt="Platform.sh" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/pantheon.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-11/pantheon.png" width="500" height="157" alt="Pantheon" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#4f262129200f22262b2c2e223f61203d28"><span class="__cf_email__" data-cfemail="0c65626a634c6165686f6d617c22637e6b">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/103","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_llBcjrkrgAu2wT1DR7VGL_iP6geJyiTnF_8O5ZD57VI.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJxLz89Pz0mNT8xLzKksyUwu1k9HE9DJSCwpSS3ST8_JT0rM0c2CC-QmFiTlVwAAPmAZQA"></script>
+<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.js"></script>
+<script src="../../sites/default/files/js/js_pODGOpSPRR3Y_Zt-7Fy-5B_pNv18oFAWhyhwUPCQZu4.js%3Fscope=footer&amp;delta=2&amp;language=en&amp;theme=hatter&amp;include=eJxLz89Pz0mNT8xLzKksyUwu1k9HE9DJSCwpSS3ST8_JT0rM0c2CC-QmFiTlVwAAPmAZQA"></script>
+
+  </body>
+</html>

@@ -1,0 +1,2204 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="When developing a pattern library or design system that will be used in support of a Drupal project, a key decision must be made regarding where the design system should live. Conceptually, many agree that it should be an external dependency of a Drupal theme in order to promote reuse, but a large number of projects still embed the design system inside of the theme in order to simplify workflow and component integration." />
+<link rel="canonical" href="external-design-system-practice.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="An External Design System in Practice | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>An External Design System in Practice | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_Qoyy92GHt9RyGOt8N3WS_9HRsJcJBywJ2IhXudzvST4.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJw1jFEOgzAMQy9U1iOhtDGsUkqmugOx068C8WM961nOJuQZkxAh31xBygo-fXMdzhsGtSpWfghv6R0truZJbMpk4MmOeh_tReEzaoLOS4FpbODHN5Yd0yXHBAfjla_q-jX8AXwTNZQ.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_mK2of_t7UFymkfbTHeA-kHdMPWzqc3DZQCYtX-tC0BA.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJw1jFEOgzAMQy9U1iOhtDGsUkqmugOx068C8WM961nOJuQZkxAh31xBygo-fXMdzhsGtSpWfghv6R0truZJbMpk4MmOeh_tReEzaoLOS4FpbODHN5Yd0yXHBAfjla_q-jX8AXwTNZQ.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJw1jFEOgzAMQy9U1iOhtDGsUkqmugOx068C8WM961nOJuQZkxAh31xBygo-fXMdzhsGtSpWfghv6R0truZJbMpk4MmOeh_tReEzaoLOS4FpbODHN5Yd0yXHBAfjla_q-jX8AXwTNZQ.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJw1jFEOgzAMQy9U1iOhtDGsUkqmugOx068C8WM961nOJuQZkxAh31xBygo-fXMdzhsGtSpWfghv6R0truZJbMpk4MmOeh_tReEzaoLOS4FpbODHN5Yd0yXHBAfjla_q-jX8AXwTNZQ.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="external-design-system-practice.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-hatter-midcamp2019navigation-menu" id="block-hatter-midcamp2019navigation" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-midcamp2019navigation-menu">Midcamp 2019 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" title="About MidCamp" data-drupal-link-system-path="node/191">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--venue">
+        <a href="../about/venue.html" data-drupal-link-system-path="node/192">Venue</a>
+            </li>
+          <li class="primary-nav__sublist-item item--travel">
+        <a href="../about/travel.html" title="Travel and Accommodations" data-drupal-link-system-path="node/188">Travel</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../about/lunch.html" title="Lunch options" data-drupal-link-system-path="node/189">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--volunteer">
+        <a href="../article/volunteer-help-midcamp.html" title="Volunteer!">Volunteer!</a>
+            </li>
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2019/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../../2020/news.html" data-drupal-link-system-path="2020/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--attendees">
+        <a href="../attendees.html" data-drupal-link-system-path="2019/attendees">Attendees</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" data-drupal-link-system-path="2019/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--spread-the-word">
+        <a href="../article/spread-word.html" data-drupal-link-system-path="node/371">Spread the Word</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" title="Sponsors" data-drupal-link-system-path="node/197">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--become-a-sponsor">
+        <a href="../sponsor-midcamp.html" title="Sponsor MidCamp" data-drupal-link-system-path="node/186">Become a Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../../jobs.html" title="Jobs" data-drupal-link-system-path="jobs">Jobs</a>
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" title="Schedule" data-drupal-link-system-path="node/190">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--all-sessions">
+        <a href="../sessions.html" data-drupal-link-system-path="2019/sessions">All Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--summits--training-wed">
+        <a href="../schedule/wednesday.html" title="Summits &amp; Training (Wednesday)" data-drupal-link-system-path="2019/schedule/wednesday">Summits &amp; Training (Wed)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-thu">
+        <a href="../schedule/thursday.html" title="Sessions (Thursday)" data-drupal-link-system-path="2019/schedule/thursday">Sessions (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-fri">
+        <a href="../schedule/friday.html" title="Sessions (Friday)" data-drupal-link-system-path="2019/schedule/friday">Sessions (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--contribution-sat-">
+        <a href="../contribution-day.html" title="Contribution Day" data-drupal-link-system-path="node/332">Contribution (Sat) </a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-terms-and-conditions">
+        <a href="../../speaker-terms-and-conditions.html" title="Speaker Terms and Conditions" data-drupal-link-system-path="node/21">Speaker Terms and Conditions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../../speaker-resources.html" title="Speaker Resources">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--topic-tracks">
+        <a href="../../topic-tracks.html" title="Topic Tracks" data-drupal-link-system-path="node/10">Topic Tracks</a>
+            </li>
+  </ul>
+
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2019.html" hreflang="en">MidCamp 2019</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">An External Design System in Practice</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="240" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2019-03-21T19:50:00Z" class="datetime">Thursday, 2:50 pm CDT</time>
+ - <time datetime="2019-03-21T20:20:00Z" class="datetime">Thursday, 3:20 pm CDT</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-84" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-name field--type-string field--label-hidden field__item">Room 325</div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>When developing a pattern library or design system that will be used in support of a Drupal project, a key decision must be made regarding where the design system should live. Conceptually, many agree that it should be an external dependency of a Drupal theme in order to promote reuse, but a large number of projects still embed the design system inside of the theme in order to simplify workflow and component integration.</p>
+
+<p>While in the past I’ve occasionally found it difficult to justify developing a design system independently from Drupal, on a recent rebranding project I made the case to configure a workflow using this approach. At the start, our plan was to migrate 3 sites into Drupal 8. By the end of the project we ended up with a partial migration to Drupal 8, with two supporting sites still in WordPress - all under the same brand and using the exact same components. In the middle it became apparent that choosing to use an external design system up front allowed us to make decisions that would have otherwise been impossible, and had a major impact on our ability to still hit our planned launch date as the project evolved.</p>
+
+<p>In reviewing this rebranding effort, we’ll take a closer look at our approach to a shared design system including:</p>
+
+<ul>
+	<li>
+	<p>The structure of our design system repository</p>
+	</li>
+	<li>
+	<p>Requiring the design system in your Drupal project as a composer dependency</p>
+	</li>
+	<li>
+	<p>Workflow and managing releases</p>
+	</li>
+	<li>
+	<p>Using Twig components in WordPress with the Timber Plugin</p>
+	</li>
+	<li>
+	<p>Challenges and areas for future improvement</p>
+	</li>
+</ul>
+
+<p>By the end of this session you will have a better understanding of when using an external design system could benefit your project, along with a clearer understanding of how this approach could be implemented.</p>
+
+<p>Slides:&nbsp;<a href="http://bit.ly/external-ds">http://bit.ly/external-ds</a></p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/PclAoJ9aqvs?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Brian Perry</h4>
+
+      Founding Engineer
+
+
+          @
+              <a href="https://www.actual.ai/">Actual AI</a>
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p>Brian is a versatile developer with experience building complex, interactive web applications in support of large-scale localized sites. Recently he has focused his efforts on evolving Drupal front-end development practices, decoupled Drupal, and style guide development techniques and has spoken on the topic at various Drupal events. Brian is a Drupal 7 and Drupal 8 Acquia Certified Grand Master and loves all things Nintendo.</p>
+</div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2018-12/profile_crop.jpg%3Fitok=oEUbNaMX" width="220" height="220" alt="Brian Perry" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Design</div>
+          <div class="field__item">Front-End</div>
+              </div>
+      </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p>- [Brian] Hey everybody!</p>
+
+<p>This is an external<br>
+design system in practice.</p>
+
+<p>Hopefully you're in the right place.</p>
+
+<p>If not, we can just take the chairs</p>
+
+<p>that we put out and put them back.</p>
+
+<p>(laughter)</p>
+
+<p>I am Brian Perry.</p>
+
+<p>I'm a lead front end<br>
+developer at Bounteous.</p>
+
+<p>I live in the Chicago suburbs,</p>
+
+<p>which is more relevant to say</p>
+
+<p>when you are speaking at other camps.</p>
+
+<p>Substantially less interesting here.</p>
+
+<p>I'm a lover of all things<br>
+component and component-driven,</p>
+
+<p>so building with components in Drupal,</p>
+
+<p>design systems, tools like Pattern Lab,</p>
+
+<p>increasingly building with<br>
+component-based frameworks,</p>
+
+<p>JAMStack frameworks like React.</p>
+
+<p>I also love all things Nintendo.</p>
+
+<p>Little Mario on my shoulder there.</p>
+
+<p>So how do you talk about the cool games</p>
+
+<p>that you're playing on<br>
+your Nintendo Switch?</p>
+
+<p>I'm playing Hollow Knight and Tetris 99.</p>
+
+<p>Turns out Tetris is awesome<br>
+again, so that's cool.</p>
+
+<p>I also love learning lately about JAMStack</p>
+
+<p>and static sites, and kind<br>
+of alternative approaches</p>
+
+<p>to the traditional LAMP<br>
+stack that we're used to.</p>
+
+<p>I'll be talking about<br>
+that tomorrow morning</p>
+
+<p>if you want to hear me<br>
+talk about more things,</p>
+
+<p>and if you don't, I get it.</p>
+
+<p>(laughter)</p>
+
+<p>So I work at a company called Bounteous</p>
+
+<p>as I mentioned and we have<br>
+great Drupal practice.</p>
+
+<p>I work with a bunch of super smart folks,</p>
+
+<p>learn a ton of things from everybody.</p>
+
+<p>Drupal's one of a handful of things</p>
+
+<p>that we do that will come up later.</p>
+
+<p>We also are hiring.</p>
+
+<p>I think we have an open architectural,</p>
+
+<p>so I would love to work with you as well.</p>
+
+<p>You may not know Bounteous,<br>
+you may not know me</p>
+
+<p>as someone who works at a<br>
+company called Bounteous</p>
+
+<p>and that is because we recently rebranded.</p>
+
+<p>We used to be HS2 Solutions.</p>
+
+<p>This was my company intro slide back then.</p>
+
+<p>That's actually gonna kinda drive</p>
+
+<p>some of the discussion in this talk.</p>
+
+<p>So we're gonna talk<br>
+about a rebranding story</p>
+
+<p>that kind of leads to the concept of using</p>
+
+<p>an external design system<br>
+and kinda keeping it</p>
+
+<p>outside of Drupal.</p>
+
+<p>I worked on our project<br>
+to rebuild our website</p>
+
+<p>as part of the rebrand.</p>
+
+<p>So we're going from HS2<br>
+Solutions to Bounteous.</p>
+
+<p>Two different looking websites.</p>
+
+<p>And we're aiming for November 5, 2018</p>
+
+<p>for the brand launch and the website,</p>
+
+<p>although day to day didn't<br>
+necessarily feel like this to me,</p>
+
+<p>but the website was one small part</p>
+
+<p>in a larger, coordinated effort.</p>
+
+<p>There were other things that<br>
+had to happen on November 5.</p>
+
+<p>Press releases, new email<br>
+addresses, business cards,</p>
+
+<p>company swag, all that stuff.</p>
+
+<p>And then as part of this<br>
+process, we were migrating</p>
+
+<p>a few sites into a new Drupal 8 build</p>
+
+<p>so the HS2 Solutions site was on Drupal 7</p>
+
+<p>and then part of the rebrand,<br>
+we acquired a few companies</p>
+
+<p>and we're also migrating their<br>
+data into this Drupal 8 site.</p>
+
+<p>There's the LunaMetric<br>
+site which is on WordPress,</p>
+
+<p>and also Infield Digital,<br>
+which is also on WordPress.</p>
+
+<p>Nate kinda took the<br>
+lead on the migrations.</p>
+
+<p>It was mostly the blog content<br>
+that was being migrated in</p>
+
+<p>because we were rebranding<br>
+some of the other content</p>
+
+<p>and other components were kind of</p>
+
+<p>being built from scratch<br>
+in the new Drupal 8 site</p>
+
+<p>but mostly blog content coming over.</p>
+
+<p>So while that's going<br>
+on, at the same time,</p>
+
+<p>I was working with the XD teams,</p>
+
+<p>specifically Leon was<br>
+leading the charge here,</p>
+
+<p>and he was doing wire frames in Sketch</p>
+
+<p>and sharing them in InVision,</p>
+
+<p>and I was doing my best to follow along</p>
+
+<p>at the same time in Pattern Lab,</p>
+
+<p>to get some of those proto-types in codes,</p>
+
+<p>so we could see them in browser,</p>
+
+<p>experiment different break points</p>
+
+<p>and just kind of follow along, play along.</p>
+
+<p>Hopefully influence the wire framing</p>
+
+<p>in a way that was helpful.</p>
+
+<p>So I was doing that in Pattern Lab</p>
+
+<p>and that process kind of continued,</p>
+
+<p>so we moved on to, from the wire frames</p>
+
+<p>to some higher fidelity mocks,</p>
+
+<p>adding more of the look and feel there.</p>
+
+<p>So I was taking those prototypes</p>
+
+<p>and again, just trying to come along</p>
+
+<p>and play along at the same time.</p>
+
+<p>So we reached the point here where we have</p>
+
+<p>some data migrated into<br>
+the new Drupal 8 site.</p>
+
+<p>We have this separate repository</p>
+
+<p>with these Pattern Lab<br>
+prototypes and twig templates,</p>
+
+<p>and compiled CSS and Java script.</p>
+
+<p>So now the question comes.</p>
+
+<p>How are we gonna make<br>
+use of this in Drupal,</p>
+
+<p>or as I put it here,</p>
+
+<p>cryptically deciding<br>
+where to put the mustard,</p>
+
+<p>because I have a ridiculous<br>
+metaphor to explain this.</p>
+
+<p>So it's the concept of mustardayonnaise,</p>
+
+<p>and if you know what that reference is,</p>
+
+<p>I give you a big thumbs up.</p>
+
+<p>It's a sketch comedy deep cut.</p>
+
+<p>Versus having mustard and mayonnaise</p>
+
+<p>as things that are separate</p>
+
+<p>instead of intertwined in one single jar.</p>
+
+<p>What I had actually done,<br>
+typically in the past,</p>
+
+<p>taking a component based<br>
+approach to Drupal theming,</p>
+
+<p>is to embed Pattern Lab as a tool,</p>
+
+<p>kind of inside of our theme.</p>
+
+<p>And then also a number<br>
+of the component based</p>
+
+<p>or Pattern Lab based contrib themes</p>
+
+<p>out there do the same thing.</p>
+
+<p>I think it was kind of a<br>
+common approach in general.</p>
+
+<p>It has some pluses.</p>
+
+<p>So it's probably easier to get<br>
+at the components in Drupal</p>
+
+<p>if it's just all in the theme,</p>
+
+<p>where you expect things to be.</p>
+
+<p>Potentially simplifies the build process</p>
+
+<p>on the Drupal side in some ways,</p>
+
+<p>and for people who are used to</p>
+
+<p>just looking in their Drupal theme</p>
+
+<p>and finding the files there.</p>
+
+<p>It might be easier for them<br>
+to wrap their heads around.</p>
+
+<p>One of the potential<br>
+disadvantages to this approach</p>
+
+<p>is it's prone to Drupal specific things</p>
+
+<p>making their way into the components.</p>
+
+<p>If you're using Pattern Lab,<br>
+Pattern Lab has to account for</p>
+
+<p>but also it starts to<br>
+make these components</p>
+
+<p>things that aren't reusable<br>
+and aren't CMS agnostic.</p>
+
+<p>So depending on your project,</p>
+
+<p>that may be a bad thing, it may not.</p>
+
+<p>Versus where we were</p>
+
+<p>at this particular point in the project.</p>
+
+<p>We had Drupal self mostly<br>
+migrations going on</p>
+
+<p>protecting in a completely<br>
+separate repository</p>
+
+<p>using Pattern Lab as a tool,</p>
+
+<p>so we had separate Drupal repository,</p>
+
+<p>separate design system repository.</p>
+
+<p>Theoretically, we have this design system,</p>
+
+<p>something that could be used<br>
+beyond just use in Drupal.</p>
+
+<p>It could be used in different context.</p>
+
+<p>The question you kind of<br>
+had to figure out here</p>
+
+<p>where do we want to put the mustard?</p>
+
+<p>So I decided to keep the<br>
+mustard separate in this case,</p>
+
+<p>not going with Heinz MayoMust,</p>
+
+<p>which is actually a real thing</p>
+
+<p>that they're going to start selling</p>
+
+<p>if you didn't hear that recently.</p>
+
+<p>I'm sure it tastes great.</p>
+
+<p>I think this has a better<br>
+shot at keeping the components</p>
+
+<p>kind of CMS or Drupal agnostic.</p>
+
+<p>I think it does, it kind of depends</p>
+
+<p>on your work flow and approach.</p>
+
+<p>I think it might encourage prototyping</p>
+
+<p>and so it's not entwined into Drupal</p>
+
+<p>and I think if it's embedded in the theme</p>
+
+<p>it's more likely that people are going</p>
+
+<p>to hack things together<br>
+and see it in Drupal</p>
+
+<p>rather than taking advantage</p>
+
+<p>of these Pattern Lab prototypes</p>
+
+<p>that can be mixed and matched<br>
+and played around with.</p>
+
+<p>It also already was a separate project,</p>
+
+<p>so it's potentially the don't change</p>
+
+<p>what you're doing approach.</p>
+
+<p>And then there were some gut<br>
+feelings that went into it.</p>
+
+<p>It's always kind of conceptually felt</p>
+
+<p>like the right way to approach this</p>
+
+<p>even if it hasn't been what I've done.</p>
+
+<p>It's advocated by a bunch of folks</p>
+
+<p>in the community who I<br>
+trust as a general approach.</p>
+
+<p>Also, there's the idea<br>
+that it might be something</p>
+
+<p>that we could use for<br>
+other web-related projects</p>
+
+<p>related to our brand,</p>
+
+<p>and also for us it felt<br>
+right for us as a company</p>
+
+<p>because we have a lot of employees</p>
+
+<p>with a diverse set of skills.</p>
+
+<p>These aren't all front end developers</p>
+
+<p>and in fact, I'm sure at this point,</p>
+
+<p>some of these people<br>
+don't work here anymore,</p>
+
+<p>but we do have a lot of people</p>
+
+<p>who can write great CSS<br>
+java script and HTML</p>
+
+<p>but may not be Drupal folks,</p>
+
+<p>and in theory this would allow more people</p>
+
+<p>from throughout the company to contribute</p>
+
+<p>to the design system and<br>
+contribute to our site</p>
+
+<p>in some interesting ways.</p>
+
+<p>Now that we've decided that we're going</p>
+
+<p>to keep the design system separate,</p>
+
+<p>how exactly are we going to go about that</p>
+
+<p>to get it available in Drupal?</p>
+
+<p>So in the design system repository</p>
+
+<p>we need a composer.json file</p>
+
+<p>with just a little bit<br>
+of information in it.</p>
+
+<p>So we need to give the project a name</p>
+
+<p>so we can require it as a dependency.</p>
+
+<p>Give it a description.</p>
+
+<p>And then we also specify a<br>
+type of design system here.</p>
+
+<p>We'll see how that's used in a second.</p>
+
+<p>And then in the Drupal project,</p>
+
+<p>here's how we're pulling in<br>
+this repository as a dependency.</p>
+
+<p>In the repository<br>
+section in composer.json,</p>
+
+<p>we have to let it know<br>
+about the git repository</p>
+
+<p>where the design system project lives.</p>
+
+<p>So right next to the packages.drupal.org.</p>
+
+<p>Just slightly less important,</p>
+
+<p>but right next to it, in<br>
+the repository section.</p>
+
+<p>Under extra here, we<br>
+define an installer type</p>
+
+<p>of design system and in the design system</p>
+
+<p>we said that it was of type design system.</p>
+
+<p>So when we pull that in,</p>
+
+<p>we're just specifying what's gonna happen</p>
+
+<p>with the dependency, where<br>
+we're going to put it.</p>
+
+<p>So we're saying that the design system</p>
+
+<p>goes in the theme in a<br>
+directory called libraries.</p>
+
+<p>Went a little bit back and forth</p>
+
+<p>as to exactly where that should live</p>
+
+<p>and how it should be handled,</p>
+
+<p>but the idea there is hopefully</p>
+
+<p>that's indicating that<br>
+this is a dependency</p>
+
+<p>that you're not supposed to be touching.</p>
+
+<p>Did look at just having it<br>
+in the vendor directory.</p>
+
+<p>There were some issues,</p>
+
+<p>at least in my experience,</p>
+
+<p>of trying to reach in the theme</p>
+
+<p>into kind of deep vendor directories.</p>
+
+<p>And I also wanted this to be a dependency,</p>
+
+<p>not of the theme, but<br>
+of the project itself.</p>
+
+<p>So there's some of the<br>
+complications there.</p>
+
+<p>Once you do that, you can require</p>
+
+<p>that project as a dependency</p>
+
+<p>so we can say composer require</p>
+
+<p>and give a really<br>
+readable short name here,</p>
+
+<p>and we require the design system at dev</p>
+
+<p>for most of the pre-launch cycle.</p>
+
+<p>Then when we want to pull in updates,</p>
+
+<p>we just run composer update.</p>
+
+<p>On the Drupal side here, we have control</p>
+
+<p>of when we actually want to pull in</p>
+
+<p>the latest features and components</p>
+
+<p>of the design system.</p>
+
+<p>We also tag major systems<br>
+in the design system.</p>
+
+<p>We did still, most of the time,</p>
+
+<p>kind of just point at<br>
+the head for the project,</p>
+
+<p>but there were situations</p>
+
+<p>where we did require a specific tag.</p>
+
+<p>It was also helpful a few times</p>
+
+<p>to be able to roll back<br>
+to a particular tag</p>
+
+<p>in the design system, so nice<br>
+that that was possible to do.</p>
+
+<p>We have it now as a dependency.</p>
+
+<p>Here are a couple things that we did</p>
+
+<p>just to take advantage of<br>
+those assets in the theme.</p>
+
+<p>So in our libraries.yml file,</p>
+
+<p>we had a global library that pointed</p>
+
+<p>to the compiled CSS file</p>
+
+<p>and a couple other Java script bundles.</p>
+
+<p>So that just makes that stuff available.</p>
+
+<p>In the info.yml file, using<br>
+the components module,</p>
+
+<p>we defined a few twig namespaces.</p>
+
+<p>So the images namespace<br>
+was really just a shortcut</p>
+
+<p>for some assets that we're<br>
+using throughout the theme.</p>
+
+<p>The others are just the main section</p>
+
+<p>of the atomic folders in the<br>
+Pattern Lab design system.</p>
+
+<p>We're not actually using the<br>
+typical atomic design naming,</p>
+
+<p>but it's kind of in the neighborhood.</p>
+
+<p>At that point, well those<br>
+templates are available to Drupal.</p>
+
+<p>We can reference them in other templates,</p>
+
+<p>all of that good stuff.</p>
+
+<p>Moving on to a little bit<br>
+more of the build as well,</p>
+
+<p>this is kind of a workflow<br>
+that the team fell into</p>
+
+<p>that I thought was useful and interesting.</p>
+
+<p>So we've got Sean here, and<br>
+Sean can certainly Drupal,</p>
+
+<p>but I think what Sean does really well</p>
+
+<p>is write really good<br>
+HTML, CSS and Java script</p>
+
+<p>that may not be particular<br>
+to a certain CMS.</p>
+
+<p>He can really bang that stuff out.</p>
+
+<p>So he works in the design system.</p>
+
+<p>Primarily building out all<br>
+of the additional components</p>
+
+<p>that we needed for launch.</p>
+
+<p>He only ended up having two<br>
+commits in the Drupal project</p>
+
+<p>for the whole time that he worked on it,</p>
+
+<p>but without him, we would<br>
+not have had a theme.</p>
+
+<p>Then Wade was kind of the<br>
+glue man in the middle</p>
+
+<p>who was wiring Drupal<br>
+into those components</p>
+
+<p>and integrating things,</p>
+
+<p>building some things on the back end,</p>
+
+<p>mapping into those components.</p>
+
+<p>So most of his effort was<br>
+in the Drupal repository</p>
+
+<p>but there would be cases where<br>
+he would make adjustments</p>
+
+<p>in the design system,<br>
+either perhaps something</p>
+
+<p>that wasn't really accounted for</p>
+
+<p>when the component was built in isolation</p>
+
+<p>or admittedly, just<br>
+things to make his life</p>
+
+<p>or the life of Drupal just a<br>
+little easier in some cases.</p>
+
+<p>That general split seemed<br>
+to work pretty well</p>
+
+<p>and I think a lot of people to</p>
+
+<p>be efficient and work on some of the stuff</p>
+
+<p>that they are great at working on.</p>
+
+<p>As the project goes on,</p>
+
+<p>there were some interesting<br>
+changes in Scope.</p>
+
+<p>I think the fact that we happen to have</p>
+
+<p>an external design system allowed us</p>
+
+<p>to make some interesting choices</p>
+
+<p>that helped us in the build.</p>
+
+<p>I wish it really wasn't<br>
+much more of a gut feeling</p>
+
+<p>that got us to this point in some ways,</p>
+
+<p>but in hind sight, it really helped a lot.</p>
+
+<p>The LunaMetrics site, they<br>
+offer a number of trainings</p>
+
+<p>and Bounteous still does now,</p>
+
+<p>we actually had Google<br>
+Analytics and Google Tag</p>
+
+<p>management training yesterday,</p>
+
+<p>but they have a training<br>
+section on their website</p>
+
+<p>where they list all the upcoming trainings</p>
+
+<p>and you can register and<br>
+sign up for the trainings</p>
+
+<p>and we reached the point where</p>
+
+<p>the training portion of the site</p>
+
+<p>wasn't gonna be able to be in our scope</p>
+
+<p>with the time line that we had.</p>
+
+<p>There was also some new<br>
+functionality integrations</p>
+
+<p>that were part of the trading section</p>
+
+<p>that we just weren't going to be able</p>
+
+<p>to rebuild in Drupal on the<br>
+time that we needed to do it.</p>
+
+<p>We came to the conclusion<br>
+that we could let</p>
+
+<p>the training section of the<br>
+existing WordPress site live on,</p>
+
+<p>but it was going to have<br>
+to match the look and feel</p>
+
+<p>of the rest of the Drupal 8 site.</p>
+
+<p>We're actually really<br>
+well suited to do that</p>
+
+<p>because we have this<br>
+external design system.</p>
+
+<p>I don't know that we would<br>
+have even been able to do this</p>
+
+<p>without it, or it would have<br>
+been a lot less fun I think.</p>
+
+<p>For that, we worked with Wahila Creative.</p>
+
+<p>They had done the theming of<br>
+the original WordPress site</p>
+
+<p>and were available to handle this re-skin,</p>
+
+<p>and we needed some extra hands.</p>
+
+<p>So they had that familiarity.</p>
+
+<p>They also introduced us<br>
+to the Timber plug in</p>
+
+<p>which is something I had<br>
+never heard of before,</p>
+
+<p>which is pretty awesome,</p>
+
+<p>and it allows you to<br>
+use Twig in WordPress.</p>
+
+<p>I really liked their slogan there,</p>
+
+<p>that because WordPress is<br>
+awesome, but the loop isn't.</p>
+
+<p>For the initial prototype<br>
+that they put together</p>
+
+<p>to show that it would be feasible</p>
+
+<p>to have WordPress training section</p>
+
+<p>look like the rest of our Drupal 8 site,</p>
+
+<p>they used Timber pretty extensively.</p>
+
+<p>So they were actually<br>
+using the Twig templates</p>
+
+<p>from the design system and passing data,</p>
+
+<p>in some cases kind of static into it,</p>
+
+<p>in the initial prototype.</p>
+
+<p>But I think it allowed<br>
+them to move pretty fast</p>
+
+<p>with that initial phase there.</p>
+
+<p>This is just an example<br>
+of what that looks like.</p>
+
+<p>So here on the training page,</p>
+
+<p>we have a listing of upcoming trainings</p>
+
+<p>and each row is a training item component.</p>
+
+<p>So in this training-module.php file here,</p>
+
+<p>there's a wrapping div<br>
+and then a four loop</p>
+
+<p>that goes through the data<br>
+available to the templates</p>
+
+<p>and assembles a training element</p>
+
+<p>and it's essentially just<br>
+an array of all the data</p>
+
+<p>that we want available to that row.</p>
+
+<p>If you look at it, it's<br>
+really not all that different</p>
+
+<p>from the sort of mappings we would do</p>
+
+<p>to pass data into a<br>
+Twig template in Drupal</p>
+
+<p>or a render array or something like that.</p>
+
+<p>In the training-element.php template here,</p>
+
+<p>it has all the data that we<br>
+assembled available to it</p>
+
+<p>and we can actually just say Timber render</p>
+
+<p>provide the Twig template that we want</p>
+
+<p>to render that data using<br>
+and pass the data into it.</p>
+
+<p>The end result we get,<br>
+that training section</p>
+
+<p>using those components.</p>
+
+<p>So we were able to take<br>
+the old LunaMetrics site,</p>
+
+<p>re-skin it to match the<br>
+Bounteous look and feel,</p>
+
+<p>include it in the main-nav,</p>
+
+<p>and have our secret WordPress section.</p>
+
+<p>We did kind of leading up to the launch</p>
+
+<p>I think take a little less advantage</p>
+
+<p>of the Timber functionality<br>
+to take a bit of a more</p>
+
+<p>traditional approach to get<br>
+it across the finish line.</p>
+
+<p>That'll come up a little bit later.</p>
+
+<p>Very close to launch,<br>
+we had another company</p>
+
+<p>join the Bounteous family.</p>
+
+<p>Real close to launch.</p>
+
+<p>That certainly did effect what we were</p>
+
+<p>and were not able to do here.</p>
+
+<p>Demac Media was gonna be<br>
+rebranded as Bounteous.ca</p>
+
+<p>and it was gonna be a smaller scale site,</p>
+
+<p>acknowledging that there was<br>
+gonna be some differences</p>
+
+<p>in the look and feel, partially<br>
+because of the timeline.</p>
+
+<p>It resulted in a more manual<br>
+and more selective use</p>
+
+<p>of the things in the design system,</p>
+
+<p>but it definitely made the<br>
+conversation a lot easier</p>
+
+<p>when some of our teams got together</p>
+
+<p>to talk about what we're gonna do here.</p>
+
+<p>I was able to say</p>
+
+<p>we have this design system project.</p>
+
+<p>It's up on Bitbucket here,<br>
+we can give you access to it.</p>
+
+<p>Explain a little bit about what's there,</p>
+
+<p>what tools are there and<br>
+basically at that point,</p>
+
+<p>they had had the opportunity to use it</p>
+
+<p>however they see fit.</p>
+
+<p>As I mentioned, they kind<br>
+of pulled specific assets</p>
+
+<p>and certain classes from it,</p>
+
+<p>but it's certainly better than them</p>
+
+<p>not having anything and just<br>
+going and scraping our website</p>
+
+<p>or looking at our Drupal<br>
+repository or something.</p>
+
+<p>So I think that helped there too.</p>
+
+<p>Post launch, we made November</p>
+
+<p>and we had our relaunch<br>
+site with the new brand,</p>
+
+<p>pulling in data from the other sites,</p>
+
+<p>our training sites living on,</p>
+
+<p>which was super exciting.</p>
+
+<p>So we continue updates to the site</p>
+
+<p>and post launch fixes<br>
+and things like that.</p>
+
+<p>I rolled off, as far as day to day</p>
+
+<p>and moving on to some other projects</p>
+
+<p>and other folks rolled on.</p>
+
+<p>Kyle and Steve have been doing some work</p>
+
+<p>and now at this point<br>
+the majority of the fixes</p>
+
+<p>and tickets that they're working with</p>
+
+<p>are kind of specific to Drupal</p>
+
+<p>and also probably the external<br>
+design system approach</p>
+
+<p>and some of this workflow<br>
+was kind of new to them.</p>
+
+<p>Paraphrasing here, but I feel like they</p>
+
+<p>kinda got a little bit of the feeling</p>
+
+<p>like why can't I just Drupal?</p>
+
+<p>What's with having to make changes</p>
+
+<p>in the external design<br>
+system and things like that?</p>
+
+<p>Certainly learned some lessons</p>
+
+<p>in the experience of on-boardings</p>
+
+<p>and people to this after the fact.</p>
+
+<p>It really stressed how<br>
+important the documentation is</p>
+
+<p>for something like this.</p>
+
+<p>I did my best to try to<br>
+have details in the read me,</p>
+
+<p>have a lot of MPM scripts<br>
+that are gonna help</p>
+
+<p>with the general workflow<br>
+and build process,</p>
+
+<p>stuff on confluence but I think that</p>
+
+<p>what would have been helpful is actually</p>
+
+<p>more information on not<br>
+just how things are done</p>
+
+<p>but why we're taking this approach</p>
+
+<p>and why it's useful for this project</p>
+
+<p>and the ways that it might be helping us.</p>
+
+<p>This is actually something<br>
+that I was able to get in place</p>
+
+<p>before we rolled new<br>
+people into the project.</p>
+
+<p>It became apparent that we<br>
+needed to improve the process</p>
+
+<p>for people being able to<br>
+experiment within Drupal.</p>
+
+<p>It's pretty cumbersome to have</p>
+
+<p>to make a small little fix in Drupal</p>
+
+<p>and see it on it's feet, to have to go</p>
+
+<p>into the design system,<br>
+make a commit there,</p>
+
+<p>pull things in via composer.</p>
+
+<p>See that it wasn't what you wanted.</p>
+
+<p>So we added some gulp tasks</p>
+
+<p>that basically allow you to clone</p>
+
+<p>the repository alongside<br>
+the Drupal project,</p>
+
+<p>make changes and experiment,<br>
+copy it over to Drupal,</p>
+
+<p>see what the changes are<br>
+and know that that's exactly</p>
+
+<p>what you wanna commit<br>
+to the design system.</p>
+
+<p>It basically just made it easier</p>
+
+<p>to experiment in both places.</p>
+
+<p>You wanna prototype in the design system?</p>
+
+<p>Great, that's what it's suited for.</p>
+
+<p>And if you wanna do some<br>
+more experimentation</p>
+
+<p>for quick fixes in Drupal,</p>
+
+<p>that's a little bit easier too.</p>
+
+<p>So that was pretty important.</p>
+
+<p>When the day to day of your work</p>
+
+<p>is in a particular CMS,<br>
+I do wanna acknowledge</p>
+
+<p>that there is some overhead.</p>
+
+<p>So I think it helped us<br>
+in the lead up to launch</p>
+
+<p>but some overhead after the fact.</p>
+
+<p>So I mentioned the fact that we also did</p>
+
+<p>not take advantage of the Timber approach</p>
+
+<p>exclusively on the WordPress site.</p>
+
+<p>We definitely into things,</p>
+
+<p>I think this is, in a weird way</p>
+
+<p>I was kind of happy to hear this,</p>
+
+<p>but we made visual fixes<br>
+on the Drupal site,</p>
+
+<p>like the hover for the training<br>
+component or something.</p>
+
+<p>And the expectation<br>
+that a change in Drupal</p>
+
+<p>to a component that has a related piece</p>
+
+<p>on the WordPress site is going to work.</p>
+
+<p>So we're working on layering in that more,</p>
+
+<p>but it really wasn't apparent to me</p>
+
+<p>basically how much worth<br>
+the effort it would be</p>
+
+<p>to have that one consistent thing,</p>
+
+<p>because I think this<br>
+is people's expectation</p>
+
+<p>in explaining to people that</p>
+
+<p>oh actually that's the<br>
+WordPress portion of the site.</p>
+
+<p>It's just not what people expect.</p>
+
+<p>So we're trying to<br>
+layer some of that stuff</p>
+
+<p>back on after the fact.</p>
+
+<p>So kind of wrapping up here,</p>
+
+<p>so the kind of question<br>
+that you might be left with</p>
+
+<p>hearing about some of this and<br>
+even me for future projects</p>
+
+<p>is if an external design<br>
+system would be right</p>
+
+<p>and where you should put the mustard</p>
+
+<p>in your particular case.</p>
+
+<p>It's tough, it's kind<br>
+of gonna be something</p>
+
+<p>that's a case by case or<br>
+project by project basis.</p>
+
+<p>I read on the Lullabot blog,</p>
+
+<p>and they had a great<br>
+podcast episode about it,</p>
+
+<p>about their rebuild of Lullabot.com</p>
+
+<p>and very interesting in general,</p>
+
+<p>and it's not directly<br>
+related to the concept</p>
+
+<p>of having an external design system.</p>
+
+<p>They were very intentionally<br>
+trying to focus</p>
+
+<p>with their rebuild on<br>
+trying to keep things</p>
+
+<p>kind of traditional Drupal</p>
+
+<p>and use as much of Core as possible</p>
+
+<p>and really take advantage of the fact</p>
+
+<p>that they have a bunch of Drupal experts.</p>
+
+<p>So that's a case where the overhead</p>
+
+<p>for keeping this external<br>
+might not be worth it,</p>
+
+<p>especially if they don't have ways</p>
+
+<p>they know they're going<br>
+to reuse those components</p>
+
+<p>for other things related<br>
+to the Lullabot brand.</p>
+
+<p>So things that you might<br>
+consider when thinking about this</p>
+
+<p>is if there really is gonna be value</p>
+
+<p>in being able to reuse those components</p>
+
+<p>and even from my<br>
+experience on this project,</p>
+
+<p>it's hard to know for sure.</p>
+
+<p>I didn't really know until<br>
+we were part of the way</p>
+
+<p>through the build and<br>
+some of the scope changed</p>
+
+<p>that this was actually<br>
+gonna be a huge advantage.</p>
+
+<p>Something that I always go back to,</p>
+
+<p>and I always wanna see as much</p>
+
+<p>prototyping and code done as possible,</p>
+
+<p>but the role that prototypes<br>
+play in the project</p>
+
+<p>might influence your decision there.</p>
+
+<p>Is prototyping and code important?</p>
+
+<p>Do you want to publish your<br>
+design system independently?</p>
+
+<p>That's another reason that<br>
+it should live separately.</p>
+
+<p>And other questions are just<br>
+gonna be team composition,</p>
+
+<p>like how is this workflow</p>
+
+<p>gonna fit into your team's workflow?</p>
+
+<p>Is it something that kind of<br>
+works with people's skill sets?</p>
+
+<p>And then the general makeup as well.</p>
+
+<p>Is it gonna allow more<br>
+people to contribute or not?</p>
+
+<p>So again, I don't think there's<br>
+a simple, easy answer here,</p>
+
+<p>but something that you<br>
+kind of have to think of</p>
+
+<p>on a case by case basis.</p>
+
+<p>But again, considering that this site</p>
+
+<p>is something that I'd like<br>
+to be able to see more people</p>
+
+<p>outside of just our Drupal<br>
+folks to be able to pitch in on.</p>
+
+<p>I'm hoping it has some advantages to come,</p>
+
+<p>and again I think it really helped us</p>
+
+<p>in the lead up to launch in some ways</p>
+
+<p>that I just was not<br>
+gonna be able to predict.</p>
+
+<p>That's that, a couple of other things.</p>
+
+<p>There's a Contribution Day<br>
+on Saturday from 10AM to 4PM</p>
+
+<p>and Amy June's gonna be doing a training.</p>
+
+<p>I'm gonna be helping triage some issues</p>
+
+<p>related to the new Admin theme<br>
+that folks are working on,</p>
+
+<p>so I'd love to collaborate with people</p>
+
+<p>who are going to be around on Saturday,</p>
+
+<p>and drink lots of coffee with you.</p>
+
+<p>Additionally, there is a feedback<br>
+form on the session node,</p>
+
+<p>also a link to the slides if<br>
+you want to check them out</p>
+
+<p>outside of this, but I'd love<br>
+to hear everybody's feedback.</p>
+
+<p>This is my first time giving this talk.</p>
+
+<p>I hope to give it again,</p>
+
+<p>so it would be awesome<br>
+to hear your thoughts.</p>
+
+<p>And then thanks and questions?</p>
+
+<p>Like two and a half<br>
+minutes worth of questions.</p>
+
+<p>Yes?</p>
+
+<p>- So the design system that you have</p>
+
+<p>is published independently.</p>
+
+<p>Is it more like Pattern Lab,</p>
+
+<p>where it's a little bit<br>
+more developer focused?</p>
+
+<p>Or is it more like Brad<br>
+Frost's Style Guide guide</p>
+
+<p>kind of situation, where<br>
+it's more marketing</p>
+
+<p>and editorial focused?</p>
+
+<p>- The question was if the<br>
+external design system</p>
+
+<p>was more like Pattern Lab<br>
+and more of a developer tool,</p>
+
+<p>or more like Brad Frost's<br>
+Style Guide guide,</p>
+
+<p>which is more of a<br>
+potentially marketing tool,</p>
+
+<p>and kind of more broad documentation.</p>
+
+<p>More Pattern Lab.</p>
+
+<p>I did actually work on trying to integrate</p>
+
+<p>the Style Guide guide project as well</p>
+
+<p>and kind of just ran out of time there.</p>
+
+<p>I am definitely a big<br>
+believer in that concept,</p>
+
+<p>of there being able to be a place</p>
+
+<p>for a developer to experiment,</p>
+
+<p>and a place for clean, clear<br>
+component documentation,</p>
+
+<p>but a lot of stuff going on.</p>
+
+<p>Yes?</p>
+
+<p>- It seems like this would be useful</p>
+
+<p>even if you were just<br>
+doing a headless Drupal,</p>
+
+<p>or progressive Lab app,<br>
+even if you didn't have</p>
+
+<p>WordPress to build.</p>
+
+<p>- Yup, I would agree with that.</p>
+
+<p>The comment was it seems<br>
+like it would be useful</p>
+
+<p>if you were doing a headless build.</p>
+
+<p>Yeah, I agree.</p>
+
+<p>It kinda depends a little bit<br>
+on the different frameworks</p>
+
+<p>you're using and things like that.</p>
+
+<p>One thing that I'm considering<br>
+on a current project</p>
+
+<p>that has a react component to it,</p>
+
+<p>I've been looking through<br>
+a few people's prodding,</p>
+
+<p>I think it's CSS modules,<br>
+which is a CSS and JS option,</p>
+
+<p>but what I think that<br>
+actually worked pretty well</p>
+
+<p>with a design system like this</p>
+
+<p>where you have individual<br>
+component CSS files</p>
+
+<p>that you can pull into the<br>
+Java script components.</p>
+
+<p>That was a weird, twisty, long-winded way</p>
+
+<p>to agree with you, I guess.</p>
+
+<p>(laughter)</p>
+
+<p>Yes?</p>
+
+<p>- So you mentioned that one of the pros</p>
+
+<p>of having them integrated is that...</p>
+
+<p>You said Drupal agnostic, or CMS agnostic</p>
+
+<p>to have it separate.</p>
+
+<p>And so in my experience,<br>
+there's always been a case of</p>
+
+<p>getting the Pattern Lab<br>
+templates to work in Drupal</p>
+
+<p>required some special<br>
+stuff to make it work.</p>
+
+<p>So I'm wondering with keeping it agnostic,</p>
+
+<p>how then did you make it work into Drupal?</p>
+
+<p>Did you have to modify the templates</p>
+
+<p>in the Drupal theme there,</p>
+
+<p>or did you just kind<br>
+of avoid those pitfalls</p>
+
+<p>as much as you could?</p>
+
+<p>(laughter)</p>
+
+<p>- Yeah, and also probably<br>
+because we're wrapping up in time</p>
+
+<p>is something we can follow up with later,</p>
+
+<p>because that's probably<br>
+a larger discussion,</p>
+
+<p>but the question is really about</p>
+
+<p>how we integrated the Drupal<br>
+data into the components</p>
+
+<p>and how we did that successfully.</p>
+
+<p>Yeah, there could actually<br>
+probably be a separate talk</p>
+
+<p>about that particular question,</p>
+
+<p>but along the way, I<br>
+think we learned some ways</p>
+
+<p>that we could build our component</p>
+
+<p>that were not Drupal-ly in a way?</p>
+
+<p>But a little bit easier to integrate into.</p>
+
+<p>Some lessons learned there,</p>
+
+<p>but I think that there were<br>
+some tricks that we learned</p>
+
+<p>about how we could, like a simple example,</p>
+
+<p>and this is something that I've given</p>
+
+<p>as examples in previous talks,</p>
+
+<p>but something like an image,</p>
+
+<p>rather than having individual slots</p>
+
+<p>for the image path and the<br>
+alt text and those things,</p>
+
+<p>if we use a higher level variable,</p>
+
+<p>just like an image variable,</p>
+
+<p>we can just let Drupal<br>
+do what it does well,</p>
+
+<p>and spit that out in there,</p>
+
+<p>and that's the situation<br>
+where Drupal, or WordPress,</p>
+
+<p>they can just give an image,</p>
+
+<p>and we don't have to be as worried about</p>
+
+<p>the individual pieces<br>
+and parts of the CMSes</p>
+
+<p>and how they pass into that.</p>
+
+<p>Yeah, I'd love to talk more about that.</p>
+
+<p>Yes?</p>
+
+<p>- Quick question.</p>
+
+<p>So now that it's sort of<br>
+like decoupled from Drupal,</p>
+
+<p>what about taking that<br>
+another step forward</p>
+
+<p>and decoupling the different components</p>
+
+<p>within the system, sort of<br>
+like what Bolt does right now</p>
+
+<p>where you can include just<br>
+the elements that you need</p>
+
+<p>to keep your CSS and<br>
+java script load down?</p>
+
+<p>- Yeah, so that question<br>
+slash comment was about</p>
+
+<p>doing something like the Bolt system</p>
+
+<p>or other design systems<br>
+where you can require</p>
+
+<p>individual components.</p>
+
+<p>Yeah, I also think that is<br>
+an interesting and cool idea</p>
+
+<p>and just one we weren't able to tackle.</p>
+
+<p>We're up on time.</p>
+
+<p>Happy to talk more after<br>
+this or throughout, thanks.</p>
+
+<p>(applause)</p>
+
+<p>Captions made possible by ClarityPartners.com. Chicago area Drupal consultants</p>
+
+<p><a href="../sponsor/clarity-partners.html"><img src="../../sites/default/files/2020-02/CFDFAA23-5C59-4C07-9C66-CAFFE0CF3854.png" style="max-width:300px;"></a></p>
+</div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-4ceff85f277cb2cc6f7939664415ca2d1ffde61a92abb2b418639c22b18f122f">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/240">https://mid.camp/240</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-9f82865935186667c4f1798264fa71cafd6bf2ba34bd252639ef71fe125a01f8">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/elevated-third.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-11/elevated-third-logo_0.png" width="220" height="220" alt="elevated third logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/pantheon.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-11/pantheon-logo-color@2x.png" width="960" height="354" alt="Pantheon" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/acquia.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2019-03/Acquia_no_tagline.png" width="450" height="94" alt="Acquia" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#563f383039163b3f3235373b2678392431"><span class="__cf_email__" data-cfemail="4c25222a230c2125282f2d213c62233e2b">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/240","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_llBcjrkrgAu2wT1DR7VGL_iP6geJyiTnF_8O5ZD57VI.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJxLz89Pz0mNT8xLzKksyUwu1k9HE9DJSCwpSS3ST8_JT0rM0c0qBgAByBPW"></script>
+
+  </body>
+</html>

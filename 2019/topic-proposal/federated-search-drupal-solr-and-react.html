@@ -1,0 +1,3467 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="With the announcement that the Google Search Appliance was End of Life, many universities started looking around for replacement options. At Palantir, we wanted to provide an open source option that could solve the following needs:" />
+<link rel="canonical" href="federated-search-drupal-solr-and-react.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Federated Search with Drupal, Solr, and React | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Federated Search with Drupal, Solr, and React | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_Qoyy92GHt9RyGOt8N3WS_9HRsJcJBywJ2IhXudzvST4.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJw9jFEKwzAMQy-ULkcqTqx2AaceUdbRnX6hpfsRTzyhbEIeMQkR8sVLsT9XkLKCd99ch_OGQa2KlS_CU3pHi6t5EpsyGXiwo16ne1H4jJqg81JgGhv48o1lx3TKMcGH8cxHdX0bfg1uOh4.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_QAC1R0aFoF1mIVQtLAaSE24B2iwnT2ZCa0cZDeZsPV0.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJw9jFEKwzAMQy-ULkcqTqx2AaceUdbRnX6hpfsRTzyhbEIeMQkR8sVLsT9XkLKCd99ch_OGQa2KlS_CU3pHi6t5EpsyGXiwo16ne1H4jJqg81JgGhv48o1lx3TKMcGH8cxHdX0bfg1uOh4.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJw9jFEKwzAMQy-ULkcqTqx2AaceUdbRnX6hpfsRTzyhbEIeMQkR8sVLsT9XkLKCd99ch_OGQa2KlS_CU3pHi6t5EpsyGXiwo16ne1H4jJqg81JgGhv48o1lx3TKMcGH8cxHdX0bfg1uOh4.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJw9jFEKwzAMQy-ULkcqTqx2AaceUdbRnX6hpfsRTzyhbEIeMQkR8sVLsT9XkLKCd99ch_OGQa2KlS_CU3pHi6t5EpsyGXiwo16ne1H4jJqg81JgGhv48o1lx3TKMcGH8cxHdX0bfg1uOh4.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="federated-search-drupal-solr-and-react.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-hatter-midcamp2019navigation-menu" id="block-hatter-midcamp2019navigation" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-midcamp2019navigation-menu">Midcamp 2019 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" title="About MidCamp" data-drupal-link-system-path="node/191">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--venue">
+        <a href="../about/venue.html" data-drupal-link-system-path="node/192">Venue</a>
+            </li>
+          <li class="primary-nav__sublist-item item--travel">
+        <a href="../about/travel.html" title="Travel and Accommodations" data-drupal-link-system-path="node/188">Travel</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../about/lunch.html" title="Lunch options" data-drupal-link-system-path="node/189">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--volunteer">
+        <a href="../article/volunteer-help-midcamp.html" title="Volunteer!">Volunteer!</a>
+            </li>
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2019/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../../2020/news.html" data-drupal-link-system-path="2020/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--attendees">
+        <a href="../attendees.html" data-drupal-link-system-path="2019/attendees">Attendees</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" data-drupal-link-system-path="2019/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--spread-the-word">
+        <a href="../article/spread-word.html" data-drupal-link-system-path="node/371">Spread the Word</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" title="Sponsors" data-drupal-link-system-path="node/197">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--become-a-sponsor">
+        <a href="../sponsor-midcamp.html" title="Sponsor MidCamp" data-drupal-link-system-path="node/186">Become a Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../../jobs.html" title="Jobs" data-drupal-link-system-path="jobs">Jobs</a>
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" title="Schedule" data-drupal-link-system-path="node/190">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--all-sessions">
+        <a href="../sessions.html" data-drupal-link-system-path="2019/sessions">All Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--summits--training-wed">
+        <a href="../schedule/wednesday.html" title="Summits &amp; Training (Wednesday)" data-drupal-link-system-path="2019/schedule/wednesday">Summits &amp; Training (Wed)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-thu">
+        <a href="../schedule/thursday.html" title="Sessions (Thursday)" data-drupal-link-system-path="2019/schedule/thursday">Sessions (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-fri">
+        <a href="../schedule/friday.html" title="Sessions (Friday)" data-drupal-link-system-path="2019/schedule/friday">Sessions (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--contribution-sat-">
+        <a href="../contribution-day.html" title="Contribution Day" data-drupal-link-system-path="node/332">Contribution (Sat) </a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-terms-and-conditions">
+        <a href="../../speaker-terms-and-conditions.html" title="Speaker Terms and Conditions" data-drupal-link-system-path="node/21">Speaker Terms and Conditions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../../speaker-resources.html" title="Speaker Resources">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--topic-tracks">
+        <a href="../../topic-tracks.html" title="Topic Tracks" data-drupal-link-system-path="node/10">Topic Tracks</a>
+            </li>
+  </ul>
+
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2019.html" hreflang="en">MidCamp 2019</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Federated Search with Drupal, Solr, and React</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="272" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2019-03-22T14:00:00Z" class="datetime">Friday, 9:00 am CDT</time>
+ - <time datetime="2019-03-22T15:00:00Z" class="datetime">Friday, 10:00 am CDT</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-83" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-name field--type-string field--label-hidden field__item">Room 324</div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>With the announcement that the Google Search Appliance was End of Life, many universities started looking around for replacement options. At Palantir, we wanted to provide an open source option that could solve the following needs:</p>
+
+<ul>
+	<li>A simple way to store, retrieve, and parse content.</li>
+	<li>A cross-platform search application.</li>
+	<li>A speedy, usable, responsive front-end.</li>
+	<li>A flexible, extensible, reusable model.</li>
+	<li>A drop-in replacement for deprecated Google Products</li>
+</ul>
+
+<p>Working with the University of Michigan, we architected and developed a solution. You can read more about it at&nbsp;<a href="https://www.palantir.net/blog/introducing-federated-search">https://www.palantir.net/blog/introducing-federated-search</a>&nbsp;and come to our session for a live demo.</p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/j56lsIje6qA?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-presenter-slides field--type-file field--label-above">
+    <div class="field__label">Presenter Slides</div>
+              <div class="field__item">
+<span class="file file--mime-application-pdf file--application-pdf"> <a href="../../sites/default/files/2019-03/Federated%20Search%20-%20MidCamp%202019.pdf" type="application/pdf">Federated Search - MidCamp 2019.pdf</a></span>
+</div>
+          </div>
+
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Matthew Carmichael</h4>
+
+      Engineer
+
+
+          @
+              <a href="https://www.palantir.net/">Palantir.net</a>
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p>Engineer responsible for the logical back-end and core computational logic of a website.  Outside of work I love woodworking and playing basketball and softball!</p>
+</div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2019-03/headshot.jpg%3Fitok=ocwqgl-7" width="220" height="220" alt="Matt Carmichael Headshot" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+          <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Dan Montgomery</h4>
+
+      Senior Engineer and Technical Architect
+
+
+          @
+              <a href="https://www.palantir.net">Palantir.net</a>
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p>Technical Architect with an interest in Drupal and frontend technologies like React. Outside of work I love playing board games and video games and trying out different craft hobbies.</p>
+</div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2018-12/dan-portrait-square.jpg%3Fitok=btzgkb9C" width="220" height="220" alt="Dan Montgomery" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Back-End</div>
+          <div class="field__item">Front-End</div>
+              </div>
+      </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p>[Matt] Hey everyone,</p>
+
+<p>we're here to talk about Federated Search</p>
+
+<p>with Drupal, Solr, and React.</p>
+
+<p>And just a little bit about that.</p>
+
+<p>This is sort of our solution<br>
+for the void that was left</p>
+
+<p>in the Google Search<br>
+appliance and things like that</p>
+
+<p>they stopped supporting that,</p>
+
+<p>so a lot of our clients had to figure out</p>
+
+<p>what they were gonna do<br>
+with their search solutions,</p>
+
+<p>and this is what we came up with.</p>
+
+<p>So just a bit on what<br>
+we're gonna be doing today,</p>
+
+<p>obviously introductions,</p>
+
+<p>we're gonna do a project overview,</p>
+
+<p>why did we build this and<br>
+what exactly did we build.</p>
+
+<p>I'm gonna show you it.</p>
+
+<p>We're gonna show you a<br>
+little bit on how it works,</p>
+
+<p>we're not gonna go too in depth,</p>
+
+<p>we're just gonna explain the components.</p>
+
+<p>And we're gonna show you how you</p>
+
+<p>can get started using it on your sites,</p>
+
+<p>and then answer any questions<br>
+that you guys have at the end,</p>
+
+<p>hopefully answer those questions.</p>
+
+<p>So Dan and I both work for Palantir.net,</p>
+
+<p>Palantir.net is a digital consultancy</p>
+
+<p>who provides web strategy, design,</p>
+
+<p>develop and development<br>
+services to clients</p>
+
+<p>and higher ed healthcare,<br>
+government and beyond.</p>
+
+<p>So that's our team up there.</p>
+
+<p>And my name is Matt Carmichael,</p>
+
+<p>I am an engineer at Palantir.net,</p>
+
+<p>I've been working with Drupal<br>
+for about three years now.</p>
+
+<p>I mostly do backend work,</p>
+
+<p>I do a little bit of front end work.</p>
+
+<p>This project actually got me<br>
+really interested in React,</p>
+
+<p>that's one of the components that it uses,</p>
+
+<p>so I've been trying to learn a lot</p>
+
+<p>about that lately as well.</p>
+
+<p>- [Dan] And I am Dan Montgomery,</p>
+
+<p>I am a senior engineer and<br>
+technical architect at Palantir.</p>
+
+<p>When I get a chance I like to<br>
+work on React a lot as well,</p>
+
+<p>so excited to be here.</p>
+
+<p>- [Matt] So project overview,</p>
+
+<p>as we just alluded to,</p>
+
+<p>this project uses React</p>
+
+<p>to actually display our search results,</p>
+
+<p>it uses Solr as the index,</p>
+
+<p>and then obviously Drupal<br>
+to connect the two,</p>
+
+<p>and we'll go into that a little</p>
+
+<p>bit more throughout this presentation.</p>
+
+<p>But we have been working with the</p>
+
+<p>University of Michigan for a while now,</p>
+
+<p>specifically on their healthcare sites,</p>
+
+<p>so they have a handful of Drupal 7 sites</p>
+
+<p>and a couple of Drupal 8 sites,</p>
+
+<p>I think it's something like six</p>
+
+<p>and two or something like that.</p>
+
+<p>But essentially they<br>
+have a few Drupal sites</p>
+
+<p>that they were using<br>
+Drupal Search Appliance</p>
+
+<p>to get search results from all</p>
+
+<p>of the sites in one result set.</p>
+
+<p>And then when Google<br>
+end-of-lifed that project</p>
+
+<p>they were left with a<br>
+void of what do we do.</p>
+
+<p>We want that same functionality</p>
+
+<p>but we are not sure where<br>
+to get it or how to get it,</p>
+
+<p>so they came to us, us being Palantir.</p>
+
+<p>Our team did a spike</p>
+
+<p>and realized that it's not that difficult</p>
+
+<p>to actually index multiple sites</p>
+
+<p>into the single Solr server.</p>
+
+<p>The issue that they had was</p>
+
+<p>how do you take these sites</p>
+
+<p>that have different content models,</p>
+
+<p>that have different content types,</p>
+
+<p>the taxonomies don't align.</p>
+
+<p>How do they take all<br>
+that and put that into</p>
+
+<p>a unified index.</p>
+
+<p>And the other issue was</p>
+
+<p>how do you display those<br>
+results consistently</p>
+
+<p>In a way that matches the theme obviously,</p>
+
+<p>but how do you display those</p>
+
+<p>consistently across all of the sites.</p>
+
+<p>So like I said,</p>
+
+<p>one of our team members took a few days</p>
+
+<p>to run a spike on that<br>
+and figure things out,</p>
+
+<p>and the Solr--</p>
+
+<p>- [Man] What do you mean by a spike?</p>
+
+<p>- [Matt] What was that?</p>
+
+<p>- [Man] What do you mean by a spike?</p>
+
+<p>- [Matt] Sorry,</p>
+
+<p>he just spun up a couple of Drupal sites</p>
+
+<p>and just dug in there and<br>
+just messed around with things</p>
+
+<p>and figured out what<br>
+solution would be viable.</p>
+
+<p>- [Man] Like a research spike?</p>
+
+<p>- [Matt] Right,</p>
+
+<p>so just figuring out how we could solve</p>
+
+<p>this problem for the client.</p>
+
+<p>And this presentation<br>
+is what we came up with.</p>
+
+<p>So essentially what they want is Google.</p>
+
+<p>It's tough to build<br>
+Google believe it or not,</p>
+
+<p>so we came up with our<br>
+best solution for it,</p>
+
+<p>and one of the tough things</p>
+
+<p>was how Google crawls the websites,</p>
+
+<p>we didn't have the time<br>
+to write the crawler,</p>
+
+<p>So we leveraged Drupal in a couple of ways</p>
+
+<p>to make that a little bit easier to set up</p>
+
+<p>config that will,</p>
+
+<p>as opposed to crawlers crawling a site,</p>
+
+<p>you can map how things will<br>
+map into the index yourself,</p>
+
+<p>and then after that it just<br>
+does the work in indexing.</p>
+
+<p>So again they had the Google</p>
+
+<p>Search Appliance that was end-of-life,</p>
+
+<p>and then there was Google Site Search</p>
+
+<p>that they also discontinued<br>
+when they stopped supporting.</p>
+
+<p>- [Dan] I think one of<br>
+them is you can purchase</p>
+
+<p>a physical hardware<br>
+and host it internally,</p>
+
+<p>and the other one is<br>
+like a similar product,</p>
+
+<p>but I think it's hosted for you,</p>
+
+<p>that's about the main difference.</p>
+
+<p>- [Matt] Yeah, so that's<br>
+what I understand.</p>
+
+<p>So after breaking down their needs</p>
+
+<p>and thinking about what<br>
+solution would work,</p>
+
+<p>these are the parameters</p>
+
+<p>for the unified search<br>
+solution that we came up with.</p>
+
+<p>So one, we needed a simple way to start</p>
+
+<p>retrieving and parsing the data.</p>
+
+<p>Obviously all search<br>
+applications need that.</p>
+
+<p>They needed it to be cross-platform</p>
+
+<p>because they have Drupal</p>
+
+<p>that they wanted to be able<br>
+to search all from one index.</p>
+
+<p>And then they needed it to be speedy,</p>
+
+<p>usable and responsive,</p>
+
+<p>that's where the React side comes in,</p>
+
+<p>we'll show you in the demo in a bit,</p>
+
+<p>but it's super fast, super usable.</p>
+
+<p>And then it obviously<br>
+needed to be flexible</p>
+
+<p>and extensible and reusable.</p>
+
+<p>We didn't want it to be something</p>
+
+<p>that you just drop in<br>
+and it is what it is,</p>
+
+<p>display wise and things<br>
+like that with the facets,</p>
+
+<p>so we made sure that all of the sites</p>
+
+<p>can edit it how they<br>
+needed to lift and work.</p>
+
+<p>And then obviously we wanted it to be</p>
+
+<p>a drop-in replacement<br>
+for the Google projects,</p>
+
+<p>and it's pretty easy to get started on,</p>
+
+<p>and then you can customize it as needed,</p>
+
+<p>so we'll show you that as well.</p>
+
+<p>- [Man] How did you get to the list,</p>
+
+<p>the differences between the things,</p>
+
+<p>was it something that you did on your own,</p>
+
+<p>or did you have interviews with--</p>
+
+<p>- [Matt] What do you mean the differences?</p>
+
+<p>- [Man] So you said there<br>
+was six or seven sites</p>
+
+<p>you were trying to implement this on,</p>
+
+<p>with different stuff,</p>
+
+<p>did you have to figure that out yourself</p>
+
+<p>or did you go through some sort of process</p>
+
+<p>where you were interviewing<br>
+or gathering data</p>
+
+<p>from people at Michigan?</p>
+
+<p>- [Dan] Can you repeat the<br>
+question for the recording?</p>
+
+<p>- [Matt] So the question was</p>
+
+<p>how did we figure out the differences</p>
+
+<p>between the different sites</p>
+
+<p>And how we would have to deal with those</p>
+
+<p>when putting them into the single index.</p>
+
+<p>The way that we did that is by</p>
+
+<p>we did a lot of research on<br>
+just general search applications</p>
+
+<p>and search boxes throughout the web,</p>
+
+<p>so what works best for people,</p>
+
+<p>what results display best<br>
+and the best user experience.</p>
+
+<p>And then we actually built<br>
+this application in a way</p>
+
+<p>where you have the default<br>
+fields that you will see,</p>
+
+<p>and then you're able on<br>
+the Drupal side of things</p>
+
+<p>map each content type.</p>
+
+<p>So for example, there's<br>
+a field Federated Date,</p>
+
+<p>so that will add a facet for date,</p>
+
+<p>and then you can decide are we<br>
+gonna use the published date</p>
+
+<p>are we gonna use the data<br>
+created, things like that,</p>
+
+<p>last updated.</p>
+
+<p>And we're gonna show that in a bit here.</p>
+
+<p>- [Man] Alright, I'm<br>
+getting ahead of myself.</p>
+
+<p>- [Dan] Yeah I think we're,</p>
+
+<p>so there was a couple of different stages</p>
+
+<p>of user testing and collaboration,</p>
+
+<p>so that part there was some<br>
+user testing of the application</p>
+
+<p>to see what people wanted to use the most,</p>
+
+<p>or how they wanted to use it.</p>
+
+<p>There was also I think<br>
+a lot of conversations</p>
+
+<p>with the University of Michigan,</p>
+
+<p>so Avi might have more information.</p>
+
+<p>- [Avi] We had a strategist come in</p>
+
+<p>and work with the client,</p>
+
+<p>this strategist went through all the sites</p>
+
+<p>and took an inventory of<br>
+all the fields in the sites</p>
+
+<p>and then worked with the<br>
+client to reconcile all of that</p>
+
+<p>and figure out what the best way</p>
+
+<p>to put it all together would be.</p>
+
+<p>- [Man] Cool.</p>
+
+<p>- [Avi] So it was both<br>
+an internal discovery</p>
+
+<p>and an external discovery process.</p>
+
+<p>- [Dan] Yeah so for the recording,</p>
+
+<p>what Avi was mentioning was<br>
+there was a strategy phase</p>
+
+<p>at the beginning of the project</p>
+
+<p>where they canvassed all the sites</p>
+
+<p>And did architectural work</p>
+
+<p>to try to figure out how to map</p>
+
+<p>those things for the customer.</p>
+
+<p>Cool.</p>
+
+<p>- [Man] Cool.</p>
+
+<p>- [Dan] That's a very good question.</p>
+
+<p>We're trying to deal<br>
+with some screen stuff</p>
+
+<p>for a second here,</p>
+
+<p>but I think could be bring it back?</p>
+
+<p>I think you can just,</p>
+
+<p>yeah just check it, it should work.</p>
+
+<p>Cool.</p>
+
+<p>- [Matt] So now we're gonna take a minute</p>
+
+<p>to give you a quick live demo.</p>
+
+<p>Sometimes it's hard to follow<br>
+words about these things</p>
+
+<p>so we're just gonna dive in<br>
+and show you how it works.</p>
+
+<p>So this, do you wanna explain this?</p>
+
+<p>- [Dan] Sure, so this<br>
+is a Drupal 8 website,</p>
+
+<p>so we have a demo repo where</p>
+
+<p>we put a bunch of different sites,</p>
+
+<p>this application works<br>
+on Drupal 7 and Drupal 8,</p>
+
+<p>so this demo repo has some internal tools</p>
+
+<p>that Palantir reduces.</p>
+
+<p>Is this kind of small.</p>
+
+<p>It's basically a search box.</p>
+
+<p>So the demo repo is a public<br>
+repo that anybody can download,</p>
+
+<p>you can spin this up,</p>
+
+<p>you get a Drupal 7 site,<br>
+you get a Drupal 8 site,</p>
+
+<p>you get default content,</p>
+
+<p>and then basically for Drupal 8</p>
+
+<p>you get this Umami theme,</p>
+
+<p>which seems like everybody's using</p>
+
+<p>and is super helpful for demos</p>
+
+<p>because you don't have to<br>
+make something for yourself.</p>
+
+<p>And the Drupal 7 site uses</p>
+
+<p>I think develops and likes</p>
+
+<p>to just create some random content.</p>
+
+<p>It also includes a Solr server,</p>
+
+<p>and so we have all that running,</p>
+
+<p>and this is gonna show how this works.</p>
+
+<p>So since it's the Umami site</p>
+
+<p>you could do a search for pasta,</p>
+
+<p>you could see very quickly,</p>
+
+<p>I mean this is all local,</p>
+
+<p>but very quickly the results show up.</p>
+
+<p>And I'm gonna make this<br>
+a little bit bigger.</p>
+
+<p>So you can see the search<br>
+results show up very quickly</p>
+
+<p>with a lot of the common<br>
+features like sorting,</p>
+
+<p>and the counts, the filters<br>
+have been updated on the left.</p>
+
+<p>This is all happening without page reload</p>
+
+<p>since its a React app.</p>
+
+<p>And then you can start<br>
+to see the search results</p>
+
+<p>and we've tagged the sites here</p>
+
+<p>to just indicate that this is<br>
+coming from this demo site,</p>
+
+<p>it's using a Drupal 8 site<br>
+that's using domain access,</p>
+
+<p>so we wanted to make sure that it worked</p>
+
+<p>with those models as well.</p>
+
+<p>And then we are actually on the site here,</p>
+
+<p>so this piece of content</p>
+
+<p>is from the current site that we are on,</p>
+
+<p>and this other piece of<br>
+content is from another site</p>
+
+<p>that's also running on<br>
+the demo environment.</p>
+
+<p>So you're seeing recipes, articles,</p>
+
+<p>it's doing the highlighting,</p>
+
+<p>a lot of the stuff you<br>
+expect out of search results,</p>
+
+<p>and this is all doing<br>
+it without page reload.</p>
+
+<p>So there's also facets,</p>
+
+<p>so there's a couple of<br>
+default facets that come,</p>
+
+<p>with the recent version you can disable</p>
+
+<p>the default if you don't want to use them.</p>
+
+<p>The defaults include things like,</p>
+
+<p>that got formatted a little weird,</p>
+
+<p>but there is minimal<br>
+styling out of the box,</p>
+
+<p>sometimes it looks better than that,</p>
+
+<p>and sometimes it looks a little weird.</p>
+
+<p>So you're seeing the same<br>
+sites that I mentioned before,</p>
+
+<p>and then if you select them</p>
+
+<p>it immediately adds that as a filter</p>
+
+<p>and the results get updated.</p>
+
+<p>So if anybody is familiar,</p>
+
+<p>I think we are all somewhat<br>
+familiar with the React stuff,</p>
+
+<p>it happens immediately,</p>
+
+<p>because it already has a lot of this data.</p>
+
+<p>And so you get very quick responses.</p>
+
+<p>You can deselect that and<br>
+go back to where you were.</p>
+
+<p>You can filter by content type,</p>
+
+<p>I'm not sure what's going<br>
+on with these check boxes.</p>
+
+<p>So you can filter by articles or recipes</p>
+
+<p>that updates the other facets immediately</p>
+
+<p>to only show things that are relevant.</p>
+
+<p>Dates, they have filters.</p>
+
+<p>And then some of the ones<br>
+that are not out of the box</p>
+
+<p>but are configurable are things like,</p>
+
+<p>in this case ingredients<br>
+doesn't apply to all websites,</p>
+
+<p>but it does on this one.</p>
+
+<p>We've added one for pasta,</p>
+
+<p>this is the only one that's<br>
+been tagged with this,</p>
+
+<p>so we can talk about<br>
+that a little bit more.</p>
+
+<p>But the way that these extra filters work</p>
+
+<p>is a little bit more hands-on,</p>
+
+<p>but it's built in a flexible way</p>
+
+<p>to support any kind of site.</p>
+
+<p>So for this Umami site,</p>
+
+<p>we were able to configure that</p>
+
+<p>and add a facet for ingredients,</p>
+
+<p>and then figure out how that works.</p>
+
+<p>But on a site like University<br>
+of Michigan Health,</p>
+
+<p>it doesn't have those same filters.</p>
+
+<p>So it has a lot of, sorry--</p>
+
+<p>- [Matt] We had a question.</p>
+
+<p>- [Man] So if we take a look at this page,</p>
+
+<p>is the filtered part of the React app,</p>
+
+<p>what's React on there,</p>
+
+<p>and what's just performing<br>
+in the background?</p>
+
+<p>- [Matt] So everything you see is React,</p>
+
+<p>essentially the way it's displayed--</p>
+
+<p>- [Dan] Except for this.</p>
+
+<p>- [Matt] Except for, yeah.</p>
+
+<p>So the React is embedded<br>
+in the Drupal site,</p>
+
+<p>all of the search elements are, yeah.</p>
+
+<p>- [Man] So basically the<br>
+content frame is all React</p>
+
+<p>and the rest of the<br>
+container it's in our Drupal?</p>
+
+<p>- [Matt] Right, so we're<br>
+gonna show you a bit later,</p>
+
+<p>all of the markup in this technical file</p>
+
+<p>is just a div with an ID of route,</p>
+
+<p>and then the React app looks for that div</p>
+
+<p>and just dumps all of<br>
+its display in there.</p>
+
+<p>- [Man] Everything below the breadcrumbs.</p>
+
+<p>- [Matt] Right.</p>
+
+<p>- [Man] Is the experience<br>
+for the user any different</p>
+
+<p>if you're logged in</p>
+
+<p>or either you're tagging<br>
+with protected content,</p>
+
+<p>or anything or is it<br>
+just the same experience</p>
+
+<p>whether you are logged in or not?</p>
+
+<p>- [Dan] In terms of the<br>
+search results page?</p>
+
+<p>- [Man] The assets, the<br>
+display, the saves favorite,</p>
+
+<p>is anything different in<br>
+terms of functionality?</p>
+
+<p>- [Dan] Right now there is no<br>
+authenticated user addition,</p>
+
+<p>so this is the same experience.</p>
+
+<p>I'll actually come back to<br>
+that I think in a minute</p>
+
+<p>about what this means,</p>
+
+<p>well I can just jump there.</p>
+
+<p>Like you could put this on any website,</p>
+
+<p>this part of it is not Drupal specific,</p>
+
+<p>there are some things to make the Drupal</p>
+
+<p>implementation easier to set up,</p>
+
+<p>but you could put this<br>
+React app on any website</p>
+
+<p>and it would still pull these<br>
+results in and display them.</p>
+
+<p>So if you have WordPress<br>
+sites in your network</p>
+
+<p>and you wanted to show similar<br>
+results, you could do that.</p>
+
+<p>This part is not Drupal specific.</p>
+
+<p>- [Man] The second part is<br>
+with the different sites</p>
+
+<p>do you have the capability<br>
+to go across sites,</p>
+
+<p>or is it all whatever<br>
+site you're on that's</p>
+
+<p>what it's searching and that's--</p>
+
+<p>- [Dan] No, so in this case</p>
+
+<p>this is an example where this is,</p>
+
+<p>I'll just click on them,</p>
+
+<p>this is one website and<br>
+this is a different website.</p>
+
+<p>So I know that they look pretty similar,</p>
+
+<p>but let me do a better search</p>
+
+<p>and do something that is<br>
+clearly not that site.</p>
+
+<p>So this is the Drupal 7 site.</p>
+
+<p>It just uses that develop content,</p>
+
+<p>so this is an article<br>
+on the Drupal 7 site.</p>
+
+<p>So this was, if you can see<br>
+it's very small I think,</p>
+
+<p>but the domain is D8-1,</p>
+
+<p>which is that domain access website.</p>
+
+<p>This one is just D8<br>
+which is a single site,</p>
+
+<p>and then this website is<br>
+the Drupal 7 site, D7.</p>
+
+<p>So all of these results are<br>
+showing in the search results,</p>
+
+<p>and that was the main use case.</p>
+
+<p>There are features that if you want to</p>
+
+<p>either by default or just period</p>
+
+<p>only search one site for any given site,</p>
+
+<p>those are options as well.</p>
+
+<p>But the default,</p>
+
+<p>I should have repeated the question,</p>
+
+<p>the question was basically</p>
+
+<p>are you limited to searching<br>
+results within one site.</p>
+
+<p>So hopefully that answers that.</p>
+
+<p>Yeah?</p>
+
+<p>- [Matt] The results are just interacting</p>
+
+<p>with the Solr server,</p>
+
+<p>so it is independent of<br>
+what's going on in Drupal</p>
+
+<p>which is what Dan mentioned,</p>
+
+<p>how after the contents index</p>
+
+<p>it's basically just Solr<br>
+and React interacting</p>
+
+<p>and they are just displaying<br>
+on your Drupal site</p>
+
+<p>using that template</p>
+
+<p>that I just mentioned a little while ago.</p>
+
+<p>- [Dan] Yeah, let's jump<br>
+into some of the specifics,</p>
+
+<p>I think these are really good questions,</p>
+
+<p>so if you have them just let us know</p>
+
+<p>or we'll come back to that stuff too.</p>
+
+<p>Okay, I don't know how to do that.</p>
+
+<p>My skills with Google<br>
+Presentations are not always great.</p>
+
+<p>So we've talked about already<br>
+the three components are</p>
+
+<p>Solr, Drupal and React.</p>
+
+<p>Solr is used as the search storage,</p>
+
+<p>Drupal is used in this case to<br>
+create and send the content,</p>
+
+<p>both Drupal 7 and Drupal</p>
+
+<p>and React is used for the presentation.</p>
+
+<p>There's a little bit more,</p>
+
+<p>you could add Drupal again here,</p>
+
+<p>so other versions of this talk</p>
+
+<p>have talked about it as<br>
+the cyclical process.</p>
+
+<p>If you want to know more<br>
+about that talk to Avi.</p>
+
+<p>Where Drupal comes in again</p>
+
+<p>where there is another Drupal module</p>
+
+<p>that is then displaying<br>
+the search results.</p>
+
+<p>So it's involved in the beginning</p>
+
+<p>where its indexing content to Solr,</p>
+
+<p>but then it's also using the<br>
+presentation part as well.</p>
+
+<p>So we just have them listed here once,</p>
+
+<p>but it's used in different ways.</p>
+
+<p>So this is,</p>
+
+<p>so Solr if you have used it before,</p>
+
+<p>it's pretty flexible,</p>
+
+<p>but there is a value in<br>
+having consistent ways</p>
+
+<p>of storing data.</p>
+
+<p>So you can set it up<br>
+where either it will just,</p>
+
+<p>you specify exactly what this schema is</p>
+
+<p>or the fields that your<br>
+gonna index in Solr,</p>
+
+<p>and then you have to<br>
+create content for that.</p>
+
+<p>You might be familiar a little bit,</p>
+
+<p>if you have worked on Aquis search before,</p>
+
+<p>when you've probably<br>
+never configured Solr,</p>
+
+<p>or you may not have<br>
+configured Solr directly.</p>
+
+<p>So Solr also supports a method</p>
+
+<p>where if you send data</p>
+
+<p>and you are telling it<br>
+fields it's never heard of,</p>
+
+<p>it can just create<br>
+those fields on the fly.</p>
+
+<p>In either of those situations</p>
+
+<p>you probably wanna have some<br>
+sort of uniform structure,</p>
+
+<p>and that uniform structure</p>
+
+<p>is one of the bigger challenges</p>
+
+<p>that we were trying to solve for.</p>
+
+<p>And Matt has talked about<br>
+that a little before.</p>
+
+<p>So what we're looking at here,</p>
+
+<p>is that the index,</p>
+
+<p>this is what the index looks<br>
+like at the end of the day</p>
+
+<p>We came up with that uniform structure</p>
+
+<p>where we said everything<br>
+needs certain fields</p>
+
+<p>and then we can use those<br>
+fields in some flexible ways.</p>
+
+<p>So you did see the facets,</p>
+
+<p>and those were ways that</p>
+
+<p>those were used a little more flexibly,</p>
+
+<p>but everything needs<br>
+something like a title,</p>
+
+<p>a date, a type,</p>
+
+<p>so that was a content type.</p>
+
+<p>A lot of content is gonna use images,</p>
+
+<p>they don't have to use images,</p>
+
+<p>but that is something that</p>
+
+<p>a lot of the fields are gonna use.</p>
+
+<p>Rendered items,</p>
+
+<p>like what are we searching<br>
+through primarily,</p>
+
+<p>so are we gonna create a<br>
+version of that content</p>
+
+<p>that is the rendered<br>
+version of that content,</p>
+
+<p>and then we need a URL,</p>
+
+<p>because this could live on any website,</p>
+
+<p>it's not just gonna live<br>
+on the same Drupal site.</p>
+
+<p>And then site name,</p>
+
+<p>in case you want to filter by site names,</p>
+
+<p>and then the site.</p>
+
+<p>- [Man] This is your entire (mumbles).</p>
+
+<p>- [Matt] This is.</p>
+
+<p>- [Dan] I guess I skipped<br>
+over terms, but yeah.</p>
+
+<p>- [Matt] How it works is,</p>
+
+<p>we'll explain how Drupal<br>
+is gonna feed into it.</p>
+
+<p>Pretty much all of your content types</p>
+
+<p>will have this data more or less in them,</p>
+
+<p>and then we'll map to these exact fields.</p>
+
+<p>- [Dan] Yeah,</p>
+
+<p>and I think one of the<br>
+key points to look at here</p>
+
+<p>is that none of this is Drupal specific,</p>
+
+<p>so you can use different Drupal websites,</p>
+
+<p>you can use those different<br>
+versions of Drupal websites</p>
+
+<p>That have different fields,</p>
+
+<p>but you want to create<br>
+this consistent format.</p>
+
+<p>- [Man] So you guys don't,</p>
+
+<p>there is not a description or body?</p>
+
+<p>- [Dan] Yeah, so the equivalent<br>
+here is this rendered item,</p>
+
+<p>and then in the search results before</p>
+
+<p>it was using the highlight pattern,</p>
+
+<p>where it was just<br>
+finding text that matched</p>
+
+<p>and then bolding those words,</p>
+
+<p>which I think were delivered<br>
+by Solr as part of.</p>
+
+<p>Cool.</p>
+
+<p>The question, sorry, I'm<br>
+gonna keep forgetting this.</p>
+
+<p>The question was that there<br>
+is no body field listed here,</p>
+
+<p>and how was that.</p>
+
+<p>Cool.</p>
+
+<p>So if you have used Solr<br>
+before, or if you haven't,</p>
+
+<p>Solr provides this admin interface</p>
+
+<p>which is very, very convenient</p>
+
+<p>if you're doing local development,</p>
+
+<p>and this is what it looks like.</p>
+
+<p>This is what this slide<br>
+particularly is demonstrating,</p>
+
+<p>is the way that Solr formats its data.</p>
+
+<p>It might be a little bit hard to see,</p>
+
+<p>but essentially Solr out-of-the-box</p>
+
+<p>supports exporting data as JSON,</p>
+
+<p>and that's a really convenient way</p>
+
+<p>of importing data into<br>
+Reactive apps or other apps.</p>
+
+<p>So Solr was a good solution,</p>
+
+<p>because we were familiar with<br>
+it from the indexing part,</p>
+
+<p>and also because it's very<br>
+good at sending the data back,</p>
+
+<p>so getting data in and<br>
+sending the data out</p>
+
+<p>is a great way to begin.</p>
+
+<p>And you can see that those same fields</p>
+
+<p>are the ones that are being listed here,</p>
+
+<p>the structure is very simple,</p>
+
+<p>it's basically a couple<br>
+of high-level fields</p>
+
+<p>of how many results there were,</p>
+
+<p>and then it just lists the documents,</p>
+
+<p>Solr calls individual<br>
+pieces of content documents,</p>
+
+<p>and then all the fields with their values.</p>
+
+<p>Alright, so I think,</p>
+
+<p>Matt?</p>
+
+<p>- [Matt] So yeah that's an explanation</p>
+
+<p>of the Solr side of things,</p>
+
+<p>and then next we're gonna<br>
+look at React a little bit.</p>
+
+<p>So actually we found this repo,</p>
+
+<p>Solr faceted search React,</p>
+
+<p>and we found that it actually did</p>
+
+<p>a lot of the sort of work<br>
+that we wanted to do,</p>
+
+<p>so this repo takes the Solr results</p>
+
+<p>and displays them in a very rigid way,</p>
+
+<p>there is one way that it<br>
+gets displayed and it works,</p>
+
+<p>but it's not ideal I guess.</p>
+
+<p>So we actually forked off of this repo</p>
+
+<p>and then made some modifications,</p>
+
+<p>made it a little bit more expandable,</p>
+
+<p>made it theme-able,</p>
+
+<p>and made it our own.</p>
+
+<p>And like Dan said,</p>
+
+<p>React loves to consume JSON,</p>
+
+<p>So it works perfectly with Solr,</p>
+
+<p>and this repo facilitated<br>
+a lot of that work for us.</p>
+
+<p>So here's a look at that<br>
+repo that I just showed you.</p>
+
+<p>You can see it works,</p>
+
+<p>it has facets, it has your results.</p>
+
+<p>Not formatted great but<br>
+it gets the job done.</p>
+
+<p>So we saw this and thought,</p>
+
+<p>this is a good base, let's build on it,</p>
+
+<p>let's add some fields like images</p>
+
+<p>to narrow things down a bit to our liking</p>
+
+<p>to work with those fields<br>
+that Dan just showed you,</p>
+
+<p>and add a little bit more complexity</p>
+
+<p>to the options when dealing with filtering</p>
+
+<p>and facets and things like that.</p>
+
+<p>And it also is MIT licensed for reuse,</p>
+
+<p>so that was good.</p>
+
+<p>And just another note,</p>
+
+<p>our project's no longer dependent on this,</p>
+
+<p>so you don't really have to keep up</p>
+
+<p>with what they are doing on<br>
+this project specifically,</p>
+
+<p>we just used what they had</p>
+
+<p>and we've been maintaining it,</p>
+
+<p>so just a little note,</p>
+
+<p>you don't really have<br>
+to keep track of that.</p>
+
+<p>And then this is what we spun out of it,</p>
+
+<p>you saw the live demo,</p>
+
+<p>just going back and forth,</p>
+
+<p>you can see they are pretty similar,</p>
+
+<p>you have the facets on the left side</p>
+
+<p>and the results on the right.</p>
+
+<p>We just cleaned it up based on some</p>
+
+<p>of that research that we mentioned earlier</p>
+
+<p>on what people actually want<br>
+from a good search application.</p>
+
+<p>So yeah, that is a little bit on</p>
+
+<p>how we got to the React side of things.</p>
+
+<p>And then again like I said,</p>
+
+<p>this was designed to be skinned,</p>
+
+<p>so you can make it look<br>
+however you need it to look,</p>
+
+<p>it will be seamless with your site,</p>
+
+<p>it won't look like you just dropped in</p>
+
+<p>a big clunky search application</p>
+
+<p>with table views and things like that.</p>
+
+<p>And the markup that we use<br>
+is all semantic and easy,</p>
+
+<p>so you can actually skin<br>
+this with just one CSS file,</p>
+
+<p>just a single CSS file.</p>
+
+<p>And as you can see the markup<br>
+should look pretty familiar,</p>
+
+<p>and your team shouldn't really</p>
+
+<p>have any issues looking through that.</p>
+
+<p>So yeah, that's a bit on the React side.</p>
+
+<p>Again we have the Solr side,<br>
+that's getting indexed,</p>
+
+<p>you have all of your<br>
+results stored in Solr,</p>
+
+<p>React is actually the part</p>
+
+<p>that is taking those<br>
+results and displaying them,</p>
+
+<p>kind of explaining again how Drupal</p>
+
+<p>isn't really involved in that process.</p>
+
+<p>It's just a facilitator.</p>
+
+<p>- [Dan] Cool so,</p>
+
+<p>so once we have,</p>
+
+<p>so how Drupal is involved.</p>
+
+<p>So Drupal we mentioned was involved</p>
+
+<p>in indexing the results consistently</p>
+
+<p>In this sense this is what<br>
+the document looks like,</p>
+
+<p>it's a little bit larger now.</p>
+
+<p>But we have covered this already,</p>
+
+<p>but basically you don't have</p>
+
+<p>to use you build index content,</p>
+
+<p>if you're using WordPress<br>
+or some other system,</p>
+
+<p>you can do that as well.</p>
+
+<p>We haven't used a non-Drupal website yet,</p>
+
+<p>but you could do that<br>
+and that's supported.</p>
+
+<p>So if you want to fork this<br>
+for a non-Drupal website,</p>
+
+<p>or add in support then<br>
+that would work as well.</p>
+
+<p>As long as all the websites<br>
+are sending the same sorts</p>
+
+<p>of requests to index documents to Solr,</p>
+
+<p>then you should be good to go.</p>
+
+<p>So this is the other part of Drupal,</p>
+
+<p>so essentially when you're loading Drupal,</p>
+
+<p>so to get this on your Drupal website</p>
+
+<p>there is a module that<br>
+will help you configure it.</p>
+
+<p>So it basically lets you say</p>
+
+<p>this is the route that</p>
+
+<p>I want this search page to show up on,</p>
+
+<p>this is some of the configuration<br>
+options that I want,</p>
+
+<p>and then it will create that page</p>
+
+<p>and put that search block on there.</p>
+
+<p>And there are some other ways</p>
+
+<p>that you can go about configuring</p>
+
+<p>the display of it with the styling</p>
+
+<p>that we're not gonna cover now,</p>
+
+<p>but those are all planned ways<br>
+that you can use this module</p>
+
+<p>That you can add flexibility,</p>
+
+<p>it's not at a predefined space,</p>
+
+<p>you don't have to just copy the code</p>
+
+<p>and load the library,</p>
+
+<p>all of that is bundled<br>
+up into a Drupal module</p>
+
+<p>to make that as a drop-in solution.</p>
+
+<p>And then that works with the Drupal 7</p>
+
+<p>and a Drupal 8 versions.</p>
+
+<p>So you can see in this case</p>
+
+<p>the configuration is being<br>
+passed into the React app</p>
+
+<p>from that Drupal system</p>
+
+<p>so it has the configuration<br>
+form and passed it in,</p>
+
+<p>and then it's just<br>
+rendered as Matt mentioned,</p>
+
+<p>it's rendering this<br>
+placeholder essentially,</p>
+
+<p>that the JavaScript knows to<br>
+replace with the React app.</p>
+
+<p>Cool.</p>
+
+<p>So yeah, Drupal is not required,</p>
+
+<p>but it's making it easier in this case,</p>
+
+<p>since it's the one that's been supported.</p>
+
+<p>Yep?</p>
+
+<p>- [Man] I assume that only one site needs</p>
+
+<p>this report search module in it</p>
+
+<p>and the other ones that are feeding data,</p>
+
+<p>well I guess maybe they do too?</p>
+
+<p>- [Dan] Yeah, so the question was</p>
+
+<p>which Drupal sites need what I think.</p>
+
+<p>- [Man] So the React app<br>
+only needs to be in one,</p>
+
+<p>even though it can serve<br>
+results from other Drupal sites.</p>
+
+<p>The Drupal 7 site and all that,</p>
+
+<p>it's not gonna run the React.</p>
+
+<p>- [Dan] So in the example<br>
+for University of Michigan,</p>
+
+<p>every website has a copy of those modules</p>
+
+<p>because they are all<br>
+showing on search pages.</p>
+
+<p>So yeah, those will all show them.</p>
+
+<p>And then there's a set of modules,</p>
+
+<p>there's a set of modules<br>
+that do the indexing,</p>
+
+<p>sending the documents to Solr,</p>
+
+<p>and then there's the modules<br>
+that display the results.</p>
+
+<p>So depending on whether or not<br>
+you want to index from sites,</p>
+
+<p>and or display results you<br>
+can do them independently.</p>
+
+<p>- [Man] Excellent.</p>
+
+<p>- [Dan] Cool.</p>
+
+<p>- [Matt] So now we're gonna get<br>
+into a little bit of config,</p>
+
+<p>I know there's been a<br>
+lot of questions on that.</p>
+
+<p>How you actually set this up.</p>
+
+<p>And we'll go through some examples,</p>
+
+<p>and hopefully have a better<br>
+understanding of that.</p>
+
+<p>So this depends on the<br>
+standard search API config,</p>
+
+<p>that does a lot on the<br>
+Drupal side of things,</p>
+
+<p>that sets up things for you to,</p>
+
+<p>as far as setting up the Solr server</p>
+
+<p>and indexes and things like that.</p>
+
+<p>And then you're gonna<br>
+need a local Solr server,</p>
+
+<p>only for development purposes,<br>
+but you definitely need that.</p>
+
+<p>The alternative for<br>
+production sites would be</p>
+
+<p>having independent Solr hosts,</p>
+
+<p>so something like SearchDex<br>
+I think we use a lot,</p>
+
+<p>or just hosting that elsewhere,</p>
+
+<p>but for testing it's always nice</p>
+
+<p>to have your local server setup.</p>
+
+<p>- [Dan] Maybe as an aside,</p>
+
+<p>so we are currently working</p>
+
+<p>with better support for Aquis,</p>
+
+<p>so the way that Aquis has Solr set up,</p>
+
+<p>it has limited access to<br>
+only the Drupal application,</p>
+
+<p>and as the React app needs</p>
+
+<p>to access the Solr server quickly,</p>
+
+<p>that is an issue.</p>
+
+<p>So on the particular project</p>
+
+<p>we used SearchDex as<br>
+an external Solr server</p>
+
+<p>and SearchDex provides,</p>
+
+<p>I'm not trying to give an<br>
+advertisement for SearchDex,</p>
+
+<p>but it did work out well.</p>
+
+<p>They provide access restriction,</p>
+
+<p>I'm not sure the best way to say it,</p>
+
+<p>but essentially you can<br>
+set up security measures</p>
+
+<p>so that not anybody can just send content</p>
+
+<p>to the search server,</p>
+
+<p>and not anybody can just pull from it,</p>
+
+<p>you can set up the permissions there,</p>
+
+<p>and which sites are routes,</p>
+
+<p>and which types of<br>
+users can access things.</p>
+
+<p>So again, these are just the fields,</p>
+
+<p>so you have date, image,<br>
+terms, title, type,</p>
+
+<p>and then the HTML body,<br>
+the site and the site URL.</p>
+
+<p>And this is just recapping that structure,</p>
+
+<p>and then in the next couple of slides</p>
+
+<p>we'll show how you actually map</p>
+
+<p>your different content<br>
+types to these fields.</p>
+
+<p>You always have this standard schema.</p>
+
+<p>- [Dan] Yeah, if people are not familiar</p>
+
+<p>this is the standard<br>
+Drupal 8 configuration</p>
+
+<p>for how you set up Solr indexes,</p>
+
+<p>so you turn it on and<br>
+you don't have anything</p>
+
+<p>and you have to add any<br>
+fields that you want to add.</p>
+
+<p>So you can specify labels,<br>
+you can specify machine names,</p>
+
+<p>and then that helps<br>
+you build that process.</p>
+
+<p>So this is what it looks like completed,</p>
+
+<p>and Matt's gonna go over some</p>
+
+<p>of these are very straightforward,</p>
+
+<p>and some of them we're<br>
+gonna talk in more detail,</p>
+
+<p>because of things like the<br>
+custom facets and other fields.</p>
+
+<p>- [Matt] So let's just<br>
+dive into a quick example.</p>
+
+<p>So here you have the<br>
+federated type index fields,</p>
+
+<p>so this is gonna deal with content types,</p>
+
+<p>so in the search results you can remember</p>
+
+<p>within each result you saw a<br>
+content type above the title,</p>
+
+<p>and this is the interface<br>
+where you specify</p>
+
+<p>what you want that title to be.</p>
+
+<p>So sometimes like we said</p>
+
+<p>when you're coming from multiple sites</p>
+
+<p>you have a bunch of<br>
+different content types</p>
+
+<p>that might be similar,</p>
+
+<p>but they have different<br>
+names on the different sites.</p>
+
+<p>So for example here you can see,</p>
+
+<p>you can see that we have the article</p>
+
+<p>and we decided we wanted the display name</p>
+
+<p>in your search for<br>
+assets to be blog article</p>
+
+<p>and then if you jump down to say podcast</p>
+
+<p>you can see that we<br>
+also chose blog article</p>
+
+<p>for that content type,</p>
+
+<p>and the reasoning there would be</p>
+
+<p>you don't want facets for article, podcast</p>
+
+<p>video all separate that your<br>
+user would have to click</p>
+
+<p>when they're gonna get<br>
+similar content out of them.</p>
+
+<p>So when you use the same<br>
+title for multiple types</p>
+
+<p>that allows you to have one<br>
+checkbox that you would click,</p>
+
+<p>and then you get a listing<br>
+of all of those articles,</p>
+
+<p>so that was the thought process there</p>
+
+<p>as to why you can set these,</p>
+
+<p>as opposed to just coming in by default</p>
+
+<p>with whatever content types</p>
+
+<p>that you are using from the sites.</p>
+
+<p>Does that make sense?</p>
+
+<p>- [Man] Yep.</p>
+
+<p>- [Matt] Cool.</p>
+
+<p>And then just to jump back really quick,</p>
+
+<p>these are all basic static values,</p>
+
+<p>like you are setting them<br>
+and that's what they are.</p>
+
+<p>Alternatively you can use tokens,</p>
+
+<p>so similar to (mumbles)<br>
+or something like that,</p>
+
+<p>you can see here for the date field,</p>
+
+<p>federated date,</p>
+
+<p>we have a majority of the nodes<br>
+just using the date created</p>
+
+<p>because that's what makes<br>
+us most of the time.</p>
+
+<p>But on articles maybe the date created</p>
+
+<p>isn't as valuable as the<br>
+date that it was published</p>
+
+<p>obviously to your site users</p>
+
+<p>that's a date that's important to them.</p>
+
+<p>So this just shows that you</p>
+
+<p>can differentiate different<br>
+date fields as needed</p>
+
+<p>and how to show that the tokening</p>
+
+<p>system will also work here.</p>
+
+<p>And you can see here at the bottom</p>
+
+<p>we have the token browser<br>
+for you to go through</p>
+
+<p>if you need any help with that.</p>
+
+<p>And then the last example<br>
+I'll show you is the images.</p>
+
+<p>And you can see this is also tokenized,</p>
+
+<p>and it supports multiple media types</p>
+
+<p>so you can decide which media type</p>
+
+<p>that you want to display in</p>
+
+<p>to I guess normalize your<br>
+image display results,</p>
+
+<p>if that makes sense.</p>
+
+<p>But here we are just using the search API</p>
+
+<p>federated Solr image media type.</p>
+
+<p>So you can see node, field, image,</p>
+
+<p>and then the media type is search API</p>
+
+<p>federated Solr image.</p>
+
+<p>- [Man] Is that a media<br>
+type or a view mode.</p>
+
+<p>- [Matt] Yeah the view<br>
+mode, sorry about that.</p>
+
+<p>But that comes with the module</p>
+
+<p>so that will allow you to<br>
+get some uniform results</p>
+
+<p>with regards to the images.</p>
+
+<p>And then one more example,</p>
+
+<p>we have the site name field</p>
+
+<p>and this allows you to enter</p>
+
+<p>whatever site name you<br>
+want your users to see.</p>
+
+<p>Sometimes as developers</p>
+
+<p>we might not use the best site names</p>
+
+<p>for our Drupal site names,</p>
+
+<p>so this allows you to correct that</p>
+
+<p>if you have not so<br>
+user-friendly site name.</p>
+
+<p>And then as Dan mentioned,</p>
+
+<p>this module works well with domain access,</p>
+
+<p>Ken on our team,</p>
+
+<p>Ken and Rickard does a lot<br>
+of work with domain access,</p>
+
+<p>and as the project owner<br>
+of this specific project</p>
+
+<p>he really pushed for that,</p>
+
+<p>and the University of<br>
+Michigan used it as well,</p>
+
+<p>so we had to make sure<br>
+that that was a feature.</p>
+
+<p>But this was just<br>
+showing the configuration</p>
+
+<p>if you're using domain<br>
+access on your sites.</p>
+
+<p>- [Dan] If people aren't<br>
+familiar with domain access</p>
+
+<p>it's a way of having multiple sites</p>
+
+<p>live within one Drupal site,</p>
+
+<p>so it looks to the outside world</p>
+
+<p>as if it's maybe several different sites,</p>
+
+<p>you're creating content<br>
+within that single site,</p>
+
+<p>and then depending on<br>
+where they're coming from,</p>
+
+<p>you'll see different versions<br>
+of the website essentially.</p>
+
+<p>Yeah?</p>
+
+<p>- [Man] If this was a<br>
+single site or a multi-site</p>
+
+<p>this site name would just have one field?</p>
+
+<p>- [Dan] Yeah,</p>
+
+<p>and then if you need to<br>
+you can split them out.</p>
+
+<p>- [Matt] And then the taxonomy field</p>
+
+<p>so this is where you get that flexibility</p>
+
+<p>of being able to really</p>
+
+<p>get as granular as you<br>
+want with your facets,</p>
+
+<p>so going through your taxonomy terms,</p>
+
+<p>and allowing those to be searchable.</p>
+
+<p>So one of the big problems with this</p>
+
+<p>is that when you're using multiple sites</p>
+
+<p>You can probably imagine you<br>
+have a ton of vocabularies</p>
+
+<p>with a ton of different terms,</p>
+
+<p>there's gonna be some overlap there,</p>
+
+<p>and similar to where I showed<br>
+you the content type field</p>
+
+<p>you're not gonna want that overlap</p>
+
+<p>where you're gonna have maybe like</p>
+
+<p>two terms in the facets</p>
+
+<p>that have essentially the same meaning,</p>
+
+<p>but just because of how<br>
+the taxonomies are set up</p>
+
+<p>you'll have maybe vegetarian<br>
+and then vegetarian foods,</p>
+
+<p>where there's not a great user experience.</p>
+
+<p>So we came up with a pretty<br>
+good solution to that,</p>
+
+<p>but it takes a little bit more legwork</p>
+
+<p>than the token configuration<br>
+that you've seen so far.</p>
+
+<p>So if you tried to edit<br>
+the federated terms section</p>
+
+<p>on the search API config</p>
+
+<p>you'll get hit with this big block</p>
+
+<p>that pretty much explains<br>
+what I explained to you,</p>
+
+<p>you can't really do this on<br>
+the config side of things</p>
+
+<p>you're gonna actually go<br>
+into the taxonomy term config</p>
+
+<p>for the settings for that taxonomy term</p>
+
+<p>you're gonna add a field<br>
+called confederated terms,</p>
+
+<p>and then you're gonna<br>
+configure it term by term</p>
+
+<p>as opposed to having to<br>
+take your entire site</p>
+
+<p>and consolidate your taxonomy terms,</p>
+
+<p>or take all of your sites<br>
+and consolidate those terms.</p>
+
+<p>This allows you to go in and<br>
+do that in a different way.</p>
+
+<p>So this is the interface you're gonna get,</p>
+
+<p>so this is a taxonomy<br>
+term called dermatology.</p>
+
+<p>So let's say you have this term</p>
+
+<p>and then you have another term,</p>
+
+<p>or dermatology department or something,</p>
+
+<p>just a derivative of this.</p>
+
+<p>You'll be able to go into<br>
+this federated terms field,</p>
+
+<p>and then we're gonna add<br>
+a specialty facet option,</p>
+
+<p>so specialty will be the<br>
+title of that facets section</p>
+
+<p>and then dermatology will be the checkbox,</p>
+
+<p>and then you can also add multiple,</p>
+
+<p>so as you can see we also added skincare.</p>
+
+<p>So any time someone is on your search app</p>
+
+<p>and they check dermatology<br>
+you'll see this,</p>
+
+<p>and if they check skincare<br>
+you will also see this.</p>
+
+<p>So it's essentially<br>
+building a new taxonomy,</p>
+
+<p>but without having to create the taxonomy</p>
+
+<p>added to all of your content types</p>
+
+<p>and then go edit every single node.</p>
+
+<p>You can just do it in<br>
+the taxonomy term itself,</p>
+
+<p>which expedites things a bit.</p>
+
+<p>So this is the interface,</p>
+
+<p>you have the top level which is specialty,</p>
+
+<p>which is that listing</p>
+
+<p>and then you can just<br>
+keep going down as needed.</p>
+
+<p>Using the carat symbol.</p>
+
+<p>So Drupal provides,</p>
+
+<p>so putting it all together,</p>
+
+<p>we've said this a bunch now,</p>
+
+<p>but just to recap, Drupal<br>
+provides the indexing,</p>
+
+<p>the search page call back that<br>
+actually renders that React,</p>
+
+<p>and the search block that<br>
+might be in your heading.</p>
+
+<p>So that rounds up all three sections,</p>
+
+<p>so it's kind of hard to follow,</p>
+
+<p>it's a lot easier if you get<br>
+into our demo environment</p>
+
+<p>and play with it yourself,</p>
+
+<p>you'll see how you can go through it,</p>
+
+<p>the federated terms<br>
+editing those taxonomies</p>
+
+<p>is actually really cool<br>
+and pretty intuitive,</p>
+
+<p>and it's a much quicker<br>
+solution than the alternative,</p>
+
+<p>so just being able to go<br>
+in there and play with it</p>
+
+<p>would definitely be ideal.</p>
+
+<p>So how would you do that,<br>
+how do you get started?</p>
+
+<p>If you did want to go<br>
+mess around with this,</p>
+
+<p>or maybe add it to one of your projects</p>
+
+<p>Dan is gonna explain a bit about that.</p>
+
+<p>- [Dan] So some of the<br>
+stuff that you have seen</p>
+
+<p>we have tried to decouple all</p>
+
+<p>of the pieces as much as possible,</p>
+
+<p>so a lot of that stuff that<br>
+we just went over of remapping</p>
+
+<p>isn't necessarily something</p>
+
+<p>that you would only want to do</p>
+
+<p>if you are using this React<br>
+app for displaying the results.</p>
+
+<p>So a lot of those pieces,</p>
+
+<p>I guess I'm jumping ahead,</p>
+
+<p>sorry, I'll come back to that.</p>
+
+<p>But essentially a lot of those pieces</p>
+
+<p>are independent modules in Drupal 8.</p>
+
+<p>I think I'm jumping to this one.</p>
+
+<p>Let me come back to that<br>
+other one in a second, sorry.</p>
+
+<p>So there is a search API<br>
+federated Solr module,</p>
+
+<p>there is also this API field map.</p>
+
+<p>So this API field map is independent of,</p>
+
+<p>it just provides that<br>
+mapping functionality,</p>
+
+<p>and you might want to do<br>
+that to consolidate values,</p>
+
+<p>even if you're not<br>
+using the full solution.</p>
+
+<p>So I skipped ahead,</p>
+
+<p>but this is the URL for the demo site</p>
+
+<p>and these slides will be posted.</p>
+
+<p>The demo site that we use,</p>
+
+<p>we use Mac Development Environment,</p>
+
+<p>so this is what that's<br>
+most likely gonna work on,</p>
+
+<p>it may work as well with other tools.</p>
+
+<p>It's pretty simple to set up</p>
+
+<p>once you have some standard tools</p>
+
+<p>like Composer, VirtualBox,<br>
+Ansible, and Vagrant setup,</p>
+
+<p>you can spin the whole thing</p>
+
+<p>and is using some task runners<br>
+to install those sites,</p>
+
+<p>and this is listed in the repo's README.</p>
+
+<p>To install those sites set<br>
+up the example content,</p>
+
+<p>set up the Solr server,</p>
+
+<p>it spins it all up for you.</p>
+
+<p>I think the newer versions are also gonna</p>
+
+<p>configure some of those taxonomy terms,</p>
+
+<p>so even give you a headstart</p>
+
+<p>to see what that might look like.</p>
+
+<p>So again, we talked about<br>
+the demo a little bit,</p>
+
+<p>and the demo we are running<br>
+is a version of that,</p>
+
+<p>and it uses Drupal 7 and 8.</p>
+
+<p>The Drupal 8 and Drupal 7 modules</p>
+
+<p>are pretty similar,</p>
+
+<p>the main difference is that there</p>
+
+<p>is a little bit more<br>
+of a focus on Drupal 8,</p>
+
+<p>just because I don't know,</p>
+
+<p>I think a lot of people<br>
+are focusing on Drupal 8,</p>
+
+<p>so that one functionality<br>
+for mapping different strings</p>
+
+<p>or mapping the terms is supported</p>
+
+<p>in Drupal 8 as its own module,</p>
+
+<p>but within seven it's just<br>
+bundled with the other module.</p>
+
+<p>There are some specific versions,</p>
+
+<p>I don't think there's much<br>
+that is important about those,</p>
+
+<p>that's what's part of<br>
+the demo environment.</p>
+
+<p>The key point is that it<br>
+is using Apache Solr 4.5.1,</p>
+
+<p>what is the version that,</p>
+
+<p>I don't know if 4.5.1<br>
+is the exact version,</p>
+
+<p>but it's similar to the<br>
+version that Aquis as using</p>
+
+<p>with Aquis search,</p>
+
+<p>and because a lot of people</p>
+
+<p>are using Aquis and Aquis search,</p>
+
+<p>we wanted to test against that.</p>
+
+<p>But the live versions that<br>
+we have also tested against</p>
+
+<p>are running newer versions of Solr,</p>
+
+<p>and they do support more features</p>
+
+<p>but there's not a huge difference</p>
+
+<p>in terms of using that version or another.</p>
+
+<p>I don't think you will<br>
+have to change anything</p>
+
+<p>unless you wanted features</p>
+
+<p>that weren't supported in<br>
+the older versions of Solr.</p>
+
+<p>Yeah I think we will open up questions,</p>
+
+<p>I think maybe, yeah, that sounds good.</p>
+
+<p>So thanks everyone for doing this,</p>
+
+<p>and now we want to open<br>
+it up again to questions.</p>
+
+<p>- [Man] I had a question,</p>
+
+<p>so I noticed that the site<br>
+was in the faceted search,</p>
+
+<p>this came up actually not too<br>
+long ago, maybe last week,</p>
+
+<p>we were looking at our own faceted search</p>
+
+<p>which was a third party tool,</p>
+
+<p>and we were trying to see<br>
+if you could do a search</p>
+
+<p>that would only show one site by default,</p>
+
+<p>depending on what site you were coming</p>
+
+<p>from to do the search,</p>
+
+<p>but our search engine<br>
+lives somewhere else,</p>
+
+<p>so it sort of hard to get past that.</p>
+
+<p>Does yours have any capability<br>
+for that sort of thing?</p>
+
+<p>- [Dan] So the question was,</p>
+
+<p>is there capability for<br>
+filtering out to just one site</p>
+
+<p>depending on what site you're coming from.</p>
+
+<p>So there was a release of a<br>
+lot of this work yesterday,</p>
+
+<p>and it introduced a bunch of features</p>
+
+<p>that we weren't showing in the demo.</p>
+
+<p>One of the features is support<br>
+for more URL parameters,</p>
+
+<p>so some of those are pre-filtering things</p>
+
+<p>based on where you are coming from,</p>
+
+<p>so you might want to filter by that.</p>
+
+<p>So you could have the experience</p>
+
+<p>where you're using the same application</p>
+
+<p>but depending on what site you're in</p>
+
+<p>You either start with it<br>
+filtered to a specific site,</p>
+
+<p>or you just don't even show</p>
+
+<p>the option to filter by different sites.</p>
+
+<p>But that was a big request.</p>
+
+<p>I think some of the other<br>
+features that were added,</p>
+
+<p>maybe we can talk about those<br>
+a little bit real quick.</p>
+
+<p>Was support for searching across</p>
+
+<p>a wider range of those fields,</p>
+
+<p>and adding auto complete,</p>
+
+<p>and adding more wildcard<br>
+features to the search.</p>
+
+<p>I think the wildcard maybe</p>
+
+<p>you want to talk a little bit about.</p>
+
+<p>- [Matt] Yeah so if you saw in the demo</p>
+
+<p>initially if there was no search<br>
+there were just no results,</p>
+
+<p>and that kind of let things blank,</p>
+
+<p>so now you have the option<br>
+just with the checkbox to say</p>
+
+<p>if there are no results<br>
+just do a wildcard search</p>
+
+<p>where you would just get whatever</p>
+
+<p>results it wanted to return,</p>
+
+<p>just for a more user-friendly experience.</p>
+
+<p>So you don't have that empty page</p>
+
+<p>when your users first get there,</p>
+
+<p>it might look a little broken.</p>
+
+<p>Yeah?</p>
+
+<p>- [Man] So just to make sure I understand,</p>
+
+<p>the Drupal site,</p>
+
+<p>the modules that you have<br>
+running on the Drupal site</p>
+
+<p>set up the React app, set<br>
+all the settings down,</p>
+
+<p>and then from there does</p>
+
+<p>the React app fall directly<br>
+to the Solr server?</p>
+
+<p>So Drupal is only<br>
+involved in counting Solr,</p>
+
+<p>hey, look at these,</p>
+
+<p>and then on the page this is<br>
+how you run your React app,</p>
+
+<p>and then the React app then, okay.</p>
+
+<p>- [Dan] So yeah.</p>
+
+<p>- [Matt] Do you remember<br>
+where the config is?</p>
+
+<p>- [Dan] It's in search and then (mumbles).</p>
+
+<p>- [Matt] That makes sense.</p>
+
+<p>Yeah?</p>
+
+<p>- [Man] Would you recommend</p>
+
+<p>this for only bringing<br>
+multiple sites together,</p>
+
+<p>or are there other cases where you</p>
+
+<p>would recommend this set up?</p>
+
+<p>- [Matt] I think bringing<br>
+multiple sites together</p>
+
+<p>is just a feature that<br>
+is useful in some cases,</p>
+
+<p>but everything else other than I guess</p>
+
+<p>deciding what sites you<br>
+want to see results from</p>
+
+<p>would still be incredibly<br>
+useful on a single site</p>
+
+<p>to get your search up and<br>
+running pretty painlessly.</p>
+
+<p>- [Dan] The question was if<br>
+we would recommend using this</p>
+
+<p>if there was just a single site, so yeah?</p>
+
+<p>- [Man] Did you have to index<br>
+any documents like PDFs,</p>
+
+<p>or has it only been web<br>
+results that you have done,</p>
+
+<p>I have a number of clients with that need.</p>
+
+<p>- [Dan] The question was have we</p>
+
+<p>indexed documents other<br>
+than files essentially.</p>
+
+<p>I don't believe so.</p>
+
+<p>So the only files are<br>
+images which are references,</p>
+
+<p>so I imagine if you wanted to extend it</p>
+
+<p>and have an initial field or something</p>
+
+<p>that listed out these are</p>
+
+<p>the URLs for this files or something,</p>
+
+<p>but that's not a feature<br>
+that's there right now.</p>
+
+<p>This was what the configuration</p>
+
+<p>looks like on the Drupal site,</p>
+
+<p>so this is just login.</p>
+
+<p>You can set up the app path,</p>
+
+<p>and this is a slightly<br>
+older version as well.</p>
+
+<p>But you can configure the app path,</p>
+
+<p>you can add some basic<br>
+configuration for titles,</p>
+
+<p>search from the list of indexes,</p>
+
+<p>you can have multiple indexes.</p>
+
+<p>The security features<br>
+that we mentioned before,</p>
+
+<p>the SearchDex supports<br>
+basic authentication</p>
+
+<p>as a way of protecting<br>
+against sending content,</p>
+
+<p>so that's somewhere that<br>
+you could fill this in.</p>
+
+<p>And then depending on the<br>
+features that you have</p>
+
+<p>there are some options<br>
+around the site names,</p>
+
+<p>and you could configure<br>
+some other basic features.</p>
+
+<p>So this is basically<br>
+if you're gonna display</p>
+
+<p>it on a Drupal 8 site,</p>
+
+<p>you don't have to provide<br>
+that much information,</p>
+
+<p>and there is defaults for you,</p>
+
+<p>and then you get that basic page,</p>
+
+<p>and if you want you can<br>
+start to customize the pieces</p>
+
+<p>and do things like the styling as well,</p>
+
+<p>so each site has its<br>
+own styling and stuff.</p>
+
+<p>Any other questions?</p>
+
+<p>- [Man] What's the scale of the<br>
+implementation you guys did,</p>
+
+<p>(mumbles).</p>
+
+<p>- [Matt] I think we had<br>
+on the scale of tens</p>
+
+<p>of thousands of pages<br>
+that were getting indexed.</p>
+
+<p>I don't know how much,</p>
+
+<p>I don't know what the usage is.</p>
+
+<p>- [Dan] The question was what's the scale</p>
+
+<p>of the solutions that we have used so far.</p>
+
+<p>And we're not sure how<br>
+many hits the system gets,</p>
+
+<p>but I think you said tens of thousands</p>
+
+<p>of documents are being<br>
+indexed to the Solr server.</p>
+
+<p>I think the limitation here,</p>
+
+<p>the React app is gonna<br>
+be served by Varnish</p>
+
+<p>or whatever sort of<br>
+caching system you have,</p>
+
+<p>so the limitation is gonna<br>
+be on your Solr server,</p>
+
+<p>because it's hitting the<br>
+Solr server directly.</p>
+
+<p>So if the solution can scale,</p>
+
+<p>then that's probably something<br>
+that would work well.</p>
+
+<p>We have these sites running,</p>
+
+<p>so if you wanted to see some</p>
+
+<p>of the other configuration<br>
+interfaces we can do that,</p>
+
+<p>if there's any other questions</p>
+
+<p>we are also gonna be here<br>
+walking around the rest of today.</p>
+
+<p>So, come let us know.</p>
+
+<p>- [Man] Have you tried to<br>
+use any other CMS for this,</p>
+
+<p>like to send the index to Solr?</p>
+
+<p>- [Dan] Yeah, the<br>
+question was have we used</p>
+
+<p>any other CMS's to send content,</p>
+
+<p>I don't believe that we have.</p>
+
+<p>- [Matt] Yeah, as stated before,</p>
+
+<p>it's just a matter of setting that,</p>
+
+<p>whatever CMS you are using,</p>
+
+<p>it's a matter of setting it up</p>
+
+<p>so that the indexing works properly.</p>
+
+<p>So we just happened to<br>
+make the Drupal app,</p>
+
+<p>because we are Drupal developers,</p>
+
+<p>or sorry the Drupal module<br>
+that does all that work for us,</p>
+
+<p>so it would be pretty extensive</p>
+
+<p>to test it on another CMS by essentially</p>
+
+<p>writing the exact same thing,</p>
+
+<p>but it should work if you<br>
+configure it properly.</p>
+
+<p>- [Dan] Yeah and I think the requests,</p>
+
+<p>when you index content in Solr,</p>
+
+<p>Drupal does a lot behind the scenes</p>
+
+<p>to format the connections,</p>
+
+<p>but the submissions are not that complex,</p>
+
+<p>so I imagine it wouldn't be that difficult</p>
+
+<p>especially if you have a specific format</p>
+
+<p>that you were looking to create.</p>
+
+<p>Yeah?</p>
+
+<p>- [Man] Do you know can Solr<br>
+handle authenticated content.</p>
+
+<p>So if you have content that's<br>
+only for authenticated users,</p>
+
+<p>can you only return those results</p>
+
+<p>for users that are authenticated?</p>
+
+<p>- [Dan] Yeah, so the question is</p>
+
+<p>can you serve different<br>
+results to authenticated users</p>
+
+<p>versus in-authenticated,</p>
+
+<p>so right now that's not a feature.</p>
+
+<p>I imagine you could set up,</p>
+
+<p>but right now that's not a feature.</p>
+
+<p>- [Man] So I suppose if<br>
+you want to make it easy</p>
+
+<p>for WordPress to adopt the same thing</p>
+
+<p>you would have to implement<br>
+as much as you could</p>
+
+<p>using PHP libraries<br>
+included with Composer,</p>
+
+<p>and then at your actual Drupal<br>
+module would be much smaller.</p>
+
+<p>- [Dan] Yeah, so Sanjay was recommending</p>
+
+<p>using standard PHP libraries<br>
+to do the indexing part.</p>
+
+<p>I don't know the specifics<br>
+of what the Drupal,</p>
+
+<p>so a lot of this from the Drupal code</p>
+
+<p>is focused around the<br>
+existing API modules,</p>
+
+<p>and the Solr integrations,</p>
+
+<p>so I don't know enough</p>
+
+<p>about those to know what they're using,</p>
+
+<p>I imagine a lot of it<br>
+is very Drupal specific.</p>
+
+<p>But yeah, if we wanted<br>
+to be across more things</p>
+
+<p>that would be a good direction.</p>
+
+<p>Cool, any other questions,</p>
+
+<p>we have some thank you slides</p>
+
+<p>that I want to get to before the end.</p>
+
+<p>Let's do those and then if you<br>
+have questions that come up</p>
+
+<p>let us know.</p>
+
+<p>So here's a list of people,</p>
+
+<p>Avi's in this room here.</p>
+
+<p>Adrian is in the room, you<br>
+can talk to him as well.</p>
+
+<p>We mentioned Ken.</p>
+
+<p>So there's a long list of<br>
+people that have been involved,</p>
+
+<p>University of Michigan<br>
+obviously is a big one</p>
+
+<p>that we worked with for<br>
+the initial implementation.</p>
+
+<p>For the version two<br>
+that came out yesterday,</p>
+
+<p>we're working,</p>
+
+<p>I don't know if we talked about them yet,</p>
+
+<p>but there are people<br>
+that we are working with</p>
+
+<p>that are helping support that,</p>
+
+<p>so we are thankful for them as well.</p>
+
+<p>So it's a lot of people,</p>
+
+<p>we are getting some contributions</p>
+
+<p>from outside Palantir as well,</p>
+
+<p>and all that stuff is<br>
+available on open source,</p>
+
+<p>so if you're interested in it let us know.</p>
+
+<p>Or take a look at that demo site</p>
+
+<p>and see what looks good.</p>
+
+<p>So yeah.</p>
+
+<p>These are our pictures.</p>
+
+<p>- [Man] Oh, that's what you look like.</p>
+
+<p>- [Dan] Yeah, and then before we end,</p>
+
+<p>if you liked this talk</p>
+
+<p>or if you didn't like this<br>
+talk please go to this number,</p>
+
+<p>if you can't remember this number,</p>
+
+<p>you can go to the schedule<br>
+page and click on the session,</p>
+
+<p>that's what that goes<br>
+to, and leave feedback.</p>
+
+<p>And there is a contribution day</p>
+
+<p>that's on Saturday from 10 to four,</p>
+
+<p>and I think there's more<br>
+information on the website as well,</p>
+
+<p>but yeah, that's some standard things.</p>
+
+<p>So thanks everyone,</p>
+
+<p>and if you do have questions let us know.</p>
+
+<p>(audience applauds)</p>
+
+<p>Captions made possible by ClarityPartners.com. Chicago area Drupal consultants</p>
+
+<p><a href="../sponsor/clarity-partners.html"><img src="../../sites/default/files/2020-02/CFDFAA23-5C59-4C07-9C66-CAFFE0CF3854.png" style="max-width:300px;"></a></p>
+</div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-fd3ca12f006b16fca18c9d3dfe8397cdaf98476b6ed5ea5c3f90e5bed972e198">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/272">https://mid.camp/272</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-4accbb2fb1373c58900ac42007e36d28455fe8dce4d9e5c5e518b99d0f64b41c">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/pantheon.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-11/pantheon-logo-color@2x.png" width="960" height="354" alt="Pantheon" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/acquia.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2019-03/Acquia_no_tagline.png" width="450" height="94" alt="Acquia" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/elevated-third.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-11/elevated-third-logo_0.png" width="220" height="220" alt="elevated third logo" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#fc95929a93bc9195989f9d918cd2938e9b"><span class="__cf_email__" data-cfemail="aac3c4ccc5eac7c3cec9cbc7da84c5d8cd">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/272","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_llBcjrkrgAu2wT1DR7VGL_iP6geJyiTnF_8O5ZD57VI.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJxLz89Pz0mNT8xLzKksyUwu1k9HE9DJSCwpSS3ST8_JT0rM0c0qBgAByBPW"></script>
+
+  </body>
+</html>

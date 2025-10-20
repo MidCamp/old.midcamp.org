@@ -1,0 +1,826 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="Learn how Drupal.org, including its 8 Drupal sites and infrastructure, is built. Neil will cover who builds Drupal.org and how we approach site building. Recent changes to Drupal.org will illustrate how this works in practice, and preview upcoming Drupal.org features. Slides are here" />
+<link rel="canonical" href="how-drupalorg-built.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="How Drupal.org is built | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter_2019/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>How Drupal.org is built | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_gt5LiAM1qLGUH5e845uOb7R_lJ9dUwTXmnhGDR2yY20.css%3Fdelta=0&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlT9EOwiAM_KEN1De_hsC4bSSFGopb5teLY0s0vrTXu0t7HciKbNpZQTc0HCFiJ8g5J_ZV44yKcrQUXuhmWwqyuV2udz0RO0v9IHLSn2165FR-mS-jbFIQ29kleLBBdPBmDCCvM-.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_q7cxd-C3noAE-s-u3xDxrLWFMO_wjpGZ5xcFfomX0n4.css%3Fdelta=1&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlT9EOwiAM_KEN1De_hsC4bSSFGopb5teLY0s0vrTXu0t7HciKbNpZQTc0HCFiJ8g5J_ZV44yKcrQUXuhmWwqyuV2udz0RO0v9IHLSn2165FR-mS-jbFIQ29kleLBBdPBmDCCvM-.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_JumHJ3UqLO9Mdu1kygD5e19MOiNh5iD_a9p0FH6QrHQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlT9EOwiAM_KEN1De_hsC4bSSFGopb5teLY0s0vrTXu0t7HciKbNpZQTc0HCFiJ8g5J_ZV44yKcrQUXuhmWwqyuV2udz0RO0v9IHLSn2165FR-mS-jbFIQ29kleLBBdPBmDCCvM-.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_LovagMoZZFoM80YhT0zgW4b6oNarRMdF8ooxvYiQ9tA.css%3Fdelta=4&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlT9EOwiAM_KEN1De_hsC4bSSFGopb5teLY0s0vrTXu0t7HciKbNpZQTc0HCFiJ8g5J_ZV44yKcrQUXuhmWwqyuV2udz0RO0v9IHLSn2165FR-mS-jbFIQ29kleLBBdPBmDCCvM-.css" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="how-drupalorg-built.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-2019-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-hatter-2019-midcamp2020navigation-menu" id="block-hatter-2019-midcamp2020navigation" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-2019-midcamp2020navigation-menu">Midcamp 2020 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" data-drupal-link-system-path="node/403">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../news.html" title="News" data-drupal-link-system-path="2020/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" data-drupal-link-system-path="2020/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--virtual-camp">
+        <a href="../article/midcamp-2020-going-digital.html" title="MidCamp is going virtual" data-drupal-link-system-path="node/6689">Virtual Camp</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsor">
+        <a href="../sponsor-midcamp.html" data-drupal-link-system-path="node/6250">Sponsor</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--community-organizations">
+        <a href="../sponsor/community-organization-introduction.html" data-drupal-link-system-path="node/6251">Community Organizations</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sponsors">
+        <a href="../sponsors.html" data-drupal-link-system-path="node/6253">Sponsors</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" data-drupal-link-system-path="node/6258">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--sessions-thu">
+        <a href="../schedule/thursday.html" data-drupal-link-system-path="2020/schedule/thursday">Sessions (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-fri">
+        <a href="../schedule/friday.html" data-drupal-link-system-path="2020/schedule/friday">Sessions (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--contribution-sat">
+        <a href="../contribution-day.html" title="Contribution Day" data-drupal-link-system-path="node/6378">Contribution (Sat)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--accepted-sessions">
+        <a href="../accepted-sessions.html" data-drupal-link-system-path="2020/accepted-sessions">Accepted Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../../2023/speaker-resources.html" data-drupal-link-system-path="node/345">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-terms-and-conditions">
+        <a href="../../speaker-terms-and-conditions.html" data-drupal-link-system-path="node/21">Speaker Terms and Conditions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--topic-tracks">
+        <a href="../../topic-tracks.html" data-drupal-link-system-path="node/10">Topic Tracks</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--donate">
+        <a href="https://tickets.midcamp.org/" title="Register for MidCamp">Donate</a>
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-2019-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2020.html" hreflang="en">MidCamp 2020</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-hatter-2019-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">How Drupal.org is built</span>
+</h1>
+
+
+  </div>
+<div id="block-hatter-2019-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="6310" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2020-03-20T17:30:00Z" class="datetime">Friday, 12:30 pm CDT</time>
+ - <time datetime="2020-03-20T18:30:00Z" class="datetime">Friday, 1:30 pm CDT</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-84" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-name field--type-string field--label-hidden field__item">Room 325</div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>Learn how Drupal.org, including its 8 Drupal sites and infrastructure, is built. Neil will cover who builds Drupal.org and how we approach site building. Recent changes to Drupal.org will illustrate how this works in practice, and preview upcoming Drupal.org features.</p>
+
+<p><a href="https://docs.google.com/presentation/d/13-vuw-rH-R_hpkWBLHkn2p5iKoMTSv2Nmulu07Ud8SA/edit?usp=sharing">Slides are here</a></p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/w9ItBCn4AhA?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Neil Drumm</h4>
+
+      Senior Technologist
+
+
+          @
+              <a href="https://www.drupal.org/association">Drupal Association</a>
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p>Neil Drumm&nbsp;helps build Drupal.org as part of the Drupal Association’s Engineering team.</p></div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2020-01/Ycn%25ooEvR8i4K4gnCyy0Jw_thumb_56c.jpg%3Fitok=MkZopbKB" width="220" height="174" alt="Photo of Neil Drumm" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Community</div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-feedback-form field--type-webform field--label-above">
+    <div class="field__label">Feedback Form</div>
+              <div class="field__item"><form class="webform-submission-form webform-submission-add-form webform-submission-session-feedback-form webform-submission-session-feedback-add-form webform-submission-session-feedback-node-6310-form webform-submission-session-feedback-node-6310-add-form" data-drupal-selector="webform-submission-session-feedback-node-6310-add-form" action="how-drupalorg-built.html" method="post" id="webform-submission-session-feedback-node-6310-add-form" accept-charset="UTF-8">
+  
+    <div data-drupal-selector="edit-0" class="webform-message js-webform-message js-form-wrapper form-wrapper" id="edit-0"><div data-drupal-messages>
+    <div role="contentinfo" aria-label="Status message" class="messages messages--status">
+                  <h2 class="visually-hidden">Status message</h2>
+                    Sorry...This form is closed to new submissions.
+            </div>
+    </div>
+</div>
+<input autocomplete="off" data-drupal-selector="form-p9vwf6-aycimae5im-lcpj-rdrfybuz6rkfbpoh-4c" type="hidden" name="form_build_id" value="form-P9VWf6-aYCImAe5Im_lCPJ_-RdrFybUZ6RKfbpoH-4c" />
+<input data-drupal-selector="edit-webform-submission-session-feedback-node-6310-add-form" type="hidden" name="form_id" value="webform_submission_session_feedback_node_6310_add_form" />
+<div class="url-textfield js-form-wrapper form-wrapper" style="display: none !important;"><div class="js-form-item form-item js-form-type-textfield form-type-textfield js-form-item-url form-item-url">
+      <label for="edit-url">Leave this field blank</label>
+        <input autocomplete="off" data-drupal-selector="edit-url" type="text" id="edit-url" name="url" value="" size="20" maxlength="128" class="form-text" />
+
+        </div>
+</div>
+
+
+  
+</form>
+</div>
+          </div>
+
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <h3 class="field__label">Transcript</h3>
+              <div class="field__item" tabindex="0"><p>&gt;&gt; NEIL DRUMM: &nbsp;Yeah, I'm Neil Drumm. &nbsp;I work for the Drupal Association on the Engineering Team. &nbsp;I'm in Brooklyn. &nbsp;And left my second and third displays at home. &nbsp;So hopefully I'll get through this without speaker notes here. &nbsp;</p>
+
+<p>So I work on this site. &nbsp;Drupal.org. &nbsp;And I got involved with it some time around 2006 or 2007 as far as I can tell. &nbsp;</p>
+
+<p>Starting with working on API.Drupal.org as a volunteer. &nbsp;</p>
+
+<p>And at some point after that they were going on vacation and messaged me and asked if I wanted access to the one server I think it was actually not even a whole server. &nbsp;And to cover anything while he was offline. &nbsp;</p>
+
+<p>And I've been working on Drupal.org in various roles and responsibilities since then. &nbsp;</p>
+
+<p>And started at the association more officially in 2010. &nbsp;The Board of Directors at the time got a redesign together and tried having volunteers implement it but of course 10 companies volunteering 15 people didn't quite bring a Website together so a few of us went on contract to get that done and launched. &nbsp;And yeah, since then, I've been contracting with the association and went full time eventually. &nbsp;</p>
+
+<p>And today it's not just me working on the site, it's my three co-workers, my boss, Tim on Drupal.org, Brendan who is a developer and he also the one that handles most of the email help at Drupal.org. &nbsp;Mixologic, Ryan, he is the developer services engineer so stuff like Drupal CI and Composer and Composer Endpoint and I do a bit of anything, anywhere from I did a bit of themeing this week, CSS work. &nbsp;Sometimes all go as deep as getting into our configuration management system and reconfiguring things. &nbsp;And we get a lot of help from Ryan Newton and the rest of tag1 consulting. &nbsp;They are our contractor for infrastructure services handling stuff like actually managing the configuration management and provisioning servers, VMs, making sure everything is -- all the operating system software services are up to date, secure. &nbsp;And Michael Hess is super volunteer who mainly does like proof of concepts for stuff like Drupal Steward and some of the automatic update stuff. &nbsp;So yeah altogether us and a few volunteers build this site. &nbsp;But it's not just one site, it's really eight Drupal sites in addition to www.Drupal.org it's association.Drupal.org mainly that's for electing the association Board nowadays, API.Drupal.org, the API reference. &nbsp;Events for Drupal cons. &nbsp;</p>
+
+<p>And groups.Drupal.org that's still an Drupal 6 so that site definitely could use some more maintenance. &nbsp;Drupal jobs. &nbsp;We have a job board for hiring Drupal talent and getting your resume out there. &nbsp;</p>
+
+<p>Localize for translating the Drupal software and security.Drupal.org which handles coordinating with people reporting security issues and us as the security people coordinating the containers, fixing those issues and doing a coordinated disclosure. &nbsp;</p>
+
+<p>Yeah, real quick, someone asked about single sign-on we are currently using a module called Bakery. &nbsp;</p>
+
+<p>It's probably -- I don't know if I would use the same system if we were starting from scratch today. &nbsp;</p>
+
+<p>But basically it allows Drupal.org to act as the www.Drupal.org to authenticate all of the sites with single sign-on. &nbsp;</p>
+
+<p>And as we move to Drupal 8, we'll be looking at other options or maybe we'll stick with Bakery and get it updated to Drupal 8. &nbsp;I believe it's somehow about halfway ported, last I knew. &nbsp;</p>
+
+<p>And it's not just Websites that we do. &nbsp;We provide services. &nbsp;The localized.Drupal.org that provides downloadable translation files for sites. &nbsp;And Drupal downloads actually downloading Drupal in modules, the downloads of Drupal has. &nbsp;The Composer Endpoint that is the ultimate install Drupal with Composer and Drupal projects with Composer and we host that -- the package that's equivalent for Drupal.org ourselves. &nbsp;So as a direct connection to all of the modules that exist and other projects. &nbsp;</p>
+
+<p>And the developer tools. &nbsp;So stuff like Drupal CI and GitLab. &nbsp;</p>
+
+<p>And we've added -- we are adding a couple new services. &nbsp;Automatic updates. &nbsp;That actually is in production. &nbsp;As of January or December. &nbsp;I'll talk a little bit about that later. &nbsp;</p>
+
+<p>And Drupal Steward will be coming up I believe later this year to add a layer of protection for highly Drupal core security issues as they are announced. &nbsp;So you don't necessarily have to have your site updated right away. &nbsp;With a little bit less risk. &nbsp;</p>
+
+<p>And automatic updates. &nbsp;That is something, a service, that I was deeply involved in for the Drupal.org side of things. &nbsp;</p>
+
+<p>First there is a Public Service Announcement API that I built. &nbsp;</p>
+
+<p>So you want to -- your site wants to know when it will be updating. &nbsp;You don't necessarily want your site to do automatic update for our Drupal for all security releases. &nbsp;</p>
+
+<p>It's the highly critical ones that the security team knows will be exploited against a lot of sites pretty quickly. &nbsp;Lots of other of course security issues. &nbsp;You want to get your site updated quickly and efficiently. &nbsp;But a lot can come with things like you know it's only for admins or only for authenticated users. &nbsp;And will affect different sites in different ways. &nbsp;</p>
+
+<p>But the highly critical ones affect pretty much all sites that we want automatic updates to handle. &nbsp;So this API will let sites know in a machine readable way that one of these is coming up. &nbsp;And the main work of that, building this, was done by Michael Hess and I took that kind of proof of concept and reviewed it and revised it and deployed it and on our end it's basically a thresh command that let's you go into this feed and then will purge the file into our CDN. &nbsp;</p>
+
+<p>And there's also a -- so once the site knows that it might want to update, it has to know if it's in a good condition to be updated so that's the Drupal.org side of that is the checksums, release contents checksums API. &nbsp;So this reverses automatic updates. &nbsp;It works pretty much by replacing chunks of code as if they were downloaded as a new thing off of Drupal.org. &nbsp;</p>
+
+<p>So it's not patching or anything, it's literally replacing files and if you've patched your codebase, if you have tax to core on your site that's not a good spot to do automatic updates because it will get the site into an inconsistent state where some of your local changes might go away, some might stay, and it's -- it will just get your site to a position it probably won't work or runs a high risk of not working. &nbsp;</p>
+
+<p>So we have an API which has the checksum of every single file in every single release of Drupal and every single release of any Drupal module main distribution. &nbsp;</p>
+
+<p>So the client can check for if any of the files have been changed in any way. &nbsp;</p>
+
+<p>And at the top you'll see a few things untrusted comment and then some of the strings that start with RW. &nbsp;That is package signing. &nbsp;Or data signing. &nbsp;</p>
+
+<p>It is a -- since auto mec updates are a pretty high stakes API, we want to be able to verify that this data is not tampered with. &nbsp;As it goes from our servers to your sites. &nbsp;</p>
+
+<p>So that stuff is based on BST signify it's a change signature format that David Strauss Peter Valanen and Mike Maten (phonetic) put together that allows us to have intermediate keys. &nbsp;And basically we have a VM that is separated from the rest of our infrastructure that its only job is to hold onto that intermediate key and add that bit of data to the top of these files. &nbsp;</p>
+
+<p>And then Drupal sites can verify that with a static root key. &nbsp;</p>
+
+<p>And we don't have to have the private version of the root key on a live server in fact it's on a hardware security module a little USB stick type thing that four of us have. &nbsp;And there's actually no way to get that off of the hardware security module in an unencrypted form so we can't even view it. &nbsp;We just use that HSM to assign new intermediate keys and update those to the signing Oracle VM. &nbsp;</p>
+
+<p>And the way this first iteration of automatic updates works is it -- it is replacing files. &nbsp;It's not working with Composer or anything like that. &nbsp;So it's not compatible with Composer if your site is built that way. &nbsp;</p>
+
+<p>And it does -- our target here was the kind of lowest common denominator. &nbsp;Sites that you put up somewhere and forget about. &nbsp;And maybe they are on in underpallored shared hosting, stuff like that. &nbsp;</p>
+
+<p>So let's see. &nbsp;Extracting a full copy of Drupal that might be -- that more stuff could go wrong, what this client is doing is just replacing the files that have changed. &nbsp;So the file switches have been removed, if any. &nbsp;</p>
+
+<p>So that's -- what we produce is a zip file of the deletion manifest that's the list of files that no longer exist. &nbsp;And then a full copy of any files that have changed. &nbsp;And we'll generate this for any combination of releases for any pod. &nbsp;So the claim can get into -- I believe that's done module updating now but the main goal is Drupal core updating. &nbsp;But the future proofs are the Drupal.org side of it. &nbsp;</p>
+
+<p>And the whole file itself that gets assigned as a separate thing that the client downloads. &nbsp;</p>
+
+<p>And that client is a Drupal module. &nbsp;And I was doing all the work on the server side along with the other volunteers. &nbsp;And the client that was sponsored by the European Commission and Lucas heading did most of the implementation. &nbsp;And it's out of beta. &nbsp;It's a stable release now. &nbsp;And again, it's for simple sites installed via this downloading files -- just downloading files and putting them on a server. &nbsp;And what works for those are managed sites, if you have a deployment workflow already, that's even better. &nbsp;If you have -- it's even better than using automatic updates if you have a CI pipeline and testing for your specific site, that's really where you like to be. &nbsp;But this is here for sites which don't have that. &nbsp;</p>
+
+<p>And Composer support is coming in the next phase of work and Lucas has been tinkering with that and we're looking for sponsors if anyone would like that to go faster. &nbsp;</p>
+
+<p>One of the big projects I worked on a couple years back was Drupal.org's issue crediting system. &nbsp;</p>
+
+<p>That that -- we've been crediting contributors for a long time. &nbsp;This is the earliest example I could find. &nbsp;Them putting something in the commit message. &nbsp;And the system really grew out of mentions peoples' names and commit comments. &nbsp;</p>
+
+<p>And what we were mentioning people in commit messages, it's great for code contributions but it doesn't tell the whole story. &nbsp;We wanted to be able to credit organizations, too. &nbsp;</p>
+
+<p>And find out if people are spending their own time on things or if organizations were sponsoring their work. &nbsp;</p>
+
+<p>And find out which organizations were leading contributors. &nbsp;</p>
+
+<p>So internally this is entity references. &nbsp;Projects maintainers can credit people on issues. &nbsp;And people can attribute their effort to organizations. &nbsp;</p>
+
+<p>Each comment is a good place for the -- for you to attribute work as you go. &nbsp;</p>
+
+<p>So the comments happened to be references to the organizations. &nbsp;</p>
+
+<p>Since organization data is on comments, it made sense to make the underlying storage for the credit to be entity references to those comments. &nbsp;And as a project maintainer when you took that check box to credit someone underneath it actually stores references to every comment by one of the credited people. &nbsp;</p>
+
+<p>So if someone switches the attribution halfway through an issue, everything gets aggregated together for the issue. &nbsp;There's a couple more things in the field storage so it's not quite as simple as two entity references. &nbsp;There's a check box to explicitly mark volunteer contributions and another entity referenced to fields to call out organizations to customers. &nbsp;</p>
+
+<p>They make some fun queries when doing reports this is just one of the ones I found quickly looking through my history. &nbsp;It's one of the smaller queries for this data that I've done. &nbsp;</p>
+
+<p>Since this is issue credit rather than something in a git commit it's being used for crediting other important non-code work. &nbsp;We didn't initially plan on exactly this use but it's helping fill a good gap since of course code contributions are not the only way of contributing. &nbsp;</p>
+
+<p>The rest of the organizing, communicating, documenting, designing deserves just as much recognition. &nbsp;</p>
+
+<p>And there's a page on Drupal.org which is not well advertised. &nbsp;It has some of the graphs on here on that page are good. &nbsp;It's Drupal.org/metrics. &nbsp;And some of the graphs on there like number of users created per month, that's not actually all that useful because most of the users on the site are spammers or unused accounts. &nbsp;And it's really just -- it's not really measuring anything. &nbsp;</p>
+
+<p>But commit -- getting into commit credit, how many people were credited per month, that is a more useful metric of someone doing something tangible to help the project. &nbsp;</p>
+
+<p>So that page has a graph of how many people were contributing credited per month broken up in a few different ways. &nbsp;</p>
+
+<p>You know, Drupal is a global project. &nbsp;So we have it broken out by region. &nbsp;And I believe last year or maybe the year before last we added a -- well, actually we added this a little before 2016 because that's when the graph starts. &nbsp;We added the ability for people to self-identify as being a member of an underrepresented community. &nbsp;Such as the race, minority in your field or location, or woman in a male-dominated industry. &nbsp;</p>
+
+<p>And actually I have it in my notes we added this in 2018. &nbsp;That's why part of why the not specified is so big. &nbsp;You can go to your user profile and update this and this graph updates once a day as people fill in their data. &nbsp;</p>
+
+<p>It's all self-reported. &nbsp;And kept confidential except for as we get reports like this. &nbsp;</p>
+
+<p>And the spike in 2017, that is when the multilingual initiative completed. &nbsp;They decided to do a single issue to stay kind of a party thanking everyone who had contributed throughout the years. &nbsp;</p>
+
+<p>And that was quite a few people. &nbsp;</p>
+
+<p>And the third way it's broken out right now is whether you're contributing explicitly as a volunteer or for an organization or a bit of both. &nbsp;</p>
+
+<p>And you know, we get to use -- we also get to use the commit credit data as the ranking in the marketplace. &nbsp;So that used to be Drupal.org/marketplace. &nbsp;That used to be alphabetical. &nbsp;And now it's ranked by how much rough metric of how much organizations are giving back. &nbsp;</p>
+
+<p>But it's still not covering everything, all the types of contribution. &nbsp;It's still pretty focused on code contribution, things into issues. &nbsp;We'll see stuff like that example before of people making issue to credit, someone speaking at a conference or speaking at a meetup or attending a meeting. &nbsp;</p>
+
+<p>And we have the contribution recognition committee who is working on making recommendations for the next round of and future rounds of stuff that gets recognized on user profiles and organization profiles. &nbsp;</p>
+
+<p>And they are meeting now. &nbsp;They have a survey out. &nbsp;The best way to find it I think it's -- there's a link to it in the slides that are linked from my session on the MidCamp site. &nbsp;You can also go to the association's blog. &nbsp;And it's two or three blog posts down. &nbsp;That's the blog post title, Drupal contribution culture. &nbsp;And they have a survey looking for what people are doing for Drupal and what they would like to be recognized for. &nbsp;</p>
+
+<p>And what else are we working on? &nbsp;So that's a couple of big examples of things that I've been working on in the past few years. &nbsp;We have other projects in the pipeline right now. &nbsp;</p>
+
+<p>A lot of stuff motivated by the upcoming Drupal 9 release. &nbsp;I think the beta release that's coming out later today. &nbsp;And also for Drupal 9, improving Composer support in Drupal core and making the packaged downloads of Drupal Composer ready. &nbsp;So in the past, if you tried finding Drupal Composer commands on regularly downloaded Drupal, it would not get you into a good spot. &nbsp;But now with the recent versions of I believe it's Drupal 8.8 and later, you can download Drupal and then it works the same as if you would run Composer with an 8 project because that's exactly what it's doing on our servers. &nbsp;</p>
+
+<p>I am working on semantic versions for contrib for modules and themes. &nbsp;So getting rid of the first bit, the 8.x and -- because Drupal projects, they can be compatible with Drupal 8 and 9 simultaneously. &nbsp;It wouldn't make sense to have a 9.x in front of your version numbers because there's no such thing as a Drupal 9 module. &nbsp;It's -- that minimum probably works with Drupal 8, 9 or later. &nbsp;There's some things that truly is 9 only. &nbsp;But there's no way to have projects be Drupal 8 projects or Drupal 9 projects now. &nbsp;Thanks to Core's semantic versioning and the way they are handling the applications and adding new features every six months. &nbsp;</p>
+
+<p>And since we're changing how versions work we're going all the way to semantic versions so adding the third component, the .0 at the end. &nbsp;So that's a lot of going through auditing the site, in some cases auditing other sites like localized.Drupal. &nbsp;org or other places where version numbers are handled and making -- localized.Drupal.org and making sure those work with the new formating. &nbsp;</p>
+
+<p>And we're getting towards the end of that project. &nbsp;It's in a place where it's ready to be enable when Core supports it. &nbsp;It turns out core, since -- since it's been before we used semantic versions it doesn't really have great support for semantic versioning. &nbsp;But that's in the more recently releases. &nbsp;</p>
+
+<p>And I'm moving on the parts of it that are more frontend like UI related. &nbsp;We can change how the Project SEARCH works at any time. &nbsp;You know before we need to get the data model correct. &nbsp;</p>
+
+<p>So the thing I'm literally working on right now is changing the core compatibility filter when you surge a module from it used to be just that prefix of the version number to using dependency data to figure out if it works with some version of Drupal 9. &nbsp;If it works with some version of Drupal 8 or some version of Drupal 7. &nbsp;</p>
+
+<p>So that will be deployed hopefully later today. &nbsp;Maybe on Monday. &nbsp;</p>
+
+<p>One of my co-workers, Brendan, is working on event listings. &nbsp;</p>
+
+<p>So taking some of the weight off of Drupalcal and groups.Drupal.org. &nbsp;What Drupalcal is doing right now is when they see an event on groups.Drupal.org they manually figure out where it is, like where it actually is in the world. &nbsp;There's no geocoding on groups.Drupal.org. &nbsp;</p>
+
+<p>So taking some weight off of the old Drupal 6 site groups.Drupal.org. &nbsp;</p>
+
+<p>And something else I'll be working on in the near future, probably in the next couple months, maybe six months, is issue forks. &nbsp;</p>
+
+<p>So we migrated all of our repositories to GitLab. &nbsp;We use it for something interesting now. &nbsp;</p>
+
+<p>The unique thing about how we'll be doing issue forks on Drupal.org is they will be collaborative. &nbsp;So if you fork a project on GitHub or GitLab.com, it will just be for your access. &nbsp;And the way -- and you can add individual collaborators one by one. &nbsp;</p>
+
+<p>But the way a lot of Drupal issues work is there's multiple people who just show up and help out with an issue. &nbsp;It's not something you would want to do through an invitation process. &nbsp;We don't know who is going to work on what issue ahead of time. &nbsp;</p>
+
+<p>So we'll have issue forks that anyone can get access to contribute to. &nbsp;And really the main work is going to be figuring out does everyone have access right away with their git account? &nbsp;Or does -- do they have to click an additional button to get access to a specific issue? &nbsp;Or do we want to allow force pushes? &nbsp;Do we want to have branches that are person specific and then people can work from each other's branches. &nbsp;Stuff like -- you know, if it's a free-for-all, git is not the easiest -- doesn't have the best UI. &nbsp;It's easy to force push and not know that you're deleting something someone else worked on so getting the restrictions in there so that people can collaborate and there's some guide rails so people don't overwrite each other's work accidentally. &nbsp;And hopefully not intentionally. &nbsp;</p>
+
+<p>And we have to update all of these sites to Drupal 8 or Drupal 9 at some point. &nbsp;And we have the old site groups that's the Drupal 6 site. &nbsp;</p>
+
+<p>So we're working on technical debt cleanup right now. &nbsp;Stuff like you know the events listing. &nbsp;If we can get that to a good enough spot, that's one less content type on groups.Drupal.org and we won't have to migrate that. &nbsp;</p>
+
+<p>The association site, it's really for elections now. &nbsp;But there are some old blog posts on there, which we can migrate and then we don't have to update the blog functionality on the association site to Drupal 8 or 9. &nbsp;</p>
+
+<p>Creating PHP, so you know we're not doing a PHP upgrade at the same time as a Drupal upgrade. &nbsp;</p>
+
+<p>So getting everything organized before actually updating. &nbsp;</p>
+
+<p>And for Drupal.org itself, the last time we did a migration, updating to Drupal 7, we actually turned the site off for 24 hours. &nbsp;And yeah, actually stayed up probably for about 30 hours or probably more than that with all of the premigration and post migration cleanup. &nbsp;</p>
+
+<p>And we probably can't get away with that nowadays. &nbsp;I think people will expect Drupal.org to be up 24/7. &nbsp;So we'll have to figure out an incremental migration for www.Drupal.org. &nbsp;</p>
+
+<p>Let's see. &nbsp;I'll get through the last few slides and then handle all of the questions. &nbsp;</p>
+
+<p>So supporting all these works -- all this work. &nbsp;</p>
+
+<p>You know, that's -- those are a few examples of stuff we do. &nbsp;There's lots of day-to-day things. &nbsp;This week the things I can remember doing are cleaning up the spam. &nbsp;Helping with the security releases around CKEditor on Wednesday. &nbsp;And actually did the security updates for our three sites that use CKEditor on Drupal.org. &nbsp;Fixed a data lost bug and CSS issue. &nbsp;</p>
+
+<p>And a bunch of other kind of random stuff I can't remember. &nbsp;</p>
+
+<p>And you know, it doesn't all come free. &nbsp;My co-workers and I are paid employees. &nbsp;Of the association. &nbsp;</p>
+
+<p>And we do use various services which charge various amounts. &nbsp;They are not all free. &nbsp;Although a lot of these companies do give us generous discounts and some of these are Open Source projects there's no monetary cost but we do actually have to spend our time to actually use them. &nbsp;</p>
+
+<p>So we use a lot of third party services nowadays like Slack and Zoom for communicating around our team, Datadog for monitoring and logging, Zendesk if you have emailed <a href="https://www.midcamp.org/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7f171a130f3f3b0d0a0f1e1351100d18">[email&#160;protected]</a>. &nbsp;</p>
+
+<p>And we have actual servers. &nbsp;There's 11 -- at least 11 physical servers at the Oregon State University lab. &nbsp;We haven't bought new servers in a few years, just replacement parts that are needed. &nbsp;Except for the media servers. &nbsp;And we're moving the media servers. &nbsp;Everything is just a host for virtual machines. &nbsp;</p>
+
+<p>So we're -- we get the most out of the hardware we have and can stay pretty flexible. &nbsp;We have to move virtual machines around as needed. &nbsp;</p>
+
+<p>And we do have a contract with the Oregon State University Open Source Lab for their piece. &nbsp;</p>
+
+<p>And then the Engineering Team, we're only 4 people out of the 18 people on staff at the association. &nbsp;My co-workers, they produce Drupal Cons and do something like coordinating Drupal brand and marketing with the Promote Drupal initiative and much more. &nbsp;</p>
+
+<p>So membership is the easiest way to support us financially, either as an individual or organization. &nbsp;</p>
+
+<p>And if you're an organization who has a bit more of a budget, supporting partners, they directly benefit Drupal.org. &nbsp;They are the supporting -- their supporting partner of revenue is the earmarks for the Engineering Team and building Drupal.org. &nbsp;And in addition to helping out benefits include increased visibility and boost in Drupal.org marketplace ranking. &nbsp;</p>
+
+<p>And especially this week, we're organizing a conversation in May and figuring how that's going to be affected and the whole industry is affected by the COVID-19 situation. &nbsp;So these are some of the people we have -- who have reached out and given concrete support in the past few days around all of that. &nbsp;And you know, we're seeing what we can do for Minneapolis and seeing if that can go on or if it needs to be moved. &nbsp;And there's updates on the events Drupal.org Website for what we can do there. &nbsp;</p>
+
+<p>And that list will also be updated as people -- more people step up on the events site. &nbsp;</p>
+
+<p>And that is all I have for the regular presentation. &nbsp;Come to the Contribution Day on Saturday, tomorrow. &nbsp;There's information on the Website. &nbsp;</p>
+
+<p>And I should get Slack out of there. &nbsp;I'll just do the Zoom chat. &nbsp;I was initially thinking this would be on Slack. &nbsp;</p>
+
+<p>So first question is --</p>
+
+<p>&gt;&gt; DWAYNE McDANIEL: &nbsp;Actually before we get to that, Neil, I just want to do something really quick. &nbsp;I want to unmute everybody at the same time, and let's all give Neil a round of applause like we're in the same room as him. &nbsp;</p>
+
+<p>(Applause).</p>
+
+<p>&gt;&gt; Whoo! &nbsp;</p>
+
+<p>&gt;&gt; DWAYNE McDANIEL: &nbsp;All right now I'll unmute you again Neil all right let's give you those questions we just wanted to make you feel -- say a big thank you.</p>
+
+<p>&gt;&gt; NEIL DRUMM: &nbsp;Thanks. &nbsp;So how do we track the number of downloads of a module or sites reporting using a module? &nbsp;</p>
+
+<p>So right now we are not actually tracking the number of downloads. &nbsp;That's something that broke a few months ago for -- because of some SSL issues, something like that, it just stopped working. &nbsp;And we haven't gotten to fixing it yet partly because download count is not really a meaningful statistic. &nbsp;There's a lot of CI systems and automated things that are downloading modules that it's not really a meaningful metric. &nbsp;So I think in all likelihood we'll probably take downloads off of projects pages at some point. &nbsp;But if you really look at them, they haven't updated since I believe November. &nbsp;</p>
+
+<p>Sites reporting using a module, that is a more interesting trick since it is -- when your site checks update status, it is -- we're counting that. &nbsp;That's an individual vitamin going to Drupal.org. &nbsp;And there's -- an individual site going to Drupal.org and there's a unique identifier each site generates so we can count how many of those we've seen each week. &nbsp;</p>
+
+<p>It's a little bit of -- there's some ways it overcounts and some ways it undercounts. &nbsp;With my co-worker, Ryan, he has looked at the data in a lot of detail. &nbsp;And there's stuff like sites that don't have cron running that I'll check in once a month and we don't count that because we are looking for sites that check in at least once a week. &nbsp;So that might be an undercount. &nbsp;And there's also sites which have update status turned on they don't want that running in production so that's an undercount. &nbsp;In the future we're looking at doing a telemetry initiative to get even more data, stuff like what version of PHP are we running on? &nbsp;What version of database are you running on? &nbsp;All making it clear what your site is sharing and isn't sharing. &nbsp;And that would give the core maintainers and module maintainers a lot more around like making decisions like do we need to support PHP 7.2 or maybe everyone is upgraded and we can stop supporting. &nbsp;</p>
+
+<p>And the actual way we count all of those numbers technically is most of those requests go to our CDN vastly. &nbsp;And that handles like 99.5% of the requests. &nbsp;They never hit our servers. &nbsp;</p>
+
+<p>Except that we have the logs from that, HTTP logs. &nbsp;And we aggregate those through mock scripts and that's used for stats. &nbsp;</p>
+
+<p>Who selects which -- next question. &nbsp;Who selects which modules are used on Drupal.org? &nbsp;</p>
+
+<p>That is mainly me. &nbsp;And my co-workers. &nbsp;</p>
+
+<p>We're the ones who will have to look at maintaining something long term and making sure it's a good module that's secure, has a Drupal 8 or 9 equivalent or upgrade, to a new upgrade. &nbsp;Yeah, it's us, we're running the site to get all of the modules. &nbsp;</p>
+
+<p>And Marco asks, will the pull request related feature be happening before the start of the Drupal 8 upgrade? &nbsp;Yes. &nbsp;So the where pull requests are right now is they work on staging. &nbsp;And -- except for giving people request to push them out. &nbsp;So it's probably already like a third done. &nbsp;</p>
+
+<p>I think the -- who gets access to what and any restrictions around who can push to what, that's going to be the hard thing to figure out. &nbsp;</p>
+
+<p>I think -- let me see if I can switch to a browser. &nbsp;</p>
+
+<p>The way to get involved and to see much of the progress of pull requests is git.Drupalcode.org/issue. &nbsp;And that's where the issue forks will live. &nbsp;And it is the shortest URL that has a link to this longer URL that has where the documentation will live for issue forks and merge requests. &nbsp;And we have a couple metaissues around that. &nbsp;And there's a lot of issues like to allow force pushes or deny force pushes and figuring out all of these access ideas. &nbsp;</p>
+
+<p>And yeah that all is pretty straightforward once we figure out -- implementing it will be straightforward once we decide on how everyone works together. &nbsp;So that's something we can knock out before the Drupal 8 upgrade. &nbsp;</p>
+
+<p>And one last question. &nbsp;</p>
+
+<p>How can we help you to make less burden to maintain the sites? &nbsp;Do you have some good tips to us to help your team? &nbsp;Um, let's see. &nbsp;</p>
+
+<p>I mean, the big project on the horizon is the Drupal 8 or 9 upgrade. &nbsp;</p>
+
+<p>So looking at modules we use and making sure they have a good Drupal 8 or Drupal 9 version. &nbsp;</p>
+
+<p>Let's see. &nbsp;The codebase for all the sites is on Bitbucket so it's just the cheap option at the time. &nbsp;And we don't want to host the stuff to build our site on our site itself. &nbsp;That would be circular dependency. &nbsp;</p>
+
+<p>But the way we actually deploy the sites and make changes to the sites is we have public repositories for each site with a thresh make file since this is Drupal 7. &nbsp;</p>
+
+<p>And yeah, you will see us doing a lot of work this week. &nbsp;Just CKEditor upgrades. &nbsp;And we do three or four deployments on an average day. &nbsp;Well, probably between one and four deployments on an average day. &nbsp;These are a lot of quick things that are a lot of deployments. &nbsp;But other days it will be just one thing or one thing every couple of days. &nbsp;</p>
+
+<p>So that's the place to see what's getting deployed right now. &nbsp;And the full listing of -- this is all the modules that are running on Drupal.org. &nbsp;What versions of them if we have any patches. &nbsp;So I mean that would be a concrete way to help remove -- remote technical -- to get patches reviewed into their parent projects. &nbsp;</p>
+
+<p>And did anyone else have questions.</p>
+
+<p>&gt;&gt; DWAYNE McDANIEL: &nbsp;There were a couple a little further up and I think the asker of that first one around SEO and if you could talk a little bit about SEO a little bit I think that would be interesting.</p>
+
+<p>&gt;&gt; NEIL DRUMM: &nbsp;Yeah I covered those two as we went. &nbsp;Single sign on.</p>
+
+<p>&gt;&gt; DWAYNE McDANIEL: &nbsp;Oh, single sign on. &nbsp;I'm sorry; I read that as SEO.</p>
+
+<p>&gt;&gt; NEIL DRUMM: &nbsp;No worries.</p>
+
+<p>&gt;&gt; DWAYNE McDANIEL: &nbsp;And then you had a slide that showed usage. &nbsp;And there was a big Skype in 2017.</p>
+
+<p>&gt;&gt; NEIL DRUMM: &nbsp;Yeah that was the multilingual initiative completing.</p>
+
+<p>&gt;&gt; DWAYNE McDANIEL: &nbsp;There you go. &nbsp;</p>
+
+<p>&gt;&gt; NEIL DRUMM: &nbsp;And yeah, SEO I don't personally pay attention to that very much nowadays. &nbsp;We'll occasionally do a round of getting the social share previews like the screenshot that the image that shows up with sharing something, getting those in like a better condition. &nbsp;But we're -- yeah, we're in a good spot SEO-wise. &nbsp;I don't know if people even track page rank anymore but I know we probably have a pretty high page rank. &nbsp;And if you're -- it's a site that's been around for a while, Google likes well enough, and yeah, it's master tools, Google webmaster tools sends you an email saying like there's -- click on this page, -- there's a fix on this page we'll take a quick look and fix it if it's actionable.</p>
+</div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+
+</div>
+  </section>
+
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-906961d9a95593e3261ec61d3a2d920ad849469fa6b1b5a8fe2fff477f58893b">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/bounteous.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2019-11/Bounteous_indigo_large.png" width="1676" height="279" alt="Bounteous logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/pantheon.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2020-02/pantheon-logo-tagline-black.png" width="1200" height="370" alt="Pantheon logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/palantirnet.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2020-02/palantirnet-logo.png" width="1200" height="198" alt="Palantir.net logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/clarity-partners.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2020-02/CFDFAA23-5C59-4C07-9C66-CAFFE0CF3854.png" width="1534" height="387" alt="Clarity Partners logo" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-2019-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#335a5d555c735e5a5750525e431d5c4154"><span class="__cf_email__" data-cfemail="254c4b434a65484c41464448550b4a5742">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-2019-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-2019-footer-menu" id="block-hatter-2019-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-2019-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/6310","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"ajaxTrustedUrl":{"form_action_p_pvdeGsVG5zNF_XLGPTvYSKCf43t8qZYSwcfZl2uzM":true},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_sul8js76f3THBVtv8nspP93BoCHSgntyTCisS6lai4M.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter_2019&amp;include=eJx1ykEKgDAMBdELaavuPI2k-o1K2kITFG_vRkQEVwOP4ZxZMFAiOW0d1fMHqoXMUIauaXvPkgNJvT0aSPHSA2HOJfq7DoKIZG6C0SrqlHb8ThGqxLgAGZ04Cw"></script>
+
+  </body>
+</html>

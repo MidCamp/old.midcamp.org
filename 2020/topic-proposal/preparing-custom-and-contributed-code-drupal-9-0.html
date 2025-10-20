@@ -1,0 +1,634 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="Drupal 9 is nearly here, with the promise of allowing the same contributed and custom code to work in both Drupal 8 and Drupal 9.  This presentation will discuss some of the practical aspects of making that happen for custom and contributed code maintainers.  The session will begin with a very brief overview of the current state of Drupal 9.  It will then give a brief overview of how to prepare both custom and contributed code right now so that it is ready for Drupal 9 when it is released." />
+<link rel="canonical" href="preparing-custom-and-contributed-code-drupal-9-0.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Preparing custom and contributed code for Drupal 9. | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter_2019/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Preparing custom and contributed code for Drupal 9. | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_gt5LiAM1qLGUH5e845uOb7R_lJ9dUwTXmnhGDR2yY20.css%3Fdelta=0&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlT9EOwiAM_KEN1De_hsC4bSSFGopb5teLY0s0vrTXu0t7HciKbNpZQTc0HCFiJ8g5J_ZV44yKcrQUXuhmWwqyuV2udz0RO0v9IHLSn2165FR-mS-jbFIQ29kleLBBdPBmDCCvM-.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_q7cxd-C3noAE-s-u3xDxrLWFMO_wjpGZ5xcFfomX0n4.css%3Fdelta=1&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlT9EOwiAM_KEN1De_hsC4bSSFGopb5teLY0s0vrTXu0t7HciKbNpZQTc0HCFiJ8g5J_ZV44yKcrQUXuhmWwqyuV2udz0RO0v9IHLSn2165FR-mS-jbFIQ29kleLBBdPBmDCCvM-.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_JumHJ3UqLO9Mdu1kygD5e19MOiNh5iD_a9p0FH6QrHQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlT9EOwiAM_KEN1De_hsC4bSSFGopb5teLY0s0vrTXu0t7HciKbNpZQTc0HCFiJ8g5J_ZV44yKcrQUXuhmWwqyuV2udz0RO0v9IHLSn2165FR-mS-jbFIQ29kleLBBdPBmDCCvM-.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_LovagMoZZFoM80YhT0zgW4b6oNarRMdF8ooxvYiQ9tA.css%3Fdelta=4&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlT9EOwiAM_KEN1De_hsC4bSSFGopb5teLY0s0vrTXu0t7HciKbNpZQTc0HCFiJ8g5J_ZV44yKcrQUXuhmWwqyuV2udz0RO0v9IHLSn2165FR-mS-jbFIQ29kleLBBdPBmDCCvM-.css" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="preparing-custom-and-contributed-code-drupal-9-0.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-2019-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-hatter-2019-midcamp2020navigation-menu" id="block-hatter-2019-midcamp2020navigation" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-2019-midcamp2020navigation-menu">Midcamp 2020 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" data-drupal-link-system-path="node/403">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../news.html" title="News" data-drupal-link-system-path="2020/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" data-drupal-link-system-path="2020/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--virtual-camp">
+        <a href="../article/midcamp-2020-going-digital.html" title="MidCamp is going virtual" data-drupal-link-system-path="node/6689">Virtual Camp</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsor">
+        <a href="../sponsor-midcamp.html" data-drupal-link-system-path="node/6250">Sponsor</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--community-organizations">
+        <a href="../sponsor/community-organization-introduction.html" data-drupal-link-system-path="node/6251">Community Organizations</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sponsors">
+        <a href="../sponsors.html" data-drupal-link-system-path="node/6253">Sponsors</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" data-drupal-link-system-path="node/6258">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--sessions-thu">
+        <a href="../schedule/thursday.html" data-drupal-link-system-path="2020/schedule/thursday">Sessions (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-fri">
+        <a href="../schedule/friday.html" data-drupal-link-system-path="2020/schedule/friday">Sessions (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--contribution-sat">
+        <a href="../contribution-day.html" title="Contribution Day" data-drupal-link-system-path="node/6378">Contribution (Sat)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--accepted-sessions">
+        <a href="../accepted-sessions.html" data-drupal-link-system-path="2020/accepted-sessions">Accepted Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../../2023/speaker-resources.html" data-drupal-link-system-path="node/345">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-terms-and-conditions">
+        <a href="../../speaker-terms-and-conditions.html" data-drupal-link-system-path="node/21">Speaker Terms and Conditions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--topic-tracks">
+        <a href="../../topic-tracks.html" data-drupal-link-system-path="node/10">Topic Tracks</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--donate">
+        <a href="https://tickets.midcamp.org/" title="Register for MidCamp">Donate</a>
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-2019-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2020.html" hreflang="en">MidCamp 2020</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-hatter-2019-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Preparing custom and contributed code for Drupal 9.</span>
+</h1>
+
+
+  </div>
+<div id="block-hatter-2019-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="6286" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2020-03-19T19:00:00Z" class="datetime">Thursday, 2:00 pm CDT</time>
+ - <time datetime="2020-03-19T19:30:00Z" class="datetime">Thursday, 2:30 pm CDT</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-84" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-name field--type-string field--label-hidden field__item">Room 325</div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>Drupal 9 is nearly here, with the promise of allowing the same contributed and custom code to work in both Drupal 8 and Drupal 9.&nbsp; This presentation will discuss some of the practical aspects of making that happen for custom and contributed code maintainers.&nbsp;</p>
+
+<p>The session will begin with a very brief overview of the current state of Drupal 9.&nbsp; It will then give a brief overview&nbsp;of how to prepare both custom and contributed code right now so that it is ready for Drupal 9 when it is released.</p>
+
+<p>We discuss changes to vendor dependencies, and server requirements&nbsp;in Drupal 9, particularly the change from PHP 7.0 to PHP&nbsp;7.3, and how that might affect modules or custom code in certain cases and how to manage it.</p>
+
+<p>The session will then discuss some practical aspects of making this happen. Drupal 8.8 deprecated a large amount of code, and the replacement code paths are not available in Drupal 8.7 which has security support up until the day Drupal 9 is released.&nbsp;We will discuss how to find and fix deprecations now so that code is ready to go on the day Drupal 9 is released.</p>
+
+<p>We will discuss how to audit a site for Drupal 9 readiness, and&nbsp;how developers can engage with maintainers of the modules they use to help prepare them for Drupal 9.</p>
+
+<p>Finally we will discuss options for contributed module and custom code&nbsp;management around the Drupal 9 release and beyond, weighing the pros and cons of the different ways to ensure your module&nbsp; and code will work across all needed versions of Drupal 9.</p>
+
+<p>There will be a follow-up BoF after the session to provide an opportunity for further discussion and a Q&amp;A session.</p>
+
+<p><a href="https://docs.google.com/presentation/d/11Hz1wn81CIMm_izBTeD6mDi_va8qFu5apD5kjtkOaVg/edit?usp=sharing">For session slides, click here</a></p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/UNVgN_AuRZU?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Michael Lutz</h4>
+
+      Senior Engineer
+
+
+          @
+              <a href="https://fourkitchens.com">Four Kitchens</a>
+        
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2020-03/1395837533573.jpg%3Fitok=UZQK77y2" width="165" height="220" alt="Michael Lutz" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Back-End</div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-feedback-form field--type-webform field--label-above">
+    <div class="field__label">Feedback Form</div>
+              <div class="field__item"><form class="webform-submission-form webform-submission-add-form webform-submission-session-feedback-form webform-submission-session-feedback-add-form webform-submission-session-feedback-node-6286-form webform-submission-session-feedback-node-6286-add-form" data-drupal-selector="webform-submission-session-feedback-node-6286-add-form" action="preparing-custom-and-contributed-code-drupal-9-0.html" method="post" id="webform-submission-session-feedback-node-6286-add-form" accept-charset="UTF-8">
+  
+    <div data-drupal-selector="edit-0" class="webform-message js-webform-message js-form-wrapper form-wrapper" id="edit-0"><div data-drupal-messages>
+    <div role="contentinfo" aria-label="Status message" class="messages messages--status">
+                  <h2 class="visually-hidden">Status message</h2>
+                    Sorry...This form is closed to new submissions.
+            </div>
+    </div>
+</div>
+<input autocomplete="off" data-drupal-selector="form-locsx3ae7dnoeblajetxoqaeevyv3he4-mawuciuc9g" type="hidden" name="form_build_id" value="form-LocSX3AE7DnOeBlAjETXOqAeeVYv3he4_MAwUCiUc9g" />
+<input data-drupal-selector="edit-webform-submission-session-feedback-node-6286-add-form" type="hidden" name="form_id" value="webform_submission_session_feedback_node_6286_add_form" />
+<div class="url-textfield js-form-wrapper form-wrapper" style="display: none !important;"><div class="js-form-item form-item js-form-type-textfield form-type-textfield js-form-item-url form-item-url">
+      <label for="edit-url">Leave this field blank</label>
+        <input autocomplete="off" data-drupal-selector="edit-url" type="text" id="edit-url" name="url" value="" size="20" maxlength="128" class="form-text" />
+
+        </div>
+</div>
+
+
+  
+</form>
+</div>
+          </div>
+
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <h3 class="field__label">Transcript</h3>
+              <div class="field__item" tabindex="0"><p>&gt;&gt; MICHAEL LUTZ: &nbsp;All right. &nbsp;Hello, everybody, and thank you for being here and welcome to preparing custom and contributed code for Drupal 9. &nbsp;My name's Michael Lutz. &nbsp;I'm a Senior engineer at Four Kitchens and I want to give today a brief runthrough of the state of Drupal 9, where development is at and try to give you all some idea of what's going to be involved in preparing code you maintain to run on Drupal 9 along with most importantly showing you what steps you can take right now.</p>
+
+<p>So let's start just touching on where Drupal 9 development is at right now. &nbsp;It's very exciting we have a firm release date. &nbsp;Drupal 9 will be released on June 3, 2020. &nbsp;We had a few potential release Windows and the core Developers managed to hit all the requirements for earliest potential window on March 13th on committing the Last Mile stone that was required to release Drupal 9 and beta and as of now that is scheduled for release today or tomorrow. &nbsp;I think it would have been out earlier this week &nbsp; &nbsp;pushed it back a little bit.</p>
+
+<p>So now that we reached those milestones on time we're going to look at getting RC out preferably early May and Drupal 9 will be released on time on June 3, 2020 and at the same time we're going to release the Drupal 8.9 long term support the LTS edition. &nbsp;On top of all that the Drupal 8.9 beta will also come out most likely next week and at the time that beta comes out we'll branch off Drupal 9.1 so even as we finish ramping all the release development of the next iteration with all these settings and features that everything that comes along will be starting next week. &nbsp;So now we know when Drupal is hyper converge 9 is coming. &nbsp;Let's get to this presentation. &nbsp;Then comes the question of upgrade.</p>
+
+<p>Today this presentation will be focused on the first group, people that are maintaining sites. &nbsp;However a lot of what I talk about especially when it comes to preparing code and updating code so going to apply equally to both groups so this presentation should be useful to everybody especially when we start talking about deprecated code [ Inaudible ]. &nbsp;In order to successfully upgrade a site, and I really want to stress that this prose is an upgrade. &nbsp;It's not [ Inaudible ] data migration. &nbsp;The steps needed to perform a successful upgrade there's a few of them. &nbsp;And the really good news is you have everything you need to do most of these steps right now in the Drupal 8 site in order to be ready to hit the upgrade button on June 3rd.</p>
+
+<p>And that's really one of the take aways I want everybody to get out of this presentation is that it's not about waiting till Drupal 9 comes out and then doing something. &nbsp;It's a whole bunch of things you can do right now so that the day Drupal 9 is released you're ready to go. &nbsp;First thing you want to do is make sure your service supports Drupal 9. &nbsp;I'll give you details but Drupal 9 will have different server requirements than Drupal 8. &nbsp;You'll want to make sure any custom code you have, custom modules are compatible with Drupal 9 and that will be the largest portion of this presentation is dedicated to how to get that code updated and ready to go. &nbsp;In addition to your custom code you have to audit your contributed modules you're using. &nbsp;Make sure they're ready for Drupal 9. &nbsp;If they're not, [ Inaudible ] we'll talk a little about that when we get there. &nbsp;Finally if you're on an older version of Drupal 8, you need to upgrade to Drupal 8 first because you'll only be able to update from Drupal 9 to one of those two versions and once all of that is done you're able to upgrade to Drupal 9.</p>
+
+<p>&gt;&gt; DWAYNE: &nbsp;Michael, a quick interruption. &nbsp;Is it possible for you to move closer to your mic? &nbsp;We're getting a couple notes that you're a little bit fading.</p>
+
+<p>&gt;&gt; MICHAEL LUTZ: &nbsp;I'll try to speak a little louder, if that will help. &nbsp;Sorry about that.</p>
+
+<p>Speak a little louder here.</p>
+
+<p>Anyway, the last step obviously has to wait until Drupal 9 is released. &nbsp;Wait two seconds here to make sure I'm using the right microphone.</p>
+
+<p>&gt;&gt; How is that? &nbsp;Is that better?</p>
+
+<p>Is that better?</p>
+
+<p>&gt;&gt; DWAYNE: &nbsp;Yes, much better.</p>
+
+<p>&gt;&gt; MICHAEL LUTZ: &nbsp;I was not using my headset mic. &nbsp;I apologize for that.</p>
+
+<p>&gt;&gt; DWAYNE: &nbsp;I should have told you about it earlier.</p>
+
+<p>&gt;&gt; MICHAEL LUTZ: &nbsp;I guess so. &nbsp;I thought it was on. &nbsp;My bad.</p>
+
+<p>&gt;&gt; DWAYNE: &nbsp;Moving to Drupal 9.</p>
+
+<p>&gt;&gt; MICHAEL LUTZ: &nbsp;All right, anyway, keep moving on. &nbsp;One of the last steps will obviously have to wait till Drupal 9 is released. &nbsp;The first four steps are things you can do right now to be ready to upgrade and I want to talk a little bit on each point right now. &nbsp;So first off, preparing your server environment. &nbsp;Drupal 9 shouldn't require any more hardware. &nbsp;You don't need a beefier server. &nbsp;In fact because we removed a lot of deprecated code it should at some level be more efficient than Drupal 8 but in order to support future development on the platform the minimum version had to have been increased and the biggest example is with PHP itself so Drupal 8.8 required PHP 7.0. &nbsp;Drupal 9 will require PHP 7.3. &nbsp;It's based on symphony 4. &nbsp;Symphony 4 requires PHP 7.2 so we knew we would have to have at least a minimum of 7.2 and on top of that 7.2 will reach end of life shortly after Drupal 9 is released so this December, 7.2 is going to reach end of life, so using PHP 7.3 as a minimum allows us to use some more modern versions of some of our dependencies like PHP unit which is going to minimize the possibility of some future security issue is going to force us to do a dependency update that will force us to do a PHP minimum version update somewhere in the middle of the Drupal 9 cycle so we should be able to be using PHP 7.3 as a minimum all through the Drupal 9 cycle.</p>
+
+<p>But in addition to PHP minimum supported versions of the various databases have been changed so my SQL or Percona have to be in versions 5.7.8. &nbsp;If you use Maria DB, 10.2.7. &nbsp;SQL light you have to use 3.26. &nbsp;Post gre, you have to be in version 110 and you have to be on drush 10 to work with Drupal 9 &nbsp;Drush 9 will not work with Drupal 9 &nbsp;If you're on managed hosting you quite likely meet these requirements already or you will by the time Drupal 9 comes out but if you self host or if you haven't updated some of your software versions in a while, make sure you meet these new requirements. &nbsp;PHP I want to talk real quick, typically upgrading your PHP version is fairly painless but there seems to always be just like a couple of incompatible backwards, backwards compatibility breaking changes to be aware of.</p>
+
+<p>A couple of the common ones right now there's a warning that started getting thrown in PHP 7.2 if you try to count an uncountable object, it used to just return 0, and now it throws a warning. &nbsp;There's a new warning in 7.3 if you use continuing side of a switch statement so each version of PHP just has a few things like that to be aware of.</p>
+
+<p>I've put links up here, each version of PHP also comes out with a migration guide which will &nbsp; &nbsp;there's a link inside that page that lists to all the backwards incompatible changes of that version so if you have to upgrade your PHP version it's good to be aware of them, review them and be aware of any changes you might have to make before you're ready to upgrade your server.</p>
+
+<p>All right. &nbsp;So next we're going to talk about upgrading your code to be compatible with Drupal 9 &nbsp;So what does that mean? &nbsp;Well, deprecations. &nbsp;Everybody's absolute favorite thing. &nbsp;Beginning in Drupal 8 we changed the way we developed the next major version of Drupal. &nbsp;While Drupal 8 itself was developed completely separately from Drupal 7, Drupal 9 has been in development inside of Drupal 8 for the past few years and this has been done partially through the regular introduction of new features and more importantly for this discussion through the introduction of deprecations so through each of Drupal 8's minor releases, new and improved APIs have been created, and at the same time the old APIs have remained in the code base. &nbsp;These old APIs are for the most part still functional in Drupal 8. &nbsp;Drupal 8, and Drupal 8.9 which leads me to one of the other big takeaways for today is that Drupal 9 is really just Drupal 8.9 with all this old deprecated API code removed, and then a few dependency updates such as moving from Symfony 3 to Symfony 4 so what this ultimately means is if you can adjust your code now to use the newer APIs that are already there instead of the old deprecated APIs it's going to work in Drupal 8. &nbsp;It will still work in Drupal 9 and I want to go through a common example of what this means here going as far back I believe as Drupal 5, Drupal provided an easy way to display a status message or warning message to users. &nbsp;This method here, Drupal set message takes two arguments, a message and a message type for severity which is a string, it's either the word status or the word warning or the word error. &nbsp;The method stores the message and when it comes time to display the next page you get your pink or yellow or green box at the top of the page that has the message in it and this method still exists in Drupal 8.9. &nbsp;If you call it, it will still work. &nbsp;It's still going to display your box but it is not the right way to display a message anymore. &nbsp;Starting back in Drupal 8.5, the functionality to do this was replaced and it uses the modern service class called the messenger service. &nbsp;This class has dedicated methods for adding messages of various severities. &nbsp;It has ways to retrieve and delete the messages, it's a service class. &nbsp;It can be overridden. &nbsp;It can be mocked in testing and it's really just overall a much more modern and useful way to package this functionality. &nbsp;As of Drupal 8.5 if you wanted to display a message to the user this is the way you should be doing it. &nbsp;</p>
+
+<p>However, over in the old bootstrap.inc. file we still have the Drupal set message function. &nbsp;It's been rewritten. &nbsp;All it does now is take those arguments and pass them back through to this new service but if we deleted that function, any code that called it would be broken so what do we do? &nbsp;We leave it in and deprecate it and so how do we deprecate it? &nbsp;We put a comment on it that it's deprecated. &nbsp;We issue a change record to tell people they should stop using it and we trigger a silent error that's if you're using automated testing tools you'll be able to find out you're calling something you shouldn't have. &nbsp;So in Drupal.org, this method is not going to exist anymore. &nbsp;If you have code that calls this method, for example we have Drupal set message oops you did something wrong comma error so we'll call this an error, if you have code that calls this it won't be compatible with Drupal 9 &nbsp;It will throw an error and so to adapt your codes follow the instructions in the change record. &nbsp;In this particular case it's pretty simple because you need to replace this with this and Drupal add error, oops you did something wrong. &nbsp;Because this new API is a service class and supports things like dependency injection and has additional methods around it you may also want to take the opportunity to further refactor your code to take advantage of that. &nbsp;If you're calling this from a place where you can manage dependency injection you might want to inject a messenger service directly rather than calling it from the global Drupal class but becoming compatible Drupal 9 means replacing calls from the Drupal 9 with the call to the service. &nbsp;The link is a link to the change record that describes how you would go about fixing any calls you have to Drupal set message.</p>
+
+<p>So the big thing to do to get your code ready is go through, find these deprecations and we'll talk more about that later and then adjust them so that you're using code that's calling it the new way and then finally once all your deprecated code is taken care of and your module is compatible with Drupal 9 the last important step is declare it to be compatible with Drupal 9 &nbsp;Previously in your modules info.yml file or before Drupal 8. &nbsp;You used to declare the version your module was compatible with. &nbsp;So this key doesn't support the ability to declare a module to be compatible with more than one version of Drupal at the same time so it was replaced with a new core version requirement key which follows Composer style syntax to declare which versions of Drupal you're compatible with. &nbsp;So one important thing to note is if you want to be compatible with versions of Drupal prior to 8.7.7, leave the core key in simply because before that Drupal didn't know what this new key was so without the core key it won't know your module was compatible.</p>
+
+<p>So it's okay in this case so leave it in where it says core 8.X. &nbsp;As long as you add the core version requirements key your module will still be compatible with Drupal 9 knows to use the core requirement key instead. &nbsp;If you're not worried about being compatible with older unsupported versions and only need to be compatible with Drupal 8.7.7 and higher which includes all supported versions of Drupal right you can remove the core key completely in your info file. &nbsp;I wanted to point this out because it's one of the tricky things.</p>
+
+<p>But back to deprecated code. &nbsp;Let's talk about how you can tell where you might be using deprecated code. &nbsp;So there are a number of ways to find out about code you might be, find out the code you were using is deprecated. &nbsp;In an on going process and once we get into Drupal 9 and start deprecating things for Drupal 10, I strongly encourage you to keep up with change records and release notes on any minor version that tells you new things we've deprecated. &nbsp;At this point in the cycle we want to figure out where we're at because we've deprecated all we're going to deprecate for Drupal 9 so it's about getting a list. &nbsp;There's a few ways to find out and get a list of what deprecated code your project might be using so we'll talk about automated testing. &nbsp;We'll talk briefly about using IDs to detect deprecated code and finally we'll go into static analysis tools. &nbsp;One of the best methods for detecting deprecated code use in my opinion is automated testing. &nbsp;Deprecated code paths trigger this usually silent user deprecated error that can with the right configuration cause automated tests to fail so if you have good automated test coverage, then you can test your code against a new Drupal minor version as they come out, and you'll basically be flagged if any of the APIs you call are deprecated and I find this useful both in contributed modules I maintain and also in Drupal sites that I maintain with custom code as well. &nbsp;I try to keep the automated test coverage to cover as much as possible and then I get a flag basically when I'm testing against a new version. &nbsp;It can get tricky sometimes especially for a contrib module maintainer to keep all the tests green you want to keep green particularly if you're trying to support multiple minor versions of Drupal with the same code base so if you're trying to support Drupal 8.8 and 8.8 and 8.9 all at the same time, if something was deprecated in 8.8, but the replacement isn't available yet in 8.7, then you might not &nbsp; &nbsp;you might get test failures against 8.8 that you're not ready to fix yet. &nbsp;If this is on a custom site or custom code and you're running automated tests against your custom code, you should be, then you probably won't have this problem because you can write your code to match the actual Drupal version your code is running against.</p>
+
+<p>The other tricky part here if you have dependencies on other modules executing deprecated code, you might also get failures you can't easily fix but I find this information useful because then you know this dependency you're using is not ready for Drupal 9 and you can keep an eye on it or find a replacement and figure out what you want to do and there is ways around both those issues. &nbsp;You can detect which version of Drupal you're running against and alter the code path accordingly. &nbsp;You can fix issues with dependencies using custom error handlers but they can get tricky and very advanced and they kind of add in a bunch of work arounds you end up having to remove later so you have to evaluate whether it's worth it to do that or not. &nbsp;Also with automated testing there's certain classes of, there's certain classes of deprecated code, the really big one being just deprecated constant we can't trigger an error on. &nbsp;However, the next two methods we have to detect deprecated code do quite Pell with deprecated constant. &nbsp;Many IDEs are able to detect indicate use of deprecated calls.</p>
+
+<p>When you hover over it, it will tell you the method is deprecated. I find this useful when I'm writing code, make sure I'm not using anything that's deprecated and it's also handy just to glance at a file and see if you have any deprecated code it wants to stand out for you but it doesn't give you the full deprecation message. &nbsp;It doesn't tell me what I should do. &nbsp;It doesn't give me a huge report of all the code in my project that might be executing deprecated APIs so I find this useful but it's not the primary source when I'm preparing something for Drupal 9, it won't be my primary method of finding out what deprecated code might be using. &nbsp;That will most likely be a static analysis tool. &nbsp;We've had a number of static analysis tools that have been introduced to help detect the deprecated code usage in products. &nbsp;The current best practice is to use the upgrade status module. &nbsp;We started with a command line tool called Drupal check, and this is probably the best option right now to find your deprecated code using static analysis so this module has the ability to scan, detect deprecated code usage and list it out by extension through both custom and contributed code so this shows the contributed modules and what possible deprecation errors might be there. &nbsp;There's another section above that lists for custom code so it's separated out and organized. &nbsp;You can fix one thing at a time. &nbsp;This module can give detailed information as to what calls are made, what the replacement should be and in this example here you see some things listed as fix now and a couple things listed as fix later.</p>
+
+<p>That just goes back to what I was talking about before, there's a few things that may have been deprecated in Drupal 8.8, the replacements aren't available in Drupal 8.7 which is still supported so those are the ones this will say fix later.</p>
+
+<p>You have a couple of choices that you can do there. &nbsp;You can either wait, have a patch ready, release a new version as soon as Drupal 8.7 is unsupported so you release a new version along side Drupal 9. &nbsp;You could release a new version now that only supports Drupal 8.8 and above so you have this older version which supports 8.7 and the newer version that supports 8.8 and 9.0. &nbsp;Then you have to maintain two version. &nbsp;You could also commit work arounds like I talked about earlier, various ways to figure out whether your replacement exists and use it if you can. &nbsp;Otherwise fall back to a deprecated code.</p>
+
+<p>Again this adds a little technical debt because you want to pull those out later and if you go that last route you're still going to show up in the static analysis list because they don't have a way to know that you figured out in runtime whether you can use the deprecated code or not. &nbsp;It sees you still have that function call so you'd still show up on one of these lists even though you know you've adjusted for it properly.</p>
+
+<p>So you found all your deprecations. &nbsp;What are you going to do to fix them? &nbsp;In upgrade status you'll usually see what your replacement code path is. &nbsp;If you need more information you find the change record for that particular one. &nbsp;If there's something more advanced you have to do, the change record will detail what you have to do. &nbsp;But a lot of the deprecations have a one to one direct replacement like that Drupal set message we mentioned before. &nbsp;So there was a lot of moving these single functions into container services, and so in those cases it's usually just a direct replacement, switch this line over to the new one. &nbsp;There are tools that can help automate that and I won't talk a lot about this but the rector project is a project that aims to help with some of the most commonly used deprecations. &nbsp;It currently is limited. &nbsp;It can only do a few of them but the top few deprecations including things like Drupal set message account for a vast percentage of the detected deprecated API usage in all contrib projects. &nbsp;The last I saw it took care of the top 4 or 5 deprecations which covered about 30 to 40% of the total number of deprecations there are in contrib and if you're interested in learning more about how you can automatically fix your deprecations or if you want to help improve this today so it can fix even more deprecations than it can now, strongly invite you to join Dan Montgomery. &nbsp;There will be a presentation automate Drupal 9 upgrades addressing code as a community. &nbsp;It will be in room 324. &nbsp;The session immediately after this one so at I believe 3:45 central time here in room 324 he'll give you more information on how it works and what you can do to help make it more powerful. &nbsp;I'm running low on time here but the next step after you fixed up your custom code is determine the D9 readiness status of the contributed modules.</p>
+
+<p>And fortunately as we saw earlier the upgrade status module is another great way to figure out what the status is or at least start to figure out what the status is of your contributed modules. &nbsp;And if you run this right now against the standard site and the standard set of modules, guess what? &nbsp;You're probably going to find out a lot of them aren't green on this. &nbsp;That's okay. &nbsp;This Saturday I'll be helping to host a table for D9 readiness contributions and we're going to help submit patches to some of the popular contrib modules and help get them ready for Drupal. &nbsp;Also to note this is able to pull the maintainer supplied information from Drupal.org so in this case you can see the version of bLazy I've got installed has 119 errors. &nbsp;It's not Drupal ready, but there's a note that says I'm on version 1. &nbsp;There's a version 2 out that's D9 compatible, so I know I need to upgrade bLazy. &nbsp;Whether you're able to help us contribute back and help get more of the modules ready on Saturday or not this module on the screen will give you valuable insight telling you when you're ready to upgrade your site. &nbsp;As we get closer to Drupal release you can keep an eye on this screen. &nbsp;Any modules that don't seem like they're moving to green go into the issue queue, and see if there's an open issue. &nbsp;If the module is unmaintained, at least you know and you can start looking for a replacement module or better maintained alternative.</p>
+
+<p>Finally the last step upgrading Drupal core to at least 8.8. &nbsp;Drupal 8 maintained code to support the database changes you need to upgrade from one minor version to the next so to slim down Drupal and give a fresh start all that update code has been removed. &nbsp;So anything before 8.8, the code to upgrade to the next version has been removed so in order to upgrade to Drupal you have to be on at least 8.8 first so hopefully you're already either there or you are ready and just finalizing the last steps of your upgrade from the still some supported 8.7. &nbsp;I'm sure nobody in this room is on an older unsupported version, right? &nbsp;Nobody's on an unsupported version. &nbsp;If you are you need to upgrade to at least 8.8 in order to be compatible.</p>
+
+<p>That's it. &nbsp;If you have followed all the steps in this guide, and if you prepared your modules and themes, audited your contributed modules, and made sure you're on a modern version of Drupal then your upgrade to Drupal should be similar to any other upgrade that you do. &nbsp;Ideally this is through Composer. &nbsp;You might need to adjust your Composer JSON file to allow Drupal to be installed but at that point a simple Composer update, update your database with drush and cache clear, or whatever process you use to test an update over a Drupal minor version and that's about it for me. &nbsp;I want to encourage everybody to come to Contribution Day. &nbsp;I'll running a table. &nbsp;There will be a table for the rector project we discussed and just you don't have to know code to give back. &nbsp;There will be a first time contributor workshop and we want everybody there.</p>
+
+<p>We'd love it if people would provide me feedback. &nbsp;This is my first virtual presentation session I've ever given so I'd love to hear what I could do better through the link there or just on the session note page. &nbsp;There should be a form.</p>
+
+<p>And I don't know I really have time for questions right now.</p>
+
+<p>&gt;&gt; DWAYNE: &nbsp;We don't actually. &nbsp;That's what I was popping up to say. &nbsp;We're right at time as of right now. &nbsp;But there is a Slack room we're asking every, all the speakers to go to the Slack room. &nbsp;This should be room 325 and hopefully you'll be there to answer any questions we have there. &nbsp;There were a few things in chat, if you haven't kept up with chat, there's a conversation but thanks for the recommendation for the next talk to see. &nbsp;With that we're going to go ahead and move rooms, and I'll stop recording.</p>
+
+<p>Everybody, give a big round of applause here, a thumbs up or something, to Michael.</p>
+
+<p>&gt;&gt; MICHAEL LUTZ: &nbsp;Thanks everybody so much for being here.</p>
+</div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+
+</div>
+  </section>
+
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-d4065c1bd2eb9496dda4eac46bc13733172c5aebcb9aef3f448c9ab425fe0bb9">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/palantirnet.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2020-02/palantirnet-logo.png" width="1200" height="198" alt="Palantir.net logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/pantheon.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2020-02/pantheon-logo-tagline-black.png" width="1200" height="370" alt="Pantheon logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/bounteous.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2019-11/Bounteous_indigo_large.png" width="1676" height="279" alt="Bounteous logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/clarity-partners.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2020-02/CFDFAA23-5C59-4C07-9C66-CAFFE0CF3854.png" width="1534" height="387" alt="Clarity Partners logo" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-2019-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#1c75727a735c7175787f7d716c32736e7b"><span class="__cf_email__" data-cfemail="c7aea9a1a887aaaea3a4a6aab7e9a8b5a0">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-2019-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-2019-footer-menu" id="block-hatter-2019-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-2019-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/6286","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"ajaxTrustedUrl":{"form_action_p_pvdeGsVG5zNF_XLGPTvYSKCf43t8qZYSwcfZl2uzM":true},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_sul8js76f3THBVtv8nspP93BoCHSgntyTCisS6lai4M.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter_2019&amp;include=eJx1ykEKgDAMBdELaavuPI2k-o1K2kITFG_vRkQEVwOP4ZxZMFAiOW0d1fMHqoXMUIauaXvPkgNJvT0aSPHSA2HOJfq7DoKIZG6C0SrqlHb8ThGqxLgAGZ04Cw"></script>
+
+  </body>
+</html>

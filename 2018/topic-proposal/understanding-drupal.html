@@ -1,0 +1,3451 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="Drupal is an extremely flexible system. To achieve this, various layers of abstractions were built into it. A lot of concepts were created to explain these abstractions. Unfortunately, they are not always intuitive. Learning the basic building blocks for assembling a Drupal site and how they relate to each other is useful to start building sites having a broad overview of the system. Have you ever asked yourself any of these questions?" />
+<link rel="canonical" href="understanding-drupal.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Understanding Drupal | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Understanding Drupal | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_Qoyy92GHt9RyGOt8N3WS_9HRsJcJBywJ2IhXudzvST4.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJw1jGsOgzAMgy9U1iOhtPVYpYSgumNjp18F4o_1-SFnFfKISYiQLzaQsoC3X72MzhsGNROtP4SX9I4WF_UkOmXyTky25N_Agx123e61wGdYQpmfFVpiAzdfWXdMZzkm-DCe-jAvb8UfjYM.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_mK2of_t7UFymkfbTHeA-kHdMPWzqc3DZQCYtX-tC0BA.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJw1jGsOgzAMgy9U1iOhtPVYpYSgumNjp18F4o_1-SFnFfKISYiQLzaQsoC3X72MzhsGNROtP4SX9I4WF_UkOmXyTky25N_Agx123e61wGdYQpmfFVpiAzdfWXdMZzkm-DCe-jAvb8UfjYM.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJw1jGsOgzAMgy9U1iOhtPVYpYSgumNjp18F4o_1-SFnFfKISYiQLzaQsoC3X72MzhsGNROtP4SX9I4WF_UkOmXyTky25N_Agx123e61wGdYQpmfFVpiAzdfWXdMZzkm-DCe-jAvb8UfjYM.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJw1jGsOgzAMgy9U1iOhtPVYpYSgumNjp18F4o_1-SFnFfKISYiQLzaQsoC3X72MzhsGNROtP4SX9I4WF_UkOmXyTky25N_Agx123e61wGdYQpmfFVpiAzdfWXdMZzkm-DCe-jAvb8UfjYM.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+<link rel="stylesheet" media="all" href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.css" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="understanding-drupal.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-hatter-main-menu-menu" id="block-hatter-main-menu" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-main-menu-menu">Midcamp 2018 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" data-drupal-link-system-path="node/2">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--venue">
+        <a href="../../about/venue.html" title="Venue" data-drupal-link-system-path="node/7048">Venue</a>
+            </li>
+          <li class="primary-nav__sublist-item item--travel">
+        <a href="../travel.html" title="Travel and Accommodations" data-drupal-link-system-path="node/65">Travel</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../lunch.html" title="Lunch Near Campus" data-drupal-link-system-path="node/162">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2018/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" title="Meet the Team!" data-drupal-link-system-path="2018/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../../2023/about/lunch-options.html" data-drupal-link-system-path="node/6970">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--accommodations">
+        <a href="../../2023/about/accommodations.html" data-drupal-link-system-path="node/6948">Accommodations</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" data-drupal-link-system-path="node/9">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--become-a-sponsor">
+        <a href="../become-a-sponsor.html" title="Become a Sponsor" data-drupal-link-system-path="node/7">Become a Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../../jobs.html" title="Jobs" data-drupal-link-system-path="jobs">Jobs</a>
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" data-drupal-link-system-path="node/128">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--training-thu">
+        <a href="../training.html" data-drupal-link-system-path="node/195">Training (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--bofs-fri-sat">
+        <a href="../birds-feather-bofs.html" title="Birds of a Feather (BoFs)" data-drupal-link-system-path="node/167">BoFs (Fri/Sat)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-fri">
+        <a href="../schedule/friday.html" title="Friday Sessions" data-drupal-link-system-path="2018/schedule/friday">Sessions (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-sat">
+        <a href="../schedule/saturday.html" title="Saturday Sessions" data-drupal-link-system-path="2018/schedule/saturday">Sessions (Sat)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sprints-sun">
+        <a href="../../sprints.html" title="Sprints">Sprints (Sun)</a>
+            </li>
+  </ul>
+
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2018.html" hreflang="en">MidCamp 2018</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Understanding Drupal</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="80" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2018-03-09T17:00:00Z" class="datetime">Friday, 11:00 am CST</time>
+ - <time datetime="2018-03-09T18:00:00Z" class="datetime">Friday, 12:00 pm CST</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-81" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-name field--type-string field--label-hidden field__item">Room 314A</div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p dir="ltr">Drupal is an extremely flexible system. To achieve this, various layers of abstractions were built into it. A lot of concepts were created to explain these abstractions. Unfortunately, they are not always intuitive. Learning the basic building blocks for assembling a Drupal site and how they relate to each other is useful to start building sites having a broad overview of the system. Have you ever asked yourself any of these questions?</p>
+
+<ul dir="ltr">
+	<li>What is a node?</li>
+	<li>What is a content type?</li>
+	<li>What are fields and why are they useful?</li>
+	<li>What is a block and what can I do with it?</li>
+	<li>What is a view?</li>
+	<li>How does the&nbsp;taxonomy system work?</li>
+	<li>How are users and permissions managed?</li>
+</ul>
+
+<p dir="ltr">&nbsp;</p>
+
+<p dir="ltr">&nbsp;</p>
+
+<p dir="ltr">Drupal 8 has been released and it ships with lots of cool new features. As you might imagine, it brings new concepts and more questions for beginners too. The Drupal community does not want new adopters and prospective contributors to go away for not understanding our parlance. Come to this session and figure out what Drupal is all about. Do not worry, it will not be a theoretical, boring talk. It will be a joyful conversation with lots of examples to help you understand Drupal and why it is so powerful.</p>
+
+<p dir="ltr">The majority of the concepts that will be explained apply to Drupal 8 and previous versions. Those specific to Drupal 8 will be noted as such.</p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/4O5cUW2YpGQ?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Mauricio Dinarte</h4>
+
+      Drupal Developer
+
+
+          @
+              <a href="http://agaric.com/">Agaric</a>
+        
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2018-01/dinarcon.jpg%3Fitok=5MnZkXci" width="220" height="220" alt="Profile picture for user dinarcon" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Site Building</div>
+              </div>
+      </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p>good morning everyone this is</p>
+
+<p>understanding Rupa thank you very much</p>
+
+<p>for being here</p>
+
+<p>my name is Martita lien act I am known</p>
+
+<p>as dinner Conan drupada or Twitter and</p>
+
+<p>pretty much anywhere in the Internet I</p>
+
+<p>am from Nicaragua</p>
+
+<p>it is 88 degrees there right now and so</p>
+
+<p>if you ever want to escape the call of</p>
+
+<p>the Midwest that's a beautiful place to</p>
+
+<p>go and you can get really hot like we</p>
+
+<p>have active volcanoes and you can either</p>
+
+<p>watch like an online experience or</p>
+
+<p>actually leave it if you go to Nicaragua</p>
+
+<p>I worked with a company called I got it</p>
+
+<p>which is based in Boston where we were</p>
+
+<p>actually distributed</p>
+
+<p>I am from Nicaragua but have people in</p>
+
+<p>Europe and America as well</p>
+
+<p>and I am really passionate about</p>
+
+<p>teaching I've been doing this for a</p>
+
+<p>couple of years already and in the</p>
+
+<p>future I'm going to start a project to</p>
+
+<p>teach in Drupal in different languages</p>
+
+<p>so hopefully that will come out soon and</p>
+
+<p>I will start with English Spanish and</p>
+
+<p>French and I am already expecting to</p>
+
+<p>learn German so at some point Germans</p>
+
+<p>well this is an outline of where we're</p>
+
+<p>going to cover today we're going to</p>
+
+<p>start with the very basics like no</p>
+
+<p>assumptions not even true palates</p>
+
+<p>Pacifica stuff and from there we are</p>
+
+<p>going to you know build concepts</p>
+
+<p>understanding so to start just like very</p>
+
+<p>general thing the difference between a</p>
+
+<p>web page in the web site so usually</p>
+
+<p>those terms are used interchangeably but</p>
+
+<p>they are a little bit different so when</p>
+
+<p>you have a website let's say you know</p>
+
+<p>amazon.com that had pages for individual</p>
+
+<p>products and offer some services and so</p>
+
+<p>on so the website in general is</p>
+
+<p>amazon.com but then you have a specific</p>
+
+<p>pages for each of the product and each</p>
+
+<p>of the other things so in this case we</p>
+
+<p>have one web page that has</p>
+
+<p>excuse me one website that has six</p>
+
+<p>different web pages and for example in</p>
+
+<p>the article section of your company</p>
+
+<p>organization for example you can have</p>
+
+<p>one extra page for each individual</p>
+
+<p>article so this is going to be useful</p>
+
+<p>when we learn how to map that concept</p>
+
+<p>that we might know already from using</p>
+
+<p>the web in general and how those things</p>
+
+<p>translate to Drupal and when we you know</p>
+
+<p>look at a web teaching in particular we</p>
+
+<p>have like a fuller hair sidebars lows</p>
+
+<p>and so on main with navigation and</p>
+
+<p>things like that so my objective for the</p>
+
+<p>session is for all of the elements that</p>
+
+<p>we see on a web page understand what</p>
+
+<p>true power holders and understand how</p>
+
+<p>you can modify them if you need so you</p>
+
+<p>know before we start why do why do we</p>
+
+<p>want to use Drupal anyways so let's see</p>
+
+<p>some examples until a few months ago the</p>
+
+<p>White House was built on Drupal and that</p>
+
+<p>was the case for several years you know</p>
+
+<p>they change to another play but just the</p>
+
+<p>fact that it was running Drupal for</p>
+
+<p>several years is already approved that</p>
+
+<p>Drupal you know is secured at the very</p>
+
+<p>least</p>
+
+<p>whether that count is also a bill on</p>
+
+<p>Drupal and this is actually like the</p>
+
+<p>biggest drupal website it serves over 1</p>
+
+<p>million visits per month and this is not</p>
+
+<p>only through the website but also</p>
+
+<p>through web applications like if you</p>
+
+<p>have that on your phone you know you</p>
+
+<p>want to know what is the weather like in</p>
+
+<p>Chicago right now it will actually</p>
+
+<p>connect to a Drupal packet that Ronnie's</p>
+
+<p>is also build on Drupal and the</p>
+
+<p>interesting thing about this one is that</p>
+
+<p>the rain of the event the whole thing is</p>
+
+<p>like live stream and you also have</p>
+
+<p>direct registration interviews photos</p>
+
+<p>you know written articles are you and</p>
+
+<p>all the multimedia</p>
+
+<p>one single night with massive traffic</p>
+
+<p>from all over the world Drupal can</p>
+
+<p>handle that easy economic forum also not</p>
+
+<p>very edited but at the top right we have</p>
+
+<p>a language sweet future so your Drupal</p>
+
+<p>site can be multilingual</p>
+
+<p>and you know there are a lot of</p>
+
+<p>functionality out of the box but if you</p>
+
+<p>want to invent the pirate language for</p>
+
+<p>example you can do that XO minor tongue</p>
+
+<p>this creature was supposed to show the</p>
+
+<p>responsiveness of Drupal but this is</p>
+
+<p>Krisha so it doesn't respond to anything</p>
+
+<p>but in theory depending on the device</p>
+
+<p>that you're using it is phone a tablet</p>
+
+<p>desktop computer or even a quirky</p>
+
+<p>monitor the content of the website is</p>
+
+<p>going to adapt to you know use as much</p>
+
+<p>space as possible and use it in a very</p>
+
+<p>optimal way and then I have traditional</p>
+
+<p>regalia so this is a small business in</p>
+
+<p>Spain 15 Barcelona where they you know</p>
+
+<p>they have an online store powered by</p>
+
+<p>Drupal to say send a products they sell</p>
+
+<p>oranges tangerine's sweets</p>
+
+<p>honey memory and lemons so yes Drupal</p>
+
+<p>can power you know really high profile</p>
+
+<p>websites but it can also power your own</p>
+
+<p>small business or your own you know</p>
+
+<p>nonprofit organization or your own pride</p>
+
+<p>Tesla Motors is also village robot we</p>
+
+<p>haven't made it to their cars yet but</p>
+
+<p>rumors have said that you know we just</p>
+
+<p>put a patent heavy and space and some</p>
+
+<p>weight report was helping doctor and in</p>
+
+<p>general these are some of the features</p>
+
+<p>like just to recap security multilingual</p>
+
+<p>support ecommerce integration high</p>
+
+<p>traffic you know</p>
+
+<p>management responsiveness of the content</p>
+
+<p>and media handling so hopefully this</p>
+
+<p>will you know give you some clues why a</p>
+
+<p>lot of organizations are not through any</p>
+
+<p>practice in particular universities I</p>
+
+<p>know that in the States at least they</p>
+
+<p>use heavily Drupal and other countries</p>
+
+<p>like externalized on the Drupal platform</p>
+
+<p>for the government sites for example</p>
+
+<p>Australia and Germany the government</p>
+
+<p>sites most of them are lot of trooper so</p>
+
+<p>another few skaters for the educational</p>
+
+<p>role and tech sectors and maybe I</p>
+
+<p>persuade you to to use Drupal but what</p>
+
+<p>inequalities depending on who you ask</p>
+
+<p>Drupal is different things I'm going to</p>
+
+<p>talk about three today but I wonder</p>
+
+<p>we're going to focus is this one Drupal</p>
+
+<p>as a CMS so as far a CMS that is nice</p>
+
+<p>for a content management system it</p>
+
+<p>allows multiple people to participate in</p>
+
+<p>the creation of content and on top of</p>
+
+<p>that it allows you to create publication</p>
+
+<p>workflows let's imagine that the work</p>
+
+<p>for our newspaper you know we have the</p>
+
+<p>journalist who writes the article but</p>
+
+<p>this needs to go through a review</p>
+
+<p>process because before it get it gets</p>
+
+<p>published on the website so we can have</p>
+
+<p>for example one person that normal is</p>
+
+<p>reading the article but it cannot make</p>
+
+<p>it public out of the box then we have</p>
+
+<p>the editor which reviews and make</p>
+
+<p>modification the editor is not able to</p>
+
+<p>create but he or she is able to modify</p>
+
+<p>what someone else every wrote but let's</p>
+
+<p>say that in this case we need one final</p>
+
+<p>check or approval from the department</p>
+
+<p>chief before things go live</p>
+
+<p>so the editor will pass along the</p>
+
+<p>article to the next person and that the</p>
+
+<p>furniture this person is not able to</p>
+
+<p>create or modify content only to check</p>
+
+<p>if everything is okay and if that is</p>
+
+<p>okay if that is the case make it public</p>
+
+<p>so you can have very</p>
+
+<p>I'm great controls over who can create</p>
+
+<p>modify or delete content uneven you it</p>
+
+<p>like you can define who has access to</p>
+
+<p>that content that is it is already</p>
+
+<p>available you can also have contacted</p>
+
+<p>easily and this is how triple names the</p>
+
+<p>way to track changes on the on the</p>
+
+<p>content that you create let's say that</p>
+
+<p>you know something wrong goes to the</p>
+
+<p>website you know something user either</p>
+
+<p>made a mistake or did it on purpose</p>
+
+<p>Drupal will keep track of all the</p>
+
+<p>changes that you went to the website</p>
+
+<p>like another PI letter image pretty much</p>
+
+<p>anything that you do Drupal analysis</p>
+
+<p>comes enable or after the box it will</p>
+
+<p>keep track of those things and it will</p>
+
+<p>tell you when the change was made like</p>
+
+<p>date and time and who did it so you know</p>
+
+<p>if it was a mistake you just like revert</p>
+
+<p>back to that previous version of the</p>
+
+<p>content and what was it if you do ask</p>
+
+<p>you know on purpose that something put</p>
+
+<p>something improper on the website you</p>
+
+<p>can do the same you can be very back to</p>
+
+<p>a previous revision and then you can</p>
+
+<p>blow the user so that user does not have</p>
+
+<p>access to do more hang on the website</p>
+
+<p>and you can have very very granular</p>
+
+<p>access controls let's imagine that we</p>
+
+<p>have our e-commerce website and we want</p>
+
+<p>to show that content exactly the same to</p>
+
+<p>everyone but we have some VIP customers</p>
+
+<p>you know they buy from us frequently so</p>
+
+<p>the Dakotan is going to be the same</p>
+
+<p>except for the price if it's just like a</p>
+
+<p>general</p>
+
+<p>they see the regular price but if if</p>
+
+<p>this is like a reactive customer they</p>
+
+<p>are going to see the price with at least</p>
+
+<p>one already applied so the images by SKU</p>
+
+<p>the product description like the product</p>
+
+<p>name everything is going to be the same</p>
+
+<p>except for that price itself so the</p>
+
+<p>possibilities of you know managing</p>
+
+<p>access controls in Drupal are create</p>
+
+<p>very flexible framework and one thing to</p>
+
+<p>remember it is that if the file does not</p>
+
+<p>solve your need out of the box you are</p>
+
+<p>free to extend it you know through</p>
+
+<p>programming to do exactly what you need</p>
+
+<p>so it's extensible buy it by design and</p>
+
+<p>probably one of the most important</p>
+
+<p>things to me I have no Paulista</p>
+
+<p>community so you know lots of people</p>
+
+<p>from all over the world participating in</p>
+
+<p>making Drupal better it is it has been</p>
+
+<p>around for more than 15 years so it's a</p>
+
+<p>solid product already and just the fact</p>
+
+<p>that I came here from Nicaragua to</p>
+
+<p>present this session you know it's a</p>
+
+<p>testament that we are a worldwide</p>
+
+<p>community and in the in the Chicago area</p>
+
+<p>you know that a lot of companies that</p>
+
+<p>work with Drupal there are initial</p>
+
+<p>groups that happens that like have</p>
+
+<p>meetings at least once a month so if you</p>
+
+<p>really want to get into Drupal</p>
+
+<p>I highly recommend that you get involved</p>
+
+<p>with the community sometimes like when I</p>
+
+<p>started it took me about six months to</p>
+
+<p>learn what I'm going where I'm going to</p>
+
+<p>teach you in an hour so I remember going</p>
+
+<p>to my first meetup on yeah hi I have</p>
+
+<p>been banging my head against this</p>
+
+<p>problem for days and I just asked</p>
+
+<p>someone else with the experience and in</p>
+
+<p>less than five minutes I had a solution</p>
+
+<p>so try to get it back with the community</p>
+
+<p>so some basic concepts and again I feel</p>
+
+<p>free to interrupt me any time if I'm</p>
+
+<p>going too fast just let me know so the</p>
+
+<p>first thing to know about</p>
+
+<p>police what we call core so core is the</p>
+
+<p>minimum package that you need to install</p>
+
+<p>in order to have a trooper price if you</p>
+
+<p>don't have core it is something else</p>
+
+<p>dupa core comes with a lot of things the</p>
+
+<p>two most important ones are modules and</p>
+
+<p>themes and we're going to cover them in</p>
+
+<p>a moment</p>
+
+<p>and it is called the thing that serves</p>
+
+<p>at that framework so if you want to</p>
+
+<p>extend trooper to something else</p>
+
+<p>Drupal core explain to provide you the</p>
+
+<p>tools and the mechanisms to achieve that</p>
+
+<p>so we said that we have modules and</p>
+
+<p>themes with Drupal for what is the model</p>
+
+<p>our model is something responsible for</p>
+
+<p>adding functionality to your website</p>
+
+<p>let's say that you have a personal blog</p>
+
+<p>and every time that you publish a new</p>
+
+<p>article you want something to happen</p>
+
+<p>that something might be sending a tweet</p>
+
+<p>or a manatee or posting to your Facebook</p>
+
+<p>wall up automatically anything that has</p>
+
+<p>to do with functionality is provided by</p>
+
+<p>a volume on the other hand we have</p>
+
+<p>themes themes control the appearance of</p>
+
+<p>your website like the layout how it's</p>
+
+<p>going to behave in different devices</p>
+
+<p>like the color scheme the phones to be</p>
+
+<p>used all of those things are controlled</p>
+
+<p>by by by things so there is mostly a</p>
+
+<p>very clear delineation of the</p>
+
+<p>responsibilities functionality those are</p>
+
+<p>provided by models appearance those are</p>
+
+<p>provided by themes and remember this in</p>
+
+<p>the context of 2.4 look like corn chips</p>
+
+<p>with curly 50-ish modules not all of</p>
+
+<p>those are enabled out of the box because</p>
+
+<p>you know Drupal is supposed to be</p>
+
+<p>generic and not all the website will</p>
+
+<p>need all the things that Drupal can do</p>
+
+<p>so both modules and theme can be enabled</p>
+
+<p>or disabled on demand</p>
+
+<p>depending on your specific use cases and</p>
+
+<p>this is a Drupal core part of the box</p>
+
+<p>but you know again through polish meant</p>
+
+<p>to be extensible and we have something</p>
+
+<p>called the country repository</p>
+
+<p>country in this context stands for</p>
+
+<p>contribution and this is code that</p>
+
+<p>people at you and me that participate in</p>
+
+<p>the community have been available for</p>
+
+<p>everyone to use let's say that you know</p>
+
+<p>through blackboard for example doesn't</p>
+
+<p>have an integration with PayPal out of</p>
+
+<p>the box but there is a lot of use cases</p>
+
+<p>where you want to interact with PayPal</p>
+
+<p>so there were a group of developers who</p>
+
+<p>you know dedicated some time to write</p>
+
+<p>that integration and created a module</p>
+
+<p>that will allow you to accept either</p>
+
+<p>payments or donation through PayPal and</p>
+
+<p>in medium they make the module available</p>
+
+<p>in the content repository for everyone</p>
+
+<p>to use the same applies for themes and</p>
+
+<p>something that is called distribution so</p>
+
+<p>Drupal can be used for so many different</p>
+
+<p>use cases and sometimes you just need</p>
+
+<p>like a an extra layer of configuration</p>
+
+<p>bundle out of the box so those are</p>
+
+<p>distribution this dilution are a prefect</p>
+
+<p>expression of Drupal with modules from</p>
+
+<p>the country repository and themes from</p>
+
+<p>the cosmic repository that are already</p>
+
+<p>pre-configured for example we have one</p>
+
+<p>called common kickstart that if you want</p>
+
+<p>to expand it from your solution on true</p>
+
+<p>pal you know you can go download through</p>
+
+<p>procore and some modules and some things</p>
+
+<p>and do yourself the configuration or you</p>
+
+<p>just download the distribution and it</p>
+
+<p>comes like out of the box already</p>
+
+<p>configured to have a you know current</p>
+
+<p>workflow discount shipping and so many</p>
+
+<p>other things another example of</p>
+
+<p>distributions there's one called</p>
+
+<p>open Church for churches open open</p>
+
+<p>outreach for NGOs and there's also other</p>
+
+<p>distribution for Qatar for like</p>
+
+<p>newspapers or the Mormons</p>
+
+<p>or and so on so all the things that you</p>
+
+<p>try to get from Drupal for different</p>
+
+<p>reasons do it from Drupal ductwork so</p>
+
+<p>contrary to other place like WordPress</p>
+
+<p>where you know there is a big ecosystem</p>
+
+<p>of premium themes and you know just go</p>
+
+<p>to this website and download these and</p>
+
+<p>go to their website don't know that it</p>
+
+<p>trooper that or we try to centralize</p>
+
+<p>that and mostly for security reasons</p>
+
+<p>there is a team of probably 45 or so</p>
+
+<p>people around the globe that they focus</p>
+
+<p>on keeping that code on drupal.org</p>
+
+<p>secure there are some guidelines around</p>
+
+<p>that for but pretty much if if you have</p>
+
+<p>if you see a green shield for for Drupal</p>
+
+<p>or a model or a theme or a distribution</p>
+
+<p>you know it is covered by the security</p>
+
+<p>team and that recommendation anything</p>
+
+<p>that gets on the front for Drupal Drupal</p>
+
+<p>at work and the only time that you want</p>
+
+<p>to them</p>
+
+<p>is that if when you go to the pad at</p>
+
+<p>work they point you to some other place</p>
+
+<p>to download something in which case you</p>
+
+<p>need to you know do some checking but</p>
+
+<p>that's the general recommendation so</p>
+
+<p>we're going to get started with you know</p>
+
+<p>the CMS the content part of things any</p>
+
+<p>question okay so I'm going to be making</p>
+
+<p>it stop after every section and if you</p>
+
+<p>raise your hand understand that if there</p>
+
+<p>are questions otherwise I will just</p>
+
+<p>continue so the Drupal has been around</p>
+
+<p>for a long time and sometimes it uses</p>
+
+<p>some terminology that is not very</p>
+
+<p>alienated or self-explanatory</p>
+
+<p>one of those is the word know so what is</p>
+
+<p>a note I know it is a piece of</p>
+
+<p>information that can tell a story by</p>
+
+<p>itself and then now serves like the</p>
+
+<p>basic element that's going to be used to</p>
+
+<p>store information and Drupal so let's</p>
+
+<p>say that we have this card</p>
+
+<p>what can we tell</p>
+
+<p>this card it is a red card it has two</p>
+
+<p>doors four wheels and you know I can say</p>
+
+<p>that make that one of the year so many</p>
+
+<p>other properties so the note is going to</p>
+
+<p>be this piece of things where I'm going</p>
+
+<p>to store this information it's going to</p>
+
+<p>be a container this is an example of a</p>
+
+<p>note in RuPaul and there are some</p>
+
+<p>properties that are common to every note</p>
+
+<p>in the in in a Drupal website for</p>
+
+<p>example every note has a title that's</p>
+
+<p>mandatory</p>
+
+<p>every note also has an author and a</p>
+
+<p>publication date which includes like</p>
+
+<p>date and time every note has a URL so</p>
+
+<p>you know it has to be in EPA identified</p>
+
+<p>in some way by the system and that is</p>
+
+<p>called node ID for an ID for sure know</p>
+
+<p>for sure</p>
+
+<p>thanks I know where the node IDs a</p>
+
+<p>number but it starts with one the finish</p>
+
+<p>time that you create a node and it</p>
+
+<p>increments by 1 every time you create a</p>
+
+<p>new node so 1 2 3 and so on but let's</p>
+
+<p>say that I wrote a very interesting</p>
+
+<p>article a nice I tell you I'll go to my</p>
+
+<p>website I think that comic slash know it</p>
+
+<p>slash 1582 right by the time that you</p>
+
+<p>get home you might have already forgot</p>
+
+<p>that so in addition to having these node</p>
+
+<p>IDs to be able to reach and note on that</p>
+
+<p>other page we also have something that</p>
+
+<p>is called URL aliens so just like more</p>
+
+<p>like human readable way to call to call</p>
+
+<p>a note like in this case it is the comma</p>
+
+<p>slash blog it's large artery in this</p>
+
+<p>resolves that may be easier to know if</p>
+
+<p>you understand like the context of what</p>
+
+<p>I'm talking about and there are many</p>
+
+<p>other properties like if I notice either</p>
+
+<p>published or not published for example</p>
+
+<p>but you know this is kind of the</p>
+
+<p>baseline of of what I know I notice</p>
+
+<p>about</p>
+
+<p>okay so we've note we are able to store</p>
+
+<p>information about cars again like gear</p>
+
+<p>make modern type of fuel number of doors</p>
+
+<p>number of windows and so on we can use</p>
+
+<p>an O to describe a car fully but in the</p>
+
+<p>in real life different objects have</p>
+
+<p>different properties for example you</p>
+
+<p>know we have cars but but other things</p>
+
+<p>have wheels we can have motorcycles</p>
+
+<p>bicycles three cycles in addition to</p>
+
+<p>cars and in real life these things have</p>
+
+<p>you know very different properties for</p>
+
+<p>example as far as I know we're psychos</p>
+
+<p>cannot be worse for a motorcycle it</p>
+
+<p>doesn't make sense to say how many doors</p>
+
+<p>or how many windows they have so when we</p>
+
+<p>have in real life some concepts that are</p>
+
+<p>very different from one another yes they</p>
+
+<p>are all going to be stored in nose but</p>
+
+<p>we need a way to differentiate and a way</p>
+
+<p>to differentiate from for example a</p>
+
+<p>motorcycle and a car in Drupal it's good</p>
+
+<p>content so this is like a second layer</p>
+
+<p>of abstraction coated that is you know</p>
+
+<p>this abstraction that will allow you to</p>
+
+<p>give notes that share similar</p>
+
+<p>characteristics or the stripes the same</p>
+
+<p>idea and by this you know this can be</p>
+
+<p>physical things like cars or motorcycles</p>
+
+<p>or you know if three cycles 1o seconds</p>
+
+<p>or things like that but it can also be</p>
+
+<p>non touchable things like events so this</p>
+
+<p>event had a day had a registration price</p>
+
+<p>it has a location for the event and you</p>
+
+<p>know so many other properties so you can</p>
+
+<p>use a content like to describe an event</p>
+
+<p>and then you know we store that</p>
+
+<p>information in Drupal you can also have</p>
+
+<p>for example article the article list can</p>
+
+<p>be also a prototype where you have you</p>
+
+<p>know the title tagline an image and</p>
+
+<p>Quantic cotton itself and you know many</p>
+
+<p>many examples and we're going to see</p>
+
+<p>others along the way but other than you</p>
+
+<p>know making these grouping of nodes</p>
+
+<p>there are way that content network they</p>
+
+<p>also allowed to ease the management of</p>
+
+<p>that of the information on the website</p>
+
+<p>let's say that I am an online dealer</p>
+
+<p>when I sell motorcycles and cars I can</p>
+
+<p>have in my website are a specific page</p>
+
+<p>that lists all the nodes in my website</p>
+
+<p>that a lot of the current content type</p>
+
+<p>so by that I already like sort out</p>
+
+<p>everything else like motorcycles I can</p>
+
+<p>have another place where I only store</p>
+
+<p>information about motorcycles so you</p>
+
+<p>know show all the nodes in the website</p>
+
+<p>that are this motorcycle container and</p>
+
+<p>at this point you might be confusing up</p>
+
+<p>so you're talking about nodes and</p>
+
+<p>content types what's the relationship</p>
+
+<p>between them and this is very important</p>
+
+<p>to understand so every node is someone a</p>
+
+<p>specific content that you cannot have</p>
+
+<p>one node that we don't do for example a</p>
+
+<p>car and a motorcycle that's not possible</p>
+
+<p>directly around that is possible and</p>
+
+<p>actually expected for example you can</p>
+
+<p>have a car content type that you're</p>
+
+<p>going to use a sub template to a stone</p>
+
+<p>information aboutdifferent currently 10</p>
+
+<p><br>
+have a quantitative article that will</p>
+
+<p>save as a template to store articles on</p>
+
+<p>the website and you will have many of</p>
+
+<p>those so one node belong to the water</p>
+
+<p>specific content type one content that</p>
+
+<p>can have many notes associated with them</p>
+
+<p>and in this image the numbers in those</p>
+
+<p>blue circles represent the variety and</p>
+
+<p>if you see throughout the image those</p>
+
+<p>numbers are not repeated because no</p>
+
+<p>deities cannot cannot be repeated they</p>
+
+<p>are unique and in fact if you delete one</p>
+
+<p>for example if I D</p>
+
+<p>no number 2.21 we reuse like it will</p>
+
+<p>always keep incrementing and things</p>
+
+<p>delete it won't be reused so this is</p>
+
+<p>like really important to understand like</p>
+
+<p>these two concepts are like the basic</p>
+
+<p>for everything else in question okay so</p>
+
+<p>we we you know we have this online</p>
+
+<p>dealer and we are not able to separate</p>
+
+<p>all the you know cars from all the</p>
+
+<p>motorcycles in this in this page I only</p>
+
+<p>want to show cars but most of the time</p>
+
+<p>when like someone is looking for a car</p>
+
+<p>or in general just searching for</p>
+
+<p>something they look for a specific</p>
+
+<p>attribute like in the case of a car I'm</p>
+
+<p>a one you know a toyota yaris 2010 red</p>
+
+<p>for example so I am looking for specific</p>
+
+<p>things just having these you know long</p>
+
+<p>is all the cars in my website is not</p>
+
+<p>enough so I need to be able to do a</p>
+
+<p>specific search to search on a specific</p>
+
+<p>attributes so the way that we accomplish</p>
+
+<p>this in Drupal is using fields and</p>
+
+<p>fields are awesome I used to have a very</p>
+
+<p>long boring and the scripture is like</p>
+
+<p>here which I'm going to show you later</p>
+
+<p>but before showing that I want to</p>
+
+<p>explain the awesomeness of fields so</p>
+
+<p>anyone here has ever use either Facebook</p>
+
+<p>or Twitter some people so let's let's</p>
+
+<p>focus on Facebook for the moment when</p>
+
+<p>you are going to write a fake facebook</p>
+
+<p>post you are basically free to do papers</p>
+
+<p>for everyone you can write a poem you</p>
+
+<p>can you know just go ranting about</p>
+
+<p>things you can think people you can</p>
+
+<p>imagine videos you can you know please</p>
+
+<p>type anything like random words in the</p>
+
+<p>numbers basically if you're free to do</p>
+
+<p>whatever you want and with tweets it's</p>
+
+<p>about the same you have a lot of freedom</p>
+
+<p>in the way that you enter the content</p>
+
+<p>but this model</p>
+
+<p>some work when you try to look for</p>
+
+<p>something and you try to search for</p>
+
+<p>something let's imagine that you know</p>
+
+<p>this dealer business also has a Facebook</p>
+
+<p>page and you know they are very</p>
+
+<p>successful every day a new card comes in</p>
+
+<p>an old car drops out of the inventory so</p>
+
+<p>you know people will interact you know</p>
+
+<p>this is the photo this is a red-letter</p>
+
+<p>Yaris 2010 but every day that's going to</p>
+
+<p>be you know going more postman post and</p>
+
+<p>even though both Facebook and Twitter</p>
+
+<p>have search functionality if you have</p>
+
+<p>ever use it in for this use case you</p>
+
+<p>will know that it gets really hard</p>
+
+<p>easily because of many reasons one of</p>
+
+<p>these reasons is that free text is not</p>
+
+<p>easily searchable so people can write</p>
+
+<p>whatever they want in whatever it's</p>
+
+<p>tight and format day one and that does</p>
+
+<p>not necessarily match the user criteria</p>
+
+<p>like they might you know just think</p>
+
+<p>differently or not use abbreviations or</p>
+
+<p>things like that so the free text is</p>
+
+<p>hard to search also when you have free</p>
+
+<p>text and that freedom you are also able</p>
+
+<p>to enter in consistent data like you</p>
+
+<p>know when this event happened it</p>
+
+<p>happened on of airplane 19 2017 or you</p>
+
+<p>use Nov with the dog on a radiation or</p>
+
+<p>you use like numbers instead of letters</p>
+
+<p>to describe a month or for the year you</p>
+
+<p>put two digits instead of four or you</p>
+
+<p>use a - instead of five - yeah - instead</p>
+
+<p>of a slash for that separator or if you</p>
+
+<p>are like in Nicaragua we put a day</p>
+
+<p>before the month so each person entering</p>
+
+<p>the content might do it in a different</p>
+
+<p>way and good luck trying to you know use</p>
+
+<p>Facebook or Twitter to understand what</p>
+
+<p>you enter if the person who were in</p>
+
+<p>early folks at you know the post for the</p>
+
+<p>tweet use something else it's not very</p>
+
+<p>hard it's not very easy excision</p>
+
+<p>also you can enter inconsistent data</p>
+
+<p>putting Banita</p>
+
+<p>and this is going to make people cry so</p>
+
+<p>how are you - ten years old that make</p>
+
+<p>any sense</p>
+
+<p>when is your birthday February 31st that</p>
+
+<p>doesn't exist</p>
+
+<p>where's the prize so I use the dollar</p>
+
+<p>sign but the euro currency once your</p>
+
+<p>email no not a real image your miss</p>
+
+<p>cannot sign when it's the phone hi</p>
+
+<p>beautiful happy face that's not even a</p>
+
+<p>number so again because you are free to</p>
+
+<p>do whatever you want you can do those</p>
+
+<p>things very easily and you know</p>
+
+<p>consequences I guess so oh I'm going to</p>
+
+<p>make you poor try free tags</p>
+
+<p>inconsistent data and invalid dinner so</p>
+
+<p>how do we make people happy because we</p>
+
+<p>want you know to put happy so people can</p>
+
+<p>find the stuffers we do that using</p>
+
+<p>fields so fields are able to enforce</p>
+
+<p>validation criteria and there are many</p>
+
+<p>different type of fields we're going to</p>
+
+<p>cover some of them today for example on</p>
+
+<p>the right we have an overview so for an</p>
+
+<p>offer field let's say that this is the</p>
+
+<p>price of an event like this one I got to</p>
+
+<p>point and we can say that the event</p>
+
+<p>might be free but I'm not paying someone</p>
+
+<p>to come to my event at least not today</p>
+
+<p>so the minimum value for the price which</p>
+
+<p>is going to be zero from zero I don't</p>
+
+<p>define a maximum because if someone is</p>
+
+<p>willing to pay a million dollars to come</p>
+
+<p>I will greatly accept it we are in the</p>
+
+<p>stage right now so there is no need to</p>
+
+<p>confuse people or to ask people about</p>
+
+<p>currencies we use dollars all over the</p>
+
+<p>place so I make it very clear and</p>
+
+<p>specific dollar sign us the critical and</p>
+
+<p>anyone both entering the content and</p>
+
+<p>then consuming the content will</p>
+
+<p>understand that I am talking about</p>
+
+<p>dollars are not Europe or corridors</p>
+
+<p>getting in trouble so and in this case I</p>
+
+<p>can make this field required so I cannot</p>
+
+<p>be</p>
+
+<p>then without a specific I specify not a</p>
+
+<p>price on the on the other picture we</p>
+
+<p>have an image field so for an image</p>
+
+<p>field I have different criteria to</p>
+
+<p>validate for example what are the allow</p>
+
+<p>file extension like PNG jpg gif and so</p>
+
+<p>on for example if either one people</p>
+
+<p>uploading animated gif of cards on the</p>
+
+<p>website that this will give from that</p>
+
+<p>list and Drupal will validate that those</p>
+
+<p>things cannot be uploaded I can also</p>
+
+<p>define like minimum or maximum</p>
+
+<p>resolutions I can also define maximum in</p>
+
+<p>our file size and other things not one</p>
+
+<p>important for accessibility reasons I'm</p>
+
+<p>a little bit for SEO as well is the alt</p>
+
+<p>attribute so sometimes when an image</p>
+
+<p>cannot be displayed for some reason</p>
+
+<p>maybe it's not available anymore or</p>
+
+<p>there are a lot of images and they are</p>
+
+<p>not loading quickly so there is</p>
+
+<p>something called alternative text that's</p>
+
+<p>going to be used while the image is</p>
+
+<p>loading and with with a field you can</p>
+
+<p>actually enforce that to be entered and</p>
+
+<p>that is not only life of course it is</p>
+
+<p>supposed to be meaningful because for</p>
+
+<p>example someone using a speech reader on</p>
+
+<p>their browser they won't be able to want</p>
+
+<p>to see that picture understand the</p>
+
+<p>picture but if you put some meaningful</p>
+
+<p>text they will at least have a sense of</p>
+
+<p>what you're trying to convey with the</p>
+
+<p>image so you can enforce all of these</p>
+
+<p>things with fields and again there are</p>
+
+<p>different type of fields and using that</p>
+
+<p>makes people happy so what is the recipe</p>
+
+<p>for happiness you use one field for each</p>
+
+<p>piece of information that you want to</p>
+
+<p>restore</p>
+
+<p>let's go back to that example of cars</p>
+
+<p>you are going to use one field for the</p>
+
+<p>year one for the main one for the model</p>
+
+<p>one for the type of fuel one for that</p>
+
+<p>type</p>
+
+<p>for the number of windows from the</p>
+
+<p>number of doors and so on anything that</p>
+
+<p>you want to store you're going to use a</p>
+
+<p>specific field and after doing that you</p>
+
+<p>need to also decide what type of field</p>
+
+<p>is the one that you want to use because</p>
+
+<p>as I mentioned before each of them will</p>
+
+<p>provide you with different validation</p>
+
+<p>criteria in blue but we have integers</p>
+
+<p>decimals images phones in and URLs and</p>
+
+<p>all of these come with out of the box</p>
+
+<p>validation so if you want to enter you</p>
+
+<p>know an email that is missing that side</p>
+
+<p>for example Drupal will stop you right</p>
+
+<p>away he won't allow you to save the node</p>
+
+<p>because you're missing something and so</p>
+
+<p>this with this ability now fields are</p>
+
+<p>also are also also in the way that you</p>
+
+<p>can ask for information and display the</p>
+
+<p>information after afterwards so let's</p>
+
+<p>think about you know an event like this</p>
+
+<p>one I'd look at them it has a location</p>
+
+<p>how many different ways exist to</p>
+
+<p>represent a location you know a point on</p>
+
+<p>earth at least for it so you can</p>
+
+<p>actually put like the name like link</p>
+
+<p>home Student Center you can also put</p>
+
+<p>like that lucky to technology took on</p>
+
+<p>the globe you can display a map and ask</p>
+
+<p>the user to click on the map to identify</p>
+
+<p>the location but also like in the same</p>
+
+<p>way that we have PDF for Word document</p>
+
+<p>some four months document format uses</p>
+
+<p>specifically to restore geographical</p>
+
+<p>information when if those is called KML</p>
+
+<p>so in theory I could provide a field</p>
+
+<p>where they upload a file like instead of</p>
+
+<p>opening an image they upload a KML file</p>
+
+<p>that stores geological information and</p>
+
+<p>then Drupal can read that information to</p>
+
+<p>others to understand where these events</p>
+
+<p>happened so one field can provide more</p>
+
+<p>than one way to collect the information</p>
+
+<p>in practical terms it doesn't exist in</p>
+
+<p>Drupal our field to if to collect</p>
+
+<p>geographical information that allows for</p>
+
+<p>this for but combining different</p>
+
+<p>contributed mornings you can accomplish</p>
+
+<p>this functionality if you wanted but</p>
+
+<p>pointing to remember is that you have a</p>
+
+<p>field and the field exposes in many ways</p>
+
+<p>to collect the information and once the</p>
+
+<p>information is collected it is storing</p>
+
+<p>this in in a standard way so you can</p>
+
+<p>present it any way you want as well so</p>
+
+<p>maybe you asked for latitude and</p>
+
+<p>longitude when requesting well when</p>
+
+<p>displaying to the user</p>
+
+<p>you show a map with a winner marker so</p>
+
+<p>the way that the information comes in</p>
+
+<p>it's not necessarily the same that it</p>
+
+<p>comes out you can change that as the</p>
+
+<p>field allows you to do where each field</p>
+
+<p>will define how you can enter and how</p>
+
+<p>you can display information but more</p>
+
+<p>importantly you can aggregate the</p>
+
+<p>information so maybe you have a lot of</p>
+
+<p>events you have a lot of events and you</p>
+
+<p>want to show a map of all the events</p>
+
+<p>happening at the same time so you can do</p>
+
+<p>this again with fields and this is a</p>
+
+<p>real website for Drew Pakal so another</p>
+
+<p>you know test that Drupal is worldwide</p>
+
+<p>these are events happening all over the</p>
+
+<p>place all the time so one thing</p>
+
+<p>interesting about this website is that</p>
+
+<p>it combines information from different</p>
+
+<p>fields to to show them up for example</p>
+
+<p>there must be a</p>
+
+<p>I feel that explore the location which</p>
+
+<p>is where the pointer is going to be</p>
+
+<p>played on but you also see that it is</p>
+
+<p>color coded so there is an honor field</p>
+
+<p>that defines what type of event disease</p>
+
+<p>and we're combining doctor</p>
+
+<p>things to show a marker that has a</p>
+
+<p>specific color on the map and other</p>
+
+<p>things that can be done fields can be</p>
+
+<p>shown or hidden individually so you can</p>
+
+<p>have for example an event that has ten</p>
+
+<p>different fields but you were you didn't</p>
+
+<p>notice it but someone came a few minutes</p>
+
+<p>ago to tell how many people attended</p>
+
+<p>this session so this information is</p>
+
+<p>really only for the camera organizers</p>
+
+<p>but probably not relevant to us</p>
+
+<p>attendees so you can have a field in</p>
+
+<p>that session a content type that say how</p>
+
+<p>many people attended but that's going to</p>
+
+<p>be hidden for the general public and</p>
+
+<p>only that camera organizers are going to</p>
+
+<p>be able to see it so you can have you</p>
+
+<p>know that contact ID in your template to</p>
+
+<p>collect information you can have a lot</p>
+
+<p>of things but you're not required to</p>
+
+<p>show all of them or you can decide for</p>
+
+<p>these people I show some elements for</p>
+
+<p>this other group of people I show</p>
+
+<p>different elements so it is very</p>
+
+<p>flexible and you are able to do this on</p>
+
+<p>a field by field basis yeah some general</p>
+
+<p>examples single line text field</p>
+
+<p>multi-line text field those were</p>
+
+<p>different in profile we also have</p>
+
+<p>numbers so when it says establish in</p>
+
+<p><br>
+because I is supposed to store right</p>
+
+<p>here and here are only numbers and not</p>
+
+<p>only numbers only integers you don't say</p>
+
+<p>in two thousand six point five so but</p>
+
+<p>when we configure is field in the</p>
+
+<p>configuration we were able to define a</p>
+
+<p>prefix so that every time someone enters</p>
+
+<p>the content oh this is about when this</p>
+
+<p>organization established and when people</p>
+
+<p>see that content oh this is what you</p>
+
+<p>know when this is when you see someone I</p>
+
+<p>started so it is very clear and because</p>
+
+<p>it is a number field you have all the</p>
+
+<p>validation that</p>
+
+<p>we also have URLs taxonomy is no</p>
+
+<p>birthdates time someone there are likely</p>
+
+<p>trying like doses of pills available and</p>
+
+<p>all of them in court and many more in</p>
+
+<p>the contributed space so this is the</p>
+
+<p>slide and fields allow you to structure</p>
+
+<p>the information of your website</p>
+
+<p>they said discrete pieces of information</p>
+
+<p>like the year that make the model and so</p>
+
+<p>on and once you have this information in</p>
+
+<p>fields you can display them in different</p>
+
+<p>formats you can filter what elements you</p>
+
+<p>want to show or not you can sort that</p>
+
+<p>information in any way that you might</p>
+
+<p>want you can take for example I want to</p>
+
+<p>show all the cars sorted by the year</p>
+
+<p>like the newest configuration for</p>
+
+<p>example so so far we have only talked</p>
+
+<p>about the center the middle part we have</p>
+
+<p>known where this knob is one specific</p>
+
+<p>content type let's say an article it has</p>
+
+<p>a pedal a title and an image and the</p>
+
+<p>description but what about the rest what</p>
+
+<p>a lot of all the squares around out the</p>
+
+<p>middle in this image everything else is</p>
+
+<p>a block so what is a block in Drupal a</p>
+
+<p>blog is a container of extra information</p>
+
+<p>to display I know the main content of</p>
+
+<p>the page</p>
+
+<p>you know the main page content is you</p>
+
+<p>know but everything around it those are</p>
+
+<p>gloves and a little bit of a segue</p>
+
+<p>before talking one of our blocks is that</p>
+
+<p>they are always placed in the theme</p>
+
+<p>region so if you install Drupal out of</p>
+
+<p>the box it comes with these blue</p>
+
+<p>appearance and that is that a core team</p>
+
+<p>called party-party defines many</p>
+
+<p>different regions each of them is</p>
+
+<p>represented by a yellow box in that in</p>
+
+<p>the screenshot so whatever you see</p>
+
+<p>what that means you can place blocks in</p>
+
+<p>that place you can place content there</p>
+
+<p>remember that the English the one</p>
+
+<p>responsible for controlling how the</p>
+
+<p>different layout is going to behave so</p>
+
+<p>for example mark has a region called</p>
+
+<p>featured table that has a great</p>
+
+<p>background if we start but out of the</p>
+
+<p>box we never see that gray stripe why</p>
+
+<p>because out of the box</p>
+
+<p>Drupal doesn't flake place any block in</p>
+
+<p>that region so Bartok decides to</p>
+
+<p>collapse it because I've seen a region</p>
+
+<p>means to hide so if there is no content</p>
+
+<p>there we just had and the same happens</p>
+
+<p>for the left and right sidebar if there</p>
+
+<p>is no content in those regions Bartok is</p>
+
+<p>going to expand thus that to the content</p>
+
+<p>region which is the middle one to use</p>
+
+<p>you know all the space available at the</p>
+
+<p>bottom where we have the black</p>
+
+<p>background on you see four boxes one</p>
+
+<p>next to each other</p>
+
+<p>the those are fully regions and in this</p>
+
+<p>case but it doesn't collapse them so if</p>
+
+<p>you put a block in the footer region if</p>
+
+<p>we not expand an automatically if the</p>
+
+<p>other ones are anything so remember the</p>
+
+<p>way that the theme is going to behave</p>
+
+<p>over the site's way to behave in terms</p>
+
+<p>of layout that is going to be determined</p>
+
+<p>by the theme now let's talk more about</p>
+
+<p>blocks lot can be either I started or</p>
+
+<p>dynamic so this refers to that content</p>
+
+<p>or the information that they are going</p>
+
+<p>to display let's say you know we have a</p>
+
+<p>copyright 2018 at the web page there is</p>
+
+<p>something that you want to change once a</p>
+
+<p>year so you know general sense there is</p>
+
+<p>a static content so something is going</p>
+
+<p>to be the same or almost the same all</p>
+
+<p>the time then there is a static load you</p>
+
+<p>can also have dynamic blocks these are</p>
+
+<p>things that change regularly like the</p>
+
+<p>latest blog post if you publish</p>
+
+<p>something every day</p>
+
+<p>going to be changing every day if you</p>
+
+<p>publish something every hour that's</p>
+
+<p>going to be changing every hour and a</p>
+
+<p>lot of these things can be automated so</p>
+
+<p>that you don't have to do anything</p>
+
+<p>manually other than creating the content</p>
+
+<p>you create the content and automatically</p>
+
+<p>the blog gets updated with the latest</p>
+
+<p>information blogs can also enforce</p>
+
+<p>miscibility rules so you can say this</p>
+
+<p>blog only makes sense in the context of</p>
+
+<p>an article for example if you have more</p>
+
+<p>articles written by the same author if</p>
+
+<p>you go see an event it doesn't make</p>
+
+<p>sense to have more articles written by</p>
+
+<p>the same event so you can define</p>
+
+<p>disability locks based on content types</p>
+
+<p>you can also do it based on language</p>
+
+<p>maybe this only makes sense in the</p>
+
+<p>Spanish version of the website you can</p>
+
+<p>also do it by pages like this only makes</p>
+
+<p>sense in the front page in the contact</p>
+
+<p>page in the marketing section of the</p>
+
+<p>website you can define rules based on</p>
+
+<p>the on the path or the section of the</p>
+
+<p>website that you are visiting and you</p>
+
+<p>can also do it by roles and we're going</p>
+
+<p>to cover those later blogs can also be</p>
+
+<p>aware of the environment so let's say</p>
+
+<p>more articles written by the same author</p>
+
+<p>when blooper is going to display this</p>
+
+<p>blog is going to see okay I am going to</p>
+
+<p>show this for node 5 node 5 was written</p>
+
+<p>by Mauricio so let's look for more notes</p>
+
+<p>written by Mauricio and show them me in</p>
+
+<p>this blog so this is also possible and</p>
+
+<p>similar to content types</p>
+
+<p>blogs can also have fields and this is</p>
+
+<p>new in Drupal a Super seven you have to</p>
+
+<p>use a model called green ve am to have</p>
+
+<p>blocks with fields the Drupal a this</p>
+
+<p>comes out of the box and you know one</p>
+
+<p>useless can be you have this a special</p>
+
+<p>offer block that has four fields a title</p>
+
+<p>a description a new Mexican an</p>
+
+<p>expiration date and you know lots of</p>
+
+<p>this type are going to be shown on the</p>
+
+<p>sidebar always until the expiration date</p>
+
+<p>comes so you can define someone clay</p>
+
+<p>using gloves and everything that I</p>
+
+<p>mention about feels before I applied for</p>
+
+<p>blogs and applied for other things as</p>
+
+<p>well another very important concept for</p>
+
+<p>Drupal is views so we can literally</p>
+
+<p>spend the whole time talking about deals</p>
+
+<p>but we don't have that time for that so</p>
+
+<p>I'm going to show you two slides and try</p>
+
+<p>to explain use as much as safe as</p>
+
+<p>possible so in group and give us a way</p>
+
+<p>to release information so tuple is a</p>
+
+<p>listing of information on the website</p>
+
+<p>that can be a list of knowledge and it's</p>
+
+<p>of users comments content that and</p>
+
+<p>fields anytime that you want to make a</p>
+
+<p>list of something chances are high that</p>
+
+<p>you might want to insert before that and</p>
+
+<p>what is the job of a view I'm just going</p>
+
+<p>to ask on all the content of your</p>
+
+<p>website and you can use it to also to</p>
+
+<p>filter what things you want to show like</p>
+
+<p>I want to show all the cards that I read</p>
+
+<p>what our Toyota the archives you can use</p>
+
+<p>views to define the search criteria and</p>
+
+<p>once you find all the notes that match</p>
+
+<p>your criteria you can define different</p>
+
+<p>ways to present the information so you</p>
+
+<p>can have an HTML table or you can create</p>
+
+<p>an RSS feed for that or you can download</p>
+
+<p>a PDF document with that listing or a</p>
+
+<p>CSV or Excel spreadsheet or you know as</p>
+
+<p>we saw before you can have interactive</p>
+
+<p>maps images light shows and many other</p>
+
+<p>things so that news views collects notes</p>
+
+<p>or other type of information on the</p>
+
+<p>website and display them in many</p>
+
+<p>different forums we have an example here</p>
+
+<p>in this case we have a view with for 4</p>
+
+<p>with 5 columns a couple of things to to</p>
+
+<p>know I am showing field information here</p>
+
+<p>and for example the first column has the</p>
+
+<p>played the year the</p>
+
+<p>and the model remember the</p>
+
+<p>recommendation you need to use one field</p>
+
+<p>for each of this stuff but we and then</p>
+
+<p>it's that case like under the hood you</p>
+
+<p>have a Content plate with fields</p>
+
+<p>individually for each of those elements</p>
+
+<p>but when you display the view you can</p>
+
+<p>actually modify how it's going to be</p>
+
+<p>presented and instead of each of those</p>
+
+<p>using one coordinate you just can put</p>
+
+<p>them together but you also have images</p>
+
+<p>and one interesting thing about images</p>
+
+<p>is that Drupal has a mechanism to</p>
+
+<p>pre-process them automatically let's in</p>
+
+<p>mind that you know we are all work for</p>
+
+<p>this car dealer and we take pictures</p>
+
+<p>with our phones each phone is different</p>
+
+<p>you know different resolution different</p>
+
+<p>quality and manual properties but when</p>
+
+<p>displaying on the website we want to try</p>
+
+<p>to be as consistent as possible so in</p>
+
+<p>Troopa we can have a way to say okay no</p>
+
+<p>matter the size of the image make it a</p>
+
+<p>smaller no merit aspect ratio naked 4 by</p>
+
+<p><br>
+for greatest scales or other image</p>
+
+<p>aspects so no you just define I want to</p>
+
+<p>apply these effects to the image and the</p>
+
+<p>probability neuromarketing another thing</p>
+
+<p>that is possible with you you can define</p>
+
+<p>like a default way to present the</p>
+
+<p>information but you can also allow the</p>
+
+<p>user to modify that criteria to their</p>
+
+<p>needs so above the table and below the</p>
+
+<p>text access cards we see some like text</p>
+
+<p>boxes those are called views exposed</p>
+
+<p>filters and they allow you to you know</p>
+
+<p>the user to say okay I want all the cars</p>
+
+<p><br>
+representation is going to be updated to</p>
+
+<p>respect that I want to show only Cleopas</p>
+
+<p>I want to</p>
+
+<p>on the Yaris they want to show by year</p>
+
+<p>descending for example or ascending like</p>
+
+<p>the newest fear sort out the fears some</p>
+
+<p>of this is possible because we use</p>
+
+<p>fields so things are going to allow me</p>
+
+<p>to want it to to expose certain search</p>
+
+<p>or or filtering criteria or certain</p>
+
+<p>criteria for the user to you know to try</p>
+
+<p>on the top left we also have a small car</p>
+
+<p>only one and there is also a view in the</p>
+
+<p>feeling just a moment ago I said that</p>
+
+<p>views are used to show least something</p>
+
+<p>and when I think of the word listen it</p>
+
+<p>is two or more elements but in this case</p>
+
+<p>I have a view of only one element and in</p>
+
+<p>some cases cases that make sense if you</p>
+
+<p>read the text it says random car so you</p>
+
+<p>can define a view that shows one card</p>
+
+<p>only but randomly every time that you</p>
+
+<p>refresh the page a new car will appear</p>
+
+<p>another use case for this kind of a</p>
+
+<p>scenario when you have a listing of only</p>
+
+<p>one element you know it can be the most</p>
+
+<p>popular article the most committed</p>
+
+<p>article the most visited page on the</p>
+
+<p>website every time that you have the</p>
+
+<p>most of something or the best or you</p>
+
+<p>know things like that you can also have</p>
+
+<p>a view that shows that way the</p>
+
+<p>top-ranked and just to clarify bills can</p>
+
+<p>be used to show like the main content of</p>
+
+<p>the website like that table but views</p>
+
+<p>can also be used to create blocks so in</p>
+
+<p>the top left that was a lot created</p>
+
+<p>using a view now you might ask why so</p>
+
+<p>much clear I mean I thought that people</p>
+
+<p>was hard you're not confusing me with</p>
+
+<p>all these concepts it is really</p>
+
+<p>important to understand all these pieces</p>
+
+<p>because</p>
+
+<p>yes so we go if you're a front-end</p>
+
+<p>developer and you want to print one line</p>
+
+<p>of text you will have like 10 level of</p>
+
+<p>deeps to accomplish that if you are a</p>
+
+<p>developer you will have pretty complex</p>
+
+<p>data structures that are like one</p>
+
+<p>instead of the other to accomplish what</p>
+
+<p>you need but what is relevant to us</p>
+
+<p>Drupal nest concepts so all the things</p>
+
+<p>that we have talked today note content</p>
+
+<p>type regions have blocks views all of</p>
+
+<p>the all of them interact together to</p>
+
+<p>fill a page so let's imagine we have</p>
+
+<p>this piece of information more articles</p>
+
+<p>written by the same author to create</p>
+
+<p>that we were at least interacted with</p>
+
+<p>five different concepts on the almost</p>
+
+<p>layer we have the theme region so this</p>
+
+<p>is going to determine where this</p>
+
+<p>information is going to be displayed</p>
+
+<p>let's say the theme region is the right</p>
+
+<p>sidebar because this is complementary</p>
+
+<p>stuff accounting like more articles</p>
+
+<p>written by the same person this is a</p>
+
+<p>blogging itself so I have that blog more</p>
+
+<p>articles by the same person because this</p>
+
+<p>is a listing the listing was was created</p>
+
+<p>using a view that view was configured to</p>
+
+<p>show articles those articles are of one</p>
+
+<p>a faceted content type but only the hood</p>
+
+<p>those are notes in and let's say that I</p>
+
+<p>want to show like the title and tagline</p>
+
+<p>and the date of when the article was</p>
+
+<p>published those are individual fields on</p>
+
+<p>the known so for one small piece of</p>
+
+<p>information I am already interacted with</p>
+
+<p>five different concepts and each of</p>
+
+<p>those is going to behave in a different</p>
+
+<p>way it's going to be configured in a</p>
+
+<p>different way if you want to modify this</p>
+
+<p>you have to go to different places so</p>
+
+<p>it's very very important if you going to</p>
+
+<p>remember</p>
+
+<p>of the session remember this image when</p>
+
+<p>assembling a Drupal page under of</p>
+
+<p>concepts are going to interact</p>
+
+<p>simultaneously for example I might want</p>
+
+<p>to show you know all the users of my</p>
+
+<p>website I can replace the blue box from</p>
+
+<p>node and say show a list of users for</p>
+
+<p>example what I want to show at is I</p>
+
+<p>started blog I would only have a future</p>
+
+<p>and a blog and I don't have all our</p>
+
+<p>inner layers the point being that for</p>
+
+<p>everything that you shall wanna do per</p>
+
+<p>page there will be many things interact</p>
+
+<p>at the same time and with this now we</p>
+
+<p>have seen like the mail that the mill</p>
+
+<p>can be either unknown or it can be a</p>
+
+<p>deal and all the things are round</p>
+
+<p>those are blogs that are built in</p>
+
+<p>different ways there are many ways to</p>
+
+<p>build laws so I mean this is very</p>
+
+<p>important any question with that so as I</p>
+
+<p>said before for each of those things you</p>
+
+<p>will have different section of the</p>
+
+<p>website of the local administration our</p>
+
+<p>interface when you are going to modify</p>
+
+<p>how they behave so it is super important</p>
+
+<p>to understand what they are to know what</p>
+
+<p>they are so users let's talk about users</p>
+
+<p>a user is a visitor to my website anyone</p>
+
+<p>that goes to my website is a user for a</p>
+
+<p>Drupal</p>
+
+<p>again look I can handle multiple users</p>
+
+<p>as I said before show an example all the</p>
+
+<p>users have a user name have an email</p>
+
+<p>they optionally can have an image and</p>
+
+<p>you can attach fields to use of like</p>
+
+<p>again</p>
+
+<p>because it the right display about</p>
+
+<p>fields for content types</p>
+
+<p>for blocks users can also have fields</p>
+
+<p>so in this case I I have a bio field</p>
+
+<p>similar to note user also have a unique</p>
+
+<p>know medica identifier which is called</p>
+
+<p>user ID or UID for sure and you know</p>
+
+<p>domain is slash user slash one again</p>
+
+<p>that's kind of high to the number</p>
+
+<p>numbers so you can define but IDs s for</p>
+
+<p>users as well so in this case and I</p>
+
+<p>think that promise much people is slash</p>
+
+<p>militia unit the users can also have</p>
+
+<p>language settings so if they speak more</p>
+
+<p>than one language and your website is</p>
+
+<p>available in more than one language they</p>
+
+<p>can decide in which language to use and</p>
+
+<p>if the language that they choose is not</p>
+
+<p>available you can define like a foreign</p>
+
+<p>language the English for example user</p>
+
+<p>can also define time zones and this is</p>
+
+<p>like even in the States</p>
+
+<p>like you know you have at least four</p>
+
+<p>time zones in the continental you know</p>
+
+<p>part of the United States this let's</p>
+
+<p>assume we were streaming it was supposed</p>
+
+<p>to start in every am you know central</p>
+
+<p>time but it is noon Eastern Time</p>
+
+<p>it is nine Pacific time I guess it's</p>
+
+<p>cold so when when you have users they</p>
+
+<p>can define the time zone and if you have</p>
+
+<p>events the dew point will do out of my</p>
+
+<p>types of compression to adapt to each a</p>
+
+<p>specific user for example and let's</p>
+
+<p>let's assume that I want to give you</p>
+
+<p>know Mauricio the permission to add</p>
+
+<p>content to my website how do I do that</p>
+
+<p>how going - clinicians so it's a</p>
+
+<p>combination of two words roles and</p>
+
+<p>permissions our role is a collection of</p>
+
+<p>permissions are we going to see what</p>
+
+<p>permissions are in a moment but roles</p>
+
+<p>are are used to assign privilege to a</p>
+
+<p>group of users they came up</p>
+
+<p>you're higher in organization out of the</p>
+
+<p>box</p>
+
+<p>duper comes with three rows one is the</p>
+
+<p>I'm gonna question you should like if we</p>
+
+<p>go to you know New York Times to come to</p>
+
+<p>read that content only that's like an</p>
+
+<p>anonymous user we don't have an account</p>
+
+<p>like the Facebook or Twitter we just go</p>
+
+<p>to consumer if you have an account that</p>
+
+<p>username and password you become an</p>
+
+<p>authenticated user so with that you can</p>
+
+<p>do things like posting comments for</p>
+
+<p>example but then we also have done</p>
+
+<p>illustrators where I who are able to</p>
+
+<p>like do pretty much anything they want</p>
+
+<p>on the website but it is really hard for</p>
+
+<p>our website to you know be all or</p>
+
+<p>nothing</p>
+
+<p>we also have like middle level</p>
+
+<p>permissions so you can't read your own</p>
+
+<p>permissions like editor so the editor</p>
+
+<p>can modify or not create or the</p>
+
+<p>department chief you know what I</p>
+
+<p>described before you can have put in</p>
+
+<p>addition to whatever one of the books</p>
+
+<p>you can have more roles with a specific</p>
+
+<p>set of permissions and what is the</p>
+
+<p>permission by the way question now can</p>
+
+<p>you get great honors or is you know</p>
+
+<p>having like a end user and be able to</p>
+
+<p>control what content they see based on</p>
+
+<p>roles yes which one you see whether you</p>
+
+<p>can get them for example if you have</p>
+
+<p>another musician you can determine how</p>
+
+<p>much button day they can sue me once</p>
+
+<p>they log in and they can yeah they have</p>
+
+<p>your login and they login I mean they're</p>
+
+<p>that's there they are you know coming to</p>
+
+<p>the website a consumer of the website</p>
+
+<p>bias one control exactly what content</p>
+
+<p>they see based on their login yes so the</p>
+
+<p>way that control content once a user has</p>
+
+<p>to log in is actually through roles so</p>
+
+<p>you create</p>
+
+<p>and you know as I said before they're</p>
+
+<p>rolling alkylation of permissions so for</p>
+
+<p>that row row a you define the things</p>
+
+<p>that they can do like post images post</p>
+
+<p>comments and things like that and</p>
+
+<p>apparition is actually very simple it's</p>
+
+<p>like a yes or no question my permission</p>
+
+<p>is this user based on their role is able</p>
+
+<p>to perform a specific action on the</p>
+
+<p>website and there are literally like</p>
+
+<p>those things if not hundreds of</p>
+
+<p>permissions in Drupal it's really Daniel</p>
+
+<p>so you can say you can create cotton of</p>
+
+<p>that article you can relate variations</p>
+
+<p>you can post comments you can use the</p>
+
+<p>Segway contact form you can view the</p>
+
+<p>price field with with a discount in the</p>
+
+<p>event content type and things like that</p>
+
+<p>you can get like really really granular</p>
+
+<p>and it's a combination of both roles and</p>
+
+<p>permissions and just type in together</p>
+
+<p>this is how the drupal permission system</p>
+
+<p>works if you want to assign Mauricio the</p>
+
+<p>possibility to see that is counted price</p>
+
+<p>for an event how do you do it you don't</p>
+
+<p>have signed permissions directly to</p>
+
+<p>users you do it through roads remember</p>
+
+<p>that a row speculation of users of</p>
+
+<p>permissions and then for that user you</p>
+
+<p>can assign one or more roles and the</p>
+
+<p>user is going to be able to do the sum</p>
+
+<p>of all the roles that they have assigned</p>
+
+<p>a user can have two three roles assigned</p>
+
+<p>and they were going to be able to do you</p>
+
+<p>know there's some of all of those things</p>
+
+<p>and that's in general how how it works</p>
+
+<p>just answer the question and like the</p>
+
+<p>other way is true as well like if you</p>
+
+<p>want to deny access to something you</p>
+
+<p>simply remove the permission of of the</p>
+
+<p>role and then they</p>
+
+<p>have access to them okay uh Northey our</p>
+
+<p>names and maybe this very simple concept</p>
+
+<p>again they are a collection of links use</p>
+
+<p>to navigate the website menus can be</p>
+
+<p>hierarchical so we have two examples</p>
+
+<p>here at the top is like a one level</p>
+
+<p>video it's only like five links and</p>
+
+<p>that's how many the Drupal but you can</p>
+
+<p>have hierarchies like Superman is on</p>
+
+<p>someone's and with modules you can get</p>
+
+<p>really crazy and I don't recommend it to</p>
+
+<p>be honest but just to see the</p>
+
+<p>possibilities down below query using a</p>
+
+<p>model called TB mega menu and with that</p>
+
+<p>you can embed YouTube videos and other</p>
+
+<p>information unknown your name so if you</p>
+
+<p>need to do it for some reason there are</p>
+
+<p>possibilities to do it and the last</p>
+
+<p>concept I'm going to cover today are</p>
+
+<p>taxonomies and to be honest this word</p>
+
+<p>Academy when I first heard it but it's</p>
+
+<p>super simple</p>
+
+<p>taxonomy is just used to classify the</p>
+
+<p>content of your website and by</p>
+
+<p>classification it's like also doing the</p>
+
+<p>connection between them and you only</p>
+
+<p>need to understand two things</p>
+
+<p>vocabularies and trends so a vocabulary</p>
+
+<p>is just a name the steps as a container</p>
+
+<p>so I have double card whatever and</p>
+
+<p>called fruits and it's going to be a</p>
+
+<p>container for terms in this case I have</p>
+
+<p>a term for apple strawberry orange and</p>
+
+<p>grapes so the vocabulary is the mean</p>
+
+<p>container and what terms are the</p>
+
+<p>individual elements inside the</p>
+
+<p>vocabulary and as minier things taxonomy</p>
+
+<p>terms can also have fields so in this</p>
+
+<p>case I associated an image field so that</p>
+
+<p>in addition to displaying that you know</p>
+
+<p>the fruit name I also show an image of</p>
+
+<p>the fruit itself vocabularies can also</p>
+
+<p>be hierarchical so you know living</p>
+
+<p>organism categorization we have kingdom</p>
+
+<p>phylum class you know humans are</p>
+
+<p>supposed to be animal</p>
+
+<p>in the qaddafi loom in the mamada class</p>
+
+<p>on way like 17 level deeps we are almost</p>
+
+<p>uh consultants or something like that so</p>
+
+<p>you can have hierarchical structures for</p>
+
+<p>tax on this as well some real life</p>
+
+<p>example categorization all them all the</p>
+
+<p>next thing that you need although not so</p>
+
+<p>useful real-life examples you can have</p>
+
+<p>when you for example we display an</p>
+
+<p>article you can have other articles</p>
+
+<p>tagged with one specific turn and you</p>
+
+<p>start as like related content for</p>
+
+<p>example and there are also models that</p>
+
+<p>extend this taxonomy system so you can</p>
+
+<p>show for example access controls based</p>
+
+<p>on taxonomy so there is a model called</p>
+
+<p>word play access that ties the</p>
+
+<p>permission system with the taxonomy</p>
+
+<p>system if you need it in Drupal 7 there</p>
+
+<p>was a model location personalize that</p>
+
+<p>for a specific ten you are able to</p>
+
+<p>associate the Oracle information so for</p>
+
+<p>example if we talk something like</p>
+
+<p>Chicago what ye Boston and so on then</p>
+
+<p>just by tagging that you can use</p>
+
+<p>geological information to display</p>
+
+<p>pointers on among the module is no</p>
+
+<p>longer needed in Drupal 8 because the</p>
+
+<p>Drupal 8 taxonomy can have things out of</p>
+
+<p>the box it wasn't a case into for seven</p>
+
+<p>but you can accomplish similar</p>
+
+<p>functionality finally super important to</p>
+
+<p>understand the concept because you will</p>
+
+<p>interact with all of them when reading a</p>
+
+<p>page and in fact like for one page you</p>
+
+<p>can enter 200 of all these things at the</p>
+
+<p>same time an FAQ that to be honest no</p>
+
+<p>one else and you get it myself and it is</p>
+
+<p>like there is a sailing into folder</p>
+
+<p>every time that you have poor God kills</p>
+
+<p>aquiline please think of the kidney and</p>
+
+<p>the word heart in this case again it is</p>
+
+<p>overloaded it is not what we hear in the</p>
+
+<p>news like some hacker</p>
+
+<p>came to my website and</p>
+
+<p>you know asked me for a ransom in Drupal</p>
+
+<p>but we still had we mean modifying the</p>
+
+<p>code that we get from the father or if</p>
+
+<p>you change one line one semicolon</p>
+
+<p>anything that you change that is</p>
+
+<p>consider having the Drupal and that's</p>
+
+<p>bad because you know you can modify how</p>
+
+<p>the system works in very weird ways most</p>
+
+<p>importantly you can modify for example</p>
+
+<p>of how the access control system works</p>
+
+<p>and you can be granting access to people</p>
+
+<p>that should have it so please do not</p>
+
+<p>modify or hack or you know what you're</p>
+
+<p>doing because there are some benefits</p>
+
+<p>for that but in general they do it so if</p>
+
+<p>you're not supposed to modify core but</p>
+
+<p>you have a specific need</p>
+
+<p>where are you supposed to do you use die</p>
+
+<p>yeah I remember that Drupal is a</p>
+
+<p>framework you use the API and to learn</p>
+
+<p>more about that you can check out this</p>
+
+<p>session</p>
+
+<p>it's likes are available if you want to</p>
+
+<p>learn what about theming and how the</p>
+
+<p>Drupal you know presentation later works</p>
+
+<p>you can see that session that I also</p>
+
+<p>presented and I highly highly recommend</p>
+
+<p>to get involved with the community</p>
+
+<p>because you will get your question</p>
+
+<p>answered by way way faster thank you</p>
+
+<p>very much I would really like to you</p>
+
+<p>know to have your kid so I know that</p>
+
+<p>we're over ten already so there are no</p>
+
+<p>questions otherwise I would be around</p>
+
+<p>beautiful campus</p></div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-daa95513859876ee0c6eae42dab30338d86cd91c3f2575525c5eac8b0a0a5d73">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/80">https://mid.camp/80</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+  <section class="map-banner">
+      <div class="views-element-container block block-views block-views-blockevent-venue-block-1" id="block-hatter-views-block-event-venue-block-1">
+  
+    
+      <div><div class="container view view-event-venue view-id-event_venue view-display-id-block_1 js-view-dom-id-72ae46de44bce7df795dbc4755fcf15ac76eb3db0dc1b0b1962cac3efe0d87d1">
+  
+    
+      
+      <div class="view-content">
+          <div class="views-row">
+
+
+<div class="map-overlay">
+  <span class="map__label">Location</span>
+  <h2 class="map__title"><span class="field field--name-title field--type-string field--label-hidden">DePaul University - Lincoln Park Student Center</span>
+</h2>
+  
+            <div class="field field--name-field-address field--type-address field--label-hidden field__item"><p class="map__address" translate="no">
+          2250 N Sheffield Ave. <br>
+            Chicago, IL 60614<br>
+  </p>
+</div>
+      
+  <a href="../venue/depaul-university-lincoln-park-student-center.html" class="cta-link--yellow">Learn more  <span class="cta-arrow"></span></a>
+</div>
+<div id='map' class="map"></div>
+</div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-cd0c38f683d6cb01cdb1e3d3e18e65506c4b787db298d5e569e6c755d6384551">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/platformsh.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-02/platform.png" width="400" height="79" alt="Platform.sh" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/acquia.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-02/Acquia_no_tagline.png" width="450" height="94" alt="Acquia" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/pantheon.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-11/pantheon.png" width="500" height="157" alt="Pantheon" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#a3cacdc5cce3cecac7c0c2ced38dccd1c4"><span class="__cf_email__" data-cfemail="b4dddad2dbf4d9ddd0d7d5d9c49adbc6d3">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/80","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_llBcjrkrgAu2wT1DR7VGL_iP6geJyiTnF_8O5ZD57VI.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJxLz89Pz0mNT8xLzKksyUwu1k9HE9DJSCwpSS3ST8_JT0rM0c2CC-QmFiTlVwAAPmAZQA"></script>
+<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.js"></script>
+<script src="../../sites/default/files/js/js_pODGOpSPRR3Y_Zt-7Fy-5B_pNv18oFAWhyhwUPCQZu4.js%3Fscope=footer&amp;delta=2&amp;language=en&amp;theme=hatter&amp;include=eJxLz89Pz0mNT8xLzKksyUwu1k9HE9DJSCwpSS3ST8_JT0rM0c2CC-QmFiTlVwAAPmAZQA"></script>
+
+  </body>
+</html>

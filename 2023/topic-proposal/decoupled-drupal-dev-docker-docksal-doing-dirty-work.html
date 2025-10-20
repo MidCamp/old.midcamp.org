@@ -1,0 +1,876 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="When a decoupled project begins one of the hardest parts that I’ve found is setting up a local environment to simulate all of the necessary components. How will the CMS be served? How will the decoupled front end be displayed? What about the dev server for rendering previews? Can I still call it headless or is decoupled the only appropriate word?" />
+<link rel="canonical" href="decoupled-drupal-dev-docker-docksal-doing-dirty-work.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Decoupled Drupal Dev on Docker with Docksal Doing the Dirty Work | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Decoupled Drupal Dev on Docker with Docksal Doing the Dirty Work | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_gt5LiAM1qLGUH5e845uOb7R_lJ9dUwTXmnhGDR2yY20.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OhDAIhC9U2yMZakdtAmJKV9c9_Tb-PPkCAx8ZZmAyO0IkgxsuLTCjCfbMi6bGtKCpIsT5BzdTrShhYo3E3WD2bITWqF9nh1XIZbvlBO0hEakfMziFAlt1sbyhO2E7wW7hrF40fRh.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_mK2of_t7UFymkfbTHeA-kHdMPWzqc3DZQCYtX-tC0BA.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OhDAIhC9U2yMZakdtAmJKV9c9_Tb-PPkCAx8ZZmAyO0IkgxsuLTCjCfbMi6bGtKCpIsT5BzdTrShhYo3E3WD2bITWqF9nh1XIZbvlBO0hEakfMziFAlt1sbyhO2E7wW7hrF40fRh.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OhDAIhC9U2yMZakdtAmJKV9c9_Tb-PPkCAx8ZZmAyO0IkgxsuLTCjCfbMi6bGtKCpIsT5BzdTrShhYo3E3WD2bITWqF9nh1XIZbvlBO0hEakfMziFAlt1sbyhO2E7wW7hrF40fRh.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OhDAIhC9U2yMZakdtAmJKV9c9_Tb-PPkCAx8ZZmAyO0IkgxsuLTCjCfbMi6bGtKCpIsT5BzdTrShhYo3E3WD2bITWqF9nh1XIZbvlBO0hEakfMziFAlt1sbyhO2E7wW7hrF40fRh.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+<link rel="stylesheet" media="all" href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.css" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="decoupled-drupal-dev-docker-docksal-doing-dirty-work.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-midcamp2023navigation-menu" id="block-midcamp2023navigation" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-midcamp2023navigation-menu">MidCamp 2023 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" data-drupal-link-system-path="node/6857">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--by-the-numbers">
+        <a href="../../2020/about/by-the-numbers.html" data-drupal-link-system-path="node/6252">By the Numbers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--venue">
+        <a href="../../about/venue.html" title="Venue" data-drupal-link-system-path="node/7048">Venue</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../speaker-resources.html" data-drupal-link-system-path="node/345">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--health--safety">
+        <a href="../health-safety.html" data-drupal-link-system-path="node/6973">Health &amp; Safety</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../about/lunch-options.html" data-drupal-link-system-path="node/6970">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--volunteer-opportunities">
+        <a href="../article/volunteer-help-midcamp.html" data-drupal-link-system-path="node/6975">Volunteer Opportunities</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" data-drupal-link-system-path="2023/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--travel">
+        <a href="../about/travel.html" data-drupal-link-system-path="node/6865">Travel</a>
+            </li>
+          <li class="primary-nav__sublist-item item--accommodations">
+        <a href="../about/accommodations.html" data-drupal-link-system-path="node/6948">Accommodations</a>
+            </li>
+          <li class="primary-nav__sublist-item item--registration">
+        <a href="../register.html" data-drupal-link-system-path="node/6977">Registration</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" data-drupal-link-system-path="node/6860">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--sponsor">
+        <a href="../sponsor-midcamp.html" data-drupal-link-system-path="node/6858">Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" data-drupal-link-system-path="node/6859">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--hybrid-sessions">
+        <a href="../schedule/hybrid.html" data-drupal-link-system-path="node/7053">Hybrid Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-wed">
+        <a href="../schedule/wednesday.html" data-drupal-link-system-path="2023/schedule/wednesday">Sessions (Wed)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-thu">
+        <a href="../schedule/thursday.html" data-drupal-link-system-path="2023/schedule/thursday">Sessions (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--birds-of-a-feather-bofs">
+        <a href="../schedule/bofs.html" data-drupal-link-system-path="node/7054">Birds of a Feather (BoFs)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--contribution-day-fri">
+        <a href="../schedule/friday.html" data-drupal-link-system-path="2023/schedule/friday">Contribution Day (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--topic-tracks">
+        <a href="../../topic-tracks.html" data-drupal-link-system-path="node/10">Topic Tracks</a>
+            </li>
+          <li class="primary-nav__sublist-item item--all-sessions">
+        <a href="../schedule/sessions.html" data-drupal-link-system-path="2023/schedule/sessions">All Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--session-submission">
+        <a href="../submit-session.html" data-drupal-link-system-path="node/14">Session Submission</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2023/news">News</a>
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../../jobs.html" data-drupal-link-system-path="jobs">Jobs</a>
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2023.html" hreflang="en">MidCamp 2023</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-midcamp2023schedulenav" class="block block-block-content block-block-contente066b47a-a80d-432a-8edd-6c60b28b7c95">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><div class="schedule__nav">
+<p><a href="../schedule/hybrid.html">Hybrid</a>&nbsp;|&nbsp;<a href="../schedule/wednesday.html">Wednesday</a> | <a href="../schedule/thursday.html">Thursday</a> | <a href="../schedule/friday.html">Friday</a></p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Decoupled Drupal Dev on Docker with Docksal Doing the Dirty Work</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="6888" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2023-04-26T16:00:00Z" class="datetime">Wednesday, 11:00 am CDT</time>
+ - <time datetime="2023-04-26T17:00:00Z" class="datetime">Wednesday, 12:00 pm CDT</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-83" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-name field--type-string field--label-hidden field__item">Room 324</div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>When a decoupled project begins one of the hardest parts that I’ve found is setting up a local environment to simulate all of the necessary components. How will the CMS be served? How will the decoupled front end be displayed? What about the dev server for rendering previews? Can I still call it headless or is decoupled the only appropriate word?<br>
+<br>
+There is a better way! In this session I will be walking you through a setup that I use that incorporates separate servers for a Gatsby static site, a Drupal CMS site, and a development server running on NodeJS. Best of all, because it’s container based, it’s extremely portable and can be reused for multiple projects! Ready to learn more?</p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/yjU04B95rpw?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>J.D. Flynn</h4>
+
+      Lead Software Engineer
+
+
+          @
+              <a href="https://herodevs.com">HeroDevs</a>
+        
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2018-02/IIM_profile_me.jpg%3Fitok=XTGO27ZR" width="220" height="177" alt="JD Flynn" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">DevOps</div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-feedback-form field--type-webform field--label-above">
+    <div class="field__label">Feedback Form</div>
+              <div class="field__item"><form class="webform-submission-form webform-submission-add-form webform-submission-session-feedback-form webform-submission-session-feedback-add-form webform-submission-session-feedback-node-6888-form webform-submission-session-feedback-node-6888-add-form" data-drupal-selector="webform-submission-session-feedback-node-6888-add-form" action="decoupled-drupal-dev-docker-docksal-doing-dirty-work.html" method="post" id="webform-submission-session-feedback-node-6888-add-form" accept-charset="UTF-8">
+  
+    <div data-drupal-selector="edit-0" class="webform-message js-webform-message js-form-wrapper form-wrapper" id="edit-0"><div data-drupal-messages>
+    <div role="contentinfo" aria-label="Status message" class="messages messages--status">
+                  <h2 class="visually-hidden">Status message</h2>
+                    Sorry...This form is closed to new submissions.
+            </div>
+    </div>
+</div>
+<input autocomplete="off" data-drupal-selector="form-r9amna7x-gezbntddd4vjrd05xiiao-se3y9eafta3w" type="hidden" name="form_build_id" value="form-R9aMna7x-GezbNtdDd4VjRd05xIIAo_sE3Y9EAftA3w" />
+<input data-drupal-selector="edit-webform-submission-session-feedback-node-6888-add-form" type="hidden" name="form_id" value="webform_submission_session_feedback_node_6888_add_form" />
+<div class="url-textfield js-form-wrapper form-wrapper" style="display: none !important;"><div class="js-form-item form-item js-form-type-textfield form-type-textfield js-form-item-url form-item-url">
+      <label for="edit-url">Leave this field blank</label>
+        <input autocomplete="off" data-drupal-selector="edit-url" type="text" id="edit-url" name="url" value="" size="20" maxlength="128" class="form-text" />
+
+        </div>
+</div>
+
+
+  
+</form>
+</div>
+          </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Welcome to Decoupled Drupal Dev on Docker with Docksal Doing the Dirty Work aka Docksal Does Drupal Decoupled on Docker aka Something Something Alliteration Decoupled. I'm JD Flynn. I'm a lead software engineer at EPAM. You can find me on all the slacks. I go by Dorf, on Twitter JDDoesDev and drupal.org is u/dorficus. A little bit about me. I've been doing PHP and Drupal for years. I've been doing HTML since the 90s. I had the greatest sound clip web page of my town of a thousand people. I run BASIC kind of around the same time from a magazine. Does anybody remember 3-2-1 Contact? Yeah, in the back of it, they used to have a program that you could write and copy verbatim, and that helped me a lot with some debugging, learning debugging at a young age. I'm also on the Drupal CWG community health and conflict resolution team, so a little bit of housekeeping. There's Contrib Day on Friday. Amy June is a person that you wanna see if you have any questions about that and she's also looking for work.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So she also won an award. She'll be happy to tell you about it even if you don't ask.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>(INAUDIBLE)</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Alright. So just a disclaimer to get the most out of this. It'll help if you know at least a little bit about Docker. Feel comfortable on the command line. You know what a Drupal is and you have an understanding of Decoupled Architecture. What we're gonna cover is just a basic setup of a decoupled monorepo. So we're gonna have the front end and the back end all in monorepo. Back end obviously Drupal for purposes of this using Gatsby as a front end, but it could be any front end next.js nuxt whatever works for you with a little bit of customization there. What we don't cover or what I'm not gonna cover is I'm not gonna teach you how to set up Webpack and all your React stuff. Once you see what I have for Gatsby, you'll understand that I didn't take the time to do all that just gonna demonstrate a few things. We're not gonna go over all the modules that you need on Drupal side to do decoupled, and we're not gonna cover your questionable life choices. That's on you. So I do have a request.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>If there's anything that I just completely misspeak about, if I'm telling you the wrong information, the sky is green. Feel free to correct me in a firm yet constructive manner. So a brief overview. First off, how many of you have used Docker? Familiar with it? OK, good. Has anybody used Docksal yet? I know a couple of people. Alright. So high-level overview of Docker. We're gonna cover that high-level overview of Docksal, get you into the weeds a little bit, but mainly we're looking at containerized decoupled architecture. So let's talk about Docker. The obligatory picture of the whale. I think this is a requirement for any presentation that has the word docker in it. And we're gonna go over this pretty quick. But I do feel the need to give kind of an overview of how Docker works. The basics. It's based on Linux containers. Not all containers are Docker containers, but all Docker containers are Linux containers. (UNKNOWN) syncing up there. OK. Docker provides an environment for Linux containers.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>It's kind of a place for them to live. It puts everything together. But Docker is not containers itself. The images define containers. They're just what a container should do, what it should have every time you spin it up. And the container itself is ephemeral, it can... you should expect it to disappear. Shouldn't expect anything to remain persistent in it. When you destroy or shut it down, it's gone. Next time you started up, it's just gonna have what the image defined it to have. Now storage, we can't have that persist using volumes. We could do mounted volumes, naming volumes, bind mounts, and that's useful because you don't wanna have to reinstall everything every time you spin up your containers or your system. And services are several containers connected using Docker compose. So kind of an image of what all that did or the parts of Docker. We've got the client, which is what we usually interact with here with Docker build, pull, Docker run, or other commands based on what or depending on what you're using.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Then those commands go to the Docker daemon, which will either, depending on where they are. If you have the images already on your system, it'll spin up a container based on those. If you don't, it reaches out to the registry, grabs the images, brings them in, and then spins up the container. Does that make sense? LIke I said, it's a high-level overview, but I figure everybody needs at least some understanding. So now that we've got that out of the way, let's talk about Docksal. Docksal is written in BASH scripting, completely BASH scripting. So on most systems, you don't have to install anything like Node or even PHP to get it to run. Just all this is your basic command line. It uses Docker services. Docker compose extensively and any command that needs to be run inside the container, if you're running it from the host machine or the actual computer, you're gonna start it with fin. And there are a few commands that are built in where you don't have to do anything else but any other commands.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>It's fin exec and then whatever your command is and it'll run it as though you're in the container. It's extremely configurable, which we'll go over in a moment. And because all the applications are fully containerized, it's very portable between developers. So I'm gonna look at the architecture of just Docksal and Docker compose how they work. Now in a traditional virtual machine, we cut this in half and every machine that you spin up would have its own, yeah, the command line, database, web server. Everything in there have its own system services. Forget Docker for that, have its own host machine or virtual machine and infrastructure. You have a different virtual machine for every project, whereas Docker and Docksal use services. So an individual project has its own CLI of that. Another project can have similar but not the same. Their own containers over here. But we're sharing the system services, the DNS server, the SSH agent, those all run on Docker, which unless you're on a Linux machine is a virtual machine because there are Docker containers... Linux containers, sorry, fumbling my words a little bit.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And that all uses the resources of your host machine, which is the actual computer you're using, and just use the infrastructure there. So the advantage is you don't have to have an individual set of services and individual virtual machine, all kinds of resources that you really aren't gonna wanna utilize if you have 3 or 4 projects on your system. OK, that makes sense? Alright, so we're gonna build a project now. For the purposes of not knowing how fast the Wi-Fi was gonna be coming here, I did a little bit beforehand, but still, we're gonna do a quick live demo just to show some of the default stacks how we can get things spun up, some of the options, how to start the system and how to customize it. So, here we go. So to create a project, fin project. Create. Let's call it midcamp-demo. So we get and I might try to enlarge this a little bit. So we get some options here. And it's... Let me go up. Fortunately, it won't let me. There we go. I know it's probably hard to read for those of you in the back, but we've got a couple of different flavors of Drupal, WordPress, Magento, Laravel Symphony, GraphCMS, even Backdrop.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>If you don't wanna go PHP, we've got Hugo, Angular, Gatsby all ready to spin up just by typing in a number. So I already did this with a Drupal ten composer version and I'm not going to do it again because it'll download all the things and take forever. So to start up after running that command, it'll run what's called fin init and that is a blank file. It's a define your own solution however you want your project to start up. For us, hit Open. There we go. The default fin init. It's going to... I'm just gonna show my... Great. Run project reset, which is gonna clear out absolutely everything. So fin init is destroy scorched earth, then run a secondary command and a site which basically is going to do our composer install after pulling down a Drupal repo. Now, once all that's done, there are a few different things that happen to make it be able to run with a standard Drupal installation because normally you don't have the connection to the database with your default settings PHP. So we have settings, local or local settings depending on what your naming convention is.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And if you're adding Docksal to a project, all you have to do is make sure that your... I'm sorry if that's hard to read. Can you discern it from way back there? Just make sure that you're checking if the setting of local settings file exists and if it does, load it up. And in there, we have our database connection, which is gonna let the site run. I just... do any of you ever accidentally pressed down too hard on a touchpad and get the dictionary pulled up like, way too often? And just a couple of other things that you may or may not wanna have are Docksal specific. So if you're running a project Create like we pretended to do down here, you'll get this file with the reverse proxy stuff for the BLS proxy setup. So let's look at... Well, before I go on, does that make sense to get something spun up? And now since we've got that spun up, I'm going to then Project Start. So if I hadn't done this beforehand, we'd be sitting for about five ten minutes, if not longer, waiting for the images to get pulled down just because of the speed of the Wi-Fi.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So I did do it ahead of time. You're welcome. But it's a basic setup. All we're gonna have is the CLI, the database, and the web server. So it also gives us a URL there,- I'm gonna take this over here. And there we've got a full Drupal site. You can clap. Yeah. Make me feel good about myself.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENTS:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>(APPLAUSE)</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Alright,, so that's simple. There's nothing to that. We've got three containers, but it works. So let's do something a little bit more difficult and look at some of the available stacks. Getting used to controlling a screen that's behind me is extremely disorienting. Alright, so not important. There we go. Our services file is where all of the services that we're gonna use live and we pull in those services. This is essentially a Docker compose file on whichever stack we wanna use them for. So we've got a couple of different web servers. We've got either Apache or Nginx, our database options MySQL, Maria, Postgres, and then our CLI options, that's kind of where everything works, where PHP lives. And each of these settings can be overridden. So say we wanna use all of the good things about Docksal. But we want to use a different CLI image, a different PHP image. We can go into our project and I don't know if it's showing me opening this. No, OK, well. And go to the Docksal.yml, which is again Docker compose, add-in services, CLI.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And just because my memory is not as great to remember every character. Here we go. And to find whatever PHP image or whatever we want. And then when we run fin update, it will update it with that image that we've defined in this file. So like I said, highly customizable. And we do have different stacks to work with. If you want to have basically acquia out of the box, we've got all the services it depends on. If you're doing just standard HTML and don't need database. If you're doing a Node project. This one I find pretty interesting because, with the labels, which are just settings that we're setting inside the fin executable, you don't need to use port 3000 on the host. So you just spin up your node project, start your dev server and go to the domain that you you define and it just works. I did that the other day just testing something out and it kind of blew my mind. I figured I'd have to put in the port number. We also have Pantheon platform and all the stacks are extremely configurable to however you wanna set them up.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Any questions on the stacks before? Which way? There we go. OK, but why should we use containerized setup instead of normal composer NPM or other commands from the host? Anybody think of a couple of reasons? Wilbur, what version of PHP do you have on your host right now?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>You know, it depends on the project.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Exactly.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>(UNKNOWN) you and you can specifically say which PHP.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah. Jack what version of Node are you using on your...</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>On my local machine? None whatsoever. I only have (UNKNOWN) containers.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>You're a bad example. You you were supposed to say I don't know but...</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Andrew doesn't know. Does he?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah but yeah, it makes it reusable. One of the biggest problems I'm sure that we've all run into is, well, it worked on my machine or it was broke on my machine. Especially if you have somebody above you who doesn't realize how to use things. But this helps eliminate it by having a setup where you can make sure that all your developers, all your team are using the exact same. You each have PHP 8.1, you have the same version of Node, the same version of NPM, the same version of Ruby, if that's what you're into same version of Drush. You have all that because you're sharing the Docker files stacks and the containers across multiple developers. So we use containers because of reliability, because we don't have to worry about that, well, worked on my machine because all machines are now equal, portable. So, Jack, I'm gonna pick on you because you're sitting right there. So if you're... Is that a Gazelle?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Oh, it is a Galago.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Galago. OK. Yeah, I have one of those, too. So if your Galago fell into Lake Michigan and you had a project you pulled on a GitHub repo with the containerized set up how much time have you lost?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Today is a bad day for me because I'm here. So two whole days.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>OK. If you didn't have containerized, you need to go through a brand new system. You need to make sure that you have your right version of PHP, all that stuff we just talked about, reproducible. If the environment is same on multiple computers, then multiple people are gonna run into the same problem hopefully, and because it's containerized, it only uses the resources it's needed instead of having a virtual machine for everything. Has anybody worked with projects where you had to have an entire VirtualBox for every single project that you working on that will eat up your hard drive, eat up your memory faster than you can think of? So we've been talking about Docksal lot. But let's look at why I put some slides out of order possibly. Let me just... OK, sorry. I accidentally duplicated a couple of slides. Pretend you didn't see that. Kevin, edit that out for me, please. So what about storage? Well, there are a few volumes that are automatically set up by Docksal and volumes are persistent storage that claim a spot on your hard drive.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>There's also mounts that don't necessarily claim their own spot. They just piggyback on the spot that already exists with content or files in it. But the volumes that are set up are the CLI home, the project_root, and DB_data. So CLI home is where your actual OS for your containers lives. In most cases for Docksal purposes it's Ubuntu and it's useful in case we wanna customize the OS, maybe add some stuff to it that should persist if we're working on a long-running project and we don't want to, every time we shut it down, have everything disappear without removing the volume, you still have those settings available. The project_root is where the project folder lives. So if we go back to here, the project_root mounts to this session example folder. So everything that is in session example is in the container. So any changes that we make to any file in that folder will be reflected in the container. Nope. And DB_data. Any guesses on what that holds? Your database so you don't have to pull down a database every time from either hosting provider or if you're one of the lucky ones who has a full database in your git repository.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Alright, so let's get into the real reason that we're all here. This is the scenario that brought me to putting together all of this is we want a portable local dev environment to be shared across the number of developers. It needs to run and serve Drupal. It also needs to run and serve Gatsby develop, which is the dev server that when you run it, it's a Node.js server and it can also serve the built site of Gatsby and Drupal. And on top of that, it simulates a major hosting platform. Makes sense to everybody? Alright. So let's take a look at what we can do there and for this. Switch screens here. What does that say of that? Is it closing them down? No. So we're gonna start off with our Docksal.env file. And we can set quite a few things in here. Do I have to follow? For this, I'm gonna use an Acquia stack because it's the one I had uncommented, but could also use Pantheon, a default stack, platforms, or whichever stack you want to. This is just an environment variable that you set and Docksal does a rest.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And as we all know, not all Docroots are created equal. So it might be in web, it might be in Docroot, depending on what provider you're using, and a couple of other settings that you might wanna have in here are Composer Memory limit because Composer doesn't like me. Xdebug, I use that extensively, but I don't enable it because that'll just tank your performance. And if you wanna have custom images or different images than what we're... our default, we could set those in there as well. Now out of the box, Docksal will name your project whatever your project root folder is .docksal.site. But you can change that by just setting the virtual host environment variable there. Now where we really get into it is Docksal.yml. This is where we can really customize all the things. So I'm gonna yada yada yada my way to stage two. And you can see I've added a few things in here. So what I've done for this to work is we have the CLI, which as I remember is where PHP lives. But if you look at. I don't think I've changed anything here yet.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Click there. Where it has build, it's not pointing to an image from Docker registry or a Docker hub. It's pointing to the folder here and I took our base Docker file which exists in the Docksal set up. And I've added a couple of things that I know I'm going to need for a decoupled project. Mainly, every time we spin up this image, we're gonna have NPM, we're gonna have Node, the right version, the pinned version, so that all of our developers are gonna be using the exact same version NPM and Gatsby CLI because I'm spinning up against you see, so why not make sure that it's part of the image or the container as it's built? So you can customize the Docker file as well, not just the Docker-compose, You can add anything you want to, you could change the PHP version in here. If there are other things that you wanna add-in. As you can see, I've got a couple things here for testing. And my favorite alias because ls lh takes too long to type, so I just do LL. So when we do that, follow me. Go back to stage one fin.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>That's fin project start with Stage one, which is going to have just the barebones set up for Acquia. But you can see... Well, maybe you can't see because it's very small. Smaller than I meant it to be. But for the Acquia stack, we're starting off with solar. We're starting off with Memcached as well as Varnish. And in addition to the three normal containers that we start with. So it's coming as close to an Acquia environment as I possibly can. So it spits out our URL down at the bottom mid-camp docksal site. And I installed it with Umami. I absolutely love this demo because it makes things so much easier and it's content so I don't have to think. But when we change it up to our additional stage two here. I'm going to run Fin up which updates the project. So if you're paying close attention, we've added another container here, decoupled preview. So that's gonna be our preview for our Gatsby dev setup. But we want them to run together so they're not all gonna be on mid-camp.docksal.site.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So what I've done here is in our service, sorry docksal.yml, I've added the web server is going to have its own CMS, that virtual host, and we can define that like I did in the Docksal environment. And our preview is going to be preview.Virtual_Host. So our Vue proxy on the system service. It just going to make that work. So now if we go back over here. Do a quick refresh. It's gonna be missing because we removed the domain. I point that out because I forgot I moved the domain and I spent way too long yesterday trying to figure out what the heck was going on with this demo. Well, there we go. And now I haven't. So I don't think I have. I haven't quite set up the Gatsby and this stage of it, but we have things available for it. So if we go to Preview, bad gateway because it's seeing that the project exists, but there's no node server serving it. So the next step to this is really to finish it up, I'm going to head over to stage three. Switch screens once again. And I've added a couple more things here.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>One is going to be static because when at least with Gatsby, I can't speak. I'm pretty sure that other front ends do the same. But with Gatsby it generates a static site. It just serves the HTML. So I gave it just for fun. I put it on Apache where our web server for the Drupal site is on Nginx. So I've got two different web servers running two different domains and they're working side by side. I also added our... so with that static container simply just added the static hostname, the service. Gave it access to the project root which is where... Sorry. Words are hard from switching, moving my head back and forth. The project root, which is where our project lives gave it that label, the virtual host. And then where is that? And just set the Apache document which is, it tells it to look in the public folder. And right now since I haven't built there's nothing there for it to load up. Any questions so far? Anything I can clarify? Yeah?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>You have a Docker file, you've got Docksal directory?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yes.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>How did you get that? Sorry if I missed it. Is that generated by Docksal? Where did that come from?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>I made it. So on the docker file. And make sure it's pulling up. There we go. So the first line there from Docksal/CLI PHP?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>I'm taking everything that Docksal has and adding my own on top of it. So we get everything that's in the default Docksal/CLI container with the addition of and it does come with node on the default one, but I don't know which version which are and that could change if you change versions or if you don't have it pinned to the 3.2, if you just have three. So I pinned it to 16.13 and then to call that, good call out that I didn't show that instead of I just got a four.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Why nine? That's the build.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Oh, yeah. I was gonna pull up one of the default stacks and... Yeah. Instead of having an image, just one showing up instead of having an image directive here like we do in the default stack, we're just saying that we're going to use or instead, we're going to build it and name our image, whatever we wanna name it. So I've got the project name CLI. We're also extending the CLI service, so that's why we don't have to have everything in the CLI here, which is quite a bit. We're just overwriting the parts of it that we need. And according to Apple Dictionary, CLI is an abbreviation for cost of living index because I press down too hard. In case anybody was wondering. So all of these are already part of it. We're just extending on it, kind of like extending a class or service in PHP.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>It knows to look there.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yep. Because we tell it to. Right here where we're saying, look in the file, or Docksal/Stacks/Services for the service CLI.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>And then whatever is different here, that's what we're gonna overwrite. Does that clarify?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Well, no, I understand that. I guess I'm just to understand how it knows to look at the Docker file in your .docksal directory file.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>That is the build line here. Project_Root.Docksal/Services/CLI. So you don't have to actually put in Docker file on that. It'll just look for Docker file in that folder. But it lives in the project. Not really...</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>OK. So it's the build.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah. So and you can do this with any or you can extend out Docker files for any of the services, even if you wanna create your own completely. Well, I wouldn't say from scratch because that would be a pain in the butt to go from scratch. But which is another thing if you don't know the base Docker images of all Docker images is scratch, which is pretty much blank and you have to do from scratch. So Eric, did that clarify?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yes.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>OK. I went to stage three, I believe. So we're gonna thin up.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Did you manage to solve the problem of pending chromium?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>No, I didn't even know that was an issue.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>I've had issue with that in the past with previous X selenium-based stuff.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>I think I remember something about it, but I haven't actively done anything to try and handle it. Alright. So stage three. Now you can see that our static is up, our preview, our web, everything has been spun up here. So I'm going to just because it's always safe Drush cr.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>(INAUDIBLE).</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>And so in theory. What should happen is I can go to our CMS page. Our preview isn't gonna work because we don't have anything there and we should see similar with static. OK, so there's nothing there, which is why it's forbidden, but it's actually pointing to something. So first thing I'm gonna do, head back into VS code and run. Fin Gatsby.dev. Now this. Another nice thing about Docksal is that you can add as many commands or custom commands as you want, and they're all written in BASH. So let me open that up. And I apologize, I thought that the folders that I was opening on my screen were also opening there, and I didn't pay attention. So sorry about that. But under the commands, all these are custom commands that I've had for one reason or another and added in here and one Gatsby Dev and all it does is that we're running in the preview container rather than the CLI or web and telling it go into the Gatsby folder and run Gatsby develop and run it on this host, That's a Docker specific thing so that it's accessible to the outside world.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So when I run that, crossed fingers, toes, and eyes that it works. So this step always takes a little bit. While we're waiting that everybody know what they're grabbing for lunch downstairs.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Food.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Good call. I'm also having food.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Here's a question for you.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Is there... I see you're having two separate web instances in the same command, which makes sense when you're doing a decoupled that one goes to the other. Is there any difference between doing two different Docker or Docksal instances running at the same time?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>You can, but it depends on... good it's going. It depends on your use case. For this one, I specifically did a monorepo. When you do two different Docksal instances say you have one specifically for Node and one specifically for Drupal. If you want it to be completely separated out, then there is a few other steps that you might need to take to make sure that your Drupal instance can effectively communicate with your node instance. Like in this the hostname from one to go to the other. And this is getting a little bit into Gatsby. It'll open Gatsby.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Well, we do this kind of thing, too. Like, we've got Drupal portals that do like rostering and test launching for Tor test runners. And we've got the Tor project in its own Docksal project and then the Drupal project and its own Docksal project. As long as it's like web to web, those will communicate just on Tor.Docksal.site. What we did have problems with though, was trying to get in one of our testing platforms we have an intermediary data warehouse that wants... the Drupal site wants to talk to databasewise and I have not yet figured out how to make my one project hit the database in another project, just the database. I haven't been able to make that work yet.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>In fact, I think we were slacking about that.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Probably. Yeah.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>I remember why I asked because in production is your Gatsby server gonna be on a different server and let's say configuration that Drupal website. So like we have one hosting service here and we have one hosting service here.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>So one project that I've seen it done both ways in one project that I've worked on did it so that it was a monorepo and we set up Gatsby Cloud to look only at the Gatsby folder in the project root. So instead of looking at www, it looked at the Gatsby folder and it still had everything there, which is why I kind of simulated an Nginx thing versus Apache here. Another thing, if you're using two different stacks or two different apps internally, they can use the host name that you define within the same stack. So if I wanted to ping.CLI, it would just be CLI. But if you're doing it externally, which would be Docker to Docker separate applications, you'd have to use the full domain to because it'll have to go out of the container back then. Alright. So it looks like we've got to build or at least a preview. Let's go back here. Yeah, we've got to guess, we say. Now, we've also got one of the things I love about Gatsby 404 page is it just gives you everything. And so this is pulling all the data from Drupal, from the umami.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Very cool.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>And then finally, the last piece of the puzzle. Just to simulate the fully built project. Hopefully, it doesn't take as long because I'm starting to get hungry myself. Then Gatsby build which is again one of those custom commands that I have. But it clears out the cache. Clears the public folder and then runs a build. And unfortunately, because I did clear out the cache, it does take a little bit of time to rebuild those files again. But I've had it ingrained in me since starting with Drupal, that you clear the cache or you die. While reading on that, another nice thing that having this is specific to Gatsby. I know I said I wasn't going to do getting too deep in the Woods in Gatsby. But I can scroll up just a little bit here, it also gives you your graphical IDE, so if you're familiar with that, it's basically the query builder for Gatsby for anything GraphQL. So it'll help you get into the JSON API and then decide how you wanna get the data from there. So you still have access to that by going to the preview site.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And three underscores. Three underscores. Three underscores. I say that because I spent way too much time wondering why it wouldn't work when I only had two underscores. It's not showing there, but we are moving. OK. So now there we go. And now we've got this is the static site that is being served from the Apache server. So any questions? Any comments, Concerns, Insults? I'd be more than happy to answer before we go back to the slides.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>I have a quick question.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>If we knew the Gatsby where is a good place to get started?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>The Gatsby docs have some really good demo or tutorials on how to get started with it, but what I would recommend is do you know, React?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Sure.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>OK, because I wouldn't tell you to learn Gatsby without learning React. It was just like I wouldn't tell you to learn jQuery without knowing at least JavaScript or some...</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>OK.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>But yeah, gatsby.org or Gatsbyjs.org the open-source site has some really good docs and they've got a good discord and a presence on a lot of the different slacks. Alright, so since we did a live demo, I set the bar pretty low, but so what was the point of all this? Again, I mentioned this before, but Docksal and Docker make it easy to configure local dev environments without a lot of time or effort. Granted, I had them all pre-made, but the time... most of the time that I spent making them was downloading the images on hotel Wi-Fi. So I saved you all that headache of having to watch those images get pulled. And if we wanted to say we want to change a version of PHP, it's as configurable as going into our Docksal.yml change it here or it's hard to,,, services is on, Docker file. Change it downgrade to 8.0. Run fin up. It'll pull down that image instead and you have a different version of PHP. So if you want it, if that comes in handy, especially with Drupal making sure that you have all the typing done correctly for 8.1 where if you have custom modules that don't have that done, good luck because that can be a headache.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>But I digress. But yeah, two-line changes. 30 seconds later, you have a completely new version of something that can be shared out containerized, you can share it out. It doesn't use all your system resources and reproducible. That's a big thing. So what all did we accomplish here? Well, all the things. We got a local environment that mimics production mimics Acquia created containers to separate Drupal Gatsby dev and a static site. So we had the static HTML. One of the nice things about Gatsby is it's lightning-fast. You saw how fast that page loaded. And we made some memories along the way. Any questions? Alright, so thank you all for coming. I appreciate you stopping in for this. If you're interested in the GitHub repo, GitHub/jddoesdev/decouple-docksal-demo because I really like alliteration apparently. I haven't updated it with my latest changes, but if you'd like to take a look, it's there and there's nothing else. Go eat. Get out.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENTS:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>(APPLAUSE)</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Thank you.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENTS:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>(APPLAUSE)</span></span></span></span></span></span></p></div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-a041d15a77238bc2eadac53f32223e76231e638b1522f16f374ef8389f7622de">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/6888">https://mid.camp/6888</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+  <section class="map-banner">
+      <div class="views-element-container block block-views block-views-blockevent-venue-block-1" id="block-hatter-views-block-event-venue-block-1">
+  
+    
+      <div><div class="container view view-event-venue view-id-event_venue view-display-id-block_1 js-view-dom-id-dd683c22d24ffd2949c3d7261f9d9630b6a33f19d7fbff5b6dfa5a82342cdf22">
+  
+    
+      
+      <div class="view-content">
+          <div class="views-row">
+
+
+<div class="map-overlay">
+  <span class="map__label">Location</span>
+  <h2 class="map__title"><span class="field field--name-title field--type-string field--label-hidden">DePaul University - Lincoln Park Student Center</span>
+</h2>
+  
+            <div class="field field--name-field-address field--type-address field--label-hidden field__item"><p class="map__address" translate="no">
+          2250 N Sheffield Ave. <br>
+            Chicago, IL 60614<br>
+  </p>
+</div>
+      
+  <a href="../../about/venue.html" class="cta-link--yellow">Learn more  <span class="cta-arrow"></span></a>
+</div>
+<div id='map' class="map"></div>
+</div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-680191952058bb3c7013f887ac3356db3e73a383758df2fa33bc8f986e02ad80">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/debug-academy.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2023-02/Final%20Logo-in-color.png" width="1010" height="864" alt="Debug Academy logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/evolving-web.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2023-04/evolvingweb%20(3).png" width="1517" height="371" alt="Evolving Web" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/bounteous.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2023-01/BounteousIndigoSmall.png" width="403" height="67" alt="Bounteous logo" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#51383f373e113c383532303c217f3e2336"><span class="__cf_email__" data-cfemail="fc95929a93bc9195989f9d918cd2938e9b">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/6888","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"ajaxTrustedUrl":{"form_action_p_pvdeGsVG5zNF_XLGPTvYSKCf43t8qZYSwcfZl2uzM":true},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_U1jmi93nTJG2lPAKzexs4tMZWFR2YMMoIoiPckW421U.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJx1yksKgDAMRdENabskSfUZK2kjTfCzeyfiQHB04XBZlQUDVZLL82iRP9At5I4WWTSR9OsLhbakZ3cgzdpKfBogKKgeJjhlsWC043cqMCPGDa0vM_I"></script>
+<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.js"></script>
+<script src="../../sites/default/files/js/js_RAkHj2z9vY4q-6RsYuiXkqPbxgsRWrLsVQRz36mKiGA.js%3Fscope=footer&amp;delta=2&amp;language=en&amp;theme=hatter&amp;include=eJx1yksKgDAMRdENabskSfUZK2kjTfCzeyfiQHB04XBZlQUDVZLL82iRP9At5I4WWTSR9OsLhbakZ3cgzdpKfBogKKgeJjhlsWC043cqMCPGDa0vM_I"></script>
+
+  </body>
+</html>

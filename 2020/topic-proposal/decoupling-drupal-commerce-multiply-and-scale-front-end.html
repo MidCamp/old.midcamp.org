@@ -1,0 +1,790 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="Much of Centarro’s work is improving Drupal Commerce for merchants who need to accommodate multiple complexities at once. Some need to create a tailored experience for multiple types of customers within a single online store. Others need to build native mobile applications that interact with the website’s database for product catalog browsing and purchasing. Some of the most complex cases create multiple stores that sell products in multiple regions with custom availability, pricing, and marketing per store - all powered by a single application." />
+<link rel="canonical" href="decoupling-drupal-commerce-multiply-and-scale-front-end.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Decoupling Drupal Commerce to Multiply and Scale the Front-end | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter_2019/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Decoupling Drupal Commerce to Multiply and Scale the Front-end | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_gt5LiAM1qLGUH5e845uOb7R_lJ9dUwTXmnhGDR2yY20.css%3Fdelta=0&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlj90OwiAMhV9oA_XOp1lgHDaSQg3FLfPph_sxGm_a03Oa5mtPRmTR1giaftc-0EdHiJgBcs6JXc04o6ocDYUXmtGUgtzdLte7HoitobYXOe33Ze05lV_na1EWKYg7whQcuEO0cJ.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_UMuvjHSQ9iJFDCuYZXW-ThtEaBNBWxN9AUvYSTjbZi4.css%3Fdelta=1&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlj90OwiAMhV9oA_XOp1lgHDaSQg3FLfPph_sxGm_a03Oa5mtPRmTR1giaftc-0EdHiJgBcs6JXc04o6ocDYUXmtGUgtzdLte7HoitobYXOe33Ze05lV_na1EWKYg7whQcuEO0cJ.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_JumHJ3UqLO9Mdu1kygD5e19MOiNh5iD_a9p0FH6QrHQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlj90OwiAMhV9oA_XOp1lgHDaSQg3FLfPph_sxGm_a03Oa5mtPRmTR1giaftc-0EdHiJgBcs6JXc04o6ocDYUXmtGUgtzdLte7HoitobYXOe33Ze05lV_na1EWKYg7whQcuEO0cJ.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_LovagMoZZFoM80YhT0zgW4b6oNarRMdF8ooxvYiQ9tA.css%3Fdelta=4&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlj90OwiAMhV9oA_XOp1lgHDaSQg3FLfPph_sxGm_a03Oa5mtPRmTR1giaftc-0EdHiJgBcs6JXc04o6ocDYUXmtGUgtzdLte7HoitobYXOe33Ze05lV_na1EWKYg7whQcuEO0cJ.css" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="decoupling-drupal-commerce-multiply-and-scale-front-end.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-2019-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-hatter-2019-midcamp2020navigation-menu" id="block-hatter-2019-midcamp2020navigation" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-2019-midcamp2020navigation-menu">Midcamp 2020 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" data-drupal-link-system-path="node/403">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../news.html" title="News" data-drupal-link-system-path="2020/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" data-drupal-link-system-path="2020/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--virtual-camp">
+        <a href="../article/midcamp-2020-going-digital.html" title="MidCamp is going virtual" data-drupal-link-system-path="node/6689">Virtual Camp</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsor">
+        <a href="../sponsor-midcamp.html" data-drupal-link-system-path="node/6250">Sponsor</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--community-organizations">
+        <a href="../sponsor/community-organization-introduction.html" data-drupal-link-system-path="node/6251">Community Organizations</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sponsors">
+        <a href="../sponsors.html" data-drupal-link-system-path="node/6253">Sponsors</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" data-drupal-link-system-path="node/6258">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--sessions-thu">
+        <a href="../schedule/thursday.html" data-drupal-link-system-path="2020/schedule/thursday">Sessions (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-fri">
+        <a href="../schedule/friday.html" data-drupal-link-system-path="2020/schedule/friday">Sessions (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--contribution-sat">
+        <a href="../contribution-day.html" title="Contribution Day" data-drupal-link-system-path="node/6378">Contribution (Sat)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--accepted-sessions">
+        <a href="../accepted-sessions.html" data-drupal-link-system-path="2020/accepted-sessions">Accepted Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../../2023/speaker-resources.html" data-drupal-link-system-path="node/345">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-terms-and-conditions">
+        <a href="../../speaker-terms-and-conditions.html" data-drupal-link-system-path="node/21">Speaker Terms and Conditions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--topic-tracks">
+        <a href="../../topic-tracks.html" data-drupal-link-system-path="node/10">Topic Tracks</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--donate">
+        <a href="https://tickets.midcamp.org/" title="Register for MidCamp">Donate</a>
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-2019-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2020.html" hreflang="en">MidCamp 2020</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-hatter-2019-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Decoupling Drupal Commerce to Multiply and Scale the Front-end</span>
+</h1>
+
+
+  </div>
+<div id="block-hatter-2019-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="6319" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2020-03-19T18:15:00Z" class="datetime">Thursday, 1:15 pm CDT</time>
+ - <time datetime="2020-03-19T18:45:00Z" class="datetime">Thursday, 1:45 pm CDT</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-82" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-field-link field--type-link field--label-hidden field__item"><a href="https://zoom.us/my/midcamp314b" target="_blank" class="button--primary">Go to Room 314B - old</a></div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>Much of Centarro’s work is improving Drupal Commerce for merchants who need to accommodate multiple complexities at once. Some need to create a tailored experience for multiple types of customers within a single online store. Others need to build native mobile applications that interact with the website’s database for product catalog browsing and purchasing. Some of the most complex cases create multiple stores that sell products in multiple regions with custom availability, pricing, and marketing per store - all powered by a single application.</p>
+
+<p>The Commerce project and its primary contributed modules (e.g. Shipping, Price List, PayPal, etc.) enable rich functionality in the back-end, but when you need to multiply or scale your front-ends, you can’t just grab a module. You need to consider your high-level application architecture and development philosophy. Drupal Commerce affords you multiple approaches, including developing an API-first eCommerce back-end and freeing your front-end teams to use their frameworks and libraries of choice to deliver custom, scalable front-end applications.</p>
+
+<p>More than just reviewing a feature set, this session will detail when and how to adopt an API-first philosophy or “go headless with Drupal Commerce.” I’ll demonstrate and guide you to the tools we’ve developed to support real-world use cases described above and give you a taste for where we’re taking it next.</p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/WQ7Npo84hRU?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-presenter-slides field--type-file field--label-above">
+    <div class="field__label">Presenter Slides</div>
+              <div class="field__item">
+<span class="file file--mime-application-pdf file--application-pdf"> <a href="../../sites/default/files/2020-03/Decoupling%20Drupal%20Commerce%20to%20Multiply%20and%20Scale%20the%20Front-end.pdf" type="application/pdf" title="Decoupling Drupal Commerce to Multiply and Scale the Front-end.pdf">Decoupling Drupal Commerce to Multiply and Scale the Front-end</a></span>
+</div>
+          </div>
+
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Matt Glaman</h4>
+
+      Principal Software Engineer
+
+
+          @
+              <a href="https://www.acquia.com/">Acquia</a>
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p>Matt Glaman is an experienced software engineer and a prominent member of the Drupal community. With over a decade of experience in web development, he has gained a wealth of knowledge and expertise in the field. He is the author of several books, including "Drupal 8 Development Cookbook" and "Drupal 10 Development Cookbook," which provide a comprehensive guide to building and customizing Drupal sites.</p>
+
+<p>As an active member of the Drupal community, Matt is dedicated to sharing his knowledge and expertise with others. He regularly contributes to Drupal projects and is passionate about helping others develop their skills and become more proficient in Drupal development.</p></div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2019-12/3LRfmYzD_400x400.jpg%3Fitok=w2Gli5PW" width="220" height="220" alt="avatar" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Back-End</div>
+          <div class="field__item">Front-End</div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-feedback-form field--type-webform field--label-above">
+    <div class="field__label">Feedback Form</div>
+              <div class="field__item"><form class="webform-submission-form webform-submission-add-form webform-submission-session-feedback-form webform-submission-session-feedback-add-form webform-submission-session-feedback-node-6319-form webform-submission-session-feedback-node-6319-add-form" data-drupal-selector="webform-submission-session-feedback-node-6319-add-form" action="decoupling-drupal-commerce-multiply-and-scale-front-end.html" method="post" id="webform-submission-session-feedback-node-6319-add-form" accept-charset="UTF-8">
+  
+    <div data-drupal-selector="edit-0" class="webform-message js-webform-message js-form-wrapper form-wrapper" id="edit-0"><div data-drupal-messages>
+    <div role="contentinfo" aria-label="Status message" class="messages messages--status">
+                  <h2 class="visually-hidden">Status message</h2>
+                    Sorry...This form is closed to new submissions.
+            </div>
+    </div>
+</div>
+<input autocomplete="off" data-drupal-selector="form-vnmm9xjaupg4muwbty-098i6hvqttju7dg1-nxh53-a" type="hidden" name="form_build_id" value="form-vNmM9xJAUpg4MUWbTy-098i6HvQtTJu7DG1-NXH53-A" />
+<input data-drupal-selector="edit-webform-submission-session-feedback-node-6319-add-form" type="hidden" name="form_id" value="webform_submission_session_feedback_node_6319_add_form" />
+<div class="url-textfield js-form-wrapper form-wrapper" style="display: none !important;"><div class="js-form-item form-item js-form-type-textfield form-type-textfield js-form-item-url form-item-url">
+      <label for="edit-url">Leave this field blank</label>
+        <input autocomplete="off" data-drupal-selector="edit-url" type="text" id="edit-url" name="url" value="" size="20" maxlength="128" class="form-text" />
+
+        </div>
+</div>
+
+
+  
+</form>
+</div>
+          </div>
+
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <h3 class="field__label">Transcript</h3>
+              <div class="field__item" tabindex="0"><p>[Laughter]</p>
+
+<p>&gt;&gt; MATT GLAMAN:<br>
+thanks for coming to Decoupling Drupal Commerce<br>
+to multiply and scale the front end</p>
+
+<p>my name is Matt Glaman I am product</p>
+
+<p>lead at Centarro and at Centarro formally</p>
+
+<p>commerce guys we power ecommerce</p>
+
+<p>innovation through every stage of growth</p>
+
+<p>you know we build drupal commerce and</p>
+
+<p>e-commerce is our thing so to start I</p>
+
+<p>wanted to go through why you would be</p>
+
+<p>couple Drupal Commerce that's an often</p>
+
+<p>question on when you should and when you</p>
+
+<p>should it one of the main reasons to</p>
+
+<p>decouple is if you need unique branding</p>
+
+<p>or localization for different markets</p>
+
+<p>when you decouple it allows different</p>
+
+<p>teams to control how a markets design</p>
+
+<p>and localization would work so if you</p>
+
+<p>have markets between different countries</p>
+
+<p>or even different brands that are in the</p>
+
+<p>same region but they have different</p>
+
+<p>design requirements you may want to</p>
+
+<p>decouple if you need to reach a modern</p>
+
+<p>audience that shops new multiple devices</p>
+
+<p>when you decouple it makes it easier to</p>
+
+<p>support different front-end applications</p>
+
+<p>such as web an Apple watch you know</p>
+
+<p>other smart devices kiosks a main reason</p>
+
+<p>for decoupling too is to scale for high</p>
+
+<p>demand when you decouple and you remove</p>
+
+<p>some of the rendering bottlenecks</p>
+
+<p>they're associated with full stack</p>
+
+<p>applications like this isn't just a</p>
+
+<p>Drupal problem its WordPress is anything</p>
+
+<p>where the backend is doing logic and</p>
+
+<p>presentation at the same time so those</p>
+
+<p>are some of the reasons why you'd want</p>
+
+<p>to decouple and now we'll go into when</p>
+
+<p>should you decouple so if you kind of</p>
+
+<p>meet some of those marks but you don't</p>
+
+<p>know if you should quite yet so as I</p>
+
+<p>said consider decoupling when you need</p>
+
+<p>to separate the design in styles for</p>
+
+<p>each tenant in your application so in</p>
+
+<p>Drupal your sins can control the display</p>
+
+<p>for every tenant and it being like your</p>
+
+<p>store or brand that sells products using</p>
+
+<p>a little bit of code you can actually</p>
+
+<p>switch the active triple theme</p>
+
+<p>based on the current store that the</p>
+
+<p>person is browsing but now all of your</p>
+
+<p>design changes are tied to your main</p>
+
+<p>application which means that if you need</p>
+
+<p>to deploy a design change for store B</p>
+
+<p>it's going to affect the sales of store</p>
+
+<p>a just for that design change a good</p>
+
+<p>example is like a Geo Systems my cotija</p>
+
+<p>systems is a multi-tenant whole stack</p>
+
+<p>Drupal commerce installation built by</p>
+
+<p>twinks and this is not decoupled and is</p>
+
+<p>multi-tenant so each region has its each</p>
+
+<p>region that they selling has its own</p>
+
+<p>store and unique pricing and we'll go</p>
+
+<p>through a few product one product page</p>
+
+<p>real quick so this is the blk 360 in the</p>
+
+<p>United States</p>
+
+<p>here it is in France and here it is in</p>
+
+<p>Japan as you notice the only thing that</p>
+
+<p>changed was the pricing as you can see</p>
+
+<p>if in US dollars euros Japanese yen but</p>
+
+<p>none of the design changed so like geo</p>
+
+<p>systems didn't need to decouple because</p>
+
+<p>the ceilings say the same they're able</p>
+
+<p>to leverage the normal price dynamic</p>
+
+<p>pricing available in Drupal commerce and</p>
+
+<p>meet their needs they could benefit from</p>
+
+<p>this coupling if each region they need</p>
+
+<p>customized branding or user interactions</p>
+
+<p>let's say they wanted to change let's</p>
+
+<p>say the Japanese market had a different</p>
+
+<p>style of branding this is where</p>
+
+<p>decoupling could be more beneficial</p>
+
+<p>because they can have more autonomy over</p>
+
+<p>how their part of the site looks</p>
+
+<p>&gt;&gt; SPEAKER: &nbsp;Um, consider decoupling when the business wants customers to be on their website. &nbsp;This is the common thread now, the quote unquote omni‑channel, such as native applications, or now social media platforms are integrating eCommerce tools more and more. &nbsp;I know Pinterest does a few things, Facebook, you can shop through their Messenger, so by decoupling, you can explore these additional revenues for sales. &nbsp;One case study that I'd like to highlight is Eldum Rett, which is a food delivery service built by one Internet, and they utilize a React Native mobile application. &nbsp;Eldum Rett can eventually move their main web application to de‑couple front‑end, because they've already built the API, so they built a regular Drupal site, then they added an API on top to support multiple ways that you can consume the data, and they could now leverage that to build a decoupled front end at the same time. &nbsp;</p>
+
+<p>You should also consider decoupling to meet demands of sales growth and high scale availability. &nbsp;Small eCommerce apps could be highly dynamic. &nbsp;You may not necessarily have, um, high, just because, sorry. &nbsp;Even small sites that are highly dynamic, such as different pricing, you may have a small market, but there's a lot of different business logic that goes into your pricing, and when you have these different pricing rules, such as pricing by customer or pricing by region, normal cashing patterns that content sites in Drupal take advantage of kind of fall apart. &nbsp;You can't use page cash, you can leverage dynamic page cash, but the Drupal render system can perform that skill, but kind of starts to teeter a bit, especially when working with the form API, because forms cannot easily be cashed, so then there's a lot of rendering and a lot of logic, especially when you have anonymous users that can't hit a cash website. &nbsp;So, that's a good reason to de‑couple, and that will bring us to Centarro's case study for Matsmart. &nbsp;This is a picture of their home page. &nbsp;They built a grocery system business on Drupal Commerce and quickly scaled to&nbsp;10&nbsp;million Euros in revenue. &nbsp;They went to a completely headless platform to increase their sales, so they went from a full‑stack Drupal Commerce site, and then we slowly moved them over to a fully decoupled instance, and this allowed them to scale and also launch in more markets. &nbsp;</p>
+
+<p>We started with full stack Drupal and form API submissions, then we decoupled the add to cart form, and then we finally went full decoupled, and this allowed us to scale to tens of thousands of concurrent customers. &nbsp;It also allowed us to provide third‑party integrations, so instead of Drupal having to be the search index, they can pump that into a third‑party search index that the front‑end client talks to, but receives the data to be indexed from the back‑end. &nbsp;So now, their back‑end Drupal Commerce site can focus on just serving carts and payment transactions. &nbsp;As they move into new markets, they can launch new sites without building another Drupal Commerce site, they just create a front‑end, and then that marketing team can build it as they wish and then plug it into their back‑end, and they can scale out without having to reinvent the wheel. &nbsp;Um, this year, that was a Drupal&nbsp;7 site, their main site, but this year, they're expanding into new markets on Drupal&nbsp;8. &nbsp;They've been a long‑time supporter of Drupal Commerce and engaging with Centarro as the software vendor and not just a consultant, and through our partnership with them, they've helped us build a fully featured cross‑border eCommerce platform. &nbsp;If you would like to know more about what we're doing with Matsmart and how you could actually take advantage of some of that, we're onboarding multiple customers right now to Centarro Commerce, which is going to be our open optimize for merchant collaboration. &nbsp;It's open source, and you can take your data with you.&nbsp;</p>
+
+<p>&nbsp;So, if you have any questions about that, I have my e‑mail at the end, and some feedback would be great. &nbsp;So, taking that, what is our vision for decoupled multi‑tenant eCommerce platform? &nbsp;Because that's been the trend here. &nbsp;Decoupling is more, becomes more apparent as a need when you have multiple stores or brands within one site, and, so, when you have the stores, a reminder, a store could be a region, brand, or physical location, we have one client with&nbsp;120 stores, and those are just physical locations in the United States. &nbsp;Each store is able to define its default currency, so if you have an Italian store, it could be Euros, if it's in the UK, it could be the English pound. &nbsp;You're also able to limit who can purchase for a store by limiting the billing and shipping countries per store, and then products can be assigned to each store, so that way you can have products that are only allowed at specific locations, and that helps you control your catalog. &nbsp;One of the main components in here is price list. &nbsp;Price list allows you to have multiple currency and per‑store pricing. &nbsp;Price lists use conditions to evaluate. &nbsp;These can be beyond just saying what store it's for, it could be for user roles, the purchase quantity, so if somebody buys five of a product, they can get a specific pricing, and also a start and end date. &nbsp;The price list module was designed for a site with&nbsp;15&nbsp;million skews and price lists that contain up to and more than 300,000 skews at a time. &nbsp;</p>
+
+<p>One thing that we believe in the platform is that JSON API for standardized data consumption, it is an API specification that has been implemented in a Drupal module and is now part of Drupal Core. &nbsp;One reason I like it is we didn't have to write code for building an API, we were able to just focus on the mechanics of how our API should work with our data model, not how you show it in a JSON blob and the way that it should be interacted with from that point. &nbsp;Um, I wanted to just quick share a few things that we at Centarro have worked on that help make working with Drupal Commerce in a decoupled scenario easier. &nbsp;Um, by default, JSON API doesn't let you do cross‑bundle queries, so you could just get all of your products in one site, so we did build the JSON API cross‑bundles module. &nbsp;This allows you to get flash products and also see all of your clothing and, um, both at the same time, for example. &nbsp;We created the JSON API resources module. &nbsp;The currently, the JSON API module has no API for extending the implementation, which was kind of a roadblock for us, because we didn't want people to have to work with our Drupalisms. &nbsp;So, the JSON API resource module helps kind of flesh out what it will be for extending JSON's API implementation. &nbsp;One of the outcomes from that module was JSON API search API, and this lets you query your search indexes over JSON API. &nbsp;Previously, you could just do a query, now you can at least custom your search indexes, which means that you can query data instead of just whatever you could query from the previous. &nbsp;</p>
+
+<p>Um, we also built the JSON API user resources module, because in a decoupled eCommerce site, you have customers, and they need to be able to register and change their passwords. &nbsp;The JSON API module by itself does almost nothing for account management except edit your user fields. &nbsp;This module provides that functionality that's currently missing in the API first ecosystem for Drupal. &nbsp;Then finally, the Commerce API, which we announced last week, or two weeks ago, and is built on top of JSON API resources and ensures that, for instance, our dynamic pricing capabilities work, so when you fetch products, you're able to get their resolved price based on their user role or location. &nbsp;It also provides a cart and checkout API, so the cart API allows you to interact with orders, not needing full, like, administration permissions, so this way, you can have anonymous users create carts, do the most important part, take their money, then ship them their products. &nbsp;So, there's all these components that make‑up this system, and with that, I would like to introduce the Centarro Commerce distribution. &nbsp;So, as I said, this is going to be an open source we're offering, because we're offering an open distribution for this platform, and the Centarro Commerce distribution will be configured for a multi‑tenant setup, it's going to have all the modules for API first Drupal that let you meet your API needs, and it's going to come pre‑installed and setup with the industry standard for doing log‑ins and authentication. &nbsp;Um, oh, this is a PDF, so I can't show the image, but I will share out these links. &nbsp;</p>
+
+<p>If you go to Centarro‑commerce‑demo.web.app, this is a react application that is interacting with a Centarro Commerce back‑end, and we're going to have some GitHub repos soon, so we'll have that distribution up on GitHub, just like Open Social has their composer template on GitHub and Aqua has theirs, we will have our composer template. &nbsp;The React application will be up there, it's a create react app skeleton. &nbsp;I do have some themes in the works that will go up as well, and the stretch goal is to create a react and reduct bindings SDK, so when you build your first Javascript application using React, some of the hard parts are already figured out for you for cart and manage, and those will be available at GitHub.com/Centarro. &nbsp;That's what I've got, so, thank you. &nbsp;If you have questions, let's chat. &nbsp;A little hard to do, since we're not physically in a room, but take note of my e‑mail, it's <a href="https://www.midcamp.org/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="dd90bca9a99dbeb8b3a9bcafafb2f3b4b2">[email&#160;protected]</a>. &nbsp;If you can please provide some feedback, and as a reminder, we are having the contribution day still, Saturday, 10:00&nbsp;a.m. to 4:00&nbsp;p.m., it's going to be virtual. &nbsp;The information is on the website and will be led up by Amy June. &nbsp;Thanks. &nbsp;Are there any questions that anybody would like to ask?</p>
+
+<p>&gt;&gt; SPEAKER: &nbsp;I believe anyone that has a question can just enable their mic, turn it on and you should be good to go.</p>
+
+<p>&gt;&gt; SPEAKER: &nbsp;Yes&nbsp;‑‑ inaudible&nbsp;‑‑</p>
+
+<p>&gt;&gt; SPEAKER: &nbsp;Can you repeat that one more time?</p>
+
+<p>&gt;&gt; SPEAKER: &nbsp;I asked if it's going to be like the kickstart distribution for&nbsp;‑‑</p>
+
+<p>&gt;&gt; SPEAKER: &nbsp;Oh, Commerce kickstart. &nbsp;So, not quite, because, so, kind of. &nbsp;I'll say kind of, because Commerce kickstart had two versions, the 1. X was just a, like, starter kit, and then the 2. X was a full‑blown demo, so, yes, it's kind of like Commerce kickstart in the fact that there's the 1. X version where it provides a distribution of modules, and, no, because it's not a full demo, it's more so to be, like, a package platform that lets you get up and running.</p>
+
+<p>&gt;&gt; SPEAKER: &nbsp;Thanks.</p>
+
+<p>&gt;&gt; SPEAKER: &nbsp;Any other questions?&nbsp;</p>
+
+<p>&gt;&gt; SPEAKER: &nbsp;I'm not seeing any questions in Slack or in the Zoom chat either.</p>
+
+<p>&gt;&gt; SPEAKER: &nbsp;I see, Sheila, it shows you have your hand raised. &nbsp;Did you have a question?</p>
+
+<p>&gt;&gt; SPEAKER: &nbsp;She's our captioner.</p>
+
+<p>&gt;&gt; SPEAKER: &nbsp;Oh, okay.</p>
+
+<p>&gt;&gt; SPEAKER: &nbsp;Matt, um, one thing that we had discussed in the planning retreat for this entire Commerce was the idea that the API could be self‑documenting, right? &nbsp;So, you'd essentially install the distribution, have a full JSON API and then be able to point an application at that to basically navigate and browse the API. &nbsp;Is that right?</p>
+
+<p>&gt;&gt; SPEAKER: &nbsp;Yes. &nbsp;I should have added that. &nbsp;So, there is a specification called open API, and open API is a mechanism for documenting your API and building documentation out of it or even clients. &nbsp;Mateo, who first created JSON API, um, has maintained the open modules, and those come pre‑installed, and you can actually browse your documentation in a tool called re‑doc. &nbsp;If you've worked with the CMS module at all, it uses the same, um, they use the same kind of documentation as well. &nbsp;Oh, um, I see Joe had a question about the modules being, so, Joe's question is if any of the JSON API modules we've contributed are being considered for addition to Drupal Core, and I would like to put that up as a big maybe. &nbsp;Parts of them will be. &nbsp;I have been, all of this development, I have been talking to Whem, Gabe, and Mateo, since they are the API first containers, and have their support and they've answered so many questions along the way. &nbsp;JSON API resources was in collaboration with Gabe, and my goal is to get as much of this into Drupal Core as possible. &nbsp;I've got a giant list of Core issues to work on for Drupal 9.1, since Drupal 9.0 will have no features, so I've got a busy summer schedule to try to improve Drupal Core, so that way, a lot of this can make it into Drupal Core.</p>
+
+<p>&gt;&gt; SPEAKER: &nbsp;Can I ask a question?</p>
+
+<p>&gt;&gt; SPEAKER: &nbsp;Yeah.</p>
+
+<p>&gt;&gt; SPEAKER: &nbsp;Can you hear me? &nbsp;Thank you for the presentation. &nbsp;Sounds great. &nbsp;Um, I'm interested in, um, the question does it affect, um, the normal HTML stores in Drupal Commerce in some way, or is it a parallel, um, development, or does it affect it somehow?</p>
+
+<p>&gt;&gt; SPEAKER: &nbsp;Um, so, actually, it makes it better. &nbsp;So, it won't hurt anything, but one way that it actually helped is in Commerce, we have a, we call it the availability manager, which lets you check if a product can be purchased. &nbsp;Previously, the add to cart form never really integrated with that, you had to use the stock module, and through the API work, we got that integrated at a data level layer, so if your product was available at a store, you had to do, like, extra logic on your end, but now, it just works. &nbsp;So, a lot of the API work is improving the Core feature set that a normal installation would look like. &nbsp;None of the decoupled work will ever take away from that. &nbsp;A lot of times, it will just help strengthen its features.</p>
+
+<p>&gt;&gt; SPEAKER: &nbsp;And Mateas, there's the Commerce demo module and theme that kind of installed out of the box will give you that Commerce kickstart, um, 2. X styled demo at least, and then starting point, you know, we just wipe out the demo data. &nbsp;Um, the quickest way to kind of take a gander at that is to go to Simply Test Me, and then there's a Drupal Commerce button, like, on the home page, and if you just click that, it'll install the whole demo store. &nbsp;So, yeah, like, our focus, at least for what we're trying to build, I guess as a product out of Drupal Commerce, will be headless Commerce applications, but the spill‑over impact will be, like, as we make modules part of the, um, the system, their APIs will be improved, their feature sets expanded, and I know that Matt and Jonathan on the call have done a lot of work lately in, like, commerce shipping, just doing a lot of work to the module that improves it even for, like, a full‑stack usage, but specifically because our headless customers needed, like, something for creating shipments, collecting shipment rates, all that kind of stuff.</p>
+
+<p>&gt;&gt; SPEAKER: &nbsp;My customer scenarios, for the time to come, there will be HTML‑based stores, but the goal is to grow into the decoupled solutions over time, and I have to decide which way to go, because there will be HTML stores, classic HTML/CSS Drupal Commerce solutions for a smaller business right now.</p>
+
+<p>&gt;&gt; SPEAKER: &nbsp;Mm‑hmm, and that's where I would say the regular HTML stores, the full stack is the easiest way to go, because you're working with twig and HTP, whereas the Javascript, you're now having to reinvent a lot of things. &nbsp;One example, and I talked about this in previous times, is when you have a, let's say you have a t‑shirt that has red, blue, and green, small, medium, large, you have to write in your Javascript how to determine what variation they're purchasing based off those attributes, where we've already written that P code four years ago, and that's, when I brought up that react reducts binding, it's going to try to do some of that code in Javascript, so, definitely, Drupal full‑stack with Commerce is a great, like, get it done, but once the, if the needs of the business require it right away, I would go for decoupled, or if it's something that you could slowly do progressive decoupling and then move to a fully decoupled.</p>
+
+<p>&gt;&gt; SPEAKER: &nbsp;Mm‑hmm.</p>
+
+<p>&gt;&gt; SPEAKER: &nbsp;And just so everybody knows, when I say progressively decoupled, that's where Drupal is serving everything, but you put some components in, like, a decoupled fashion. &nbsp;One example that is our cart fly out module, it takes add to cart and then, like, the cart block and puts it into Javascript, and that right there saves performance, but also gives, like, a zippier user experience.</p>
+
+<p>&gt;&gt; SPEAKER: &nbsp;Looks great. &nbsp;Sounds good. &nbsp;Cool.</p>
+
+<p>&gt;&gt; SPEAKER: &nbsp;I'll answer Jonathan's question quick. &nbsp;If the Commerce API is feature complete, what features are on the roadmap? &nbsp;It is not API complete. &nbsp;For instance, for checkout, you can rate your shipment, you can set the shipping address, but you can only collect payment through an off‑site payment gateway, such as PayPal checkouts. &nbsp;Work needs to be done to support what we call on‑site payment gateway, where, like, when you give Brain Treat your credit card, they give us a token, and we need to build the API to receive that token and create the payment for you. &nbsp;When it comes to cart management and fetching products, I would say it's API complete, and features are to be determined. &nbsp;We have basic wish list integration coming, and we will be working on more, um, and if you do have ideas or questions, every Tuesday and Thursday, we hold office hours in the Drupal Slack in Commerce channel at 11:00&nbsp;a.m. GMT minus&nbsp;2, or plus&nbsp;2, and then at 11:00&nbsp;a.m. Central, which is GMT minus&nbsp;5, so that's where you can come ask those questions too. &nbsp;With that, I think we're now officially out of time.</p>
+
+<p>&gt;&gt; SPEAKER: &nbsp;I think we are on time, yeah, and if anybody wants to hang out for a little bit here, that's fine, or if you're going to be on the, um, the next session in this room, you can stay, and, um, I need to kind of hang out and wait for our next host so I can give them host privilege. &nbsp;Thank you, Matt and Ryan.</p>
+</div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+
+</div>
+  </section>
+
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-16c34ae0ff68d197d3eecac90cb9f8c3e2b4870ac8534c9c519894d70b8e0e3a">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/clarity-partners.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2020-02/CFDFAA23-5C59-4C07-9C66-CAFFE0CF3854.png" width="1534" height="387" alt="Clarity Partners logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/pantheon.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2020-02/pantheon-logo-tagline-black.png" width="1200" height="370" alt="Pantheon logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/bounteous.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2019-11/Bounteous_indigo_large.png" width="1676" height="279" alt="Bounteous logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/palantirnet.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2020-02/palantirnet-logo.png" width="1200" height="198" alt="Palantir.net logo" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-2019-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#b2dbdcd4ddf2dfdbd6d1d3dfc29cddc0d5"><span class="__cf_email__" data-cfemail="aac3c4ccc5eac7c3cec9cbc7da84c5d8cd">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-2019-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-2019-footer-menu" id="block-hatter-2019-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-2019-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/6319","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"ajaxTrustedUrl":{"form_action_p_pvdeGsVG5zNF_XLGPTvYSKCf43t8qZYSwcfZl2uzM":true},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_sul8js76f3THBVtv8nspP93BoCHSgntyTCisS6lai4M.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter_2019&amp;include=eJx1ykEKgDAMBdELaavuPI2k-o1K2kITFG_vRkQEVwOP4ZxZMFAiOW0d1fMHqoXMUIauaXvPkgNJvT0aSPHSA2HOJfq7DoKIZG6C0SrqlHb8ThGqxLgAGZ04Cw"></script>
+
+  </body>
+</html>

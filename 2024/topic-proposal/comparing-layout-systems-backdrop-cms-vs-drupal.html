@@ -1,0 +1,734 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="Modern Drupal and Backdrop CMS have both made major changes/improvements in how they manage layouts, both of which require a significant mind shift from the days of Drupal 7. In this session we&#039;ll compare and contrast the two approaches to layouts and discuss the strengths and weaknesses of each system. We&#039;ll look towards the future and discuss opportunities for improvement and what the two systems can learn from each other. " />
+<link rel="canonical" href="comparing-layout-systems-backdrop-cms-vs-drupal.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Comparing Layout Systems - Backdrop CMS vs Drupal | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Comparing Layout Systems - Backdrop CMS vs Drupal | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_gt5LiAM1qLGUH5e845uOb7R_lJ9dUwTXmnhGDR2yY20.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OhDAIhC9U2yMZakdtAmJKV9c9_Tb-PPkCAx8ZZmAyO0IkgxsuLTCjCfbMi6bGtKCpIsT5BzdTrShhYo3E3WD2bITWqF9nh1XIZbvlBO0hEakfMziFAlt1sbyhO2E7wW7hrF40fRh.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_mK2of_t7UFymkfbTHeA-kHdMPWzqc3DZQCYtX-tC0BA.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OhDAIhC9U2yMZakdtAmJKV9c9_Tb-PPkCAx8ZZmAyO0IkgxsuLTCjCfbMi6bGtKCpIsT5BzdTrShhYo3E3WD2bITWqF9nh1XIZbvlBO0hEakfMziFAlt1sbyhO2E7wW7hrF40fRh.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OhDAIhC9U2yMZakdtAmJKV9c9_Tb-PPkCAx8ZZmAyO0IkgxsuLTCjCfbMi6bGtKCpIsT5BzdTrShhYo3E3WD2bITWqF9nh1XIZbvlBO0hEakfMziFAlt1sbyhO2E7wW7hrF40fRh.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OhDAIhC9U2yMZakdtAmJKV9c9_Tb-PPkCAx8ZZmAyO0IkgxsuLTCjCfbMi6bGtKCpIsT5BzdTrShhYo3E3WD2bITWqF9nh1XIZbvlBO0hEakfMziFAlt1sbyhO2E7wW7hrF40fRh.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+<link rel="stylesheet" media="all" href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.css" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="comparing-layout-systems-backdrop-cms-vs-drupal.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-midcamp2024navigation-menu" id="block-midcamp2024navigation" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-midcamp2024navigation-menu">MidCamp 2024 navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" data-drupal-link-system-path="node/8477">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--by-the-numbers">
+        <a href="../../2020/about/by-the-numbers.html" data-drupal-link-system-path="node/6252">By the Numbers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--venue">
+        <a href="../venue/depaul-university-lincoln-park-student-center.html" data-drupal-link-system-path="node/8482">Venue</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../speaker-resources.html" data-drupal-link-system-path="node/8485">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--volunteer-opportunities">
+        <a href="../article/midcamp-needs-you.html" data-drupal-link-system-path="node/8593">Volunteer Opportunities</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../../2025/organizers.html" data-drupal-link-system-path="2025/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--travel">
+        <a href="../travel.html" data-drupal-link-system-path="node/8564">Travel</a>
+            </li>
+          <li class="primary-nav__sublist-item item--accommodations">
+        <a href="../accommodations.html" data-drupal-link-system-path="node/8562">Accommodations</a>
+            </li>
+          <li class="primary-nav__sublist-item item--tickets">
+        <a href="../tickets.html" data-drupal-link-system-path="node/8563">Tickets</a>
+            </li>
+          <li class="primary-nav__sublist-item item--health--safety">
+        <a href="../health-safety.html" data-drupal-link-system-path="node/8640">Health &amp; Safety</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" data-drupal-link-system-path="node/8478">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--sessions-wed">
+        <a href="../schedule/wednesday.html" data-drupal-link-system-path="node/8576">Sessions (Wed)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-thu">
+        <a href="../schedule/thursday.html" data-drupal-link-system-path="node/8577">Sessions (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--training-fri">
+        <a href="../training.html" data-drupal-link-system-path="node/8574">Training (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--contribution-day-fri">
+        <a href="../schedule/friday.html" data-drupal-link-system-path="node/8578">Contribution Day (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--unconference">
+        <a href="../unconference.html" data-drupal-link-system-path="node/8592">Unconference</a>
+            </li>
+          <li class="primary-nav__sublist-item item--topic-tracks">
+        <a href="../../topic-tracks.html" data-drupal-link-system-path="node/10">Topic Tracks</a>
+            </li>
+          <li class="primary-nav__sublist-item item--all-sessions">
+        <a href="../schedule/sessions.html" data-drupal-link-system-path="node/8579">All Sessions</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" data-drupal-link-system-path="node/8480">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--sponsor">
+        <a href="../sponsor-midcamp.html" data-drupal-link-system-path="node/8479">Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2024/news">News</a>
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../jobs.html" data-drupal-link-system-path="node/8594">Jobs</a>
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2024.html" hreflang="en">MidCamp 2024</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-midcamp2024schedulenav-2" class="block block-block-content block-block-contentf2becf96-513a-4419-8c1d-1c7e0b008859">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p><a href="../schedule/hybrid.html">Hybrid</a> | <a href="../schedule/wednesday.html">Sessions (Wed)</a> | <a href="../schedule/thursday.html">Sessions (Thu)</a> | <a href="../training.html">Training (Fri)</a> | <a href="../schedule/friday.html">Contribution Day (Fri)</a></p></div>
+      
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Comparing Layout Systems - Backdrop CMS vs Drupal</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="8561" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2024-03-20T18:30:00Z" class="datetime">Wednesday, 1:30 pm CDT</time>
+ - <time datetime="2024-03-20T19:30:00Z" class="datetime">Wednesday, 2:30 pm CDT</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-81" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-name field--type-string field--label-hidden field__item">Room 314A</div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>Modern Drupal and Backdrop CMS have both made major changes/improvements in how they manage layouts, both of which require a significant mind shift from the days of Drupal 7. In this session we'll compare and contrast the two approaches to layouts and discuss the strengths and weaknesses of each system. We'll look towards the future and discuss opportunities for improvement and what the two systems can learn from each other.&nbsp;</p>
+
+<p>This session is designed to help site builders and site architects understand the difference between these two systems and decide which one works best for different projects. We also hope to inspire developers with ideas for improvements.&nbsp;</p>
+
+<p><a href="https://docs.google.com/presentation/d/1Fd3g1q_NY8XhBWnngr3F42AVlt6kV6DuNsrL6csm_Kw/edit#slide=id.p">Slides available here.</a></p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/08WcIRSOjPA?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Tim Erickson</h4>
+
+      CEO
+
+
+          @
+              <a href="http://www.triplo.co">Triplo LLC</a>
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p>I do Drupal and Backdrop CMS. My hobbies include juggling, board games, biking, storytelling, and improv (mostly as spectator).&nbsp;</p>
+
+<p>I am a member of the Backdrop CMS Project Management Committee.</p>
+
+<p>I love Midcamp!</p></div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2019-03/tim.jpg%3Fitok=QFVyWhux" width="165" height="220" alt="Tim in flowery red shirt" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Front-End</div>
+          <div class="field__item">Site Building</div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-feedback-form field--type-webform field--label-above">
+    <div class="field__label">Feedback Form</div>
+              <div class="field__item"><form class="webform-submission-form webform-submission-add-form webform-submission-session-feedback-form webform-submission-session-feedback-add-form webform-submission-session-feedback-node-8561-form webform-submission-session-feedback-node-8561-add-form" data-drupal-selector="webform-submission-session-feedback-node-8561-add-form" action="comparing-layout-systems-backdrop-cms-vs-drupal.html" method="post" id="webform-submission-session-feedback-node-8561-add-form" accept-charset="UTF-8">
+  
+    <div data-drupal-selector="edit-0" class="webform-message js-webform-message js-form-wrapper form-wrapper" id="edit-0"><div data-drupal-messages>
+    <div role="contentinfo" aria-label="Status message" class="messages messages--status">
+                  <h2 class="visually-hidden">Status message</h2>
+                    Sorry...This form is closed to new submissions.
+            </div>
+    </div>
+</div>
+<input autocomplete="off" data-drupal-selector="form-8dxqkzjydrhernfka-cpb3uxwvwldmua0p7zm4n-wdw" type="hidden" name="form_build_id" value="form-8DxqkZJyDRhErNFka-cPB3uXwvwldmUa0p7zm4n_Wdw" />
+<input data-drupal-selector="edit-webform-submission-session-feedback-node-8561-add-form" type="hidden" name="form_id" value="webform_submission_session_feedback_node_8561_add_form" />
+<div class="url-textfield js-form-wrapper form-wrapper" style="display: none !important;"><div class="js-form-item form-item js-form-type-textfield form-type-textfield js-form-item-url form-item-url">
+      <label for="edit-url">Leave this field blank</label>
+        <input autocomplete="off" data-drupal-selector="edit-url" type="text" id="edit-url" name="url" value="" size="20" maxlength="128" class="form-text" />
+
+        </div>
+</div>
+
+
+  
+</form>
+</div>
+          </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p><span><span><span><span><span><span>Welcome, everybody. My name is Tim Erickson. I'm Saint Paul Tim. On the internet, I do have a slide that sort of introduces me. Um, I just calculated before this. This is my 39th Drupal con or camp, not counting nine backdrop lives. Now, um, I have helped, which I've also helped organize nine background lives, which is our equivalent in the backdrop community of of a camp. We don't have enough of a population to have like a physical camp anywhere. We've had many camps adjacent to Drupal camps, but we also do these online events. We were doing them three times a year. Now we're doing them twice a year. The next one is coming up in like two weeks. So if you're interested in backdrop, uh, please take a look at that. Is anybody not familiar with what backdrop is? Okay. Maybe. Okay. Well, the 2 or 3 sentence short version is Backdrop CMS is depending on how you look at it. I'm going to call it a fork of Drupal seven, which is technically not 100% accurate, but I like it better because backup is more like Drupal seven than it is like Drupal modern Drupal, but it technically forked from the Drupal eight branch, so it is different from Drupal seven and that it does have some of the it does have some Drupal eight stuff in it, but it also has a but, but it looks more like Drupal seven, and it's been actively developed over the last 7 or 8 years.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Better than Drupal. Looks way better. We have the. The. Designer and themer of the default theme for backdrop in the room with us today. Uh, that's West. So our default theme is called basis. And West created that. Um. A backdrop is meant to fill a niche. It's a lot simpler, I would argue, in terms of back end and maintenance for small organizations, nonprofits, hobby sites, things like that. If you're not a large enterprise shop or you're not a working in a larger Drupal agency. The cost of the cost and complexity of maintaining a backdrop site is more like Drupal seven than it is like modern Drupal, and that's the main thing. Backdrop has been undergoing development for the last like nine years now. I think it's been, um, we're on our 27th, uh, release, every one of which is brought in new features, bug fixes. So it's changed a fair amount, but it is a fork of Drupal seven. I like to consider it part of the Drupal family. I'm also on the project management committee for backdrop, which is an alumni of the Project Management committee for backdrop.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Um, I have long as an active member of both communities. I like to think of them as not two different communities, but sort of subsets or, you know, the backdrop community being a subset of the Drupal community. I still go to Drupal events. Uh, my company does Drupal and backdrop work. Um, and for a long time I've wanted to see not just go go to a Drupal camp and talk about backdrop or talk about Drupal, but talk about them together. And I have encouraged other people to do this topic before, and nobody has. So I decided to give it a try this time. Um, what we're going to look at today is the layout system in backdrop and Drupal and I think, oh, before I get there, one other thing about me, my company is tripplo. Uh, I'll show you. I do a lot of work with a team in Bangladesh. Um, and I want to thank them. They helped me prepare a bit for this. They were a little bit embarrassed. I asked them for a photo to share and they were a little bit embarrassed with this. They said that it's very casual, and I said, that's okay, we're going to be at a camp.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>But I do want to acknowledge that they they at least expressed that reservation. This is them on an outing. Um, having a good time. Uh, my so my company tripplo, um, I have a project called Simplo, and Simplo is a website that I've set up to help people get started with backdrop, and I have a whole bunch of videos about backdrop. If you're interested, look up it's team Tripplo is the username. All of the branding is Simplo. That's what I'm using for my slides today. I do have a detail like 20 minute, 30 minute video on how to use layouts and in backdrop, if that interests you. Um, the objectives today are, uh, partly what I said to experiment with this idea of, uh, of looking at backdrop and Drupal together, maybe seeing what we can learn from each other. I can tell you personally, I consider myself somewhat of an expert on backdrop layouts, and that I do. I've done videos and I've done trainings on using layouts and backdrop. I have had very little hands on experience with layouts and Drupal because I have my team members built the the Drupal projects that we have done using Layout Builder and we have done some my team members have done.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So I haven't really been doing the hands on work, uh, which is partly what motivated me to want to do this session was to, to to dig in and look a little bit closer at how layouts work in Drupal so that I could better compare them. Personally, I'm interested in learning from what Drupal is doing to make the backdrop layout system better. I'd love to think that we might have things to teach the Drupal community. Then if that comes out of this session, this will be great. I've already opened an issue in the backdrop issue queue, based on what I think is the best idea I've had in about six months. Um, based on my research for this, I think it's going to be a huge leap forward and backdrop if we can, uh, get it into um, so that's one of my motivations. The other is at least I asked some people, as you came in, what your interests were. At least one person was here primarily interested in what? Learning a little more about backdrop. Other people might be more interested in just in layouts.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And I think we're going to have content for both of you. Um, but for if you're interested in backdrop, but you're also doing Drupal, I think looking at the layout system is an interesting thing to look at in terms of how they're different. It'll give you a little bit of a sense of how they're different and similar. Um, and as I already said, to see if there's things that either project can learn about layouts from the other. So why layouts? Why, why pick that particular component for this particular experiment? And the first reason is what I just started to mention, which is, well, okay, I think I didn't mention it, but if you're going from Drupal the Drupal world to backdrop, one of the biggest changes you're going to find is in the layout system. Okay, if you're familiar with Drupal seven and you come to backdrop about 90% of what you're doing, you're going to recognize it's going to be almost indistinguishable. But when you get to the layout system, it's very different. And that's where people get.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Hung up and they have problems. So that's why I think it's a good if you're interested in backup, it's worth looking at that. You probably everything else you kind of know about because you're used to you know, about Drupal and it's very similar. The layout system is quite different in Drupal. I think it's interesting because the layout builder was originally an experimental module that I think was it in Drupal nine that it became actually part of an official part of core? I asked somebody this in the hallway. I think the consensus was that not in 9.0, but one of the early nine versions. As I talked to people at Drupal Camp and I'm hearing a lot of over the last 24 hours, a lot of people chatting about Layout Builder, it seems like it's still considered to be kind of a new thing for a lot of people, that people are still experimenting with it and learning how many people in this room use have used Layout Builder in Drupal. Okay. If I can pick on those who didn't raise your hand. Are you doing?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Is that because you're new to Drupal or just because you still haven't got to trying it? New Drupal you're not real new, but not yet advanced either. Okay, good. Can I pick on you in the back? Yeah, you just haven't tried it. But your experience with Drupal. So you do things without layout builder. Okay. Um, so one of the things, you know, one of the questions I've had for people that are more actively building sites is like, what about paragraphs? Are you using paragraphs instead of it sounds like there are some people hate paragraphs. Don't like two people. Last two people I talked to before this session, both sort of squirmed when I mentioned paragraphs. Um, which is fine. I use paragraphs on a number of our projects, and I like them. But I think in the Drupal sphere, um, unlike in backdrop, in the Drupal sphere, they might be alternatives. You might solve some of the same problems with them, although I think they also work together. You could definitely use them together. Um, but anyways, I layout builder does seem to be sort of new enough of a thing in Drupal that it's interesting to talk about.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So this is the first time I've done this talk, and um, and I am kind of just in time delivery guy. So I've been doing a lot of research in the last few days, so I may, if I've got any facts wrong, please correct me. I hope to do this again. I know we'll be talking about this at Backdrop Live in two weeks, but I have heard people say of both the layout system in backdrop and of Layout Builder that it was heavily inspired by the panels module in Drupal seven. How many people here are, let's say this is anybody here never done Drupal seven like you started in modern Drupal. You did over here. Are you guys familiar with Drupal seven? Did you use panels? Yes. Okay. Um. Panels was a very powerful tool, but also pretty complex in a lot of ways. And most users probably didn't scratch the surface of what it could do. It's a lot of similarities to views in that way, right? In that like, everybody uses views, but most people use it fairly superficially, like, and looking at the UI can give you a headache, like, um, in the panels.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>UI was definitely there. So I think both in the backdrop community and in the Drupal community, one of the goals was how do we pull out some of the most powerful functionality from panels, which was very popular and make it much easier to use. And I think whether or not either project has been successful at that, we'll maybe we'll talk more about. I would say the reviews are mixed in my view. Um, talking about so layouts in modern Drupal, the, uh, the layout system. So. Your page. I maybe should have started with backdrop, maybe not. The layout system in Drupal is that your overall page layout is still governed by the theme. And I say still, because this is a big difference with backdrop, which we'll get to in a minute, meaning that the layout builder and some of the other tools that do layout, like stuff in Drupal are really and somebody jump in and correct me if I'm wrong, designed for the content region. So this is your like node content. Your header and your footer are untouched by the layout system as it currently stands, I found an issue in the Drupal issue queue for talking about whether or not the header and the footer should be part of the layout system, but they're currently not.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Um, where's your backdrop? That's different. We'll talk about that in a minute. Um, this is so there is some layout functionality without the layout builder. Right. And that's your basic block system. Uh, without enabling the layout, uh, the layout builder module is not enabled by default, I believe. Still in Drupal ten. In the demo site I just set up yesterday, I had to enable the Layout builder module. And then there's a second. And I think the layout builder module itself is like the API. And then there's another module. Does anybody know the name of it like layout discovery or something like that. And it doesn't matter. You'll you'll figure it out. And that's what gives you my understanding is the UI. But without even enabling those modules, you have some control over your layout just by placing blocks on the page. But this is pretty limited, right? Um, what this allows you to do is to move fields around and to put blocks, but they're all in one large stack. And the problem that that, that that layout tries to solve and panels tried to solve is what if I want to have a sidebar, right.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And I want to drag a block or a field over into the sidebar. How do I do that? And there were a number of different solutions in Drupal seven. There are a number in Drupal eight or in modern Drupal. Um, but that's that. So I think at the basic level, um, in modern Drupal, we're talking about managing the appearance of the content in the content region. Other ways that you can do that in modern Drupal is my understanding is the display Suites module is still around my very first Drupal camp, my very first Drupal Camp in 2012, um, I came one of my questions was I was fairly new to Drupal, and it was like, I've got a bunch of fields on my events page, and I want to put the time of the event in a different column. How do I do that? Uh, and it was not obvious to me. And I played around. The answer was display suites. Um, for me, there were panels. There were other ways of doing that in Drupal seven, but the display suite was a module that in Drupal seven helped you do that kind of layout stuff.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Very powerful, very popular. The paragraphs module, uh, actually came later. And in modern Drupal we have layout paragraphs, which is kind of a combination of the paragraphs. So everybody familiar? Anybody raise your hand if you need an explanation of what the paragraphs module is. So, um, panels and I guess panels, despite the fact that it's also the basis for the layout builder, uh, my understanding is you can still download the panels module for modern Drupal. Is that not true? Yeah, no, it's a different, uh, the layout API is, is the, I think the lowest level. Okay. So it's influenced by panels, but it's there. No, the the panels module never got ported. It's, it's in Drupal eight. It's but yeah it's not it's not might.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>&gt;&gt;:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Not be called panels okay. It's it's. It's pavement. It's still paid. Manager. Okay. Pages. And I've got it on the site. So yeah. I think the details here aren't as important is that there are still multiple options for doing this. And then Layout Builder has been the most recent option for how to manage these kinds of problems. I believe that the layout builder was introduced as an experimental module in Drupal eight, as we said, and then became an official part of Core in Drupal nine. I think somebody mentioned 9.2. If anybody needs a trivia question, um. So it pretty much mentioned, I think everything here already based in part on modules for the layout module. Um, it of the other options, the reason we're talking about Layout Builder is it's in core, right. You can still use display suites, but that's that's a choice you're making. And it contributed module. Uh, the community has in a sense decided that Layout Builder is the recommended at least solution to these kinds of problems in their choice to put this in court.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Um, so I this is a little bit inaccurate and. In talking about this with some other people. Layout builder starts at the entity level. I guess you would say I said at the content level type, because in my sort of experimenting with it, I would turn it on and enable it for content types, but I can also do it for block types and other types of entities, I think just as equally and in fact, and I think I have that on another slide, it hadn't occurred to me immediately, but what this means is that you can nest layouts in modern Drupal quite easily. You can create a block type that has its own layout, and then you can take that block and put that into into nodes or into a layout for a content type. And, and you have literally layouts within layouts, right? Layout Builder also allows for you to do custom per node so I can create a specific layout. I do have a screenshot coming up in a second, and if we have time, we'll do a little bit of a live demo if people are interested. Um, you can do a node by node, so you can give content editors the ability to add sections and change the layout for a specific node.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>I believe in Drupal seven that would have been the analyzer module. This was also possible there. Again, it gets really complicated and kind of crazy. Uh, lots of contrib modules to extend and enhance layout builder. And as I mentioned, layouts are nestable and that you can have entities with entities, all of which are governed by different layouts. Uh, on its more superficial level, this is the UI when you sort of enable, um, uh, uh, layout builder on the content type, you get a screen like this and it basically just lets you, you know, add sections. You can pick how many columns you want in a section. Within that you can get relative dimensions of each column. So you can have two narrow columns and a wide one, things like that. And then you just drag and drop blocks and that that part is all pretty straightforward, right. Um, but it's it's helpful to see this because it's going to be different than Drupal. And again, you're doing this at the content type level. This is which is different than in backdrop.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Um, so contrib modules to extend it. I've been talking to this is really arbitrary. Me just sort of grasping around for what are some of the partly because it helped me understand the limitations of the actual core module by knowing which modules people are using to enhance it. Right. And these were some things people mentioned to me. Layout builder simplified. I just put because it sounded like a really good idea. I've never looked at that module, but what I was hearing from people was that one of the one of the downsides of, of layout builder in, in Drupal is the complexity of it, that it adds a lot, especially from the editor experience. It adds a lot of things for editors and some of basically what some of these modules are about are restricting or locking down layout builders so that your editors can't screw up the website. Um, so modules like Layout Builder restrictions or Layout Builder Lock, they seem to be designed to help you restrict and what it is you can do with layouts. Um, layout builder styles is, I think, a way to sort of create a CSS.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Then you can apply some classes and styles just to particular blocks. West. Are you familiar with the layout styles module? Um, layout builder style. So it, it I think it works in conjunction with your theme, but it gives you a UI that sort of helps you style your blocks. Um, so many layouts may not be. I put that there before I thought about the nested like having layouts for for block types. So this may not be such a bad. Somebody had mentioned to me as being a solution to some problems, but I'm not convinced. Basically many layouts we have this in backdrop as well are the ability to put layouts within a block. But again, if you can, if you can use Layout Builder for blocks, I don't think you need many layouts, so that maybe shouldn't be on the list. Uh, dashboard with layouts. I just I saw that module and I love dashboards, so I, I thought, but I haven't actually used this. I've helped a lot with the dashboard for backdrop. So and again Layout Builder simplifies again, I'm imagining it to be like the simplify module for Drupal.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>That just sort of helps you hide things that maybe your editors don't need to see. Now we'll get back to backdrop. Um, again, backdrop very much inspired by the panels module. Now here's where it gets interesting. The discussion in terms of comparing the two, um, in backdrop, the layout system has completely been pulled apart from the theme system. So your themes and your layouts are different. Okay. Uh, in theory, your theme is a skin, uh, in, in backdrop, uh, it's mostly your CSS and your JavaScript. Um, you don't you can't include template files in your theme for a backdrop site, but kind of the intent is that you're well and you would still use you would still use template files in your theme. If you're doing sort of customizing the appearance of things like fields and, and blocks and other things. So you might include a template file for the blocks or the themes for any front end developers in your theme, but you're not going to use the page, right? I mean, I think that's basically the thing.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>You don't have a page template file anymore in your theme, because that's all covered in the layout system. And the layout system is a separate directory we have in backdrop, we have your modules directory, your themes directory and your layouts directory. And your layouts directory is where that all goes. Um, and this is what makes it such a big jump for Drupal users coming to backdrop. Most of them really grow to like the layout system and backdrop, but they really scratch their head a lot at the beginning because they're confused about what they used to do in their theme is now being done elsewhere. There's a few other examples like that. Um, the other thing in backdrop that I kind of like, um, but it also it adds its own problems is that the layout system is because it's basically replaced the page template file. It it's the entire page, it's your header and your footer. So an interesting use case that may not be really common, but I had run into this in Drupal seven, was I wanted a like a blank page.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>It was like an error page or something, right? Where I wanted to create a page that didn't have any header or any footer. It just had a message in the middle. This is really hard to do in Drupal seven. I mean, I don't know if you can do it without sort of like a custom template in your theme or something, because things like the the login block, like you just couldn't get rid of it. Um, whereas and I don't know if that's been fixed in, in, I consider it kind of a bug. I don't know if that's been fixed in modern Drupal, but in Drupal seven that was really hard backdrop. It's easy because the the footer is a block in the layout. The header is a block, the the login is a block, everything is a block on a layout. You can literally remove all the blocks and have a blank page. Sure. Um, an example I had recently was a client wanted to do. They had created a, an online, an annual report using a third party software that could be served on their website in an iframe, and they wanted to put up a page with this annual report without their header and footer in it.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And it was easy. I just created a annual report content type. I removed all of the blocks except for content account, what. Content type well or page layout. I created. I think we did create a content type so that we could create individual notes. And then I created a layout. So yes, that clarification is helpful because I created a content type with a custom layout for that content type. And we're talking about layout. So that's the important part. The layout for that content type had no blocks on it except the content region in which I could just embed the iframe for this thing. There's no header, no footer, but I could link to it. Drupal was aware that it was there. Prior to that, we had just dropped the all the code for this annual report in the root directory of the Drupal site and, and just sort of manually link to it like it was a completely independent site. But using this system, we could actually, you know, it could be controlled by, by backdrop. I mentioned already that most, most folks that are moving over definitely struggle with unlike unlike in Drupal, where you start with a content type or an entity type and then apply layouts to that entity or type or content type and background, you start with a layout and then you decide, where do I want to show this layout?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So backdrop comes. It's not in the slideshow here, but backdrop comes with two types of layouts or two two default layouts, one for the home page and one for everything else. And then what you tend to do is start making some additional layouts for specific use cases. So for example, you can create a layout for just a particular content type if you want. But but you do that by creating a layout. And then there's a visibility rule down here. So you pick one of the prefabricated layouts, you create some context, and then you can create a visibility condition and say use this layout just for this content type. One of the things that this allows us to do is, is use create certain layouts for multiple content types, or for all content types, or even for, you know, with within visibility rules. I thought I had a slide and I might be coming up that shows some of the different types of things, I think. Let me look peek ahead 1 or 2. Here it is. Um, these are the various types of visibility rules.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And I think this is a holdover from panels. So you can like just apply a layout to the home page. You can apply it based on a language or a path or a permission. So you can create a layout for site editors and one layout for site visit, you know, unauthenticated users. You can create a layout for one particular node ID, or you could you could create uh, this would be a little bit cumbersome, but if you had a 5 or 6 nodes, you could create one layout and assign it to those 5 or 6 nodes, regardless of which content type they were. Uh, I don't think any of this would be easy in Layout Builder without. There probably is some contrib module which lets you do all the things that I'm mentioning. But yeah, I think this this comes from page manager which, which yeah, if you wanted to do something similar in Drupal, Layout Builder wouldn't be right. But you could use page manager which is contrib okay. To your point of not being caught. Yeah. Well, I assume that, you know, in Drupal there's always a module for it.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Yeah. So I'm not saying none of this stuff is possible, but you got to know to use which module to use. And whereas this is this, this kind of stuff is all in core. Um, yeah. Uh, enough of that. Now, which side was I on? Well, we were looking at this. So anyways, you create, you do a little basic configuration on your layout, and then you get the screen and you've got the different columns, and you drag and drop your blocks. Right. And you can place them in there, you know, there's a number of system provided blocks. There's also custom blocks and and things like that. If any. If anybody has questions, let me know. I'll jump in at any time. Um, so some of the weaknesses that that I'm hearing from and have encountered in the modern Drupal layout system, one that its complexity adds, some people said they were reluctant to use Layout Builder because it gave too much power to their users to sort of screw up the site, right, to create multiple columns. Uh, I think I listed as one of the weaknesses of the layout system in in backdrop.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And I'm anxious to hear Wes's feedback on this because he would be like the most qualified person to answer. This is I think that one of the reasons we have a little trouble with contrib modules in in backdrop is that the layouts bill is so flexible that it's it's hard. You know, in Drupal seven you would build a contrib themes that made a bunch of assumptions about what the page was. You would create a page template with certain regions, and you knew what they were, and you could sort of create your custom theme based on those concrete assumptions. If you build a contrib theme for backdrop, anybody can apply any template to that theme and those templates. And we have a flexible layout builder which allows them to create their own possibilities. And it's a little bit hard to imagine, like what is the use case for this theme? There are examples of that, but that's for a different day. Um, but I think the same problem happens with Layout Builder. Uh, you know, I talked to some users. If you build a theme for your clients and then you give them Layout Builder and they're suddenly able to add three columns to a node, did you did you prepare your theme to handle three columns?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Right. And they you're giving them tools to shoot themselves in the foot with. Yep. Yeah. The um, the big problem. It's been a little while, but the big problem that I think, you know, a lot of contrib people were looking at was how do you put granularity of permissions on Drupal Layout Builder so that they can move this around, but they can't put like the main navigation in the sidebar, you know, stuff like that. Uh, it just it was just kind of like you have access to layout Builder and everything inside of it, which is can be scary depending on your users. Right? So I listed that as a weakness. It's also a strength. It's one of those things that its strength is is a weakness, is that it's so powerful that it it creates possible problems. There are those contrib contrib modules to help you lock that stuff down. And I'm assuming probably there's also development in core happening to help with that problem. Uh, one of my team members and again, this might be one of those things that I don't know how true it is, but apparently normal blocks could be exported and configured.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>But apparently my team ran into a problem where, um, custom blocks they couldn't export with with config, and so they were having problems and at some, some blocks were easily managed and config and others weren't. And that was like their number one gripe about the layout manager. And it could be that they just don't know the solution to that. It's it's a real problem. I mean, unless there's a contrib fix. Yeah. Um, yeah, yeah. Custom blocks are part config and part content. And the problem is you can move the config, but if you don't have the content then it's a broken link. Basically we pull down, we build up and then pull down to our environments and do the work there. Yep. So we, we stub in um absolutely safely. Yeah. So the block ID is identical. Yeah. Feel thank you for Andrew jumping in with with your solution. I'm happy to have this be as much of a discussion as we can. Uh, I already talked about sort of universal layouts as opposed to, again, backdrop where I can set up a layout for really the whole site in Drupal.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>The again, the default position is that you're building layouts based on entity types, not sort of for the full site. Or if you get into like, what if you want to create a layout for your views? Um, I there are solutions for that in Drupal, but I think they're not obvious solutions in the, uh, uh, the default way of doing it, I think, I think the solution and again, one of you guys might know how you, you guys do that. I think you would create. Well, what we did was create a kind of a content type called layout pages. And then we could just, uh, we could create a layout for those layout pages and we could drop the view in as a block. Yeah. And that would be like one solution for that. So now we've got, we've created a page for the view. But the view is being displayed as a block. And usually add the view with paragraphs or you know. Yeah. So um, but that's, that's one of the difference. Uh, and this is there is an open issue again to, to work on that. No visibility control for blocks.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>I, I just found an issue on that. So I'm assuming it's true because there's a Drupal core issue, uh, addressing that um, where backdrop does have visibility. The conditions on all of. Our like visibility rules like panels had? I think so, yeah. So you could say, you know, for in the backdrop world the visibility control or condition would be only show this block to authenticated users. Um, and my understanding is that, well, that doesn't make sense. That was very available in Drupal seven, wasn't it? You could, I think, use it that kind of visibility control. I'd be surprised if that was a problem. I will revisit this one, but there is an open issue on it. So there's something about it that that is problematic. Um, one of the other things I've been hearing from people, and we've sort of alluded to this, is that I believe by default, basically when you go into Layout Builder, I was going to kind of look closer at this, so I maybe even do a screenshot of it. You didn't, but I believe that once you enable Layout Builder and you go to add a block, you've got like 150 potential blocks that you can add.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And that's again where there's other modules. Builder block restrictions is your best friend. Like that's a must on anyone because when you say about all blocks are available to place, absolutely. But the layout builder block restrictions is a must to help them help themselves. And it's partially a problem with the UI for adding blocks is like it can't handle quantity yet it's like it's hard to. Yeah, it's not really made for it okay. Correct. Yeah. So these again, you know, I'm not intending to suggest that any of these problems are like fatal or unfixable. Right. A lot of them there are contrib modules. But sometimes those fixes aren't obvious to beginners. And it's it's worth talking about them. Um, weakness of layout system and backdrop. Um, one of the things is just the difficult for for Drupal users to break habits. So Drupal users come to backdrop. There's a couple of of classic examples that that backdrop users run into. One is the home page. We had this really hacky thing in Drupal seven.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Again, I don't know, I haven't built enough Drupal, a modern Drupal sites to know if this is still the way to do things, but in Drupal seven it was very common to create a page, a node that was your home page, and then to go to the settings page and say node number seven is my home page. And and then that's how you would modify your home page, right? B uh, in backdrop. That's not how you should do things. We have a layout for the home page. And you can put a block on the home page that then um, that is a custom. And then say if you want node number seven on your home page, what you should do is put an existing content block on your home page referring to node seven. And the reason this is problematic is that when you do it the previous the former way, which is to to redirect to node number seven is node number seven doesn't use the home page layout, it uses the other layout for nodes. And so what happens is people redirect to a node as their home page and then they go, oh, there's a layout for the home page.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>I'll put a block on that home page layout, but why isn't it showing up on my home page? Well, because you're redirecting your home page to a different layout, and it's not at all intuitive. And everybody screws this up when they get there. And we've been trying to figure out ways to make that easier and less confusing. Um, similar problem. The the disadvantage of having the layouts cover the entire page, including the header and the footer. And again, this is another very common mistake is now you place the header in the footer block on each layout. But they're independent these blocks. And what happens is if you edit the footer block on your home page, it only affects the footer on your home page. It doesn't affect all the other pages, which is not at all intuitive to the average user. There are some things in the UI we can do to make this better, but that is currently the case. There are again, there are fixes for this. Um, one of them is a module called Copy Blocks and Backdrop which lets you reuse a block.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Just edit in one place and then it gets fixed everywhere. I don't like copy blocks because it it requires that you edit the block within a layout. So you got to remember which layout is the one that where you have to go to edit it. But you have a new module called Mini Panels, which is uh, or mini layouts. Excuse me. And it's why I thought maybe the Drupal, the modern Drupal module of the same name would be really useful, but maybe it's not. But in backdrop it's really useful because you create your mini layout separate from your regular layout, so you can create a footer mini layout. You can put all your content in that, and then you can place that on all your in all your other layouts, and now you're just editing it in one place, and you're editing it in a place where you know where to go to edit it. So you just go to the mini layouts, you find the footer one, you edit it, and everywhere you place that layout, uh, we'll get that change. Um, you know, I'm a little. The blocks in the database is something I've heard, I think aren't.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>I don't remember if I asked you. I was going to confirm this with somebody before. Blocks are treated as content in backdrop, aren't they? They're all. Configuration are in the. Database. They're not. Okay, then I might just be completely wrong here. But the well I think in both in both Drupal and backdrop, I think there gets to be some ambiguity around blocks in terms of configuration. One of the other changes that backdrop did get from from Drupal, although we do it differently, is configuration management, configuration management and backdrop is is done, uh, completely in files. Modern Drupal uses configuration to transport the configuration configuration files, but then you upload it to the database right in, in backdrop we keep the configuration in YAML files. It's read directly from the config file YAML, JSON, Jason JSON files. You're right. YAML is is is Drupal JSON files for backdrop. And actually in Drupal eight it used to be JSON. We forked before the switch. Sure. Well, I know configuration management went through a number of major changes during the life cycle of Drupal development.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Um, anyways, so I it could be a little hazy there. Uh, contrib themes. I talked about that before this, this differ. I, you know, I don't know if it's a weakness, but it's certainly a complexity that we have to deal with. And it's something I as a somebody who manages a couple of contrib themes, I struggle with this a lot. Like how far do I have to go to make my themes compatible with all the different things that can get thrown at them? Um, and again, it's a result of the, uh, flexible layouts. Um, so if we go back to. If we look at now. So, um. Now I'm totally lost. Where? There we go. I was hitting the wrong button. That's panels. That's the block layout. So the first one here in modern Drupal layouts are sort of inherently flexible. You did you don't see those template files that we had in backdrop. So in backdrop you pick from one of like 12 fixed layouts. But then there's an option to create a flexible in Drupal you just start with flexible, you just add sections and you can put whatever number of columns you want.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So kind of every layout is flexible. Um, in backdrop again that's a separate option. And I think a lot of new users don't find that right. The initially you may pick between. So you can upload there are contrib layouts that you can add to your site. Or you can go to the layout templates page. And there there's a link to create your own flexible layout. But you've got to know to do that. It's a little bit hidden and we're trying to make that easier to find. Oops. Uh, where was I? Right here. Um. So another thing that we've run into is you put a bunch of blocks on a page in a layout and then you switch, especially if you're using flexible layouts or sort of a custom layout sometimes. Then when you switch to another layout, backdrop doesn't know what to do with those blocks, so it dumps them all into well, and it didn't even do it that well before. I think our temporary solution is to get it to dump them all into one specific place. I believe there was a period where some of them might even get lost or weird things would happen.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So so sort of this ability to so easily change between different layouts means that sometimes this backdrop doesn't know what to do with the block, depending on how the the scheme. In a lot of the core layouts, the regions are named similarly enough that it does a pretty good job at figuring out where they should go. But certainly when you get into the flexible layouts where you build your own layout, um, there can be a problem in in backdrop knowing where to put the block. Um, so Drupal wouldn't have that problem, I think, because you don't have the sort of fixed, uh, I mean, again, you wouldn't pick a different layout template, you would just modify, I think, your existing layout template, so Drupal wouldn't have to sort of figure out where the block goes. Um. Yeah. That's it. Some of the the modules that exist for to help make layouts better in backdrop include like layout, wild card. This is kind of a real weird use case. It surprised me if you want. I told you before if you wanted to make a a layout for all your views, that actually in core is a little bit difficult.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Um, even though I think I might have alluded to the country before, but this, this, uh, contrib module helps you with things like that. It lets you sort of add a wild card to your path and say, use this layout for any path that has X in it, um, which is not one of sort of the default options, um, many layouts and copy blocks. Uh, many, many. There are different modules. They do different copy blocks, lets you reuse the same block in multiple places. Many layouts does that, plus some other things. I like the mini layouts module a lot. Um, but it's, it's more recent and and still has a few quirks about it. Uh, there is a layout, custom theme, uh, module, and I think was pretty recent. Did you do that? So, um, which basically lets you say any page that uses this layout gets a different theme. So you could actually have a completely different theme for pages that use a particular layout. Um, layout nodes is Justin just shared with me, I think yesterday or the day before it might have been aware of it, but I had forgotten, uh, kind of lets you do something that's that's possible out of the box in Drupal, which is, uh, lets you customize your layout node by node, uh, on the, on the node page itself.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Whereas the you can have a unique layout for a node using the regular default layout system, but it involves building the layout separate and then assigning it to a node later. Whereas I believe what this does is it lets you, uh, you know, assign it while you're editing the node. And it's probably a better solution if you're going to have a lot of different choices there. Something that Drupal does. And this is where I got most excited about the results of this talk. The Drupal does pretty well is field blocks. When you create a layout for a content type, okay. And you've got some fields, in this case you've got an age, color choice and date field right on the on the content type. And you say enable layouts for this content type. And then there's a little button that says Manage Layout. You click on that and you get to this page and it shows you these blocks. And now you can just write this, this region. I added. It didn't exist by default. So I add a section with three columns. And now I can drag each of those fields into a different column.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Super easy and backdrop. Um, you have to first create a layout, then you have to give it the node context, which is a little bit confusing for a lot of, uh, of users. Uh, then you have to make the visibility conditions specific to a content type. And then once you've done all of those things on the layout, you will get blocks for each one of these fields. But I can guarantee you that 95% of our users don't know that and never look for them. And they come to us and they say, how do I put my age field in the right column? And it's there. It's possible, but it's not at all intuitive. Whereas this like it's easy to find and I at 1 a.m. last 1 a.m. last night I came up with an idea that I think will help do something like this in backdrop. We'll see. I might have been hallucinating at 1 a.m. um, so. And I think it'll be a huge improvement because it's a powerful feature that most, most of our users just aren't aware of. Um, something the backdrop does does well is reusing layouts. As I talked about.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>It's it's sort of built from the idea. And this is where, you know, we can take the same layout and apply it to different types of content types or different nodes. Um, the Drupal AMP system is really built on building it for an entity type or a specific node, but not reusing that layout for other things. I think that's at least my experience. Um. We talked. I won't talk too much more about this. Flexible layouts. The difference from this is that it's sort of by the default, really, in modern Drupal in backdrop, it's kind of a hidden feature, which we're doing, trying to make more visible, but it's available there for everyone. And we talked about the home page problem. Right. Like things like the home page are covered by a layout and in background, but not in Drupal they're not there. You can't again, out of the box. There's probably some way to do it. Well, you may be using like a layout page that we just talked about. Yeah, that would be the way to do it. You would create a like a layout, a special node that has a layout.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And then you would make that your home page and then you would have a layout for your home page. Right. But in it's a different. I think I'm going to skip over this. I put a note. Is this true? I was going to talk to somebody about it before. Let's see what it says. Blocks can be set in the theme or in the layout builder if theme changes. Yeah. Theme. That's true. Yeah. So so if you change your theme, you lose your entire block layout because your block layout is tied to the theme. Okay. And then so, so since backdrop has the notion of layouts, which is where all the block locations are stored, if you change the theme, which is like a skin, then it's no problem. You still have all your pages. Changing your theme doesn't affect your block layout at all. Yeah. So. Okay. Um, we're almost out of time. I do have I don't have a particular demo ready to go, but I have a backdrop and a Drupal site spun up that we could look at. If anybody wants to see the UIs for these sort of. We've got just a little over five minutes.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Any questions? Yeah. Yeah. So I'm kind of a hobby developer, but you know, I've been at it for a while also. And I developed a pretty big site a couple of years ago in Drupal seven, but it was with panoply, which was a panel based derivative. And basically the user who is also my wife would liked it a lot. Drupal seven is about to go out. I'm really anxious to migrate it into something. It's impossible to migrate monopoly, as far as I can tell. I wonder if, um, backdrop would be a possibility. Or alternatively, what I'm doing now is developing a new site in Drupal ten using bootstrap and just developing regions. And it's working, but it's redoing the whole site. Is there a shortcut in backdrop? Well, I want to say I have thoughts on this, but I'll let Wes answer. Uh. And then I'll correct. Migrating migrating panels to anything else is just going to end up with a lot of manual config work, no matter what you do. Um, so the migration, what you're trying to do is keep your, the content that is, you know, nodes or blocks or whatever that's migrating.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Um, in general, um, the way I conceptualize backdrop use cases versus Drupal, modern Drupal, Drupal eight plus use cases, um, if I, Drupal eight plus in general needs a multidisciplinary team. If you're trying to do much custom work or like, you know, color outside the lines a bit, uh, whereas backdrop and the other thing about Drupal is it's like, uh, the way I think of it is like somebody's just dumped a bunch of Legos and you can build whatever you want, but you kind of have to know how all those Legos work and what they do. Whereas backdrop is more focused on a certain use case and a certain audience, and so it's more opinionated so it can feel more once you once you kind of, you know, internalize some of the differences, um, you'll, you'll, you know, it'll be it'll be a lot easier than assembling the Legos yourself, like, oh, should I use page manager or paragraphs or blah, blah, blah, blah. Like a lot of a lot of that kind of low level. Every website kind of needs it. There's already an opinion and backdrop where Drupal is trying to stay a little unopinionated intentionally, I think.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Um, so yeah, I in your use case, I would check out backdrop personally, but again, it's going to be. Recreating the site in. All your layouts. Yeah. Let me say something about that. Yeah. Go for it if I can. Because so generally Hampton is one of the founders of the founders of backdrop and has been long involved in the backdrop community and was a huge advocate for panels and helped get, you know, the layout system into backdrop. She and I have been talking about exactly this problem, because we both have monopoly sites in Drupal seven that need to be upgraded. Actually, the owner of my site has decided to retire rather than upgrade the site. If you wait long enough.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>&gt;&gt;:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>So that's what you're saying. So if I was giving him slightly scary quotes in terms of what it would cost to upgrade his site because he's got thousands, tens of thousands of articles, many of which have got custom layouts. Right. This is this problem where panoply gave you the ability to, like, add a block to a specific node. And it's like if you're trying to upgrade the site now and you've got thousands of nodes potentially, of which there's no uniform pattern, right? They could have different things. The migration gets complicated. Uh, for a long time, I don't think there was a good migration in Drupal either. That may have been solved. I'm sure there's at least some probably tools to help you, but I don't know if there's an easy solution. Custom layout stuff, I think. Well, in general, migrating custom layout stuff in Drupal is like you might as well redo it like. Um, so but I know that Jen is in the process of working through some creating some shortcuts to do this kind of a migration for one of her clients.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And we talked about collaborating on that so I could help my client, but my client is for other reasons as well, deciding to retire, not just because of this, but uh, but I think it helped push him over the edge. When I talked about. The the problem is like, anytime you do like a paragraphs or panels or all these things, uh, you're getting the advantage of custom layout and maybe a drag and drop interface or some features that are cool from a UX perspective, but from a data model perspective are not clean and therefore hard to migrate. So it's like it is it's like a particularly gnarly problem that. Yeah. It's just, uh. You want, you end up in a weird situation. I feel compelled to say whenever I have a site like that, it's a divide and conquer. Using tools to say we're looking at 10,000 articles. How many articles are okay? 8000. 7000. So now we're looking at 3000. Of those 3000, what are the tools of the very important block that was special, that would made that unique? Are there patterns you can find within there is that 1000 now we're down to 2000 of those 2000.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>I then go to my analytics team and say, how many hits have we had in the past two years? And then you scrub that against your your stakeholders that say, we absolutely have to have this up for legal purposes. And then that's how that's how we attack all the things. But analytics are your friends tools because of you think 10,000, you get overwhelmed. But that's a strategy and idea to to attack it. Yeah. Bite bite size. Yeah I have backdrop stickers available running out of time. Are there any other questions? We're not going to do a live demo I think today, but if anybody wants one, I'm happy to sit down with you and show you anything. Any other questions? I would love feedback on whether or not this kind of a comparison was helpful. Is this, uh, something useful to do again in the future? At dinner yesterday, I told Justin I'm not sure my idea was so good. Um, and then I did a little. I went through it again last night and came up with some great ideas, and I went to bed thinking, wow, I'm so glad I did this.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So, uh, anyway, so appreciate whatever feedback you have. Thank you. I'm going to turn off the recording.</span></span></span></span></span></span></p>
+
+<p>&nbsp;</p></div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-cb16a9b710a98235b6f445e18e4bea531cfe8ef67d5270f4dca0695dd87fc75d">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/8561">https://mid.camp/8561</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+  <section class="map-banner">
+      <div class="views-element-container block block-views block-views-blockevent-venue-block-1" id="block-hatter-views-block-event-venue-block-1">
+  
+    
+      <div><div class="container view view-event-venue view-id-event_venue view-display-id-block_1 js-view-dom-id-04c613b0624f54cfbf5d1d6ba886b7773a8b1de0516cebe6389f049b90ce5c9d">
+  
+    
+      
+      <div class="view-content">
+          <div class="views-row">
+
+
+<div class="map-overlay">
+  <span class="map__label">Location</span>
+  <h2 class="map__title"><span class="field field--name-title field--type-string field--label-hidden">DePaul University - Lincoln Park Student Center</span>
+</h2>
+  
+            <div class="field field--name-field-address field--type-address field--label-hidden field__item"><p class="map__address" translate="no">
+          2250 N Sheffield Ave. <br>
+            Chicago, IL 60614<br>
+  </p>
+</div>
+      
+  <a href="../venue/depaul-university-lincoln-park-student-center.html" class="cta-link--yellow">Learn more  <span class="cta-arrow"></span></a>
+</div>
+<div id='map' class="map"></div>
+</div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-fe2dd2f7d2c89648bc0d6dc4b1ca6756842773aeb6ee2c9225ee12815ecfd2e9">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/acquia.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2024-02/Acquia%20Droplet%20Blue.png" width="2000" height="2000" alt="The Acquia logo" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#2b42454d446b46424f484a465b0544594c"><span class="__cf_email__" data-cfemail="8ae3e4ece5cae7e3eee9ebe7faa4e5f8ed">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/8561","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"ajaxTrustedUrl":{"form_action_p_pvdeGsVG5zNF_XLGPTvYSKCf43t8qZYSwcfZl2uzM":true},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_U1jmi93nTJG2lPAKzexs4tMZWFR2YMMoIoiPckW421U.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJx1yksKgDAMRdENabskSfUZK2kjTfCzeyfiQHB04XBZlQUDVZLL82iRP9At5I4WWTSR9OsLhbakZ3cgzdpKfBogKKgeJjhlsWC043cqMCPGDa0vM_I"></script>
+<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.js"></script>
+<script src="../../sites/default/files/js/js_RAkHj2z9vY4q-6RsYuiXkqPbxgsRWrLsVQRz36mKiGA.js%3Fscope=footer&amp;delta=2&amp;language=en&amp;theme=hatter&amp;include=eJx1yksKgDAMRdENabskSfUZK2kjTfCzeyfiQHB04XBZlQUDVZLL82iRP9At5I4WWTSR9OsLhbakZ3cgzdpKfBogKKgeJjhlsWC043cqMCPGDa0vM_I"></script>
+
+  </body>
+</html>

@@ -1,0 +1,2127 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="Off-the-shelf Drupal 8 configuration management is too heavy-handed at times. By default, it’s challenging to have different configurations in place on each enviornment. How can you have a development-only module such as Devel enabled only on your Development environment but not enabed on higher environments? Moving configuration between environments can cause undesired changes to staging and (ultimately) production environments if not carefully considered." />
+<link rel="canonical" href="level-your-drupal-8-configuration-management.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Level Up Your Drupal 8 Configuration Management | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Level Up Your Drupal 8 Configuration Management | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_Qoyy92GHt9RyGOt8N3WS_9HRsJcJBywJ2IhXudzvST4.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJw9jFEKwzAMQy-ULkcqTqx2AaceUdbRnX6hpfsRTzyhbEIeMQkR8sVLsT9XkLKCd99ch_OGQa2KlS_CU3pHi6t5EpsyGXiwo16ne1H4jJqg81JgGhv48o1lx3TKMcGH8cxHdX0bfg1uOh4.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_QAC1R0aFoF1mIVQtLAaSE24B2iwnT2ZCa0cZDeZsPV0.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJw9jFEKwzAMQy-ULkcqTqx2AaceUdbRnX6hpfsRTzyhbEIeMQkR8sVLsT9XkLKCd99ch_OGQa2KlS_CU3pHi6t5EpsyGXiwo16ne1H4jJqg81JgGhv48o1lx3TKMcGH8cxHdX0bfg1uOh4.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJw9jFEKwzAMQy-ULkcqTqx2AaceUdbRnX6hpfsRTzyhbEIeMQkR8sVLsT9XkLKCd99ch_OGQa2KlS_CU3pHi6t5EpsyGXiwo16ne1H4jJqg81JgGhv48o1lx3TKMcGH8cxHdX0bfg1uOh4.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJw9jFEKwzAMQy-ULkcqTqx2AaceUdbRnX6hpfsRTzyhbEIeMQkR8sVLsT9XkLKCd99ch_OGQa2KlS_CU3pHi6t5EpsyGXiwo16ne1H4jJqg81JgGhv48o1lx3TKMcGH8cxHdX0bfg1uOh4.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="level-your-drupal-8-configuration-management.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-hatter-midcamp2019navigation-menu" id="block-hatter-midcamp2019navigation" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-midcamp2019navigation-menu">Midcamp 2019 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" title="About MidCamp" data-drupal-link-system-path="node/191">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--venue">
+        <a href="../about/venue.html" data-drupal-link-system-path="node/192">Venue</a>
+            </li>
+          <li class="primary-nav__sublist-item item--travel">
+        <a href="../about/travel.html" title="Travel and Accommodations" data-drupal-link-system-path="node/188">Travel</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../about/lunch.html" title="Lunch options" data-drupal-link-system-path="node/189">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--volunteer">
+        <a href="../article/volunteer-help-midcamp.html" title="Volunteer!">Volunteer!</a>
+            </li>
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2019/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../../2020/news.html" data-drupal-link-system-path="2020/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--attendees">
+        <a href="../attendees.html" data-drupal-link-system-path="2019/attendees">Attendees</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" data-drupal-link-system-path="2019/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--spread-the-word">
+        <a href="../article/spread-word.html" data-drupal-link-system-path="node/371">Spread the Word</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" title="Sponsors" data-drupal-link-system-path="node/197">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--become-a-sponsor">
+        <a href="../sponsor-midcamp.html" title="Sponsor MidCamp" data-drupal-link-system-path="node/186">Become a Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../../jobs.html" title="Jobs" data-drupal-link-system-path="jobs">Jobs</a>
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" title="Schedule" data-drupal-link-system-path="node/190">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--all-sessions">
+        <a href="../sessions.html" data-drupal-link-system-path="2019/sessions">All Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--summits--training-wed">
+        <a href="../schedule/wednesday.html" title="Summits &amp; Training (Wednesday)" data-drupal-link-system-path="2019/schedule/wednesday">Summits &amp; Training (Wed)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-thu">
+        <a href="../schedule/thursday.html" title="Sessions (Thursday)" data-drupal-link-system-path="2019/schedule/thursday">Sessions (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-fri">
+        <a href="../schedule/friday.html" title="Sessions (Friday)" data-drupal-link-system-path="2019/schedule/friday">Sessions (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--contribution-sat-">
+        <a href="../contribution-day.html" title="Contribution Day" data-drupal-link-system-path="node/332">Contribution (Sat) </a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-terms-and-conditions">
+        <a href="../../speaker-terms-and-conditions.html" title="Speaker Terms and Conditions" data-drupal-link-system-path="node/21">Speaker Terms and Conditions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../../speaker-resources.html" title="Speaker Resources">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--topic-tracks">
+        <a href="../../topic-tracks.html" title="Topic Tracks" data-drupal-link-system-path="node/10">Topic Tracks</a>
+            </li>
+  </ul>
+
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2019.html" hreflang="en">MidCamp 2019</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Level Up Your Drupal 8 Configuration Management</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="250" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2019-03-21T15:50:00Z" class="datetime">Thursday, 10:50 am CDT</time>
+ - <time datetime="2019-03-21T16:20:00Z" class="datetime">Thursday, 11:20 am CDT</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-82" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-field-link field--type-link field--label-hidden field__item"><a href="https://zoom.us/my/midcamp314b" target="_blank" class="button--primary">Go to Room 314B - old</a></div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>Off-the-shelf Drupal 8 configuration management is too heavy-handed at times. By default, it’s challenging to have different configurations in place on each enviornment. How can you have a development-only module such as Devel enabled only on your Development environment but not enabed on higher environments? Moving configuration between environments can cause undesired changes to staging and (ultimately) production environments if not carefully considered.</p>
+
+<p>In this session, we will review a proven approach using core and contributed modules which allows developers to fine tune per-environment configurations. This includes:</p>
+
+<ul>
+	<li>Demonstrating how to have modules install/uninstall based on the environment,</li>
+	<li>Showing how to leverage per-environment settings, and</li>
+	<li>Provide use cases and examples showing how ignoring some configurations can be beneficial to the overall management of the site.</li>
+</ul></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/-Xn1HMpOXr0?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-presenter-slides field--type-file field--label-above">
+    <div class="field__label">Presenter Slides</div>
+              <div class="field__item">
+<span class="file file--mime-application-pdf file--application-pdf"> <a href="../../sites/default/files/2019-03/Level%20Up.pdf" type="application/pdf" title="Level Up.pdf">Slides for this presentation.</a></span>
+</div>
+          </div>
+
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Scott Weston</h4>
+
+      Architect
+
+
+          @
+              <a href="https://www.bounteous.com">Bounteous</a>
+        
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2019-03/T029ZDRTF-U16P5PTGD-6dfbde61a7c7-1024.jpeg%3Fitok=dctdO82K" width="220" height="220" alt="Scott Weston" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Back-End</div>
+              </div>
+      </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p>[Scott] Good morning,<br>
+and welcome to my session</p>
+
+<p>on how to level up your Drupal</p>
+
+<p>My name is Scott Weston.</p>
+
+<p>I'm a principal Drupal<br>
+architect at Bounteous.</p>
+
+<p>I've been doing Drupal since about 2007.</p>
+
+<p>My biggest piece of housekeeping,</p>
+
+<p>yes, the slides are available.</p>
+
+<p>They're on the mid.camp site right now.</p>
+
+<p>So feel free to download those<br>
+and use those as reference.</p>
+
+<p>Like I said, I'm with Bounteous.</p>
+
+<p>We're a company that builds<br>
+big picture digital solutions</p>
+
+<p>for some big names.</p>
+
+<p>Some of the logos I'm sure<br>
+you've recognized there.</p>
+
+<p>Just a little bit about what<br>
+we're going to be talking</p>
+
+<p>about today is really solving<br>
+a problem or answering</p>
+
+<p>questions in one way.</p>
+
+<p>And the problem is how<br>
+can you operate Drupal</p>
+
+<p>environments such as dev, stage, and prod</p>
+
+<p>for one site with different configurations</p>
+
+<p>in each of those?</p>
+
+<p>And at the same time maintain your sanity.</p>
+
+<p>That's kinda the driving force for me</p>
+
+<p>as I progress through<br>
+Drupal 8 from the early days</p>
+
+<p>of Drupal 8, configuration<br>
+management out of the box</p>
+
+<p>is kind of heavy-handed,</p>
+
+<p>so I feel over time we've<br>
+developed a nice approach</p>
+
+<p>to configuration management that solves</p>
+
+<p>the majority of the<br>
+challenges that we have.</p>
+
+<p>A little bit about what we're gonna do.</p>
+
+<p>We're gonna talk through<br>
+a hypothetical scenario</p>
+
+<p>that's gonna be very contrived.</p>
+
+<p>It's not gonna be a real-world scenario.</p>
+
+<p>Then we're gonna talk<br>
+about the tools that I use</p>
+
+<p>in approaching the scenario.</p>
+
+<p>And then we're gonna talk<br>
+about my favorite recipe,</p>
+
+<p>The Config MISO.</p>
+
+<p>Once we get through that,</p>
+
+<p>then we'll actually, if<br>
+time allows, hopefully</p>
+
+<p>we'll have some time to do a hands-on demo</p>
+
+<p>because we know how awesome<br>
+those go during presentations.</p>
+
+<p>So I have a lot to pack<br>
+in in the next 27 minutes,</p>
+
+<p>so fasten your seatbelt</p>
+
+<p>'cause we're gonna slam<br>
+on the accelerator here.</p>
+
+<p>All right, so the scenario<br>
+that I wanna present to you</p>
+
+<p>today is just a garden variety website.</p>
+
+<p>We have dev, staging, and<br>
+production environments.</p>
+
+<p>And we have some needs that we've put</p>
+
+<p>into a spreadsheet here<br>
+about what we want different</p>
+
+<p>between those as far<br>
+as configuration goes.</p>
+
+<p>A couple things to point<br>
+out here would be like</p>
+
+<p>for development, we want the<br>
+devel module devel generate,</p>
+
+<p>we want Webprofiler<br>
+turned on in case we need</p>
+
+<p>to do anything with that on<br>
+the development environment,</p>
+
+<p>but in staging and production<br>
+we don't want those turned on.</p>
+
+<p>Another example would be for Robots.txt.</p>
+
+<p>Robots.txt we want to always<br>
+have it disallow everything</p>
+
+<p>for search engine<br>
+crawlers on dev and stage</p>
+
+<p>in case they get to it,</p>
+
+<p>but we want to give the<br>
+content or site administrator</p>
+
+<p>the ability to edit<br>
+Robots.txt as they need.</p>
+
+<p>And then just for developer<br>
+sanity we want to have</p>
+
+<p>some color indication of<br>
+what environment we're on,</p>
+
+<p>so green for dev, yellow for<br>
+stage, red for production.</p>
+
+<p>And then on this hypothetical site we used</p>
+
+<p>blocks everywhere to augment content,</p>
+
+<p>so we really don't want to manage those</p>
+
+<p>with the default configuration management,</p>
+
+<p>so we just want to basically tell</p>
+
+<p>configuration management just<br>
+don't do anything with blocks.</p>
+
+<p>Don't try to manage those blocks for us.</p>
+
+<p>We'll just keep that<br>
+in active configuration</p>
+
+<p>in the database.</p>
+
+<p>My tip here is make a spreadsheet,</p>
+
+<p>share it with the team,</p>
+
+<p>make sure you have<br>
+conversations around it,</p>
+
+<p>socialize it so that everybody<br>
+knows what the approach is</p>
+
+<p>for configuration management<br>
+so that if you have</p>
+
+<p>a developer making some changes,</p>
+
+<p>what they change meets<br>
+these expectations as far as</p>
+
+<p>when they push code to<br>
+a different environment</p>
+
+<p>or they do a config<br>
+import to get our site.</p>
+
+<p>Some of the tools that I<br>
+use in this may be familiar.</p>
+
+<p>We have configuration ignore.</p>
+
+<p>Spoiler, it helps you<br>
+ignore configuration.</p>
+
+<p>There's also a configuration split,</p>
+
+<p>and this is where a lot<br>
+of the magic happens</p>
+
+<p>in having modules and<br>
+configuration different</p>
+
+<p>per environment.</p>
+
+<p>Both of those do require config filter,</p>
+
+<p>which basically acts as a traffic cop</p>
+
+<p>from the file system when you're<br>
+comporting configurations,</p>
+
+<p>so it knows whether to actually<br>
+pass it into the system</p>
+
+<p>for making it the active configuration.</p>
+
+<p>Or if it just kinda<br>
+throws it out the window</p>
+
+<p>and says don't worry about that.</p>
+
+<p>There's also a tip that I have here</p>
+
+<p>is the configuration split<br>
+module user interface</p>
+
+<p>has a lot of select boxes on it.</p>
+
+<p>So using something like chosen,</p>
+
+<p>which will, if we get to the demo today,</p>
+
+<p>I'll be able to show you,</p>
+
+<p>it makes your life a lot<br>
+easier than scrolling</p>
+
+<p>through hundreds of items in<br>
+a multi-select select box.</p>
+
+<p>And then if you are heavy on web forms,</p>
+
+<p>there is a web form config ignore.</p>
+
+<p>I personally haven't used it.</p>
+
+<p>I just am aware of it and<br>
+what it does is it will allow</p>
+
+<p>for the import of new web forms,</p>
+
+<p>so if you develop a new web form on dev,</p>
+
+<p>and deploy that to production,</p>
+
+<p>you can import that,</p>
+
+<p>but then on subsequent changes to it,</p>
+
+<p>it will not import it.</p>
+
+<p>So it's like a one-time only import</p>
+
+<p>into a specific environment.</p>
+
+<p>One of the keys to<br>
+success in this approach</p>
+
+<p>is to be able to reliably<br>
+determine what environment</p>
+
+<p>that a particular site<br>
+is operating within.</p>
+
+<p>Is it on the dev server or is<br>
+it on the production server?</p>
+
+<p>If you use one of the<br>
+larger hosting companies,</p>
+
+<p>two I've noted here are<br>
+Acquia and Pantheon,</p>
+
+<p>they actually have an environment variable</p>
+
+<p>that tells you what environment that site</p>
+
+<p>is operating within.</p>
+
+<p>Essentially what we're gonna<br>
+do is we're gonna leverage</p>
+
+<p>this in our settings file<br>
+to be able to kind of do our</p>
+
+<p>own coordination of what configuration</p>
+
+<p>we are going to enable and<br>
+then go over and override.</p>
+
+<p>So if you aren't hosting<br>
+on one of these two,</p>
+
+<p>check it with your support docs.</p>
+
+<p>If you're self-hosting,<br>
+come up with a scheme</p>
+
+<p>that you can reliably follow to determine</p>
+
+<p>what environments that you have operating.</p>
+
+<p>So, now we get to the<br>
+cooking portion of the show.</p>
+
+<p>The config miso.</p>
+
+<p>It's just an acronym that<br>
+helps me keep in mind</p>
+
+<p>what we're dealing with.</p>
+
+<p>We're dealing with core<br>
+configuration management,</p>
+
+<p>configuration ignore,<br>
+configuration splits,</p>
+
+<p>and configuration overrides.</p>
+
+<p>The configuration<br>
+management is just the core</p>
+
+<p>Drupal configuration management,</p>
+
+<p>so it's your drush config<br>
+export, config import.</p>
+
+<p>It's just if it's something</p>
+
+<p>that is going to be the<br>
+same on every environment,</p>
+
+<p>let core manage that for you<br>
+'cause that's what it does</p>
+
+<p>and it does that really really well.</p>
+
+<p>Then we have configuration ignore,</p>
+
+<p>and this is basically you can identify</p>
+
+<p>configurations that<br>
+you don't want imported</p>
+
+<p>into your site.</p>
+
+<p>So in our example we have block instances</p>
+
+<p>we don't want to import.</p>
+
+<p>So if a content manager is adding blocks</p>
+
+<p>to a production site,</p>
+
+<p>when we run drush config import,</p>
+
+<p>it's not going to blow<br>
+away those block instances.</p>
+
+<p>It's not going to try to<br>
+make the block instances</p>
+
+<p>that may exist in code part<br>
+of the production site.</p>
+
+<p>And you can be very specific<br>
+with that configuration</p>
+
+<p>that you ignore or you could also be very,</p>
+
+<p>you could use wild cards to capture</p>
+
+<p>a good chunk of configuration.</p>
+
+<p>One thing to note,</p>
+
+<p>and this one of those don't panic things,</p>
+
+<p>if you have configuration ignore enabled,</p>
+
+<p>and you do something in dev<br>
+like you create some blocks</p>
+
+<p>just for testing or whatever</p>
+
+<p>and you do a config export,</p>
+
+<p>those blocks will still<br>
+get exported even though</p>
+
+<p>they are ignored.</p>
+
+<p>It's on the import where the<br>
+ignore actually takes place.</p>
+
+<p>So you could do things<br>
+like some good ignore rules</p>
+
+<p>or something like that if you wanna keep</p>
+
+<p>the code base nice and clean.</p>
+
+<p>A couple of tips with config ignore,</p>
+
+<p>number one is don't ignore config ignore.</p>
+
+<p>(laughter)</p>
+
+<p>That is just asking for problems.</p>
+
+<p>And also don't ignore core.extension.</p>
+
+<p>That is what modules are on or off.</p>
+
+<p>If you need to change<br>
+those per environment,</p>
+
+<p>the next step is where<br>
+that comes into play.</p>
+
+<p>So I think I kinda spoke<br>
+to these just a moment ago,</p>
+
+<p>so block.block.star will get<br>
+rid of all your block instances</p>
+
+<p>out of config import as well<br>
+as if you use robots text</p>
+
+<p>module to manage the robots.txt file.</p>
+
+<p>If you do robotstxt.settings,</p>
+
+<p>those will be ignored for you as well.</p>
+
+<p>You can get really,<br>
+really specific and say,</p>
+
+<p>we want content admins to be<br>
+able to change the language</p>
+
+<p>of the password reset email that goes out,</p>
+
+<p>but we don't want to<br>
+manage that in config.</p>
+
+<p>You can get very specific<br>
+with what you put</p>
+
+<p>into that config ignore configuration.</p>
+
+<p>So next we have configuration split.</p>
+
+<p>This is a module that you would leverage</p>
+
+<p>when you have configuration<br>
+in different environments</p>
+
+<p>that you want to be different.</p>
+
+<p>Basically what config split<br>
+does is it uses config filter</p>
+
+<p>and it basically intercepts<br>
+on config export.</p>
+
+<p>Config split export, the<br>
+configuration that you have</p>
+
+<p>identified that you want to be different.</p>
+
+<p>And I'll actually store that<br>
+in a different directory.</p>
+
+<p>On the import side of things,</p>
+
+<p>if a split is active,</p>
+
+<p>the things in that folder<br>
+are going to get imported</p>
+
+<p>into that environment.</p>
+
+<p>If it's not active, it<br>
+will be disregarded.</p>
+
+<p>In the case of a development environment</p>
+
+<p>with the devel and<br>
+webprofiler modules enabled,</p>
+
+<p>you'll want that split to be active</p>
+
+<p>on just the dev environment<br>
+so that when you do</p>
+
+<p>a config import, those<br>
+configurations for those modules</p>
+
+<p>the modules would be enabled,</p>
+
+<p>and then also that<br>
+configuration that you've set up</p>
+
+<p>for those modules would be active,</p>
+
+<p>and then if the split is inactive</p>
+
+<p>on staging and production,</p>
+
+<p>those modules don't even become enabled</p>
+
+<p>and you don't have to worry about them.</p>
+
+<p>Again this is where leveraging</p>
+
+<p>the environment variable will help.</p>
+
+<p>In general there are two kinds of splits.</p>
+
+<p>Personally I don't like the<br>
+naming conventions for these,</p>
+
+<p>but I'm okay with it.</p>
+
+<p>The first one is a complete split,</p>
+
+<p>and this is module is on or off</p>
+
+<p>and all of the configuration<br>
+comes along for the ride</p>
+
+<p>if it's turned on.</p>
+
+<p>So you could have specific settings,</p>
+
+<p>let's say for devel generate</p>
+
+<p>or devel module enable,</p>
+
+<p>in general and those<br>
+settings will be coming in</p>
+
+<p>when you do the import.</p>
+
+<p>Then there's also the<br>
+conditional config split,</p>
+
+<p>and this is where you<br>
+can kind of fine tune</p>
+
+<p>what configuration would be in play.</p>
+
+<p>So example there, I think<br>
+we'll see it on the next slide,</p>
+
+<p>is we want no caching turned on</p>
+
+<p>in the system performance page for dev,</p>
+
+<p>but we really wanna crank<br>
+it to 11 on production.</p>
+
+<p>So you can have the<br>
+performance modules enabled</p>
+
+<p>but have different settings<br>
+on those config forms</p>
+
+<p>essentially in different environments.</p>
+
+<p>Then we have configuration<br>
+overrides and these go</p>
+
+<p>all the way back in Drupal history</p>
+
+<p>to hard coding settings and<br>
+settings.php that you need.</p>
+
+<p>Use these in cases where<br>
+you don't want a content</p>
+
+<p>administrator to<br>
+inadvertently or intentionally</p>
+
+<p>change one of those values.</p>
+
+<p>If it's in the settings<br>
+file, it is basically</p>
+
+<p>active configuration.</p>
+
+<p>Some examples that I<br>
+have here would be using</p>
+
+<p>the robots text module to always tell it</p>
+
+<p>on dev and staging,</p>
+
+<p>set engine crawling to<br>
+disallow everything.</p>
+
+<p>If you have a google tag manager,</p>
+
+<p>you could hard code that or some other</p>
+
+<p>api key, you could hard<br>
+code those into settings.</p>
+
+<p>Then it would literally<br>
+take a code deployment</p>
+
+<p>to affect that change.</p>
+
+<p>And then also a moment ago we were talking</p>
+
+<p>about the config splits<br>
+being active or inactive,</p>
+
+<p>in here is where I recommend<br>
+that you keep track</p>
+
+<p>of if something is active or not.</p>
+
+<p>There's a configuration split setting</p>
+
+<p>that you can make something<br>
+active or inactive</p>
+
+<p>in that environment.</p>
+
+<p>I recommend just turning<br>
+them all off and only</p>
+
+<p>relying on settings.php to turn them on</p>
+
+<p>so that you can be sure<br>
+that it's not going</p>
+
+<p>to inadvertently be<br>
+active on an environment</p>
+
+<p>that you don't intend it to be.</p>
+
+<p>My solution here.</p>
+
+<p>So taking that spreadsheet from, I think,</p>
+
+<p>the second slide we can look<br>
+at the different approaches</p>
+
+<p>that we can take for<br>
+each of those line items.</p>
+
+<p>For the develop module and<br>
+the webprofiler module,</p>
+
+<p>we'll use conflig split.</p>
+
+<p>For the robots.txt we're going to do,</p>
+
+<p>kind of mix things up and say,</p>
+
+<p>we're going to do config<br>
+ignore for dev and stage</p>
+
+<p>and then we are, which<br>
+would be, sorry, override</p>
+
+<p>for dev and stage.</p>
+
+<p>Let me correct that.</p>
+
+<p>Doing an override for dev and stage</p>
+
+<p>and then doing an ignore for production.</p>
+
+<p>And then for the environment indicators</p>
+
+<p>green, yellow, red, we're<br>
+going to do overrides for that</p>
+
+<p>in the settings file.</p>
+
+<p>And then config ignore<br>
+across the board for ignoring</p>
+
+<p>the block instances.</p>
+
+<p>To get this going, and<br>
+to get it up and running,</p>
+
+<p>kinda need to follow<br>
+through these steps here.</p>
+
+<p>And this is my approach,<br>
+and this is my way</p>
+
+<p>of approaching this problem in general.</p>
+
+<p>So this is definitely one solution,</p>
+
+<p>and I know that it works,</p>
+
+<p>so I'm not saying you<br>
+have to do it this way,</p>
+
+<p>but this is how I do it.</p>
+
+<p>The first is to set up<br>
+the configuration ignores,</p>
+
+<p>so enable the module,</p>
+
+<p>configure those and then we'll<br>
+update the settings.php file</p>
+
+<p>with the environment detection.</p>
+
+<p>Then we'll go through and<br>
+create the directories</p>
+
+<p>for the config split,</p>
+
+<p>and then we will go in and<br>
+configure those splits,</p>
+
+<p>get those exported,</p>
+
+<p>and then create the specific overrides.</p>
+
+<p>The config ignores, again,<br>
+just enable the module.</p>
+
+<p>If you go to admin config<br>
+development configuration ignore,</p>
+
+<p>in the configuration management section,</p>
+
+<p>there's a new tab for ignore.</p>
+
+<p>And you just put those patterns of things</p>
+
+<p>that you want to ignore in there.</p>
+
+<p>You can get some good<br>
+guidance about what strings</p>
+
+<p>to put in there by<br>
+looking at the yaml files.</p>
+
+<p>If you want to ignore an entire yaml file,</p>
+
+<p>just drop the .yaml<br>
+off and put it in here.</p>
+
+<p>If you want to ignore something<br>
+very specific in there,</p>
+
+<p>just build the array.</p>
+
+<p>Put the name of the yaml file in there</p>
+
+<p>and then build that array<br>
+in the dot notation here</p>
+
+<p>to get to the specific<br>
+setting you want to ignore.</p>
+
+<p>Second step was enabling that dev,</p>
+
+<p>the environment detection switch.</p>
+
+<p>I have two code snippets<br>
+here on the screen.</p>
+
+<p>The first one on the left<br>
+is basically grabbing</p>
+
+<p>the environment variable.</p>
+
+<p>In this case from Acquia<br>
+and if we don't find</p>
+
+<p>that environment variable<br>
+I'm just setting it to dev.</p>
+
+<p>That way my local, for example,</p>
+
+<p>and dev are going to<br>
+be very closely aligned</p>
+
+<p>if not exactly aligned when<br>
+it comes to configuration.</p>
+
+<p>And then on the right I kinda</p>
+
+<p>stubbed out just a case<br>
+statement to help determine</p>
+
+<p>where to drop my config overrides here.</p>
+
+<p>Next would be to create those directories,</p>
+
+<p>so just a make directory or make directory</p>
+
+<p>command will do that.</p>
+
+<p>I recommend making them<br>
+easily identifiable</p>
+
+<p>in their name</p>
+
+<p>and the config split maintainers recommend</p>
+
+<p>putting those as a<br>
+sibling directory to your</p>
+
+<p>main config sync directory.</p>
+
+<p>In this case I have it actually</p>
+
+<p>outside of the dock root at the repo root,</p>
+
+<p>so it's not (mumbles) the fault files area</p>
+
+<p>and just have those<br>
+set up and ready to go.</p>
+
+<p>Two things to note there,<br>
+config split module</p>
+
+<p>will not make the directory.</p>
+
+<p>It will kinda bark at<br>
+you if it doesn't find</p>
+
+<p>the directory that you<br>
+tell it to export to.</p>
+
+<p>And then when it does that first export,</p>
+
+<p>it will create the ht<br>
+access file that blocks</p>
+
+<p>random browsing into that directory.</p>
+
+<p>I think we have time.</p>
+
+<p>I'm going to hop into<br>
+the demonstration portion</p>
+
+<p>of the cooking show.</p>
+
+<p>And so what we're gonna<br>
+do is basically create one</p>
+
+<p>of these config splits.</p>
+
+<p>Already we've got the<br>
+settings.php updated,</p>
+
+<p>we've got our config ignore in place,</p>
+
+<p>and we've got the directories made,</p>
+
+<p>so hopefully you guys can see this.</p>
+
+<p>I've got the, over here I<br>
+have the directories made.</p>
+
+<p>And here I have the configurations set up.</p>
+
+<p>And like any good cooking<br>
+show, I've prepared some things</p>
+
+<p>for you already since we can't<br>
+cook a turkey in 20 minutes.</p>
+
+<p>Here I have the environment<br>
+detection and the switch here,</p>
+
+<p>so I have the environment<br>
+indicator set up for dev,</p>
+
+<p>and I have one for test<br>
+that I'm hiding here.</p>
+
+<p>Down here we have production,</p>
+
+<p>and so when we go over and<br>
+I'm going to need to open</p>
+
+<p>my browser here at this moment.</p>
+
+<p>There we are.</p>
+
+<p>It's magic, it's right there.</p>
+
+<p>So here I have just a<br>
+local setup running dev,</p>
+
+<p>and we can tell it's dev<br>
+because I have the green banner</p>
+
+<p>at the top since that's<br>
+what we're wanting to do.</p>
+
+<p>So we're going to make a<br>
+new configurations split</p>
+
+<p>for production.</p>
+
+<p>So looking back at our steps,</p>
+
+<p>I need to, in this case,<br>
+artificially set my local</p>
+
+<p>to be production so I can<br>
+do the configuration changes</p>
+
+<p>I want and get those exported to code</p>
+
+<p>so that when that code<br>
+actually gets up to production</p>
+
+<p>everything will be fine.</p>
+
+<p>I am going to artificially<br>
+set this to prod,</p>
+
+<p>and the key with making any<br>
+changes to the settings file</p>
+
+<p>is to always do a drush cache rebuild,</p>
+
+<p>so it will pick that up.</p>
+
+<p>So when that runs and we hit refresh,</p>
+
+<p>and that eventually<br>
+refreshes we'll see same page</p>
+
+<p>but now we'll have the red<br>
+banner at the top of the page.</p>
+
+<p>Live demos are awesome.</p>
+
+<p>So we have that.</p>
+
+<p>In this example let's say<br>
+that we want to make sure</p>
+
+<p>that we have syslog turned on<br>
+and we'll turn that module on,</p>
+
+<p>so getting back to that spreadsheet,</p>
+
+<p>we wanted db logging turned<br>
+on for dev and stage.</p>
+
+<p>And then syslog only for production.</p>
+
+<p>So I've got syslog enabled now,</p>
+
+<p>and make any other configuration<br>
+changes that you want</p>
+
+<p>specific to your production<br>
+environment here,</p>
+
+<p>so under configuration I'm<br>
+going to go to performance.</p>
+
+<p>And I'm going to set the caching</p>
+
+<p>all the way up and hit save.</p>
+
+<p>So we have that done now,</p>
+
+<p>so I now have my configuration<br>
+that I want to manage</p>
+
+<p>for production set up<br>
+for our example here,</p>
+
+<p>so I'm gonna hop over back<br>
+to the config split arena.</p>
+
+<p>And I'm gonna make a<br>
+new configuration split,</p>
+
+<p>and we're gonna make it,</p>
+
+<p>we're gonna call it<br>
+production, cleverly enough.</p>
+
+<p>And then in our folder we put in the path</p>
+
+<p>that we set up for that.</p>
+
+<p>Again, my recommendation, uncheck active</p>
+
+<p>so that it's not turned on by accident.</p>
+
+<p>And then in the complete split,</p>
+
+<p>we want to do the syslog module.</p>
+
+<p>And then in conditional split,</p>
+
+<p>we wanted that performance setting,</p>
+
+<p>so we did system.performance.</p>
+
+<p>Pardon me.</p>
+
+<p>Another setting that I<br>
+go against the default</p>
+
+<p>is there is a checkbox here<br>
+for split only when different.</p>
+
+<p>So basically it will<br>
+keep a setting in active</p>
+
+<p>main config sync until you<br>
+make any changes to it.</p>
+
+<p>Make changes to it and<br>
+then it will make those</p>
+
+<p>splits for you.</p>
+
+<p>I do it this way just so it's broken out,</p>
+
+<p>it's clean, it's self-contained<br>
+in that environment.</p>
+
+<p>And if you're going to<br>
+the care to create a split</p>
+
+<p>for a specific setting,</p>
+
+<p>the question I ask myself<br>
+is why would I not want</p>
+
+<p>to just go ahead and<br>
+manage it wholly as a split</p>
+
+<p>rather than having it the same in a couple</p>
+
+<p>different environments potentially?</p>
+
+<p>So I'm gonna hit save.</p>
+
+<p>So now I have this configuration saved.</p>
+
+<p>And then what I did here<br>
+in my settings at php file</p>
+
+<p>as part of the pre-show,</p>
+
+<p>I put in a config split basically saying</p>
+
+<p>the production split to active<br>
+using this line of code here.</p>
+
+<p>Now I'm ready to export it,</p>
+
+<p>so right now we can see that<br>
+the prod directory over here</p>
+
+<p>is empty and-</p>
+
+<p>- [Audience Member]<br>
+Don't you want to scroll</p>
+
+<p>down to case prod?</p>
+
+<p>- [Scott] Oh, you are<br>
+correct. Sorry. Thank you.</p>
+
+<p>Case prod config split config<br>
+split production is true,</p>
+
+<p>so I do have that there.</p>
+
+<p>Okay, great.</p>
+
+<p>Thank you for that.</p>
+
+<p>So now I'm going to do a<br>
+drush config sync export,</p>
+
+<p>and the argument you<br>
+pass to it is the name,</p>
+
+<p>the machine name of that split.</p>
+
+<p>So we're gonna run that<br>
+and it's gonna confirm</p>
+
+<p>that I want to do it.</p>
+
+<p>And now when I look at my split directory,</p>
+
+<p>I have two files in here.</p>
+
+<p>One is the syslog settings,</p>
+
+<p>and the other is the setting for that page</p>
+
+<p>where I had that max age set.</p>
+
+<p>If we were to get into<br>
+the weeds here and go down</p>
+
+<p>to in the main config<br>
+directory after I do an export.</p>
+
+<p>Drush cex c-e-x.</p>
+
+<p>We'll see that there's a new, uh sorry,</p>
+
+<p>getting ahead of myself here.</p>
+
+<p>We'll see that there's<br>
+a new config split file</p>
+
+<p>for production and it's<br>
+really not that interesting</p>
+
+<p>of reading.</p>
+
+<p>Of note here is an array<br>
+of the modules that you're</p>
+
+<p>turning off and on in holds.</p>
+
+<p>Down here what is called graylist,</p>
+
+<p>which is that conditional split,</p>
+
+<p>that's where that setting is,</p>
+
+<p>so if you wanted some<br>
+fun nighttime reading,</p>
+
+<p>that's the place to do that.</p>
+
+<p>So now what I'm gonna<br>
+do to kinda prove out</p>
+
+<p>that this works is in<br>
+my settings.php file,</p>
+
+<p>I'm gonna set this back to dev</p>
+
+<p>and then I'm going to clear cache.</p>
+
+<p>And when we come back over here,</p>
+
+<p>we should see two things happen.</p>
+
+<p>The environment indicator<br>
+bar is gonna turn green</p>
+
+<p>and then the status for the<br>
+development config split</p>
+
+<p>will say active over written<br>
+because that's what I have</p>
+
+<p>in settings php file for that.</p>
+
+<p>So we have that, which is great,</p>
+
+<p>so now if I just do a drush config import,</p>
+
+<p>hopefully you can see this.</p>
+
+<p>What will happen is the<br>
+things that were enabled</p>
+
+<p>on production are gonna<br>
+be turned off here,</p>
+
+<p>so it's reverting the<br>
+system.performance settings.</p>
+
+<p>It's turning off the syslog module,</p>
+
+<p>which is great.</p>
+
+<p>But then again just to prove it all out,</p>
+
+<p>if I go to production<br>
+and do the cache clear,</p>
+
+<p>and then the config import,</p>
+
+<p>we'll see those modules come<br>
+back on with those settings.</p>
+
+<p>If I did everything correctly.</p>
+
+<p>So yes, it looks like we<br>
+have some success here,</p>
+
+<p>so we can see that it<br>
+installed syslog for us</p>
+
+<p>and updated the system<br>
+performance variables for us.</p>
+
+<p>So it does feel a little bit<br>
+like jumping through hoops</p>
+
+<p>to get it set up,</p>
+
+<p>but once you go through that once</p>
+
+<p>and you get that pattern down,</p>
+
+<p>life is so much easier<br>
+when you are doing ongoing</p>
+
+<p>daily development for the site.</p>
+
+<p>And again this just kinda<br>
+highlights the overrides.</p>
+
+<p>A lot of this is here for reference,</p>
+
+<p>so you can look at it later,</p>
+
+<p>'cause I know I'm just like<br>
+slamming on the accelerator</p>
+
+<p>through this presentation here.</p>
+
+<p>A couple of quick tips that<br>
+I have for you is when you</p>
+
+<p>make those changes to<br>
+settings, always clear cache.</p>
+
+<p>You'll want to make sure<br>
+that that setting is</p>
+
+<p>on your target environment before you make</p>
+
+<p>the configuration changes<br>
+and you keep that active,</p>
+
+<p>do the config export, and<br>
+then you can change it back.</p>
+
+<p>Otherwise if you do a config<br>
+import or a config export,</p>
+
+<p>targeting the wrong<br>
+environment you're gonna get</p>
+
+<p>that extra configuration<br>
+spit out to the main config</p>
+
+<p>as well and then you have<br>
+not happy developer days.</p>
+
+<p>That's that.</p>
+
+<p>We have four minutes if<br>
+there are any questions.</p>
+
+<p>- [Audience Member] I was<br>
+wondering how this plays out</p>
+
+<p>(mumbles) I noticed your config split was</p>
+
+<p>set to gray or whatever.</p>
+
+<p>How does this system work<br>
+with different versions?</p>
+
+<p>- [Scott] It works perfectly with the-</p>
+
+<p>The question was how do<br>
+the config splits work</p>
+
+<p>with version control?</p>
+
+<p>It works well.</p>
+
+<p>These are separate files that get exported</p>
+
+<p>and so they're just managed with-</p>
+
+<p>so in the example of the graylist,</p>
+
+<p>like you mentioned,</p>
+
+<p>so here for production the graylist is,</p>
+
+<p>we have that system.performance,</p>
+
+<p>so it grabs all the config<br>
+settings from that page.</p>
+
+<p>But then when we go up here in, sorry,</p>
+
+<p>I'm gonna go one place first,</p>
+
+<p>so we have system.performance</p>
+
+<p>in the main config directory.</p>
+
+<p>We can see that caching is<br>
+not turned on right now.</p>
+
+<p>But then if we were to go up</p>
+
+<p>to the config split<br>
+directory for production,</p>
+
+<p>and look at that system.performance,</p>
+
+<p>we can see that caching is turned off.</p>
+
+<p>So all these will get committed and then</p>
+
+<p>when you do the drush config import,</p>
+
+<p>like on production,</p>
+
+<p>it's gonna have that<br>
+environment switch to know</p>
+
+<p>that it needs to bring this one in.</p>
+
+<p>So it's managed just like any other files</p>
+
+<p>from that respect.</p>
+
+<p>I think we had a question here first.</p>
+
+<p>- [Audience Member] So can<br>
+you play out a scenario</p>
+
+<p>where you have let's say a gethub token</p>
+
+<p>in your configuration file.</p>
+
+<p>Some kind of API key with split,</p>
+
+<p>how would you manage that 'cause typically</p>
+
+<p>what we end up doing is<br>
+including an override</p>
+
+<p>settings file out of code<br>
+repository completely.</p>
+
+<p>So would that play nicely<br>
+with splitting and ignoring?</p>
+
+<p>- [Scott] Yeah, I think it would.</p>
+
+<p>- [Audience Member] Could<br>
+you repeat the question?</p>
+
+<p>- [Scott] The question<br>
+is how could you handle</p>
+
+<p>something like a gethub<br>
+token in a directory</p>
+
+<p>that's outside of code management?</p>
+
+<p>Is that the right rephrasing<br>
+outside of version control?</p>
+
+<p>- [Audience Member] Yeah.</p>
+
+<p>- [Scott] So you could<br>
+definitely have a home directory</p>
+
+<p>or a user directory on the<br>
+server for each environment</p>
+
+<p>and do include that file.</p>
+
+<p>It plays nice in that<br>
+database config is first</p>
+
+<p>and then it would do,</p>
+
+<p>depending on how you sequence<br>
+it in your settings file,</p>
+
+<p>it'll either do your home<br>
+directory settings file override,</p>
+
+<p>your environment settings file override,</p>
+
+<p>or the main settings.php.</p>
+
+<p>I think it would be more<br>
+work how you sequence those</p>
+
+<p>because the config split<br>
+isn't read every time.</p>
+
+<p>It's only on config import.</p>
+
+<p>Does that make sense?</p>
+
+<p>- [Audience Member] Absolutely.</p>
+
+<p>- [Scott] Okay, great.</p>
+
+<p>Question here.</p>
+
+<p>- [Audience Member] So<br>
+assuming you're copying</p>
+
+<p>your config sync into an install profile,</p>
+
+<p>but you don't have splits set up,</p>
+
+<p>what do you need to do to<br>
+accommodate splits if you're</p>
+
+<p>trying to generate (mumbles)?</p>
+
+<p>- [Scott] The question is how<br>
+do you manage config splits</p>
+
+<p>via a install profile,</p>
+
+<p>and I am going to be very<br>
+honest and say I don't know.</p>
+
+<p>I haven't had to come<br>
+across that scenario,</p>
+
+<p>so I don't know.</p>
+
+<p>I could hypothesize, but I don't-</p>
+
+<p>- [Audience Member] Is<br>
+there a better alternative</p>
+
+<p>to install profiles which<br>
+you've been looking at or?</p>
+
+<p>- [Scott] I don't think so.</p>
+
+<p>I think install profiles are a good thing.</p>
+
+<p>Yeah. Okay.</p>
+
+<p>I think we have time for<br>
+one more question here.</p>
+
+<p>- [Audience Member] Is<br>
+there any way to turn off</p>
+
+<p>the module in one split,</p>
+
+<p>or do you just have to enable<br>
+it in all the other splits?</p>
+
+<p>- [Scott] You want kind of<br>
+the negate the scenario.</p>
+
+<p>That I don't know that I have an answer</p>
+
+<p>for you as well of being<br>
+able to turn off a module</p>
+
+<p>in all but one environment.</p>
+
+<p>I think the split for the develop module,</p>
+
+<p>you have that on in one environment</p>
+
+<p>and off in the other two,</p>
+
+<p>but that converse-</p>
+
+<p>I don't know if you<br>
+would be able to do that</p>
+
+<p>unless you added that module<br>
+to those two other splits.</p>
+
+<p>Okay, I see that we are at time.</p>
+
+<p>I'm gonna just kinda hang out back there</p>
+
+<p>if you guys have any<br>
+questions or anything.</p>
+
+<p>Please if you have a moment,</p>
+
+<p>go to mid.camp/250.</p>
+
+<p>That's my node for the presentation,</p>
+
+<p>provide some feedback,</p>
+
+<p>and yeah,</p>
+
+<p>Saturday is contribution day,</p>
+
+<p>so if you're so inclined to hang out here,</p>
+
+<p>thank you.<br>
+Captions made possible by ClarityPartners.com<br>
+Chicago area Drupal consultants</p>
+
+<p>(applause)</p>
+
+<p>Captions made possible by ClarityPartners.com. Chicago area Drupal consultants</p>
+
+<p><a href="../sponsor/clarity-partners.html"><img src="../../sites/default/files/2020-02/CFDFAA23-5C59-4C07-9C66-CAFFE0CF3854.png" style="max-width:300px;"></a></p>
+</div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-49ba3f73a571225704b0a065b75a75e57e9a8184039f8f64f1bef0455017bf4c">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/250">https://mid.camp/250</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-8df06965db41c8d672837851239780c34866523b95953de2f43293c1de68e890">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/elevated-third.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-11/elevated-third-logo_0.png" width="220" height="220" alt="elevated third logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/pantheon.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-11/pantheon-logo-color@2x.png" width="960" height="354" alt="Pantheon" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/acquia.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2019-03/Acquia_no_tagline.png" width="450" height="94" alt="Acquia" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#bdd4d3dbd2fdd0d4d9dedcd0cd93d2cfda"><span class="__cf_email__" data-cfemail="462f282029062b2f2225272b3668293421">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/250","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_llBcjrkrgAu2wT1DR7VGL_iP6geJyiTnF_8O5ZD57VI.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJxLz89Pz0mNT8xLzKksyUwu1k9HE9DJSCwpSS3ST8_JT0rM0c0qBgAByBPW"></script>
+
+  </body>
+</html>

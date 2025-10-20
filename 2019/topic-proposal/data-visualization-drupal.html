@@ -1,0 +1,2112 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="This session will help developers and site builders understand how the Charts module works on the back end and will demonstrate how the module can handle various use-cases. " />
+<link rel="canonical" href="data-visualization-drupal.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Data Visualization in Drupal | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Data Visualization in Drupal | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_Qoyy92GHt9RyGOt8N3WS_9HRsJcJBywJ2IhXudzvST4.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJw1jFEOgzAMQy9U1iOhtDGsUkqmugOx068C8WM961nOJuQZkxAh31xBygo-fXMdzhsGtSpWfghv6R0truZJbMpk4MmOeh_tReEzaoLOS4FpbODHN5Yd0yXHBAfjla_q-jX8AXwTNZQ.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_mK2of_t7UFymkfbTHeA-kHdMPWzqc3DZQCYtX-tC0BA.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJw1jFEOgzAMQy9U1iOhtDGsUkqmugOx068C8WM961nOJuQZkxAh31xBygo-fXMdzhsGtSpWfghv6R0truZJbMpk4MmOeh_tReEzaoLOS4FpbODHN5Yd0yXHBAfjla_q-jX8AXwTNZQ.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJw1jFEOgzAMQy9U1iOhtDGsUkqmugOx068C8WM961nOJuQZkxAh31xBygo-fXMdzhsGtSpWfghv6R0truZJbMpk4MmOeh_tReEzaoLOS4FpbODHN5Yd0yXHBAfjla_q-jX8AXwTNZQ.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJw1jFEOgzAMQy9U1iOhtDGsUkqmugOx068C8WM961nOJuQZkxAh31xBygo-fXMdzhsGtSpWfghv6R0truZJbMpk4MmOeh_tReEzaoLOS4FpbODHN5Yd0yXHBAfjla_q-jX8AXwTNZQ.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="data-visualization-drupal.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-hatter-midcamp2019navigation-menu" id="block-hatter-midcamp2019navigation" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-midcamp2019navigation-menu">Midcamp 2019 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" title="About MidCamp" data-drupal-link-system-path="node/191">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--venue">
+        <a href="../about/venue.html" data-drupal-link-system-path="node/192">Venue</a>
+            </li>
+          <li class="primary-nav__sublist-item item--travel">
+        <a href="../about/travel.html" title="Travel and Accommodations" data-drupal-link-system-path="node/188">Travel</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../about/lunch.html" title="Lunch options" data-drupal-link-system-path="node/189">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--volunteer">
+        <a href="../article/volunteer-help-midcamp.html" title="Volunteer!">Volunteer!</a>
+            </li>
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2019/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../../2020/news.html" data-drupal-link-system-path="2020/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--attendees">
+        <a href="../attendees.html" data-drupal-link-system-path="2019/attendees">Attendees</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" data-drupal-link-system-path="2019/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--spread-the-word">
+        <a href="../article/spread-word.html" data-drupal-link-system-path="node/371">Spread the Word</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" title="Sponsors" data-drupal-link-system-path="node/197">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--become-a-sponsor">
+        <a href="../sponsor-midcamp.html" title="Sponsor MidCamp" data-drupal-link-system-path="node/186">Become a Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../../jobs.html" title="Jobs" data-drupal-link-system-path="jobs">Jobs</a>
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" title="Schedule" data-drupal-link-system-path="node/190">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--all-sessions">
+        <a href="../sessions.html" data-drupal-link-system-path="2019/sessions">All Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--summits--training-wed">
+        <a href="../schedule/wednesday.html" title="Summits &amp; Training (Wednesday)" data-drupal-link-system-path="2019/schedule/wednesday">Summits &amp; Training (Wed)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-thu">
+        <a href="../schedule/thursday.html" title="Sessions (Thursday)" data-drupal-link-system-path="2019/schedule/thursday">Sessions (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-fri">
+        <a href="../schedule/friday.html" title="Sessions (Friday)" data-drupal-link-system-path="2019/schedule/friday">Sessions (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--contribution-sat-">
+        <a href="../contribution-day.html" title="Contribution Day" data-drupal-link-system-path="node/332">Contribution (Sat) </a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-terms-and-conditions">
+        <a href="../../speaker-terms-and-conditions.html" title="Speaker Terms and Conditions" data-drupal-link-system-path="node/21">Speaker Terms and Conditions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../../speaker-resources.html" title="Speaker Resources">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--topic-tracks">
+        <a href="../../topic-tracks.html" title="Topic Tracks" data-drupal-link-system-path="node/10">Topic Tracks</a>
+            </li>
+  </ul>
+
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2019.html" hreflang="en">MidCamp 2019</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Data Visualization in Drupal</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="201" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2019-03-22T15:20:00Z" class="datetime">Friday, 10:20 am CDT</time>
+ - <time datetime="2019-03-22T16:20:00Z" class="datetime">Friday, 11:20 am CDT</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-80" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-name field--type-string field--label-hidden field__item">Room 312</div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>Whether it's an online journal, sales platform, or non-profit site, Charts can go a long way in improving user experience and helping&nbsp;make sense of complex data. The Charts module makes it easy for users to plot internal or external data using the Drupal components we're familiar with (Views, Blocks, Fields, etc.) and provides five charting libraries as options. This session will help developers and site builders understand how the Charts module works on the back end and will demonstrate how&nbsp;the module can handle various use-cases.&nbsp;&nbsp;</p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/GH0T4D5FgYc?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Daniel Cothran</h4>
+
+      Drupal Team Lead and Senior Technical Advisor
+
+
+          @
+              <a href="https://www.jsi.com/JSIInternet/">John Snow, Inc.</a>
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p>I started working with Drupal in 2010 and am maintainer of a few contributed modules, primarily the Charts module.</p>
+</div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2019-01/midcamp_profile.jpg%3Fitok=EPLD-Zcm" width="220" height="220" alt="Daniel Cothran squashed by inflatable Druplicon" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Back-End</div>
+          <div class="field__item">Site Building</div>
+              </div>
+      </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p>does anyone know if it's supposed to</p>
+
+<p>turn green or is red so well thank you</p>
+
+<p>for very much for coming here it's</p>
+
+<p>really awesome to see this many people</p>
+
+<p>coming for a data visualization</p>
+
+<p>discussion it's my first Drupal</p>
+
+<p>conference presentation so I'm a little</p>
+
+<p>bit nervous but I'm excited to share</p>
+
+<p>with you the charts module so just to</p>
+
+<p>give an introduction to myself I'm</p>
+
+<p>Daniel Katherine and you may know me</p>
+
+<p>online as aunty Waco</p>
+
+<p>I work at a public health company called</p>
+
+<p>John snow incorporated or JSI and we've</p>
+
+<p>been around for over 40 years and have</p>
+
+<p>implemented public health projects and</p>
+
+<p>over a hundred different countries I</p>
+
+<p>started with JSI coming out of public</p>
+
+<p>health school and I fully intended to do</p>
+
+<p>public health and now I'm leading a team</p>
+
+<p>of Drupal developers and building and</p>
+
+<p>maintaining Drupal sites if I had to fit</p>
+
+<p>myself into a Drupal archetype I would</p>
+
+<p>probably say I am a site builder</p>
+
+<p>however since around 2016 I've started</p>
+
+<p>creating or taking over the maintenance</p>
+
+<p>of some modules charts is definitely one</p>
+
+<p>of my favorites as it ties in neatly</p>
+
+<p>with some of the work that I do at JSI</p>
+
+<p>for example just yesterday I launched a</p>
+
+<p>website in DC that relies heavily on the</p>
+
+<p>charts module I'm not a season or a</p>
+
+<p>particularly adept programmer</p>
+
+<p>programming jargon is still somewhat of</p>
+
+<p>a foreign language to me but through my</p>
+
+<p>tenacity and commitment to Drupal I</p>
+
+<p>think I've done a lot to add value to</p>
+
+<p>the community and I I asked for a lot of</p>
+
+<p>help and I wanted to give a shout out to</p>
+
+<p>a couple of my colleagues and mentors</p>
+
+<p>Michael Moyes a and Elias maleeni who</p>
+
+<p>both sort of set me down the path to</p>
+
+<p>figuring out how to port the charts</p>
+
+<p>module to Drupal 8 so here's the site I</p>
+
+<p>launched yesterday so you can see we</p>
+
+<p>have a number of different visualization</p>
+
+<p>is going on there so the outline of my</p>
+
+<p>presentation is I'm gonna be talking</p>
+
+<p>about when you might want to charkh will</p>
+
+<p>give an introduction to the charts</p>
+
+<p>module then talk about how to use it</p>
+
+<p>sort of from the inner user interface</p>
+
+<p>and then I'll step into the code and</p>
+
+<p>discuss the code for a little bit and</p>
+
+<p>then if there aren't too many questions</p>
+
+<p>during the FAQ then we can try to do</p>
+
+<p>some small demo so let's start off by</p>
+
+<p>talking about how data visualization can</p>
+
+<p>add value to a Drupal website so here's</p>
+
+<p>an example that's pretty close to home</p>
+
+<p>the project pages on drupal.org have</p>
+
+<p>these visualizations that show the</p>
+
+<p>number of downloads and you know which</p>
+
+<p>version this is the one for charts</p>
+
+<p>beyond module maintainer x' these</p>
+
+<p>visualizations are useful to juries as</p>
+
+<p>he's writing his juries note they're</p>
+
+<p>also fodder for Twitter trolls trying to</p>
+
+<p>say oh Drupal's not getting enough</p>
+
+<p>traction</p>
+
+<p>whatever else but in general these types</p>
+
+<p>of visualizations are great for</p>
+
+<p>ecommerce sites for marketers for user</p>
+
+<p>interface designers and a number of</p>
+
+<p>other you know groups of people that I</p>
+
+<p>want I'm just not thinking about now</p>
+
+<p>charts are also great for adding value</p>
+
+<p>to content so I used to work at a</p>
+
+<p>medical lab and every week we would have</p>
+
+<p>a journal club and rather than like</p>
+
+<p>going through long passages of text we</p>
+
+<p>tended to just like focus on the graphs</p>
+
+<p>that were included in the articles and</p>
+
+<p>discuss those charts are also great for</p>
+
+<p>concise communication this pie chart</p>
+
+<p>provides a lot of facts about the world</p>
+
+<p>without having an enormous run-on</p>
+
+<p>sentence and it's also eye catching in</p>
+
+<p>addition to providing facts data</p>
+
+<p>visualizations can be greatly putting</p>
+
+<p>the facts in context and charts may</p>
+
+<p>influence the behavior of your website</p>
+
+<p>users so including an HR like this could</p>
+
+<p>increase your users trusts in your</p>
+
+<p>organization and potentially make them</p>
+
+<p>more likely to donate to your nonprofit</p>
+
+<p>I showed you images from news</p>
+
+<p>organizations online publications</p>
+
+<p>nonprofits I could have shown you images</p>
+
+<p>from government websites or educational</p>
+
+<p>institutions these types of</p>
+
+<p>organizations are all known Drupal users</p>
+
+<p>and I think if they want first they want</p>
+
+<p>first-class data</p>
+
+<p>excuse me content management from Drupal</p>
+
+<p>but why not also best of class data</p>
+
+<p>visualization and Drupal without having</p>
+
+<p>to you know go to too many third-party</p>
+
+<p>sources</p>
+
+<p>so I believe if Drupal can you know</p>
+
+<p>incorporate the using core and you know</p>
+
+<p>manipulate data with views that should</p>
+
+<p>also be able to chart it and I'm</p>
+
+<p>definitely not the first person to have</p>
+
+<p>that thought because eleven years ago</p>
+
+<p>the charts module went up on drupal.org</p>
+
+<p>to my knowledge it was posted by a quick</p>
+
+<p>sketch currently around 20,000 sites</p>
+
+<p>report using the charts module though</p>
+
+<p>most of them are still Drupal 7 around</p>
+
+<p><br>
+been getting pretty good traction and</p>
+
+<p>although its support it's grown some in</p>
+
+<p>scope so originally there were two</p>
+
+<p>charting providers that you could use</p>
+
+<p>the charts module I've included three</p>
+
+<p>more since i ported the module and</p>
+
+<p>depending on if we do the demo or not we</p>
+
+<p>could even incorporate a fourth one care</p>
+
+<p>amina 54th newman the original libraries</p>
+
+<p>were yeah i already said that these are</p>
+
+<p>the libraries that are currently in the</p>
+
+<p>Drupal 8 module they're all great</p>
+
+<p>libraries that have the documentation</p>
+
+<p>pretty strong online communities some</p>
+
+<p>are more active than other C 3 I've</p>
+
+<p>included here but I feel like billboard</p>
+
+<p>digests is which is a branch or what's</p>
+
+<p>the right word they split off of C 3 and</p>
+
+<p>I think they've sort of modernized it a</p>
+
+<p>little bit and so if anyone was asking</p>
+
+<p>me between those two I would probably</p>
+
+<p>drop them a billboard Jas</p>
+
+<p>there's more than one way to use the</p>
+
+<p>charts and module in my head I kind of</p>
+
+<p>categorize it in two different ways so I</p>
+
+<p>think I think charts really excels at</p>
+
+<p>plotting data from an existing database</p>
+
+<p>whether or not that's your Drupal</p>
+
+<p>database or some external database that</p>
+
+<p>just holds data quick sidenote if you're</p>
+
+<p>connecting to external databases</p>
+
+<p>I recommend the views database connector</p>
+
+<p>that's another module I'm maintaining</p>
+
+<p>you may also want to be adding charts</p>
+
+<p>sort of at the time of content creation</p>
+
+<p>and I'm thinking especially like if</p>
+
+<p>you're using the layout builder and you</p>
+
+<p>know creating a like a long page and you</p>
+
+<p>want to have a nice little chart you</p>
+
+<p>could you know use the Settings tray and</p>
+
+<p>how to block and use the charts block to</p>
+
+<p>incorporate a visualization there so</p>
+
+<p>let's talk about installing and using</p>
+
+<p>charts a quick notice that charts</p>
+
+<p>doesn't work without a sub-module</p>
+
+<p>enabled the sub modules make the</p>
+
+<p>necessary JavaScript libraries available</p>
+
+<p>and getting those actual JavaScript</p>
+
+<p>files into your Drupal site is probably</p>
+
+<p>the biggest barrier to using charts it</p>
+
+<p>doesn't really seem that there's a</p>
+
+<p>consensus among the community about the</p>
+
+<p>best way to install JavaScript libraries</p>
+
+<p>I mean we've pretty much all settled on</p>
+
+<p>composer for PHP libraries</p>
+
+<p>JavaScript it still seems like it's up</p>
+
+<p>in the air in the charts module in the</p>
+
+<p>sub module readme.txt files we include I</p>
+
+<p>think very detailed step-by-step</p>
+
+<p>instructions for being able to use</p>
+
+<p>composer to incorporate JavaScript</p>
+
+<p>libraries into your site which you may</p>
+
+<p>have strong feelings about if you're not</p>
+
+<p>a command-line person but you're</p>
+
+<p>comfortable enough installing modules</p>
+
+<p>you can use the library manager module</p>
+
+<p>and manually add the necessary libraries</p>
+
+<p>so after you enable the module then go</p>
+
+<p>to the configure home settings and</p>
+
+<p>you'll set up the default chart</p>
+
+<p>configurations what this does is</p>
+
+<p>especially if you're using views to</p>
+
+<p>create your charts it just starts you</p>
+
+<p>out with a number of different settings</p>
+
+<p>for example if you want to have data</p>
+
+<p>markers enabled by default or you want</p>
+
+<p>to pick a particular library you could</p>
+
+<p>install multiple sub modules like pie</p>
+
+<p>charts Google cetera but if you want</p>
+
+<p>high charts to be the first option when</p>
+
+<p>someone's creating a new chart then you</p>
+
+<p>can set that on this page I'm in the</p>
+
+<p>process of making it so a little bit</p>
+
+<p>like the appearance page on so like you</p>
+
+<p>can have your global theme settings or</p>
+
+<p>you can have per theme settings</p>
+
+<p>so once you've set those defaults the</p>
+
+<p>next thing to do is create a view and</p>
+
+<p>when you're creating your views that the</p>
+
+<p>the view settings to well you don't have</p>
+
+<p>to do content but make sure that you use</p>
+
+<p>the display format of chart and then</p>
+
+<p>your charting fields</p>
+
+<p>you the first thing you'll need to do</p>
+
+<p>after you have created this view is to</p>
+
+<p>add a field that contains some sort of</p>
+
+<p>numeric data or you can apply</p>
+
+<p>aggregation to get a number and then</p>
+
+<p>click on the the format settings link</p>
+
+<p>and it'll open up a window like you see</p>
+
+<p>and and then there's where you can set</p>
+
+<p>per chart settings about data markers</p>
+
+<p>and what you want to use is your data</p>
+
+<p>field and the chart title and all those</p>
+
+<p>types of things and when you click apply</p>
+
+<p>then you should see a chart in your</p>
+
+<p>preview just like that</p>
+
+<p>so what about if you want to combo chart</p>
+
+<p>meaning a chart that has more than one</p>
+
+<p>chart type to do that you simply add a</p>
+
+<p>chart attachment display it's pretty and</p>
+
+<p>then you can figure that it's pretty</p>
+
+<p>much the same as configuring the parent</p>
+
+<p>display and then you attach it to the</p>
+
+<p>parent and then there are a couple other</p>
+
+<p>settings in the middle of the view where</p>
+
+<p>you can say you know I want a secondary</p>
+
+<p>y-axis axis or inherent contextual</p>
+
+<p>filters and things like that there are</p>
+
+<p>some gotchas that can occur with the</p>
+
+<p>chart attachment and so if anyone out</p>
+
+<p>there is a documentation chemistry</p>
+
+<p>contributor it'd be great to have some</p>
+
+<p>support okay so that's a pretty quick</p>
+
+<p>rundown of using the charts module</p>
+
+<p>through the user interface there one</p>
+
+<p>warned a lot of screens because it is</p>
+
+<p>actually pretty easy to do I'm going to</p>
+
+<p>go through how the module works sort of</p>
+
+<p>on the back end and I hope that it makes</p>
+
+<p>the module a little bit less daunting</p>
+
+<p>and maybe spur some ideas so in general</p>
+
+<p>the charts module can be broken into</p>
+
+<p>core and sub modules many of the sub</p>
+
+<p>modules are charting providers and you</p>
+
+<p>can easily create your own charting</p>
+
+<p>provider that</p>
+
+<p>without having to touch the code of the</p>
+
+<p>church score it doesn't and it doesn't</p>
+
+<p>need to live in the charts module either</p>
+
+<p>there's also an example module to</p>
+
+<p>demonstrate how the API works and a</p>
+
+<p>charts override example module and the</p>
+
+<p>starter kits directory and the next few</p>
+
+<p>slides I'm going to talk about the</p>
+
+<p>source directory okay so the first</p>
+
+<p>directory is annotation and we use</p>
+
+<p>annotation basically to avoid info hooks</p>
+
+<p>they basically allow you to include</p>
+
+<p>metadata in your plugin without having</p>
+
+<p>to have those close the next is the form</p>
+
+<p>directory and this allows you to</p>
+
+<p>configure this is that charts default</p>
+
+<p>settings form that you saw in the</p>
+
+<p>earlier slide it's what creates that</p>
+
+<p>form the plug-in folder is a very</p>
+
+<p>important one the first folder chart you</p>
+
+<p>probably don't really need to look at</p>
+
+<p>unless you're wanting to score some easy</p>
+
+<p>commits and get your three phpstorm</p>
+
+<p>license the style in the views the views</p>
+
+<p>plugins there's three of them one is</p>
+
+<p>style that's kind of the main one it</p>
+
+<p>does a lot of the data transformation</p>
+
+<p>and rendering and that's also sort of</p>
+
+<p>the form that you see when you're</p>
+
+<p>clicking on format settings in your view</p>
+
+<p>does the display plug-in creates the</p>
+
+<p>chart attachment which I mentioned a</p>
+
+<p>second ago and then the field plug-in is</p>
+
+<p>a recent development and it creates</p>
+
+<p>abuse field called a scatter field that</p>
+
+<p>allows you to</p>
+
+<p>select it as your data field and then it</p>
+
+<p>gives you coordinates from two other</p>
+
+<p>fields in your view</p>
+
+<p>the third directory and under plugins is</p>
+
+<p>the override and you know plugins are</p>
+
+<p>it's great with object-oriented</p>
+
+<p>programming you can extend classes but</p>
+
+<p>that means that you might also need to</p>
+
+<p>create a custom style plug-in and it</p>
+
+<p>gets to be a lot of programming and</p>
+
+<p>you'll start to feel like maybe I like</p>
+
+<p>should have just like created my own</p>
+
+<p>custom module why am I using the charts</p>
+
+<p>module but we did want to give people</p>
+
+<p>options for some customizations without</p>
+
+<p>having to extend the class and so what</p>
+
+<p>you can do is in the starter kits</p>
+
+<p>there's a module called charts overrides</p>
+
+<p>and you can just put that into your</p>
+
+<p>custom folder and then basically change</p>
+
+<p>the options that you want based on that</p>
+
+<p>charting provider's API and then that</p>
+
+<p>gets that into the primary plugin for</p>
+
+<p>your charting provider</p>
+
+<p>I think that'll make a little bit more</p>
+
+<p>sense later on</p>
+
+<p>the services director use a few services</p>
+
+<p>to make a module more pluggable there's</p>
+
+<p>a lot of code in these services there's</p>
+
+<p>not a lot of code so the settings</p>
+
+<p>directory has some code to pay attention</p>
+
+<p>to the charts based setting form</p>
+
+<p>basically contains like all of the form</p>
+
+<p>elements that you'll see when you're</p>
+
+<p>configuring a chart whether that's in</p>
+
+<p>views or in charts blocks or on the</p>
+
+<p>default settings form then there's the</p>
+
+<p>charts default colors this is primarily</p>
+
+<p>for getting colors to use in various</p>
+
+<p>places in the module the charts default</p>
+
+<p>settings just has a few basic settings</p>
+
+<p>set up so that it just sort of has</p>
+
+<p>sensible defaults basically and then the</p>
+
+<p>excuse me the charts type class sort of</p>
+
+<p>explains different chart types like bar</p>
+
+<p>versus column and whether or not it has</p>
+
+<p>a single or a double axis</p>
+
+<p>there's very little going on in the the</p>
+
+<p>theme directory it provides an interface</p>
+
+<p>for defining charts constants and</p>
+
+<p>they're just two which are related to</p>
+
+<p>it's like single or double axis the</p>
+
+<p>utility directory is one of the more</p>
+
+<p>important directories in the module even</p>
+
+<p>if it only contains one file it handles</p>
+
+<p>much of the data manipulation and in the</p>
+
+<p>next few slides I'll go through these</p>
+
+<p>police methods so the views data method</p>
+
+<p>transforms the views results into an</p>
+
+<p>array of arrays</p>
+
+<p>you're probably familiar with that if</p>
+
+<p>you work in Drupal within the inner</p>
+
+<p>array or objects that contain some of</p>
+
+<p>the more important information for</p>
+
+<p>charting libraries like type and color</p>
+
+<p>and value the remove unselected fields</p>
+
+<p>method takes out fields that are not</p>
+
+<p>selected by your view as in the data</p>
+
+<p>sort of field set and it ensures that</p>
+
+<p>the for loops performed later on iterate</p>
+
+<p>over the appropriate number of times and</p>
+
+<p>then the create charts data method takes</p>
+
+<p>that array that you saw a second ago and</p>
+
+<p>and then it transforms it into this one</p>
+
+<p>which is sort of broken into what you'll</p>
+
+<p>see in the charts lingo as the</p>
+
+<p>categories array in the series data</p>
+
+<p>array and then lastly the check missing</p>
+
+<p>library method looks to see if you</p>
+
+<p>properly install the JavaScript</p>
+
+<p>libraries for your module and it alerts</p>
+
+<p>users that they may need to install a</p>
+
+<p>charting library if they're at a few and</p>
+
+<p>they're not seeing anything</p>
+
+<p>so the charts module file has a few</p>
+
+<p>different hooks they're tough use data</p>
+
+<p>to identify the scatter field and set up</p>
+
+<p>the data structure for that there's book</p>
+
+<p>theme which doesn't really do a lot</p>
+
+<p>other than sort of points you in the</p>
+
+<p>direction of the correct template file</p>
+
+<p>and then there's a template pre-process</p>
+
+<p>hook which is used for generating charts</p>
+
+<p>by through views it does a lot of heavy</p>
+
+<p>work of combining your parent chart in</p>
+
+<p>your chart attachments and bringing them</p>
+
+<p>all together and it sends the data over</p>
+
+<p>to the utility file to be processed by</p>
+
+<p>those methods so that brings us to the</p>
+
+<p>sub modules there's one major file in</p>
+
+<p>each each of the charting provider sub</p>
+
+<p>modules and that's at source plug-in</p>
+
+<p>chart and then the training providers</p>
+
+<p>named HP and this file makes use of the</p>
+
+<p>classes within the settings directory</p>
+
+<p>which you can see settings like in this</p>
+
+<p>example well charge a s and then</p>
+
+<p>a number of different classes in there</p>
+
+<p>what it does is it creates a JSON object</p>
+
+<p>that is attached to the HTML element and</p>
+
+<p>then it's it's attached as a data</p>
+
+<p>attribute and then that data attribute</p>
+
+<p>is fed to the JavaScript from the</p>
+
+<p>charting provider and your charts</p>
+
+<p>rendered so ideally in that settings</p>
+
+<p>entry you'll have a lot of classes and</p>
+
+<p>they'll match up you know with the</p>
+
+<p>corresponding libraries API so in this</p>
+
+<p>example text goes up for text you know</p>
+
+<p>why matches why vertical-align matches</p>
+
+<p>it's a lot I mean if you've gone to high</p>
+
+<p>charts API for example its enormous and</p>
+
+<p>it's a lot of work to include all this</p>
+
+<p>so I could definitely I would definitely</p>
+
+<p>appreciate any hope I'm just making the</p>
+
+<p>module stronger so speaking of which the</p>
+
+<p>areas where I would really appreciate</p>
+
+<p>people's help are making it easy for</p>
+
+<p>anyone to install charting libraries so</p>
+
+<p>even if there's not great consensus on</p>
+
+<p>the best way to do that I would</p>
+
+<p>appreciate other ideas having a better</p>
+
+<p>user interface for charts blocks which</p>
+
+<p>currently it acts that's you to just</p>
+
+<p>enter in your data like separated by a</p>
+
+<p>comma in a like a text area field so</p>
+
+<p>it's it's not super user it's not super</p>
+
+<p>intuitive</p>
+
+<p>one thing I'd really like our dynamic</p>
+
+<p>options when you're like in the views</p>
+
+<p>settings form for example and you select</p>
+
+<p>one particular library if there are</p>
+
+<p>additional like settings that like for</p>
+
+<p>example c3 doesn't have 3d charts so you</p>
+
+<p>wouldn't need to see a checkbox that</p>
+
+<p>says like make this chart 3d but for</p>
+
+<p>high charts you can do that so that</p>
+
+<p>would be useful form element to have</p>
+
+<p>writing tests is always appreciated and</p>
+
+<p>then manual testing and feedback and as</p>
+
+<p>always documentation it's really</p>
+
+<p>important so that's sort of the first</p>
+
+<p>part of my presentation and I'd love to</p>
+
+<p>go ahead and answer any questions that</p>
+
+<p>you have</p>
+
+<p>watch the examples yeah definitely good</p>
+
+<p>is this integrated which is like The</p>
+
+<p>O'Jays honey you guys would have</p>
+
+<p>it I haven't integrated it with JSON API</p>
+
+<p>and I honestly don't really know how to</p>
+
+<p>do that so if you have a decoupled site</p>
+
+<p>I assume you would sort of used the API</p>
+
+<p>but I don't know sort of what your next</p>
+
+<p>step would be it</p>
+
+<p>I like I said I'm a site builder and I</p>
+
+<p>all of my sites are sort of traditional</p>
+
+<p>Drupal sites that are coupled just yeah</p>
+
+<p>yeah I mean you can you can reach out to</p>
+
+<p>me through like the drupal contact form</p>
+
+<p>yeah find me i'm on twitter is dan for</p>
+
+<p>qol or or just create an issue in this</p>
+
+<p>uq but yeah I'm the only Drupal 8</p>
+
+<p>maintainer for charts so and I'm like</p>
+
+<p>after this presentation I'm happy to sit</p>
+
+<p>with you</p>
+
+<p>now that's just query carries this how</p>
+
+<p>close to dad can you like custom queries</p>
+
+<p>because I think that you know it's</p>
+
+<p>almost thinking like if you set the Sun</p>
+
+<p>to it an e-commerce site and sit there</p>
+
+<p>polling charts of you know products it's</p>
+
+<p>selling fast but it's not selling the</p>
+
+<p>best that kind of things and so how do</p>
+
+<p>you pulling like a query statement</p>
+
+<p>the way I would do is just with use yeah</p>
+
+<p>so I pretty much only third the charts</p>
+
+<p>API example has a controller but the</p>
+
+<p>only times I've used the module really</p>
+
+<p>are for using views because you know</p>
+
+<p>it's views is so powerful for that kind</p>
+
+<p>of thing and you know it'll it enables a</p>
+
+<p>lot of like other classes of you know</p>
+
+<p>users to create visualizations so yeah I</p>
+
+<p>think that's probably how I would</p>
+
+<p>approach it</p>
+
+<p>any other questions how many people have</p>
+
+<p>used the Drupal 8 version of charts</p>
+
+<p>good yeah yeah okay so all good was</p>
+
+<p>later how many people are sort of PHP</p>
+
+<p>programmers okay so let me start off</p>
+
+<p>with I'm just doing the user interface</p>
+
+<p>okay</p>
+
+<p>perhaps I can see this bitter so I have</p>
+
+<p>a charts demo content site set up and</p>
+
+<p>[Music]</p>
+
+<p>find my mouse okay</p>
+
+<p>so I'm going to create a new a new sharp</p>
+
+<p>good of use i i've already enabled the</p>
+
+<p>charts module and I've enabled some of</p>
+
+<p>the sub modules as well so out of you</p>
+
+<p>let's get that right now so I have a</p>
+
+<p>couple content types that have data</p>
+
+<p>fields attached to them I'm going to</p>
+
+<p>choose award because a little bit and</p>
+
+<p>I'll create a page with</p>
+
+<p>sharp as the display format showing as I</p>
+
+<p>mentioned fields we can just start with</p>
+
+<p><br>
+this is not the fastest computer but uh</p>
+
+<p>okay so I have the title already in the</p>
+
+<p>fields and I'm going to add value which</p>
+
+<p>I know is a field on this content type</p>
+
+<p>I'm can have it as unformatted because</p>
+
+<p>sometimes commas can mess up like the</p>
+
+<p>the library's want to see a number not a</p>
+
+<p>string with the kana so I'm gonna use</p>
+
+<p>unformatted</p>
+
+<p>and then so here's the important part</p>
+
+<p>this settings this is this is what the</p>
+
+<p>style plug-in creates and so I'll start</p>
+
+<p>out with a column for a charting library</p>
+
+<p>and it started with high charts and then</p>
+
+<p>we have title and here's the section</p>
+
+<p>where you do your which field provides</p>
+
+<p>data so I'm going to select this sorry</p>
+
+<p>it's hard for me to see and then</p>
+
+<p>where's my mouse</p>
+
+<p>[Music]</p>
+
+<p>enable tooltips</p>
+
+<p>with the legend position bottom</p>
+
+<p>something like that</p>
+
+<p>so ah you have your church</p>
+
+<p>so I mentioned if you want a combo chart</p>
+
+<p>you can do that by adding a chart</p>
+
+<p>attachment so</p>
+
+<p>all right so it's complaining at least</p>
+
+<p>one data field must be selected I'm</p>
+
+<p>going to add a different data field so</p>
+
+<p>that it makes sense and I'm going to do</p>
+
+<p>that through a relationship</p>
+
+<p>so I know that this content type of Ward</p>
+
+<p>has taxonomy afield for location and the</p>
+
+<p>location taxonomy has a feel for</p>
+
+<p>population</p>
+
+<p>and let me add that population field</p>
+
+<p>and so now let's go to the settings and</p>
+
+<p>instead of a column I'd like this to be</p>
+
+<p>aligned and</p>
+
+<p>[Music]</p>
+
+<p>here greens fine for me when you have a</p>
+
+<p>chart attachment you don't really need</p>
+
+<p>to configure these because these all get</p>
+
+<p>inherited by the the settings on the</p>
+
+<p>parent display so you can pretty much</p>
+
+<p>just ignore this for a chart attachment</p>
+
+<p>okay so you can see there's a line graph</p>
+
+<p>here now and that's just showing what</p>
+
+<p>you get in a chart attachment but now if</p>
+
+<p>you come to the page</p>
+
+<p>oh sorry I forgot</p>
+
+<p>so this was what is mentioning there's a</p>
+
+<p>few chart settings you need to apply so</p>
+
+<p>I'm just gonna say attach onto the page</p>
+
+<p>display and then this is this is above I</p>
+
+<p>haven't fixed yet but I need I want to</p>
+
+<p>keep it here but I just need to click</p>
+
+<p>apply ok so now I'm going to the page</p>
+
+<p>excuse me when you first started to</p>
+
+<p>chart attachment view what display form</p>
+
+<p>did you use was it was a chart</p>
+
+<p>attachment a patient chart attachment is</p>
+
+<p>a display type and the dial plug-in is</p>
+
+<p>set to chart automatically okay so you</p>
+
+<p>still have to configure the settings for</p>
+
+<p>it</p>
+
+<p>but it yeah okay so now you can see you</p>
+
+<p>have your combo chart and you can you</p>
+
+<p>know use contextual filters you can use</p>
+
+<p>exposed filters so when you you know</p>
+
+<p>those typical things you would do with</p>
+
+<p>use you can do with charts the other</p>
+
+<p>thing that you can do and I hope it</p>
+
+<p>works is for example let's do some three</p>
+
+<p>yeah so now you have a c3 chart with</p>
+
+<p>only that one change and you could do</p>
+
+<p>that for any of them any questions there</p>
+
+<p>is the chart attachment now also using</p>
+
+<p>no</p>
+
+<p>but because pretty much all the settings</p>
+
+<p>except for the label field and data</p>
+
+<p>field are inherited it doesn't really</p>
+
+<p>matter what you put here says you</p>
+
+<p>override</p>
+
+<p>for something like that I mean you can</p>
+
+<p>only have one chart type for chart you</p>
+
+<p>know for a chart so that you wouldn't</p>
+
+<p>really want to override you can have</p>
+
+<p>multiple different chart charting</p>
+
+<p>providers on the same page so you can do</p>
+
+<p>one view as a block on a page and then</p>
+
+<p>you could do another view as a block and</p>
+
+<p>put them on the same page one could be</p>
+
+<p>high charts one it would be c3</p>
+
+<p>the other thing I could show you is I'll</p>
+
+<p>show you how the charts blocks look I'm</p>
+
+<p>really not very happy with them but you</p>
+
+<p>there's a time and place for them and</p>
+
+<p>and there's some level of functionality</p>
+
+<p>there okay so I have two that I've</p>
+
+<p>already set up so that these if you want</p>
+
+<p>to add one what you do is just click</p>
+
+<p>place block and then select charts block</p>
+
+<p>and you get that same form pretty much</p>
+
+<p>as you had four views there's a few</p>
+
+<p>modifications so I'll do a column again</p>
+
+<p>I'll do hi charts again I'm going to do</p>
+
+<p>a single series</p>
+
+<p>yeah</p>
+
+<p>[Music]</p>
+
+<p>and then you have the normal sort of</p>
+
+<p>charcoal form here at the bottom</p>
+
+<p>so these are the other two the added to</p>
+
+<p>this page</p>
+
+<p>so I'm not sure if I did something wrong</p>
+
+<p>leave yours did I not do this slash</p>
+
+<p>between categories okay</p>
+
+<p>and I should have kept them this one a</p>
+
+<p>better name</p>
+
+<p>[Music]</p>
+
+<p>if you would have been pulling data from</p>
+
+<p>a different database which box did you</p>
+
+<p>put together and change</p>
+
+<p>yeah so the trucks blocks doesn't have a</p>
+
+<p>good way of incorporating data from</p>
+
+<p>another database in that case I can show</p>
+
+<p>you let me just try to get this it</p>
+
+<p>that's yeah yeah of course</p>
+
+<p>yeah</p>
+
+<p>so there's the doomed</p>
+
+<p>let me go back to views real quick</p>
+
+<p>so I i've also enabled views database</p>
+
+<p>connector on this site and with that it</p>
+
+<p>actually allows you to use tables from</p>
+
+<p>an external database so like i know that</p>
+
+<p>this one has data that i could what</p>
+
+<p>and and it's it just you add them as</p>
+
+<p>fields it's pretty much the same as a</p>
+
+<p>content type okay so maybe i can show</p>
+
+<p>you all code since there were a number</p>
+
+<p>of PHP programmers</p>
+
+<p>[Music]</p>
+
+<p>so I wanted to demonstrate how easy it</p>
+
+<p>is to add another charting provider so</p>
+
+<p>if you're not happy with hi charts or</p>
+
+<p>Google charts III etc you can add your</p>
+
+<p>own and I was talking to someone</p>
+
+<p>recently and they mentioned Vega light</p>
+
+<p>do any of you know that charting library</p>
+
+<p>no it's not whatever</p>
+
+<p>it's not moving over</p>
+
+<p>okay the Kennington here</p>
+
+<p>yeah</p>
+
+<p>okay so what I did is</p>
+
+<p>and maybe let me show you</p>
+
+<p>[Music]</p>
+
+<p>so this is big alight</p>
+
+<p>has a ton of different options so they</p>
+
+<p>find more than most others I've seen and</p>
+
+<p>I've never worked with it before</p>
+
+<p>yesterday what I did was I went to the</p>
+
+<p>charts modules and I copied charts</p>
+
+<p>underscore charts jeaious and I just</p>
+
+<p>pasted it into my custom folder and then</p>
+
+<p>I just went through and I just renamed</p>
+
+<p>anytime chart Jes showed up I replaced</p>
+
+<p>it with big alight so here's here's</p>
+
+<p>everything that's there so libraries I'm</p>
+
+<p>doing all I did is I did I cheated a</p>
+
+<p>little bit because I'm using remote</p>
+
+<p>libraries we're mostly with the charts</p>
+
+<p>you go and use local ones so I didn't</p>
+
+<p>really do much other than just add these</p>
+
+<p>here and then</p>
+
+<p>so for the settings I just added a few</p>
+
+<p>that I knew were necessary labor life</p>
+
+<p>and then it was then it was pretty much</p>
+
+<p>all working here and here so</p>
+
+<p>so that I have a chart type bill truck</p>
+
+<p>type method that you can use if the the</p>
+
+<p>names that we have is like the default</p>
+
+<p>chart types like bar everything don't</p>
+
+<p>exactly match up with like Google for</p>
+
+<p>example wants you to have it has a camel</p>
+
+<p>case name for every one of the so you</p>
+
+<p>could you could change that and</p>
+
+<p>something like this and then the build</p>
+
+<p>variables this is sort of the primary</p>
+
+<p>method that's used within these and so</p>
+
+<p>all i've done is i've created a new</p>
+
+<p>theta like chart object and then i've</p>
+
+<p>done a little bit of data manipulation</p>
+
+<p>because it requires you see if i can</p>
+
+<p>pull that up</p>
+
+<p>okay it requires the the data object to</p>
+
+<p>look like this which is not the way that</p>
+
+<p>we've set it up in that data array that</p>
+
+<p>I showed you earlier on in the</p>
+
+<p>presentation so I had to do some mean</p>
+
+<p>manipulation to have within data have</p>
+
+<p>values and then have like the a matches</p>
+
+<p>up with x-axis and B matches up with</p>
+
+<p>y-axis and then you also have to have</p>
+
+<p>this encoding so that's what I some of</p>
+
+<p>those things I set up here like the</p>
+
+<p>encoding I set up here I did a bit of a</p>
+
+<p>little bit of manipulation and I didn't</p>
+
+<p>do the manipulation properly because as</p>
+
+<p>I mentioned I launched a site yesterday</p>
+
+<p>but I all I did is I enabled that module</p>
+
+<p>cleared caches to bring in the libraries</p>
+
+<p>Vega light showed up I selected it and</p>
+
+<p>then when I saved my chart I have a big</p>
+
+<p>light someone who knows the Vega light</p>
+
+<p>API would be able to create this and</p>
+
+<p>probably like an hour or 30 minutes like</p>
+
+<p>it took me a very short amount of time</p>
+
+<p>it was all basically manually going and</p>
+
+<p>renaming you know from charging us to to</p>
+
+<p>take a light and that was like from 70%</p>
+
+<p>of what I had to do and then a little</p>
+
+<p>bit of you know changing the JSON object</p>
+
+<p>structure so</p>
+
+<p>I think that's it unless anyone else has</p>
+
+<p>questions</p>
+
+<p>I mean sorry you would do Cleveland</p>
+
+<p>module within like you're not putting</p>
+
+<p>into the charts module just because of</p>
+
+<p>the way charts was built with like sort</p>
+
+<p>of a core and like sub module setups</p>
+
+<p>like like Drupal itself the the core</p>
+
+<p>module can identify charts plugins that</p>
+
+<p>are in other modules and then making use</p>
+
+<p>of them so yeah so that's nice because</p>
+
+<p>if you just want to use you maybe you</p>
+
+<p>have your own custom visualization</p>
+
+<p>library or something like that you can</p>
+
+<p>just use use that and you can use it in</p>
+
+<p>your custom module you don't have to</p>
+
+<p>worry about making it so neat and</p>
+
+<p>contributing it back to the charts</p>
+
+<p>module yeah</p>
+
+<p>yeah so that's a that's definitely a</p>
+
+<p>best practice probably hi charts and one</p>
+
+<p>of the reasons for that let me go to</p>
+
+<p>this Ida launch day one of the reasons</p>
+
+<p>for that so here's an example of the</p>
+
+<p>scatterplot is it gives you this little</p>
+
+<p>hamburger menu and you can you can</p>
+
+<p>download as a image if you want save it</p>
+
+<p>into a Word document or something which</p>
+
+<p>is awesome you can also start you've got</p>
+
+<p>really small you can view data table and</p>
+
+<p>so it gives the data table and that's as</p>
+
+<p>far as I've heard is much better for</p>
+
+<p>accessibility than more firm yeah yeah</p>
+
+<p>so so that's probably my favorite the</p>
+
+<p>problem is is its proprietary so you</p>
+
+<p>either have to pay a licensing fee or if</p>
+
+<p>you're a non-profit you can potentially</p>
+
+<p>be exempt from that</p>
+
+<p>yeah</p>
+
+<p>any other Christians</p>
+
+<p>okay I think that's it then I really</p>
+
+<p>appreciate your time</p>
+
+<p>[Applause]</p></div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-3ffa1d6d2a8ae00f1bbdb875e6dc7d758f512dfc6607a4e875f48c7b83e93411">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/201">https://mid.camp/201</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-aff3b6108e7bc5c7603220116b0062ed5fc275d33dd4f275f97ae1aec48c0189">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/pantheon.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-11/pantheon-logo-color@2x.png" width="960" height="354" alt="Pantheon" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/elevated-third.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-11/elevated-third-logo_0.png" width="220" height="220" alt="elevated third logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/acquia.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2019-03/Acquia_no_tagline.png" width="450" height="94" alt="Acquia" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#771e191118371a1e1314161a0759180510"><span class="__cf_email__" data-cfemail="30595e565f705d595453515d401e5f4257">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/201","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_llBcjrkrgAu2wT1DR7VGL_iP6geJyiTnF_8O5ZD57VI.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJxLz89Pz0mNT8xLzKksyUwu1k9HE9DJSCwpSS3ST8_JT0rM0c0qBgAByBPW"></script>
+
+  </body>
+</html>

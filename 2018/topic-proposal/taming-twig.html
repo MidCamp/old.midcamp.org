@@ -1,0 +1,2857 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="Twig is a wonderful tool to build templates for your Drupal 8 themes. It can be easy to pick up, but certain problems can leave you frustrated and unsure of what to do. Don&#039;t fret, we&#039;ll be talking through some straight forward solutions to most of the problems that you&#039;ll encounter. In this session you’ll learn how to:" />
+<link rel="canonical" href="taming-twig.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Taming Twig | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Taming Twig | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_Qoyy92GHt9RyGOt8N3WS_9HRsJcJBywJ2IhXudzvST4.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJw1jGsOgzAMgy9U1iOhtPVYpYSgumNjp18F4o_1-SFnFfKISYiQLzaQsoC3X72MzhsGNROtP4SX9I4WF_UkOmXyTky25N_Agx123e61wGdYQpmfFVpiAzdfWXdMZzkm-DCe-jAvb8UfjYM.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_mK2of_t7UFymkfbTHeA-kHdMPWzqc3DZQCYtX-tC0BA.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJw1jGsOgzAMgy9U1iOhtPVYpYSgumNjp18F4o_1-SFnFfKISYiQLzaQsoC3X72MzhsGNROtP4SX9I4WF_UkOmXyTky25N_Agx123e61wGdYQpmfFVpiAzdfWXdMZzkm-DCe-jAvb8UfjYM.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJw1jGsOgzAMgy9U1iOhtPVYpYSgumNjp18F4o_1-SFnFfKISYiQLzaQsoC3X72MzhsGNROtP4SX9I4WF_UkOmXyTky25N_Agx123e61wGdYQpmfFVpiAzdfWXdMZzkm-DCe-jAvb8UfjYM.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJw1jGsOgzAMgy9U1iOhtPVYpYSgumNjp18F4o_1-SFnFfKISYiQLzaQsoC3X72MzhsGNROtP4SX9I4WF_UkOmXyTky25N_Agx123e61wGdYQpmfFVpiAzdfWXdMZzkm-DCe-jAvb8UfjYM.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+<link rel="stylesheet" media="all" href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.css" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="taming-twig.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-hatter-main-menu-menu" id="block-hatter-main-menu" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-main-menu-menu">Midcamp 2018 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" data-drupal-link-system-path="node/2">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--venue">
+        <a href="../../about/venue.html" title="Venue" data-drupal-link-system-path="node/7048">Venue</a>
+            </li>
+          <li class="primary-nav__sublist-item item--travel">
+        <a href="../travel.html" title="Travel and Accommodations" data-drupal-link-system-path="node/65">Travel</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../lunch.html" title="Lunch Near Campus" data-drupal-link-system-path="node/162">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2018/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" title="Meet the Team!" data-drupal-link-system-path="2018/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../../2023/about/lunch-options.html" data-drupal-link-system-path="node/6970">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--accommodations">
+        <a href="../../2023/about/accommodations.html" data-drupal-link-system-path="node/6948">Accommodations</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" data-drupal-link-system-path="node/9">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--become-a-sponsor">
+        <a href="../become-a-sponsor.html" title="Become a Sponsor" data-drupal-link-system-path="node/7">Become a Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../../jobs.html" title="Jobs" data-drupal-link-system-path="jobs">Jobs</a>
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" data-drupal-link-system-path="node/128">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--training-thu">
+        <a href="../training.html" data-drupal-link-system-path="node/195">Training (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--bofs-fri-sat">
+        <a href="../birds-feather-bofs.html" title="Birds of a Feather (BoFs)" data-drupal-link-system-path="node/167">BoFs (Fri/Sat)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-fri">
+        <a href="../schedule/friday.html" title="Friday Sessions" data-drupal-link-system-path="2018/schedule/friday">Sessions (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-sat">
+        <a href="../schedule/saturday.html" title="Saturday Sessions" data-drupal-link-system-path="2018/schedule/saturday">Sessions (Sat)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sprints-sun">
+        <a href="../../sprints.html" title="Sprints">Sprints (Sun)</a>
+            </li>
+  </ul>
+
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2018.html" hreflang="en">MidCamp 2018</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Taming Twig</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="67" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2018-03-09T17:00:00Z" class="datetime">Friday, 11:00 am CST</time>
+ - <time datetime="2018-03-09T18:00:00Z" class="datetime">Friday, 12:00 pm CST</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-82" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-field-link field--type-link field--label-hidden field__item"><a href="https://zoom.us/my/midcamp314b" target="_blank" class="button--primary">Go to Room 314B - old</a></div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>Twig is a wonderful tool to build templates for your Drupal 8 themes. It can be easy to pick up, but certain problems can leave you frustrated and unsure of what to do. Don't fret, we'll be talking through some straight forward solutions to most of the problems that you'll encounter.</p>
+
+<p><strong>In this session you’ll learn how to:</strong></p>
+
+<ul>
+	<li>Debug variables and find the right values for your template.</li>
+	<li>Understand why your changes are not appearing on the page.</li>
+	<li>Avoid and resolve PHP errors.</li>
+	<li>Fix a White Screen of Death.</li>
+	<li>Develop a checklist to fix common problems.</li>
+	<li>Understand and interpret a problem that may require more advanced help.</li>
+</ul>
+
+<p>You'll leave this session prepared to work with Twig templates and resolve issues that appear. We'll be spending most of our time within Twig templates and the theme file. This session is perfect for those who are new to Drupal 8 and Twig.</p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/gFhzlHwi1G0?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Larry Walangitan</h4>
+
+      Senior Developer
+
+
+          @
+              <a href="https://chromatichq.com">Chromatic</a>
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p>I am a senior developer and technical PM at Chromatic, building and maintaining custom content management solutions using Drupal for enterprise clients. After hours you can walking my dog around town or trying out new recipes at home.</p>
+</div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2019-12/Screen%20Shot%202019-12-18%20at%203.47.53%20PM.png%3Fitok=nQGp67Xf" width="150" height="220" alt="Larry Walangitan profile picture" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Front-End</div>
+              </div>
+      </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p>okay so this is Danny play thank you for</p>
+
+<p>coming out to make it it's always</p>
+
+<p>exciting to be here and to present with</p>
+
+<p>everyone make sure that you can grab the</p>
+
+<p>slides at the link at the top follow</p>
+
+<p>along so a little bit about me</p>
+
+<p>my name is leilani Todd I live here in</p>
+
+<p>Chicago</p>
+
+<p>I usually tweet very rarely but I do</p>
+
+<p>about there just in case I work for a</p>
+
+<p>company called hermetic we are we're a</p>
+
+<p>distributed team so we have team members</p>
+
+<p>all around the world so check this out</p>
+
+<p>and now let's just dive right into the</p>
+
+<p>subject matter today</p>
+
+<p>taming Twitter so in my own experience</p>
+
+<p>of using twitting the past few years</p>
+
+<p>with Drupal 8 there's some common</p>
+
+<p>problems that I've experienced and</p>
+
+<p>they're really frustrating and when I</p>
+
+<p>look at what Stack Exchange or sample</p>
+
+<p>overflow if you look at all the problems</p>
+
+<p>which I did in the past few weeks to see</p>
+
+<p>and try to distill them into the same</p>
+
+<p>sort of categories there's no common</p>
+
+<p>categories so the first one is that your</p>
+
+<p>changes just don't appear if you try to</p>
+
+<p>print something on the screen we're</p>
+
+<p>twiggy and it doesn't appear at all the</p>
+
+<p>second one is that when you call a</p>
+
+<p>variable in a quick template your output</p>
+
+<p>just isn't what you expected you try to</p>
+
+<p>call in the field and it doesn't appear</p>
+
+<p>and the third and fourth ones are that</p>
+
+<p>your site is unavailable or that is just</p>
+
+<p>unresponsive at all so you're unable to</p>
+
+<p>actually work with this anymore</p>
+
+<p>so for the talk today we're going to</p>
+
+<p>talk about how to address those four</p>
+
+<p>common problems so first we're going to</p>
+
+<p>talk about how to debug Twigg second</p>
+
+<p>we're going to talk about the values</p>
+
+<p>that you can find within your template</p>
+
+<p>Derek about resolving any sort of PHP</p>
+
+<p>errors and how to avoid them fourth the</p>
+
+<p>dreaded white screen of death when your</p>
+
+<p>site becomes unresponsive and finally</p>
+
+<p>when something is too difficult to solve</p>
+
+<p>by yourself and where to go over that's</p>
+
+<p>where public so first debugging Twigg</p>
+
+<p>let's talk about our debug setup so</p>
+
+<p>where I services to Hamel file inside</p>
+
+<p>slash default we are able to change some</p>
+
+<p>values that we can make sure that we can</p>
+
+<p>debug twig and have some sort of tools</p>
+
+<p>available to us so under tweak that</p>
+
+<p>config we have to make sure that debug</p>
+
+<p>is set to true that I'll remove love</p>
+
+<p>also set to true and caching a set to</p>
+
+<p>false</p>
+
+<p>all of these things by default if you</p>
+
+<p>were to copy the default services that</p>
+
+<p>ml family name it will be the opposite</p>
+
+<p>of use now for a production site you</p>
+
+<p>want to make sure that it's the opposite</p>
+
+<p>of these but when you're locally</p>
+
+<p>developing or working on a development</p>
+
+<p>site you're trying to figure out what's</p>
+
+<p>going on with your templates make sure</p>
+
+<p>that these are set I've seen here</p>
+
+<p>now the output when you expect something</p>
+
+<p>look like a chrome inspector with those</p>
+
+<p>value saying your services that yeah</p>
+
+<p>well probably look something like this</p>
+
+<p>you'll be able to see the sort of files</p>
+
+<p>and suggestions that Drupal and tweak</p>
+
+<p>are looking through in terms of what</p>
+
+<p>file or what tweak file is being called</p>
+
+<p>in and the kind of files that you have</p>
+
+<p>available to you so in this case we can</p>
+
+<p>see that it gets a specific as noted</p>
+
+<p>file with the node IDs we can alter a</p>
+
+<p>specific note or you can use a note type</p>
+
+<p>so in our case we're using the basic</p>
+
+<p>page template we have no - - page</p>
+
+<p>available to us here and finally we have</p>
+
+<p>our basic note that you should see on</p>
+
+<p>that twig files so services I handle is</p>
+
+<p>really helpful to just know when you're</p>
+
+<p>working with a lot of different</p>
+
+<p>templates and different fields and</p>
+
+<p>things are being called in you'll have a</p>
+
+<p>better idea of what tweak files were</p>
+
+<p>working to address the issue that you</p>
+
+<p>want to address available to us also is</p>
+
+<p>the dump file with xx so here we're just</p>
+
+<p>calling dump on content field in your</p>
+
+<p>header so here we're just going to be</p>
+
+<p>calling in our field header and if we</p>
+
+<p>want to look at what that looks like</p>
+
+<p>when it's printed out by default we just</p>
+
+<p>get this array or a bunch of different</p>
+
+<p>keys then we can call in these different</p>
+
+<p>keys we can</p>
+
+<p>like them in order to pull in the values</p>
+
+<p>and tweak that we're trying to find to</p>
+
+<p>us now another tool that's really useful</p>
+
+<p>and pretty common is to use develop the</p>
+
+<p>milk comes with a bunch of great things</p>
+
+<p>developed in and of itself and there's a</p>
+
+<p>module in it called eval kids this</p>
+
+<p>allows us to use the camp function which</p>
+
+<p>we call them the same way that we use a</p>
+
+<p>dumb function so here we're calling it a</p>
+
+<p>hint on classes which is part of the</p>
+
+<p>page</p>
+
+<p>that pretty much HTML that twig file and</p>
+
+<p>it outputs up to the page in a similar</p>
+
+<p>way as our dumb function except that we</p>
+
+<p>have you sort of nested arrays that we</p>
+
+<p>can dig into and so what gets loaded is</p>
+
+<p>instead of having that ugly sort of a</p>
+
+<p>dump array which is just a bunch of keys</p>
+
+<p>you can actually go and find your key</p>
+
+<p>selected and find more details about</p>
+
+<p>what you kind of find out there now when</p>
+
+<p>using kin I don't know if people have</p>
+
+<p>experience to hear but in my own</p>
+
+<p>experience I found that it's not as</p>
+
+<p>performative as dump and that there's</p>
+
+<p>usually like a bunch of problems</p>
+
+<p>sometimes you're like you trying to do</p>
+
+<p>Kent on a file or a variable and like</p>
+
+<p>things just like the site doesn't load</p>
+
+<p>your memory gets timed out so there's</p>
+
+<p>another tool that I just found out about</p>
+
+<p>in this past year which is it takes the</p>
+
+<p>best of both rows so you have the</p>
+
+<p>ability to use dump which usually is</p>
+
+<p>pretty consistent in terms of its narrow</p>
+
+<p>usage and you also get a nice output</p>
+
+<p>like this where you can click through</p>
+
+<p>and find the values you're trying to</p>
+
+<p>find within a nested array in that tool</p>
+
+<p>is this contributing module called twig</p>
+
+<p>bard number</p>
+
+<p>so here you have the ability to call</p>
+
+<p>your tweak variable and to cycle through</p>
+
+<p>it and find the values that you want to</p>
+
+<p>do just by going through the nested</p>
+
+<p>arrays to find the specific values that</p>
+
+<p>you want to find so now that we have</p>
+
+<p>these tools is there the tools we'll be</p>
+
+<p>talking about today let's talk about how</p>
+
+<p>we actually find the values specific</p>
+
+<p>internal so we're going to talk about</p>
+
+<p>first is just like the generic sort of</p>
+
+<p>like a generic feel when you're working</p>
+
+<p>with a node template or an entity</p>
+
+<p>template of any sort so popular one is</p>
+
+<p>using nodes you're using taxonomy terms</p>
+
+<p>contributed module called paragraphs is</p>
+
+<p>becoming more common these are the sort</p>
+
+<p>of entities that this applies to so you</p>
+
+<p>have when you work with a twig template</p>
+
+<p>of content object within that content</p>
+
+<p>object you have all the fields that are</p>
+
+<p>on that entity so we're using dot</p>
+
+<p>notation here so content dot field name</p>
+
+<p>in order to call our field and to output</p>
+
+<p>this sort of markup and data that we</p>
+
+<p>have so in terms of like a vanilla sort</p>
+
+<p>of approach this applies in most cases</p>
+
+<p>just calling content got your field name</p>
+
+<p>now we're going to look at a few</p>
+
+<p>different examples that are a bit</p>
+
+<p>different and then just the content dot</p>
+
+<p>field name for example</p>
+
+<p>and you try to find our links if we were</p>
+
+<p>to have it feel called pit lane that's</p>
+
+<p>just a generic Drupal field that we use</p>
+
+<p>for links when we call that it outputs</p>
+
+<p>both are linked and the text where the</p>
+
+<p>title associated with that link which in</p>
+
+<p>a lot of cases may be and that's what</p>
+
+<p>you want you just want an anchor tag</p>
+
+<p>with a link and if you want to add a</p>
+
+<p>class or you want to do something to</p>
+
+<p>those links or to modify them it</p>
+
+<p>requires a bit more effort so here we</p>
+
+<p>want to add a button class so that we</p>
+
+<p>can you know present our link in a nice</p>
+
+<p>way that looks like a button now if</p>
+
+<p>we're digits we call content I feel</p>
+
+<p>underscore link we wouldn't have access</p>
+
+<p>to this so we can split that up by</p>
+
+<p>accessing an array within there that has</p>
+
+<p>Baylor l key and the title key so we can</p>
+
+<p>split certain objects with dead twig and</p>
+
+<p>then maybe like that how we see fit now</p>
+
+<p>taking this long now this is also very</p>
+
+<p>specific so when you're working with</p>
+
+<p>twig usually you use dot notation for</p>
+
+<p>all feein so content dot field link dot</p>
+
+<p>an entity or dot image or something but</p>
+
+<p>for fields it's specific to fields where</p>
+
+<p>you would use the array notation here to</p>
+
+<p>get within there now to find this this</p>
+
+<p>is done by using twig and the debug</p>
+
+<p>functions to find the use cases for this</p>
+
+<p>this is a very prominent use case now</p>
+
+<p>similarly if you want to work with our</p>
+
+<p>files</p>
+
+<p>we have to make sure we're calling the</p>
+
+<p>file URL it's in order here we're just</p>
+
+<p>ensuring that in our template we are</p>
+
+<p>separating out the file URL value and</p>
+
+<p>calling the file URL function on it to</p>
+
+<p>make sure it is parsed correctly so the</p>
+
+<p>notation here we're still using dot</p>
+
+<p>notation we're calling node which is an</p>
+
+<p>entity dot field value to get or sorry</p>
+
+<p>excuse me field file to get our file</p>
+
+<p>field we're calling entity to grab the</p>
+
+<p>file</p>
+
+<p>entity that's associated with our file</p>
+
+<p>because for example in trupo if you're</p>
+
+<p>using a standard Drupal file or image</p>
+
+<p>field</p>
+
+<p>those are entities or objects that are</p>
+
+<p>stored on the fields we slice we chain</p>
+
+<p>these sort of dog notations from node</p>
+
+<p>dot file field pile to the entity and on</p>
+
+<p>that entity we can get the URI and</p>
+
+<p>within there we wrap the value of the</p>
+
+<p>URI which allows us to translate it into</p>
+
+<p>a URL</p>
+
+<p>so with images it's essentially the same</p>
+
+<p>sort of story we call our image field</p>
+
+<p>we've grabbed the entity on there</p>
+
+<p>we grab the URI and we turn that into a</p>
+
+<p>value but with images it's a little bit</p>
+
+<p>different in that images have the image</p>
+
+<p>file which is just like a file but then</p>
+
+<p>there's also titles that you can</p>
+
+<p>associate with images</p>
+
+<p>there's also alt text for accessibility</p>
+
+<p>that you can use and if we want to do</p>
+
+<p>special things with this</p>
+
+<p>so in particular a really good use case</p>
+
+<p>for using this sort of approach is when</p>
+
+<p>you are working with lazy loaders</p>
+
+<p>sometimes they require different</p>
+
+<p>attributes within be HTML and in order</p>
+
+<p>to pass in what a wants we're gonna have</p>
+
+<p>to dig a bit deeper so we have our</p>
+
+<p>generic sort of image approach with</p>
+
+<p>turning my image into a doorbell they're</p>
+
+<p>grabbing like an all field here this is</p>
+
+<p>really particular with how we do it so</p>
+
+<p>you think that the image field and the</p>
+
+<p>alt tag or the title that's associated</p>
+
+<p>with it would be on the image itself</p>
+
+<p>that seems to be I mean that's what I</p>
+
+<p>thought for a long time so I finally</p>
+
+<p>discovered that the alt and the text</p>
+
+<p>associated with it is on the image field</p>
+
+<p>and not the image file so that's a clear</p>
+
+<p>distinction of how we would go dig</p>
+
+<p>deeper into the values that are</p>
+
+<p>available to us within an image field in</p>
+
+<p>order to grab content from there</p>
+
+<p>okay we're going to talk really a little</p>
+
+<p>bit about the without filter that tweak</p>
+
+<p>has available to us so in a lot of</p>
+
+<p>different templates if you were to look</p>
+
+<p>at the default implementations you would</p>
+
+<p>see that there's a content variable</p>
+
+<p>there and it doesn't usually have any</p>
+
+<p>sort of dot notation that you know links</p>
+
+<p>to fields or have anything associated</p>
+
+<p>with it usually to this content and for</p>
+
+<p>the most part that could be good if you</p>
+
+<p>just want to output a lot of different</p>
+
+<p>fields in how you configure them within</p>
+
+<p>Drupal site builders sort of</p>
+
+<p>configurations of the node or a</p>
+
+<p>paragraph or an entity type but we have</p>
+
+<p>some use cases where you want to include</p>
+
+<p>all the content except for one you want</p>
+
+<p>to separate one of those fields out now</p>
+
+<p>using the without filter within twig we</p>
+
+<p>can pass in the Machine name of a field</p>
+
+<p>to make sure that that field gets</p>
+
+<p>excluded from the render and so we can</p>
+
+<p>use that field name somewhere else so</p>
+
+<p>here we are just printing all of our</p>
+
+<p>content within our main div and outside</p>
+
+<p>of that in a sidebar we're gonna put in</p>
+
+<p>our field name so here we can start to</p>
+
+<p>put the pieces together of how we would</p>
+
+<p>separate out different pieces of content</p>
+
+<p>that are out put in our twig templates</p>
+
+<p>now there's a few use cases where we</p>
+
+<p>have these two different variables</p>
+
+<p>within a tweaked template that are a bit</p>
+
+<p>different than how you usually approach</p>
+
+<p>an entity type like a node or a taxonomy</p>
+
+<p>term or a paragraph for example here we</p>
+
+<p>have items and items is usually a field</p>
+
+<p>for example a list filled with text</p>
+
+<p>letters multiple items multiple</p>
+
+<p>different values associated with it now</p>
+
+<p>in this one in particular we're talking</p>
+
+<p>about a field that is a it could either</p>
+
+<p>be an integer list field you can either</p>
+
+<p>be a string on the collection so we're</p>
+
+<p>calling our field machine name whatever</p>
+
+<p>it's called Silver's that both field -</p>
+
+<p>lists based on that swing and we're</p>
+
+<p>calling our</p>
+
+<p>we're calling for loop on the items to</p>
+
+<p>make sure that we are iterating through</p>
+
+<p>each and every item and then on each</p>
+
+<p>item in and of itself there is content</p>
+
+<p>and content is attached to that specific</p>
+
+<p>field item to output each of those</p>
+
+<p>things now how is this valuable like</p>
+
+<p>this if you open up a field within</p>
+
+<p>Drupal just look at the default</p>
+
+<p>implementation you're looking exactly</p>
+
+<p>like this but if you wanted to do more</p>
+
+<p>with it let's say that you've had let's</p>
+
+<p>say that you wanted to loop through your</p>
+
+<p>items and apply different classes those</p>
+
+<p>things are available to us and it's</p>
+
+<p>outside of the scope of this talk in</p>
+
+<p>particular since there is a loop index</p>
+
+<p>within twig that we can go through and</p>
+
+<p>apply different things but within this</p>
+
+<p>context using debug functions you'll be</p>
+
+<p>able to find what's within the content</p>
+
+<p>variable to explore within their field</p>
+
+<p>specifically ROS works in almost the</p>
+
+<p>same sort of way so Buse is a common</p>
+
+<p>tool that we all use when building sets</p>
+
+<p>with Drupal and within the ROS object we</p>
+
+<p>have on grow and within there there's</p>
+
+<p>content now that content is usually</p>
+
+<p>defined by the sort of configurations</p>
+
+<p>that we have set up for our views</p>
+
+<p>whether we're calling in fields when we</p>
+
+<p>set up our views or if we're calling it</p>
+
+<p>out the alone to help it out different</p>
+
+<p>node types</p>
+
+<p>[Music]</p>
+
+<p>so digging deeper into the content</p>
+
+<p>variables is something that it took me a</p>
+
+<p>while to figure out and to understand</p>
+
+<p>that you know content isn't this like</p>
+
+<p>the content variable is available</p>
+
+<p>everywhere but each implementation is</p>
+
+<p>slightly different so you think debug</p>
+
+<p>functions will be really helpful in</p>
+
+<p>terms of finding out and they're</p>
+
+<p>standing exactly what you need to do to</p>
+
+<p>output the content that you want so</p>
+
+<p>let's put all of these together take a</p>
+
+<p>look at an example of a field called</p>
+
+<p>neighborhoods that just has some</p>
+
+<p>neighborhoods of Chicago Street the</p>
+
+<p>neighborhoods in Chicago so in our row</p>
+
+<p>we're going to exclude dining roads</p>
+
+<p>field because we want to do something</p>
+
+<p>specific to it and here this might seem</p>
+
+<p>super intimidating in terms of what's</p>
+
+<p>available within the content variable so</p>
+
+<p>if we were just to develop step through</p>
+
+<p>it we have Rose which is all the</p>
+
+<p>different pieces of content available to</p>
+
+<p>us within the view within the content of</p>
+
+<p>a specific room we have a view key that</p>
+
+<p>gives us access to a few different</p>
+
+<p>things so teaching in the style plug-in</p>
+
+<p>and pulling the render tokens</p>
+
+<p>[Music]</p>
+
+<p>let's start it let's start at the step</p>
+
+<p>tikka let's take a little bit of a step</p>
+
+<p>back in terms of what's up what all is</p>
+
+<p>going here with this view okay so</p>
+
+<p>so the content that we have available to</p>
+
+<p>us is a part of this view key and what</p>
+
+<p>we're going to be passing into it is</p>
+
+<p>going to be the tweed markup that that</p>
+
+<p>feel that then that views is going to be</p>
+
+<p>outputting so in the end we're going to</p>
+
+<p>be calling our field underscore</p>
+
+<p>neighborhoods as a variable as we see a</p>
+
+<p>bit at the very bottom before the end</p>
+
+<p>floor so this is within the same it's</p>
+
+<p>the same notation as if you were working</p>
+
+<p>directly within a twig template so you</p>
+
+<p>have to have the double curly braces on</p>
+
+<p>both sides it's a bit different because</p>
+
+<p>I mean with a lot of how we would work</p>
+
+<p>with these sort of things you'd think</p>
+
+<p>that you just pass in the name of the</p>
+
+<p>field in and of itself without the curly</p>
+
+<p>braces braces but that doesn't work</p>
+
+<p>since we're calling render tokens before</p>
+
+<p>that now the loop index just means that</p>
+
+<p>we dot index zero means what key what</p>
+
+<p>number of well you're outputting so it</p>
+
+<p>starts at zero one two three</p>
+
+<p>all it's doing is just making sure that</p>
+
+<p>Duty is iterating through each and every</p>
+
+<p>row available to us and as the stop</p>
+
+<p>plugin is what allows us to have access</p>
+
+<p>to this sort of content</p>
+
+<p>now there's a really handy contributed</p>
+
+<p>module so the way that we talked about</p>
+
+<p>everything so far is just if you</p>
+
+<p>download Drupal 8 install it out of the</p>
+
+<p>box you know work with some of the</p>
+
+<p>default things or or check out any of</p>
+
+<p>those sort of things that's how you'd</p>
+
+<p>approach it there's a contributed model</p>
+
+<p>Cox played on your score field down here</p>
+
+<p>and it gives us these very specific sort</p>
+
+<p>of filters where instead of having to</p>
+
+<p>dig through the content variable instead</p>
+
+<p>of having to dig through these sort</p>
+
+<p>things we can pass in filters on these</p>
+
+<p>fields in order to output the content</p>
+
+<p>that we want so we have field label</p>
+
+<p>which it's all very straightforward in</p>
+
+<p>terms of what it's doing it returns a</p>
+
+<p>label the value just returns your field</p>
+
+<p>value without any of the wrappers</p>
+
+<p>without any of the sort of dibs or</p>
+
+<p>things that are associated with them</p>
+
+<p>yeah field raw which is just like this</p>
+
+<p>straight raw value that's being stored</p>
+
+<p>within your database and then we have a</p>
+
+<p>special one called field targets entity</p>
+
+<p>now this returns your referenced object</p>
+
+<p>of a field</p>
+
+<p>now keep this target to t1 fine because</p>
+
+<p>it will come in useful in the next few</p>
+
+<p>slides so we're talking about our</p>
+
+<p>neighborhoods field once again using</p>
+
+<p>twig field value we can get the label</p>
+
+<p>and we can get that value and get the</p>
+
+<p>output that we desire so you can see the</p>
+
+<p>neighborhood's we save you we see that</p>
+
+<p>way Lincoln Park it's very straight</p>
+
+<p>forward in terms of doing that it's a</p>
+
+<p>matter of preference in terms of how</p>
+
+<p>view yourself if you're working by</p>
+
+<p>yourself which we want to want to</p>
+
+<p>approach this sort of thing I know that</p>
+
+<p>this can be contentious with development</p>
+
+<p>teams in terms of some teams might not</p>
+
+<p>want to use this contributing module or</p>
+
+<p>have that sort of dependency which</p>
+
+<p>they're sort of with the projects that</p>
+
+<p>they're on so it's a sort of discussion</p>
+
+<p>we need to have some people might feel</p>
+
+<p>more comfortable with Twitter using</p>
+
+<p>these sort of filters instead of the dot</p>
+
+<p>notation to get the values that we're</p>
+
+<p>looking for but I would Lobby in the</p>
+
+<p>sense that you could do both they're not</p>
+
+<p>mutually exclusive if you wanted to have</p>
+
+<p>both your code base might look a bit</p>
+
+<p>messy because you'd have filters and dot</p>
+
+<p>notation calling in field values all</p>
+
+<p>over the place what might not be the</p>
+
+<p>best approach to do so to combine them</p>
+
+<p>but the field target entity filter</p>
+
+<p>that's available to us allows us to do</p>
+
+<p>really cool things so this is why if I</p>
+
+<p>were a LA if I were working with a team</p>
+
+<p>and lobbying for this this contributed</p>
+
+<p>module this to me makes it way more</p>
+
+<p>accessible for someone who's less</p>
+
+<p>experienced would tweak to destruct to</p>
+
+<p>deal with some of the common issues when</p>
+
+<p>we get to more expert use cases like</p>
+
+<p>reference entities</p>
+
+<p>so here we have a piece of content a</p>
+
+<p>note that has an article reference and</p>
+
+<p>if we were to call that we would just</p>
+
+<p>get the whole article in of itself but</p>
+
+<p>let's say we just want a specific value</p>
+
+<p>we just want one field on that entity if</p>
+
+<p>we call in and use the field target</p>
+
+<p>entity filter that gives us access to</p>
+
+<p>all of the fields that are available on</p>
+
+<p>that entity in and of itself so if</p>
+
+<p>you're using nested entities with your</p>
+
+<p>nodes and your paragraphs</p>
+
+<p>this is a really great use case in order</p>
+
+<p>to control the sort of markup and to</p>
+
+<p>have easier access to some of the values</p>
+
+<p>within those entities without having to</p>
+
+<p>do anything with a preprocessor because</p>
+
+<p>another approach that this would be to</p>
+
+<p>you know create a custom module or have</p>
+
+<p>a hug step you know manipulates the</p>
+
+<p>reference entity loads it grabs a</p>
+
+<p>feeling pits it out there could be a lot</p>
+
+<p>more code to do what this does with this</p>
+
+<p>contributed module I'm enough in and of</p>
+
+<p>itself so I think it's a really cool and</p>
+
+<p>valuable useful tool if you are working</p>
+
+<p>with referenced entities</p>
+
+<p>some terms of addressing the issues with</p>
+
+<p>finding values these are the four basic</p>
+
+<p>steps in terms of how you would approach</p>
+
+<p>it in your own development importance</p>
+
+<p>so first always as with almost</p>
+
+<p>everything related to duple you have to</p>
+
+<p>make sure you clear your cache before</p>
+
+<p>you reload your page</p>
+
+<p>just make sure caches are cleared so</p>
+
+<p>that your memories clear the site loads</p>
+
+<p>the latest version next is using the</p>
+
+<p>Twitter debug tool and inspecting the</p>
+
+<p>elements and seeing that you have the</p>
+
+<p>correct template that what you're trying</p>
+
+<p>to do is within the same sort of naming</p>
+
+<p>conventions that Drupal is trying to use</p>
+
+<p>make sure that you have the right field</p>
+
+<p>the Machine name and the property if you</p>
+
+<p>know if you have typos if you if things</p>
+
+<p>are a bit off nothing will clear it</p>
+
+<p>finally we can use the VAR number call</p>
+
+<p>to debug variables in to respect</p>
+
+<p>elements that way so this next portions</p>
+
+<p>of this talk are just going to be</p>
+
+<p>talking mostly about how to address the</p>
+
+<p>do-more some issues that are a big</p>
+
+<p>headache in my own experience as I've</p>
+
+<p>worked with place so first is just</p>
+
+<p>avoiding PHP errors now when we</p>
+
+<p>encounter these sort of errors there's</p>
+
+<p>usually two main reasons why they're</p>
+
+<p>happening for the most part if you're</p>
+
+<p>just working with twig or you're working</p>
+
+<p>within the theme there's two primary</p>
+
+<p>places where things can go wrong the</p>
+
+<p>first place is within the preprocessor</p>
+
+<p>so this might be a common sort of site</p>
+
+<p>and you're working you're making active</p>
+
+<p>changes locally you're making and things</p>
+
+<p>seem to go wrong you get this unexpected</p>
+
+<p>error page please try again later which</p>
+
+<p>means like fix it so</p>
+
+<p>loading the page so pre-processing</p>
+
+<p>issues is the first place to look in</p>
+
+<p>terms of if there are errors on your</p>
+
+<p>site and you're just working a click</p>
+
+<p>check there first</p>
+
+<p>now configuration we can go in there and</p>
+
+<p>see what Arabic in there before I'm</p>
+
+<p>passing in an incorrect render key and</p>
+
+<p>it's causing problems in the ring so</p>
+
+<p>that's why we have that area you can you</p>
+
+<p>can find it you can dig a bit deeper and</p>
+
+<p>see exactly what's happening and I'm</p>
+
+<p>trying to run the needed at least you're</p>
+
+<p>not flying blind the second place to</p>
+
+<p>look if you're encountering there's a</p>
+
+<p>twig is just within twig itself it's</p>
+
+<p>usually pretty forgiving but if you have</p>
+
+<p>any sort of syntax errors then you're</p>
+
+<p>going to encounter some problems if</p>
+
+<p>you're using your filters incorrectly</p>
+
+<p>some filters within twig and the</p>
+
+<p>documentation only accept a certain</p>
+
+<p>number of parameters that you can pass</p>
+
+<p>them like field values or that sort of</p>
+
+<p>thing so if you're counting these are</p>
+
+<p>issues with twig those are the two</p>
+
+<p>places to look and we also can see that</p>
+
+<p>in our database logging we're here we</p>
+
+<p>have a syntax error because there's an</p>
+
+<p>extra curly brace outside of the context</p>
+
+<p>of what twig is trying to render so</p>
+
+<p>we're not using our filter correctly</p>
+
+<p>there so checklists for PHP errors first</p>
+
+<p>just make sure the clear cache is</p>
+
+<p>sometimes I could fix it you think</p>
+
+<p>everything else is okay second is to</p>
+
+<p>make sure you can check your admin /</p>
+
+<p>reports and recent blog messages going</p>
+
+<p>into the database longer to see the sort</p>
+
+<p>of error messaging that you see third</p>
+
+<p>determine whether is the pre-processing</p>
+
+<p>functions or the twig file itself that's</p>
+
+<p>causing you problems and then finally</p>
+
+<p>try to address that problematic line or</p>
+
+<p>the name of the file</p>
+
+<p>efficiently now if you go through all</p>
+
+<p>these steps and you're still having</p>
+
+<p>issues one great way that I'm sure we</p>
+
+<p>all have experience is just till I copy</p>
+
+<p>the air and paste into Google and like</p>
+
+<p>see what other people have done that's</p>
+
+<p>usually will give you enough tools to</p>
+
+<p>start to help find out the issues that</p>
+
+<p>you're encountering and seeing even if</p>
+
+<p>their novel there's something that no</p>
+
+<p>one's experienced or if it's something</p>
+
+<p>that a lot of people have then you can</p>
+
+<p>get there that way in terms of all the</p>
+
+<p>errors that you encountered like white</p>
+
+<p>screen of definitely developing this</p>
+
+<p>usually it's just that big it can be a</p>
+
+<p>big time sink especially if you're only</p>
+
+<p>working with twig or the theme and</p>
+
+<p>you're not doing anything sort of</p>
+
+<p>intensive on the back end and you come</p>
+
+<p>into the bears it can be a huge sort of</p>
+
+<p>headache and hassle and early on with</p>
+
+<p>what's when I first started like I would</p>
+
+<p>have come to these issues and I wouldn't</p>
+
+<p>know exactly how to address them now a</p>
+
+<p>big part of what we encounter these</p>
+
+<p>issues is not necessarily Twitter itself</p>
+
+<p>but because of the tools that we're</p>
+
+<p>using in conjunction with Twitter so</p>
+
+<p>this is probably something that you've</p>
+
+<p>seen before I mean I see it all the time</p>
+
+<p>it's really frustrating where you try to</p>
+
+<p>look your side you get a fatal error it</p>
+
+<p>says your membrane usage is being seated</p>
+
+<p>now there's just a few reasons why this</p>
+
+<p>happens in the first place but the</p>
+
+<p>biggest sort of takeaway is just that</p>
+
+<p>Drupal 8 is object oriented and there's</p>
+
+<p>a lot of arrays and there's a lot of</p>
+
+<p>objects that are being loaded so when</p>
+
+<p>you try to call a debug function on on</p>
+
+<p>certain variables within your files the</p>
+
+<p>sort of memory usage that is trying to</p>
+
+<p>help it's not just outputting the field</p>
+
+<p>like you'd expect but there's a lot of</p>
+
+<p>metadata there's</p>
+
+<p>different things within an object that</p>
+
+<p>causes your memory to overflow and so</p>
+
+<p>that's essentially why this is happening</p>
+
+<p>is in this specific example we're</p>
+
+<p>calling Kent now I I used to look in on</p>
+
+<p>the big fan of Twix bar Delbert just</p>
+
+<p>because Kent seems to consistently</p>
+
+<p>giving his problems no matter what sort</p>
+
+<p>of project I'm on or redundant</p>
+
+<p>environment</p>
+
+<p>I work in work within so the one is just</p>
+
+<p>to maybe not use rely on kids as much</p>
+
+<p>and use some of the other tools</p>
+
+<p>available to us but first let's talk</p>
+
+<p>about the dump function that's available</p>
+
+<p>out of the box without any contributed</p>
+
+<p>modules it's a life screen of death now</p>
+
+<p>this is not mine this is credit to</p>
+
+<p>morning in terms of addressing and the</p>
+
+<p>issue so the carry issue you're calling</p>
+
+<p>a debug function your files your site</p>
+
+<p>isn't working you can't even work with</p>
+
+<p>or see anything being debunked on the</p>
+
+<p>page now within every single tweak file</p>
+
+<p>we have this special keyword variable</p>
+
+<p>called underscore context now underscore</p>
+
+<p>context is just an easier way of when</p>
+
+<p>you call the dumb function without</p>
+
+<p>passing anything in it's gonna be</p>
+
+<p>calling underscore context each and</p>
+
+<p>every time now that we have that you</p>
+
+<p>know passing that underscore context</p>
+
+<p>into a loop allows us to do some cool</p>
+
+<p>things so here all that we're doing here</p>
+
+<p>in this code is going into that context</p>
+
+<p>so all of the things being a little bit</p>
+
+<p>lightweight on that file and getting the</p>
+
+<p>key and getting the values so you're</p>
+
+<p>just going through the array and seeing</p>
+
+<p>each and every item and we're dumping</p>
+
+<p>out the value associated with the key so</p>
+
+<p>that we can see the sort of values that</p>
+
+<p>we have available to us the sort of keys</p>
+
+<p>that are causing us problems</p>
+
+<p>this this is a great tool to put in if</p>
+
+<p>you're encountering the wide screen of</p>
+
+<p>death sort of thing and you're just like</p>
+
+<p>you just want to find a value you just</p>
+
+<p>want to find it</p>
+
+<p>and put it somewhere and you can't seem</p>
+
+<p>to do that video function this will help</p>
+
+<p>you get you on your way to doing that</p>
+
+<p>now let's talk about hints in particular</p>
+
+<p>there's some things that we always have</p>
+
+<p>to remember and it's to make sure that</p>
+
+<p>you pass in a specific variable like if</p>
+
+<p>you don't pass in anything it's going to</p>
+
+<p>kind of load everything and it's usually</p>
+
+<p>I mean there's been issues in the extra</p>
+
+<p>queue to address this but sometimes you</p>
+
+<p>encounter the issue of the memory gets</p>
+
+<p>starts overflow so if you pass in a</p>
+
+<p>specific variable it's going to help you</p>
+
+<p>to load in just what you want into the</p>
+
+<p>debug functions for example of your</p>
+
+<p>trendy bug trying to debug the content</p>
+
+<p>very well in of itself and not the</p>
+
+<p>classes not the metadata the other</p>
+
+<p>things associated with the template you</p>
+
+<p>just make sure you pass that so don't</p>
+
+<p>don't try to just call it can't with</p>
+
+<p>nothing in it that will help you</p>
+
+<p>overcome this sort of issue with the</p>
+
+<p>right screen of death and finally</p>
+
+<p>credits th pool in terms of managing the</p>
+
+<p>levels that can't pass so put in a pre</p>
+
+<p>process function so this would be within</p>
+
+<p>either a module file or a theme file you</p>
+
+<p>can paste in just can't require to make</p>
+
+<p>sure you can't class available to you</p>
+
+<p>and then set the max levels so K by</p>
+
+<p>itself is just gonna try to load in</p>
+
+<p>every single item in metadata associated</p>
+
+<p>with that so like you have a note is</p>
+
+<p>gonna try to so load in your your fields</p>
+
+<p>it's going to try to load in any sort of</p>
+
+<p>entity references and feels associated</p>
+
+<p>that's what you can use there's a lot of</p>
+
+<p>different levels that Kent is trying to</p>
+
+<p>do for you and if you have unlimited</p>
+
+<p>memory you'd be able to see it all but</p>
+
+<p>in our own environments usually we're</p>
+
+<p>limited</p>
+
+<p>the memory that we have so making sure</p>
+
+<p>that our max levels is set gives us</p>
+
+<p>enough leeway to dig a bit deeper into</p>
+
+<p>the content variables and what we have</p>
+
+<p>available to us so that we can still</p>
+
+<p>work with the can still kind of debug</p>
+
+<p>and go through the process without you</p>
+
+<p>know not being able to access our site</p>
+
+<p>at all now a few other tools that we</p>
+
+<p>have available to us for a white screen</p>
+
+<p>of death is limiting search like if you</p>
+
+<p>have a modern computer and you're</p>
+
+<p>working locally you can increase your</p>
+
+<p>memory usage by alot I wouldn't</p>
+
+<p>necessarily recommend unless you get</p>
+
+<p>super frustrated which I found super</p>
+
+<p>frustrated and said like the max like 16</p>
+
+<p>games I kind of like so so if you want</p>
+
+<p>him to feel like memory usage and</p>
+
+<p>sometimes that can help you can do that</p>
+
+<p>in your settings that PHP file there's</p>
+
+<p>other ways to do this is a really sort</p>
+
+<p>of good straightforward way to do so and</p>
+
+<p>finally if we if you've tried all of</p>
+
+<p>these things and you're still having</p>
+
+<p>errors in your settings that PHP you can</p>
+
+<p>turn off all the errors to see all of</p>
+
+<p>them on your page to see like what's</p>
+
+<p>happening is it is it something</p>
+
+<p>different if you're working with the</p>
+
+<p>team that someone else makes something</p>
+
+<p>that you can go to them for and find</p>
+
+<p>assistance for so our checklist for a</p>
+
+<p>white screen of death is the first one</p>
+
+<p>annoys make sure we clear all that</p>
+
+<p>caches finally next is to resolve the</p>
+
+<p>scope of the debug function so passing</p>
+
+<p>something specific into your debugger so</p>
+
+<p>that it's not trying to load the whole</p>
+
+<p>tree of objects third the opening and</p>
+
+<p>closing tags of your twig or pre process</p>
+
+<p>functions or files make sure that</p>
+
+<p>they're there sometimes you're going to</p>
+
+<p>accidentally delete them and you swear</p>
+
+<p>that they're there but they're not</p>
+
+<p>it's a twat another to increase your</p>
+
+<p>memory usage temporarily and finally</p>
+
+<p>just display all the Arabs that are</p>
+
+<p>there so we're going to talk a little</p>
+
+<p>bit about where to go when all of these</p>
+
+<p>things within the checklist don't seem</p>
+
+<p>to help when you've tried using</p>
+
+<p>debuggers and you still just can't seem</p>
+
+<p>to find the values or fix the issues</p>
+
+<p>when you're working with twig-like where</p>
+
+<p>do we go for this sort of advanced help</p>
+
+<p>now first someone to describe like I</p>
+
+<p>would say advanced help in context of</p>
+
+<p>this talk is so first is your sight</p>
+
+<p>stops working completely like you you</p>
+
+<p>try to make a change or you pull down a</p>
+
+<p>change will give or from whatever</p>
+
+<p>version control that you're using and</p>
+
+<p>your slide just doesn't seem to work at</p>
+
+<p>all by any means so it's completely</p>
+
+<p>unresponsive you get a wide screen of s</p>
+
+<p>you try to go to you try to log in and</p>
+
+<p>go to the admin page look at the</p>
+
+<p>database log and it's blank to you check</p>
+
+<p>your database and David's logging</p>
+
+<p>there's nothing near there that site is</p>
+
+<p>like dead like it's just completely dead</p>
+
+<p>that would be one of the definitions of</p>
+
+<p>you know seek out an additional the</p>
+
+<p>second is that the log paid so database</p>
+
+<p>logging seems to be disabled and nothing</p>
+
+<p>comes through and finally your memory</p>
+
+<p>usage is out of control these are all</p>
+
+<p>issues that with the sort of tools that</p>
+
+<p>we have available to us in terms of</p>
+
+<p>managing pins or managing our dumb</p>
+
+<p>functions or using manipulating</p>
+
+<p>configuration files with power our</p>
+
+<p>development environment is structured if</p>
+
+<p>all of those tools don't seem to work</p>
+
+<p>that's the time to find some advanced</p>
+
+<p>software to find see if you can find</p>
+
+<p>some</p>
+
+<p>that can help you I know there's some</p>
+
+<p>resources to find that under itself yeah</p>
+
+<p>these are some great resources that I</p>
+
+<p>personally abuse and encounter in terms</p>
+
+<p>of resolving some very specific use case</p>
+
+<p>issues with Twigg</p>
+
+<p>so let's go and look at a few of them</p>
+
+<p>the first one is Drupal - a contentious</p>
+
+<p>slack it's okay not part of your slack</p>
+
+<p>channel make sure you sign up and join</p>
+
+<p>there's a lot of very intelligent</p>
+
+<p>incredibly intelligent and smart and</p>
+
+<p>help with people there that that if you</p>
+
+<p>have a problem that seems to be novel</p>
+
+<p>something that you can't find in you</p>
+
+<p>google it look for their the IRC channel</p>
+
+<p>is another one that's there</p>
+
+<p>Drupal twig you can find it you know</p>
+
+<p>people talk about great things about it</p>
+
+<p>in with the frustrating if you look at</p>
+
+<p>the hash tag and if I like Stack</p>
+
+<p>Overflow there's another place to find</p>
+
+<p>and seek out that sort of advanced</p>
+
+<p>assistance with twig now if you really</p>
+
+<p>encounter an issue it's like that it</p>
+
+<p>seems to not be anywhere on the web the</p>
+
+<p>best place to check is on the github for</p>
+
+<p>the kwid project in and of itself</p>
+
+<p>there's a lot of different contributors</p>
+
+<p>from Drupal from craft from a lot of</p>
+
+<p>different PHP CMS's that are active and</p>
+
+<p>working on Twitter to make it better and</p>
+
+<p>address these sort of issues so if you</p>
+
+<p>encounter something that seems to be</p>
+
+<p>like oh I don't know anyone's ever seen</p>
+
+<p>this you know make an issue in the issue</p>
+
+<p>queue or search it to see if it's there</p>
+
+<p>except it might be there now finally</p>
+
+<p>with twig there are some really great</p>
+
+<p>ways in terms of leveling off so like</p>
+
+<p>taking our twig skills to the next level</p>
+
+<p>and you know these are just like a few</p>
+
+<p>plugs of tools and things that I found</p>
+
+<p>super useful so the first one if</p>
+
+<p>anyone's going to Drupal con</p>
+
+<p>North America</p>
+
+<p>there's Athena Jubilate training you</p>
+
+<p>know this has been sort of consistent in</p>
+
+<p>terms of all the triple Khan's by the</p>
+
+<p>folks at triple as me last year was sold</p>
+
+<p>out by the time it was man camp I think</p>
+
+<p>right now there's still some slots so if</p>
+
+<p>you're interested in like</p>
+
+<p>learning more about theming Drupal 8 and</p>
+
+<p>writing the twig and and JavaScript and</p>
+
+<p>halt those things I recommend checking</p>
+
+<p>their Drupal ëismí is another really</p>
+
+<p>great resource in terms of learning more</p>
+
+<p>about how Drupal works but also twig in</p>
+
+<p>particular they have some really good</p>
+
+<p>content to dig a bit deeper into some</p>
+
+<p>twig ins in advanced usage came to</p>
+
+<p>university Ryan de Nino there they're</p>
+
+<p>really super folks that have some great</p>
+
+<p>tools not just with tweak but it was</p>
+
+<p>symphony in Drupal 8 a little plug for</p>
+
+<p>chromatic HQ company I work for we have</p>
+
+<p>a blog that we spend a lot of time</p>
+
+<p>curating and and working with this sort</p>
+
+<p>of writing about debriefing about the</p>
+
+<p>issues that we encounter in ourselves</p>
+
+<p>and we're working with twig so be sure</p>
+
+<p>to check it out and subscribe to our</p>
+
+<p>newsletter finally a really good way to</p>
+
+<p>play the best way to level up your</p>
+
+<p>skills and twig or anything is to go to</p>
+
+<p>a sprint so we have a sprint in this</p>
+
+<p>room tomorrow on Sunday anyone that</p>
+
+<p>wants contributor was to check it out I</p>
+
+<p>would encourage everyone to join I know</p>
+
+<p>the first time that I went to a sprint I</p>
+
+<p>was like Brandi to Drupal and I felt</p>
+
+<p>like in Austria like I wouldn't have</p>
+
+<p>been there but I would really recommend</p>
+
+<p>anyone that feels that way to just give</p>
+
+<p>it a try because people here are so kind</p>
+
+<p>in terms of getting people involved in</p>
+
+<p>the community going to issue queue</p>
+
+<p>looking at different things and early on</p>
+
+<p>in my own career I've learned so much by</p>
+
+<p>finding mentors and finding people to</p>
+
+<p>help me in a lot of network</p>
+
+<p>camps and conferences so big shout out</p>
+
+<p>to the spreads that are happening on</p>
+
+<p>Sunday and also throughout the</p>
+
+<p>conference so we have a bit of time for</p>
+
+<p>some questions and answers at the end so</p>
+
+<p>thank you all for being we have the URL</p>
+
+<p>for the slides again yes</p>
+
+<p>I notice it's a it's not a great color</p>
+
+<p>there</p>
+
+<p>so this light Tyler are out there I</p>
+
+<p>notice that there are a couple of</p>
+
+<p>changes I've been making through those</p>
+
+<p>slides the link isn't as to explain the</p>
+
+<p>link will stay the same the decided be</p>
+
+<p>updated I noticed like you wanted to</p>
+
+<p>have was there yes hey what was the</p>
+
+<p>remodel or tweak filters that were</p>
+
+<p>special values label reference entity</p>
+
+<p>and why did I have to come here talk to</p>
+
+<p>my buddy work within the community at</p>
+
+<p>Whitfield value its I mean I only</p>
+
+<p>discovered it in the past like earlier</p>
+
+<p>this year so that good excuse this been</p>
+
+<p>super good go throw them so it's right</p>
+
+<p>here</p>
+
+<p>living yes we used a loop index 0 and a</p>
+
+<p>loop index later opposite difference ok</p>
+
+<p>so this time this so looped out</p>
+
+<p>so with that index 0</p>
+
+<p>index zero is just the counter above the</p>
+
+<p>loop again so that's the throw that</p>
+
+<p>you're on yes</p>
+
+<p>sloop dot index</p>
+
+<p>so here we're we're wanting to find the</p>
+
+<p>specific value equal to two so we're not</p>
+
+<p>going through each and every one in in</p>
+
+<p>the array so the first one we start at</p>
+
+<p>zero goes all yes that's where all they</p>
+
+<p>match that that value sir</p>
+
+<p>yeah this moment yeah we're calling it</p>
+
+<p>just to match that one why are you using</p>
+
+<p>index versus index zero oh so he put it</p>
+
+<p>this is a this is a good question that's</p>
+
+<p>a really good question so I've only used</p>
+
+<p>this in and so for the recording</p>
+
+<p>everything this the question was why</p>
+
+<p>loop index on this slide in particular</p>
+
+<p>and not loop dot index zero equals to</p>
+
+<p>and from focus worth this this is I just</p>
+
+<p>like using a wholesale from more in just</p>
+
+<p>like copy pasted and always work so I</p>
+
+<p>never really gotten into the difference</p>
+
+<p>of why but I know that this works so I</p>
+
+<p>just use this sorry</p>
+
+<p>I think the index zero is just start to</p>
+
+<p>zero in the next time okay so if the</p>
+
+<p>index starts at index zero time to zero</p>
+
+<p>index starts at 1</p>
+
+<p>so we limit our things here and this</p>
+
+<p>life too - what are you - reuse of the</p>
+
+<p>twig week term as well sounds like the</p>
+
+<p>first week before that one yeah so the</p>
+
+<p>question is why I didn't talk about to a</p>
+
+<p>Tweaker like a difference between a</p>
+
+<p>computer module and twig field value I</p>
+
+<p>think that you can create me from long</p>
+
+<p>the tweak tweak does a bit more than the</p>
+
+<p>field value there's a bit more tools</p>
+
+<p>available to you to use that I'm not</p>
+
+<p>gonna be a fan of the field value just</p>
+
+<p>because of the enemy reference sort of</p>
+
+<p>the easiness of that I haven't used</p>
+
+<p>tweet tweet any references in that</p>
+
+<p>context so I'm not sure it's as straight</p>
+
+<p>forward and telling each other chain</p>
+
+<p>values there but to previous is like an</p>
+
+<p>interesting module yes haven't had as</p>
+
+<p>much time using it as the others</p>
+
+<p>that's all the questions here Chris yeah</p>
+
+<p>so in through seven I use our function a</p>
+
+<p>lot one thing that I liked about that</p>
+
+<p>one was that we run through and find the</p>
+
+<p>variable that you're looking for able to</p>
+
+<p>get a relative path pretty easily is</p>
+
+<p>there any way to get relative paths with</p>
+
+<p>either Barca bargain for a dumper or</p>
+
+<p>Kanto images of the ones yeah so for</p>
+
+<p>recording the question is the relative</p>
+
+<p>back using KP r is pretty accessible and</p>
+
+<p>is it as accessible with don't remember</p>
+
+<p>first just to clarify the direct path of</p>
+
+<p>what I introduced with a particular</p>
+
+<p>variable so I in kpr it spits out all</p>
+
+<p>these things but when you found what</p>
+
+<p>you're looking for you know will click</p>
+
+<p>it and give you whether it's objects or</p>
+
+<p>rays but the how to get to this</p>
+
+<p>particular value with Canton these other</p>
+
+<p>ones these newer ones</p>
+
+<p>seems like you have to draw your own map</p>
+
+<p>all the way to the valley that you're</p>
+
+<p>looking for so if it's nested six levels</p>
+
+<p>deep you'd have to keep track of which</p>
+
+<p>array objects and this it's known that</p>
+
+<p>so I would say dump is not good at</p>
+
+<p>helping you</p>
+
+<p>in the self kenta's a little better of</p>
+
+<p>our dumper with the tool that we have</p>
+
+<p>here it's a bit of both world so you can</p>
+
+<p>try to click through and and create that</p>
+
+<p>sort of pathway but it doesn't always</p>
+
+<p>work I think that an easier way of doing</p>
+
+<p>that is like combining the debug</p>
+
+<p>functions with some of the standard the</p>
+
+<p>Drupal calls sort so in this case we're</p>
+
+<p>talking one more specific with that like</p>
+
+<p>a preprocessor and then there like a</p>
+
+<p>quick debugger in and of itself so like</p>
+
+<p>combining an approach of first always</p>
+
+<p>try to see if you can you know retrace</p>
+
+<p>it using the same sort of methodology</p>
+
+<p>we've had with kpr but if that doesn't</p>
+
+<p>work usually there's some things we can</p>
+
+<p>do to at least the object that we find</p>
+
+<p>in there to find a specific value or to</p>
+
+<p>find something using it</p>
+
+<p>or something like that yes</p>
+
+<p>sort of a hard time finding the exact</p>
+
+<p>value</p>
+
+<p>yeah usually the first approach it just</p>
+
+<p>to make sure you'd calm your field names</p>
+
+<p>like feel like if you have and that</p>
+
+<p>Islamic state sometimes you'll have</p>
+
+<p>access to the configuration to see the</p>
+
+<p>Machine name of fields but if you do</p>
+
+<p>have that access to call that and just</p>
+
+<p>call it value to see like its outputs</p>
+
+<p>were to pass that into the book function</p>
+
+<p>if not you can go deeper or the try to</p>
+
+<p>open up the stack of in ones calling the</p>
+
+<p>content variable to see what's available</p>
+
+<p>to you oh sorry for the recording the</p>
+
+<p>question was like how you it's not</p>
+
+<p>always clear like how to get specific</p>
+
+<p>value for people you know that stuff</p>
+
+<p>like with this presentation in</p>
+
+<p>particular with the URL that's like the</p>
+
+<p>line that's probably that odd man out in</p>
+
+<p>terms of field values and then lists</p>
+
+<p>select lists fields those ones usually</p>
+
+<p>are their difference in terms of time of</p>
+
+<p>course of the most at time to be your</p>
+
+<p>like your entity or a content your</p>
+
+<p>people name value to fine</p>
+
+<p>yes of course beginning you had</p>
+
+<p>[Music]</p>
+
+<p>placed</p>
+
+<p>I'm assuming that bottle trade where I</p>
+
+<p>was there was dissipation between</p>
+
+<p>yes that's a really good question so the</p>
+
+<p>question is in this talk we have PI R</p>
+
+<p>squared u RL as a twig function and that</p>
+
+<p>is a dribble specific functions is that</p>
+
+<p>there's a handful of doable specific</p>
+
+<p>functions an easy way to do is you just</p>
+
+<p>looked at the twig documentation online</p>
+
+<p>I think that there's it's less than it's</p>
+
+<p>like a handful of twig functions are</p>
+
+<p>very specific to Drupal compile URLs is</p>
+
+<p>just one of them this is just a twig</p>
+
+<p>documentation bridgeable will have those</p>
+
+<p>filters and functions available to</p>
+
+<p>yes something had interest like the</p>
+
+<p>encounter of problem where I had to</p>
+
+<p>tweak debugger and I was trying to get a</p>
+
+<p>get the rather value for this boolean</p>
+
+<p>but when I output the value to an actual</p>
+
+<p>like tweak debugging text will be in</p>
+
+<p>there as well so I had to like convert</p>
+
+<p>it to a string and then I strip it</p>
+
+<p>for balls that get angry too late but</p>
+
+<p>move that from the dump when you're</p>
+
+<p>getting can I get just true or false</p>
+
+<p>value</p>
+
+<p>yes so question is when we've looked</p>
+
+<p>like boolean fields sometimes when we</p>
+
+<p>try to debug them or try to you know</p>
+
+<p>assign a variable to true or false</p>
+
+<p>nature there are always usually</p>
+
+<p>populated right like when you try to</p>
+
+<p>check for it these things usually within</p>
+
+<p>there yeah yeah that's a that's been a</p>
+
+<p>huge frustration personally with like my</p>
+
+<p>own brute-force approach is to</p>
+
+<p>pre-process it do custom approach in</p>
+
+<p>terms of like creating a custom variable</p>
+
+<p>and then using that to determine whether</p>
+
+<p>there's true or false true there's</p>
+
+<p>values like the consistency of using</p>
+
+<p>some of these things like there's</p>
+
+<p>metadata or other things associated with</p>
+
+<p>those content things that are like you</p>
+
+<p>speak you speak specific and like</p>
+
+<p>somewhat frustrating to dig a bit deeper</p>
+
+<p>into but I would just try to pre-process</p>
+
+<p>it instead of trying to handle it within</p>
+
+<p>twig and I'm using the law or using all</p>
+
+<p>these different filters to go through it</p>
+
+<p>but yeah</p></div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-b22c1b648a4d6582d494329fe13ebec03583955e7176ea4af96d39591bc2f39c">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/67">https://mid.camp/67</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+  <section class="map-banner">
+      <div class="views-element-container block block-views block-views-blockevent-venue-block-1" id="block-hatter-views-block-event-venue-block-1">
+  
+    
+      <div><div class="container view view-event-venue view-id-event_venue view-display-id-block_1 js-view-dom-id-ab163ae22c94983badb5cfdd9d3dfaeefc438e382dd630874eb93031b77dc8e0">
+  
+    
+      
+      <div class="view-content">
+          <div class="views-row">
+
+
+<div class="map-overlay">
+  <span class="map__label">Location</span>
+  <h2 class="map__title"><span class="field field--name-title field--type-string field--label-hidden">DePaul University - Lincoln Park Student Center</span>
+</h2>
+  
+            <div class="field field--name-field-address field--type-address field--label-hidden field__item"><p class="map__address" translate="no">
+          2250 N Sheffield Ave. <br>
+            Chicago, IL 60614<br>
+  </p>
+</div>
+      
+  <a href="../venue/depaul-university-lincoln-park-student-center.html" class="cta-link--yellow">Learn more  <span class="cta-arrow"></span></a>
+</div>
+<div id='map' class="map"></div>
+</div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-5d178dc0686fb970abc0bfad6ab92a6ed67b0f3a9b90257dbcc53fa3b0967cd6">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/platformsh.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-02/platform.png" width="400" height="79" alt="Platform.sh" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/pantheon.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-11/pantheon.png" width="500" height="157" alt="Pantheon" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/acquia.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-02/Acquia_no_tagline.png" width="450" height="94" alt="Acquia" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#f0999e969fb09d999493919d80de9f8297"><span class="__cf_email__" data-cfemail="a3cacdc5cce3cecac7c0c2ced38dccd1c4">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/67","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_llBcjrkrgAu2wT1DR7VGL_iP6geJyiTnF_8O5ZD57VI.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJxLz89Pz0mNT8xLzKksyUwu1k9HE9DJSCwpSS3ST8_JT0rM0c2CC-QmFiTlVwAAPmAZQA"></script>
+<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.js"></script>
+<script src="../../sites/default/files/js/js_pODGOpSPRR3Y_Zt-7Fy-5B_pNv18oFAWhyhwUPCQZu4.js%3Fscope=footer&amp;delta=2&amp;language=en&amp;theme=hatter&amp;include=eJxLz89Pz0mNT8xLzKksyUwu1k9HE9DJSCwpSS3ST8_JT0rM0c2CC-QmFiTlVwAAPmAZQA"></script>
+
+  </body>
+</html>

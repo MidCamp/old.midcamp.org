@@ -1,0 +1,896 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="Let&#039;s &quot;get off the island&quot; and look at Drupal security from the point of view of an outsider. The OWASP Top Ten is an industry standard list of the most common vulnerabilities that can affect web sites. This session will start with an overview of the Top Ten, and then take a more detailed look at a few of these vulnerabilities. We will review some actual Drupal security advisories:" />
+<link rel="canonical" href="security-drupal-what-can-go-wrong.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Security in Drupal: what can go wrong? | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Security in Drupal: what can go wrong? | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_gt5LiAM1qLGUH5e845uOb7R_lJ9dUwTXmnhGDR2yY20.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OhDAIhC9U2yMZakdtAmJKV9c9_Tb-PPkCAx8ZZmAyO0IkgxsuLTCjCfbMi6bGtKCpIsT5BzdTrShhYo3E3WD2bITWqF9nh1XIZbvlBO0hEakfMziFAlt1sbyhO2E7wW7hrF40fRh.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_mK2of_t7UFymkfbTHeA-kHdMPWzqc3DZQCYtX-tC0BA.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OhDAIhC9U2yMZakdtAmJKV9c9_Tb-PPkCAx8ZZmAyO0IkgxsuLTCjCfbMi6bGtKCpIsT5BzdTrShhYo3E3WD2bITWqF9nh1XIZbvlBO0hEakfMziFAlt1sbyhO2E7wW7hrF40fRh.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OhDAIhC9U2yMZakdtAmJKV9c9_Tb-PPkCAx8ZZmAyO0IkgxsuLTCjCfbMi6bGtKCpIsT5BzdTrShhYo3E3WD2bITWqF9nh1XIZbvlBO0hEakfMziFAlt1sbyhO2E7wW7hrF40fRh.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OhDAIhC9U2yMZakdtAmJKV9c9_Tb-PPkCAx8ZZmAyO0IkgxsuLTCjCfbMi6bGtKCpIsT5BzdTrShhYo3E3WD2bITWqF9nh1XIZbvlBO0hEakfMziFAlt1sbyhO2E7wW7hrF40fRh.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+<link rel="stylesheet" media="all" href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.css" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="security-drupal-what-can-go-wrong.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-midcamp2023navigation-menu" id="block-midcamp2023navigation" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-midcamp2023navigation-menu">MidCamp 2023 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" data-drupal-link-system-path="node/6857">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--by-the-numbers">
+        <a href="../../2020/about/by-the-numbers.html" data-drupal-link-system-path="node/6252">By the Numbers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--venue">
+        <a href="../../about/venue.html" title="Venue" data-drupal-link-system-path="node/7048">Venue</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../speaker-resources.html" data-drupal-link-system-path="node/345">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--health--safety">
+        <a href="../health-safety.html" data-drupal-link-system-path="node/6973">Health &amp; Safety</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../about/lunch-options.html" data-drupal-link-system-path="node/6970">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--volunteer-opportunities">
+        <a href="../article/volunteer-help-midcamp.html" data-drupal-link-system-path="node/6975">Volunteer Opportunities</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" data-drupal-link-system-path="2023/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--travel">
+        <a href="../about/travel.html" data-drupal-link-system-path="node/6865">Travel</a>
+            </li>
+          <li class="primary-nav__sublist-item item--accommodations">
+        <a href="../about/accommodations.html" data-drupal-link-system-path="node/6948">Accommodations</a>
+            </li>
+          <li class="primary-nav__sublist-item item--registration">
+        <a href="../register.html" data-drupal-link-system-path="node/6977">Registration</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" data-drupal-link-system-path="node/6860">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--sponsor">
+        <a href="../sponsor-midcamp.html" data-drupal-link-system-path="node/6858">Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" data-drupal-link-system-path="node/6859">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--hybrid-sessions">
+        <a href="../schedule/hybrid.html" data-drupal-link-system-path="node/7053">Hybrid Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-wed">
+        <a href="../schedule/wednesday.html" data-drupal-link-system-path="2023/schedule/wednesday">Sessions (Wed)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-thu">
+        <a href="../schedule/thursday.html" data-drupal-link-system-path="2023/schedule/thursday">Sessions (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--birds-of-a-feather-bofs">
+        <a href="../schedule/bofs.html" data-drupal-link-system-path="node/7054">Birds of a Feather (BoFs)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--contribution-day-fri">
+        <a href="../schedule/friday.html" data-drupal-link-system-path="2023/schedule/friday">Contribution Day (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--topic-tracks">
+        <a href="../../topic-tracks.html" data-drupal-link-system-path="node/10">Topic Tracks</a>
+            </li>
+          <li class="primary-nav__sublist-item item--all-sessions">
+        <a href="../schedule/sessions.html" data-drupal-link-system-path="2023/schedule/sessions">All Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--session-submission">
+        <a href="../submit-session.html" data-drupal-link-system-path="node/14">Session Submission</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2023/news">News</a>
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../../jobs.html" data-drupal-link-system-path="jobs">Jobs</a>
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2023.html" hreflang="en">MidCamp 2023</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-midcamp2023schedulenav" class="block block-block-content block-block-contente066b47a-a80d-432a-8edd-6c60b28b7c95">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><div class="schedule__nav">
+<p><a href="../schedule/hybrid.html">Hybrid</a>&nbsp;|&nbsp;<a href="../schedule/wednesday.html">Wednesday</a> | <a href="../schedule/thursday.html">Thursday</a> | <a href="../schedule/friday.html">Friday</a></p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Security in Drupal: what can go wrong?</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="6941" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2023-04-27T14:15:00Z" class="datetime">Thursday, 9:15 am CDT</time>
+ - <time datetime="2023-04-27T15:15:00Z" class="datetime">Thursday, 10:15 am CDT</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-83" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-name field--type-string field--label-hidden field__item">Room 324</div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>Let's "get off the island" and look at Drupal security from the point of view of an outsider.</p>
+
+<p>The OWASP Top Ten is an industry standard list of the most common vulnerabilities that can affect web sites. This session will start with an overview of the Top Ten, and then take a more detailed look at a few of these vulnerabilities. We will review some actual Drupal security advisories:</p>
+
+<ul>
+	<li>What the vulnerability looks like</li>
+	<li>How the Drupal security team communicates the problem</li>
+	<li>The code that was updated to fix the problem</li>
+</ul>
+
+<p>Only a few of the slides fall under the last bullet point. You do not need to be a developer to appreciate the rest.</p>
+
+<p>The audience for security is "all of the above", or it should be. Owners care if their sites are hacked, or if information is stolen. Builders and administrators need to know and follow best practices. Developers and project managers have to think about what can go wrong.</p>
+
+<p>This session will help teach you about good "web hygiene" and what you can do to make your site more secure. It will also help you recognize when you need to rely on an expert.</p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/wASajhABcKs?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Benji Fisher</h4>
+
+      Web Platform Developer
+
+
+          @
+                <a href="../../taxonomy/term/515.html" hreflang="en">Harvard University/Harvard Web Publishing</a>
+
+
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p>I have been working with Drupal since 2012, and I have contributed to open source software for longer than that. I am an active member of the Drupal community:</p>
+
+<ul>
+	<li>member of the Drupal security team</li>
+	<li>co-maintainer of the migration subsystem in Drupal core (Migrate API)</li>
+	<li>member of the Drupal usability team</li>
+</ul>
+
+<p>I choose to work with Drupal, and other open-source software, because I hate the idea of duplicated effort. When I solve a problem, I want to share my solution so that no one else has to struggle with it.</p></div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2019-12/yp.jpeg%3Fitok=ueWc8kXv" width="220" height="220" alt="Yellow Pig (Benji&#039;s avatar)" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Site Building</div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-feedback-form field--type-webform field--label-above">
+    <div class="field__label">Feedback Form</div>
+              <div class="field__item"><form class="webform-submission-form webform-submission-add-form webform-submission-session-feedback-form webform-submission-session-feedback-add-form webform-submission-session-feedback-node-6941-form webform-submission-session-feedback-node-6941-add-form" data-drupal-selector="webform-submission-session-feedback-node-6941-add-form" action="security-drupal-what-can-go-wrong.html" method="post" id="webform-submission-session-feedback-node-6941-add-form" accept-charset="UTF-8">
+  
+    <div data-drupal-selector="edit-0" class="webform-message js-webform-message js-form-wrapper form-wrapper" id="edit-0"><div data-drupal-messages>
+    <div role="contentinfo" aria-label="Status message" class="messages messages--status">
+                  <h2 class="visually-hidden">Status message</h2>
+                    Sorry...This form is closed to new submissions.
+            </div>
+    </div>
+</div>
+<input autocomplete="off" data-drupal-selector="form-lf2fgqkhhuh1dm5voewftgteecddt8qhnnfiicpbo-o" type="hidden" name="form_build_id" value="form-LF2fGQKHhUh1Dm5vOewFtGteeCDDt8qhNNfIicPbO_o" />
+<input data-drupal-selector="edit-webform-submission-session-feedback-node-6941-add-form" type="hidden" name="form_id" value="webform_submission_session_feedback_node_6941_add_form" />
+<div class="url-textfield js-form-wrapper form-wrapper" style="display: none !important;"><div class="js-form-item form-item js-form-type-textfield form-type-textfield js-form-item-url form-item-url">
+      <label for="edit-url">Leave this field blank</label>
+        <input autocomplete="off" data-drupal-selector="edit-url" type="text" id="edit-url" name="url" value="" size="20" maxlength="128" class="form-text" />
+
+        </div>
+</div>
+
+
+  
+</form>
+</div>
+          </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p><span><span><span><span><span><span>BENJI FISHER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Before I turn it in. So security in Drupal, what can go wrong or if I had slightly more room on the slide, what could possibly go wrong? And the answer unfortunately is lots. Before we get started, as if we needed a reminder. So introduction about me. I'm Benji Fisher. I have the unoriginal name Benji Fisher on Drupal.org on GitHub, on GitLab. Don't use twitter much anyway anymore. I've joined Mastodon, but I'm not very active there. The yellow pig is my avatar. And I wear the hat in the hopes that people who recognize my avatar but not my face will realize who I am. I'm a member of the usability group and during the contribution event tomorrow, I'll be moderating the weekly meeting on Zoom. You're welcome to join, and then I'll be sitting at a table and working on usability issues if anyone wants to join me. I'm also one of the comaintainers of the migration subsystem or the Migrator API, and I'm a member of the security team. I joined last year as a provisional member. That's the usual procedure.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And in the early days of January of this year, I was promoted to a full member. You can follow along a link to this presentation on my GitLab pages, its slides.benjifisher.info. If I were registering the domain today, I would probably go for .io, but I've had the domain a long time and .info seemed like the right thing back then. And they are most recent first, so if you just click on the first link, you'll get the page for this presentation. The only thing that's missing is the slide reminding me to push the big red button. So the outline is a little daunting, but don't panic. We're in the introduction already. I'll talk about what is the OWASP Top ten? I'll talk about what is Drupal. And even though this is a Drupal camp, I sort of wanna take the outsiders point of view. So I will talk about that and then I will go through some of the OWASP Top Ten in one session. I probably have time for two. Prepared I think four of them, maybe five. But this is a list of the top ten security vulnerabilities on the OWASP list, which I'll go into in more detail in a minute and then we'll wrap up conclusion as well like the introduction.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>My slides borrow heavily from other sources. I've used some of Peter Wolanin's cracking Drupal presentations and also I've copied some text from OWASP.org and the footer text on most of their pages mentions that they have a Creative Commons license. So I think I'm in good shape borrowing their text. And I also all of my slides have a similar copy left at the end, creative Commons share alike. So if you wanna borrow any of my text, just remember to give the attribution. So what is OWASP top ten? OWASP I think I've now memorized the Open web Application Security Project. Yes. It's a non-profit foundation to improve the security of software. And it is not Drupal specific. So I guess this slogan, Get off the island is getting kind of stale. That was one of the things we said while we were. Working on Drupal Eight. But it's still true. This is not a Drupal specific security thing. This is something that everyone who works with the web refers to. That's OWASP. The OWASP Top ten is a standard awareness document for developers and web application security.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>It represents a broad consensus about the most critical security risks to web applications. And it's updated every few years. The most recent version is from 2021. So I started working on this presentation last year and I looked at the OWASP top ten and said, Oh my gosh, it's changed. The previous version was from 2016. So that's what the OWASP top ten is. What is Drupal? It is a content management system. What does that mean? It says enter data in my forms. I will save whatever you enter to my database then generate web pages from that. And the hackers say, sounds great, let's get started. So, for example, when you have a web form with a field labelled name, the hacker will try typing in Robert, '); Drop table students;-- Do you recognize that? Well, I see one person out of five, two people out of five nodding their heads, and third gives me away. OK, so you've seen this before. I'll fill in the rest of you in a minute. The idea is that the hacker hopes that behind the scenes you're doing something like this line of PHP $SQL=" So we're interpolating values, insert into students (name) values' ($name')"; And if they do that interpolation then adding a line break for readability, we get this insert into students name values of Robert and the close quote right for and semicolon come from what's been typed into the text field and then Drop Table Students; and what's the point of this double dash, Hyphen hyphen and SQL?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Yes, it's the common character for SQL. So whatever else comes after there is ignored. And that's why the hacker typed that in. So this is what a hacker thinks of when you tell him that I've got a web CMS and you can type data into my fields and I'll save it to my database. For those who don't know, that example comes from XKCD, which also has a Creative Commons license Exploits of a Mom. And I'll just read the last panel. Well, we've lost this year's student records. I hope you're happy and I hope you've learned to sanitize your database inputs. What else is Drupal? It's an active international open source software project about page says that the Drupal community is one of the largest open source communities in the world, where more than 1 million passionate developers, designers, trainers, strategists, coordinators, editors and sponsors working together. And Drupal takes security seriously. Come on in. This is the session on security in Drupal. And we're still in the introduction stage.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Haven't gotten into the nitty gritty just yet. But Drupal does take security seriously. The security team is an all volunteer group of individuals who work to improve the security of the Drupal project. Members of the team come from countries across three continents. The team was formalized in 2005 with a mailing list and has had three team leads in that time period. And the three continent parts sometimes means that we work around the clock. The sun never sets on the Drupal security team and you know, I'll be working on something and pass it off to someone in Australia, works on it, passes it off to people in Europe. And then I wake up and see what they've been doing. So that's the end of the introduction and you now get to choose the OWASP top ten or the column headers and as I said, four or five of them, I have filled in. We can talk about A01 broken access control, A02 which is cryptographic failures, A03, which is injection, which is sort of what I was borrowing from XKCD. I'm not prepared to talk about insecure design or security misconfiguration.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>I can talk about 06, which is vulnerable and outdated components. And just to round out the list, those are the only ones I'm prepared to talk about. But to round out the list, identification and authentication failures, software and data integrity failures, security logging and monitoring failures and server side request forgery. So as I said, you get to choose from the four that I have prepared. And in one session, I usually have time to cover two of them. So where should we start?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Are these in the order of their top ten? So one being the most critical?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>BENJI FISHER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yes Or most serious. So it's a combination of how critical it is with how common it is.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Like it did color in the very most. So what's the week one?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>BENJI FISHER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>OK, A01, Broken Access Control. So this includes several types of vulnerability, such as information disclosure, edit or delete by unauthorized user or cross-site request forgery and more. What do I say on the next? OK, so let me just point out that one and two are basically failures of authentication for two different types of operations. So if you think in terms of the CRUD operations, create read updates, delete, information disclosure is when there's authorization failure for read and edit or delete are update or delete or I guess create. So the first two are failures and then authentication for those operations. I'll say more about what a cross-site request forgery is because see the CSF come up a lot. And you know, it means something specific. And yeah, we'll talk about it. So let me talk about horror stories. So one site that I was asked to look at decided for some reason that they needed custom access control for user edit pages. Like, user slash/1/edit. Why they thought they needed custom access control is beyond me.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>But since they had it, I had to look at it. And when I looked at it, I realized they had left off a not. So instead of granting access to edit user one, just user one, they granted it to anyone but user one. Yeah. So and do any of you have horror stories that you'd like to share? Things you've seen in the wild from custom modules or anywhere else? OK. So how do you protect yourself from horror stories like this? How do you stop them from happening before they happen?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>You test it.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>BENJI FISHER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>You test it. Yes.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>User two and try and edit user one.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>BENJI FISHER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>So manual testing, log in to someone else, logging is an anonymous. You know you've written the access control, test the darn thing. An automated test would also be nice. So yeah, testing is one way. How else?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>(INAUDIBLE)</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>BENJI FISHER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Louder, please.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Have someone else take a look at it.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>BENJI FISHER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Have someone else take a look at it. Yes, we have a term for that. It's called code review. Both of these suggestions make one of the points that I like to make which is that anything you do to improve your code quality in general will also improve your security. OK, so code review, manual testing, automated testing, these are good for code quality in general. They are also really important for security. So what are the answers I wrote down? Code review, automated tests, you know what custom code you're writing. Make sure you test it. Question.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yes. When you install a module that has the badge, what does that mean? Does it mean is there a known protocol that the code (UNKNOWN)</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>BENJI FISHER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>So the question is I'm repeating for the recording. If you install a contributed module and it has the security badge, what exactly does that mean? And I should say settles easy to type. Please do feel free to interrupt and ask questions. So this is the badge we're talking about. I'm looking at a project page for contrib module C tools. It has the badge. Stable releases for this project are covered by security advisory policy. Look for the shield icon below. And in fact, every release listed on this page has the shield. Does that mean that the security team has reviewed the code and decided it's up to snuff? No. The security team does not have the resources to do that. The security team is mostly reactive as far as contrib modules go, people report issues to us. The module maintainers are responsible for fixing them. We help when we can, but we don't proactively go out and search for vulnerabilities. We don't actively go out and review full releases of modules. So at least one of the maintainers of the module has to have gone through the security review process.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And had one of their modules reviewed by some community member with an eye towards code quality, Drupal coding standards and security. And they've gone through that process and gotten the seal of approval. Back when I started, you had to go through that process before you could create projects on Drupal.org. And now the same process is used to give you permission to opt your module in to security coverage and get this patch. So I see you nodding your head. So I guess I've answered the question satisfactorily. So a third way to avoid this sort of horror story is don't write custom code. Use contributed modules which have been through code review which are open to the public. So they potentially have lots of eyes on them if they're popular modules used by governments and other enterprise clients that have the budget for it, then they've had security review by those customers. Use Drupal core, prefer doing things through configuration over writing custom code. I personally think that if customers knew the true cost of custom code, the maintenance burden, the security risk, they would ask for less of it or they might not just use Drupal in first place.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>OK, so I promise to say what cross-site request forgery is. And the way it works is that mysite.com has an image tag. One way of doing it and the source is https:// example.com and some other site/node/123/ delete. And so what happens when an administrator, for example, .com visits mysite.com? They load this page. The web browser dutifully does a get request, loads the page for the image source and they load Node/123/delete. That is a cross-site request forgery. It's some elements, such as an image tag on mysite.com that has a link or a reference, an href or source attribute to a different site that makes it cross site. And again, the danger is that someone who has special privileges on the target site visits the site with that tag. So why doesn't this work?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Because you don't have access.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>BENJI FISHER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Because you don't have access? Well, most people don't have access, but I happen to be an administrator for Example.com. When I visit this page on mysite.com, it'll load node/123/delete on the site that I do have access to. It still won't work. Why not?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Maybe modern browsers just block that kind of thing I think.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>BENJI FISHER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Suggestion is modern browsers block that sort of thing. I don't think so.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>OK, maybe not.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>BENJI FISHER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>You know, that sort of a hard question. Just looking at a link, how do you know whether that's a link to an image or to an admin form or what?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>If you're logged out on the target site, you're OK.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>BENJI FISHER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>I'm sorry.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>If you're logged out of example.com, you would be OK.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>BENJI FISHER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>OK, I might be logged out on example.com, but even if I'm logged in in another browser tab, it still won't work because Drupal has confirmation forms. And last time I gave this presentation, someone pointed out that many years ago on a different system and it might have been PHP BB just that's the error it was. Someone decided to have an admin page and for every piece of content, every blog post or every bulletin board post, they would have administrative links to publish, unpublish or delete. And then one of the browsers which back then might have been Netscape or Internet Explorer decided, OK, for convenience, we will preload every link on every page you visit. So one lesson from that is that you should respect the semantics of of HTTP and get requests should not change state. And a confirmation form is submitted with a post request, not a get request. So that's respecting the semantics. But then, this particular attack won't work. I cannot guarantee that nothing similar will work in Drupal.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>I'm sure that security problems will continue to be discovered, but what sort of incorrect assumptions lead to this sort of vulnerability? Not sort of a vague, open-ended question. So I think the next slide, so use confirmation forms. Don't delete anything just on a get request. And sort of the assumptions are that when someone visits a delete form, they have clicked on a delete link. The assumption is that any page, any route you provide, you know how people got there and they're well intentioned. But that's in fact not true. People will tweak URLs, they will add, edit or delete to the end of the URL just to see what happens. They'll delete the last component of the URL to see what the parents page or directory is. Sometimes they'll do it just out of curiosity. Sometimes, they'll have an honest reason for doing it and sometimes they'll do it maliciously. On a similar note, don't assume that form requests come from the form that you created, right? You create a form, people click submit on the form and they go to the processing page.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>When you build that processing page, understand that that's not the only way people can get there. People will try to craft post requests to target your processing page. Use CSRF tokens. So I won't go into too much detail there. I do have a link to the documentation page on Google.org explaining how to use them. But that's for example, when you submit a delete form, a confirmation form, it generates a token and then when processing the page, it validates that token and they have to match in order to go through the delete. And remember, that forms are hard. And getting back to what I said in the introduction, a web CMS from the point of view, security is one of the worst ideas ever. Forms are hard and you look at the Drupal form API has it's complicated. It is not object oriented. It has all sorts of annoying problems, but it has been through several generations of security hardening. And it does pretty well to prevent the common attacks. So one of the things I said in the description of this session is that I like to talk about how security problems are communicated.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So let's look at it particular security advisory or SA from 2021. Again, the link goes to the full security advisory or if you, for those who came in late, if you go to slides.benjifisher.info or maybe I'll quickly go back to the introductory page follow along. If you go to slides.benjifisher.info, that has links to all of my presentations, including this one, right. This is where I was. So the security advisory when this particular vulnerability was discovered, so project Drupal core, the date was 2021 September 15th. Security risk moderately critical, ten out of 25. And then there's this sort of gobbledygook which you can look up. I think AC is access control. So that's, and...</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>(UNKNOWN)</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>BENJI FISHER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah, even I don't know. I know where to look it up. The A, the second one is access control and that's either do you need to have be logged in as an authenticated user or can you do it as an anonymous or in the other direction do you have to have special privileges. But basically, those components are what go into the score ten out of 25 for this one. Does the security advisory have a link to a further explanation of what those codes mean?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Might be able to hover over it.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>BENJI FISHER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah. As that presumably shows up on the recording, AC access complexity, A is authentication and so on and so forth. So yeah, there's information there. The vulnerability is cross-site request forgery. And there's a link to the CVE, Common Vulnerability Enumeration. I should learn that one. It's easily Googleable. And the text, the Drupal Core Media module allows embedding internal and external media in content fields. In certain circumstances, the filter could allow an unprivileged user to inject HTML into a page when it is accessed by a trusted user with permission to embed media. In some cases, this could lead to cross-site scripting. So basically saying someone could use a media embed field to create a cross-site request forgery. That's something in the page. And then an administrator visits that page. So it's not really cross-site, it's same site. And this is typically vague. We don't want to give you enough information that you can exploit the vulnerability when we announce it.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>But it does say basically what went wrong. And the solution normally is to upgrade your version of Drupal. The solution, right, as I just said is to upgrade to the version released along with the security advisory. And the code fix, if you look at the solution is that when you're editing a WYSIWYG field with a media embed to add a CSRF token to the header of the jQuery request. So of course, when you're using the WYSIWYG field, you've got JavaScript involved and it's doing some sort of Ajax Request to update the page. So that's the request that has to be protected with with a token and then of course validate the token and the code that responds to that request. If you follow the link, it shows the actual code change. So this is some javaScript for the media module. And we're basically just adding an HTTP header to the request. And that's somewhere down here. We're generating the token or checking it. And it was this. Token equals that. Yeah, this is where we're checking the token. Don't wanna get too much into the detailed code.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So that's what I have to say about access control and cross-site request forgeries in Drupal. Any questions before we move on? Yeah.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>I have one question. So I'm just (INAUDIBLE)</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>BENJI FISHER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>A little louder please.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Oh, sorry, would you qualify, like, using something like a URL alias as the added version of adding security? like because if you use an alias, you can probably change it so that a person can't just go in and delete part of the URL to figure out what you're carrying?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>BENJI FISHER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>So is using a URL alias and added level of security. And the point is that if I don't use aliases, if I just make my pages node/123, someone can add /deletethat and maybe it'll work whereas if they're using the alias to page and they add /delete, I suppose that might defeat some attempts. I think that by default, Drupal puts the...</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Node ID in the body parts.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>BENJI FISHER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>The node ID, I was going to say in the header of the HTML, it has a canonical link which I think has the note ID. So I don't think that using aliases is going to be give you too much protection. Any other questions? OK, then let's go back. And choose the second stage of our adventure. And let me do a time check. It's 9:48 and we have a full hour, but I'm not supposed to use the full hour, right? So, yeah, we should be able to cover a second one. If you wanna go by list, number two is cryptographic failures. Although injection is more fun and vulnerable and outdated components is more actionable. So I've given up...</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Injection.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>BENJI FISHER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Say again?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Interjection.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>BENJI FISHER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Interjection. You mean injection?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>BENJI FISHER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>OK. So A03 injection. So in earlier versions of the OWASP top ten, they had separate categories for SQL injection and various JavaScript injections. And they combined all of those into this category in the current revision. So the official definition is that user supplied data is not validated, filtered or sanitized by the application. So again, that's what what we borrowed from XKCD in the introduction. Dynamic queries are used directly in the interpreter. Hostile data is used within search parameters to extract additional sensitive records. Hostile data is directly used or concatenated. So yeah, again, it could be a SQL query that has user data inserted unwisely. It could be a PHP command or system call that includes user data insecurely various ways. And the worst case to date of injection in Drupal was SQL injection came in 2014. The official name is SA-Core-2014-005. Do you know the common name for this? OK.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Drupal again.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>BENJI FISHER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yes, this was Drupal garden. And the procedures were a little different back then, but if you subscribe to the mailing list, you got an email on Wednesday, whatever data was. I think it was like Aprilish of 2014. Drupal seven includes a database abstraction API to ensure that queries executed against the database are sanitized to prevent SQL injection attacks. A vulnerability in this API allows an attacker to send specially crafted requests resulting in arbitrary SQL execution. This can lead to privilege escalation, arbitrary PHP execution or other attacks. This can be exploited by anonymous users. So I remember when I read that email. And there was a bit of luck involved because I subscribed on my personal email account and I didn't normally read my personal email while I was at work. But I was, I don't know, bored or tired. For some reason, I was reading my personal email and I read this and my jaw dropped. And my response, this is from memory. So it's not verbatim, but I wrote an email to my boss and to the client and I said, because of the severity of the vulnerability and the simplicity of the update, we tested and updated the site today.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So it's a good thing I did that because within seven hours of the announcement, there were automated attacks in real life and I got my fix in within those seven hours. I was pretty pleased with myself, although, as I said, there was an element of luck involved. So let's have a look at what the fix was. In my email, I talked about the simplicity of the fix.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>This was the entire fix.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>BENJI FISHER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>This was the entire fix. And you might have to read it twice to see what the change was. See it?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah, it's inserting array values.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>BENJI FISHER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>So before iterating over this array as key goes value dollar, eye goes to dollar value. Before iterating over it, we're going to apply array values. So now, instead of whatever string keys were supplied, we're just going to have integer keys. And then in that for each loop, we are concatenating dollar i, the key from the dollar data. We're concatenating that with some variable dollar key which comes from some other place in the code. And the problem is that dollar data is user supplied. We are processing a form. And no one ever expected those string keys of the array to be tweaked in strange ways. We made the common mistake of assuming that when we're processing a form, someone submitted our form and didn't modify it. And I wrote at the bottom comments snipped from both. So this is just the code change. So yeah, I was pretty comfortable applying that change and updating the site. Didn't think it was going to break anything which is an important point that security patches go to great lengths to avoid any disruption.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>We typically for security updates, we don't really test. We'll do a quick glance at the test environment. Just make sure there's no way it's been a death or anything. When we look at the depth of changes, usually a little bigger than this, but you can see it's usually, you're putting wrappers around the static CSL or very little things like that. And I think it's nothing that would change.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>BENJI FISHER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>So for the recording, I'll summarize that, someone in the audience says that they don't do much testing when the security update comes out, and that's the idea. So if you're already on the current version and don't have any pending updates, it should be pretty safe to apply the security update. So yeah, install it. In your testing environment, make sure you don't get an immediate white screen of death. Sure. But consider bypassing your usual complete QA routine when applying a security update. It's probably not necessary. We did fail recently. The language switcher update from a month or two ago. We failed in making it non-disruptive. But we try. So I actually think that although the fix was in that line of code, the actual problem came a few lines later in the code. And here I've added line breaks for readability. This was actually one line of code and the query is a p-reg replace. We take dollar key and sandwiched in between some delimiters for p-reg and then we implode the array keys inserting commas.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And we do that replacement in the query. And that single line of code comes with a seven line comment. And that's just doing too much in one line. And this gets back to what I said that the things you do for code quality are also good for security. And this was not good code in terms of readability. If you can't read a line of code, you can't verify that it does what it's supposed to do and it might introduce a security vulnerability. This should have been broken down into two or three statements. That's my personal opinion. And, you know, maybe if it requires seven line code comments, that's a hint that it should not be a single line of code. So that's all I have to say about SQL injection. But I guess that's good because it's almost 10:00 and I do wanna leave a little buffer at the end. So any questions about injection? There are other types of injections. Yeah.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Could we go back to the previous slide and take a look? So to understand what key is in the code fix, would that be starting with zero because we're now dealing with an array of data compared to what key would be in the vulnerable code?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>BENJI FISHER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>So let's see. I think. So the question roughly is what is the relation between the variable dollar key in this line on this slide with the variables on this slide, is that a fair summary?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>In the relationship between the vulnerable key?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>BENJI FISHER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yes. And how has it changed? So let's see. This line of code is defining the new keys array. And it uses the variable dollar key, which I think doesn't change. So this is defining new keys. And the keys of new keys are after the fix. They're going to be something we control key and something numeric whereas previously, the keys were something we control, concatenated with user supplied data. So it's really the keys of the new keys array. Yeah.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>How would that have been user supplied? The first example. And what I mean is maybe could you walk us through like if an attacker was putting data in a form, is that how they would exploit the vulnerable code?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>BENJI FISHER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah. So if I remember correctly, say it's the user login form and you have the field of name and you have the field of password. And it involves sort of tweaking the forms so that instead of a single name, you had an array of names as if there were multiple values there. And then doing some some further dastardly stuff there so that when you submit the form, the array is certainly not what we were expecting. And it had somehow injected some string keys that had some malicious code in them. So anyway, this slide, the line of code that changes is the line of code that defines dollar new keys. And then the variable dollar new keys is over here. We take array keys of new keys. So exactly the things that got fixed. And we're imploding those and then we're doing some p-reg replace on them.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>It's my understanding the array values function. I don't remember off on my head, but it sounds like it just throws out the current keys and just assigns the number, basically.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>BENJI FISHER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yes. So we have array keys on this slide. We have array values on this slide and that's exactly what it does. It throws out the keys that were supplied. And re-indexs numerically. OK. Any other questions? OK. So I think I should go to wrap up. So conclusion. I'll just repeat the summary. We talked about what is the OWASP Top Ten and what is Drupal? We covered A01 and A03. And we're now in the conclusion. And here are some references. There's a link to my slide decks. This is the most recent one at the top, April 27th 2023. That's today. And my source files. So if anyone has any interest and wants to contribute, I would love to have help filling out the remaining six columns. It's all in the GitLab repository. The source is basically markdown files and images. A link to the OWASP Top Ten and the 2021 version of the OWASP Top Ten Drupal security team page. Drupal Core Release cycle. It's sort of important to know the difference between a major release, a minor release, a patch release. Security releases are always patch releases.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And that also talks about what the schedule is, which is also important. I have a link to the security advisories where we communicate about. That problem is the most recent one is from last week. Yeah, it was last week, April 19th. And the problem there was that certain private files could be accessed without properly checking. There was a mistake in how we checked access for them. And I could say more, but then they would boot me off the chain. I have a bias towards Drupal core. I sometimes forget that there are thousands of contrib modules out there. This slide is here to remind me that there are various contrib modules that will help with security. One is the security review which basically gives you a checklist. Have you done this, have you configured that? There's the paranoia module. I think that was more important for Drupal seven than for Drupal eight, nine, ten. But it guards against PHP eval from the web interface. Such a bad idea. Like the PHP filter. Terrible idea. The security kit which helps you configure various HTTP headers and other things such as content security policy, origin checks to prevent cross-site request forgeries.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>It helps prevent against cross-site scripting. Guardr, I say on this site it's a Drupal distribution with security in mind. I think they're trying to move away from being a distribution to being a module or a set of modules that you can install independently. And that gives you a starting point for more secure configuration. The two factor authentication module for many years since Drupal eight was released, it was in Alpha. And it finally has I think a full release for Drupal nine and an RC release for Drupal Ten. Is that where we are now? An alpha release for Drupal tens, but a full release compatible with Drupal nine. And I am pretty optimistic that they will have a full release for Drupal ten before Drupal nine goes end of life in December, or November actually. Question.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah, I was curious. Could you go back to the two factor authentication module? Yeah, I was curious your thoughts on this seems to be like a common theme with big contrib modules right now with Drupal ten readiness where a lot of them are not protected by the shield yet are still in alpha beta status. I just wanted to note I was curious of your thoughts on like, you know, what's a reasonable or good timeline for us Drupal nine developers to get our sites to Drupal ten.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>BENJI FISHER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>OK. So the question is given that many modules still don't have full releases that are compatible with Drupal ten, what should we as site maintainers do when our sites are on Drupal nine? And should we be upgrading. What should be our plan to upgrade to Drupal ten? So some practical advice is that there are a bunch of considerations when upgrading to Drupal ten. And some of them you can do while you're still in Drupal nine. So a big one is seek editor. And you have to make a decision. When I upgrade my site to Drupal ten, am I going to stick with the Seek editor five module that's in core or am I going to install the Seek editor four module which is now a contrib module? It used to be in quartz. Now contrib. And you know, probably in the long run, you're going to want to convert to seek Editor five and you can convert to seek editor five and Drupal nine, they're both in core. So, one thing you could do right now is upgrade from seek editor four to seek editor five. I haven't actually done that.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>I imagine it's not simply a question of disabling one and enabling the other. I suspect there are complications there. And yeah, that would be a good thing to do now. Now get you ready for Drupal ten. If you haven't already switched to PHP 8.1, you can have some fun doing that while you're still on Drupal nine. I have gone through.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>We've found that that's more work than Drupal 10.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>BENJI FISHER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah, someone in the audience agrees.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>(UNKNOWN)</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>BENJI FISHER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yes.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>In our experience.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>BENJI FISHER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>So someone in the audience agrees that that the PHP upgrade is a bigger deal than the Drupal upgrade. I got a Drupal seven site onto PHP eight. It was not fun. It took a while. Let me say one more thing on this subject. Static analysis will not catch all the problems. So that's some practical advice. When it's time to go to Drupal ten, you just have to make your security decision. Am I going to install a module that only has an alpha release. But is compatible with Drupal ten? Am I going to go through some composer cheats to install the Drupal nine version on my Drupal ten site? Maybe that'll work. Do I have the resources to help the module maintainers get their issues fixed so that they're comfortable making a full release? Do they have a plan issue for what they need to do to get from Alpha to a full release? Does that help?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Thank you. You're welcome. Yeah, the two factor authentication module. I think the state of Massachusetts uses it. So there are some big players using it. I expect it will get the attention it needs before November. So sooner the better. And, oh yeah, and one other thing, the jQuery update module. So I actually helped a little bit on this. So now has a full release for Drupal seven and I did a code review and filed a couple of issues shortly before the 4.0 release. And it was sort of crazy that you had the choice of using the version of jQuery distributed with Drupal seven which has no problems or installing the jQuery update module which was until a few months ago in Alpha. Maybe it was beta, I forget. It certainly didn't have a full release until a few months ago. So yeah, that was a bad situation, but that's been resolved. So questions, you've already been asking questions. And last side on my deck is the copyleft. Ooh. (APPLAUSE) And I, 10:12. My timing is good. Push the big red button.</span></span></span></span></span></span></p></div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-4cfa4896d27fbe8a4fde036e78178ddbc9696a0b90ba899795ac49dfaa3607b5">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/6941">https://mid.camp/6941</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+  <section class="map-banner">
+      <div class="views-element-container block block-views block-views-blockevent-venue-block-1" id="block-hatter-views-block-event-venue-block-1">
+  
+    
+      <div><div class="container view view-event-venue view-id-event_venue view-display-id-block_1 js-view-dom-id-c8cbd86bd900cebff0a55cf2f9e1a90771d22e09fdede049c7c444fb2816647f">
+  
+    
+      
+      <div class="view-content">
+          <div class="views-row">
+
+
+<div class="map-overlay">
+  <span class="map__label">Location</span>
+  <h2 class="map__title"><span class="field field--name-title field--type-string field--label-hidden">DePaul University - Lincoln Park Student Center</span>
+</h2>
+  
+            <div class="field field--name-field-address field--type-address field--label-hidden field__item"><p class="map__address" translate="no">
+          2250 N Sheffield Ave. <br>
+            Chicago, IL 60614<br>
+  </p>
+</div>
+      
+  <a href="../../about/venue.html" class="cta-link--yellow">Learn more  <span class="cta-arrow"></span></a>
+</div>
+<div id='map' class="map"></div>
+</div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-67f3ad45486e65e76e005624327a5d65ba1fc8f7bff20e9473a2647fa86b1bb8">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/debug-academy.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2023-02/Final%20Logo-in-color.png" width="1010" height="864" alt="Debug Academy logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/evolving-web.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2023-04/evolvingweb%20(3).png" width="1517" height="371" alt="Evolving Web" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/bounteous.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2023-01/BounteousIndigoSmall.png" width="403" height="67" alt="Bounteous logo" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#ee87808881ae83878a8d8f839ec0819c89"><span class="__cf_email__" data-cfemail="345d5a525b74595d50575559441a5b4653">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/6941","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"ajaxTrustedUrl":{"form_action_p_pvdeGsVG5zNF_XLGPTvYSKCf43t8qZYSwcfZl2uzM":true},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_U1jmi93nTJG2lPAKzexs4tMZWFR2YMMoIoiPckW421U.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJx1yksKgDAMRdENabskSfUZK2kjTfCzeyfiQHB04XBZlQUDVZLL82iRP9At5I4WWTSR9OsLhbakZ3cgzdpKfBogKKgeJjhlsWC043cqMCPGDa0vM_I"></script>
+<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.js"></script>
+<script src="../../sites/default/files/js/js_RAkHj2z9vY4q-6RsYuiXkqPbxgsRWrLsVQRz36mKiGA.js%3Fscope=footer&amp;delta=2&amp;language=en&amp;theme=hatter&amp;include=eJx1yksKgDAMRdENabskSfUZK2kjTfCzeyfiQHB04XBZlQUDVZLL82iRP9At5I4WWTSR9OsLhbakZ3cgzdpKfBogKKgeJjhlsWC043cqMCPGDa0vM_I"></script>
+
+  </body>
+</html>

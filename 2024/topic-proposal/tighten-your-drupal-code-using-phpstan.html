@@ -1,0 +1,728 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="Did you know Drupal core and now contributed modules (using GitLab CI) are being analyzed using PHPStan to catch bugs and improve code quality?" />
+<link rel="canonical" href="tighten-your-drupal-code-using-phpstan.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Tighten up your Drupal code using PHPStan | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Tighten up your Drupal code using PHPStan | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_gt5LiAM1qLGUH5e845uOb7R_lJ9dUwTXmnhGDR2yY20.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OgzAMgy8E7ZFQSg1UShrUdDB2-lX87GUviZ0vkj0ymR0-kKEbLz0l_mmBGc2wx2eNjWlBU0WI0wfdQrWi-Jk1EPej2XMRWoO-OzusQq6ILUXoAAmIw5TA0RfYqtnShv6E7QW7-XM.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_QAC1R0aFoF1mIVQtLAaSE24B2iwnT2ZCa0cZDeZsPV0.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OgzAMgy8E7ZFQSg1UShrUdDB2-lX87GUviZ0vkj0ymR0-kKEbLz0l_mmBGc2wx2eNjWlBU0WI0wfdQrWi-Jk1EPej2XMRWoO-OzusQq6ILUXoAAmIw5TA0RfYqtnShv6E7QW7-XM.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OgzAMgy8E7ZFQSg1UShrUdDB2-lX87GUviZ0vkj0ymR0-kKEbLz0l_mmBGc2wx2eNjWlBU0WI0wfdQrWi-Jk1EPej2XMRWoO-OzusQq6ILUXoAAmIw5TA0RfYqtnShv6E7QW7-XM.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OgzAMgy8E7ZFQSg1UShrUdDB2-lX87GUviZ0vkj0ymR0-kKEbLz0l_mmBGc2wx2eNjWlBU0WI0wfdQrWi-Jk1EPej2XMRWoO-OzusQq6ILUXoAAmIw5TA0RfYqtnShv6E7QW7-XM.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+<link rel="stylesheet" media="all" href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.css" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="tighten-your-drupal-code-using-phpstan.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-midcamp2024navigation-menu" id="block-midcamp2024navigation" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-midcamp2024navigation-menu">MidCamp 2024 navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" data-drupal-link-system-path="node/8477">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--by-the-numbers">
+        <a href="../../2020/about/by-the-numbers.html" data-drupal-link-system-path="node/6252">By the Numbers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--venue">
+        <a href="../venue/depaul-university-lincoln-park-student-center.html" data-drupal-link-system-path="node/8482">Venue</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../speaker-resources.html" data-drupal-link-system-path="node/8485">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--volunteer-opportunities">
+        <a href="../article/midcamp-needs-you.html" data-drupal-link-system-path="node/8593">Volunteer Opportunities</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../../2025/organizers.html" data-drupal-link-system-path="2025/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--travel">
+        <a href="../travel.html" data-drupal-link-system-path="node/8564">Travel</a>
+            </li>
+          <li class="primary-nav__sublist-item item--accommodations">
+        <a href="../accommodations.html" data-drupal-link-system-path="node/8562">Accommodations</a>
+            </li>
+          <li class="primary-nav__sublist-item item--tickets">
+        <a href="../tickets.html" data-drupal-link-system-path="node/8563">Tickets</a>
+            </li>
+          <li class="primary-nav__sublist-item item--health--safety">
+        <a href="../health-safety.html" data-drupal-link-system-path="node/8640">Health &amp; Safety</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" data-drupal-link-system-path="node/8478">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--sessions-wed">
+        <a href="../schedule/wednesday.html" data-drupal-link-system-path="node/8576">Sessions (Wed)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-thu">
+        <a href="../schedule/thursday.html" data-drupal-link-system-path="node/8577">Sessions (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--training-fri">
+        <a href="../training.html" data-drupal-link-system-path="node/8574">Training (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--contribution-day-fri">
+        <a href="../schedule/friday.html" data-drupal-link-system-path="node/8578">Contribution Day (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--unconference">
+        <a href="../unconference.html" data-drupal-link-system-path="node/8592">Unconference</a>
+            </li>
+          <li class="primary-nav__sublist-item item--topic-tracks">
+        <a href="../../topic-tracks.html" data-drupal-link-system-path="node/10">Topic Tracks</a>
+            </li>
+          <li class="primary-nav__sublist-item item--all-sessions">
+        <a href="../schedule/sessions.html" data-drupal-link-system-path="node/8579">All Sessions</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" data-drupal-link-system-path="node/8480">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--sponsor">
+        <a href="../sponsor-midcamp.html" data-drupal-link-system-path="node/8479">Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2024/news">News</a>
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../jobs.html" data-drupal-link-system-path="node/8594">Jobs</a>
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2024.html" hreflang="en">MidCamp 2024</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-midcamp2024schedulenav-2" class="block block-block-content block-block-contentf2becf96-513a-4419-8c1d-1c7e0b008859">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p><a href="../schedule/hybrid.html">Hybrid</a> | <a href="../schedule/wednesday.html">Sessions (Wed)</a> | <a href="../schedule/thursday.html">Sessions (Thu)</a> | <a href="../training.html">Training (Fri)</a> | <a href="../schedule/friday.html">Contribution Day (Fri)</a></p></div>
+      
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Tighten up your Drupal code using PHPStan</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="8489" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2024-03-20T16:15:00Z" class="datetime">Wednesday, 11:15 am CDT</time>
+ - <time datetime="2024-03-20T17:15:00Z" class="datetime">Wednesday, 12:15 pm CDT</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-81" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-name field--type-string field--label-hidden field__item">Room 314A</div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>Did you know Drupal core and now contributed modules (using GitLab CI) are being analyzed using PHPStan to catch bugs and improve code quality?</p>
+
+<p>Learn how PHPStan, a static analysis tool for PHP, can find bugs in your code that your tests and code review cannot. In this session, we will learn how to use PHPStan with the phpstan-drupal extension to perform static analysis of a Drupal codebase. The session will cover the intricacies of analyzing a codebase like Drupal's, which can have dynamic return types. And we will explain how contributed modules can be onboard to GitLab CI and how the GitLab CI templates run PHPStan.</p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/Q5Tku7MW25M?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-presenter-slides field--type-file field--label-above">
+    <div class="field__label">Presenter Slides</div>
+              <div class="field__item">
+<span class="file file--mime-application-pdf file--application-pdf"> <a href="../../sites/default/files/2024-03/Tighten%20up%20your%20Drupal%20code%20using%20PHPStan%20-%20MidCamp%202024.pdf" type="application/pdf">Tighten up your Drupal code using PHPStan - MidCamp 2024.pdf</a></span>
+</div>
+          </div>
+
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Matt Glaman</h4>
+
+      Principal Software Engineer
+
+
+          @
+              <a href="https://www.acquia.com/">Acquia</a>
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p>Matt Glaman is an experienced software engineer and a prominent member of the Drupal community. With over a decade of experience in web development, he has gained a wealth of knowledge and expertise in the field. He is the author of several books, including "Drupal 8 Development Cookbook" and "Drupal 10 Development Cookbook," which provide a comprehensive guide to building and customizing Drupal sites.</p>
+
+<p>As an active member of the Drupal community, Matt is dedicated to sharing his knowledge and expertise with others. He regularly contributes to Drupal projects and is passionate about helping others develop their skills and become more proficient in Drupal development.</p></div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2019-12/3LRfmYzD_400x400.jpg%3Fitok=w2Gli5PW" width="220" height="220" alt="avatar" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Back-End</div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-feedback-form field--type-webform field--label-above">
+    <div class="field__label">Feedback Form</div>
+              <div class="field__item"><form class="webform-submission-form webform-submission-add-form webform-submission-session-feedback-form webform-submission-session-feedback-add-form webform-submission-session-feedback-node-8489-form webform-submission-session-feedback-node-8489-add-form" data-drupal-selector="webform-submission-session-feedback-node-8489-add-form" action="tighten-your-drupal-code-using-phpstan.html" method="post" id="webform-submission-session-feedback-node-8489-add-form" accept-charset="UTF-8">
+  
+    <div data-drupal-selector="edit-0" class="webform-message js-webform-message js-form-wrapper form-wrapper" id="edit-0"><div data-drupal-messages>
+    <div role="contentinfo" aria-label="Status message" class="messages messages--status">
+                  <h2 class="visually-hidden">Status message</h2>
+                    Sorry...This form is closed to new submissions.
+            </div>
+    </div>
+</div>
+<input autocomplete="off" data-drupal-selector="form-84njd6euwusqrox0aptwv4azuzqow4s7bpgdgajytyo" type="hidden" name="form_build_id" value="form-84njd6eUwuSQroX0APtwV4AZUzqow4s7BpgDGAjytYo" />
+<input data-drupal-selector="edit-webform-submission-session-feedback-node-8489-add-form" type="hidden" name="form_id" value="webform_submission_session_feedback_node_8489_add_form" />
+<div class="url-textfield js-form-wrapper form-wrapper" style="display: none !important;"><div class="js-form-item form-item js-form-type-textfield form-type-textfield js-form-item-url form-item-url">
+      <label for="edit-url">Leave this field blank</label>
+        <input autocomplete="off" data-drupal-selector="edit-url" type="text" id="edit-url" name="url" value="" size="20" maxlength="128" class="form-text" />
+
+        </div>
+</div>
+
+
+  
+</form>
+</div>
+          </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p><span><span><span><span><span><span>At camp. And thanks for coming to tighten up your tighten up your Drupal code using PHPStan. My name is Matt Glaman. I'm the maintainer of PHPStan Drupal and I'll be talking to explain what is PHPStan and the extension PHPStan Drupal. So PHPStan stands for PHP Static Analysis Tool. Um, it finds bugs in your code before your users do. Is PHP is a scripting language. It's not compiled like go or C. So once the web server runs your PHP code, it gets compiled and executed. And that's when the bugs appear. Not while you're writing your code necessarily. And using static analysis with PHP stain, it can help find those bugs ahead of time for you. PHPStan. Drupal is an extension for PHPStan, hence the name that allows it to read and understand Drupal code a little bit better and more easily. And you may be familiar with some other tools if you haven't used PHPStan yet. So first, let's walk through the different tools that are available and why they may not be the best fit. So there is this line of code here.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>I tried to make it as big as possible and you can see here is hook node insert. And it says if node is published but there's a typo in published or missing the s. So how can we use these tools to find that we have a bug in our code with a undefined method, which would crash the website because it doesn't exist? Linting. So PHP actually has a built in linter. You can do PHP dash l to lint PHP code for syntax. Great. But this isn't a syntax error. This is a um, this is just a typo. And as far as PHP is concerned, this is all valid syntax, so it would not catch our bug. PHP code sniffer PHP code sniffer will take your code and tokenize it, and it'll kind of parse through it and put certain rules in place, which is great for um, it is great for enforcing coding standards, but not necessarily catching bugs, annoying the entire context of the code. Okay. There is also fan um, which was created by Etsy and uses the the AST extension for PHP, which AST stands for Abstract Syntax Tree. And then there's also Som, which was built by Vimeo.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And these are two different static analysis tools that are for PHP. But they didn't really have a great way of working with Drupal or getting getting it to understand drupal's auto loading. So it's very difficult to integrate with maybe since time has gone on, maybe a little bit. Ah, then maybe they are easier now. But it wasn't at the time. And then PHPStan PHPStan made it really easy to write an extension that could hook in and make the static analysis tool aware of how Drupal does its dynamic auto loading. You know, we can turn modules on and off. They're not automatically just defined via Composer, and it also uses the PHP parser library. So it doesn't need an extension. It uses a PHP library that will take PHP code and turn it into an abstract syntax tree for processing. Um, it allows verifying calls to classes and their names, like does a class exist? Does the method exist on the class? It verifies different types that are passed in. You know, it could argue like it'll catch like, hey, is public.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>You got a typo here. That method doesn't exist. So it would throw an error. Or what if that method actually returned a string? PHPStan could say, hey, you're doing an if statement against a string that's not a boolean like you have. You have invalid logic. And that's the benefit of using PHP standard static analysis, because it can help you tighten up your code, reduce bugs before you even ship it out to customers in production. So what can PHPStan do for you? There's different rules for PHPStan, and this is a long list. It's horrible for a slide, but the idea is that there's level zero, which is can I run PHPStan without it crashing? There are some code bases where it could crash. Drupal did that. Drupal core did that at first. And then there's level nine, which is like as strict as it can be. And that's where you can't use mixed types, where it could be like anything. So there's varying levels. I recommend that you always go to level two because at least that level two you will find undefined variables and it checks unknown methods on objects.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>It's like if you want to cover your bases, use level two. Personally I would say like aim for like level six because that's when you get a lot more of the like dead code checks and other goodies in there. Drupal core is running at PHPStan level one, so every bit of code that goes into Drupal core since 10.0 runs against level one, and there is a meta issue or meta issues to get it bumped up to level two. So there is a issue. Tag PHPStan dash two. So if you're looking for some contrib work, a lot of it's pretty low hanging fruit. It's just there's a lot of it. Um, and that way Drupal Core can keep bumping up its level, which means that it has better code and core, which means that there's less bugs shipped. Um, if you have a contrib module on drupal.org or if you're using a contrib module from Drupal.org, which I think everybody is with GitLab CI, all contributed projects are running PHPStan at level zero, which means they're getting some baseline guarantee that the code is not breaking even if they don't have tests.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Right. There's no PHP unit tests. The code is not being executed. But if PHPStan. If PHPStan is scanning the code, that means it's in some way being loaded and verified. Um, that was added in the fall of 2023 and also with level zero, we'll dive into it a bit more. But that means the deprecation rules are running, which means that it will know if the contrib module is calling deprecated code or not as part of its CI checks. Um, as part of also at PHPStan can provide is there's a baseline file. And what this basically says is I have an existing code base. I want to add PHPStan but oh my, oh my. I've got like 300 errors and I don't want to fix all 300 errors by adding PHPStan. You add a baseline that says I am accepting this, these errors in this technical debt and I will build it down. I'll pay it off later and all new code will be fixed. So you can have a baseline that accepts those errors and you can go back and fix them over time, but always have new code adhering to your new levels of PHPStan.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And it's best explained in the docs on phpstan.org. And when the sides are uploaded, that is a link to the baseline. It's called um, Drupal core is using it. That's one reason Drupal core is taking a iterative approach, because I think at level nine, it's like a 15 megabyte baseline file, which would be great to have all new code matching level nine. But there's you know, that problem. So let's take that example of the hook node insert with the typo and run it like kind of walk through what PHP seven would be doing. So again here's a snapshot of the code. Um we have the typo that's missing the s. So we get a warning that says call the undefined method. And if the interface is public with the typo, great, we have an error. So we fix the error by adding the s and then PHP stands still says undefined method is published on entity interface. And then you kind of go like what do you mean? I know this exists. That's because your hook has the entity interface type hint. So you go in and you fix your hook and you say, oh, it's actually a node interface, because with hooks you own the parameters.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So you can fix the type entity to narrow it to the specific type. Now PHP sends us a thumbs up. You have a node interface. Node interface extends entity publishable interface. And that's where that method lives. So that way your hook is now correct and it's types. And PHP send says everything is good to go. Um, so there's PHPStan and then it's extensions. So we said like PHPStan checks if class exists. Um, it actually can detect incorrect namespacing. This is a story I love to tell from about 2016 or 2017 where Boyan and I were working on Commerce two, and we committed code on GitHub, and it pushed the Travis CI APIs like way back and Composer was new and Drupal, and the test passed in our machine, which were MacBooks. But on Travis CI it failed. And two senior engineers building commerce two spent about four hours wondering why it didn't work. Macs are not case sensitive. Linux is. And we had a typo in our namespace. Yay! If we would have had a tool like this, it would have been caught.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>PHP CSS didn't catch it because it didn't know that the namespace casing was incorrect when it was used somewhere else. Um, so that's where PHPStan can save you on the little things. Um, the text function exists, methods on classes, and it can resolve variables and their types. So if you do have like a variable and it comes in through a method, um, it can detect what that type was throughout the entire method signature. So if it were to change types like oh, you just turned a string into an integer, it can warn you about that or as it gets passed through the call stack. And then there's the extension installer, which when you have that package added, it automatically configures PHPStan to register those extensions. Um, which simplifies using PHPStan a lot than it used to be. Um, and that's actually used by Drupal Core. So then there's the deprecation rules package as I just brought up a little bit earlier. So that allows you to detect usages of deprecated code. So when you've got those PHP docs with the deprecated symbol, this library enhanced allows PHP to recognize that document tag and then say it adds rules that say, hey, you invoked a method class, etc.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>that's deprecated. Stop it and it will show the message from the deprecated one. So if you've used the upgrade status module, that's what it's using under the hood for all of its reporting, on top of a few extra things. Um, and that also became a dependency of PHPStan Drupal. And that means Drupal Core has it. One of the cool features is I worked on a contribution for deprecated scopes is what I'm calling them, and for the recording they can't see the air quotes. Um, but originally it worked with just an deprecated tag. But there are certain things that are considered the deprecated scope. Um, Drupal uses the Symphony PHP unit bridge, which has an At legacy or legacy tests, and those are considered to be deprecated scopes. So now that library allows you to say, hey, based off the context of the code, consider everything in this scope to be deprecated or not. So now you won't get deprecation warnings if it's a legacy test. Um, for Drupal 10 to 11, we have a new method called backwards compatibility call that makes it easier to write code that supports previous minor versions of Drupal core and the forward versions, and that also will support then that backwards compatible call.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>PHPStan won't give false warnings about the deprecated code there, which means that contrib modules can now better support previous versions of Drupal core with deprecated code, and then also the new shiny version as well. And no more. Um, just anybody that has worked with major version upgrades. Is that weird dance of yes PHPStan I know that's deprecated code, but I need to keep it. That should be fixed now. And then we have PHPStan Drupal, um, which allows knowing the correct services from the service container, um, entity storage and query return types, checking if you're using internal classes, kind of warning like, hey, you extended this class, but in Drupal core it was considered internal, so there's no API guarantee for it. And a few of the things that I'll walk through down the road. Um, what's really cool is this last bullet about checking deprecated global constants from Drupal 9 to 10. We're cleaning up a lot of the global constants that were defined and deprecating them. Well, actually, before you couldn't know that they were deprecated.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>We had to maintain that list manually. In a rule, the latest version of PHPStan can detect that, so we no longer actually have to maintain that list manually. Um, there is the PHPStan PHP unit. So if anybody does a lot of testing PHP unit allows providing a mock. And this allows PHP to understand mocks like, oh, this isn't a double object or whatever else, it's actually a node that you're mocking. Or if you're using self assert instanceof or is array, it knows all the different assertions and PHP unit, and then tells PHP stand that if this assertion ran and didn't fail to code, trust that assertion for what this type is. Um, and it's used by Drupal Core now. So as part of the level two initiative, there was like what did I put down? Oh, greatly reduced. I think it was like 2000 errors were resolved by adding this package to Drupal Core, because all the tests now, it understood how to scan the tests and analyze them. There's another package for PHP seven prophecy. So prophecy is another mocking library.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And this adds that same concept where every time that there's a prophesized object, PHPStan can understand how it works. Prophecy is not used as much anymore as far as I know, but there is still some Drupal code that uses it. I know I've written some in the past, so that could be a useful, um, package, but is not a dependency of Drupal core. And then there's one that's my favorite PHPStan strict rules, which adds a lot of defensive programming best practices like we've all used Drupal Drupal code, and there's a whole, if empty, if not empty check. And that, like, makes my eyes roll up. Um, this tells you you can't do that. And I've loved that to say, like, let's be more like, what does empty mean? It's empty zero false and empty string. Let's be more specific. And it really enforces that. And I really like having types in my code because I know it's going on. And that is one beauty about PHP is you don't have to be strictly typed, but you can be at the same time. And this allows you to start enforcing a bit of that.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And if you want to find other extensions, you can go on packages.org and look at extensions of type PHPStan extension like chipmunk has a whole bunch of extra rules. There's the greater PHP community, has a different extensions for all sorts of things, like um, band code. So if there's a certain function you don't want called, you can use that package and configure it. There's an open issue for banning the unique ID function in favor of something else. So that's being evaluated as well. So everybody's a developer and they want to play, although the Wi-Fi is kind of acting up, so maybe you can't play. Here's how you add PHPStan to your Drupal code base. Composer require dash dash dev Drupal core dev. That's it. Because it's a dev dependency of Drupal core, you just need the core dev metapackage, which I'm sure everybody has because you're writing tests for your Drupal code base already. What I think is really cool is just two years ago, this was the command. It was required PHPStan the extension installer.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>PHPStan Drupal. And the deprecation rules and PHPStan Phpunit. And even before that, by another year there was no extension extension installer. So you had to like configure it manually to have all the extensions run. Um, so I think that's just really cool how far we've gone as a community to adopting this and writing better code. So once you have that installed, you just do PHP vendor bin PHP analyze dash dash level 2 or 3, four, five, six and then a path to the code and that will then scan the code, do some static analysis goodness, show you errors, or maybe you like the perfect developer. It says no errors found and you can say yeah. And here's an example of how I configure my PHPStan neon. Um, PHPStan uses the neon format, which is probably like the. Net framework. It's the YAML, just as far as you're concerned, it's YAML. Um, so you have the parameters, like I will always send it to level nine. I like to start at the top and then decide like, yeah, we'll accept it or not. I configure my paths.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So like the custom modules, the custom theme then includes I like to include bleeding Edge. I'm not sure how to really incorporate that to the slide yet, but basically PHPStan has configuration that turns on some bleeding edge experimental features. Um, Drupal core is using it because it has some performance and performance improvements, but it can also make things go a little haywire sometimes if it's a patch release. Um, and then I also that's also how you include your baseline as, as it include it takes it as like an extra configuration file basically. And the benefit of having a PHPStan neon is you just gotta run PHP vendor bin PHP standard. You don't need to type, analyze or anything else, it just knows these are the paths at this rule and go for it. So let's talk through some of the magic that PHPStan Drupal brings. One of the big things in the first start was auto loading. I brought it before that. Drupal is a bit magic. Take a normal PHP application, take Symphony Laravel, use Composer and then Composer dumps all those namespaces to the auto loader, and it knows how to access any class that's in the system.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Drupal doesn't do that because we have modules. It's dynamic. You could have like um, maybe you have the taxonomy module turned off. So the Drupal taxonomy namespace doesn't exist. And that's something that PHPStan Drupal tries to mimic, is the auto loading and bootstrapping of Drupal itself during static analysis without a database. A little tricky, a little kind of goofy, but the idea is that we want to be as true as possible. So that way you're getting a realistic result. Um, and it also will load like some of the legacy includes, you know, that includes like file Inc. and a few things like that will include currently it takes all the available extensions and registers them eventually. I'd like to be more specific to your site. So if you have 20 modules enabled, only those 20 namespaces are available. And then you could detect if you're using code and a disabled module or not. Um, the good old hook files, these aren't as common in D8 as they were D7, but they still exist like Views.in token Dot Inc, path auto Dot Inc.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>It knows it tries to check if those files exist and load them. So that way the functions can be discovered and analyzed. And then also Drush includes as well. Although I think with Drush 12 and 13 this is less of a thing, but more for like ten when there's like the Drush Dot Inc or whatever it used to be. And then the service container. So we'll take all the services that yamls and it will parse them and say, all right, when you call Drupal backslash Drupal service and get like entity type manager, it knows it's entity type manager interface. Internally it's doing a service map that knows how to return the valid types. So that way you can detect if it's getting a deprecated service. We don't really encounter those as much as we used to, but take like Drupal eight to Drupal nine. The entity manager was deprecated and split into like ten services. Well, in the code, if you're doing Drupal service, Git or any of that, you didn't know if you had broken code or not, this would have let you say like, hey, you're fetching the deprecated service.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Actually, you should be using this one instead. And the benefit there is if you're using a deprecated method on that service, it knows instead of kind of going like, ah, I don't know what this is, so I'm going to not report anything at all. Um, there's a pretty cool entity integration. This is one of my favorites that a contributor gave in. Like, this was like one of the big first, like, outside of me contributions from folks. This is cool. So it contains a repository of entity information. So it's a little bit hard to see. But it says entity mapping block. Well here's the class for the block entity type. Um block content. And then node it says here's the node class and here's the storage class for that entity type itself. So when you do backslash Drupal colon, colon, entity type manager, get storage. And you say node like you pass node as an argument, it knows it's node storage, which means it knows all the special methods attached to it. Same with terms like terms have like get hierarchy and load parents or something like that in the storage.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So if you were to normally go Drupal entity type manager, get storage taxonomy, term load parents PHPStan I'm like, well entity storage interface doesn't have this method and you have to do all this extra work to say, trust me, it is this class now it just works. Some air quotes just works. And what's really cool is that, um, contrib modules can actually define this information. And in their composer.json put a little extra information in there and PHPStan extension installer will detect it. Um, there's a link that actually just is on the readme of PHPStan Drupal. So you can the example would be commerce. Commerce has like seven entities. Instead of maintaining that in PHPStan, Drupal contrib can own their entity type definitions for PHPStan to understand and be aware of.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>&gt;&gt;:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>So if you're doing custom entities and your custom modules, do you have to then go through. Composer to make that happen? Yes. No. So you don't have to go through Composer. Great question. So the question is I have a project my own custom entity types in my project would have to go through the Composer.json route. No, sorry to clarify, you can add this into your own PHPStan. So in your PHP send neon configuration file under parameters, you would say Drupal colon entity mapping, and then you would start adding your information in because all this configuration and then your own gets merged together. Um great question. I'm going to make sure I update the slides for that to show a better example of that. So so if you have your own custom entity types, you can add them into your PHPStan neon and then PHPStan will understand what's going on. Um, so as I brought up the entity storage class detection. So here this is like some of the test code just showing like, hey, any entity type manager get these different entity types and it knows what storage is being returned.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Which lets us do even cooler things when it comes to calling different methods on the entity storage like create page, it knows it's a node. If you call load, it knows it's a node or null load unchanged or load multiple. Um, one of the cool things about load multiple is might be covered on the next slide as well. But if you have a content entity, it's keyed by the entity ID and then it's the nodes. So it's an array of integer keys. And then the entities if it's a configuration object entity, those are string identifiers. So it will know that it's an array keyed by string. So it's an associated array of entity types which is important right. If you're doing operations like unset um like you want to like pluck an entity out, it could warn you like, hey, you tried to pluck out a string from a content entity type, which means maybe your mappings are wrong, or maybe just you're like, oh shoot, I forgot. I'm working with a different kind of entity type. All those little things, right? Like you do and you don't really think about.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>It's there to like be your backup, I'm saying. So the entity entity queries so it determines the return types like here you say. So here it can be any string versus string string. Um it knows if you're doing an access check or not. And Drupal ten, one of the biggest changes that's kind of like hard is that entity queries are forced to identify their access check. So you have to always call access check. And that broke a lot of things. So PHPStan tries to understand that it is a very tricky situation, but it's like 50% of the use cases are covered and will like warn you like, hey, you have an entity query, you forgot to call this method. Um, it also knows if you call count. So if you call a count it says hey, this execute returned an integer versus an array of different values. Um, one thing that I think is cool. Also some render array checks. One of the coolest features about Drupal is the fact that you don't have to write HTML to make output. You write a render array and we have certain rules about the renders array and PHPStan Drupal can help you enforce those.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So with Drupal Garden, which I'm sure a lot of people remember, there is a way like our render system has callbacks and then Layer Security was added saying I will explicitly tell you what's an allowed callback or not. And this rule will say all right inside of pre render post render access callback lazy builder. Is that callable a closure or is it closure being like an anonymous function or is it defined or is it definition inside a class of trusted callback interface and render callback interface or Drupal ten we now have an attribute which is a PHP eight. Does that method implement the trusted callback attribute so it can do a lookup and warn you like hey, in your form you have a post build, or actually I think post bill is covered also, but in your lazy let's do lazy builder, your lazy builder, you have this callback, but it's not actually explicitly registered. So without having to run the code and see it crash, PHP stands warn you. Or if it did crash, you don't know what's going on and PHPStan.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Oh that's why. Um, so it does support the normal service name callable format. It's a horrible word way to say it. But you could have like my service colon and then the method name. That's like a special Drupal ism that says service name and then the method. So it knows how to parse that format. Um, it also warns you if you use a closure in a form class. Now that's really important because closures, anonymous functions can't be serialized, and certain times the form might get serialized and put into a cache, like if you're doing Ajax in your forms. So it warns you and says, hey, there's a good chance your form could explode because you did this. Um, loaded includes I don't see this as much anymore, but there are times where people put functions in a separate file and then they call module load include, which is deprecated for removal, and Drupal 11, or the module handler load includes. When PHPStan Drupal sees that code, it will go require the file for you. And then again the idea being like we're going to run and analyze your code like Drupal would, because before if it hit a function, PHPStan said undefined function, which is true because it's not defined in the normal auto loaded sense.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>This brings it into scope. So that way it's running like your code actually would. Um, stub files. So PHPStan s idea of a stub file, which is essentially saying the PHP doc for the original class is wrong. I'm going to tell you what the correct PHP doc should be, or take Drupal Core. They may not want to say I don't want all the core committers and like the coding standards might say we don't want to add at PHP, stain, dash all these things because that's not a standard PHP doc. So the stub file allows PHPStan Drupal to say, here's what things actually are for PHPStan. Or when it comes to fields using generics. So templates and generics half the time over my head I'm kind of getting them. Now some people it clicks. For me, it's halfway there. But what this is showing is we have a field item list interface. So entities contain fields. Each field is actually a list of field items. So what this is showing is that field list item interface is a template of tea. Meaning tea is field item interface.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So it's a list of field item interface that extends list interface. And just think of the tea as like the variable. And then below we can see that list. It's extending list interface which says that template tea is type data interface. In the earlier days of PHPStan, when working with entities, the PHP doc everywhere says type data interface. Great, but we know they're fields, and it would always argue about the different methods when working with fields. So this little magic here makes PHPStan understand that. Oh, and your node when you call Git, or even when you do like the arrow field, underscore the name it knows, like, oh, that's a field item list. Great. And that it has magic methods that say when you call value that is actually doing all this magic stuff underneath to get that field value. So this a little bit of PHP doc made PHP understand how entities and fields work. Um, which props to King Dutch at Opensocial. Does he help push a lot of this through? And they kind of like show like here's an entity reference item list.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So at the top this customize the field item list interface to say that, hey, the values are actually inner entity interface in there and just extends it even further down the the way, which hopefully, maybe we can get this pushed into core. I don't know the full steps of that, but like think of it this way PHPStan Drupal is a treasure trove of contributions that can go into Drupal core to improve some of the PHP docs. Um, now that Drupal coder is not a blocker because before peach with Drupal code coding standards, it didn't allow certain things and now it does. Um, PHPStan with stub files also lets you define custom types. So this is like one of the custom tags PHPStan hyphen type. So you can create like a shape and then use that shape throughout a class. So with cache back and interface. So whenever you get a cache object it's always a generic object with certain properties on it. This at the top says cache object has data of mixed because we don't know what the content is. There's a created integer integer timestamp tags that's an array of strings if it's valid, etc.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>and then it says on the Git method it's going to return a cache object. It's not a real class, but we've told PHPStan that it is. And PHPStan will go, oh, you receive something from the cache back end. I know it will have these five properties and I won't yell at you for accessing them. Or I'll say, hey, you try to work with the created timestamp as if it's a string, but it's actually an integer or items like of that sort. Same with like get multiple. It knows it's an array of those items and that's no PHP code there. That's just the PHP doc. To make PHP stand a little bit more aware of how Drupal works. And then there's some miscellaneous awesome sprinkled into there. Um, there is a thing called the class resolver. So if you've ever looked at the content moderation or workflow modules, they use this thing called the class resolver. It's not like when you have a class that uses, um, dependency injection, but it's not a service. You would use this class. Oh, and hey, the example is from workspaces.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>I was looking at the notes so Git instance from definition. Essentially it says, hey, when somebody calls this, the class that they've passed in is the class that's returned. So that way when you do get any get entity type build or entity type, alter PHPStan knows that you're actually calling a method from the class that was passed in, or it will warn you like that method doesn't exist. You got this class, but it's not really there. Like the class doesn't exist or the method doesn't exist. Um, any access results. So this is different than entity queries. So the entity access system supports returning as a boolean or an access result object. And a part of that's like backwards compatibility. So that way it defaults to being a um it defaults to being a boolean return. So if you call access with just like the two values of the object and then the operation, it returns a boolean. Or if you pass in all the things like entity operation account. And then true is like return the object. PHPStan will know that you're getting an object back.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And why does this matter? What if you do if access? If create access, do something. Um, if it's a boolean, there's a chance it could fail because it's false access result. Forbidden is an object, which means it will always pass because it's not empty. That's a big security. Whoopsies. Right? Like, oh, hey, it's an object and it always passes. So this allows PHPStan to be aware that you're doing faulty logic in your conditionals. And again, that's one reason you should be running it at a higher version of PHPStan. I can't remember exactly what level introspection of if conditionals kicks in. Maybe let's say it's four. That's a reason to get up higher, because you'll have better safety checks around your access control. Amongst other things. Um, extending internal code. So in Drupal there are several classes that have at internal at the top, and this rule will flag an error if you're using internal code outside of the namespace. Um, as one of the maintainers of JSON API resources, we did this.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>We had like internal unstable code and then a public API. We want to warn people like if you extend this, it will break. If you use it outside of our API, it will break. So shared namespace could be Drupal core. If Drupal core is using internal stuff, it's fine. But if a module were to use something from Drupal core that's flagged internal, it would throw an error. A lot of times you see this with forms because forms aren't guaranteed, so it can be a bit noisy, but I figure it's better to see the warning and accept it than to not know it's there at all. So the second part of the namespace wants to match because it's general pattern. It's Drupal is always the root part of the namespace, and then it's the module name core component, the theme. And that's the rule for that. So again you saw how like it's going to make your code so much better. And again let's just show how to add PHPStan to your code base. Again you just got to require the dev the core dev meta package. And then run the analyze command with the level.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So let's talk about what's on the horizon for PHPStan Drupal, um, improved container support because now Drupal is advancing the container supporting auto wiring. So instead of in your services YAML, where you're like, here's all the arguments and certain things like that. The Symphony dependency injection injection container can know how to automatically do that for you. And Drupal now supports that. But PHPStan Drupal is doing it by hand still, so that needs a big refactor to make it actually work if you're using auto wiring. Um, I have in progress a Drush command to generate your entity mapping and field information. So I was brought up before, but what about my custom entity types? It's kind of a pain to go there and have to type that out. But what if there's a Drush command that PHPStan Drupal can provide that says dump it, just dump in the the entity types and also my field definitions. So that way PHPStan Drupal can say, oh, you fetched field address. That's actually field item list that contains address items.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And then it's even smarter about the properties that are available. It's in progress. I think it could work. I just haven't gotten back to it yet because there's a lot of other bugs. Um, this was first written in 2019 or 18. Yeah, 18. Um, there's some plugin manager rules in there that could use some cleanup because they're a little bit old and flaky. Um, better Drush support. Actually, I forgot to remove that because the latest version of PHPStan took care of that for me. Um, so it is also like, used for Drush, but I figure we can consider Drush code Drupal at this point. And then any of your suggestions, you know, as it comes in like, hey, I read it with this code, it didn't work or I wish I could do this way, you know, um, long wave, one of the core contributors just found one where if you do lock acquire two times in a row because it could be when you get a lock, it could say lock acquire. If you can't get one, you wait and then you try to acquire it again. PHPStan actually said it considered lock acquire to be truthy all the time.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So the second time you call a choir, it was like, uh, duh. It's true. Like work on it. Well, there's a concept called pure and pure. So we had to do a stub file that said, actually, it's an unpure method that every time I call it, it's not always going to return the same value. It's like there that was a quick fix I got in this like earlier today or, um, you know, going back to the whole securing access results, PHPStan has rules that say in your if conditional, that it might always evaluate to false or evaluate to true on access results. There's a static method of allowed if forbidden if well, an if statement is a great way to screw something up on accident. So I want to see if there's a way for PHP send to analyze your condition for the same thing of you have an allowed if and it's always going to evaluate to true, which means your code is not as secure as you think it is, which I think would be a huge benefit for contrib and personal and client projects as well. So like those things like if you have ideas like, oh, I could have my junior developer did something and I'm kind of sick of always reviewing the code and telling them I'm sick of being the bad guy.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Which is one reason I fell in love with PHPStan is we can codify our processes and our knowledge and not tell people they're doing something wrong the entire time. And also, senior developers don't have to worry about that cognitive load. So anything that you come across, like open issues, I'm all for it. Um, one thing I brought up about, like Drupal going to level nine in the 15 megabyte baseline file that's actually being actively discussed. I don't think it's a bad idea, because we can prevent that baseline file from being distributed with core. It doesn't have to be download like, it doesn't mean everybody's going to deploy into 15 megabyte file to production, unless you're checking out the source code along the way. Um, but there is an active issue that's weighing the benefits of going to level nine or maybe level seven. Um, so that way all new code to Drupal core is at a certain level, because there have been issues that have been committed causing regressions or that have side effects that weren't caught, but would have if PHPStan was running at a higher level.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And unfortunately, it's not bumping up levels fast enough. So if you are interested and the slides are uploaded, that link will go to that issue if you want to follow along. That is one that King Dutch from Opensocial is pushing. Um, Opensocial is a huge user of PHPStan. Um, and they do a lot of cool things there. Some resources if you're interested in getting. If you want to like, chat or learn more, there is the PHPStan channel on Drupal slack so you can hop in, ask questions. I've been trying to push people there. Now that there's like GitLab CI running it, I'm seeing a lot of questions and the GitLab channel or the testing channel come over here. There's a little bit more like it's consolidated. Um, every time I push a release I've got GitHub hooked up so you can see it releases in and said, like, I'll go test it out. Hey. Hey, Matt, you broke something. So we need another patch release going on there. Um, which is one thing that I did not cover in here. New rules are now behind feature flags until I make a minor release.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So there's one of all tests must end in test suffix. Or there's some rule like that that Drupal core needed. Well, you have to add that flag to your PHPStan neon. Um. There's a new one coming out. Where in your forms, you can't use a private property because they can't be serialized, and you can't use a read only property because it can't be serialized. So there'll be a new rule coming out that warns you that if your form or any class using the dependency serialization trait and it warns you like, hey, your properties won't actually be serialized and your site will go boom, that will be behind a feature flag. To prevent some of these, CI builds from failing until they choose to opt in for that, or there's a new minor version. Okay. Um, so there will be there is now a little bit of method to the madness when new rules are added.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>&gt;&gt;:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>And then a few links. So there is documentation for PHPStan on drupal.org. Um, links will be hard to read up here again on the slides. When thinking about everybody was asking how do I use this? I don't want to use the GitHub wiki. It is managed on GitHub for the code, but I feel like this belongs on drupal.org because it is much more collaborative. Um, GitHub's access control is really a pain for that kind of things. So there is an open wiki there, so that way everybody can contribute to it. Like somebody added for PHPStan in Drupal core beyond just using it for yourself. Um, phpstan.org there's a blog where the maintainer writes great insights and also like all the advanced things you can do with it. Of course, the GitHub repository is more common. PHPStan Drupal. Um, Bram can't remember the real name. One of the contributors that added the entity storage stuff had a great talk about PHP static analysis, static analysis 101 that dives into like, what is the abstract syntax tree? And some of the more advanced topics that I kind of just like glance over and then from Drupal Dev days.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Last year. Um. From factorial. Yes. Factorial. They have a great talk about introducing PHPStan to a large scale project. So they had a project that was started and didn't have PHPStan and how they integrated it and use the baseline, how they sold the customer on it. So if you do have a client and you're like, we should make this safer. And they're arguing like, well, I don't know about the cost and what about this? It's like, well, here's how we can sell you on using it without incurring a lot of upfront work, but guaranteeing better code throughout the delivery cycle, which means less bugs. And they save money because it's always more expensive to fix a bug after it's introduced. And that's it. So thanks for coming to the talk. Any. Uh. Any questions? What does it look like to set a baseline file and then go back and rework the text documents? That would be a great video to add. So when you generate the baseline, you do PHPStan analyze and you generate a baseline. So that creates the file.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And any time a new error is added or actually let's talk about like working on the tech debt. Go look at that. Review it. I've done that for Drupal Core to kind of get inspiration on what I should build for PHPStan Drupal. Look at an error like, I'm going to go fix that. And then when you run PHPStan, it will say this error, this ignored error isn't ignored anymore. So then it fails. So even though you accepted those errors, PHPStan will fail when there's an ignored error that isn't true anymore. So that's what it looks like. I can go fix it and it will say either the error has changed like name or any of that sort, so it's either removed or the error message change. It warns you about the ignored error not existing anymore. So then you just go through, find an error, fix it, run PHPStan, verify that the error is gone, or delete that line from the baseline yourself. Run PHP and hack away at it that way. So you're reading. You're reading your ignore file to try to locate what needs fixing.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Climbing the walls or. Oh yeah. So like when working against a baseline, I would just read it myself. It's like, all right, what did we accept previously that we want to work on? Um, I know I have a project at Acquia where we have a giant baseline and there's tons of things. I'm like, you know what? Let's just accept it. And we have these things called innovation days. Every month. I'm like, look, let's not do ticket work. Go look at the baseline and like, find something interesting to just whittle away that tech debt. And I'm a firm believer in having days like that. Like it's all great and fun about innovation and fixing bugs, but sometimes you just want to make things better. And so like the baseline is a great way. Like also if you do like level nine, you're going to get lots of errors, which means that you can create that maintenance sprint to give like developers a little break, have a little fun, like, oh, how can we fix this bug? Or why did it air in the first place?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>&gt;&gt;:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>So you showed the slide with the stubs. And some examples. Were those examples already included in in PHP? Drupal PHPStan Drupal. Those are there or not? Yes. So the question was about the stubs that were shown a few back. So these are in PHPStan Drupal right now. So these are all in there. Um, there's a lot of different ones in there. So all about half of the core field types also have them. So like um, the file item knows that there's the URI property on the file field itself. And I have about ten issues. They're all labeled as good first issue and help wanted for adding stub files for the core fields. Like if you want to contribute and get your feet wet, um, you can talk to me at the unconference this afternoon or at Contribution Day on Friday and see about like, hey, how do I actually write a slug file? How can I help improve? PHPStan Drupal. Um, and then maybe, like looking at the existing ones and say, can we get Drupal Core to take these improvements now? Because maybe they'd be willing.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>&gt;&gt;:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>This is. Was that a logging? Well, it was logging. Like what? What kind of logging does it do? Oh. Got it. What kind of logging is PHPStan do? So by default it will. I'll just print like, lines on the like lines to the terminal, but it actually supports JUnit Teamcity maybe Team City, but it supports all the various XML formats. So you could actually feed it into a code quality report tool. Um, should take a, uh, if it's if you look at the GitLab CI templates for Drupal.org, the PHPStan job actually runs it four times. PHPStan has a cache. So if you run the same files like three times in a row, it's expensive once and then it's boom boom. It's real quick. They do it once to print the output to the screen, once to generate a JUnit file, and one to generate like another file. And there's different output formats. So that's where the PHPStan docs will show you the different output. Formatters I know I've used it for JUnit to get, um, code quality tools to read that as well, and it also supports out of the box GitHub actions.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So if you do use GitHub actions, you don't need to do anything special. It will automatically dump that. So that way your pull request shows the errors in line in GitHub, which is really cool that the tool itself does that for you. Any other questions? All right. Cool. Well, thank you for coming and enjoy lunch next.</span></span></span></span></span></span></p>
+
+<p>&nbsp;</p></div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-f26dc0e1e3978344b69d2a9127566d3022a89ac140ba0c2fd397e3ffafe2c7ef">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/8489">https://mid.camp/8489</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+  <section class="map-banner">
+      <div class="views-element-container block block-views block-views-blockevent-venue-block-1" id="block-hatter-views-block-event-venue-block-1">
+  
+    
+      <div><div class="container view view-event-venue view-id-event_venue view-display-id-block_1 js-view-dom-id-d1b442265ae06cb01d547e2fc665bee1a58c40f8bcb91a5cb5fee9bb6284864b">
+  
+    
+      
+      <div class="view-content">
+          <div class="views-row">
+
+
+<div class="map-overlay">
+  <span class="map__label">Location</span>
+  <h2 class="map__title"><span class="field field--name-title field--type-string field--label-hidden">DePaul University - Lincoln Park Student Center</span>
+</h2>
+  
+            <div class="field field--name-field-address field--type-address field--label-hidden field__item"><p class="map__address" translate="no">
+          2250 N Sheffield Ave. <br>
+            Chicago, IL 60614<br>
+  </p>
+</div>
+      
+  <a href="../venue/depaul-university-lincoln-park-student-center.html" class="cta-link--yellow">Learn more  <span class="cta-arrow"></span></a>
+</div>
+<div id='map' class="map"></div>
+</div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-315eea4355328869c2ebfea126432f9029c6c3480ac57e965974ed30182d1cf8">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/acquia.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2024-02/Acquia%20Droplet%20Blue.png" width="2000" height="2000" alt="The Acquia logo" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#4a23242c250a27232e292b273a6425382d"><span class="__cf_email__" data-cfemail="1b72757d745b76727f787a766b3574697c">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/8489","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"ajaxTrustedUrl":{"form_action_p_pvdeGsVG5zNF_XLGPTvYSKCf43t8qZYSwcfZl2uzM":true},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_U1jmi93nTJG2lPAKzexs4tMZWFR2YMMoIoiPckW421U.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJx1yksKgDAMRdENabskSfUZK2kjTfCzeyfiQHB04XBZlQUDVZLL82iRP9At5I4WWTSR9OsLhbakZ3cgzdpKfBogKKgeJjhlsWC043cqMCPGDa0vM_I"></script>
+<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.js"></script>
+<script src="../../sites/default/files/js/js_RAkHj2z9vY4q-6RsYuiXkqPbxgsRWrLsVQRz36mKiGA.js%3Fscope=footer&amp;delta=2&amp;language=en&amp;theme=hatter&amp;include=eJx1yksKgDAMRdENabskSfUZK2kjTfCzeyfiQHB04XBZlQUDVZLL82iRP9At5I4WWTSR9OsLhbakZ3cgzdpKfBogKKgeJjhlsWC043cqMCPGDa0vM_I"></script>
+
+  </body>
+</html>

@@ -1,0 +1,2830 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="How do you tell if a change you made to your website has unintended side effects? Security updates should rarely result in anything changing visually, but how can you be sure? Visual regression testing automates the comparison process by taking screenshots of two URLs and comparing them. You can view a report that highlights the differences and use the pass/fail result to make decisions." />
+<link rel="canonical" href="visual-regression-testing-backstopjs.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Visual Regression Testing with BackstopJS | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Visual Regression Testing with BackstopJS | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_Qoyy92GHt9RyGOt8N3WS_9HRsJcJBywJ2IhXudzvST4.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJw1jFEOgzAMQy9U1iOhtDGsUkqmugOx068C8WM961nOJuQZkxAh31xBygo-fXMdzhsGtSpWfghv6R0truZJbMpk4MmOeh_tReEzaoLOS4FpbODHN5Yd0yXHBAfjla_q-jX8AXwTNZQ.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_mK2of_t7UFymkfbTHeA-kHdMPWzqc3DZQCYtX-tC0BA.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJw1jFEOgzAMQy9U1iOhtDGsUkqmugOx068C8WM961nOJuQZkxAh31xBygo-fXMdzhsGtSpWfghv6R0truZJbMpk4MmOeh_tReEzaoLOS4FpbODHN5Yd0yXHBAfjla_q-jX8AXwTNZQ.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJw1jFEOgzAMQy9U1iOhtDGsUkqmugOx068C8WM961nOJuQZkxAh31xBygo-fXMdzhsGtSpWfghv6R0truZJbMpk4MmOeh_tReEzaoLOS4FpbODHN5Yd0yXHBAfjla_q-jX8AXwTNZQ.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJw1jFEOgzAMQy9U1iOhtDGsUkqmugOx068C8WM961nOJuQZkxAh31xBygo-fXMdzhsGtSpWfghv6R0truZJbMpk4MmOeh_tReEzaoLOS4FpbODHN5Yd0yXHBAfjla_q-jX8AXwTNZQ.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="visual-regression-testing-backstopjs.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-hatter-midcamp2019navigation-menu" id="block-hatter-midcamp2019navigation" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-midcamp2019navigation-menu">Midcamp 2019 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" title="About MidCamp" data-drupal-link-system-path="node/191">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--venue">
+        <a href="../about/venue.html" data-drupal-link-system-path="node/192">Venue</a>
+            </li>
+          <li class="primary-nav__sublist-item item--travel">
+        <a href="../about/travel.html" title="Travel and Accommodations" data-drupal-link-system-path="node/188">Travel</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../about/lunch.html" title="Lunch options" data-drupal-link-system-path="node/189">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--volunteer">
+        <a href="../article/volunteer-help-midcamp.html" title="Volunteer!">Volunteer!</a>
+            </li>
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2019/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../../2020/news.html" data-drupal-link-system-path="2020/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--attendees">
+        <a href="../attendees.html" data-drupal-link-system-path="2019/attendees">Attendees</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" data-drupal-link-system-path="2019/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--spread-the-word">
+        <a href="../article/spread-word.html" data-drupal-link-system-path="node/371">Spread the Word</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" title="Sponsors" data-drupal-link-system-path="node/197">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--become-a-sponsor">
+        <a href="../sponsor-midcamp.html" title="Sponsor MidCamp" data-drupal-link-system-path="node/186">Become a Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../../jobs.html" title="Jobs" data-drupal-link-system-path="jobs">Jobs</a>
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" title="Schedule" data-drupal-link-system-path="node/190">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--all-sessions">
+        <a href="../sessions.html" data-drupal-link-system-path="2019/sessions">All Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--summits--training-wed">
+        <a href="../schedule/wednesday.html" title="Summits &amp; Training (Wednesday)" data-drupal-link-system-path="2019/schedule/wednesday">Summits &amp; Training (Wed)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-thu">
+        <a href="../schedule/thursday.html" title="Sessions (Thursday)" data-drupal-link-system-path="2019/schedule/thursday">Sessions (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-fri">
+        <a href="../schedule/friday.html" title="Sessions (Friday)" data-drupal-link-system-path="2019/schedule/friday">Sessions (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--contribution-sat-">
+        <a href="../contribution-day.html" title="Contribution Day" data-drupal-link-system-path="node/332">Contribution (Sat) </a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-terms-and-conditions">
+        <a href="../../speaker-terms-and-conditions.html" title="Speaker Terms and Conditions" data-drupal-link-system-path="node/21">Speaker Terms and Conditions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../../speaker-resources.html" title="Speaker Resources">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--topic-tracks">
+        <a href="../../topic-tracks.html" title="Topic Tracks" data-drupal-link-system-path="node/10">Topic Tracks</a>
+            </li>
+  </ul>
+
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2019.html" hreflang="en">MidCamp 2019</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Visual Regression Testing with BackstopJS</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="285" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2019-03-22T14:00:00Z" class="datetime">Friday, 9:00 am CDT</time>
+ - <time datetime="2019-03-22T15:00:00Z" class="datetime">Friday, 10:00 am CDT</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-82" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-field-link field--type-link field--label-hidden field__item"><a href="https://zoom.us/my/midcamp314b" target="_blank" class="button--primary">Go to Room 314B - old</a></div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>How do you tell if a change you made to your website has unintended side effects? Security updates should rarely result in anything changing visually, but how can you be sure?</p>
+
+<p>Visual regression testing automates the comparison process by taking screenshots of two URLs and comparing them. You can view a report that highlights the differences and use the pass/fail result to make decisions.</p>
+
+<p>In this workshop, we will use the BackstopJS visual regression tool locally, via Node JS, to automate visual QA. We will also learn how to scale and automate these tests across multiple sites and URLs.</p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/_JvqXIkxBqo?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>David Needham</h4>
+
+      Developer Advocate
+
+
+          @
+              <a href="https://pantheon.io">Pantheon</a>
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p>David Needham is a Developer Advocate at Pantheon where he focuses on developer education and training. When he's not blogging about productivity at davidneedham.me or speaking at conferences, you can probably find him with his bicycle-loving family playing board games in Champaign, IL.</p>
+</div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2018-01/David%20Needham%20-%20Pantheon%20-%20cropped.jpg%3Fitok=uWxg4dea" width="220" height="220" alt="David Needham, Developer Advocate at Pantheon" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Back-End</div>
+          <div class="field__item">Front-End</div>
+              </div>
+      </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p>- [David] Welcome to the first session</p>
+
+<p>of MidCamp day three technically.</p>
+
+<p>This is Visual Regression<br>
+Testing with BackstopJS.</p>
+
+<p>My name is David Neeedham.</p>
+
+<p>I'm a developer advocate at Pantheon.</p>
+
+<p>What that means is I sort of sit between</p>
+
+<p>the developers that are using<br>
+Pantheon in the real world</p>
+
+<p>and the Pantheon developers<br>
+that are building it</p>
+
+<p>and kind of reading new<br>
+functionality and things like that.</p>
+
+<p>As part of this process,</p>
+
+<p>I end up creating a lot of demo sites,</p>
+
+<p>I end up creating a lot<br>
+of training curriculum,</p>
+
+<p>and interacting with developers from</p>
+
+<p>all sorts of different<br>
+backgrounds in WordPress</p>
+
+<p>and Drupal and even other<br>
+technologies as well.</p>
+
+<p>I'm based out of Champaign, Illinois</p>
+
+<p>so just a couple hours south.</p>
+
+<p>I've been doing Drupal<br>
+for about 11 years now.</p>
+
+<p>The point of the training, session today,</p>
+
+<p>is to learn a little bit about<br>
+what visual regression is,</p>
+
+<p>what the problems are that<br>
+we're trying to solve with it,</p>
+
+<p>and then to learn a little bit<br>
+about BackstopJS specifically</p>
+
+<p>in a way that I am hoping<br>
+will be really approachable,</p>
+
+<p>really easy for someone to pick up</p>
+
+<p>and just try on your own site so you can</p>
+
+<p>become comfortable with it<br>
+and then grow up from there.</p>
+
+<p>I should also say this has originally</p>
+
+<p>up to this point been a training,</p>
+
+<p>either a half-day or a full-day training.</p>
+
+<p>I've restructured the<br>
+slides and the format</p>
+
+<p>and taken out some of the demos to</p>
+
+<p>make it more of an hour<br>
+long session format</p>
+
+<p>so we can go through it today.</p>
+
+<p>However, my slides are available,</p>
+
+<p>visual-regression.davidneedham.me.</p>
+
+<p>This is something you<br>
+could actually go through,</p>
+
+<p>probably not live right now,<br>
+but if you check that out,</p>
+
+<p>all of the directions<br>
+for all of the commands</p>
+
+<p>that I'm running are in<br>
+the slides all right there.</p>
+
+<p>Visual regression testing.</p>
+
+<p>The first question and the question I had</p>
+
+<p>when I first heard about<br>
+visual regression testing is,</p>
+
+<p>what is it?</p>
+
+<p>If you take the definition of regression,</p>
+
+<p>a regression is a return to a former</p>
+
+<p>or less developed state.</p>
+
+<p>As we're thinking about<br>
+visual regression testing,</p>
+
+<p>we're trying to run a test to verify</p>
+
+<p>that we're not regressing,</p>
+
+<p>we're not going backwards in some sort of</p>
+
+<p>functionality or design that we've built.</p>
+
+<p>Typically, this comes up<br>
+in a few different ways.</p>
+
+<p>One of them is just doing updates.</p>
+
+<p>If you can overlook the fact that</p>
+
+<p>this is a WordPress<br>
+screenshot and example,</p>
+
+<p>all of these examples are relevant for</p>
+
+<p>not just Drupal and WordPress,<br>
+but any website, any browser,</p>
+
+<p>it should all be totally relevant.</p>
+
+<p>When you're doing an update,</p>
+
+<p>you don't expect anything<br>
+to be visually different.</p>
+
+<p>You go in, you have a<br>
+security update, you run it.</p>
+
+<p>If it works correctly,</p>
+
+<p>it should look exactly the same and</p>
+
+<p>work exactly the same way<br>
+before and after the update.</p>
+
+<p>Here's a site, there<br>
+is an update available.</p>
+
+<p>We run the updates and of course,</p>
+
+<p>we want to check out the live site</p>
+
+<p>so we kind of flip through it and we</p>
+
+<p>take a look and familiarize<br>
+ourselves with the live site,</p>
+
+<p>we make sure that everything<br>
+is working before the update,</p>
+
+<p>everything looks okay.</p>
+
+<p>Here's after the update under<br>
+a development environment.</p>
+
+<p>We're not ready to<br>
+merge it up to live yet,</p>
+
+<p>but let's just check out the site.</p>
+
+<p>We click through it.</p>
+
+<p>We scan.</p>
+
+<p>Did anyone see the<br>
+difference between the two?</p>
+
+<p>If you're doing this all the time,</p>
+
+<p>you might have some tricks up your sleeve.</p>
+
+<p>Maybe you put them<br>
+side-by-side and run a script</p>
+
+<p>so that they'll scroll them side-by-side</p>
+
+<p>and you can compare visually that way.</p>
+
+<p>You should also probably be thinking about</p>
+
+<p>other browsers, other<br>
+viewpoints, view ports.</p>
+
+<p>This is desktop, maybe<br>
+you also care about mobile</p>
+
+<p>so you wanna check that<br>
+and flip through them.</p>
+
+<p>As you're seeing,</p>
+
+<p>this is a problem that we as humans</p>
+
+<p>are just not very good at solving.</p>
+
+<p>We might be able to catch differences</p>
+
+<p>that are very blatant and obvious,</p>
+
+<p>but it's really difficult for<br>
+us to catch subtle differences</p>
+
+<p>and that's why a tool like BackstopJS</p>
+
+<p>that will highlight the differences</p>
+
+<p>between two screenshots will<br>
+make our jobs a little easier.</p>
+
+<p>Here is a BackstopJS report<br>
+highlighting the differences.</p>
+
+<p>Just to show you here,</p>
+
+<p>we have this little scrubber so you can</p>
+
+<p>actually move this<br>
+scrubber back and forth.</p>
+
+<p>You can see in this update,</p>
+
+<p>the text on that search box changed.</p>
+
+<p>It's a minor detail,</p>
+
+<p>but it might be something<br>
+you wanna know about</p>
+
+<p>depending on what's going on,</p>
+
+<p>and it's something you<br>
+wouldn't necessarily</p>
+
+<p>expect to happen in a just<br>
+mundane update that you're doing.</p>
+
+<p>This is one of the things that<br>
+BackstopJS can catch for you.</p>
+
+<p>It becomes even more<br>
+useful as we start again</p>
+
+<p>thinking about multiple<br>
+browsers, multiple view ports,</p>
+
+<p>it's able to account<br>
+for all of that for you.</p>
+
+<p>Visual regression testing is able to</p>
+
+<p>help you have superpowers.</p>
+
+<p>You're able to leverage<br>
+computers and robots</p>
+
+<p>so that you can notice these things</p>
+
+<p>that are different more easily.</p>
+
+<p>It should give you more time to focus on</p>
+
+<p>the things that you actually care about</p>
+
+<p>and really highlight the things that</p>
+
+<p>you need to pay attention to.</p>
+
+<p>There's a bunch of different</p>
+
+<p>visual regression tools out there.</p>
+
+<p>We are going to be focusing on BackstopJS,</p>
+
+<p>but if you have a different<br>
+preference, you can do that.</p>
+
+<p>There's also lots of third party paid</p>
+
+<p>visual regression services out there</p>
+
+<p>that you can pay a little bit of money to</p>
+
+<p>and they'll take care of those for you.</p>
+
+<p>We're just gonna be working with</p>
+
+<p>running Backstop on our computer ourselves</p>
+
+<p>and running tests manually at this point.</p>
+
+<p>There are lots of benefits to using</p>
+
+<p>a visual regression test of any kind.</p>
+
+<p>First of all, you're gonna be taking these</p>
+
+<p>screenshots of two versions of your site,</p>
+
+<p>probably your live version<br>
+and your development version</p>
+
+<p>whether it's up on Pantheon or up on</p>
+
+<p>some staging site that you have,</p>
+
+<p>or maybe live versus your local copy.</p>
+
+<p>Maybe you wanna be testing as you're</p>
+
+<p>developing a site to make sure that</p>
+
+<p>you're only changing<br>
+things that you expect.</p>
+
+<p>We're able to do that.</p>
+
+<p>We're able to put in a reference URL,</p>
+
+<p>which is the original,<br>
+the perfect live version,</p>
+
+<p>versus our test URL,</p>
+
+<p>which is gonna be our development<br>
+site or our local site.</p>
+
+<p>We're also able to accommodate<br>
+multiple view ports.</p>
+
+<p>If you know that you want<br>
+this to work on tablet</p>
+
+<p>and mobile at these resolutions,<br>
+under these criteria,</p>
+
+<p>you can set up your configuration file to</p>
+
+<p>account for that and to generate a report</p>
+
+<p>that has each of those<br>
+instances accounted for.</p>
+
+<p>You also have options to<br>
+scan your entire site.</p>
+
+<p>If you don't wanna have to worry about</p>
+
+<p>manually adding a report or a scenario</p>
+
+<p>for every single page on your site,</p>
+
+<p>there are options like<br>
+Backstop Spider is a library</p>
+
+<p>that will actually crawl<br>
+your site, grab all the URLs,</p>
+
+<p>and then generate a report with that.</p>
+
+<p>My personal feelings on that so far</p>
+
+<p>in using this in the<br>
+real world has been that</p>
+
+<p>it's not actually very useful to scan</p>
+
+<p>your site and get every single URL because</p>
+
+<p>the report that you generate takes forever</p>
+
+<p>to go through and scan and do that.</p>
+
+<p>Still, you might have a use<br>
+case where that's helpful.</p>
+
+<p>Yes, you do get error reporting.</p>
+
+<p>It's meant to be relatively<br>
+easy to write test symbols.</p>
+
+<p>We'll see whether or not that's true</p>
+
+<p>when we get into the code.</p>
+
+<p>There are some limits to visual<br>
+regression testing though.</p>
+
+<p>You might have noticed on<br>
+that screenshot earlier</p>
+
+<p>when we were kind of<br>
+flipping through the gif</p>
+
+<p>and we showed the report,</p>
+
+<p>sometimes there are some<br>
+visual differences between</p>
+
+<p>two versions of a site that are</p>
+
+<p>not representative of an actual<br>
+change that you'd expect.</p>
+
+<p>Maybe if you have embedded media</p>
+
+<p>like a YouTube video or a Vimeo video,</p>
+
+<p>sometimes they'll embed<br>
+random static on there</p>
+
+<p>like loading image,</p>
+
+<p>which will give you a failure<br>
+when it's not necessary.</p>
+
+<p>Also sometimes, things<br>
+will just be slightly off</p>
+
+<p>for some reasons that are a<br>
+little bit difficult or timing,</p>
+
+<p>if you have two versions of a site,</p>
+
+<p>one loads faster than the other.</p>
+
+<p>There are ways to account<br>
+for a lot of these things,</p>
+
+<p>but there are some<br>
+limitations that make it</p>
+
+<p>a little bit more difficult to use</p>
+
+<p>However, I still find<br>
+that this whole process</p>
+
+<p>saves a lot of time.</p>
+
+<p>It helps you identify the things that are</p>
+
+<p>needing to be addressed.</p>
+
+<p>Let's actually jump into using BackstopJS.</p>
+
+<p>The way that this works is we<br>
+are using a headless Chrome.</p>
+
+<p>We're not actually opening<br>
+up our Chrome browser</p>
+
+<p>and it's not taking<br>
+screenshots that you can see.</p>
+
+<p>You run the command and it<br>
+goes through and does it,</p>
+
+<p>simulating it with headless<br>
+Chrome automatically.</p>
+
+<p>You don't have to worry about your window</p>
+
+<p>popping up or anything.</p>
+
+<p>You can just use your command<br>
+line, run the command,</p>
+
+<p>and step away or go do other work</p>
+
+<p>and it will take care all of that for you.</p>
+
+<p>You are also able to simulate<br>
+user interactions, meaning,</p>
+
+<p>you can actually click on things,</p>
+
+<p>you could wait for certain things to load,</p>
+
+<p>you can preload cookies as well</p>
+
+<p>to give people basically<br>
+a logged in instance</p>
+
+<p>if you have a site that's<br>
+behind a paywall or something,</p>
+
+<p>there are ways that<br>
+you can get around that</p>
+
+<p>still using the command line.</p>
+
+<p>You get this report that<br>
+we're gonna look at.</p>
+
+<p>It's gonna pop up in our browser</p>
+
+<p>and we'll use the scrubber<br>
+and all that stuff.</p>
+
+<p>When you're thinking about automation,</p>
+
+<p>you're also able to<br>
+accommodate a command line</p>
+
+<p>interface to this with a pass-fail return.</p>
+
+<p>As you're going through and<br>
+doing something like a script</p>
+
+<p>or maybe you wanna automate<br>
+your updates on your site,</p>
+
+<p>you could integrate a<br>
+visual regression task</p>
+
+<p>that returns a pass-fail and then</p>
+
+<p>does other things with the script,</p>
+
+<p>the larger script that you're writing.</p>
+
+<p>You do have the option<br>
+of either installing</p>
+
+<p>BackstopJS on your project itself</p>
+
+<p>or globally on your entire computer.</p>
+
+<p>In this case, I've opted<br>
+to do it globally 'cause,</p>
+
+<p>we'll see that in a minute,</p>
+
+<p>but you'll have the option to then</p>
+
+<p>just going and initialize Backstop on</p>
+
+<p>every site that you're<br>
+working on if you'd like to,</p>
+
+<p>but we'll see that in a minute.</p>
+
+<p>We will also see a demo of<br>
+the standalone packaged app.</p>
+
+<p>If you have a team that maybe doesn't</p>
+
+<p>feel comfortable running<br>
+the command line a lot</p>
+
+<p>or they don't want to have to<br>
+manually set up BackstopJS,</p>
+
+<p>if you feel comfortable with Node,</p>
+
+<p>you could package this up as a Node app</p>
+
+<p>and you run a command and it does a</p>
+
+<p>visual regression test for you all in one</p>
+
+<p>sort of packaged neat bundle.</p>
+
+<p>We'll also take a look at that later.</p>
+
+<p>Ultimately, it comes down to<br>
+just a few simple commands,</p>
+
+<p>and we'll be seeing those.</p>
+
+<p>Again, everything is sort of defined</p>
+
+<p>in this BackstopJS file.</p>
+
+<p>It's a configuration file<br>
+and I'm just gonna explain</p>
+
+<p>some of these pieces before we actually</p>
+
+<p>jump in and start editing it.</p>
+
+<p>We start off here at<br>
+the top with view ports.</p>
+
+<p>View ports are just your dimensions of</p>
+
+<p>the website that you want to capture.</p>
+
+<p>We have one here for<br>
+phone and one for tablet,</p>
+
+<p>maybe you also want to do desktop</p>
+
+<p>or whatever other dimensions are relevant</p>
+
+<p>for what you're trying to do.</p>
+
+<p>Below that, we have a section<br>
+for scenarios where we can</p>
+
+<p>define different pages on our website</p>
+
+<p>and all the criteria for that.</p>
+
+<p>We have a label which is describing</p>
+
+<p>what this particular scenario is,</p>
+
+<p>we have the URL which is<br>
+the URL that we're testing,</p>
+
+<p>this is gonna be our development<br>
+URL or our local URL,</p>
+
+<p>and then the reference URL which is the</p>
+
+<p>live website that we're<br>
+testing it against.</p>
+
+<p>Below that, we have a<br>
+bunch of other things.</p>
+
+<p>There's ready event and<br>
+selector if we want to</p>
+
+<p>wait until this thing is on the page</p>
+
+<p>before we actually run the test,</p>
+
+<p>we can delay the test a<br>
+certain amount of time</p>
+
+<p>if we wanna account for maybe a loader</p>
+
+<p>or a certain slide or something like that.</p>
+
+<p>We also have options to<br>
+hide and remove selectors.</p>
+
+<p>For example, if we have<br>
+that YouTube video that is</p>
+
+<p>causing our test to<br>
+fail every single time,</p>
+
+<p>we could either hide that or remove it</p>
+
+<p>from the page completely<br>
+whenever the test is run</p>
+
+<p>so it's not causing our test<br>
+to fail every single time.</p>
+
+<p>Of course you can do the opposite of that</p>
+
+<p>where instead of by default here,</p>
+
+<p>it's selecting the entire document and</p>
+
+<p>scanning and testing the entire document.</p>
+
+<p>If you only wanted it to<br>
+test particular components</p>
+
+<p>or if you are doing a style guide</p>
+
+<p>with a component library that<br>
+you wanna be testing against,</p>
+
+<p>you could add specific<br>
+selectors that it's testing</p>
+
+<p>and it will generate a<br>
+report selector by selector,</p>
+
+<p>which could be helpful sometimes.</p>
+
+<p>Then there's all sorts of<br>
+other configurations here,</p>
+
+<p>including changing the<br>
+engine and things like that</p>
+
+<p>that we're just not gonna<br>
+have time to get into.</p>
+
+<p>Now we're to the first demo where we are</p>
+
+<p>actually going to be running<br>
+BackstopJS on a project.</p>
+
+<p>I have a site.</p>
+
+<p>It is a Pantheon Theater<br>
+website, pantheondemo.com,</p>
+
+<p>and this is the live website.</p>
+
+<p>It's a common website<br>
+that we use at Pantheon</p>
+
+<p>for a few different demos that we run.</p>
+
+<p>It has a slideshow, it has<br>
+a few different sections,</p>
+
+<p>pretty easy, only a few different pages.</p>
+
+<p>I also have a local copy.</p>
+
+<p>I'm using Lando, which isn't<br>
+really relevant for this,</p>
+
+<p>but it's just a local docker installation.</p>
+
+<p>It's an exact copy and I'm<br>
+pretty sure it's an exact copy,</p>
+
+<p>but of course I can always<br>
+run a BackstopJS test</p>
+
+<p>to make sure that it's an exact copy.</p>
+
+<p>We could get that going.</p>
+
+<p>I'm gonna follow the directions here.</p>
+
+<p>First of all, I need<br>
+to initialize Backstop.</p>
+
+<p>If I jump over to my command line...</p>
+
+<p>Sorry about that.</p>
+
+<p>If I just do a Backstop in it,</p>
+
+<p>it is going to set up the<br>
+Backstop project on this site.</p>
+
+<p>It's gonna give me a Backstop.json file,</p>
+
+<p>which has some pre-configured stuff in it,</p>
+
+<p>it's gonna set up the<br>
+file structure in place</p>
+
+<p>so it has a place to save the screenshots</p>
+
+<p>that it's gonna be generating,</p>
+
+<p>and just generally getting it ready to go.</p>
+
+<p>When I'm ready to start configuring this</p>
+
+<p>and getting it specific to my project,</p>
+
+<p>I can edit the Backstop.json file.</p>
+
+<p>Let's take a look at that.</p>
+
+<p>It's gonna open it up in Atom,</p>
+
+<p>which is my preferred code editor.</p>
+
+<p>This is what you get by default.</p>
+
+<p>You have phone and tablet<br>
+for your view ports.</p>
+
+<p>If you wanted to add or remove those,</p>
+
+<p>you can do whatever you want.</p>
+
+<p>We also have an on ready<br>
+and on before script,</p>
+
+<p>which isn't really useful<br>
+for me in this place.</p>
+
+<p>You're just able to kind of<br>
+set up some stuff in advance.</p>
+
+<p>I'm gonna leave it there just to show</p>
+
+<p>that I don't have to remove anything,</p>
+
+<p>but if I was optimizing this<br>
+for a real world scenario,</p>
+
+<p>I'd probably remove those<br>
+'cause I'm not really using it.</p>
+
+<p>Below that, I have the first scenario,</p>
+
+<p>the BackstopJS homepage.</p>
+
+<p>I'm gonna swap this out with<br>
+the Pantheon demo homepage.</p>
+
+<p>I also have the option<br>
+here for the cookie path,</p>
+
+<p>which again, I'm not<br>
+really using for this demo,</p>
+
+<p>but I'll leave it in place.</p>
+
+<p>We have the URL, which is<br>
+going to be my demo site,</p>
+
+<p>my Lando site.</p>
+
+<p>Let me put in the URL for that,</p>
+
+<p>pantheonweeklydemosite.lndo.site,</p>
+
+<p>and then the reference URL,</p>
+
+<p>which is gonna be my live<br>
+site, pantheondemo.com.</p>
+
+<p>I don't really have to<br>
+change anything else.</p>
+
+<p>All those other variables are there.</p>
+
+<p>I can change them if I want to,</p>
+
+<p>I can look up the reference<br>
+and determine what these are,</p>
+
+<p>but I'm actually just gonna<br>
+save this just as it is,</p>
+
+<p>switch back to my command line,</p>
+
+<p>and start with a Backstop reference.</p>
+
+<p>This is gonna generate the<br>
+initial reference screenshots</p>
+
+<p>for the reference site that I referenced.</p>
+
+<p>That's a lot of references.</p>
+
+<p>It's taking the live website,</p>
+
+<p>creating screenshots for<br>
+the different view ports</p>
+
+<p>for this homepage, and<br>
+then once that's done,</p>
+
+<p>all I have to do is run a Backstop test</p>
+
+<p>just as it says right<br>
+here to generate a report.</p>
+
+<p>Now it's creating screenshots for my</p>
+
+<p>test site on my local computer,</p>
+
+<p>it's generating a report, comparing them.</p>
+
+<p>I expected these to be the<br>
+same, but as you can see,</p>
+
+<p>the reference is actually<br>
+a little bit faded.</p>
+
+<p>It didn't get loaded<br>
+completely right away.</p>
+
+<p>Let me just click through<br>
+the report real quick</p>
+
+<p>and you can take a look.</p>
+
+<p>I'll fix this issue.</p>
+
+<p>We can take a look at the reference and</p>
+
+<p>see the screenshot and kind<br>
+of see what it looks like.</p>
+
+<p>We can jump over to the test,<br>
+see what that looks like.</p>
+
+<p>We can also look at the DIFF to see</p>
+
+<p>everything highlighted that's<br>
+different between the two,</p>
+
+<p>and then we can actually<br>
+go to the scrubber</p>
+
+<p>and we can see a comparison<br>
+of the two versions</p>
+
+<p>and scrub them back and forth.</p>
+
+<p>Let's actually resolve this issue.</p>
+
+<p>The problem's that it's not fully loading</p>
+
+<p>before the screenshot's taken</p>
+
+<p>and this is in our reference image.</p>
+
+<p>If we jump back to our code,</p>
+
+<p>we have a few different options.</p>
+
+<p>I could delay if I wanted to.</p>
+
+<p>That might help just by saying<br>
+let's wait 10 milliseconds,</p>
+
+<p>let's wait a full second,<br>
+something like that.</p>
+
+<p>I could also go to the ready selector</p>
+
+<p>and grab a class from the page and say,</p>
+
+<p>when this is completely loaded,<br>
+then take the screenshot.</p>
+
+<p>I'm gonna start just with the delay.</p>
+
+<p>I'm gonna say, let's do 10.</p>
+
+<p>It was in the reference image so I</p>
+
+<p>need to redo my references.</p>
+
+<p>Backstop reference.</p>
+
+<p>Now let's do a Backstop test.</p>
+
+<p>It still did it.</p>
+
+<p>Then maybe it would make more sense</p>
+
+<p>to grab one of those classes,<br>
+something on the page.</p>
+
+<p>Let's see if we can find one real quick.</p>
+
+<p>Let's go to our live<br>
+site, look at the code.</p>
+
+<p>Let's just grab something<br>
+really generic like container.</p>
+
+<p>Let's go over to the<br>
+ready selector, container,</p>
+
+<p>and click save.</p>
+
+<p>Let's generate some new reference images.</p>
+
+<p>- [Man] Do you always have<br>
+to name them reference</p>
+
+<p>or can you put any name you want?</p>
+
+<p>Do you have to name it like the tag?</p>
+
+<p>- [David] The process<br>
+is you Backstop in it</p>
+
+<p>to generate the project<br>
+and then you just do</p>
+
+<p>reference or regenerate<br>
+the reference images</p>
+
+<p>and then test to compare the<br>
+live versus the reference.</p>
+
+<p>I don't know if you could<br>
+create multiple versions</p>
+
+<p>if you have a reference<br>
+one, reference two,</p>
+
+<p>reference whatever.</p>
+
+<p>Good question.</p>
+
+<p>Backstop test now.</p>
+
+<p>I think it still failed.</p>
+
+<p>Look, this time it's on the test one.</p>
+
+<p>Well that's strange.</p>
+
+<p>This is the great thing about live demos.</p>
+
+<p>Sometimes it doesn't<br>
+quite go how you'd expect.</p>
+
+<p>That's okay.</p>
+
+<p>You would massage the config file,</p>
+
+<p>get it so that they equal the same thing,</p>
+
+<p>and who knows the reason why<br>
+in this case why they're not.</p>
+
+<p>You could also just ignore<br>
+the slideshow in this case.</p>
+
+<p>If the slideshow is<br>
+consistently causing errors</p>
+
+<p>when it's things that are just<br>
+it's not quite loading right,</p>
+
+<p>you could just hide it or<br>
+remove it from the markup</p>
+
+<p>and it wouldn't have to be<br>
+included in the test anymore.</p>
+
+<p>This is one example, quickly<br>
+generating this report here.</p>
+
+<p>Typically, the process is<br>
+just like I showed you.</p>
+
+<p>You're modifying that config file,</p>
+
+<p>you're doing reference and then test.</p>
+
+<p>Once your reference is completed and it</p>
+
+<p>feels like it's a good<br>
+representation like in this case,</p>
+
+<p>we wouldn't have to regenerate the</p>
+
+<p>reference every single time.</p>
+
+<p>We could just make<br>
+whatever change we need to,</p>
+
+<p>do test again, do test again<br>
+until we determine that</p>
+
+<p>it's working the way we expect it to.</p>
+
+<p>This brings up to the<br>
+second killer use case.</p>
+
+<p>If you haven't guessed<br>
+it already, it's theming.</p>
+
+<p>If you are a front-end developer</p>
+
+<p>or if you make changes<br>
+on your local computer</p>
+
+<p>on a regular basis and you're tweaking CSS</p>
+
+<p>and things like that,</p>
+
+<p>then it probably makes sense to have some</p>
+
+<p>even very light version of<br>
+visual regression testing</p>
+
+<p>because how often have you said,</p>
+
+<p>I know exactly what this problem is.</p>
+
+<p>I'm just gonna make a<br>
+quick little CSS change</p>
+
+<p>and it's gonna totally fix this.</p>
+
+<p>Then you realize, when we built the site,</p>
+
+<p>that selector actually was on these</p>
+
+<p>other pages and I forgot,<br>
+or we didn't whatever.</p>
+
+<p>Whatever the scenario is,</p>
+
+<p>that's a really difficult<br>
+situation to be in</p>
+
+<p>because you think it's really easy</p>
+
+<p>and hours later you're still debugging.</p>
+
+<p>Let's fix that early and<br>
+have a test that we can run.</p>
+
+<p>We can see exactly what pages are affected</p>
+
+<p>and make sure that whatever<br>
+CSS change we're making</p>
+
+<p>is only changing the<br>
+piece that we're expecting</p>
+
+<p>and not accidentally<br>
+messing stuff up elsewhere.</p>
+
+<p>It's easy.</p>
+
+<p>With our specific example,</p>
+
+<p>we have this Pantheon Theater website,</p>
+
+<p>and let's just say our<br>
+marketing team has determined</p>
+
+<p>through AB testing that if we change the</p>
+
+<p>color of that buy tickets button from this</p>
+
+<p>purple color to a bright red color,</p>
+
+<p>it will sell more tickets,<br>
+it'll be more noticeable.</p>
+
+<p>So we're like okay, no problem,<br>
+we can do that, that's easy.</p>
+
+<p>Let's jump over to our CSS<br>
+and we'll make that change.</p>
+
+<p>Let me go back.</p>
+
+<p>I think I already have<br>
+my code editor open.</p>
+
+<p>Let's go into my theme.</p>
+
+<p>Let's go down to my CSS file down to this</p>
+
+<p>deceptively unspecific class called CTA.</p>
+
+<p>We have the background color, purple.</p>
+
+<p>Let's change that to red, save.</p>
+
+<p>Let me jump back and<br>
+just verify on my local</p>
+
+<p>that it is working.</p>
+
+<p>There we go.</p>
+
+<p>It's now red.</p>
+
+<p>Now what we'd do is<br>
+we'd run out test again.</p>
+
+<p>Go back to our command<br>
+line, do Backstop test.</p>
+
+<p>Now it's going to generate a report for us</p>
+
+<p>based on those changes that we've made.</p>
+
+<p>As we can see, again, if<br>
+you can ignore the top part,</p>
+
+<p>which shouldn't be quite that way,</p>
+
+<p>you can see pretty easily<br>
+we have the reference,</p>
+
+<p>we have the test, and we<br>
+can see the difference.</p>
+
+<p>We could go to the<br>
+scrubber if we wanted to</p>
+
+<p>and actually compare and see it definitely</p>
+
+<p>changed from one to the other,</p>
+
+<p>or we could switch to<br>
+this version scrubber</p>
+
+<p>and see exactly what<br>
+changed between the two.</p>
+
+<p>Then if you combo this with maybe you have</p>
+
+<p>a selection of pages on the<br>
+website that are high priority,</p>
+
+<p>maybe you also include those as</p>
+
+<p>part of your scenario as well.</p>
+
+<p>You would go back to your code,</p>
+
+<p>go into your Backstop.json file,</p>
+
+<p>add an additional scenario here for</p>
+
+<p>all of the pages that are<br>
+important to you to check,</p>
+
+<p>and then you would<br>
+automatically in this report</p>
+
+<p>not just get different view ports,</p>
+
+<p>but you'd also get each<br>
+scenario listed out one by one.</p>
+
+<p>You can go through and<br>
+see to make sure that yes,</p>
+
+<p>the CTA only affected this one piece.</p>
+
+<p>It didn't break things<br>
+or cause color changes</p>
+
+<p>on other parts of the site as well.</p>
+
+<p>- [Man] Are you saying you have to</p>
+
+<p>specify each page in this scenario?</p>
+
+<p>- [David] By default, yes.</p>
+
+<p>There's another library<br>
+called Backstop Crawl</p>
+
+<p>that will go through and crawl<br>
+every page of your website.</p>
+
+<p>However, the report that<br>
+I just ran, the test,</p>
+
+<p>was relatively quick because I have</p>
+
+<p>two view ports and one scenario.</p>
+
+<p>As soon as you start adding</p>
+
+<p>three view ports and 100 scenarios,</p>
+
+<p>or even three view ports and 10 scenarios,</p>
+
+<p>you're having to wait longer<br>
+and longer for it to work.</p>
+
+<p>You probably want rather than scanning</p>
+
+<p>all 100 pages of your website,</p>
+
+<p>you probably wanna pick a subset of</p>
+
+<p>here's my template for an article,</p>
+
+<p>here's my template for a<br>
+basic page, and a staff bio,</p>
+
+<p>here are the top level navigation pages</p>
+
+<p>that I actually wanna check,</p>
+
+<p>and probably not scan every<br>
+single page of your site.</p>
+
+<p>- [Man] Could you use the scan<br>
+all to generate a template</p>
+
+<p>and then you could cherry<br>
+pick what page you want?</p>
+
+<p>- [David] Sure.</p>
+
+<p>Anything you want.</p>
+
+<p>Again, another thing<br>
+I've seen people do is</p>
+
+<p>to have a siledad that if they</p>
+
+<p>built their site using components</p>
+
+<p>and they know what all the<br>
+design pieces are of their site,</p>
+
+<p>they could use BackstopJS to pull out</p>
+
+<p>each component by class<br>
+or by ID or whatever</p>
+
+<p>and then have this on this page list out</p>
+
+<p>all the things that have<br>
+changed with each component,</p>
+
+<p>with each CSS change you've made.</p>
+
+<p>That's killer use case<br>
+number two, theming.</p>
+
+<p>As you're going along and building a site,</p>
+
+<p>it's easy for you to do this.</p>
+
+<p>Of course, it is also easy to automate</p>
+
+<p>the process a little bit more.</p>
+
+<p>We're gonna be looking<br>
+at continuous integration</p>
+
+<p>for the next piece.</p>
+
+<p>We're not going to have time<br>
+to show any of these pieces,</p>
+
+<p>but just conceptually,</p>
+
+<p>let's think a little bit about how we can</p>
+
+<p>let robots do the parts<br>
+of our job that are</p>
+
+<p>a little bit tedious,</p>
+
+<p>that we're not super great at as humans.</p>
+
+<p>One great example is on Cron.</p>
+
+<p>Maybe we want to automatically<br>
+run updates on our site.</p>
+
+<p>We don't want to have to think<br>
+about Drupal updates anymore,</p>
+
+<p>we just want them to be automated.</p>
+
+<p>If everything works how we expect it to,</p>
+
+<p>just push those up to the live site.</p>
+
+<p>We don't want human staff<br>
+to be in the middle,</p>
+
+<p>between the next Drupal gen and our site.</p>
+
+<p>We can do that.</p>
+
+<p>We have a script that we wrote on Pantheon</p>
+
+<p>that goes through this<br>
+continuous integration process.</p>
+
+<p>It's a demo script so take<br>
+it with a grain of salt,</p>
+
+<p>but you can modify it, you can<br>
+do whatever you want with it.</p>
+
+<p>Basically on Cron, it goes out,</p>
+
+<p>checks for updates on your site.</p>
+
+<p>If it detects that there are updates,</p>
+
+<p>it will go back to Pantheon,</p>
+
+<p>create a branch or a<br>
+multi dev environment,</p>
+
+<p>a dedicated development<br>
+environment for this update,</p>
+
+<p>it will apply the updates<br>
+from the safe space,</p>
+
+<p>it will then do visual regression testing</p>
+
+<p>and behavior testing and a<br>
+few other types of testing</p>
+
+<p>to make sure everything is working</p>
+
+<p>after the updates have been applied.</p>
+
+<p>If everything passes without any issues,</p>
+
+<p>then it will create backups on all of</p>
+
+<p>your other environments,</p>
+
+<p>your dev, test, and live environments,</p>
+
+<p>and then deploy it up to the live site</p>
+
+<p>without me having to actually<br>
+intervene in any way.</p>
+
+<p>If you would prefer to have some say</p>
+
+<p>in when these updates get applied or</p>
+
+<p>to have a human come in and make sure</p>
+
+<p>that it's going to work,</p>
+
+<p>you could change this to just say</p>
+
+<p>notify me on Slack when<br>
+updates are available,</p>
+
+<p>show me links to the test results,</p>
+
+<p>let me look over it to make<br>
+sure everything looks right,</p>
+
+<p>and then you could go in and actually</p>
+
+<p>click the button to deploy<br>
+it up to your live site.</p>
+
+<p>This is one example of<br>
+kind of integrating,</p>
+
+<p>automating the process of<br>
+using visual regression testing</p>
+
+<p>so that you're more<br>
+confident in your updates</p>
+
+<p>before clicking the button to apply them.</p>
+
+<p>Another great example of automating</p>
+
+<p>visual regression testing is on a commit.</p>
+
+<p>We've so far talked and the demo I showed</p>
+
+<p>was I'm running BackstopJS on my computer</p>
+
+<p>and as I'm developing a site<br>
+or theming it or whatever,</p>
+
+<p>I'm testing for myself to make sure that</p>
+
+<p>I'm not introducing any problems.</p>
+
+<p>We could also introduce<br>
+a visual regression test</p>
+
+<p>on a commit or as part of a poll request</p>
+
+<p>that happens automatically on GitHub.</p>
+
+<p>At DrupalCon, we're gonna<br>
+be doing a training called</p>
+
+<p>Automated Workflows in Drupal Eight with</p>
+
+<p>GitHub, Composer and CircleCI.</p>
+
+<p>The whole point of this is you<br>
+should be able to as a team,</p>
+
+<p>working with a Drupal Eight<br>
+site built with Composer,</p>
+
+<p>be able to collaborate with other</p>
+
+<p>developers in the team through just</p>
+
+<p>creating commits and doing pull requests.</p>
+
+<p>If you are working on some<br>
+new piece of functionality,</p>
+
+<p>you've been committing,<br>
+committing, committing,</p>
+
+<p>you're like this feature is completed</p>
+
+<p>and I'm ready to merge<br>
+it into the main project,</p>
+
+<p>you would create a pull request,</p>
+
+<p>that would pull all the commits together,</p>
+
+<p>present it in front of your lead developer</p>
+
+<p>or whomever is doing<br>
+the review so they can</p>
+
+<p>look at all of the commits,</p>
+
+<p>but if you have automated testing involved</p>
+
+<p>in this point as well,</p>
+
+<p>then it would actually go<br>
+in and show you the reports.</p>
+
+<p>In this case, we're building<br>
+the site with Composer</p>
+
+<p>and continuous integration,</p>
+
+<p>spitting that over to Pantheon as</p>
+
+<p>this is the completed<br>
+built version of the site,</p>
+
+<p>and then hitting it with<br>
+all the automated tests,</p>
+
+<p>and then putting the<br>
+results of those tests</p>
+
+<p>in the pull request so the lead developer,</p>
+
+<p>the person reviewing doesn't have to</p>
+
+<p>manually go through line<br>
+by line to make sure that</p>
+
+<p>everything's working.</p>
+
+<p>They don't have to go<br>
+to the development site</p>
+
+<p>to make sure everything's working.</p>
+
+<p>All they have to do is<br>
+review the test results,</p>
+
+<p>which could include<br>
+visual regression testing,</p>
+
+<p>but also behavior<br>
+testing, clicking through,</p>
+
+<p>and functionality testing,</p>
+
+<p>as well as code review testing.</p>
+
+<p>If you have certain<br>
+standards for code review,</p>
+
+<p>with how your code should be on your site,</p>
+
+<p>that's another testing<br>
+that you could introduce</p>
+
+<p>and make sure it conforms<br>
+to that before the</p>
+
+<p>lead developer has to actually intervene.</p>
+
+<p>Again, another way that you<br>
+could automate this process</p>
+
+<p>of using visual regression testing.</p>
+
+<p>My whole takeaway, what<br>
+I'm trying to kind of</p>
+
+<p>introduce to you all is that you can</p>
+
+<p>run BackstopJS on your<br>
+computer pretty easily,</p>
+
+<p>pretty lightly, pretty quickly too,</p>
+
+<p>just getting it set up and run with it.</p>
+
+<p>Another example is the<br>
+standalone Node app.</p>
+
+<p>I've ran this as a class<br>
+a few times as I mentioned</p>
+
+<p>and occasionally,</p>
+
+<p>someone is unable to<br>
+get BackstopJS set up.</p>
+
+<p>Occasionally it's because<br>
+of their operating system</p>
+
+<p>or prerequisites or some other reason.</p>
+
+<p>For whatever reason it is,</p>
+
+<p>it doesn't work on their computer.</p>
+
+<p>In that situation though,</p>
+
+<p>the standalone app has<br>
+still worked for them.</p>
+
+<p>It has let them kind of<br>
+interact with Backstop.</p>
+
+<p>This was just again a simple example demo</p>
+
+<p>that one of my colleagues created</p>
+
+<p>to show that this is possible and it</p>
+
+<p>makes the process of running Backstop</p>
+
+<p>a little bit easier for people that</p>
+
+<p>don't wanna have to mainly<br>
+mess with all the bits.</p>
+
+<p>We have a example repo.</p>
+
+<p>You can go out and grab it.</p>
+
+<p>If we were in a class, I would<br>
+invite you all to do this,</p>
+
+<p>but you can definitely do this</p>
+
+<p>after the session today if you'd like to.</p>
+
+<p>I've already got this set up.</p>
+
+<p>The script that you saw<br>
+that was loading earlier</p>
+
+<p>hadn't quite completed<br>
+so this may not work,</p>
+
+<p>but we'll give it a try anyway.</p>
+
+<p>We have this visual<br>
+regression Backstop demo.</p>
+
+<p>You clone it locally, you get into it,</p>
+
+<p>you create a branch so you can</p>
+
+<p>make changes without<br>
+affecting anything else,</p>
+
+<p>and then we do an NPM install.</p>
+
+<p>Let's actually go back and try that again.</p>
+
+<p>This is the part that I was trying</p>
+
+<p>to do before the session started</p>
+
+<p>so we wouldn't have to<br>
+wait for the NPM install,</p>
+
+<p>but it had timed out which is a</p>
+
+<p>little bit concerning for me.</p>
+
+<p>Let me go ahead and describe what this is</p>
+
+<p>supposed to be doing.</p>
+
+<p>Once it gets installed,</p>
+
+<p>it's going to give us an interface</p>
+
+<p>for just running our site.</p>
+
+<p>As a package application,</p>
+
+<p>it's going to run BackstopJS on our site</p>
+
+<p>and get it all up and generating a report.</p>
+
+<p>It already has that configuration<br>
+file pre-configured.</p>
+
+<p>All the bits are taken care of.</p>
+
+<p>You just run it and it<br>
+generates the report.</p>
+
+<p>Pretty easy.</p>
+
+<p>Let me go ahead and skip since that's</p>
+
+<p>still stuck on the one<br>
+it was stuck on before.</p>
+
+<p>That's one example.</p>
+
+<p>You just run it and it generates<br>
+the report and it's done.</p>
+
+<p>You don't have to mess with<br>
+any configuration at all.</p>
+
+<p>The next part of that is<br>
+the multi site example.</p>
+
+<p>If you have multiple sites that you need</p>
+
+<p>to test on a regular basis,</p>
+
+<p>maybe your support team is responsible for</p>
+
+<p><br>
+you could write an NPM app or a Node app</p>
+
+<p>that has all of those sites preloaded</p>
+
+<p>into this standalone NPM app,</p>
+
+<p>and then when you run the command,</p>
+
+<p>it asks you which site you'd<br>
+like to run the report on.</p>
+
+<p>You go down the list, you select it,</p>
+
+<p>and then it actually opens<br>
+it up and runs the report.</p>
+
+<p>You're able to preload all these</p>
+
+<p>configurations side-by-side,</p>
+
+<p>click the button, and have the report run.</p>
+
+<p>It's intended for people that wouldn't</p>
+
+<p>want to have to set this<br>
+up manually themselves.</p>
+
+<p>It just would be able to run standalone.</p>
+
+<p>You still do have the options though</p>
+
+<p>of modifying the configuration file.</p>
+
+<p>If you wanted to download<br>
+this as a starting point,</p>
+
+<p>make changes to it, and still<br>
+have the standalone app,</p>
+
+<p>you could do that as well.</p>
+
+<p>It's still not working.</p>
+
+<p>No problem.</p>
+
+<p>Let's keep on going.</p>
+
+<p>This is running the<br>
+multiple site example one.</p>
+
+<p>Hopefully it will work better for you</p>
+
+<p>when you try it later.</p>
+
+<p>I'll take a look after the class and</p>
+
+<p>try to see what the problem might be.</p>
+
+<p>Any questions?</p>
+
+<p>I apologize.</p>
+
+<p>It's a little bit short<br>
+'cause I'm trying to</p>
+
+<p>work on the timing coming down from a</p>
+
+<p>half-day class to a session.</p>
+
+<p>Questions?</p>
+
+<p>- [Woman] There was an<br>
+area where you're doing</p>
+
+<p>continuous integration.</p>
+
+<p>Are you running Backstop<br>
+inside the container?</p>
+
+<p>- [David] In those scenarios,</p>
+
+<p>you're running Backstop as<br>
+part of continuous integration.</p>
+
+<p>We are running BackstopJS in CircleCI,</p>
+
+<p>in the continuous integration process,</p>
+
+<p>against in this case our Pantheon<br>
+site, our reference site.</p>
+
+<p>We're creating the site<br>
+in continuous integration</p>
+
+<p>and looking out at the<br>
+live site, wherever it is.</p>
+
+<p>- [Woman] But is Backstop itself installed</p>
+
+<p>inside the container in that case?</p>
+
+<p>- [David] It's installed in the container</p>
+
+<p>on continuous integration,</p>
+
+<p>but it's not installed<br>
+over on the Pantheon site.</p>
+
+<p>- [Woman] 'Cause where I'm going with this</p>
+
+<p>is I've played with this<br>
+and I got it to work,</p>
+
+<p>but when I try to get it to work</p>
+
+<p>within a Doxel container,</p>
+
+<p>I had this problem where I<br>
+could point it to google.com</p>
+
+<p>and it would see Google and run.</p>
+
+<p>Obviously I don't wanna test Google,</p>
+
+<p>but I couldn't see my own Doxel site</p>
+
+<p>within the same container.</p>
+
+<p>It just kept saying no site.</p>
+
+<p>I got really stuck.</p>
+
+<p>Oh well.</p>
+
+<p>- [David] I'm sorry.</p>
+
+<p>I don't know much about that.</p>
+
+<p>Sorry, I don't know.</p>
+
+<p>- [Woman] No problem.</p>
+
+<p>- [David] Yes sir.</p>
+
+<p>- [Man] What about sites that use</p>
+
+<p>heavy unparalax or heavy on the ajax</p>
+
+<p>or the things like that,</p>
+
+<p>how do you know how long to wait</p>
+
+<p>or are there effects that<br>
+you can get it to say</p>
+
+<p>ajax is down or resource crawl so far?</p>
+
+<p>- [David] Those are the sorts of things</p>
+
+<p>that you can into with<br>
+the advanced JavaScript.</p>
+
+<p>At the beginning, there's all<br>
+this on before and on ready</p>
+
+<p>JavaScript that you can introduce.</p>
+
+<p>There are things you can do in there</p>
+
+<p>that I haven't done anything with before.</p>
+
+<p>That's where you'd go to accommodate</p>
+
+<p>some of those situations.</p>
+
+<p>Yes sir.</p>
+
+<p>- [Man] Is the idea then if you change</p>
+
+<p>the color of the button for example.</p>
+
+<p>You know you're introducing<br>
+something it's gonna flag.</p>
+
+<p>Does that mean that you introduced</p>
+
+<p>a new reference in your commits if</p>
+
+<p>your CI is gonna be<br>
+checking it every time?</p>
+
+<p>Is that how you deal with it?</p>
+
+<p>- [David] That's a good question.</p>
+
+<p>I've spoken to different<br>
+people of different opinions.</p>
+
+<p>Some of them don't actually commit</p>
+
+<p>any of the Backstop stuff.</p>
+
+<p>They don't commit the images.</p>
+
+<p>In general, putting images in<br>
+a commit isn't a great idea.</p>
+
+<p>This Backstop stuff, they just run locally</p>
+
+<p>on their computer and that's it.</p>
+
+<p>If you wanted to, package it up,</p>
+
+<p>save the configuration file and</p>
+
+<p>give that to other people,<br>
+that probably makes sense.</p>
+
+<p>I don't know if it makes sense to</p>
+
+<p>send the reference images.</p>
+
+<p>Maybe.</p>
+
+<p>You could.</p>
+
+<p>I haven't seen that in my scenario.</p>
+
+<p>- [Man] I guess I'm just<br>
+trying to get a picture</p>
+
+<p>of if you're wiring it into CircleCI.</p>
+
+<p>I got majority of the tests going</p>
+
+<p>and I've got the NPM test going and</p>
+
+<p>maybe I'm even doing some shallow<br>
+rendering in the NPM test.</p>
+
+<p>How do I have it tell me by the way,</p>
+
+<p>you introduced a visual<br>
+regression and you didn't mean to?</p>
+
+<p>- [David] All the demo<br>
+scripts that we've set up</p>
+
+<p>with the continuous integration process,</p>
+
+<p>because the environment's<br>
+being destroyed and rebuilt</p>
+
+<p>every time the continuous<br>
+integration process fires,</p>
+
+<p>it regenerates the reference images</p>
+
+<p>and it starts the test<br>
+from the very beginning.</p>
+
+<p>In those cases, you know there's a change,</p>
+
+<p>you know to expect that there's</p>
+
+<p>gonna be an error or a problem.</p>
+
+<p>Then you just have to review it.</p>
+
+<p>If you're asking, is there<br>
+a way to flag something</p>
+
+<p>as being this is expected,</p>
+
+<p>don't give me a red flag for this,</p>
+
+<p>I'm not aware of a way to do that</p>
+
+<p>unless you introduce the reference images.</p>
+
+<p>That could work.</p>
+
+<p>I just haven't done it before.</p>
+
+<p>- [Man] You change something in your code,</p>
+
+<p>it fails the test, and you<br>
+have to update the test</p>
+
+<p>if you're gonna use it at that level to</p>
+
+<p>have it be an all type stopper CI,</p>
+
+<p>or you could generate the reference</p>
+
+<p>to look at somewhere between the CI</p>
+
+<p>and just know that what's<br>
+in there is expected</p>
+
+<p>before you test.</p>
+
+<p>- [David] Yes sir, a question.</p>
+
+<p>- [Man] When you have a component with</p>
+
+<p>dynamic content like a<br>
+newsfeed or an event block</p>
+
+<p>or something that you want to</p>
+
+<p>visually regress test for regressions,</p>
+
+<p>what would be a good<br>
+approach for handling that?</p>
+
+<p>- [David] That's really tough.</p>
+
+<p>That's one of those areas with the</p>
+
+<p>visual regression limitations.</p>
+
+<p>It doesn't deal with dynamic<br>
+content very well because</p>
+
+<p>if you have a live site that is</p>
+
+<p>constantly getting new content,</p>
+
+<p>you have your local version that you're</p>
+
+<p>not able to pull the database<br>
+from every single time,</p>
+
+<p>you're gonna fail because<br>
+the content's different</p>
+
+<p>in this dynamic block section.</p>
+
+<p>In those situations, you<br>
+can ignore that section.</p>
+
+<p>You're not able to accommodate</p>
+
+<p>all the different things that<br>
+could happen to that section.</p>
+
+<p>That's what I've done in the past is</p>
+
+<p>ignore this dynamic block because</p>
+
+<p>it's always gonna be failing.</p>
+
+<p>- [Man] Unless you're trying to test it.</p>
+
+<p>- [David] If you're trying to test it,</p>
+
+<p>that's a little tricky.</p>
+
+<p>- [Man] It almost seems<br>
+like you would need</p>
+
+<p>to have a fixture database that you're</p>
+
+<p>retrieving as your<br>
+production in that instance</p>
+
+<p>to compare at the end.</p>
+
+<p>It sounds like a lot of work.</p>
+
+<p>- [David] With the<br>
+components testing method.</p>
+
+<p>If you have all these components<br>
+or template-type pages</p>
+
+<p>available on your live website that are</p>
+
+<p>really just used as a style guide,</p>
+
+<p>then you could certainly test against that</p>
+
+<p>on your local versus the live style guide</p>
+
+<p>and with some assurance that it's</p>
+
+<p>gonna work the way you expect.</p>
+
+<p>Question?</p>
+
+<p>- [Man] Since this has<br>
+a fairly civic scope,</p>
+
+<p>what are the test tools<br>
+to use to compliment this?</p>
+
+<p>What do you think are<br>
+some complimentary tests?</p>
+
+<p>- [David] What are some<br>
+complimentary tests?</p>
+
+<p>It depends on the scenario because</p>
+
+<p>with the automated section,<br>
+continuous integration section,</p>
+
+<p>there's behavior testing where people</p>
+
+<p>will log into the website<br>
+and make sure that</p>
+
+<p>you're able to create content and</p>
+
+<p>you're able to do the various<br>
+pieces of functionality,</p>
+
+<p>things like that.</p>
+
+<p>Is that what you're talking about?</p>
+
+<p>- [Man] What tools would<br>
+have minimum overlap of this</p>
+
+<p>in terms of testing?</p>
+
+<p>I'm looking at the general<br>
+topography of your testing.</p>
+
+<p>- [David] That's a good question.</p>
+
+<p>I'm not sure actually.</p>
+
+<p>With my own development process,<br>
+it's usually pretty light.</p>
+
+<p>This is an improvement<br>
+over what I did before,</p>
+
+<p>which was just visually look at it.</p>
+
+<p>I don't have a very complicated process.</p>
+
+<p>Real quick, does anyone<br>
+else have any suggestions</p>
+
+<p>or ideas about where this could fit into</p>
+
+<p>an overall larger testing process?</p>
+
+<p>- [Man] My system's on<br>
+HP and test on code.</p>
+
+<p>- [Man] I don't get the<br>
+visual, but I get the markup.</p>
+
+<p>I'll often lock out here's the json</p>
+
+<p>response to the paper we built around.</p>
+
+<p>It pulls out a response from an actual</p>
+
+<p>database to mock this so I take my mocks.</p>
+
+<p>- [David] I'll be available.</p>
+
+<p>I'll be at Pantheon for<br>
+the rest of the day.</p>
+
+<p>Please do leave feedback, it's important,</p>
+
+<p>and especially because like I said,</p>
+
+<p>this is newly condensed<br>
+into session format.</p>
+
+<p>There are obviously things<br>
+that I can fix about it.</p>
+
+<p>Please let me know.</p>
+
+<p>What are some things I could add or remove</p>
+
+<p>or modify to be even better for this?</p>
+
+<p>Thank you all very much.<br>
+Captions made possible by ClarityPartners.com<br>
+Chicago area Drupal consultants</p>
+
+<p>(class claps)<br>
+Captions made possible by ClarityPartners.com<br>
+Chicago area Drupal consultants</p>
+
+<p>The question was, will this<br>
+be on the Pantheon site?</p>
+
+<p>I don't think it'll be on Pantheon,</p>
+
+<p>but it'll be on MidCamp.</p>
+
+<p>- [Man] No I mean the one<br>
+that you're doing in Seattle.</p>
+
+<p>- [David] The one I'm doing in Seattle</p>
+
+<p>is a paid training through DrupalCon</p>
+
+<p>so we're not gonna have a<br>
+recording of that one available.</p>
+
+<p>- [Man] Maybe after?</p>
+
+<p>- [David] I'm not sure.</p>
+
+<p>I don't know.</p>
+
+<p>- [Man] I don't think so.</p>
+
+<p>'Cause that's exactly what I wanna do.<br>
+&nbsp;</p>
+
+<p>Captions made possible by ClarityPartners.com. Chicago area Drupal consultants</p>
+
+<p><a href="../sponsor/clarity-partners.html"><img src="../../sites/default/files/2020-02/CFDFAA23-5C59-4C07-9C66-CAFFE0CF3854.png" style="max-width:300px;"></a></p>
+</div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-fbcc5785a84d337fd8699b9616f3a1e2ef729bc1de4b45a4e71997a32511ecfc">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/285">https://mid.camp/285</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-ccb91e32d6a9d265560e516d29d98b9a0a6861143c3e74a28a32d4a3a3f4d463">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/pantheon.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-11/pantheon-logo-color@2x.png" width="960" height="354" alt="Pantheon" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/acquia.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2019-03/Acquia_no_tagline.png" width="450" height="94" alt="Acquia" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/elevated-third.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-11/elevated-third-logo_0.png" width="220" height="220" alt="elevated third logo" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#fb92959d94bb96929f989a968bd594899c"><span class="__cf_email__" data-cfemail="147d7a727b54797d70777579643a7b6673">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/285","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_llBcjrkrgAu2wT1DR7VGL_iP6geJyiTnF_8O5ZD57VI.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJxLz89Pz0mNT8xLzKksyUwu1k9HE9DJSCwpSS3ST8_JT0rM0c0qBgAByBPW"></script>
+
+  </body>
+</html>

@@ -1,0 +1,797 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="While working on a project for Pega Systems, I had to deal with documentation organized into books, and some of the books had thousands of pages. Each page had a navigation menu listing every page in a large tree structure (nested HTML lists). The tree was collapsed, with just enough branches expanded to show the current page. That&#039;s a lot of markup: UL and LI and A, oh my! Did I mention thousands of pages? Generating that markup took a lot of work: database queries, PHP processing, theming ..." />
+<link rel="canonical" href="caching-large-navigation-menus-drupal.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Caching Large Navigation Menus in Drupal | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter_2019/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Caching Large Navigation Menus in Drupal | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_gt5LiAM1qLGUH5e845uOb7R_lJ9dUwTXmnhGDR2yY20.css%3Fdelta=0&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlj90OwiAMhV9oA_XOp1lgHDaSQg3FLfPph_sxGm_a03Oa5mtPRmTR1giaftc-0EdHiJgBcs6JXc04o6ocDYUXmtGUgtzdLte7HoitobYXOe33Ze05lV_na1EWKYg7whQcuEO0cJ.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_UMuvjHSQ9iJFDCuYZXW-ThtEaBNBWxN9AUvYSTjbZi4.css%3Fdelta=1&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlj90OwiAMhV9oA_XOp1lgHDaSQg3FLfPph_sxGm_a03Oa5mtPRmTR1giaftc-0EdHiJgBcs6JXc04o6ocDYUXmtGUgtzdLte7HoitobYXOe33Ze05lV_na1EWKYg7whQcuEO0cJ.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_JumHJ3UqLO9Mdu1kygD5e19MOiNh5iD_a9p0FH6QrHQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlj90OwiAMhV9oA_XOp1lgHDaSQg3FLfPph_sxGm_a03Oa5mtPRmTR1giaftc-0EdHiJgBcs6JXc04o6ocDYUXmtGUgtzdLte7HoitobYXOe33Ze05lV_na1EWKYg7whQcuEO0cJ.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_LovagMoZZFoM80YhT0zgW4b6oNarRMdF8ooxvYiQ9tA.css%3Fdelta=4&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlj90OwiAMhV9oA_XOp1lgHDaSQg3FLfPph_sxGm_a03Oa5mtPRmTR1giaftc-0EdHiJgBcs6JXc04o6ocDYUXmtGUgtzdLte7HoitobYXOe33Ze05lV_na1EWKYg7whQcuEO0cJ.css" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="caching-large-navigation-menus-drupal.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-2019-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-hatter-2019-midcamp2020navigation-menu" id="block-hatter-2019-midcamp2020navigation" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-2019-midcamp2020navigation-menu">Midcamp 2020 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" data-drupal-link-system-path="node/403">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../news.html" title="News" data-drupal-link-system-path="2020/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" data-drupal-link-system-path="2020/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--virtual-camp">
+        <a href="../article/midcamp-2020-going-digital.html" title="MidCamp is going virtual" data-drupal-link-system-path="node/6689">Virtual Camp</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsor">
+        <a href="../sponsor-midcamp.html" data-drupal-link-system-path="node/6250">Sponsor</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--community-organizations">
+        <a href="../sponsor/community-organization-introduction.html" data-drupal-link-system-path="node/6251">Community Organizations</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sponsors">
+        <a href="../sponsors.html" data-drupal-link-system-path="node/6253">Sponsors</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" data-drupal-link-system-path="node/6258">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--sessions-thu">
+        <a href="../schedule/thursday.html" data-drupal-link-system-path="2020/schedule/thursday">Sessions (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-fri">
+        <a href="../schedule/friday.html" data-drupal-link-system-path="2020/schedule/friday">Sessions (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--contribution-sat">
+        <a href="../contribution-day.html" title="Contribution Day" data-drupal-link-system-path="node/6378">Contribution (Sat)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--accepted-sessions">
+        <a href="../accepted-sessions.html" data-drupal-link-system-path="2020/accepted-sessions">Accepted Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../../2023/speaker-resources.html" data-drupal-link-system-path="node/345">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-terms-and-conditions">
+        <a href="../../speaker-terms-and-conditions.html" data-drupal-link-system-path="node/21">Speaker Terms and Conditions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--topic-tracks">
+        <a href="../../topic-tracks.html" data-drupal-link-system-path="node/10">Topic Tracks</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--donate">
+        <a href="https://tickets.midcamp.org/" title="Register for MidCamp">Donate</a>
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-2019-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2020.html" hreflang="en">MidCamp 2020</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-hatter-2019-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Caching Large Navigation Menus in Drupal</span>
+</h1>
+
+
+  </div>
+<div id="block-hatter-2019-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="6322" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2020-03-19T14:45:00Z" class="datetime">Thursday, 9:45 am CDT</time>
+ - <time datetime="2020-03-19T15:45:00Z" class="datetime">Thursday, 10:45 am CDT</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-84" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-name field--type-string field--label-hidden field__item">Room 325</div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>While working on a project for Pega Systems, I had to deal with documentation organized into books, and some of the books had thousands of pages. Each page had a navigation menu listing every page in a large tree structure (nested HTML lists). The tree was collapsed, with just enough branches&nbsp;expanded to show the current page.</p>
+
+<p>That's a lot of markup: UL and LI and A, oh my! Did I mention thousands of pages?</p>
+
+<p>Generating that markup took a lot of work: database queries, PHP processing, theming ...</p>
+
+<p>This talk will explain how I leveraged the cache system in Drupal 8, so that terrible, horrible, no-good page-load times became merely bad. The story has something for everyone:</p>
+
+<ul>
+	<li>A few lines of&nbsp;jQuery</li>
+	<li>A Twig template</li>
+	<li>A render array</li>
+	<li>Cache keys, cache contexts, and cache tags</li>
+	<li>Some SQL queries to show what is going on</li>
+</ul>
+
+<p>Link to slides: <a href="https://benjifisher.gitlab.io/slide-decks/caching-midcamp-2020.html">Caching Large Navigation Menus in Drupal</a></p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/JDesmHH40MI?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-presenter-slides field--type-file field--label-above">
+    <div class="field__label">Presenter Slides</div>
+              <div class="field__item">
+<span class="file file--mime-application-pdf file--application-pdf"> <a href="../../sites/default/files/2020-03/Caching%20Large%20Navigation%20Menus%20in%20Drupal.pdf" type="application/pdf">Caching Large Navigation Menus in Drupal.pdf</a></span>
+</div>
+          </div>
+
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Benji Fisher</h4>
+
+      Web Platform Developer
+
+
+          @
+                <a href="../../taxonomy/term/515.html" hreflang="en">Harvard University/Harvard Web Publishing</a>
+
+
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p>I have been working with Drupal since 2012, and I have contributed to open source software for longer than that. I am an active member of the Drupal community:</p>
+
+<ul>
+	<li>member of the Drupal security team</li>
+	<li>co-maintainer of the migration subsystem in Drupal core (Migrate API)</li>
+	<li>member of the Drupal usability team</li>
+</ul>
+
+<p>I choose to work with Drupal, and other open-source software, because I hate the idea of duplicated effort. When I solve a problem, I want to share my solution so that no one else has to struggle with it.</p></div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2019-12/yp.jpeg%3Fitok=ueWc8kXv" width="220" height="220" alt="Yellow Pig (Benji&#039;s avatar)" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Back-End</div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-feedback-form field--type-webform field--label-above">
+    <div class="field__label">Feedback Form</div>
+              <div class="field__item"><form class="webform-submission-form webform-submission-add-form webform-submission-session-feedback-form webform-submission-session-feedback-add-form webform-submission-session-feedback-node-6322-form webform-submission-session-feedback-node-6322-add-form" data-drupal-selector="webform-submission-session-feedback-node-6322-add-form" action="caching-large-navigation-menus-drupal.html" method="post" id="webform-submission-session-feedback-node-6322-add-form" accept-charset="UTF-8">
+  
+    <div data-drupal-selector="edit-0" class="webform-message js-webform-message js-form-wrapper form-wrapper" id="edit-0"><div data-drupal-messages>
+    <div role="contentinfo" aria-label="Status message" class="messages messages--status">
+                  <h2 class="visually-hidden">Status message</h2>
+                    Sorry...This form is closed to new submissions.
+            </div>
+    </div>
+</div>
+<input autocomplete="off" data-drupal-selector="form-hsqxzjad5mfbc6gltqbnfgu0cgozu0dcalgy0u0dw40" type="hidden" name="form_build_id" value="form-hSQXzjAd5Mfbc6gLTQBnfGU0CGOZU0DCALGy0U0dw40" />
+<input data-drupal-selector="edit-webform-submission-session-feedback-node-6322-add-form" type="hidden" name="form_id" value="webform_submission_session_feedback_node_6322_add_form" />
+<div class="url-textfield js-form-wrapper form-wrapper" style="display: none !important;"><div class="js-form-item form-item js-form-type-textfield form-type-textfield js-form-item-url form-item-url">
+      <label for="edit-url">Leave this field blank</label>
+        <input autocomplete="off" data-drupal-selector="edit-url" type="text" id="edit-url" name="url" value="" size="20" maxlength="128" class="form-text" />
+
+        </div>
+</div>
+
+
+  
+</form>
+</div>
+          </div>
+
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <h3 class="field__label">Transcript</h3>
+              <div class="field__item" tabindex="0"><p>&gt;&gt; BENJI FISHER: &nbsp;Hello, thank you for coming to this talk on caching large navigation menus in Drupal. &nbsp;I'm Benji Fisher. &nbsp;I'm no longer sharing my video so you can't see my funny hat anymore. &nbsp;But there's a reason for that. &nbsp;A few things before we get started. &nbsp;I left this slide in from previous versions of the talk, and I guess we've done the equivalent of that. &nbsp;You can follow along. &nbsp;Just click on this link. &nbsp;BenjiFisher.gitlab.IO/slide decks/index.HTML. &nbsp;Today's talk is at the top of the list. &nbsp;For the sake of the recording, here's my lovely HTML unstyled list and if you click on the first link, you'll get the version of the slides on my GitLab pages which should be identical to the one I'm paging through now.</p>
+
+<p>And there's a recent development, just last week, a certain issue on Drupal.org was fixed, an issue I created about the time that I was working on the stuff I'm talking about in this presentation. &nbsp;An issue was book Manager build items is slow because it loads nodes, and one of my comments on that issue is, I'm pretty sure that I need both the optimization in this issue and some additional caching in order to improve my page load times. &nbsp;I tried using each by itself and did not find any improvement.</p>
+
+<p>So that issue is now fixed. &nbsp;It should be in the next release of I guess the first release of Drupal 8.9. &nbsp;We haven't gotten out of alpha yet and when 9.0 beta comes out, which I believe is scheduled for this week still, that little optimization should be in there. &nbsp;It's a really tiny little minus 2, plus 1 change to make that work.</p>
+
+<p>Yeah, we already went through this, but I encourage you to interrupt me, ask questions, don't be shy. &nbsp;I would rather have questions as they come up than have you save them till the end of the presentation. &nbsp;If it is something that I have already prepared a slide for, I will ask you to be patient, but don't let that stop you.</p>
+
+<p>So the introduction, about me, remember I mentioned the funny hat, that's supposed to give people a clue that I am the person who owns this avatar, the yellow pig. &nbsp;I'm Benji Fisher on most places, Drupal.org, GitHub and GitLab. &nbsp;I was kind of slow to join Twitter so by the time I did somebody already had that user name and I inserted my favorite number 17 to get a unique Twitter handle and the 17 is connected to the yellow pig. &nbsp;If you count carefully there are 17 eyelashes, 7 on the left, 8 on the right. &nbsp;If you Google around for yellow pigs you can probably figure out what that connection is or you can ask me although maybe that's a question to save till the end.</p>
+
+<p>Next slide I usually put in somebody about where I'm working but I'm currently in between jobs so I don't have a company to promote at this point. &nbsp;And the outline of the talk, we've already been through the get started section. &nbsp;This is the last slide on the introduction section is. &nbsp;If you are following along at home and you're looking at this presentation is in reveal.js so if you just click escape you can get the outline view and sort of across the top, you see the various sections that are in this outline. &nbsp;And then the coming sections are an explanation of why we need to do caching for book navigation. &nbsp;I'll talk a little bit about internal versus external cache.</p>
+
+<p>And then I'll go through sort of the soup to nuts of how we get the stuff I'm talking about on to the Drupal page, so there's a Twig template. &nbsp;There's some Drupal code associated with that Twig template and then we'll start focusing in on hook node view which is the Drupal hook where we implement the caching. &nbsp;Then we'll have a look at what's going on in the database to implement the caching and then a few closing sides. &nbsp;As I said this is the end of the introduction so we next go to book navigation needs to be cached.</p>
+
+<p>So this is a project I worked on a few years ago for Pega Systems, and they have a lot of documentation, and they are using Drupal's book module to present this documentation. &nbsp;And here's just a screen shot of one page from the documentation, settings Tab, section form, and for this talk what I want to focus on is this navigation area on the left.</p>
+
+<p>Can you see, by the way, as I move my mouse around the page?</p>
+
+<p>&gt;&gt; Looking good, Benji, looking fantastic.</p>
+
+<p>&gt;&gt; BENJI FISHER: &nbsp;Okay. &nbsp;So as you can see there's this huge menu of pages, and there's some little "down" arrows indicating that a section has been opened up, and then the sort of the right arrow means a collapsed section, and enough of the navigation is opened up to get to the link for &nbsp; &nbsp;yes, it's also in bold here near the bottom. &nbsp;Enough of the navigation is opened up to show the current page. &nbsp;So I guess that's the point for this slide. &nbsp;So here are some numbers. &nbsp;There were 4,472 pages in that book the last time I checked.</p>
+
+<p>The rendered navigation is 2.7 megabytes. &nbsp;Half of that is because we were rendering it twice, once for mobile and once for desktop. &nbsp;That was later fixed.&nbsp;</p>
+
+<p>The initial page load took 40 to 50 seconds. &nbsp;And even after implementing some caching, it took 6 to 9 pages to load, and I was able to reduce that cached page load to 2 to 3 seconds which is still bad and I don't normally jump up and down saying hey, I reduced page load times to 2 to 3 seconds! &nbsp;Because I would be a laughing stock if I did that.</p>
+
+<p>But it's a big improvement over what we had before. &nbsp;So I'm not going from bad to great here. &nbsp;I'm going from horrendous to just bad, or possibly even fair. &nbsp;All of these times are not counting any network lag. &nbsp;I was just testing this on my local, and I wasn't using anything fancy to judge the times. &nbsp;I was literally just starting a timer, and starting the page reload, and seeing how long it took.</p>
+
+<p>And I guess actually let me back up a little bit.</p>
+
+<p>And you tell me, just looking at this page, and looking at that navigation section, do you know what the HTML for that looks like?</p>
+
+<p>&gt;&gt; Should be an unordered list?</p>
+
+<p>&gt;&gt; BENJI FISHER: &nbsp;Not just one unordered list.</p>
+
+<p>&gt;&gt; Many, many nested unordered lists.</p>
+
+<p>&gt;&gt; BENJI FISHER: &nbsp;Exactly. &nbsp;Many nested unordered lists with a few classes, especially the class to identify the active trail. &nbsp;The lists that have to be open to expose the link to the current page.</p>
+
+<p>And those CSS classes are the only difference between one page and the next. &nbsp;And the way this was originally structured is that when the page was built, when the HTML was generated, when it went through Drupal's process functions and database queries, and theme functions to generate the navigation, those CSS classes were added and so they had to be different for every page. &nbsp;So maybe I'm getting a little &nbsp; &nbsp;no, I guess I'm not getting ahead of myself. &nbsp;So the first point of the strategy is to stop doing that, stop adding the CSS classes when the page is built. &nbsp;Do not ask Drupal to add those CSS classes. &nbsp;Use the same navigation on every page. &nbsp;And then, the answer is already up here, but how are we going to expose the &nbsp; &nbsp;open enough menus to show the link to the current page? &nbsp;Well, we'll do it using JavaScript, and frankly, it's better than Drupal. &nbsp;Once we're using the same navigation on every page, so we're not building into the HTML the classes we need to open up that navigation, once we're using the same navigation on all page, cache that navigation and cache it once for the entire book. &nbsp;If we were to cache it once for all 4,000 something pages, then that would be using a lot of caching, and it would also mean that we'd have to work hard to warm the cache.</p>
+
+<p>We'd have to make sure to rebuild the cache for every single page in the book. &nbsp;So I want to have that thing cached just once for the entire book, and then no matter what page you're looking at, you can get the cached version.</p>
+
+<p>So that's my strategy. &nbsp;So how do we go about implementing that?</p>
+
+<p>So first let me talk a little about internal versus external cache. &nbsp;This is one of the strengths of Drupal 8. &nbsp;It is really smart about caching. &nbsp;A lot of work went into making what I do for this project very simple. &nbsp;But it's still kind of complicated so what I'm working with here is internal cache, so just the page navigation is one part of the page, and Drupal stores things like that, bits and pieces that go to make up the page. &nbsp;By default it stores it in the database, and that's why I'll be looking at the database in the last section.</p>
+
+<p>In a production environment you're more likely to store those in memcache or redis. &nbsp;But as far as I'm concerned those are equivalent systems. &nbsp;We're storing bits and pieces of the page in some internal or back end cache, which is different from what's maybe more familiar, an external cache, something that sits in between Drupal and the browser window, and that's typically Varnish or CDN. &nbsp;Or if you don't have access to any of those, Drupal provides default whole page caching in the database.</p>
+
+<p>So that's what's more familiar but what I'm talking about mostly in this presentation is what was on the previous slide, the internal cache, where bits and pieces of pages are stored. &nbsp;So the hard part for me caching whether it's internal or external, the hard part is knowing when to clear it and it's sort of a familiar maxim of programming that there are only two hard things in programming: &nbsp;Naming things, off by one errors and cache invalidation so what we're talking about here is one of the famous few hard things in programming.</p>
+
+<p>So now let me start talking about how we get this page navigation into Drupal, and then we'll start talking about how we get it cached. &nbsp;So there's a Twig template. &nbsp;Here's sort of the simplified version of the Twig template. &nbsp;There's some conditional and there's this variable called "tree," and if it's defined we have some wrapping classes. &nbsp;There's a nav class, there's an anchor, some other stuff but the rendering is all done here that we print out this tree variable in the Twig template and there's some book ID and some URL and some title that are also printed.</p>
+
+<p>So this anchor element above the tree is sort of a skip to the top of the book, and basically there's nothing to this Twig template. &nbsp;Well, this is a simplified version. &nbsp;If you're curious, the entire Twig template is just a little more complicated. &nbsp;There's some stuff, but really all we're doing is taking some variable that we're building in the preprocess function and printing it to the page. &nbsp;So not much at the Twig level as far as this case is doing.</p>
+
+<p>So where's the Drupal code that supports that Twig template? &nbsp;It's all in hook node view, which unfortunately is a little too long to put on one slide, so it scrolls. &nbsp;But this is also a pretty simple function. &nbsp;There are a couple of lines at the top to make sure that we have what we need to build that and if we don't, then we exit early. &nbsp;That's the first three lines. &nbsp;It's also the next three lines.</p>
+
+<p>We collect the variables that we need for the Twig template. &nbsp;Those are the ones I gave short shrift to earlier, and yet another quick return class statement, and then finally, there's the render array that we're going to build to create the book navigation. &nbsp;It's built by a custom theme function, or custom template book nav. &nbsp;We pass to that, that theme function, the book ID. &nbsp;The weight just says where it's going to appear on the page, and then we're going to come back and look at this caching section a lot more closely but I just wanted to point out where it is in context. &nbsp;There are cache keys, cache contexts, cache tags, and a max age and all of this goes into the render element which is returned by the implementation of hook node view and I guess actually I lied. &nbsp;It's not actually returned by that but the build array is passed in by reference so we don't actually have to return anything. &nbsp;We just assign it here.</p>
+
+<p>So here's the implementation of hook theme. &nbsp;As I said, that render array uses a theme, so we just have to define in hook theme the book nav theme element, and the only variable it takes is book ID, which going back to the previous slide, book ID is declared as the variable here. &nbsp;It's whatever we figured out earlier on in that hook node view implementation.</p>
+
+<p>So far, we haven't done any real work. &nbsp;The real work is done in the preprocess function for this book nav theme element. &nbsp;I'm not going to look too closely at this function largely because this was already written. &nbsp;It wasn't anything that I had to change to implement the caching so this was here before I started working on the project, but you &nbsp; &nbsp;and also, it's I think a lot of this code was more or less copied from the book module itself. &nbsp;But we just get various information out of the book module.</p>
+
+<p>Here we set the tree variable, that's the one that we print out in the Twig template I started with. &nbsp;And then the last half of this function is setting the other variables, the book URL, the book title, and a Boolean of whether the top is empty or not. &nbsp;So basically whatever Drupal code you need to populate the variables that are going to appear in the Twig template and none of this is related to the caching and none of this is stuff that I had to add. &nbsp;So that's why I'm sort of presenting it if you're curious but not looking deeply at it. &nbsp;So you might not consider JavaScript to be part of Drupal but I would say it is. &nbsp;Drupal after all builds web pages and web pages are more than just HTML. &nbsp;They're also CSS and JavaScript and caching.</p>
+
+<p>So here's the JavaScript. &nbsp;As I said at the start, before I worked on this project, the navigation was different for every page, and instead of doing that, I wanted to have a fixed navigation block as far as the HTML is concerned, and then I want to open up the navigation client side using JavaScript. &nbsp;Half of this JavaScript was already here, the bottom half was already here. &nbsp;So you see that we search for some CSS classes involving things like list expanded, and we change the display from hidden to block, basically.</p>
+
+<p>That's the JavaScript that was already there. &nbsp;The JavaScript that I added are these 6 lines at the top, so I'm just using basic jQuery. &nbsp;I'm finding some selectors. &nbsp;Context.location.pathname, that's how you find the URL of the current page. &nbsp;I guess not the full URL, just the path component of the URL.</p>
+
+<p>And then I look for the anchor element whose HREF is going to the current page. &nbsp;So I look for the link to the current page. &nbsp;I look inside the book nav element, and then I'll add the active class to that link, the link to the current page, and then I'll climb up the DOM tree. &nbsp;As I said, this is something that I said that that JavaScript and in particular jQuery is really good at. &nbsp;It was much more complicated when it was done in PHP, but I climb up the DOM tree, and add the active class to all of the anchor elements that I need to in order to expand the navigation to show the full path to the current page.</p>
+
+<p>So 6 lines of JavaScript that I added. &nbsp;That was pretty easy.&nbsp;</p>
+
+<p>So now let's look a lot more closely at the caching which is all in hook node view. &nbsp;Here's the bottom of the hook node view function so you don't have to scroll anymore. &nbsp;Again this is the render array. &nbsp;It's using my theme function, it's using the variable that gets used in the preprocess function to build that element and there are four separate things that go into the caching. &nbsp;There are cache keys, cache contexts, cache tags, and a max age and we'll look at each one of those individually.</p>
+
+<p>The cache keys, there's a unique string that identifies my cache elements, presumably no other Drupal module is going to want to use the name of my module as their prefix. &nbsp;So PDN book nav, PDN book I guess is the name of the module, and then possibly I might want other parts of the same module might want their own caching so I add underscore nav.</p>
+
+<p>And then the second part of the cache key is the book ID, so again, I want to cache the navigation once for the entire book. &nbsp;I don't want to cache it for each page of the book. &nbsp;I want one cache entry for each book, and there might be several different books in the documentation, and each book will have its own navigation, but this particular book is going to have one navigation block that's used on every page.</p>
+
+<p>So those are the two cache keys. &nbsp;This is how we cache once per book.</p>
+
+<p>One point that that's not used too frequently is that if you don't specify cache keys, if you don't specify cache keys, then any other caching information you give will bubble up to whatever is in closing your render element.</p>
+
+<p>Frequently, your render element is inside a block, and then the cache data will bubble up to the block, and the block will be individually cached. &nbsp;For some reason, again, I was not building a site from scratch. &nbsp;I was adding caching to a module that was already there. &nbsp;For some reason, they chose not to use a block. &nbsp;They just had a raw render element and I needed to cash that render element, so it was really important that I put in cache keys. &nbsp;Often you don't have to worry about that, if you're going to be caching at the block level.</p>
+
+<p>Second are the cache contexts, and if the page is viewed in a different language, then the link text will change. &nbsp;Maybe the URLs will also change if they're controlled by path auto. &nbsp;So in fact, at the time I was doing this work, the site was not multilingual. &nbsp;I think there were plans at the time that eventually it would be multilingual so I was trying to be a little proactive here, but by putting in the contexts, this says that when I said cache once per book, I was leaving something out. &nbsp;Really what I want is to cache one copy per book per language.</p>
+
+<p>So for this book, there will be a separate cache entry for the English version and the Spanish version and the French version, whatever other languages the site is translated into.</p>
+
+<p>The third element are the cache tags, and these are saved in the database, and what happens is that when the book I'm looking at is updated, Drupal will go through and look for this tag, node/, and then the number of the book, the book ID, the node ID of the book. &nbsp;It will look through the cache table for this particular cache tag. &nbsp;I guess I said node/. &nbsp;I should have said node:book ID. &nbsp;So it will look through the cache table for what I've deleted and delete the corresponding cache entry from the table. &nbsp;That's assuming we're using the database for caching it will work the same way if we're using memcache or redis or some other back end.</p>
+
+<p>At the page level, so remember I'm mostly talking about the internal cache here but there's also the page level cache. &nbsp;At the page level, cache tags are sent in the HTTP headers so if you're using Varnish or CDN to cache your entire pages, the cache tags are used there to say when the CDN or Varnish just validate an entire page. &nbsp;But for my purposes I'm looking at the internal cache and I want to know when to invalidate that.</p>
+
+<p>The final entry, cache entry, is the max age, and I set it to "permanent," and that just means, don't let this expire based on time. &nbsp;Just keep it around until I say to clear it.</p>
+
+<p>So when I update the book ID, or rather when I update the root node of the book, that is when we should cache it, and don't invalidate the cache until then.</p>
+
+<p>Thank you, please ask your question. &nbsp;Can I unmute you? &nbsp;Or can you do that yourself.</p>
+
+<p>&gt;&gt; I think I can do that, can you hear me?</p>
+
+<p>&gt;&gt; BENJI FISHER: &nbsp;Yes.</p>
+
+<p>&gt;&gt; Perfect. &nbsp;In regards to the cache tags in the previous slide, what is the default if you do not specify cache tags? &nbsp;Like, what happens? &nbsp;Is it just cached in general cache? &nbsp;Or what happens when you want to clear the cache and there's no tag for what you're building? &nbsp;Does that make sense?</p>
+
+<p>&gt;&gt; BENJI FISHER: &nbsp;That's a good question. &nbsp;I'm not sure I know the answer. &nbsp;I don't think it's going to go to any sort of general cache. &nbsp;By specifying the cache keys, I'm sort of saying which database table we're going to use, and we'll see that explicitly on a later slide.</p>
+
+<p>If you don't specify cache tags, then I &nbsp; &nbsp;it might just throw an error. &nbsp;It might put a null or an empty string in for the cache tag. &nbsp;But basically it doesn't work and I don't know what the failure mode would be.</p>
+
+<p>&gt;&gt; Okay, no worries. &nbsp;Thank you.</p>
+
+<p>&gt;&gt; BENJI FISHER: &nbsp;That is the most I can say. &nbsp;Yep.</p>
+
+<p>As long as we're paused, any other questions before I go on?</p>
+
+<p>Cool.</p>
+
+<p>And then let's see. &nbsp;I see you muted yourself. &nbsp;I can lower your hand.</p>
+
+<p>So the cache max age, I just went through that.</p>
+
+<p>So, yeah, let's see very explicitly what the effect of these various settings is in the database. &nbsp;And it would look a little different if we were using memcache or redis but the basic idea, the basic structure should be the same.</p>
+
+<p>And it also goes into the cache render table. &nbsp;So if I just go into MySQL and ask it to describe that table, there is a CID, cache ID, that's a unique identifier for this table. &nbsp;There's data, which is a longblob, that's being cached, in our case the entire HTML for the navigation.</p>
+
+<p>There's an expire, which is a time stamp. &nbsp;Created, when the cache entry was entered.</p>
+
+<p>There's a Boolean for serialized, is this serialized PHP data or not? &nbsp;There's an entry for the cache tags, and there's a checksum, and I think I'll look at all of these except for the checksum. &nbsp;Maybe not all of them.</p>
+
+<p>I never figured out what that is. &nbsp;I was never curious about it.</p>
+
+<p>So here's the query I run. &nbsp;So I guess I'm only looking at these five so there must be something else I'm leaving out, but I'm going to select the cache ID, expire created tags, checksum from the cache render table. &nbsp;I'm going to look at entries where the cache ID starts off with PDN underscore book. &nbsp;I guess I probably should have said PDN underscore book underscore nav, but at the moment, it gives the same result either way.</p>
+
+<p>And I'm going to limit myself to one result, and who knows what the /G means in the my SQL query. &nbsp;I have a little story about the /G. &nbsp;Several years ago I went to a training session at Drupal Con on database and other optimizations for Drupal, and it had some really good presenters, including David Strauss from Pantheon, and my God, I can always learn something from him.</p>
+
+<p>But I was able to teach him what the /G means. &nbsp;It says normally you use the query with the semicolon, if you use a back slash G with a semicolon, you get results one per line instead of in a table, and since we have some rather long entries here, namely the cache ID is kind of long, it's nice to have it displayed this way rather than having CID expire, created tags and checksum going across the top as the data entries, so that's my little database entry.</p>
+
+<p>I guess the other thing I left out was the blob. &nbsp;I don't want to see in this little investigation, I don't want to see the full megabyte or so of HTML that I'm actually caching so I'm leaving out the data and I guess I'm also leaving out the Boolean for whether it's serialized or not.</p>
+
+<p>But these are the database entries that correspond to the cache entries that I gave before. &nbsp;So I'll go through them now one at a time. &nbsp;And I've introduced some whitespace to make it a little easier to read. &nbsp;So here's the CID, the cache ID.</p>
+
+<p>It starts off with the unique string I gave it, my cache key. &nbsp;Then there's a colon. &nbsp;Then there's the node ID for the book. &nbsp;Again not for the page in the book, just one for the book.</p>
+
+<p>And there are these curious things in brackets: &nbsp;Languages, that's English as I said. &nbsp;At the time I did this I was the only language.</p>
+
+<p>Then there's another one in brackets, the theme. &nbsp;And there's the name of the current theme.</p>
+
+<p>And then there's finally the user permissions, which is some sort of cache. &nbsp;So I guess I've already said this. &nbsp;The first two things are the things that I sort of expected there, because I explicitly mentioned them when I specified the cache keys.</p>
+
+<p>The languages come from the cache contexts. &nbsp;Remember I said I was being a little bit proactive and saying that we should cache once per language. &nbsp;But at the moment, it's a mystery where the theme and user permissions come from, but I'll explain that a little bit later.</p>
+
+<p>So this entire string, I've added whitespace for the purpose of the slide, but it's really just one long string where things are separated by colons, not by whitespace.</p>
+
+<p>This is the cache ID, and this identifies the thing that will be invalidated any time I update this particular node. &nbsp;And there will be, if I do have different languages or if I do have different themes, there will be different entries, and also, if different users with different roles are looking at the page, I'll have one copy for anonymous users. &nbsp;I'll have one copy for Admin users, because maybe it doesn't make any difference for this particular application, but in general, it's a really bad idea to take some HTML that you've generated for an Admin user to view and cache it, and then show it to an anonymous user. &nbsp;That could cause serious problems.</p>
+
+<p>The max age expires minus 1. &nbsp;That corresponds to the cache setting &nbsp; &nbsp;the max age "permanent" that I said. &nbsp;So I'm showing here both the expire and the created. &nbsp;I assume, I haven't tested, but if I said to cache it for a day, what's a day, 86,400 seconds? &nbsp;I believe that if I had done that, then the expire setting would be 86,400 more than the created time stamp.</p>
+
+<p>And the cache tags, so node:704369, that's the one that I specified, and then there are some additional cache tags that are created by the system. &nbsp;If something in the configuration system changes, then it's also going to be invalidated. &nbsp;And I'm not sure what the rendered cache tag means. &nbsp;Maybe that's something that's used if you're clearing all of your render cache. &nbsp;Probably that is what it is but I haven't actually checked. &nbsp;So those are my cache tags.</p>
+
+<p>So going back to the cache ID, it had these permissions in it. &nbsp;Where did that come from? &nbsp;And the answer is, if you look at sites/default/services.yml, there's this very helpful comment here, the renderer.config and it has these required cache contexts so even if you don't specify any cache contexts Drupal will automatically put in anything that's in this config file, this yml file and the renderer will automatically associate these cache contexts with every render array, and so the default is languages, language interface, so in fact although I thought I was being proactive by saying we should hash based on language, I didn't have to do that because it was already specified in this default. &nbsp;The theme is the second and you may remember in the cache ID there was a theme entry, theme in brackets and the third was user permission in brackets and the comment shows that those are the Drupal defaults and no one has changed the defaults for this.</p>
+
+<p>So those are the cache contexts you get by default and if you don't change this you'll always get an Admin version and an anonymous version and whatever other roles you have. &nbsp;Each user has some set of permissions. &nbsp;That set of permissions gets hashed and you'll get a different version of your data for each permission hash. &nbsp;You'll get a different investigation for each theme you've enabled on your site so it's not too common we have different people looking at the same page in different themes but it can happen and if it does, it will be cached separately, and it will be cached per language.</p>
+
+<p>All of which makes a lot of sense.</p>
+
+<p>So Drupal has great defaults. &nbsp;A lot of work has gone into this. &nbsp;So conclusion, let me just sort of show you the outline again, where we've been.</p>
+
+<p>I explained why book navigation had to be cached. &nbsp;Talked a little bit about the internal versus external cache. &nbsp;Showed all of the code that's needed to get this menu onto the page. &nbsp;There's the Twig template. &nbsp;There's Drupal code, importantly hook node view, and then also the theme functions and the preprocess function.</p>
+
+<p>And then we looked specifically at the cache entry in the render array, that was in hook node view, and we looked at the effect of those settings on the database. &nbsp;And now we're at the end, conclusion.</p>
+
+<p>So thank you for listening. &nbsp;We have about 10 minutes left. &nbsp;Are there any questions that you have been saving?</p>
+
+<p>&gt;&gt; Doug Vann has a question. &nbsp;Thank you so much Benji that was awesome. &nbsp;Very formulaic, very procedural, very detailed. &nbsp;So whenever I'm seeing anything with hooks in 2020, my immediate thought goes to obviously you're using some D9 compatible things here but at what point are you concerned that the rug is going to be pulled out from underneath you?</p>
+
+<p>&gt;&gt; BENJI FISHER: &nbsp;I think the answer to that is answered in other sessions where we talk about D9 readiness. &nbsp;When and if these hooks are deprecated, the automatic testing for deprecated code will let us know about it.</p>
+
+<p>I don't believe hook node view is being deprecated for Drupal 9, I haven't checked but I don't think the answer is any different here than it is anywhere else. &nbsp;As far as I know, many hooks are still with us for Drupal 9, and if I'm right about that, for this particular hook, then it will still be with us until Drupal 10. &nbsp;It might be deprecated in Drupal 9 and then removed in Drupal 10, but I think we're okay with this for all of Drupal 9.</p>
+
+<p>&gt;&gt; Excellent. &nbsp;Thank you.</p>
+
+<p>&gt;&gt; BENJI FISHER: &nbsp;If anyone has any reason to disagree with that, speak up, and if not, Aaron, go ahead.</p>
+
+<p>&gt;&gt; Aaron: &nbsp;So I've personally used some of these, like, caching tags, contexts, all that good stuff but one thing that I've never been quite sure of when I'm building something custom no matter what it be, is kind of what are the use cases? &nbsp;I know you kind of went over some of those but are there instances where you, say caching is not an issue. &nbsp;Say I didn't have this huge menu that I had to cache but maybe I have something that could be cached, it could be better performance, I guess. &nbsp;What are some of the main use cases maybe you've seen when you should be like: &nbsp;Yes, definitely use context here. &nbsp;Definitely use tags here, et cetera.</p>
+
+<p>&gt;&gt; BENJI FISHER: &nbsp;Huh. &nbsp;I haven't really thought about that. &nbsp;So here &nbsp; &nbsp;I guess one thing I talked about how big this navigation was. &nbsp;Frequently, the reason for wanting to cache something is how computation intensive it is. &nbsp;So I guess the questions to ask are sort of identify the things that are computationally expensive. &nbsp;Figure out whether they're candidates for caching. &nbsp;Do you actually have to regenerate it fresh for every view? &nbsp;Or can you cache it for 15 seconds? &nbsp;Or can you cache it per user? &nbsp;Or can you cache it per role or per language?</p>
+
+<p>Just have to figure out how many different variations of it there are. &nbsp;Those variations will be your cache contexts. &nbsp;You have to figure out how to identify this one thing and make it different from another thing. &nbsp;So in my case, one book versus another book, that's often a node ID or something. &nbsp;Did you want to say something else?</p>
+
+<p>&gt;&gt; Maybe it would help if I kind of flipped the question. &nbsp;Maybe just in the context of this project that you saw with the books and everything. &nbsp;Was there anything regarding caching that maybe was cached too much? &nbsp;Or it was kind of detrimental to the performance of the site? &nbsp;Maybe from a visual standpoint. &nbsp;Or was there anything where it's like yeah, if you cache it this hard or do this many things, it might, you know, kind of hurt performance rather than help it?&nbsp;</p>
+
+<p>&gt;&gt; BENJI FISHER: &nbsp;So I don't think it was a problem here for performance. &nbsp;If you are careless about your caching strategy, then you can spend effort caching something, whether that be in the database or memcache or redis and if you end up generating a new version before you ever get to use the cached version then it's a total waste and that's a bad thing. &nbsp;These are the questions that make caching or cache invalidation one of the two hard things in computing.</p>
+
+<p>So I was pretty aggressive about the rules for caching so I'm pretty sure that I didn't cause any performance problems by caching too much, by caching the things that wouldn't be used. &nbsp;My problem is that when I specified the cache tag is based just on the node ID of the book, that potentially causes problems. &nbsp;Someone might update a particular page of the book and the title of that page, or the link to that page, might change. &nbsp;But updating an individual page of the book would not trigger a cache invalidation, so that is a potential problem.</p>
+
+<p>And we can work around that through process. &nbsp;We can tell the people managing the documentation that any time they update a page of a book, they have to update the root of the book, as well, in order to clear the carbs. &nbsp;Or in fact, the way this particular project works, the &nbsp; &nbsp;all of this documentation is actually generated in an external system, and then imported into Drupal with migrate API, hey, that's another presentation, so I think that for this particular project, these huge books whose navigation I was worrying about, it was actually the right choice.</p>
+
+<p>But it's certainly something to worry about that your caching is too aggressive and that it doesn't get invalidated, it doesn't get refreshed, when you need it to.</p>
+
+<p>So is that a satisfactory answer?</p>
+
+<p>&gt;&gt; Aaron: &nbsp;Yes, it is. &nbsp;Sorry, I know the question I asked is very contextual and large, so any insight was great. &nbsp;So thank you.</p>
+
+<p>&gt;&gt; BENJI FISHER: &nbsp;So again, there are some good documentation pages. &nbsp;I'm afraid I don't have them open in tabs right now but they sort of walk you through the thought process. &nbsp;Actually, I can probably find it pretty quickly with a little help from Google, or whatever search engine I'm using but if you look for caching render arrays, Drupal, I bet one of the topics will be the page I'm thinking of. &nbsp;Yeah, here it is. &nbsp;Drupal.org/docs/API &nbsp; &nbsp;with lots of hyphens.</p>
+
+<p>And it leads you through the sorts of things you have to think about. &nbsp;And it talks about how those thoughts affect the contexts, the tags and the max age. &nbsp;The one thing you don't see in this documentation, one thing that's not talked about a lot, are the cache keys, and that's largely because a lot of caching is done at the block level, and as I said earlier on, it's sort of unusual that on this project I was caching the render array itself, and not letting the cache data bubble up to something larger like a block.</p>
+
+<p>So we're actually really close to time, so let me just run through my last few slides. &nbsp;For feedback, if you go back to the page for this session, there will be a feedback form. &nbsp;I'll reload it. &nbsp;I doubt the feedback form is there yet. &nbsp;Oh, I'm wrong. &nbsp;The feedback form is there.</p>
+
+<p>So please do go back. &nbsp;Say what you think about it. &nbsp;I probably will be giving this talk again in the future. &nbsp;This is not the first time I've presented it, so it's always nice to be able to make some improvements along the way.</p>
+
+<p>And please do come to Contribution Day on Saturday. &nbsp;It will go from 10:00 a.m. to 4:00 p.m. &nbsp;I should have said that's Central Time, Chicago time. &nbsp;You don't have to know how to code to give back.</p>
+
+<p>For new contributors, Amyjune from Kanopi Studios will be giving the training from 10:00 a.m. to noon. &nbsp;I'll be running a session on improving the documentation for the help topics module which we hope is going to eventually replace the current help module or somehow augment to work with but they basically, I'll be working with documentation in Drupal core and there will be a bunch of other tracks so please join us then. &nbsp;I don't have any I don't have links for other events going on but there are social events tonight and tomorrow night. &nbsp;Check out the website for links there and thank you, Doug, for hosting and Heidi for doing the captioning, and thank you to everyone who came and listened. &nbsp;I appreciate it.</p>
+
+<p>&gt;&gt; Thanks, Benji.</p>
+
+<p>&gt;&gt; Thank you, Benji.</p>
+</div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+
+</div>
+  </section>
+
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-4d9be0872aade3d244bda446e332118de0a026ee2893f05aca408698bab5dcba">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/palantirnet.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2020-02/palantirnet-logo.png" width="1200" height="198" alt="Palantir.net logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/clarity-partners.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2020-02/CFDFAA23-5C59-4C07-9C66-CAFFE0CF3854.png" width="1534" height="387" alt="Clarity Partners logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/pantheon.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2020-02/pantheon-logo-tagline-black.png" width="1200" height="370" alt="Pantheon logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/bounteous.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2019-11/Bounteous_indigo_large.png" width="1676" height="279" alt="Bounteous logo" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-2019-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#91f8fff7fed1fcf8f5f2f0fce1bffee3f6"><span class="__cf_email__" data-cfemail="a2cbccc4cde2cfcbc6c1c3cfd28ccdd0c5">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-2019-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-2019-footer-menu" id="block-hatter-2019-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-2019-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/6322","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"ajaxTrustedUrl":{"form_action_p_pvdeGsVG5zNF_XLGPTvYSKCf43t8qZYSwcfZl2uzM":true},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_sul8js76f3THBVtv8nspP93BoCHSgntyTCisS6lai4M.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter_2019&amp;include=eJx1ykEKgDAMBdELaavuPI2k-o1K2kITFG_vRkQEVwOP4ZxZMFAiOW0d1fMHqoXMUIauaXvPkgNJvT0aSPHSA2HOJfq7DoKIZG6C0SrqlHb8ThGqxLgAGZ04Cw"></script>
+
+  </body>
+</html>

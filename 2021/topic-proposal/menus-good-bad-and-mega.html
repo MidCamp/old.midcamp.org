@@ -1,0 +1,591 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="Over the years there have been many approaches to menus in Drupal. We&#039;ll discuss a few different approaches and their individual caveats with regard to manageability, usability, accessibility, and implementation. This is a topical discussion that I hope will spur more conversations to follow." />
+<link rel="canonical" href="menus-good-bad-and-mega.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Menus: the good, the bad, and the mega | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Menus: the good, the bad, and the mega | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_Qoyy92GHt9RyGOt8N3WS_9HRsJcJBywJ2IhXudzvST4.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJw1jFEOgzAMQy9U1iOhtDGsUkqmugOx068C8WM961nOJuQZkxAh31xBygo-fXMdzhsGtSpWfghv6R0truZJbMpk4MmOeh_tReEzaoLOS4FpbODHN5Yd0yXHBAfjla_q-jX8AXwTNZQ.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_mK2of_t7UFymkfbTHeA-kHdMPWzqc3DZQCYtX-tC0BA.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJw1jFEOgzAMQy9U1iOhtDGsUkqmugOx068C8WM961nOJuQZkxAh31xBygo-fXMdzhsGtSpWfghv6R0truZJbMpk4MmOeh_tReEzaoLOS4FpbODHN5Yd0yXHBAfjla_q-jX8AXwTNZQ.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJw1jFEOgzAMQy9U1iOhtDGsUkqmugOx068C8WM961nOJuQZkxAh31xBygo-fXMdzhsGtSpWfghv6R0truZJbMpk4MmOeh_tReEzaoLOS4FpbODHN5Yd0yXHBAfjla_q-jX8AXwTNZQ.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJw1jFEOgzAMQy9U1iOhtDGsUkqmugOx068C8WM961nOJuQZkxAh31xBygo-fXMdzhsGtSpWfghv6R0truZJbMpk4MmOeh_tReEzaoLOS4FpbODHN5Yd0yXHBAfjla_q-jX8AXwTNZQ.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="menus-good-bad-and-mega.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-midcamp2021navigation-2-menu" id="block-midcamp2021navigation-2" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-midcamp2021navigation-2-menu">Midcamp 2021 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2021/news">News</a>
+            </li>
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" data-drupal-link-system-path="node/6708">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--faq">
+        <a href="../faq.html" data-drupal-link-system-path="node/6724">FAQ</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" data-drupal-link-system-path="2021/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../../speaker-resources.html">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--accessibility--tools">
+        <a href="../accessibility.html" data-drupal-link-system-path="node/6792">Accessibility &amp; Tools</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" data-drupal-link-system-path="node/6710">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--get-started-with-drupal-wed">
+        <a href="../get-started-drupal.html" data-drupal-link-system-path="node/6717">Get Started With Drupal (Wed)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--meet-the-drupal-community-thurs">
+        <a href="../meet-drupal-community.html" title="Meet the Drupal Community (Thursday)" data-drupal-link-system-path="node/6718">Meet the Drupal Community (Thurs)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--share-your-knowledge-fri">
+        <a href="../share-your-knowledge.html" data-drupal-link-system-path="node/6723">Share Your Knowledge (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--give-back-to-drupal-sat">
+        <a href="../contribution-day.html" data-drupal-link-system-path="node/6712">Give Back to Drupal (Sat)</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" data-drupal-link-system-path="node/6711">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--sponsor">
+        <a href="../sponsor-midcamp.html" data-drupal-link-system-path="node/6709">Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../../jobs.html" data-drupal-link-system-path="jobs">Jobs</a>
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2021.html" hreflang="en">MidCamp 2021</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Menus: the good, the bad, and the mega</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="6777" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2021-03-25T19:00:00Z" class="datetime">Thursday, 2:00 pm CDT</time>
+ - <time datetime="2021-03-25T19:45:00Z" class="datetime">Thursday, 2:45 pm CDT</time>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>Over the years there have been many approaches to menus in Drupal. We'll discuss a few different approaches and their individual caveats with regard to manageability, usability, accessibility, and implementation. This is a topical discussion that I hope will spur more conversations to follow.</p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/Rxl-w3OeOMo?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Lee Quessenberry</h4>
+
+      Drupal Frontend Developer
+
+
+          @
+              <a href="https://esteemed.io/">Esteemed, Inc.</a>
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p>I am a professional and motivated web developer, community builder, and media producer looking to grow and build wonderful multimedia projects, interactive web experience, and develop new methods for problem solving, data integration, and social interaction on the internet.<br>
+<br>
+I love what I do and have a passion for web development.&nbsp;</p></div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2021-03/0%20(4).jpeg%3Fitok=DjgqO00R" width="176" height="220" alt="Lee Quessenberry" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p><span><span>SPEAKER:<br>
+Alright. Well one, thanks for having me. This is quite an honor for me. It's one I'm actually probably one of the first presentations I've done in a long time, and one of the first I've done, and I can't work on either way. So, don't (INAUDIBLE) Me too hard and we'll get on with this. So, I've decided to take on one of the most unruly and biggest sort of complications in web development, and that is how to please everyone, or please as many people as possible from very different backgrounds with menus in Drupal and how to come to a decision of basically what type of menu structure you're gonna build, what type of modules if any, that you might be enticed to use. And basically just kind of have a discussion on the types of interfaces that are available, and the types of options that are available to Drupal developers to complete a task based on the requirements of their project. First, I like to say that I have been a Drupal developer for, have been a member of Drupal (INAUDIBLE) For about 12 years, started with Drupal 6.</span></span></p>
+
+<p><span><span>I've seen a lot of, kind of fads if you will come and go in web development and design. Broadly, not just in Drupal and one thing that always it's always the hardest to do, is to manage content and or if you're working for smaller clients, even get the content, but managing the content in a way that's navigable and easily accessed or accessed by the end-user. That being said. What I've chosen to. (INAUDIBLE) Really today is mega menus. We'll talk about other types of menus as well, but mega menus that involve more than just menu links, maybe there's an image or some sort of excuse me, some sort of interactive part of the menu, that's not just an (INAUDIBLE) To another page, those sorts of things and recently, I've been contracting through esteemed as a contract developer for roberthalf.com on the productivity and vision projects that we're doing now. And one of the things that came up was we would like to use our site by nature of our enterprise sites, and they cater to the business-to-business type of user that's gonna be consuming our website and that's gonna have a lot of data, I mean a lot of content, a lot of pages, tons of blog posts, you name it, site maps that are just you know, huge in nature just because of the basically because of the size of the client and the size of their perspectival market.</span></span></p>
+
+<p><span><span>So, going from doing boutique type websites where it might be for a small business owner that has a product or a unique niche or something like that, they may have like an About Us page, maybe some products and a few other links that are easily accessed. And then going through something of this size, which is kind of a monster is not something you can just do quickly and easily. And for myself, it takes a lot of, I think, a lot of research and a lot of reflection on past choices and things that I've done to get to where I'm at today. So, this is kind of a growing experience for me, as well as an experience that a lot of other people are probably on that same path and I wanna share what I know and by no means an expert on any of this. This is why I'm doing The Birds of a Feather, because I wanna hear from other people and what made them successful and how they chose to build the menus that they chose on their projects. So, by any means a disclaimer, what I'm about to tell you here is strictly my own personal experience.</span></span></p>
+
+<p><span><span>It's not an example of best practices or worst practices or how to implement things the best or the worst. It's just a variety of things and what I've found to be usable for my project is what I will share. So, let's get started I have an outline that is on my get web page. I'm going to share that I just created it. And it's got a, let me see, it's got a outline of what we're about today so, I'll share that link here. It's a public link. If anybody feels like they want to add to it later or questions or any of that stuff by all means go for it. So, starting from the top after the biggest decision is making the choice. What are you going to incorporate in your website? Who is it for? Who's going to be managing that website? And ultimately, at the end of the day, who's responsible for making those updates? So, for instance, when you're creating a menu of any sort questions, obvious questions that you should be asking yourself are can a non-developer manage the structure of this website or can a site builder manage the structure, can the content team the marketing team, whoever.</span></span></p>
+
+<p><span><span>If you're working for a corporation that has a completely separate entity, that does all the PR and marketing and stuff, are they able to use the website well, or is there some sort of intervention from your development team? In our case, specifically when I say our case for (INAUDIBLE) And vision has decided that we, the developers, would ultimately maintain our menu structure by request from our marketing teams. But in some other organizations, you may have a marketing team that wants to maintain the entirety of the content of the website on their own with very little interaction from their developers. In other cases, it might be that you're working with a small business owner and they don't have the resources to maintain the website. So, the trade off is that they would pay you for your time to help manage the website and vice versa. When you nail these kind of questions down on any scale, it helps you to determine how you want to implement your menu structure. The next question that you have to ask yourself, and then you should probably have some testing and feedback from others is, is it usable?</span></span></p>
+
+<p><span><span>How deep does the navigation need to go? Do you need a (INAUDIBLE) And by the time you get through the menu, you're four or five fly out into it and you realize, did we really need all of that navigation. Is our navigation that granular? And, you know, over some time you may want to reduce the amount of links that are in a mega menu or in a long list. And that brings you to the next item. Is it easier to navigate? We have mobile phones. We have you know, responsive design first, mobile first. You really have to start to think about making that data consumable quicker or because a lot of times people will come to the site and they're overwhelmed with the navigation and they may go to a competitor's website and seek out the same information that you have, you may have the best information in the world, but if you're site not usable, then you're losing potential customers or potential (INAUDIBLE) Or whatever the case may be. So, you have to ask yourself, who is your audience? And I don't need to tell that to anybody that's ever built a website because you are the one that's responsible for gauging your audience.</span></span></p>
+
+<p><span><span>And it may be through metrics, it may be through you know, polls. It may be through some sort of, I don't know, cooperative effort, aboard, maybe helps decide on who's using the website, that sort of thing. So, make sure, you know, just as a general rule of thumb, that you know who you're tailoring this website or menu to. The other two things that are very important in this and this is something that we are really hacking on quite a bit, that Robert Half is translation. You know, a lot of times people think that they should just make the website in English, and that's good enough then this day and age, that's not just good enough. You need to make sure that your website and your menus specifically were tailored towards several different languages. If that's your audience now, in some cases that may not be your direct audience. But in the case of what we're doing for activity, translation is very important. Jokingly, as I say, is your menu available in Klingon if it's not available on Klingon what (INAUDIBLE) Do it.</span></span></p>
+
+<p><span><span>You know, you've got to make it where everyone can understand. And what are you doing in your menu as far as right to left based text. There are many languages that don't read from left to right. And sometimes you have to take that into consideration as well when you're designing a website that appeals to multiple cultures, multiple languages all over the world, and then of course accessibility. If you're dealing with an audience that you may not even realize you're dealing with an audience that's colorblind or hearing impaired, and those are the sort of things that people often take for granted when developing the website. And over the years, I've learned that it's much more important to make sure that your site is accessible than it is pretty or there's not really a mutually exclusive term there but just making sure that people that are trying to access the information can get it, can see it, can read it, can hear it. Those are some other things to take into consideration. So, that I'd like to open that up for any questions and comments, I kind of went through that a little quick (INAUDIBLE) I'd like to ask or add to that please do.</span></span></p>
+
+<p><span><span>You can use either the chat window or you're welcome to unmuted yourself (INAUDIBLE) Yes please. And I'll open the chat here and see (INAUDIBLE) OK. So, (INAUDIBLE) I'm sorry, (INAUDIBLE) What determines the use or not of Mega menus in a project in your opinion? In my opinion, it's just been the sheer amount of content that's to be consumed. You've got some websites that are basically. Let's call them landing pages. They may have like a single service or a product they're trying to sell and a couple of ancillary pages that describe who they are and what they're doing and generally, they don't need more than you know, five to seven weeks, maybe 10 tops. But if you're dealing with the website that is multifaceted, sells many products or has very many different streams of content coming into it, whether it be white papers, blogs, articles, news, press releases and that sort of stuff, you end up with something that's bigger than just five to ten menu links. One of the best examples that I can give in this is from working as a contractor for a library market is a public library website, the public library website that will serve the entirety of its region from age five to 95.</span></span></p>
+
+<p><span><span>And they have so, many different programs so, many different events going on at a library you know, they have rooms that can be rented at the library and so, on and they end up having a lot of different functionality on one website, and that level of interaction requires having some sort of a mega menu that allows people to drill down based on their interest, based on their research, whatever the case may be. I actually have a good example of one of those. I'm gonna put a link in here, one of that I built working as a contractor for library market. And you can just see how everyone has an option there you go to Handley Regional Library, you can see there's kids sections there, (INAUDIBLE) Sections there's on and on, and there's tons of stuff to do in a library. I mean, they're gonna search account. They actually have three different locations in the library. So, there's a drop down menu for each location to shows the hours and the time that they're at times that they're available. You've got research, you've got streaming media that you can download audio books, that sort of stuff.</span></span></p>
+
+<p><span><span>And so, in this case it was you know, we kind of had to have a mini mega menu so, to speak. And I think that's I think basically the root of it is the variety of content and the sheer amount of content would determine whether or not I would use a mega menu or not. I'm looking at the chart here. How did I handle menu permissions for a library organizational structure. That one I would have to actually divert to one of my colleagues that I worked with there, I was mainly responsible for building the front end, mostly the Twig and the look and feel of it. But I will say this and interlibrary organization, there's generally a head of department. For each one of these types of interests, whether it's the children's department, it's the the research department, maybe there's someone that's in the genealogy that manages that department and all of the other services that come with the library. Generally, those roles are given and permissions are given a basically role based level. And a lot of multisite libraries, they may only give certain menus to certain departments based on their role and on their permissions list to manage it.</span></span></p>
+
+<p><span><span>That makes sense. I hope I'm answering your question (INAUDIBLE) It's a very complicated type of thing. But when you're using a basic menu structure with Drupal and a core menu system with Drupal and permissions, as far as I know, there are some other distributed modules that will allow you to have granular control over certain menu items and who is responsible for maintaining those as a site builder. (INAUDIBLE) See here. Tabbing (INAUDIBLE) I'd like to add something. Sure. (INAUDIBLE) My name is (INAUDIBLE) I'm a freelance web designer. I got some very good points there. One thing that I learned on colour blind, a half a percent of women and I think eight percent of men have a red green deficiency. Yeah. So, if you put a substantive aspect of your menu and your cooking on colors that involves red and green, you're gonna be missing some people. Yes, That's a common thing people do. That is true. I know that a good friend of mine, (INAUDIBLE) He does he is like the accessibility king when it comes to designing what he actually does, the color design of a lot of these library websites that I had worked on in the past.</span></span></p>
+
+<p><span><span>And I bet he spends hours a day, probably half of his day determining and going by guidelines for usability on color, and it's something that a lot of the time falls on your designer if you have a designer, but if not, there's a lot of good resources out there. And I'd be happy to share those resources in this document. I just didn't have a lot of that with me today, if anyone's interested. So, please you know, contact me let me know and I can share some of those resources for sure. Let me open my apple outline back up and let's see. I have one more comment in if I could. Yeah, no problem. Well, I took a look at your library site which is really hard to grasp because of all the content that's there. I think it did a good job with organizing with (INAUDIBLE) Et cetera, and then for the dropdown. So, they made a lot of information pretty accessible. But you didn't go you didn't have all that many things going across it down. And one of the questions that comes up regarding menus, what is better to go have a wide menu or to have a few and go deep?</span></span></p>
+
+<p><span><span>And this question has been answered by a lot of people doing user experience research and the user experience research has usually said you're better off (INAUDIBLE) With fewer dropdown. So, the reason is the more drop down that you have, the more drop levels you lose people, especially people who are older, they can't follow, they can't follow the fly out. Yeah I 100% agree with that. Generally, my rule of thumb, if I'm doing a magic menu. I'm top level I'm gonna have most of the items across that the horizon there, and if there is a drop down, there's not gonna be another level under that. You've got one level for main navigation. The drop down would be your secondary level. And everything on that panel is gonna be one click away. I do not like digging through menus. Call me old. I don't know. Call me a boom or whatever. I don't like digging through menus just like the next guy. And I think that that usability that you're talking about is very important to keep in mind, no matter what project you're on.</span></span></p>
+
+<p><span><span>And it's kind of hard. It's an unruly beast. It sometimes because so, many different people have input on what they think is more important than the other. I think that this link is more important than the sub headings and that sort of stuff. You get into some of that sort of, let's call it persuasive dialogue, if you will, and that, you know, that alone is very important as far as usability goes, and that's one of the things I have here is like, how deep doesn't have need to be. This is Chris. I wanted to interrupt and ask you the two things that was made regarding this (INAUDIBLE) Site and then the click on other comment. I think it is very material. I also wanted to mention that you know, I know you didn't have chance because you're presenting. But if you have a moment to take a look at that site, it actually does a fabulous job of exploring a couple of different issues here that are being brought up in subsequent comments, such as the bootstrap levels on click of the bootstrap method Et cetera.</span></span></p>
+
+<p><span><span>And I wanted to say that. So, that example, though, if you look at the multi category, I think it's under solutions at this (INAUDIBLE) Make a ton of products, I'm sorry, very elegant. The way that was handled you know, it does it handles it in the fly out or second level in a pretty elegant way that I think you might. Yeah, there's no guesswork. You're not like, you're not using your mouse to chase the next element. Yeah. That's, pretty slick. That's, that is. That's a good example of going deep but keeping the menu shallow, going deep with your content to keep the menu actually shallow I like that. (INAUDIBLE) You wanna include a link to that in the chat. Yeah, I think let's see, (INAUDIBLE) Posted a link to that. I beg your pardon it's already in there. Yeah, no problem. Let's see here. So, we've gone through usability, we've gone through translation, I don't have a whole lot of examples of translation if in a menu I just know that at the moment it's for us, it's very important because Robert Half has 16,000 plus employees and it serves many countries all over the world.</span></span></p>
+
+<p><span><span>But one of the things that I did wanna talk about. With regard to everything we said are the different implementation possibilities so, I've kind of narrowed this down to three, basically, and a bonus with two of them being more or less kind of the same with just a little bit of difference between the two. You've got tweet based menus with entities, and then I have a role your own menus, and then there's the use actually there's four here, there's the use of contributed modules. And then something that I found just today for one of my team members, that productivity of the Drupal core initiative for decoupled menus in Drupal. And so, starting from the top Twig entities is the way that we're going with our current project is basically what that is, is there's a a module called menu item extras and menu item extras allows you to take a normal Drupal menu item so, let's say you create a link in the menu and it allows you to use layout builder and actually create a layout specific to that menu item or the whole menu itself.</span></span></p>
+
+<p><span><span>You can do either or both. What we've done with it is use let's say we've got a mega menu that's three columns wide, one column we wanna have maybe the drop down, actually, if you wanna take a look at what we modeled after (INAUDIBLE) Website it's not (INAUDIBLE) But it's the site that we've used to model our specific menu (INAUDIBLE) Posted in here and that's a long week should have just kept the. It's (INAUDIBLE) Their business service industry, their mega menus, when you hover over them. On one column, you have what's new, and that's basically their news and blogs, well news and blogs and articles and any kind of other entity aren't necessarily menu items. But if you wanted to put those in your menu, like maybe you wanna have your five most recent blog post menu item extras actually allows you to override the layout of an item itself and placed blocks into a layout around the menu items or within the menu items, and it gives you a lot of flexibility to maintain a true Drupal core menu, but give it an extra feel with layout so, you could do columns of secondary links.</span></span></p>
+
+<p><span><span>You could do blocks of secondary links. Their possibilities are virtually endless because you can use a paragraph, you can use a block, you can use it is block based if you're using a layout builder. So, you know, it has to be (INAUDIBLE) In a Drupal block. But you can use many item extras to make that happen. And I have several articles in my document that reference that if anybody wants to study up on that, this is one of the many ways that you can implement a mega menu. Now, the trade off on that is, it's more developer centric. And maybe high level site builder, centric so, it's not like something that just anybody with no Drupal experience can just go in and move the menus around and make it look nice. I see here that it complicates things for translation, but we haven't found that to be the case because we're basically using Drupal core menus and they're translatable. But all of the blocks that we're creating that we use in our menus are easily translated as well. And because of choosing Drupal core system with translations, we've not run into a problem with that.</span></span></p>
+
+<p><span><span>I would like to hear your reasons (INAUDIBLE) For why that would be complicated for translation. But it's actually one of the reasons why we chose to go this way was that it was for us easier to implement translation. So, it's interesting I'd like to see your point. Hey, yeah. So, my point on that would be, yes, it makes everything translatable, but that is a bit of overhead when you're actually trying to keep control of that translation (INAUDIBLE) Because now they have to go through a process of asymmetric translations some instances, yeah so, (INAUDIBLE) The main issue. I see what you mean. And I think that's probably why we chose to keep the menu, any menu edits or any menu changes within our development department. So, you're right, menu item extras and with layout builder. If you're a bit squeamish to the Drupal management, site management side of things and maybe don't have quite the grasp on it, it's not for the faint of heart. It is slick. It works out. And like Josh is saying here, it's like a website inside of a website.</span></span></p>
+
+<p><span><span>I agree. It truly is like a website inside of a website it's one of those things that. You know, I don't think a lot of people like to create huge mega menus, but then there are a lot of things that are depth by committee as well. So, when you're dealing with what the customer wants versus what you think is best for usability, sometimes there are some trade off there and like places hoping it gets addressed and core, that would be fantastic. And we'll touch on that a little bit. There's the tuples initiative for decoupling menus that everybody should watch the video for it's pretty inspiring. So, but yeah, I have to answer you on translation. We chose it that way, but we chose it that way because we are ultimately the ones responsible for building those menus, whereas in another instance, if someone if you're passing this website off to someone that's got little to no training on it or has no idea what to do, it might be a bit of a learning curve for sure. The other option is to roll your own, and this one is even more of a bear when it comes to translation and accessibility, depending on what you consider to be roll, you're own.</span></span></p>
+
+<p><span><span>I've seen websites where a menu was written completely in static code and did nothing to address or integrate Drupal's core menus. I don't know why. I think that would be probably the worst case of building a menu, but for some people that have built websites, they felt the need to create basically the most basic navigation possible, and it just goes to links that have been hard coded into the template. Of course, you run the risk of detrimentally compromising your accessibility, manageability and translation if you don't write it to be easily managed or translated or accessible. One of the other ways that people are getting by with and is to use simple Mega menu, you TB mega menu or we-mega menu contributed modules for developing a mega menu. Now, I personally like these. I think they're great TB mega menus is a very ambitious project and. If it works for the end user, it works phenomenally, it's drag and drop, it's you know, there's a lot of guesswork is taken out. You're able to create hierarchies of links pretty easy you know, for the usability side of the site builders it's really good.</span></span></p>
+
+<p><span><span>The problem that we ran into with contributive modules is purely from a developer standpoint, and that is. We are writing a custom theme and a lot of these contributed modules make some fairly good guess that styling, but at the end of the day, it's more (INAUDIBLE) That we end up having to override or include in some way and (INAUDIBLE) Completely custom theme that we're trying to build. It didn't make sense for us on our specific project that we're on now to use the simple mega menu or TB mega menu or the I think it's we-mega menu which is called like Drupal Mega menu or something like that. I searched all three of those, trot them out. But the requirements for my project required us to use pattern labs and our own custom theming comes along with that. And so, I was running into a lot of cases where I was using exclamation important on a lot of elements that I was trying to style. And we ultimately decided not to use this because the decision was made that our development team would be managing the menus at the end of the day anyway.</span></span></p>
+
+<p><span><span>And so, for someone that's building a smaller website that needs a quick, nice looking menu that's easy to manage on the back end. I wholeheartedly believe in using TB Mega menu for that, in our case, it just wasn't, it didn't fit our purpose basically. Does anybody have any more input on that on those modules, or I know Paul mentioned there are some fellows here from TB mega menu before we started. Will any of you like to address maybe a solution for us if we were to decide to use TB mega menu instead of embedding entities in our and using (INAUDIBLE) And menu item extras. The only hurdle that was the (INAUDIBLE) That comes with it. That's real interesting to hear (INAUDIBLE) I took a note of that, I didn't see I don't see any of my other (INAUDIBLE) Colleagues that had been directly working with the module. They picked it up. It had been languishing and hadn't been supported for a year or so, and they picked it up a couple of months ago and started addressing the the bugs list within I interestingly, I worked a bit with them retrofitting the D7 version of it.</span></span></p>
+
+<p><span><span>They're still working the D8 ones. But I'm glad that you're calling them out because it's it was a great module. And now that it's being worked on again, we're hoping to make it even better. More accessible is one of the main points that they're trying to work towards the this next D8 release. But I will take a point that you found it a little bit challenging. I know that it will add quite a lot of markup to do what it needs to do. And if it is not easy to get accustomed thing to work with it. That's an excellent point that we'll take a look at. I appreciate that. I'm gonna address some of the comments you're seeing. (INAUDIBLE) Says in terms of accessibility, the ability to navigate a mega menu with a keyboard is an object that you can sooner will roll your own mega menu (INAUDIBLE) I do agree with that. That's not something that I had considered Jeremy, but that is something that a lot of people may overlook that using keyboard shortcuts and I've been on some websites that have real nice keyboard shortcuts for navigating sites which is supercool.</span></span></p>
+
+<p><span><span>That's one of those things that I think does get overlooked and we need to consider that in the future. Chris has an article from Phase two Technology. Chris, that's exactly what I was talking about when I was talking about using menu item extras. I actually have that phase two technology article and my reference link at the bottom of the show notes. So. Nice so, I can reset the Internet. Your good. That was very first. (INAUDIBLE) Wrote that article and that's the very first article that I found on my journey to using Layout Builder to build menus. And at first I ran into an issue where I had to patch a menu item extras. There were a couple of modules that were acting a little wonky, but we got it worked out. And now and I believe that that has been committed. So, everything's working fabulously with that. If you're a big fan of layout builder and you're using that all the time, anyway, we've actually designed our mega menu to make it where you can do that, just like the article reads (INAUDIBLE) Layout builders eventually going to become ubiquitous.</span></span></p>
+
+<p><span><span>Yes, (INAUDIBLE) They could. It might be an easier argument to make to use something driven by it than something custom. It's ultimately you have to train the customer to use you more, just have to point them in the right direction. That that's a good point. And (INAUDIBLE) Coming from a background of building a public library websites. Those guys build I don't know how they build websites so, fast but library market builds amazing website. I was there right before (INAUDIBLE) Started working, and that's when I built Handley and Metro Public Library. I think we did those three websites in about two weeks record time. And then (INAUDIBLE) Came on board as their (INAUDIBLE) I was there (INAUDIBLE) As a contractor. But yeah, you're right. Training the customer at the end of the day, it's about communication as well. So, the customer can use the layout builder, they can build a menu using it. That's great to see. I have to roll my own from. Man, yeah, OK. (INAUDIBLE) Is doing a roll his own.</span></span></p>
+
+<p><span><span>That's hats off to you man so, that I understand. OK. At the end of the comments, let me get back to what were your talking about. So, you contributed module's this other than TB mega menu, which I've used it in the past because I ended up I can't remember exactly what project I used it on, but we used it a long time ago for Drupal A project. It's, I'm missing it in my head off the top of my head. But those drag and drop contributed models are fantastic for this kind of stuff. If you're just building a website, that's got to be done pretty hastily or you just want easy to use (INAUDIBLE). The last thing I'm going to post a couple of links here that (INAUDIBLE) Work with (INAUDIBLE) And he showed me what DrupalCon Initiative decoupled menus is up to, and Dries state of Drupal presentation from December of 2020, touches on it and then there's a video. And I've also included the document, the Google Docs on the, for the task force that's trying to get all of that together. So, if you guys want a little apocryphal reading or something to check out I've posted those links here in the chat, but I'd like to open it up.</span></span></p>
+
+<p><span><span>I see a lot of people are posting a lot of different things here. One of the, I can give a couple of other examples where I had to build a menu with a lot of the different subject areas, especially when it comes to commerce, like E-commerce. When you're dealing with lots of product categories, that's another reason that I have to use a mega menu. When I built a home outlet with Brandon (INAUDIBLE) That was one of the biggest feats that we had to overcome (INAUDIBLE) Is to make all of the different departments of products that we were selling, (INAUDIBLE) Company available. And at the time, we had 4,500 different products in several hundred different categories and we tried really hard to pare it down to where we had your main five links about the website so, you could go to the homepage, you got your store locator, and then we had DIY articles, which is basically a blog about home improvement and then the free services that were offered at home outlet. Those were easy because those go directly to a one link page where it got really hairy is when we started getting into the shopping aspect of things.</span></span></p>
+
+<p><span><span>We were working with (INAUDIBLE) Commerce guys at the time. And when it got to the shopping part of it, we had a lot to overcome. And there's still some room for improvement I'm sure, I'm not on that project anymore. But there was a need there for a mega menu. It was pretty simple. And the fact that we created menus using basically the Drupal menu core system and some custom Twig to render those secondary links in the columns that you see there. But that's an example of doing it without using menu item extras, which wasn't available to us at the time, I'm sure, had we been able to use something like that in the layout builder we might have had a different approach, this site's nearing, I think four years in age or three years since it went live so, that at the time the decision was made to just make every product and every category available from the get go when you hit (INAUDIBLE) So, you can see it all there. But I like this link that (INAUDIBLE) Shared about Adobe accessibility, accessible mega menus that's pretty awesome.</span></span></p>
+
+<p><span><span>I'll have to keep that one in my hat. Does anybody else have any questions or comments or ask me anything I'm here. OK. I'm actually to keep the server link in place because that is the other way to relate the menu script, which is like eight years old or so, it doesn't work with (INAUDIBLE) So, that's clearly still being reference as a good starting point for all the tab and arrow key navigation or their menus don't have all of that in place. So, somebody (INAUDIBLE) Addressing some accessibility upgrades and then we did a fork of that fork to make it what we take (INAUDIBLE) So, that's the last link I sent there. I see that that's sometimes if (INAUDIBLE) Don't fix it. But man, that's an eight year old project but I guess. That's what you have to use. You have to use it. It's interesting, though, that it's got all the guidelines outlined for accessibility, probably a good resource for anybody that's really obsessive over the accessibility aspect of the menu. Alright. We'll have to share this with a couple of my friends as well.</span></span></p>
+
+<p><span><span>Yeah. And somebody mentioned in (INAUDIBLE) About clicking menus versus hover we have adapted the script to the hover stuff instead of clicking so, it's simple enough where you can change it that way. Right. And that's another thing to get to. You're right. One of the things that we're working on is click verses hover. Obviously, when you're on an iPad or or tablet and you're not clicking anything you're tap, you're tapping on it. So, you have to make behaviors like that work. You have to make behaviors like that work for different devices and keep that in mind as well. A lot of times, if it's not done right, you end up having a double tap on a menu, on a website, on a tablet that's annoying too. So, a lot of good, there's a lot of good information to come out of that as well. (INAUDIBLE) Anyway, before I sign off here a little bit, I know we're getting close to time. Yeah, I can see that Josh double click (INAUDIBLE) Everybody. It confuses everybody in this day and age 20 years ago. Double click on everything.</span></span></p>
+
+<p><span><span>Right. If you guys wanna take this conversation over past the hour, you're more than welcome to join us in the esteemed chat room. I'm gonna post a link here to invite anybody that wants to continue to discuss menus, I hope that what have given you guys here today and hope and what you've given me is something that is useful for everyone when you're trying to make a decision on what to use a basic rules of thumb are, keep it unsophisticated, just you know, it's easier said than done, saying keep it simple, stupid, but keep it simple. There's no reason to overengineer a menu, especially now that we have a lot of these different devices that are, that don't really give to that, like there's so, many tablets and things like that, nobody wants to chase two, three, four levels of linked deep on a menu. So, if you can keep everything up front and keep it right in front of the viewer or the user, that's that's the better. Like the link that (INAUDIBLE) They've got deep menu. Deep link levels, but they've done it in an organized way with tabs on the side, that makes it easier because the menu's right there in the view (INAUDIBLE) Above the fold so, to speak and you're not chasing a menu link.</span></span></p>
+
+<p><span><span>So, that's my best guidance. And I really appreciate everyone for joining today. I hope I didn't bore anyone to death. I'm generally a pretty happy go lucky guy, and I appreciate Mid-cap for having me. It's been an honor. And there's a few people that I'd like to thank as well. One my wife, she's patient with me, work from home and she works at a bank. And a lot of times our hours are not exactly the same. And then I would like to thank (INAUDIBLE) He pushed me out of my comfort zone a long time ago, made me become a better Drupal developer. And I'd like to thank Andre, Angela Tony for believing in me. He hired me on. He was part of the process for hire me on (INAUDIBLE) And then I'd like to thank esteemed the productivity team, library market Drupal Mid-cap, (INAUDIBLE) Company (INAUDIBLE) And phase two. They were all elemental in the decision making that I had to make these mega menus for the project I'm on now and have been a benefit to me in the past. And so, thanks everyone. Well, thank you (INAUDIBLE) That was great.</span></span></p></div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-3c5d7701d4f1259d7c00fb01518f5c8bad5d5d3d651778f4f1ffa3f437407b8a">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/6777">https://mid.camp/6777</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-473c109ac1aa85b4bf4a324585efc801548d82f6fbf2dced2ca19cff9fe6f99c">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/tyto-learning-solutions.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2021-02/tytolearning.png" width="2000" height="974" alt="Tyto Learning Solutions" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/evolving-web.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2021-02/evolvingweb%20(3).png" width="1517" height="371" alt="Evolving Web" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/drupal-contractors-esteemed.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2021-02/dcont-logo-v1-stacked-black-01.png" width="220" height="189" alt="Drupal Contractors, by Esteemed " />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/pantheon.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2021-03/pantheon-logo-tagline-black.png" width="1200" height="370" alt="Pantheon" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/bounteous.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2021-02/BounteousIndigoSmall.png" width="403" height="67" alt="Bounteous" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/palantir.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2021-02/palantirnet.png" width="480" height="76" alt="Palantir.net logo" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#c3aaada5ac83aeaaa7a0a2aeb3edacb1a4"><span class="__cf_email__" data-cfemail="7c15121a133c1115181f1d110c52130e1b">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/6777","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_llBcjrkrgAu2wT1DR7VGL_iP6geJyiTnF_8O5ZD57VI.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJxLz89Pz0mNT8xLzKksyUwu1k9HE9DJSCwpSS3ST8_JT0rM0c0qBgAByBPW"></script>
+
+  </body>
+</html>

@@ -1,0 +1,771 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="We often hear talk about Services and Dependency Injection. In many cases we even use them without necessarily understanding what the benefit is. But when we do that, we don&#039;t necessarily get much out of services. In this talk, we&#039;ll review the basics of creating and injecting a service, and then dive into techniques for attaining performance benefits by using services. Through examples, we&#039;ll show you how we used modified an existing service to reduce resource intensive function calls and greatly improve our site&#039;s performance." />
+<link rel="canonical" href="how-use-dependency-injection-services-unexpected-performance-gains.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="How to use Dependency Injection &amp; Services for unexpected performance gains | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>How to use Dependency Injection &amp; Services for unexpected performance gains | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_gt5LiAM1qLGUH5e845uOb7R_lJ9dUwTXmnhGDR2yY20.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OhDAIhC9U2yMZakdtAmJKV9c9_Tb-PPkCAx8ZZmAyO0IkgxsuLTCjCfbMi6bGtKCpIsT5BzdTrShhYo3E3WD2bITWqF9nh1XIZbvlBO0hEakfMziFAlt1sbyhO2E7wW7hrF40fRh.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_mK2of_t7UFymkfbTHeA-kHdMPWzqc3DZQCYtX-tC0BA.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OhDAIhC9U2yMZakdtAmJKV9c9_Tb-PPkCAx8ZZmAyO0IkgxsuLTCjCfbMi6bGtKCpIsT5BzdTrShhYo3E3WD2bITWqF9nh1XIZbvlBO0hEakfMziFAlt1sbyhO2E7wW7hrF40fRh.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OhDAIhC9U2yMZakdtAmJKV9c9_Tb-PPkCAx8ZZmAyO0IkgxsuLTCjCfbMi6bGtKCpIsT5BzdTrShhYo3E3WD2bITWqF9nh1XIZbvlBO0hEakfMziFAlt1sbyhO2E7wW7hrF40fRh.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OhDAIhC9U2yMZakdtAmJKV9c9_Tb-PPkCAx8ZZmAyO0IkgxsuLTCjCfbMi6bGtKCpIsT5BzdTrShhYo3E3WD2bITWqF9nh1XIZbvlBO0hEakfMziFAlt1sbyhO2E7wW7hrF40fRh.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+<link rel="stylesheet" media="all" href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.css" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="how-use-dependency-injection-services-unexpected-performance-gains.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-midcamp2023navigation-menu" id="block-midcamp2023navigation" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-midcamp2023navigation-menu">MidCamp 2023 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" data-drupal-link-system-path="node/6857">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--by-the-numbers">
+        <a href="../../2020/about/by-the-numbers.html" data-drupal-link-system-path="node/6252">By the Numbers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--venue">
+        <a href="../../about/venue.html" title="Venue" data-drupal-link-system-path="node/7048">Venue</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../speaker-resources.html" data-drupal-link-system-path="node/345">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--health--safety">
+        <a href="../health-safety.html" data-drupal-link-system-path="node/6973">Health &amp; Safety</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../about/lunch-options.html" data-drupal-link-system-path="node/6970">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--volunteer-opportunities">
+        <a href="../article/volunteer-help-midcamp.html" data-drupal-link-system-path="node/6975">Volunteer Opportunities</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" data-drupal-link-system-path="2023/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--travel">
+        <a href="../about/travel.html" data-drupal-link-system-path="node/6865">Travel</a>
+            </li>
+          <li class="primary-nav__sublist-item item--accommodations">
+        <a href="../about/accommodations.html" data-drupal-link-system-path="node/6948">Accommodations</a>
+            </li>
+          <li class="primary-nav__sublist-item item--registration">
+        <a href="../register.html" data-drupal-link-system-path="node/6977">Registration</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" data-drupal-link-system-path="node/6860">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--sponsor">
+        <a href="../sponsor-midcamp.html" data-drupal-link-system-path="node/6858">Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" data-drupal-link-system-path="node/6859">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--hybrid-sessions">
+        <a href="../schedule/hybrid.html" data-drupal-link-system-path="node/7053">Hybrid Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-wed">
+        <a href="../schedule/wednesday.html" data-drupal-link-system-path="2023/schedule/wednesday">Sessions (Wed)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-thu">
+        <a href="../schedule/thursday.html" data-drupal-link-system-path="2023/schedule/thursday">Sessions (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--birds-of-a-feather-bofs">
+        <a href="../schedule/bofs.html" data-drupal-link-system-path="node/7054">Birds of a Feather (BoFs)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--contribution-day-fri">
+        <a href="../schedule/friday.html" data-drupal-link-system-path="2023/schedule/friday">Contribution Day (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--topic-tracks">
+        <a href="../../topic-tracks.html" data-drupal-link-system-path="node/10">Topic Tracks</a>
+            </li>
+          <li class="primary-nav__sublist-item item--all-sessions">
+        <a href="../schedule/sessions.html" data-drupal-link-system-path="2023/schedule/sessions">All Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--session-submission">
+        <a href="../submit-session.html" data-drupal-link-system-path="node/14">Session Submission</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2023/news">News</a>
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../../jobs.html" data-drupal-link-system-path="jobs">Jobs</a>
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2023.html" hreflang="en">MidCamp 2023</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-midcamp2023schedulenav" class="block block-block-content block-block-contente066b47a-a80d-432a-8edd-6c60b28b7c95">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><div class="schedule__nav">
+<p><a href="../schedule/hybrid.html">Hybrid</a>&nbsp;|&nbsp;<a href="../schedule/wednesday.html">Wednesday</a> | <a href="../schedule/thursday.html">Thursday</a> | <a href="../schedule/friday.html">Friday</a></p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">How to use Dependency Injection &amp; Services for unexpected performance gains</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="6967" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2023-04-26T16:00:00Z" class="datetime">Wednesday, 11:00 am CDT</time>
+ - <time datetime="2023-04-26T17:00:00Z" class="datetime">Wednesday, 12:00 pm CDT</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-80" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-name field--type-string field--label-hidden field__item">Room 312</div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>We often hear talk about Services and Dependency Injection. In many cases we even use them without necessarily understanding what the benefit is. But when we do that, we don't necessarily get much out of services. In this talk, we'll review the basics of creating and injecting a service, and then dive into techniques for attaining performance benefits by using services. Through examples, we'll show you how we used modified an existing service to reduce resource intensive function calls and greatly improve our site's performance. Our goal is for you to leave this talk with an understanding of how to use Services, as well as more ideas on how to use services to reap even more benefits.</p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/TQ4z2xze8Vg?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Ashraf Abed</h4>
+
+      Founder / Technical Architect
+
+
+          @
+              <a href="https://debugacademy.com">Debug Academy</a>
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p>I voluntarily left my job as a Technical Architect at Acquia to focus on increasing the diversity of the Drupal community as well as providing top quality training through my company, Debug Academy.</p>
+
+<p>I am a certified Drupal 7 &amp; 8 Grand Master, and a former Technical Architect at Acquia. I'm involved in numerous enterprise development projects and have been fortunate enough to experience working as the lead developer on Whitehouse.Gov and other prominent Drupal websites.</p>
+
+<p>I founded Debug Academy (&nbsp;<a href="https://debugacademy.com/">https://debugacademy.com</a>&nbsp;), where we enable others to kick off or improve careers in web development.</p>
+
+<p>CEO of Debug Academy, where individuals with any level of experience can enroll and become Drupal Developers ready to join an enterprise development team.<br>
+Technical Architect at Debug Society, where we make Drupal accessible to non profit organizations and small to medium businesses.</p>
+
+<p>I'm passionate about keeping up with the latest technologies, maintaining a high level of integrity in all that I do, and giving back.</p>
+
+<p>&nbsp;</p></div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2018-12/WhatsApp%20Image%202018-12-12%20at%205.02.31%20PM.jpeg%3Fitok=CsX2797a" width="165" height="220" alt="Ashraf (and baby Ali &amp; Nemo)" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Back-End</div>
+          <div class="field__item">Sponsored Session</div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-feedback-form field--type-webform field--label-above">
+    <div class="field__label">Feedback Form</div>
+              <div class="field__item"><form class="webform-submission-form webform-submission-add-form webform-submission-session-feedback-form webform-submission-session-feedback-add-form webform-submission-session-feedback-node-6967-form webform-submission-session-feedback-node-6967-add-form" data-drupal-selector="webform-submission-session-feedback-node-6967-add-form" action="how-use-dependency-injection-services-unexpected-performance-gains.html" method="post" id="webform-submission-session-feedback-node-6967-add-form" accept-charset="UTF-8">
+  
+    <div data-drupal-selector="edit-0" class="webform-message js-webform-message js-form-wrapper form-wrapper" id="edit-0"><div data-drupal-messages>
+    <div role="contentinfo" aria-label="Status message" class="messages messages--status">
+                  <h2 class="visually-hidden">Status message</h2>
+                    Sorry...This form is closed to new submissions.
+            </div>
+    </div>
+</div>
+<input autocomplete="off" data-drupal-selector="form-x7ved7wtc4p-alofiwy8heppcce-vtatbq08kclyy9o" type="hidden" name="form_build_id" value="form-X7VeD7wtc4p-aloFiWY8HePPCCE-VTATbQ08kcLyy9o" />
+<input data-drupal-selector="edit-webform-submission-session-feedback-node-6967-add-form" type="hidden" name="form_id" value="webform_submission_session_feedback_node_6967_add_form" />
+<div class="url-textfield js-form-wrapper form-wrapper" style="display: none !important;"><div class="js-form-item form-item js-form-type-textfield form-type-textfield js-form-item-url form-item-url">
+      <label for="edit-url">Leave this field blank</label>
+        <input autocomplete="off" data-drupal-selector="edit-url" type="text" id="edit-url" name="url" value="" size="20" maxlength="128" class="form-text" />
+
+        </div>
+</div>
+
+
+  
+</form>
+</div>
+          </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p><span><span><span><span><span><span>ASHRAF ABED:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Hey, (INAUDIBLE). (INAUDIBLE) is bad. Alright, so hello. We're going to be talking about... It's really a sort of a case study from a project I worked on where we had some significant performance issues and I dug into the code the developers wrote, refactored it a little bit, and utilizing services and dependency injection really significantly, you know, addressed all the performance issues that we were focused on at the time. So my name is Ashraf. I am... I put Triple+ as a joke, but I am a Triple Acquia-certified Drupal expert. And the... Let's see, I worked at Acquia a while ago as a technical architect. I left to focus on Debug Academy full time, and at Debug Academy we do all sorts of training. A lot of these slides are copy-pasted from some of our other training courses. If you're interested in this talk, you'd probably be most interested in - we have an architect series. It's five classes. Each class is 2.5 hours long. You know, we know that people at this level tend to not have a lot of time for training, so we condense it and we go into how to use object-oriented code to make your code more maintainable.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>How do you make code more performance? How do you manage automated testing? And whatnot. Each one of those topics is one day in The Architect series. We also have an advanced module development class and various other classes as well. Today we're going to talk about services, dependency injection, and then get into a case study to show how it had a big impact performance-wise, using it in a specific way. So first of all, I will just give a quick intro to Services and dependency injection. I like to think of Services as tools. So, you know we have PHP objects in Drupal. We have entity objects, nodes, blocks, etc., but we also have various services. There's entity-type manager, logger, factory, etc. One thing that the services all seem to have in common is, again, they essentially act as tools. Whereas for nodes, for a node object, you might have node one, node two, node three, a bunch of different objects. For services, it's not the same. You're going to have an entity-type manager object whose job it is to manage entities, but it's a tool that can be used again and again.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So when I say service objects remain pure, what I really mean by that is you're not loading a bunch of different instances of the same service. You're just loading it once and using it again and again. Each service has a specific job or tasks that it can be used for. And one of the reasons we use services instead of just a plain-old PHP object is because it's swappable. It gives you the ability to override it and replace it with your own service. So if, you know, Drupal gives you the various logger tools, you've got the DB logger, the system log, etc. You have the ability to add your own logger and it can pick that up and use it without you patching Drupal core. So some examples of services you've probably encountered in the wild, again, the logger, which is actually a service collector, but it's not the topic for today. And there's - what did I do? Two monitors. I tried to go backwards on this one, but yes. Logger, which is a service collector, it picks up many different logging services.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>The database service, so you're never explicitly calling MySQL or MariaDB. You just interact with the database service and it does that for you. Entity type manager, you're not calling node load anymore. Now you're using the entity type manager service and using that to load and manage entities. Now, why do we use services? Well, services are inherited from Symfony. So Drupal 8 was rewritten on top of Symfony. And what Symfony has is a service architecture which comes with something called a service container. And the service container exists for every request. And what the service container does is, think of it as like a bucket for all the services that have been called upon in the current request. So if you have a page request and the current page request logs a message or logs something to the database and it also prints out a message and runs the database query, the service container is going to lazy-load those. So upon request, as soon as someone says I want to log something, Symfony will retrieve the logger service, instantiate the object, you know, PAFYs that would be something like New Logger.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>It would create that object and it would reference it from the service container. So it basically keeps a link to it. So that happens the very first time somebody asks for the logger in the current page request. But in a single request, you're going to most likely use the database service many times, the logger service multiple times. So the second and third and fourth time that you reference those services, you're going to see this has already been instantiated in the service container and Symfony is going to retrieve it for you and it's going to give you the same service object that was used earlier in the request. So it's not reloading or re-instantiating these objects again and again. So that's one of the main benefits of using services. And they're lazy-loaded, meaning if the current request doesn't need the logger service, it will not be instantiated. So it's not instantiating all the services. Now, how do you access these services that have already been instantiated? One of the ways is through dependency injection.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So if you create your own service, as we'll see the code a little bit later, but if you create your own service, you would typically list the other services that your service depends on. So... So by doing that, Symfony will basically say, OK, I'm instantiating this service, this custom service you created. It relies on the logger service, so let me go to the service container. Let me get that object and let me pass it as an argument to your custom services constructor. So that's really how dependency injection works. It takes it from the service container, it takes the instantiated object, and it passes it as an argument to the constructor of your service. Again, we'll see the code here in just a few seconds. But the reason for this, one of the reasons for this is, it allows you to focus on what your service is really meant to do as opposed to, My service depends on the logger. Let me look up how the logger works. Let me look up how to instantiate it. You don't need to do that. Additionally, you don't need to worry about which logger is in use.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So if you're creating your custom service, you don't have to say, Let me get the DB log because that's what my site is using. You just say, Let me get the logger factory and it will say, OK, these are all the logger services that are relevant and it brings them all automatically. So you don't have to worry about those implementation details. Speaking of implementation details, let's just take a quick look at the code and then we'll move on to the performance example because I know in these classes, not everybody has necessarily written services before. So if you want to create a new service you would, in your own custom module, create a file, your module's name.services.yml. You can look at core.services.yml for a lot of examples of services provided by Drupal Core. The code ends up looking something like this. You put the name of your service. I'll get my little laser pointer. You get a - you put a name for your service, and whatever you put here, that's what other people have to type in when they want to call on your service.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So you put a name for your service and you put the class representing your service. And that class is essentially what will be used to instantiate your service object. And in that class, you would create a Construct function, a Construct method, and in your construct method, Drupal will automatically pass whatever services are listed here. So if you list again logger factory and database, then whenever somebody loads your custom service, Drupal will automatically retrieve these from the service container and pass both of them into your classes constructor as arguments in that order. Any questions about this? OK. And if you wanted to overwrite an existing service, you can just create it the same way as usual. The only difference is the name of the service. Make sure you put the same name as what you're overwriting. So if you want it to overwrite the database service, create a service called database in your custom module. Yes?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Do you have a quick (INAUDIBLE) syntax? What's the difference between using just the name and the (INAUDIBLE) in your arguments versus using that (INAUDIBLE)?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>ASHRAF ABED:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>If you don't use the R-sign, I believe it will be treated as a string and it'll just pass it in as a string. It won't actually get the service. Alright, yes?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>So if two different modules try to overwrite the same service, which one wins?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>ASHRAF ABED:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>It's unknown if you use this technique. (LAUGHS). If you use this technique, you have more control, I believe. You can specify a weight. So that's why this is listed here. But yeah, it's even in the documentation that it's unknown if you just use the simpler way of overwriting it. OK. And this.... Honestly, the ability to overwrite services has been a game-changer in the cases I've needed to use it. There was one project where, you know, something must have been done wrong by the developer to cause this scenario. But we had a scenario where they were using the messenger service to print out confirmation messages after forms were submitted. But this project also had a very aggressive caching setup, and what ended up happening was someone would submit the form, the message would display, and it would get cached by the CDN, and the next person who came would see that message. And like I said, this project had a lot going on to it, probably a little too gung ho with the way the caching was set up.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So instead of refactoring the whole project caching, I actually was able to overwrite the messenger service and I made it so it was client side instead of server side. So I put the message in the cookie and then I use JavaScript to take the message out of the cookie and print it out, and it was just like a full sitewide solution. No more caching problems with messages. You know, there's downsides to that approach, putting messages, you know, cookies are not really designed for all the characters that could be in a message. But nonetheless, the fact that services and dependency injection and whatnot is available gave us the power to make those bad decisions. (LAUGHS). Let us fix the problems all at once. OK, and... Again, just wrapping up the code sample. So I showed you how to create a service and overwrite one. If you want to actually use a service, so if someone wanted to use the service you just created, they could call Drupal Service and then the name of your service that you created, and that will instantiate your service object or retrieve it from the service container if it was already instantiated.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>If there's a more specific class, Drupal documentation recommends you use that. So instead of writing Drupal service database, you should just use the function. Now, this is how you would use it in a .module file or a .theme file where the code is global and it's not in a class. If you wanted to use it inside of a class, you would use dependency injection. We saw the mymodule.services.yml file where you list the services you depend on. Now what you'll see is in your service class, you would create a Construct function and Symfony would automatically pass all of those arguments you listed as arguments into the construct method. That's all it does. That's the end of dependency injection. It passes them in as arguments and then it doesn't do anything else. So if you don't create this function, it's like you don't have access to the service. If you do create it, most likely you would do this. You would create a property on your current object and store a reference to the service that they gave you so that you can use it elsewhere in that object.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>If you don't do that, it gets passed in and you don't do anything with it. So normally that's what people do with dependencies that are injected. They store them all. And this should not be an equal sign. This should be an arrow just like that. Any questions here? This is specifically how you would do it in your service. You would receive injected dependencies in your service. And just last slide about the code. If you were doing this in a form or some other class, then you wouldn't have mymodule.services.yml to list your arguments. So how can you say which services you want to be passed? To do that, you first would implement this interface - container injection interface - in your class, and you would make this Create function, public static create. It's always the same code, and it should return new static container, Get the name of the service you want. So if you want many services to be injected into your classes construct method, you would just separate them by commas. Container Get this service, comma.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Container Get that service... Yeah, this Return new static syntax, static refers to the class that we're currently in. So Return new static basically means - let's say this were the node class. It basically means new node. And as the arguments in that node's constructor, it would be the services retrieved from the service container. Alright. Any questions about the implementation of services or dependency injection? Yes.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>I've seen another approach where they use like inside the public static function Create, they create like a (INAUDIBLE) method. So for example, like where they will put it on the property on the class, so I was wondering like words like... Like, what the difference is or what is the advantage of using one way or another.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>ASHRAF ABED:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>I think this is the most standard way that I've always seen. But yeah, when you call return new static, that's going to create the object. There's nothing stopping you from - instead of returning it, you can just make a variable that says My Object equals new static, so-and-so. And then you could get these dependencies and attach to them as properties and then you can return the objects already prepared and then you might be able to get away without creating the construct if you do that. I don't know that one's really better than the other, but here at least you can make sure that the type is right. You can use the type hinting. Yes.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Any of the methods does describe how you deal with your class or your service extends some (INAUDIBLE) class, that requires arguments. So you ask whatever it needs, ask your (INAUDIBLE), and you (INAUDIBLE) in the case that the parent class changes, you're still good to go. (INAUDIBLE).</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>ASHRAF ABED:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>OK. So we're going to take a look at the scenario that's highlighted in the (INAUDIBLE) title, how we use services to resolve a performance bottleneck on our project. So on this project, the performance for authenticated traffic was very poor. And again, I joined the project very late. It was built in a very complicated way, but we had some custom user access and intricate caching. It was set up in such a way that... It's hard to explain, but it's almost like all users of the same role shared one account instead of everybody getting their own account. So you would log in, it would create a hash, it would figure out which account you belong to, it would pass that as context to the CDN, and the CDN would give you the cached page for that authenticated role. And that way, we basically had authenticated traffic where the authentication was really served by the CDN fully. So we had reasons for that. It was a very high-traffic, heavily authenticated site. But with that, the user access logic ended up being very complicated and we were launching very soon and we went to our load testing phase and it was just failing the load test.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So first, we had to figure out where - what's the real root of the performance issues. So we used XHProf. It's a tool, it's a freely available, open-source tool. And what you do is, you can load a page, you can trigger a request however you like, and XHProf will log basically all of the function calls, how much time each function call took, how many times each function was called. It's really very thorough and very, very useful in determining bottlenecks. And you can let it run for your whole request or you can narrow it down. So maybe within this one function, start at the beginning and at the end of the function. So for us, what we ended up finding out was, get user access tiers. This - at the time global function was... It was taking like 50% of the page load time, which was really shocking. So the first thing I did, I was tasked with solving this. So the first thing I did, I converted it to a service. Just because in Drupal 8a and above, if you have a tool that's going to just be used repeatedly and it usually should be created as a service.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So this was essentially a tool amongst other tools we had. So I created a place for it, a service for it, and called the service this name - user_access_tier_manager, and inside of it I created that function getTierforuser. And basically, initially, I let it be the same function, the same code. I just copy pasted the code, made sure I didn't break anything. That was fine, but it didn't solve the performance problem. So at this point, the service itself only loaded once per request, but that wasn't really the problem earlier. The problem was that the function itself was called many, many times on each page. It was like for every single block, in some cases, for each field, it would call and check and it would bubble the cache tags and all that good stuff. But it was called many times and it would do queries and it would do joins between many tables to figure out what this user should and should not have access to. So the next thing I did to improve performance is, I switched from using the entity query to querying the tables directly.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So I would use - I'm still using the database abstraction layer, but I was using more of a raw query and going straight to the one table that I needed. So we actually didn't need all the joints to do the logic. That's not... That shouldn't be your default. You can take that approach if you're having a performance problem with all the joins and you really don't need the joins and, you know, you really know what you're doing when it comes to the query. You can do that, especially if you're just reading data and not writing it. You really want to avoid writing data in that way. That did help. It probably cut the load time by 15%-20%, but it still wasn't quite good enough. So this function was being called many times. The computation was being performed repeatedly. The output of the function was different per user per request. But per request, within the request, the output was always the same. It's always the same user loading the whole page. And light bulb moment - services are instantiated once per request.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So we have something that lives for the whole request and we have a function call whose output is the same for the whole request. And so, we have been talking about caching solutions. I was thinking, can we cache the output for the request? And at the time the team was thinking, yeah, we just need more caching and more caching. And there were all these caching layers. Some of them we never interact with really, but Memcache, Varnish, CDN, all these caching layers where we can store the output of that function. And, you know, Memcache would have been OK. We could have used Memcache, but Memcache is not meant to be cached from the beginning of the request to the end. It would have persisted afterwards. There are ways around... There are ways to deal with that where maybe you prepend the user ID, but really we didn't want it to be cached more than one request because these users could lose access on the next page load. It was just a complicated access setup. And it hit me, you know, why are we overcomplicating this?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>We have an object that exists exactly for the request from the beginning to the end. So within the function, what I did was, I essentially took the original function. I didn't refactor it anymore, but I took the output of the original function and I stored it as a property on the service object itself. So this user tier for the current user ID is equal to whatever the function return. And before calling all of that access checking logic, next time I checked, Have I done this before? Have I already computed this? And so, what ended up happening was instead of this being called 100 times, it was called once. You would get into this function, is it empty the first time? Yes, it's empty. You call the function, get the output and store it on the service object, which is attached to the service container and persists for the entire request. it would return what they asked for. The next time this is called, is this empty? No, we're part of the same request. The property is still on that object because the object persists in the service container.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And so, we skip the function call and we just return what they asked for. And essentially, that acted as a single request cache. Yes.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Quick question. Do you use the protected property in other areas of the code?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>ASHRAF ABED:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>No.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>So what you could have done - this is just an alternative - is use a static variable within this function. That's kind of a little bit older-school way of doing that. Then that variable would have persisted and effectively persisted across objects.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>ASHRAF ABED:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah, we could use a global variable, (CROSSTALK).</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>But if you defined static within, get to your for user like static user tier, then that variable will persist within that function within this object. And then the next time you use that function, it would actually... It would have a value. And you see that a lot in (CROSSTALK) files and V7, the static variable cache, and that methodology could be used here too unless you're using it elsewhere.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>ASHRAF ABED:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah. Yeah. Thanks. I noted that. I'm going to look into it more. Yeah, cool. Thanks. Yeah, so for this scenario, at least it did cut down the vast majority of the computation work, you know, because again, services exist for the whole request and... We call the function repeatedly but, you know, only the expensive parts once. And it's - the injection made sure that it's the same object throughout the system no matter how many times or where it's called from. And that addressed it. In the end, it was simple but very effective. And when I explained this to the team, they actually went and looked for every function that they had created that required the user ID as an argument and they updated all of them to use this. They moved them all into this user whatever manager. They did the same thing for all of them and, you know, our performance after doing the database query fix plus this on all of the functions that they came across, it dropped, you know, in improved by 60% at least. And you know, we were ready to launch.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>(LAUGHS). Yeah, I mean, I told my colleague, I said, I'm targeting 30 minutes for this hour talk because people don't need things dragged out. But if you have questions, I'm happy. Questions or ideas you'd like to add on, please chime in. We also do have a number of classes scheduled over the next month, so May and June, so if you want to take some Drupal classes before DrupalCon, you know, feel free to take a look. And yeah, if you have any questions or comments or anything, I'm all ears. Alright. Thank you. That's it. Yes, go ahead.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>If you talk about overwriting services, there's also a notion of decorating. (CROSSTALK). Is there like a smart way to... when to do it?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>ASHRAF ABED:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah. Yeah. Yeah. I had slides on decorators and service collectors and a couple of other things and I took it out. But yeah, so for the decorator approach, you would want that if you want the original implementation of the service to also persist if you still want it to be there and you want to add to it or modify it, whereas when you're overriding, you're losing the original implementation of the service. So that's really the trade-off. Do I still want the original functionality to also happen? If so, service decorator. If not, override. Any other questions or thoughts? Yes.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>We're not quite (INAUDIBLE), but we were able (INAUDIBLE) the proper thing to do would be to use the static (INAUDIBLE). And that's subject to cache validation (INAUDIBLE).</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>ASHRAF ABED:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Thank you. I like learning here too. (LAUGHS). Thank you. Yeah, I mean, from these things that are scheduled, and in case you're curious, without going to the website, this is five 2.5-hour classes. We have Acquia front-end certification prep. That's four classes spread out over four weeks, plus a lot of written material. Everybody who has ever worked at my company is Acquia Certified, junior-senior developers, and I've trained them all personally and compiled the notes and turned it into a course that really covers everything. Building sites with Drupal, this is a one-day class really for project managers or beginners. You get some hands-on site-building, hands-on experience building a site with Drupal, mostly through the UI. Object-oriented PHP with Symfony, again, this is a one-day class, a full-day class for people who really are comfortable with PHP but have not looked into Symfony much at all. So sort of introduction with Symfony, we build a simple site with Symfony and we also dive into object-oriented programming.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So that would be good if you are not comfortable with object-oriented programming. Yes.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>I worked on (INAUDIBLE) building site with Drupal.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>ASHRAF ABED:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>That has no prerequisites. Just comfortable using a computer pretty much. And then the advanced Drupal 9 module development class, we sort of build a somewhat ambitious module in one full day, seven to eight hours. Services, dependency injection, plug-ins... And yeah, that one is ambitious. That one is one where you should be somewhat comfortable with object-oriented programming. You should be very comfortable with PHP and, you know, know at least the basics of module development. But it's a whole class full of writing PHP code. Yeah, and I think that's basically it for me. Oh, sorry. Yes?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>I just wanted to share something that I think is cool that if you start doing a lot of work with services and dependency injection, you can end up with some classes that have a lot of (INAUDIBLE) code for all those properties that you need at the top. And then in your constructors, setting all those to the services that are being injected, there's a new feature. I don't know if it's in PHP 8.0 or 8.1, which is constructor property promotion, which is very cool. And you get rid of all or a huge part of that boilerplate property creation code and you can essentially declare your properties within the constructor. And that might be a reason - I'm sorry I don't know your name, but when you were talking about the alternative ways to set it up with just the Create method as opposed to Create the constructor, for this, I think you need the (INAUDIBLE) where the constructor is beneficial as you can ditch all of many lines of code of all your property declarations and declare your properties in the arguments of the constructor.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So once you get to the point on your project where you're able to support PHP 8.0 or 8.1, you get a lot of (INAUDIBLE) play code.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>ASHRAF ABED:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>I think it's 8.2. Yeah, I think so. I think you're right, yeah.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>ASHRAF ABED:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah, definitely. Yeah, PHP 8 has a lot of features to reduce the amount of code you write so you can get rid of this protected declaration.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>It doesn't look like a lot here, but if you have a lot of (INAUDIBLE). Yeah, I guess. So are there any costs to adding the service to your module? Should we just take all of our global functions and... Methods and surfaces.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>ASHRAF ABED:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>It's sort of the default to do that. But if you know it's only going to be called once then, you know, you probably incur a minor cost. It also depends on what you're comparing it to. Are you comparing it to it being in a class but not a service, or it being in a global function but not a class global function? I mean, with a global function, that's going to sort of get loaded on every request. It's not going to be executed, of course. I think it's a very minimal cost. I think with the services, the service is lazy-loaded whereas global functions are present. So you also get that benefit. But I haven't run a test to see what the true trade-off is. It should be some little performance gain in either direction or performance loss in either direction, but I don't know which is bigger. Basically, I'd say it's somewhat minuscule because the service container will exist regardless and it's lazy-loaded, so it's not like it's going to load it when you're not using it. Alright. Anything else from anyone?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>OK. Thank you. (APPLAUSE) Thank you very much. Thank you.</span></span></span></span></span></span></p></div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-d16bc78e9c3f4a90e60a1385eaf93a230a895ca6498c812139d52f119d28490f">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/6967">https://mid.camp/6967</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+  <section class="map-banner">
+      <div class="views-element-container block block-views block-views-blockevent-venue-block-1" id="block-hatter-views-block-event-venue-block-1">
+  
+    
+      <div><div class="container view view-event-venue view-id-event_venue view-display-id-block_1 js-view-dom-id-404cc35cd7a73238e8ffe4fbe799f9aee24f26a9b0a88901e8fb13db33377e06">
+  
+    
+      
+      <div class="view-content">
+          <div class="views-row">
+
+
+<div class="map-overlay">
+  <span class="map__label">Location</span>
+  <h2 class="map__title"><span class="field field--name-title field--type-string field--label-hidden">DePaul University - Lincoln Park Student Center</span>
+</h2>
+  
+            <div class="field field--name-field-address field--type-address field--label-hidden field__item"><p class="map__address" translate="no">
+          2250 N Sheffield Ave. <br>
+            Chicago, IL 60614<br>
+  </p>
+</div>
+      
+  <a href="../../about/venue.html" class="cta-link--yellow">Learn more  <span class="cta-arrow"></span></a>
+</div>
+<div id='map' class="map"></div>
+</div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-77b2cee3d29805f8eb2b15eca7907e0d5d5349037fbb1f5ecb5a5183a31a37c1">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/bounteous.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2023-01/BounteousIndigoSmall.png" width="403" height="67" alt="Bounteous logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/evolving-web.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2023-04/evolvingweb%20(3).png" width="1517" height="371" alt="Evolving Web" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/debug-academy.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2023-02/Final%20Logo-in-color.png" width="1010" height="864" alt="Debug Academy logo" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#cca5a2aaa38ca1a5a8afada1bce2a3beab"><span class="__cf_email__" data-cfemail="a9c0c7cfc6e9c4c0cdcac8c4d987c6dbce">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/6967","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"ajaxTrustedUrl":{"form_action_p_pvdeGsVG5zNF_XLGPTvYSKCf43t8qZYSwcfZl2uzM":true},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_U1jmi93nTJG2lPAKzexs4tMZWFR2YMMoIoiPckW421U.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJx1yksKgDAMRdENabskSfUZK2kjTfCzeyfiQHB04XBZlQUDVZLL82iRP9At5I4WWTSR9OsLhbakZ3cgzdpKfBogKKgeJjhlsWC043cqMCPGDa0vM_I"></script>
+<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.js"></script>
+<script src="../../sites/default/files/js/js_RAkHj2z9vY4q-6RsYuiXkqPbxgsRWrLsVQRz36mKiGA.js%3Fscope=footer&amp;delta=2&amp;language=en&amp;theme=hatter&amp;include=eJx1yksKgDAMRdENabskSfUZK2kjTfCzeyfiQHB04XBZlQUDVZLL82iRP9At5I4WWTSR9OsLhbakZ3cgzdpKfBogKKgeJjhlsWC043cqMCPGDa0vM_I"></script>
+
+  </body>
+</html>

@@ -1,0 +1,2777 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="Drupal has always been very strong at customizing user experiences for authenticated users, but what about anonymous users? What if you wanted to show a new banner block on your home page for first time visitors? Or gate a resource until users have filled out a contact form? For the most part, anonymous user display is determined by the url path, and per-user customization is dependent on excluding the page from cache, custom javascript or third parties." />
+<link rel="canonical" href="anonymous-personalization-without-leaving-drupal.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Anonymous Personalization Without Leaving Drupal | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Anonymous Personalization Without Leaving Drupal | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_Qoyy92GHt9RyGOt8N3WS_9HRsJcJBywJ2IhXudzvST4.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJw1jFEOgzAMQy9U1iOhtDGsUkqmugOx068C8WM961nOJuQZkxAh31xBygo-fXMdzhsGtSpWfghv6R0truZJbMpk4MmOeh_tReEzaoLOS4FpbODHN5Yd0yXHBAfjla_q-jX8AXwTNZQ.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_mK2of_t7UFymkfbTHeA-kHdMPWzqc3DZQCYtX-tC0BA.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJw1jFEOgzAMQy9U1iOhtDGsUkqmugOx068C8WM961nOJuQZkxAh31xBygo-fXMdzhsGtSpWfghv6R0truZJbMpk4MmOeh_tReEzaoLOS4FpbODHN5Yd0yXHBAfjla_q-jX8AXwTNZQ.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJw1jFEOgzAMQy9U1iOhtDGsUkqmugOx068C8WM961nOJuQZkxAh31xBygo-fXMdzhsGtSpWfghv6R0truZJbMpk4MmOeh_tReEzaoLOS4FpbODHN5Yd0yXHBAfjla_q-jX8AXwTNZQ.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJw1jFEOgzAMQy9U1iOhtDGsUkqmugOx068C8WM961nOJuQZkxAh31xBygo-fXMdzhsGtSpWfghv6R0truZJbMpk4MmOeh_tReEzaoLOS4FpbODHN5Yd0yXHBAfjla_q-jX8AXwTNZQ.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="anonymous-personalization-without-leaving-drupal.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-hatter-midcamp2019navigation-menu" id="block-hatter-midcamp2019navigation" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-midcamp2019navigation-menu">Midcamp 2019 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" title="About MidCamp" data-drupal-link-system-path="node/191">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--venue">
+        <a href="../about/venue.html" data-drupal-link-system-path="node/192">Venue</a>
+            </li>
+          <li class="primary-nav__sublist-item item--travel">
+        <a href="../about/travel.html" title="Travel and Accommodations" data-drupal-link-system-path="node/188">Travel</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../about/lunch.html" title="Lunch options" data-drupal-link-system-path="node/189">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--volunteer">
+        <a href="../article/volunteer-help-midcamp.html" title="Volunteer!">Volunteer!</a>
+            </li>
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2019/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../../2020/news.html" data-drupal-link-system-path="2020/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--attendees">
+        <a href="../attendees.html" data-drupal-link-system-path="2019/attendees">Attendees</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" data-drupal-link-system-path="2019/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--spread-the-word">
+        <a href="../article/spread-word.html" data-drupal-link-system-path="node/371">Spread the Word</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" title="Sponsors" data-drupal-link-system-path="node/197">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--become-a-sponsor">
+        <a href="../sponsor-midcamp.html" title="Sponsor MidCamp" data-drupal-link-system-path="node/186">Become a Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../../jobs.html" title="Jobs" data-drupal-link-system-path="jobs">Jobs</a>
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" title="Schedule" data-drupal-link-system-path="node/190">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--all-sessions">
+        <a href="../sessions.html" data-drupal-link-system-path="2019/sessions">All Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--summits--training-wed">
+        <a href="../schedule/wednesday.html" title="Summits &amp; Training (Wednesday)" data-drupal-link-system-path="2019/schedule/wednesday">Summits &amp; Training (Wed)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-thu">
+        <a href="../schedule/thursday.html" title="Sessions (Thursday)" data-drupal-link-system-path="2019/schedule/thursday">Sessions (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-fri">
+        <a href="../schedule/friday.html" title="Sessions (Friday)" data-drupal-link-system-path="2019/schedule/friday">Sessions (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--contribution-sat-">
+        <a href="../contribution-day.html" title="Contribution Day" data-drupal-link-system-path="node/332">Contribution (Sat) </a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-terms-and-conditions">
+        <a href="../../speaker-terms-and-conditions.html" title="Speaker Terms and Conditions" data-drupal-link-system-path="node/21">Speaker Terms and Conditions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../../speaker-resources.html" title="Speaker Resources">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--topic-tracks">
+        <a href="../../topic-tracks.html" title="Topic Tracks" data-drupal-link-system-path="node/10">Topic Tracks</a>
+            </li>
+  </ul>
+
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2019.html" hreflang="en">MidCamp 2019</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Anonymous Personalization Without Leaving Drupal</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="331" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2019-03-21T20:40:00Z" class="datetime">Thursday, 3:40 pm CDT</time>
+ - <time datetime="2019-03-21T21:40:00Z" class="datetime">Thursday, 4:40 pm CDT</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-81" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-name field--type-string field--label-hidden field__item">Room 314A</div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>Drupal has always been very strong at customizing user experiences for authenticated users, but what about anonymous users? What if you wanted to show a new banner block on your home page for first time visitors? Or gate a resource until users have filled out a contact form? For the most part, anonymous user display is determined by the url path, and per-user customization is dependent on excluding the page from cache, custom javascript or third parties. In this session, we'll introduce the&nbsp;<a href="https://www.drupal.org/project/smart_content">Smart Content&nbsp;</a>contributed suite of modules. Smart Content at its core is a toolset for defining conditions based on data attainable from anonymous and authenticated users(such as cookies, browser properties and third-party data), and providing subsequent reactions utilizing Drupal's content editing prowess. In this session, we'll cover initial setup and some basic use cases for the modules, as well as dig deeper into what's under the hood and how it all works.</p>
+
+<p>Key areas we'll address:</p>
+
+<ul>
+	<li>Brief overview of personalization, the modules and project history</li>
+	<li>Module setup and step-by-step implementation walkthrough</li>
+	<li>How it works and how we minimize impact on performance</li>
+	<li>Potential use cases and sub-module ecosystem</li>
+	<li>How you can get involved!</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<p>A basic understanding of site building in Drupal will help you get the most out of this session. Technical details will be explained mostly at a conceptual level. We'd like for you to walk away as energized about the project as we are, with enough know-how to start trying the modules on your own projects. Smart Content gives you a great way to introduce yourself into the world of personalization without ever leaving Drupal.</p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/re02JQdYLPc?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Mike Lander</h4>
+
+      Technical Director
+
+
+          @
+              <a href="http://www.elevatedthird.com">Elevated Third</a>
+        
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2019-03/mike_portrait.jpg%3Fitok=ou6Ve7-D" width="220" height="184" alt="Michael Lander Portrait" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Back-End</div>
+          <div class="field__item">End users / Content Admin</div>
+          <div class="field__item">Site Building</div>
+          <div class="field__item">Sponsored Session</div>
+              </div>
+      </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p>yeah thank you guys for coming today my</p>
+
+<p>topic is an anonymous personalization</p>
+
+<p>without leaving Drupal</p>
+
+<p>first of all just wanted to show hand</p>
+
+<p>screw here knows what anonymous web</p>
+
+<p>personalization is for the other on few</p>
+
+<p>years implemented some level of</p>
+
+<p>personalization for now you see boss</p>
+
+<p>awesome that's great so what we're going</p>
+
+<p>to talk about today is a tool set we've</p>
+
+<p>been working on for the past few years</p>
+
+<p>that really helps facilitate that within</p>
+
+<p>Drupal but Before we jump into that give</p>
+
+<p>a quick intro let's go I saw Mike Lander</p>
+
+<p>I worked for elevated 3rd here's my</p>
+
+<p>contact info I'll show this again at the</p>
+
+<p>end but if you guys have any questions</p>
+
+<p>feel free to ask questions along the way</p>
+
+<p>if I feel like we're taking too much</p>
+
+<p>time of questions and maybe we'll push</p>
+
+<p>them to the end but I didn't make sure</p>
+
+<p>to leave time plenty of time for</p>
+
+<p>questions but again if you have</p>
+
+<p>questions later on or you decide you</p>
+
+<p>wanna get involved feel free to reach</p>
+
+<p>out to me</p>
+
+<p>I'm not real active on Twitter but I</p>
+
+<p>will make an effort to check it just for</p>
+
+<p>this personally so when it's</p>
+
+<p>personalization personalization is to</p>
+
+<p>alter the content and UX of a website to</p>
+
+<p>provide an experience customized to an</p>
+
+<p>individual's user context or state so</p>
+
+<p>this is really like how we adjust and</p>
+
+<p>change a website to try to help them</p>
+
+<p>find the information they need or maybe</p>
+
+<p>from a utility type perspective show</p>
+
+<p>them information that's more relevant</p>
+
+<p>rather than just a generic experience</p>
+
+<p>that's the same for everyone it uses the</p>
+
+<p>site these are some types of anonymous</p>
+
+<p>personalization</p>
+
+<p>identified dynamic content</p>
+
+<p>recommendation that's really the</p>
+
+<p>services where you say feed your content</p>
+
+<p>into a pool where it's aggregated then</p>
+
+<p>they're using that you know they're a</p>
+
+<p>maybe it's their AI system or whatever</p>
+
+<p>to take that information and to give you</p>
+
+<p>information back that they think is</p>
+
+<p>relevant so you'll see this with systems</p>
+
+<p>where you see looks like hyper targeted</p>
+
+<p>recommended content and it kind of seems</p>
+
+<p>like it's reading their mind and I've</p>
+
+<p>showed these specific things a lot of</p>
+
+<p>third-party support that it's not</p>
+
+<p>something we're going to talk about</p>
+
+<p>today another one is individualized</p>
+
+<p>tokenization</p>
+
+<p>this is something where it's more taking</p>
+
+<p>information they know about you and</p>
+
+<p>actually spitting that back out at you</p>
+
+<p>an example of that would be like when</p>
+
+<p>you visit a site and it's like hi Mike</p>
+
+<p>welcome back to the site Mike in the</p>
+
+<p>weather in this place is this or like</p>
+
+<p>it's taking information they know and</p>
+
+<p>literally just tokenizing that and</p>
+
+<p>throwing that out on the site another</p>
+
+<p>one that we're not going to be talking</p>
+
+<p>about today</p>
+
+<p>the one we'll be talking about is</p>
+
+<p>contextual conditions so this is more</p>
+
+<p>focusing on taking the information that</p>
+
+<p>we know about someone or their device or</p>
+
+<p>browser or whatever we can detect and</p>
+
+<p>doing curated content so immediately</p>
+
+<p>setting things what we're saying based</p>
+
+<p>on this information we know we want to</p>
+
+<p>show this so a focus really being a</p>
+
+<p>manual curation process and not</p>
+
+<p>something where something's trying to</p>
+
+<p>take a guess at what you want to see in</p>
+
+<p>just feed in UFO</p>
+
+<p>so an example of that from a marketing</p>
+
+<p>perspective here we have two banners</p>
+
+<p>that we're showing it's the same site</p>
+
+<p>but we're trying to take a guess or what</p>
+
+<p>person is interested in what type of</p>
+
+<p>food they're interested in this case and</p>
+
+<p>we're going to show it something</p>
+
+<p>different</p>
+
+<p>another example that might be a little</p>
+
+<p>bit more on the utility side so in this</p>
+
+<p>case detecting someone's on a mobile</p>
+
+<p>phone or more specifically an Android</p>
+
+<p>phone and we're going to show them a</p>
+
+<p>recommendation for mobile app with a</p>
+
+<p>link to the Android store for them to</p>
+
+<p>download and so this is again something</p>
+
+<p>that you don't see a lot of in the in</p>
+
+<p>the Drupal space just out of the box</p>
+
+<p>there's really no tools for that and a</p>
+
+<p>lot of times it's a customer effort that</p>
+
+<p>you build this type of thing or maybe</p>
+
+<p>you're doing it with like some CSS and</p>
+
+<p>JavaScript</p>
+
+<p>you know trickery but what we're trying</p>
+
+<p>to do today is talk about more of an</p>
+
+<p>initiative to focus a toolset around</p>
+
+<p>doing this type of thing in the</p>
+
+<p>interface so Drupal is great at</p>
+
+<p>providing customized experiences for us</p>
+
+<p>educated users and flattening pages for</p>
+
+<p>anonymous users but what if we want to</p>
+
+<p>provide customized experiences for</p>
+
+<p>anonymous users so right now if you look</p>
+
+<p>at Drupal say they're cashing systems so</p>
+
+<p>there's the page cache system and</p>
+
+<p>dynamic page cache page cache is awesome</p>
+
+<p>and that takes lighter contact lines it</p>
+
+<p>sends that out the varnish send it out</p>
+
+<p>to your CDN sends it out to whatever but</p>
+
+<p>it's really made for just one display</p>
+
+<p>for everyone to see</p>
+
+<p>dynamic page cache on the other hand is</p>
+
+<p>really set up for your authenticated</p>
+
+<p>traffic taking parts of the page making</p>
+
+<p>that cache to take in other parts</p>
+
+<p>leaving that out of cache or maybe</p>
+
+<p>reducing the time that's cached changing</p>
+
+<p>that out contextually based on you know</p>
+
+<p>cache tags and using cached keys and all</p>
+
+<p>those types of things so no and no part</p>
+
+<p>of that cache system is it saying for</p>
+
+<p>your typical anonymous user let me</p>
+
+<p>change</p>
+
+<p>yet for your typical user let's change</p>
+
+<p>the experience it's just not really</p>
+
+<p>built around that so some things we</p>
+
+<p>could potentially react on and change</p>
+
+<p>the site - or things like looking at</p>
+
+<p>someone's cookies looking at local</p>
+
+<p>storage looking at what properties your</p>
+
+<p>browser the browser says about - user</p>
+
+<p>looking at device properties maybe its</p>
+
+<p>visitor actions first time visiting the</p>
+
+<p>site versus returning to the site</p>
+
+<p>visited a certain page on the site spent</p>
+
+<p>a lot of time looking at if they had a</p>
+
+<p>certain page scroll past the the you</p>
+
+<p>know the initial fold anything that we</p>
+
+<p>can look at and start to determine like</p>
+
+<p>what is this person's interest and how</p>
+
+<p>can we show them content that's more</p>
+
+<p>relevant to that interest and then third</p>
+
+<p>party's connecting to you know these</p>
+
+<p>tools or maybe we're feeding form data</p>
+
+<p>into or we have analytics data or</p>
+
+<p>whatever it may be</p>
+
+<p>can we take information back out of that</p>
+
+<p>and actually use it to improve that</p>
+
+<p>experience and more these are just some</p>
+
+<p>of the things we've outlined but</p>
+
+<p>potentially with this tools that we've</p>
+
+<p>built the ideas that you could extend</p>
+
+<p>this in a lot of different ways</p>
+
+<p>so introducing smart content this is the</p>
+
+<p>first time I'm actually speaking about</p>
+
+<p>this module so pretty excited it's going</p>
+
+<p>to be it's been our focus actually for</p>
+
+<p>the last two years and it's something</p>
+
+<p>that really seen this to fruition has</p>
+
+<p>been pretty awesome really smart content</p>
+
+<p>at its cores and API and toolset for</p>
+
+<p>providing conditions and subsequent</p>
+
+<p>reactions so it's taking things like we</p>
+
+<p>talked about on that last slide with</p>
+
+<p>with cookies or local storage or</p>
+
+<p>whatever we can grab information on and</p>
+
+<p>then allowing you to set reactions</p>
+
+<p>reactions like switching on view modes</p>
+
+<p>we're switching out blocks</p>
+
+<p>switching out these components and tools</p>
+
+<p>that triples built and really good at</p>
+
+<p>controlling for authenticated users and</p>
+
+<p>instead taking things that are more</p>
+
+<p>client-side and allowing us to also put</p>
+
+<p>their content is not however an access</p>
+
+<p>control module so this is a really</p>
+
+<p>important thing if we're reacting on</p>
+
+<p>client-side data there's not a lot we</p>
+
+<p>can do in terms of controlling how</p>
+
+<p>someone's able to tweak that so the goal</p>
+
+<p>here is we're respecting all access</p>
+
+<p>control within Drupal like we're not</p>
+
+<p>bypassing access control we're not doing</p>
+
+<p>anything in that regard but if you were</p>
+
+<p>to say showing like say using this</p>
+
+<p>border of gated resource and that</p>
+
+<p>resource you wanted to show a form on</p>
+
+<p>top and then once they fill out that</p>
+
+<p>form you want to switch and show the</p>
+
+<p>resource and you're switching between</p>
+
+<p>two view modes technically if someone</p>
+
+<p>got in the JavaScript they could find</p>
+
+<p>out a way around this this is not</p>
+
+<p>something that we're doing this really</p>
+
+<p>hard and security on it's using its</p>
+
+<p>respecting Drupal's permissions of</p>
+
+<p>having the ability to do something and</p>
+
+<p>then it's using client-side variables to</p>
+
+<p>swap that out that said it is obscured</p>
+
+<p>it's not something where 95% of your</p>
+
+<p>users or 98% of users are actually going</p>
+
+<p>to know even what's going on in the code</p>
+
+<p>but if someone really wanted to get in</p>
+
+<p>there they could trick it this is just</p>
+
+<p>again it's it's not meant for this it's</p>
+
+<p>meant for more of a a presentation side</p>
+
+<p>of things swapping what they see not</p>
+
+<p>actually restrict access so the</p>
+
+<p>ecosystem has it looks right now smart</p>
+
+<p>content IOC being the main one and that</p>
+
+<p>contains two modules smart content block</p>
+
+<p>and smart content browser smart content</p>
+
+<p>block is a kind of where our starting</p>
+
+<p>point was and that's the ability to do</p>
+
+<p>conditionally show different blocks</p>
+
+<p>based on whatever conditions you define</p>
+
+<p>so you essentially end up placing a</p>
+
+<p>block and then you say based on these</p>
+
+<p>conditions show other blocks I'll be</p>
+
+<p>demoing that in a few so you'll see what</p>
+
+<p>that looks like smart content browsers</p>
+
+<p>what's defining conditions from your</p>
+
+<p>browser so you know determine if</p>
+
+<p>someone's on a mobile device or or you</p>
+
+<p>know desktop if someone is has a certain</p>
+
+<p>cookies or even allows cookies at all</p>
+
+<p>anything that we can determine from the</p>
+
+<p>browsers what we're starting to feed</p>
+
+<p>into that smart content view mode still</p>
+
+<p>pretty early on that's going to be able</p>
+
+<p>to switch out view modes based on</p>
+
+<p>conditions and smart content segments</p>
+
+<p>it's really around defining conditions</p>
+
+<p>into groups that will be reusable later</p>
+
+<p>so if you've defined your segments as</p>
+
+<p>some people on mobile that are on the</p>
+
+<p>East Coast or whatever in the eastern</p>
+
+<p>time zone if you want to reuse that</p>
+
+<p>group rather than identifying those</p>
+
+<p>conditions every single time it lets you</p>
+
+<p>group them gives you one place to go</p>
+
+<p>back and change that later rather than</p>
+
+<p>going through everywhere use those</p>
+
+<p>conditions and there's obviously a lot</p>
+
+<p>more to come</p>
+
+<p>so actually let's take a look at how</p>
+
+<p>this works any questions before I</p>
+
+<p>started cool all right so we're going to</p>
+
+<p>use the famous food magazine umami so</p>
+
+<p>let's start with that example of if</p>
+
+<p>someone's on a mobile device we actually</p>
+
+<p>want to change and show a banner for for</p>
+
+<p>your app store so what this looks like</p>
+
+<p>is where we're going to just use the</p>
+
+<p>block the block method for now doing</p>
+
+<p>this inside here I've just pre created a</p>
+
+<p>block we're showing that content and</p>
+
+<p>we're gonna leave that disabled but just</p>
+
+<p>so we know like this is what our</p>
+
+<p>response is going to be we're gonna</p>
+
+<p>place a new block here and so basically</p>
+
+<p>when you get when you create a new smart</p>
+
+<p>content block it gets built around this</p>
+
+<p>idea of variations variations are your</p>
+
+<p>container for set of conditions and set</p>
+
+<p>of reactions and then you can do</p>
+
+<p>multiple variations the first variation</p>
+
+<p>that's considered true where all your</p>
+
+<p>conditions are true that's the reactions</p>
+
+<p>we're going to get so that way you can</p>
+
+<p>be like if they're in second I have one</p>
+
+<p>show this if they're in second to show</p>
+
+<p>this if they're inside my three show</p>
+
+<p>this but we're gonna start real simple</p>
+
+<p>these are the conditions as we've</p>
+
+<p>defined so far and we're going to take</p>
+
+<p>and say if the user's mobile and it's</p>
+
+<p>worth mentioning real quick to get to</p>
+
+<p>this point all you have to do is go to</p>
+
+<p>the extend page and napal a smart</p>
+
+<p>content smart content block and smart</p>
+
+<p>content browser there's nothing else</p>
+
+<p>there's no additional configuration</p>
+
+<p>that's why you need</p>
+
+<p>so why that so we're gonna say if mobile</p>
+
+<p>you also have the option of doing knots</p>
+
+<p>and then we're going to say show the</p>
+
+<p>mobile app let's make sure we're not</p>
+
+<p>showing the title and we're going to</p>
+
+<p>show this on all pages and regions going</p>
+
+<p>to be set to alert so I'll save this</p>
+
+<p>okay so we put star block now I always</p>
+
+<p>joked we're going to do this from</p>
+
+<p>incognito this is like the magician</p>
+
+<p>showing all sides of the box make sure</p>
+
+<p>I'm not cheating pages flatten is cached</p>
+
+<p>it can be sent out to varnish or a CD in</p>
+
+<p>whatever may be so then right now</p>
+
+<p>obviously one desktop so refreshing the</p>
+
+<p>page we're not going to see anything</p>
+
+<p>I'll go into my tools here let's switch</p>
+
+<p>this to mobile and then let's reload the</p>
+
+<p>page the page has a chance to build</p>
+
+<p>again and now we're showing that</p>
+
+<p>additional block and if we jump back</p>
+
+<p>it's still going to show it because we</p>
+
+<p>haven't rebuilt our page yet if we</p>
+
+<p>rebuild our page a little high that</p>
+
+<p>again let's take this a little bit</p>
+
+<p>further now and let's actually show</p>
+
+<p>something more in regards to marketing</p>
+
+<p>content maybe switching out the banners</p>
+
+<p>and stuff like that so first before they</p>
+
+<p>do that I'm going to show you real quick</p>
+
+<p>what the segment stuff looks like it's</p>
+
+<p>really pretty straightforward</p>
+
+<p>so if I go in the smart content and go</p>
+
+<p>into these segments I've identified my</p>
+
+<p>segment names here and in this case we</p>
+
+<p>just put these out found some arbitrary</p>
+
+<p>ones to use and these are really simple</p>
+
+<p>so I added a module for this called</p>
+
+<p>smart content demo all that module does</p>
+
+<p>is it has a single condition and that</p>
+
+<p>condition looks for a cookie called data</p>
+
+<p>it makes it really simple and set this</p>
+
+<p>so if that cookie called demo equals</p>
+
+<p>adventure then this segment would be</p>
+
+<p>and then we did the same for dessert for</p>
+
+<p>general so I'll go back to the block</p>
+
+<p>page and again sort of noting like with</p>
+
+<p>these segments this is the same</p>
+
+<p>condition stuff you have control of when</p>
+
+<p>you place an individual block it just</p>
+
+<p>allows you to curate this in a separate</p>
+
+<p>area and manage it separate and then we</p>
+
+<p>use them as a group of conditions you</p>
+
+<p>can also do hand ORS if you wanted to</p>
+
+<p>you could do a group which allows you to</p>
+
+<p>do and ORS and stack them and make them</p>
+
+<p>as complex as you feel like though we're</p>
+
+<p>going to keep this as simple as possible</p>
+
+<p>for now so let's jump back into block</p>
+
+<p>layout and this time what I did is I</p>
+
+<p>have my three my additional banners that</p>
+
+<p>I've created for these but what I'll do</p>
+
+<p>is I'll go ahead and disable the top</p>
+
+<p>banner for now so we have a recipes</p>
+
+<p>banner disabled that if we look at the</p>
+
+<p>home page now it's a little more barren</p>
+
+<p>and then what I'll do is create another</p>
+
+<p>block</p>
+
+<p>okay so this time I'm gonna have three</p>
+
+<p>separate variations the first variation</p>
+
+<p>is going to say and you see my segments</p>
+
+<p>are showing up down here so let's say if</p>
+
+<p>the user is in the segment adventure</p>
+
+<p>we're going to add a reaction that shows</p>
+
+<p>this band and then let's take that</p>
+
+<p>further and say if the user is desert</p>
+
+<p>and then we'll do another one which is</p>
+
+<p>just the general one which is going to</p>
+
+<p>be just the default there</p>
+
+<p>okay so I'm gonna going to save this</p>
+
+<p>right now none of these are going to be</p>
+
+<p>true</p>
+
+<p>dumb monkey doesn't know values right</p>
+
+<p>now so one thing we can do for that is</p>
+
+<p>if we go back to the home page and</p>
+
+<p>refresh</p>
+
+<p>nothing is going to show I'm looking at</p>
+
+<p>the cookies cookies are empty right now</p>
+
+<p>so what you can do actually is one part</p>
+
+<p>of the block systems that we have the</p>
+
+<p>ability to define default that are set a</p>
+
+<p>default variation in this meaning if</p>
+
+<p>none of these are true you can show some</p>
+
+<p>contact so let's just say by default if</p>
+
+<p>none of these are true we want to show</p>
+
+<p>this last one save this jump back word</p>
+
+<p>fresh and now let's actually go into</p>
+
+<p>manipulating this so maybe you sent out</p>
+
+<p>some emails to people and part of that</p>
+
+<p>email is that you put a referral so like</p>
+
+<p>you targeted a group that the referrals</p>
+
+<p>had some identifying information and</p>
+
+<p>based on them clicking a certain link to</p>
+
+<p>your site you're going to tag them and</p>
+
+<p>say this person is really interested in</p>
+
+<p>desserts what we can do is we'll go into</p>
+
+<p>here and you know set up something to</p>
+
+<p>set that cookie for us and then we can</p>
+
+<p>react on that so when we refresh the</p>
+
+<p>page are going to now show a dessert</p>
+
+<p>banner that's featuring you know some</p>
+
+<p>steps for that if they come in maybe</p>
+
+<p>more interested in adventure gonna</p>
+
+<p>refresh the page</p>
+
+<p>and again we'll switch out what we're</p>
+
+<p>showing based on cookie and then maybe</p>
+
+<p>we combine these two and now it showed</p>
+
+<p>on the mobile app with the banner that</p>
+
+<p>they're wanting to see</p>
+
+<p>let's take this one step further so now</p>
+
+<p>let's actually give them a form on the</p>
+
+<p>side that they can fill out and based on</p>
+
+<p>what they fill in that form let's have</p>
+
+<p>that in fact what they see in that</p>
+
+<p>banner so I've created a simple I've</p>
+
+<p>actually created two simple forms one</p>
+
+<p>form has a drop down in categories like</p>
+
+<p>taxonomy terms which we'll put on there</p>
+
+<p>first and I created another form that</p>
+
+<p>allows you to basically clear that</p>
+
+<p>cookies values not that does the use</p>
+
+<p>case you're going to implement in that</p>
+
+<p>exact form but you might decide later</p>
+
+<p>that the information you're customizing</p>
+
+<p>on might change or you might not no</p>
+
+<p>longer find a palette so you might want</p>
+
+<p>the ability to clear out with that size</p>
+
+<p>let's start simple for now so we'll</p>
+
+<p>create this food survey jump back on</p>
+
+<p>this page so our food surveys there and</p>
+
+<p>then this food survey it's actually</p>
+
+<p>going to fill out a separate cookie so</p>
+
+<p>in our case I have it the way I just</p>
+
+<p>wrote a really simple form I'll tear</p>
+
+<p>that same when this form submit grabbed</p>
+
+<p>the value from here throw it into a</p>
+
+<p>cookie so actually what's two</p>
+
+<p>exclamation and you'll see we've thrown</p>
+
+<p>in this extra cookie here and now we</p>
+
+<p>have to move on so to get this to</p>
+
+<p>actually feed in we're going to want to</p>
+
+<p>change our logic up a little bit</p>
+
+<p>and we're going to go into this desert</p>
+
+<p>one and we're gonna grab a cookie name</p>
+
+<p>and instead of using the segment we're</p>
+
+<p>just gonna go in and look at cheek let's</p>
+
+<p>clear this out first cuz we want both</p>
+
+<p>who used to work and then let's go ahead</p>
+
+<p>and create a new one called good group</p>
+
+<p>and we can still add our old one in</p>
+
+<p>place so we can say segment equals</p>
+
+<p>desert floor if cookie and we can</p>
+
+<p>actually put the name of that equals</p>
+
+<p>desert so now we have an oral we're</p>
+
+<p>saying if either they're identified in</p>
+
+<p>that segment or if their food survey</p>
+
+<p>interests cookie you set to this value</p>
+
+<p>and you also have some options here to</p>
+
+<p>do like equals starts with if this</p>
+
+<p>cookie said at all so forth we've kind</p>
+
+<p>of implemented a type system in the</p>
+
+<p>sense where whatever you're doing for</p>
+
+<p>conditions you have a widget that's</p>
+
+<p>involved you can technically choose to</p>
+
+<p>use the types of somewhere you can build</p>
+
+<p>custom conditions an example would be a</p>
+
+<p>condition group that is more complex</p>
+
+<p>than type system was really intending so</p>
+
+<p>that's just a one-off condition with its</p>
+
+<p>own form so you're not tired of the</p>
+
+<p>Typekit type system but it makes a lot</p>
+
+<p>easier to extend and then let's do</p>
+
+<p>another one where we're going to add</p>
+
+<p>another variation</p>
+
+<p>let's do one call it starter and we're</p>
+
+<p>gonna add another block both starter</p>
+
+<p>okay and I'm gonna drive these up so</p>
+
+<p>that des will fire off first in order</p>
+
+<p>because we have that other cookies still</p>
+
+<p>set now we're setting priority and again</p>
+
+<p>it's gonna say if this first ones sure</p>
+
+<p>do that to say if it's not sure you're</p>
+
+<p>going to the second one go on to the</p>
+
+<p>third one</p>
+
+<p>so we'll say if that's true and then</p>
+
+<p>we'll take this other one and we'll put</p>
+
+<p>that there that way that first cookie be</p>
+
+<p>upset doesn't override whatever we're</p>
+
+<p>trying to do with these rules so we'll</p>
+
+<p>check in so I'm going to save this</p>
+
+<p>and then we will jump back to this page</p>
+
+<p>and so now we have our food survey</p>
+
+<p>interest equals dessert even though this</p>
+
+<p>is adventure that one's going to fire</p>
+
+<p>off we were to remove this we're back to</p>
+
+<p>chef showing that one again we can go</p>
+
+<p>down and change this just say starter</p>
+
+<p>and now we're showing a different banner</p>
+
+<p>all together so now we're actually</p>
+
+<p>taking information they're submitted</p>
+
+<p>inside forms and changing the site</p>
+
+<p>accordingly</p>
+
+<p>let's go to one where we don't have any</p>
+
+<p>rules applied there's something in and</p>
+
+<p>we're back to falling back to adventure</p>
+
+<p>so it's as you can see we're just doing</p>
+
+<p>a series of rules and reactions and it's</p>
+
+<p>finding the first one here it's going to</p>
+
+<p>show and clear both of these and we're</p>
+
+<p>back to this play cool so let's talk</p>
+
+<p>about a little bit how this actually</p>
+
+<p>works so what happens is actually as you</p>
+
+<p>have this flatten page page patches</p>
+
+<p>kicked in a placeholder did was rendered</p>
+
+<p>this is actually how the modules rent or</p>
+
+<p>the block that you're placed is rendered</p>
+
+<p>it's just empty it just has a div and</p>
+
+<p>inside that div you have properties</p>
+
+<p>those properties are the ID for that</p>
+
+<p>smart content upset and any is so any</p>
+
+<p>additional attributes that might need</p>
+
+<p>for rendering then what happens is the</p>
+
+<p>module also attaches a lot of conditions</p>
+
+<p>it needs so anything you spent</p>
+
+<p>configuring in there its associating</p>
+
+<p>that data into your things like your</p>
+
+<p>conditions here inside of these and so</p>
+
+<p>that data needs to line up with</p>
+
+<p>whatever's in that placeholder what it's</p>
+
+<p>also doing is its attaching any</p>
+
+<p>libraries that it needs so if I create a</p>
+
+<p>brand new module into that module to</p>
+
+<p>process this it has its own JavaScript</p>
+
+<p>library it'll go out and find here's all</p>
+
+<p>the conditions I use here's all the</p>
+
+<p>libraries I need to process this and</p>
+
+<p>it's going to attach those this is also</p>
+
+<p>where you'd see like potentially if you</p>
+
+<p>need a load of specific third-party</p>
+
+<p>library depending on</p>
+
+<p>that at that point once that all lines</p>
+
+<p>up its gonna decision Janice is actually</p>
+
+<p>gonna search the page travel those make</p>
+
+<p>sure they align and then it's going to</p>
+
+<p>start processing each of those</p>
+
+<p>placeholders and so this is where it</p>
+
+<p>gets a little bit fancier this is just</p>
+
+<p>kind of a high-level description now so</p>
+
+<p>we have our decision with our variation</p>
+
+<p>over there and then within each</p>
+
+<p>variation we have our conditions and our</p>
+
+<p>Associated reactions so in this case we</p>
+
+<p>have three along there saying if it's</p>
+
+<p>mobile</p>
+
+<p>let's show block one if it's cookie</p>
+
+<p>equals V one let's show block two if</p>
+
+<p>it's cookie equals b2 let's show block</p>
+
+<p>three then what it does is at first</p>
+
+<p>before it process it any further it</p>
+
+<p>takes all these conditions out and it</p>
+
+<p>sends them into the condition handler</p>
+
+<p>you see the heart here that's so signify</p>
+
+<p>that I'm pretty proud of this piece</p>
+
+<p>because it's really performant and</p>
+
+<p>pretty cool what happens is it takes all</p>
+
+<p>common and from it all common cookies</p>
+
+<p>that are from the same source and it</p>
+
+<p>combines them first so before it does</p>
+
+<p>any evaluation it says let's go collect</p>
+
+<p>that information let's go to this third</p>
+
+<p>party and get the users company they</p>
+
+<p>work for this cookie and grab that it's</p>
+
+<p>going to associate that all together so</p>
+
+<p>that you're not making multiple calls to</p>
+
+<p>the to get the same exact information</p>
+
+<p>once you went and</p>
+
+<p>paired those together it basically sends</p>
+
+<p>out kind of an event for things to</p>
+
+<p>subscribe to and they're going to claim</p>
+
+<p>the ones that they're responsible for so</p>
+
+<p>in this case my content browser might</p>
+
+<p>grab them if mobile one and the smart</p>
+
+<p>content demo would grab like the demo</p>
+
+<p>cookie demo keys no setup they go and</p>
+
+<p>retrieve that information and they're</p>
+
+<p>going to return results for those so I'm</p>
+
+<p>almost false in this case and cookie</p>
+
+<p>values v1 it's going to then send it</p>
+
+<p>back into this system so we take and we</p>
+
+<p>return cookie equals v1 and mobile as</p>
+
+<p>false we're going to then go through</p>
+
+<p>here and say if condition mobile and</p>
+
+<p>this is false so this is not this is not</p>
+
+<p>true if condition equals v1</p>
+
+<p>well condition is v1 this one would be</p>
+
+<p>true if cookie equals v2 false normally</p>
+
+<p>what would happen is this would run</p>
+
+<p>first and it would stop even processing</p>
+
+<p>v3 but just for sake of talking to those</p>
+
+<p>so if the winner is found at that point</p>
+
+<p>then what it's going to do is going to</p>
+
+<p>go to an end point that we've defined</p>
+
+<p>and it'll actually grab that information</p>
+
+<p>and throw that out so you imagine we</p>
+
+<p>have this bully cache page we have a</p>
+
+<p>place holder and then a decisions made</p>
+
+<p>by JavaScript and then it goes and grabs</p>
+
+<p>the cached result so in terms of</p>
+
+<p>performance it's really pretty fast</p>
+
+<p>because you're just hitting all caches</p>
+
+<p>and no point you have to break out cache</p>
+
+<p>so what can we use this for just some</p>
+
+<p>areas you've identified obviously</p>
+
+<p>targeting segments is a big one</p>
+
+<p>especially from a marketing perspective</p>
+
+<p>the ability to segment your users and</p>
+
+<p>start to switch out content is going to</p>
+
+<p>be a really big use kiss content based</p>
+
+<p>on scoring so if maybe you're starting</p>
+
+<p>to implement systems where we're scoring</p>
+
+<p>people based on their interest in</p>
+
+<p>certain topics and then we're setting</p>
+
+<p>the rules that are saying if this score</p>
+
+<p>is higher than this or if this category</p>
+
+<p>is the high score let's show something</p>
+
+<p>different</p>
+
+<p>fertilizer OS content maybe you have a</p>
+
+<p>forum or page that's showing downloads</p>
+
+<p>and you want to show if they're on Mac</p>
+
+<p>OS you want to show one file type if</p>
+
+<p>they're on Windows you want to show the</p>
+
+<p>other file type you can actually use</p>
+
+<p>this to do the swapping of what they see</p>
+
+<p>gated resources I think will be a really</p>
+
+<p>big one</p>
+
+<p>if we get the view mode stuff you know</p>
+
+<p>when we get that wrapped up you could</p>
+
+<p>have one view mode that set as your gate</p>
+
+<p>and that can have a form that displays</p>
+
+<p>on it and then you have your second view</p>
+
+<p>mode which is your full display of your</p>
+
+<p>content and then you actually switch</p>
+
+<p>your roles around and say you know</p>
+
+<p>before they filled out that form show</p>
+
+<p>the form once they submit the form show</p>
+
+<p>the full content</p>
+
+<p>again maybe it's targeting things like</p>
+
+<p>new verse returns so your application</p>
+
+<p>has you know some things that you want</p>
+
+<p>to explain the first time someone hits</p>
+
+<p>it allows them to learn how to use it or</p>
+
+<p>where to start whatever it may be the</p>
+
+<p>next time they come to the page you can</p>
+
+<p>expire that and now you'd just see the</p>
+
+<p>full app without any of those</p>
+
+<p>explanations look casing location-based</p>
+
+<p>customizations this is talking a lot</p>
+
+<p>more granular than just look house but</p>
+
+<p>like you could if you can determine</p>
+
+<p>roughly what area if someone is whether</p>
+
+<p>it be via timezone using the JavaScript</p>
+
+<p>location stuff using third parties</p>
+
+<p>they're identifying based on IP eaves or</p>
+
+<p>things like that maybe just changing the</p>
+
+<p>look in the field of the site based on</p>
+
+<p>the location if it's a product website</p>
+
+<p>could you change it to have a different</p>
+
+<p>display when someone's on the east coast</p>
+
+<p>or and say New York the way you're</p>
+
+<p>showing that product versus in</p>
+
+<p>California different feel different look</p>
+
+<p>that's it I think time of day</p>
+
+<p>customizations I think there's a lot of</p>
+
+<p>potential here one thing there's just</p>
+
+<p>been this recent effort with browsers to</p>
+
+<p>attach dark notes for for nighttime</p>
+
+<p>viewing and so I think taking that a</p>
+
+<p>step further and saying like do we want</p>
+
+<p>to switch up what content they see based</p>
+
+<p>some type of day</p>
+
+<p>actually gdpr notifications can be a</p>
+
+<p>good fit for this so that form that that</p>
+
+<p>consent that you have to have you know</p>
+
+<p>someone agreed to we could actually use</p>
+
+<p>you know first of all are they located</p>
+
+<p>in in Europe are they have they checked</p>
+
+<p>this box before what boxes have they</p>
+
+<p>checked that type of thing based on that</p>
+
+<p>we can actually swap out what we're</p>
+
+<p>showing and then maybe taking it further</p>
+
+<p>and doing a/b or multivariate testing</p>
+
+<p>with us so if you imagine a block where</p>
+
+<p>the first variation is locked in a</p>
+
+<p>fission a bless you the second variation</p>
+
+<p>is locked in is Block B or condition B</p>
+
+<p>or B test I guess and then you set your</p>
+
+<p>reactions</p>
+
+<p>you could then sit there and flip those</p>
+
+<p>automatically based on however you group</p>
+
+<p>someone multivariate probably a little</p>
+
+<p>bit more complex I think this will have</p>
+
+<p>more use cases we get into maybe doing</p>
+
+<p>field level customizations because you</p>
+
+<p>guys are familiar with multivariate it</p>
+
+<p>would be taking say three different</p>
+
+<p>fields with three different very three</p>
+
+<p>different variations of those data and</p>
+
+<p>showing every possible combo and</p>
+
+<p>determining which one is the winner it's</p>
+
+<p>a little bit more complex kind of a use</p>
+
+<p>case and it really requires more of a</p>
+
+<p>granular level than we're doing right</p>
+
+<p>now you could do it it just probably is</p>
+
+<p>going to be not the best fit so how to</p>
+
+<p>get involved so right now the module is</p>
+
+<p>an alpha state and so what we're really</p>
+
+<p>looking for right now is people to start</p>
+
+<p>downloading the module testing the</p>
+
+<p>module really pushing the module trying</p>
+
+<p>different use cases trying it with</p>
+
+<p>different other modules so maybe modules</p>
+
+<p>that control block display you know</p>
+
+<p>we're just now trying to test it more if</p>
+
+<p>like the layout builder already know</p>
+
+<p>there's a few issues there block fields</p>
+
+<p>another one</p>
+
+<p>you know we have it working on but</p>
+
+<p>there's some courses that are kind of</p>
+
+<p>holding it up from working completely as</p>
+
+<p>we'd like any other use cases we really</p>
+
+<p>can think about extending it I think</p>
+
+<p>that's the type of testings feedback</p>
+
+<p>we're looking for and also have there's</p>
+
+<p>people interested in joining and helping</p>
+
+<p>as a maintainer and they used to say</p>
+
+<p>something that you decide you're</p>
+
+<p>passionate about and want to get</p>
+
+<p>involved with we're always looking for</p>
+
+<p>help in regards to getting this to a</p>
+
+<p>beta data we want to finalize our</p>
+
+<p>interfaces we're at this point now we're</p>
+
+<p>looking really through our code</p>
+
+<p>structure and deciding if we're</p>
+
+<p>completely happy with things if we want</p>
+
+<p>to split some things out into separate</p>
+
+<p>classes we feel like the separation and</p>
+
+<p>their concerns is where we want it and</p>
+
+<p>then making sure that we commit to</p>
+
+<p>interfaces that we're not going to go</p>
+
+<p>back and change later and break</p>
+
+<p>everything that depends on the fix any</p>
+
+<p>beta blocking bugs again this is one of</p>
+
+<p>those things that the more people can</p>
+
+<p>test this and use it and try it and find</p>
+
+<p>things and so forth it will really help</p>
+
+<p>us identify a clear path for that and</p>
+
+<p>improve documentation ideally people</p>
+
+<p>wouldn't have to go watch this</p>
+
+<p>presentation just to learn to get</p>
+
+<p>started anything we can do to help them</p>
+
+<p>figure out how to give this model set up</p>
+
+<p>and running movie awesome our target for</p>
+
+<p>beta right now is May 1st so I'll be</p>
+
+<p>doing this similar takotsubo con again</p>
+
+<p>the goal is to get people and they're</p>
+
+<p>using it and based on feedback and</p>
+
+<p>response they'll kind of maybe change</p>
+
+<p>those a timeline but we'll see how</p>
+
+<p>things go and then where do we go from</p>
+
+<p>there</p>
+
+<p>well obviously continue on to a full</p>
+
+<p>release I would love to have a full</p>
+
+<p>release by this summer again it really</p>
+
+<p>depends on how many people we get out</p>
+
+<p>there testing and people submitting</p>
+
+<p>patches people coming up with ideas and</p>
+
+<p>so forth extend the module features out</p>
+
+<p>so</p>
+
+<p>that's really nice is it's really easy</p>
+
+<p>to add conditions I can actually show</p>
+
+<p>that briefly if we have time but the</p>
+
+<p>standing conditions out and this is</p>
+
+<p>really simple it's really just defining</p>
+
+<p>a plugin that says what type of</p>
+
+<p>condition is it and then define in</p>
+
+<p>JavaScript with it that goes and</p>
+
+<p>retrieves information for you all the</p>
+
+<p>evaluation and everything else the</p>
+
+<p>module takes care of and that obviously</p>
+
+<p>again extending this into new directions</p>
+
+<p>with new types of modules and stuff so</p>
+
+<p>questions</p>
+
+<p>okay security I know aqua has a module</p>
+
+<p>called personalized with it's kind of</p>
+
+<p>their decision engine that underlies</p>
+
+<p>their their like content it could like</p>
+
+<p>interact it's out of the personalization</p>
+
+<p>as a service platform yeah I just</p>
+
+<p>wondered if you had seen it in how like</p>
+
+<p>anyways like this decision decision</p>
+
+<p>engine might compare with that decision</p>
+
+<p>engine or any other ones that might be</p>
+
+<p>out there in computing so the question</p>
+
+<p>was about aqueous personalized module</p>
+
+<p>which how it compares and how it</p>
+
+<p>affected I guess our decision of</p>
+
+<p>building this and so forth so</p>
+
+<p>personalized at least last I looked at</p>
+
+<p>it it froze basically after Drupal 7</p>
+
+<p>there wasn't any Drupal 8 development on</p>
+
+<p>it that might have since changed but</p>
+
+<p>what happened essentially is I think</p>
+
+<p>their focus switched from supporting</p>
+
+<p>that to moving it into lift which would</p>
+
+<p>became awkward lift which is a really</p>
+
+<p>awesome tool I'm in general but I felt</p>
+
+<p>the barrier for entry was pretty tough</p>
+
+<p>with lift so trying to create something</p>
+
+<p>where even again some of these smaller</p>
+
+<p>utility type use cases and not looking</p>
+
+<p>for that full-fledged kind of product</p>
+
+<p>that lift is gifts just getting people</p>
+
+<p>thinking about these types of things is</p>
+
+<p>really what kind of steered our approach</p>
+
+<p>I actually originally worked on some</p>
+
+<p>extend big contributors for personalized</p>
+
+<p>so that's when I first got familiar with</p>
+
+<p>it but then looking in Drupal 8 just</p>
+
+<p>changing the direction the thought</p>
+
+<p>process behind it going a little bit</p>
+
+<p>different routes really where we decided</p>
+
+<p>to go</p>
+
+<p>do</p>
+
+<p>well I can either jump in and show you</p>
+
+<p>guys a little bit of how conditions work</p>
+
+<p>or we can into any hands if you guys</p>
+
+<p>want to see how conditions work okay see</p>
+
+<p>so what I'll do is I can actually show</p>
+
+<p>out that demo cookie once set up I think</p>
+
+<p>it's a really easy example and then I'll</p>
+
+<p>show how say the browser ones work they</p>
+
+<p>actually use derivatives which are</p>
+
+<p>they're not too complicated it's just a</p>
+
+<p>little bit it's an additional layer on</p>
+
+<p>top of plugins for generating plugins</p>
+
+<p>dynamically so coping over the code so</p>
+
+<p>what I have here is I have my smart</p>
+
+<p>content and well cookie module have with</p>
+
+<p>the source plug-in you have to drop a</p>
+
+<p>class basically inside of this smart</p>
+
+<p>content condition this is the path</p>
+
+<p>that's going to be looking for the</p>
+
+<p>plugins so from here I'm defining the</p>
+
+<p>rules for the properties for this</p>
+
+<p>condition so I've got my ID I've got the</p>
+
+<p>label for it wait wait wait is religious</p>
+
+<p>to order which is displaying in</p>
+
+<p>dropdowns the reason we put that in is</p>
+
+<p>like something like a segment where you</p>
+
+<p>went out of your way to like configure</p>
+
+<p>and define this you probably want that</p>
+
+<p>to show pretty high up</p>
+
+<p>oh yes that good yeah thank you</p>
+
+<p>unique is important because if</p>
+
+<p>conditions were to technically have the</p>
+
+<p>same name but be able to have different</p>
+
+<p>results you want to process those</p>
+
+<p>separately you don't want to group them</p>
+
+<p>together for processing the example</p>
+
+<p>would be groups like a group condition</p>
+
+<p>they could easily all be called group</p>
+
+<p>you know one group two group three you</p>
+
+<p>could have multiple ones because of</p>
+
+<p>nesting but those groups have different</p>
+
+<p>conditions inside so you wouldn't want</p>
+
+<p>to try to process them as one so whereas</p>
+
+<p>a condition called you know browser with</p>
+
+<p>the browser waits I was going to be the</p>
+
+<p>same so you can</p>
+
+<p>safely group those together and then</p>
+
+<p>when you actually evaluate you'd split</p>
+
+<p>the month and then type so again this is</p>
+
+<p>this is one based on a type but</p>
+
+<p>technically you don't have to use the</p>
+
+<p>type system you can just extend the</p>
+
+<p>different base class and you can define</p>
+
+<p>all your own rules around this but for</p>
+
+<p>the most part we're trying to encourage</p>
+
+<p>using the type system and building out</p>
+
+<p>any types you need rather than just</p>
+
+<p>circumventing that and then in our case</p>
+
+<p>all we have to do for this is define</p>
+
+<p>just get libraries and we're going to</p>
+
+<p>define our library that we have for</p>
+
+<p>processing the going out and retrieving</p>
+
+<p>the cookie</p>
+
+<p>so outside of this demo cookie chasse</p>
+
+<p>and what it does is essentially just um</p>
+
+<p>it's kind of like a hook system for</p>
+
+<p>JavaScript but essentially it's</p>
+
+<p>listening for any times this is being</p>
+
+<p>initiated it'll say if the plugins name</p>
+
+<p>is demo cookie which correlates with</p>
+
+<p>with our name over here</p>
+
+<p>it means yeah so same thing like if demo</p>
+
+<p>cookie we're gonna claim that feel that</p>
+
+<p>we know other modules are claiming it or</p>
+
+<p>doing anything with it and then we're</p>
+
+<p>going to complete this you can also use</p>
+
+<p>promises here so if you have something</p>
+
+<p>that's dependent on say third-party data</p>
+
+<p>that's got to go and retrieve and it's</p>
+
+<p>going to take a little bit time you can</p>
+
+<p>put a JavaScript promise here once it</p>
+
+<p>comes back it's gonna then you call</p>
+
+<p>fields complete on it essentially what</p>
+
+<p>field complete does is it sets that</p>
+
+<p>status as being fulfilled and then it'll</p>
+
+<p>loop back through and check all the</p>
+
+<p>fields and see if they're ready for</p>
+
+<p>processing if there's one still waiting</p>
+
+<p>it's just going to wait and each time it</p>
+
+<p>pings it it just does a quick check and</p>
+
+<p>make sure that to see if it has all its</p>
+
+<p>conditions or not and so once those are</p>
+
+<p>all filled at that point it's actually</p>
+
+<p>going to process it so that's all that's</p>
+
+<p>all you need for like to find anyone</p>
+
+<p>that's grabbing from really simple</p>
+
+<p>things that are in the type system to</p>
+
+<p>take that to say the browser stuff</p>
+
+<p>well it's a sensor module that's me so</p>
+
+<p>inside a browser we have our derivative</p>
+
+<p>and then we have a base class for it so</p>
+
+<p>this base classes again really simple</p>
+
+<p>all it's doing this to finding those</p>
+
+<p>properties again ID label a group weight</p>
+
+<p>and then in this case we're using a</p>
+
+<p>driver the driver again is looking for</p>
+
+<p>dynamically generating these but you</p>
+
+<p>have to define a base class for them to</p>
+
+<p>use so will we go into our derivatives</p>
+
+<p>and we're then actually looping through</p>
+
+<p>and saying from the browser grab</p>
+
+<p>language mobile operating system cookie</p>
+
+<p>and we're defining what the type is so</p>
+
+<p>mobile is a boolean language is a text</p>
+
+<p>field that type of thing and with that</p>
+
+<p>library that were connecting consider or</p>
+
+<p>loading and I should say we're actually</p>
+
+<p>doing the same thing we're claiming if</p>
+
+<p>it's browser language go got the</p>
+
+<p>language from the browser and return if</p>
+
+<p>it's browser mobile it's going to do a</p>
+
+<p>comparison to try to determine if it's</p>
+
+<p>mobile and then it's going to return it</p>
+
+<p>so it's really simple logic it's just</p>
+
+<p>claims it processes it returns it and</p>
+
+<p>then evaluates</p>
+
+<p>you release this bully whether it be an</p>
+
+<p>examples folder or modules you can have</p>
+
+<p>something variable yeah I think it would</p>
+
+<p>be good to do like sorry the question</p>
+
+<p>was wonder at least this will we do any</p>
+
+<p>type of examples folder kind of a</p>
+
+<p>playbook if you will like how to use the</p>
+
+<p>module and I would say I think ideally</p>
+
+<p>yeah we get to a point where we do have</p>
+
+<p>some playbooks identify when you say you</p>
+
+<p>know using this combination for really</p>
+
+<p>common things would be good it's a</p>
+
+<p>little bit figuring out how people are</p>
+
+<p>going to use it it's part of the</p>
+
+<p>challenge because we tried to make it</p>
+
+<p>pretty open for any type of client-side</p>
+
+<p>contextual data retrieving so I think</p>
+
+<p>our focus initially is more on the</p>
+
+<p>marketing content side but I'd be</p>
+
+<p>curious when we put it out there seeing</p>
+
+<p>what use cases people come up with</p>
+
+<p>yeah yeah ideally it'll be pretty</p>
+
+<p>straight forward but I think putting</p>
+
+<p>some documentation about like how to do</p>
+
+<p>a block and stuff like that would be</p>
+
+<p>really good yeah is there any way</p>
+
+<p>client to test that their conditions are</p>
+
+<p>working or you know yeah that's a great</p>
+
+<p>question so the question is is there any</p>
+
+<p>way for clients the test and actually</p>
+
+<p>see if their conditions are working</p>
+
+<p>that's something we're working on right</p>
+
+<p>now actually so kind of like the way</p>
+
+<p>master masquerade works for example for</p>
+
+<p>authentication trying to figure out a</p>
+
+<p>way to do that and stimulate these for</p>
+
+<p>anonymous so in regards from like a</p>
+
+<p>coding perspective it's not real</p>
+
+<p>challenging to do that masquerading but</p>
+
+<p>trying to get a UI that makes sense</p>
+
+<p>because you potentially have to go in</p>
+
+<p>and enter in every single value that</p>
+
+<p>you're trying to many because if you're</p>
+
+<p>say you're using there your condition</p>
+
+<p>are the same condition so they'll get</p>
+
+<p>the same cookie on four different you</p>
+
+<p>know sets or blocks throughout the site</p>
+
+<p>you potentially want to test all of</p>
+
+<p>those together so you don't want to just</p>
+
+<p>trick it in the same this one's true</p>
+
+<p>instead you actually want to set that</p>
+
+<p>cookie to be what you're testing against</p>
+
+<p>and see the experience as you go through</p>
+
+<p>the entire site so there's some things</p>
+
+<p>that that could be pretty heavy of a</p>
+
+<p>lift if you will of going in and like</p>
+
+<p>changing that so one thing we talked</p>
+
+<p>about is like using the segment stuff</p>
+
+<p>and allow you to trigger segments is</p>
+
+<p>true if those segments are true then you</p>
+
+<p>would define those values that's looking</p>
+
+<p>for as true and that way you could test</p>
+
+<p>it from like a segment perspective and</p>
+
+<p>you're technically won't even have to</p>
+
+<p>use the segment in any conditions but</p>
+
+<p>you could use it for pre defining values</p>
+
+<p>or kind of groups of conditions that</p>
+
+<p>you're targeting</p>
+
+<p>Oh</p>
+
+<p>any other questions</p>
+
+<p>Oh</p>
+
+<p>so yeah if you guys want to give me</p>
+
+<p>feedback there's the link</p>
+
+<p>preferably positive feedback but</p>
+
+<p>negative will do as well just calling</p>
+
+<p>out contribute and Saturday</p>
+
+<p>definitely something a few guys are</p>
+
+<p>interested in contributor this ball</p>
+
+<p>means reach out to me Joe pelagic you if</p>
+
+<p>there's other things you want to</p>
+
+<p>contribute on highly encouraged to get</p>
+
+<p>involved again it doesn't have to be</p>
+
+<p>code yeah we have and that's one of</p>
+
+<p>those things that it would be pretty</p>
+
+<p>easy like even if you found a different</p>
+
+<p>way you wanted to approach blocks like</p>
+
+<p>say the way you set context for blocks</p>
+
+<p>and it's AA real quick the question was</p>
+
+<p>if we explored other options for the</p>
+
+<p>content authoring experience out of the</p>
+
+<p>module so right now when you set blocks</p>
+
+<p>you have the context groups down below</p>
+
+<p>and you set those that's one thing we've</p>
+
+<p>looked at is like should we just make</p>
+
+<p>this like a conditional type of thing</p>
+
+<p>similar to that but instead you type</p>
+
+<p>into JavaScript client-side sorry the</p>
+
+<p>settings and for us I think we settled</p>
+
+<p>on this because the ability to place an</p>
+
+<p>area and change that experience was more</p>
+
+<p>important than like having a relation of</p>
+
+<p>those like if this one versus this one</p>
+
+<p>versus this one so there's a lot of ways</p>
+
+<p>we've kind of looked at it and this is</p>
+
+<p>one starting place but I would say that</p>
+
+<p>if someone had a better idea or a</p>
+
+<p>different way they wanted to say</p>
+
+<p>approach block UI the core of the</p>
+
+<p>modules of just about the conditions and</p>
+
+<p>reactions piece and another way that the</p>
+
+<p>forms could work can be changed and</p>
+
+<p>altered</p>
+
+<p>the party would be able to see all the</p>
+
+<p>variation yeah and to have them be</p>
+
+<p>dependent on one so if the first one's</p>
+
+<p>not true then the second one would be</p>
+
+<p>true whereas if you separate it all all</p>
+
+<p>out to individual blocks and just have a</p>
+
+<p>conditionals for the one block for</p>
+
+<p>example that just been one example of</p>
+
+<p>how we could of the UI differently yeah</p>
+
+<p>because then you get stuck doing like</p>
+
+<p>knots if not this one and this one if</p>
+
+<p>you separate all those out per block but</p>
+
+<p>again if if we it would be really easy</p>
+
+<p>to extend this module and create a</p>
+
+<p>different type of block that really just</p>
+
+<p>hides and shows based on one set of</p>
+
+<p>rules and has no variations really it</p>
+
+<p>really is just one variation if you want</p>
+
+<p>okay</p>
+
+<p>well thank you guys again if you again</p>
+
+<p>want to reach out to me here's the way</p>
+
+<p>you can come find me at the booth or on</p>
+
+<p>drupal.org it's Michael Lander Twitter</p>
+
+<p>slack and you goes work thanks</p>
+
+<p>[Applause]</p></div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-75e373dd8cd236b294756edd08250bdb58a408a43bd1053ae7d65df569797f7d">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/331">https://mid.camp/331</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-d9758d6f52aa6124cfbb2025ac905a87979c73cedf55fa60f0f1548acda50c9d">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/acquia.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2019-03/Acquia_no_tagline.png" width="450" height="94" alt="Acquia" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/pantheon.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-11/pantheon-logo-color@2x.png" width="960" height="354" alt="Pantheon" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/elevated-third.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-11/elevated-third-logo_0.png" width="220" height="220" alt="elevated third logo" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#5930373f361934303d3a38342977362b3e"><span class="__cf_email__" data-cfemail="0b62656d644b66626f686a667b2564796c">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/331","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_llBcjrkrgAu2wT1DR7VGL_iP6geJyiTnF_8O5ZD57VI.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJxLz89Pz0mNT8xLzKksyUwu1k9HE9DJSCwpSS3ST8_JT0rM0c0qBgAByBPW"></script>
+
+  </body>
+</html>

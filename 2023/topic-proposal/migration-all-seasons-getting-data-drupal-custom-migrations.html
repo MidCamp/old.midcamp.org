@@ -1,0 +1,787 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="Drupal’s migration framework can be used for much more than just site-to-site migrations. Whether it is from APIs, legacy system databases, or spreadsheets, this session will cover how to use custom migration plugins to import and manipulate complex data for use in Drupal for both one-off imports and on-going imports after site launch. " />
+<link rel="canonical" href="migration-all-seasons-getting-data-drupal-custom-migrations.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="A Migration for All Seasons: Getting Data into Drupal with Custom Migrations | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>A Migration for All Seasons: Getting Data into Drupal with Custom Migrations | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_gt5LiAM1qLGUH5e845uOb7R_lJ9dUwTXmnhGDR2yY20.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OgzAMgy8E7ZFQSg1UShrUdDB2-lX87GUviZ0vkj0ymR0-kKEbLz0l_mmBGc2wx2eNjWlBU0WI0wfdQrWi-Jk1EPej2XMRWoO-OzusQq6ILUXoAAmIw5TA0RfYqtnShv6E7QW7-XM.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_QAC1R0aFoF1mIVQtLAaSE24B2iwnT2ZCa0cZDeZsPV0.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OgzAMgy8E7ZFQSg1UShrUdDB2-lX87GUviZ0vkj0ymR0-kKEbLz0l_mmBGc2wx2eNjWlBU0WI0wfdQrWi-Jk1EPej2XMRWoO-OzusQq6ILUXoAAmIw5TA0RfYqtnShv6E7QW7-XM.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OgzAMgy8E7ZFQSg1UShrUdDB2-lX87GUviZ0vkj0ymR0-kKEbLz0l_mmBGc2wx2eNjWlBU0WI0wfdQrWi-Jk1EPej2XMRWoO-OzusQq6ILUXoAAmIw5TA0RfYqtnShv6E7QW7-XM.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OgzAMgy8E7ZFQSg1UShrUdDB2-lX87GUviZ0vkj0ymR0-kKEbLz0l_mmBGc2wx2eNjWlBU0WI0wfdQrWi-Jk1EPej2XMRWoO-OzusQq6ILUXoAAmIw5TA0RfYqtnShv6E7QW7-XM.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+<link rel="stylesheet" media="all" href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.css" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="migration-all-seasons-getting-data-drupal-custom-migrations.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-midcamp2023navigation-menu" id="block-midcamp2023navigation" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-midcamp2023navigation-menu">MidCamp 2023 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" data-drupal-link-system-path="node/6857">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--by-the-numbers">
+        <a href="../../2020/about/by-the-numbers.html" data-drupal-link-system-path="node/6252">By the Numbers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--venue">
+        <a href="../../about/venue.html" title="Venue" data-drupal-link-system-path="node/7048">Venue</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../speaker-resources.html" data-drupal-link-system-path="node/345">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--health--safety">
+        <a href="../health-safety.html" data-drupal-link-system-path="node/6973">Health &amp; Safety</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../about/lunch-options.html" data-drupal-link-system-path="node/6970">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--volunteer-opportunities">
+        <a href="../article/volunteer-help-midcamp.html" data-drupal-link-system-path="node/6975">Volunteer Opportunities</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" data-drupal-link-system-path="2023/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--travel">
+        <a href="../about/travel.html" data-drupal-link-system-path="node/6865">Travel</a>
+            </li>
+          <li class="primary-nav__sublist-item item--accommodations">
+        <a href="../about/accommodations.html" data-drupal-link-system-path="node/6948">Accommodations</a>
+            </li>
+          <li class="primary-nav__sublist-item item--registration">
+        <a href="../register.html" data-drupal-link-system-path="node/6977">Registration</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" data-drupal-link-system-path="node/6860">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--sponsor">
+        <a href="../sponsor-midcamp.html" data-drupal-link-system-path="node/6858">Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" data-drupal-link-system-path="node/6859">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--hybrid-sessions">
+        <a href="../schedule/hybrid.html" data-drupal-link-system-path="node/7053">Hybrid Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-wed">
+        <a href="../schedule/wednesday.html" data-drupal-link-system-path="2023/schedule/wednesday">Sessions (Wed)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-thu">
+        <a href="../schedule/thursday.html" data-drupal-link-system-path="2023/schedule/thursday">Sessions (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--birds-of-a-feather-bofs">
+        <a href="../schedule/bofs.html" data-drupal-link-system-path="node/7054">Birds of a Feather (BoFs)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--contribution-day-fri">
+        <a href="../schedule/friday.html" data-drupal-link-system-path="2023/schedule/friday">Contribution Day (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--topic-tracks">
+        <a href="../../topic-tracks.html" data-drupal-link-system-path="node/10">Topic Tracks</a>
+            </li>
+          <li class="primary-nav__sublist-item item--all-sessions">
+        <a href="../schedule/sessions.html" data-drupal-link-system-path="2023/schedule/sessions">All Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--session-submission">
+        <a href="../submit-session.html" data-drupal-link-system-path="node/14">Session Submission</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2023/news">News</a>
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../../jobs.html" data-drupal-link-system-path="jobs">Jobs</a>
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2023.html" hreflang="en">MidCamp 2023</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-midcamp2023schedulenav" class="block block-block-content block-block-contente066b47a-a80d-432a-8edd-6c60b28b7c95">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><div class="schedule__nav">
+<p><a href="../schedule/hybrid.html">Hybrid</a>&nbsp;|&nbsp;<a href="../schedule/wednesday.html">Wednesday</a> | <a href="../schedule/thursday.html">Thursday</a> | <a href="../schedule/friday.html">Friday</a></p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">A Migration for All Seasons: Getting Data into Drupal with Custom Migrations</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="6893" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2023-04-27T15:30:00Z" class="datetime">Thursday, 10:30 am CDT</time>
+ - <time datetime="2023-04-27T16:30:00Z" class="datetime">Thursday, 11:30 am CDT</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-84" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-name field--type-string field--label-hidden field__item">Room 325</div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>Drupal’s migration framework can be used for much more than just site-to-site migrations. Whether it is from APIs, legacy system databases, or spreadsheets, this session will cover how to use custom migration plugins to import and manipulate complex data for use in Drupal for both one-off imports and ongoing imports after site launch.</p>
+
+<p><strong>This session will cover:</strong><br>
+•&nbsp;&nbsp; &nbsp;Writing custom built plugins for Drupal core’s Migrate module to manipulate data and migrate from different types of sources.<br>
+•&nbsp;&nbsp; &nbsp;Setting up daily/weekly/monthly imports using the Migrate module along with custom plugins.<br>
+•&nbsp;&nbsp; &nbsp;Using CSV or spreadsheets in migrations to preload sites with content while development is still ongoing.<br>
+•&nbsp;&nbsp; &nbsp;Use cases for using the migrate framework to import content repeatedly from APIs or external databases.<br>
+•&nbsp;&nbsp; &nbsp;Deciding when to use migrations or manual content entry and potential migration pitfalls.</p>
+
+<p><strong>This session is for:</strong><br>
+•&nbsp;&nbsp; &nbsp;Site architects and developers on projects that use complex migrations.<br>
+•&nbsp;&nbsp; &nbsp;Site architects interested in using migrations as a tool to pull in external data from various sources.<br>
+•&nbsp;&nbsp; &nbsp;Project leads who want a way to speed up the content entry process using migrations.<br>
+&nbsp;</p>
+
+<p>Demo repo:&nbsp;https://github.com/matthewmessmer/migration-demo</p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/93w28CtakKA?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-presenter-slides field--type-file field--label-above">
+    <div class="field__label">Presenter Slides</div>
+              <div class="field__item">
+<span class="file file--mime-application-pdf file--application-pdf"> <a href="../../sites/default/files/2023-04/A%20Migration%20%20for%20All%20Seasons_0.pdf" type="application/pdf">A Migration  for All Seasons_0.pdf</a></span>
+</div>
+          </div>
+
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Matthew Messmer</h4>
+
+      Drupal Architect
+
+
+          @
+              <a href="https://www.claritypartners.com/">Clarity Partners</a>
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p>I am an Acquia Certified Drupal Grand Master and&nbsp;I make Drupal websites for clients around the world.</p>
+
+<p>I enjoy cooking, baking, and gardening.&nbsp;</p></div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2018-02/BpTtfMDCQAAo0AT.jpg%3Fitok=33uiMqik" width="165" height="220" alt="Matthew Messmer" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Back-End</div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-feedback-form field--type-webform field--label-above">
+    <div class="field__label">Feedback Form</div>
+              <div class="field__item"><form class="webform-submission-form webform-submission-add-form webform-submission-session-feedback-form webform-submission-session-feedback-add-form webform-submission-session-feedback-node-6893-form webform-submission-session-feedback-node-6893-add-form" data-drupal-selector="webform-submission-session-feedback-node-6893-add-form" action="migration-all-seasons-getting-data-drupal-custom-migrations.html" method="post" id="webform-submission-session-feedback-node-6893-add-form" accept-charset="UTF-8">
+  
+    <div data-drupal-selector="edit-0" class="webform-message js-webform-message js-form-wrapper form-wrapper" id="edit-0"><div data-drupal-messages>
+    <div role="contentinfo" aria-label="Status message" class="messages messages--status">
+                  <h2 class="visually-hidden">Status message</h2>
+                    Sorry...This form is closed to new submissions.
+            </div>
+    </div>
+</div>
+<input autocomplete="off" data-drupal-selector="form-phvqoh8euitljwj3h4rn48tfi-lasly9divcjibh87g" type="hidden" name="form_build_id" value="form-PhVqOH8eUiTLjWj3H4rN48tFi_LASLy9DIvcjiBH87g" />
+<input data-drupal-selector="edit-webform-submission-session-feedback-node-6893-add-form" type="hidden" name="form_id" value="webform_submission_session_feedback_node_6893_add_form" />
+<div class="url-textfield js-form-wrapper form-wrapper" style="display: none !important;"><div class="js-form-item form-item js-form-type-textfield form-type-textfield js-form-item-url form-item-url">
+      <label for="edit-url">Leave this field blank</label>
+        <input autocomplete="off" data-drupal-selector="edit-url" type="text" id="edit-url" name="url" value="" size="20" maxlength="128" class="form-text" />
+
+        </div>
+</div>
+
+
+  
+</form>
+</div>
+          </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p><span><span><span><span><span><span>MATTHEW MESSMER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Welcome everyone, thank you for coming. There is more people here than I expected. So that's great to see. My name's Matt Messmer. I'm going to be talking today about migrations in Drupal nine and Drupal ten and a little bit about myself. I'm a Drupal architect at Clarity Partners here in Chicago. We work on a lot of websites for county and other government agencies around the area. I've been working in Drupal for about 12 years now and it's probably done around 15 to 20 migrations in Drupal eight and nine so far. Part of what I'm going to be showing you today, later half of the session is going to be a demo, and I put together a demo repo that I mentioned a little bit before. So if anybody wants to go grab the code, it should be a fully functioning Drupal nine site using Lando as the local development environment. I'll be showing off a little bit of the special things they put together in the repo later, but it's out there publicly. If anybody wants to go grab it might be helpful I hope.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>There's an overview of what we're going to be covering today. We're going to be looking at the use cases for migrations and then quickly going over some contrib modules and drush commands you can use while doing migrations. And then I'll be doing a deeper dive into writing custom source and process plugins for migrations. So just to get a feel of the room, how many people here have used the Migrate API in Drupal 8 or 9 or 10? So about half of you or a little bit more. How many have written their own plugins? OK, great. And how many have used the migration API to do something other than migrate Drupal 7 or WordPress into Drupal 8 or 9? OK, so only two of you. So this is great because that's what I'm going to be talking about today. So when I look online or see the sessions at DrupalCon or Drupal camps about the Migrate API, it's almost all exclusively about that use case. You have a Drupal 7 site or maybe a WordPress site and you need to migrate that site to Drupal 8, Drupal 9, Drupal 10 and I think that's what most people think of when they think of the Migrate API in Drupal, but it can be used for a lot more than that.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>If any of you remember back to Drupal 7, there was the feeds module and you had the feeds module and it could consume XML or maybe at that time it could consume JSON, I don't remember, but you could take this data that's outside Drupal and get it into Drupal and more often than not that's how I find myself using the Migrate API in Drupal 8 and Drupal 9. You can use it for the other type of migration in Drupal 7and it's great at that, but that's topics really covered ad nauseum and other places. So I'm not really going to be talking about that specifically, although some of the things I'm talking about here today you could use in those types of migrations. So our use case for this topic, for this session in a broad sense, is that we have data that's not in Drupal and we want to get that data into Drupal so we can use it and we want to reduce the time spent on content entry. Because of course you can just go in and manually enter all your content or you can use other ways to load in content with MySQL.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>But the goal for me is to minimize the time that we spend on the content entry and try and find the most efficient way possible to pull it in. In the past I've used the Migrate API to pull in data from various sources. We had GTFS data, which is transit data for different things like buses and trains to import schedules on regular intervals or import the station information for the trains. I've used it on projects where we had an external product information system or PIM and we needed to nightly fetch the updated product information that was being managed by a completely different department of this large company that we were working with. So we had to fetch the updated pricing, all this other product information and get it into Drupal so it could be utilized by the Drupal website. And another use case that I find is really common is when we're building the website, we need to load the site with content and instead of doing manual content entry, we can use the Migrate API to pre-load the site with data from CSV files or spreadsheets.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And there's a workflow that I'm going to show that will hopefully reduce some of the time spent on the manual content entry. And it also makes for a nice workflow where we don't have to be exchanging databases back and forth because the data is all saved in spreadsheets and can be managed in a central location or even managed by non-technical people who are working with our clients in other departments to get the content ready for the Drupal site without them having to know Drupal itself. So, so far I've been talking a lot about using the Migrate API to get this sort of data into Drupal. But why use the Migrate API if there's plenty of other sources we can use? There's the like default content module in Drupal that you can use to replace that CSV thing I was talking about where it'll load in default content into the website. We could manually import the content. What is the migrate module really offering us? And these are the reasons that I think make a compelling argument for using the Migrate API.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>The data we have in Drupal is usually interconnected. We have nodes referencing taxonomy, nodes referencing other nodes, nodes referencing files. The Migrate API in Drupal handles all this for us. It's already built in that it will handle all these references as long as we have consistent IDs that we can map between the different sources, it'll handle all this for us. We don't have to be tracking it ourselves. In addition, number two, usually when I'm working on data like this, it's not just one section of the site that needs data loaded in. It's a bunch of different types of content, and I like to keep things as consistent as possible and use one approach for many different solutions where possible to make it easy for me and other developers so that we know how there's this one way that we're doing it. We don't have to be juggling a lot of different approaches. Number three, The Migrate API comes with a built in system for tracking what content it's already migrated. There's a migrate map table where it tracks all this.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So it can keep track of which content's new in the source, which content needs to be updated. And that's just another thing that we don't have to code. There's also a built in system for deleting the content, for rolling back. Often when doing development, I'm constantly importing the content, seeing how it worked, did it have any errors, rollback, delete everything, go again. It handles all the content deletion for me, even when doing things like the file migrations, it'll delete the files that it imported, that it put into the sites, all files, the directory. So it does all that for us. And it's also a system that if you're not using it to run migrations from an API or an external source repeatedly, if it's something you're just using to load content in at the site launch, you can use it and then remove these modules, uninstall them. And I found that it's never caused issues. It's real clean to get rid of if you don't need it later. And the last one that I think is really cool is that I've often been able to use the Migrate map table.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>That's where it tracks the source ID and the destination ID, usually the destination ID being the node ID or taxonomy term ID. It provides this mapping table where if you have a source where like in, I'll show this in more detail later, but like if we have a CSV where we have a string ID of whatever terms we're importing, like we don't have to keep memorizing all these node IDs or taxonomy term IDs when it gets migrated in, we can use the lookup function in the database table to search for our source ID and get returned the Drupal node ID or term ID that could be dynamic and this can make our code a lot more workable when we're dealing with multiple environments where sometimes the node IDs don't match. And without a solution like this, we have to sometimes trade databases back and forth, and that can cause its own problems. But conversely, there's sometimes when migrations might not be the best fit for your solution. I have a joke here about how I named the session, Migration for all seasons.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So here I am giving you reasons why you might not want to use it. There's some irony in that. I'm not very good at making jokes, but there's points that I think we need to consider when choosing our approach. And one of the points is the level of effort, because writing these migrations can be a lot of effort. And if you don't have a very big data set or the data set's really simple, it can sometimes be a lot more effort to write the migration than to just manually create your five taxonomy terms and just call it a day. The other thing to consider is does the data have a fixed pattern? This is really important. If the data you're trying to import doesn't have a set structure and a reliable pattern to it, it can be more difficult to map your source data to the fields in Drupal because the migration is like this one to one mapping of your source data field to the destination data, your field in Drupal. So if it's something where it doesn't have that fixed pattern and you'd have to be making more of a decision each time about how it works, then you're probably going to have to end up doing it manually to be able to utilize that.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And also do you need to have real time data updates? I mentioned before, we did a migration for the GTFS data or the PIM data. This was something that needed to be updated, but it wasn't something that was constantly changing. The PIM data could be updated once a night. It's not that we had to update the price on the website from the PIM immediately, like two minutes after it, it got updated. It could just be updated once a day. If you have data that needs to be updated in real time as soon as possible, the migration may not be a good source because it needs to run on a fixed schedule and there's going to be some delay between when the data is updated in the source and when it's going to be reflected on the Drupal website. Some other potential pitfalls that I've encountered is WYSIWYG fields. This isn't so much a problem if you're going from the same WYSIWYG to the same WYSIWYG. It's like if you have in your old system, you're using one type of WYSIWIG, I'm blanking on the name of the one in Drupal 7 we used in CK editor, but the WYSIWYGs have their own codes that they put into the text to tell it how to work and that can, I have never been able to successfully migrate that programmatically from one system to the other.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>The other issue is that when you have your spreadsheets or CSVs for importing data, and I'll give an example of this later, if you have content that has really complex relationships, especially paragraphs where you have one type of paragraph for layout and then it's nested with text and image, it's very hard to manage that through CSVs and trying to manage that data through the spreadsheets or CSVs can often be more complicated than if you would just manually enter the content. And the other fall is you have to write code. So if you don't like to write code, if you're scared of code, then well, probably isn't going to be fun for you. So let's take a real quick look at some of the contrib modules. I think most of this is going to be familiar to the people here, since everybody, almost everybody said they'd done migrations before, but just to get everybody acquainted. Drupal core comes with the Migrate module. That's what we're using. It provides the base functionality for everything. There's also the Migrate plus contrib module.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>This is what allows us to export our migration config into YAML, which is how we can save it into GitHub and move it around easily. And it also provides some different source plugins that we can use for making migrations from XML and JSON. The core migrate module provides the database connection source, so that's where if you have your D7 site you'll try to migrate from. There's also migrate tools, which is another contrib module. This used to be more required because it provided the drush integration, but as of drush 10.1, a lot of the Migrate integration for drush is now part of drush core. So having said that, Migrate Tools does still provide a few additional options which are useful. It provides a sync flag when running the migrations and this is something that you can use to delete any content in Drupal that isn't still in the source depending on your use case that that might be something you want to do. We have a lot of cases where that's not what we want to do. We don't want it to delete all the old nodes that aren't in the API call anymore.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Migrate Tools also provides a migrate executable class which can be used to run migrations in code. Specifically, if you have a cron hook and you're trying to run migrations from the cron hook, I'll provide an example of that later. And then lastly there's the Migrate source CSV module that I use a lot. This provides a CSV source plugin which is going to be used a lot. Yeah.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>There's also a migrate debug module which is also very useful.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>MATTHEW MESSMER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Migrate debug. OK. I haven't used that, but as part of the demo I'm going to be showing how you can debug your migrations using X debug. And then again, some of these drush commands are probably familiar to most people here. But let's just take a look real quick so that when I run them as part of the demo, maybe we can remember what they are without me having to explain it every time. We have drush ms, which is the migrate status, this will list all your migrations and show how many items have already been imported. There's MIM, which is the migrate import. You provide the migration name or you can send it a group. I'll show the groups later as they show the migration YAML files. The useful flags here that I wanted to point out, not just group, but there's also limit, which is if you have a big migration that has like 5000 entries and you don't want to run all 5000 of them at once, you can pass a limit flag to limit it to however many you want to run. This with drush 10 works a little bit weird in that, let's say you already imported ten, if you send a limit of ten, it will count the ten you already imported as part of that ten and then won't import anything unless you pass the next one or the next is the update flag to update the already existing nodes.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>It didn't used to work this way. It used to then, if you had ten imported and you ran it with limit ten, it would import ten new ones. But now you have to then pass limit 20 so that it will count the ten that are already there and then import ten new ones. There's also the ID list flag. You can pass a specific source ID, Let's say there's one particular piece of content you're using for testing, but it's not the first one in the list. You don't normally get that as the first thing that would be migrated when you run the import, you can send the specific ID so that you're always testing with that particular ID. I found that's useful sometimes where this particular one had an error and I tried to fix the migration to fix that error. So then instead of running through the 200 items that are before it, I can just run the migration again for that particular one that had the error and see if it got fixed. The update flag I already mentioned that will update your nodes that have already been imported through the migration.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So if the source changed, you can update them. And there's the execute dependencies flag the soul with the migrations, you can set dependencies of other migrations. So you got your nodes that reference taxonomy. You can say the taxonomy migration is a dependency, so it imports the taxonomy first. And with this flag, instead of the migration giving you an error and saying your taxonomy hasn't been imported yet, it'll run the taxonomy migration as well as the other migration that you were trying to run. The next command is mr, this is the rollback, migrate rollback command. This will delete all the content that was previously imported through the previous command. This one you can also send the group flag so if you want to delete multiple migrations at once, you can do that. There's the mrs, which is the reset status. This one's useful when you had an error when importing and it gets stuck and it says it's still importing or it says it had a problem, you reset the status to idle and that'll let you run the migration again.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And then the m message flag, which is migrate message. You can run this to show the error message that was logged when your migration failed. So let's briefly talk about how we create migrations and the different components of them, and then we'll get into the demo. So this is an image that I got out of the drupal.org migration API documentation. It shows the extract transform load concept where we want to extract data and transform the data and load the data and how this translates into Drupal and the Migrate APIs. We have a source plugin, a process plugin and the destination plugin. So we extract the data from the source plugin. This is where our data is coming from. So the CSV file or the other database or the API, whatever we're pulling data from, that's the source and the source plug in controls how we connect to that source. Then we can transform data using process plugins. So this is the real meat of it. Often the data that's in the source doesn't match how Drupal wants its data.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Most notably, it's always like dates. Drupal database wants the date in a certain format and your API is giving you the date in a different format or the API has a value of zero for a certain field and this needs to get transposed into a different Drupal field value that you want to store or something even more wacky and complex. And I'll show you in some of the examples. And then we have our destination, which is something in Drupal because we're migrating into Drupal. So usually this is a node or a taxonomy, but there's other destination plugins. You can just save your data into a database table and the migration API will handle all the SQL commands that are needed to save the data. I find that I've never really needed to write a custom destination plugin. Maybe you need to do that if you're using a custom entity or something, but usually we're just using nodes. So just use the, we usually just use the default ones that come with the core migrate module. But we've written a lot of custom source and process plugins and we'll be getting into that.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>One thing that I want to note here is that even though this is the sort of ideal situation because this is Drupal, it doesn't really adhere to this. Often the easiest way to transform your data isn't to do it in the process plugins. You can use a thing I'll show with the prepare row method in the source plugin and in prepare row you can just like do whatever you want with your data and add whatever data and manipulate it. And it's way easier than writing process plugins. But we'll see how both approaches have their merits. But I think it's funny that they say it's this, but it doesn't really work like this. So just to cover this real quickly, we have the core migrate module and the migrate plus module provide a lot of different process plugins that are ready made for us and these can be really useful if we have pretty simple manipulations that we want to do. These are some of the ones that I find myself using frequently and there's links to the documentation where you can see there's a ton more.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>There's the default value, plug in, this allows you just in your YAML to say that this field has a default value. It's not going to think about it just when it runs the migration every time this field gets this value. So often you use this to set like every node that this migration creates, just assign it a specific user ID, just don't think about it, just give it this user ID. There's format date, as I mentioned before, that dates are often a stumbling block of the migrations because the Drupal fields expect the date to be in a certain format or the created date, the created time on the node expects it to be a Unix timestamp, so you need to convert it and format date allows you to specify your source time format like in the PHP format and then the destination format and it'll convert it for you. There's static map where you can have, you can in the YAML, define a map of source value to destination value. Like if zero should be converted to yes and or zero should be converted to no and one should be converted to yes.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>There's the migration lookup which you'll use all the time when you have migrations that are referencing other migrations. So you get your nodes, entity reference field connected to your taxonomy migration. And there's skip on empty, which is nice if you have a certain value in the migration source. If this value is empty, we want to skip this and not import it. And then migrate plus provides the skip on value which is similar to skip on empty except instead of it being empty, you can say if the source has this particular value in the field, we want to skip it and there's entity lookup which is similar to the migration lookup, but instead of mapping based on the source IDs, you can run like an entity query of certain values to look up what entity you want to reference. These can all be chained together so you can call one and then call another and call another. I find that once you start chaining many of them together, it can get kind of confusing what you're doing. And I like writing codes, so I often will be transforming really complex things like that in the prepare row, like I mentioned, or writing my own process plugin.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So that's what we're going to be getting into. So for the demo, we have four migrations that we're going to be looking at, although really it's three because the last two are kind of part of the same thing. I've put together this data that I'm migrating, it's a mock up of Chicago Parks, which was one of our clients, and this is a simplified version of part of what we did for them. All the data is going to be coming from an open data API that the city of Chicago kindly provides. Although for the purposes of this demo, I've saved the data into the repo so that it's not relying on calling the external API which might fail during the demo and then I'd look like an idiot. So we have the parks migration. This is going to pull data from a JSON API that I just talked about and create nodes for parks that are across Chicago. There's like 500 of them or something and it has a custom source plugin that I'll be showing. We have a staff migration which is mimicking, you have staff that work at the parks and these are nodes and they're coming from a CSV.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So let's say when we create the site, we want to show all the staff and the employees of the Chicago Parks District are preparing a CSV for us that contain the staff bios. And then we have a ratings migration and movies migration, because you may not know, but the Chicago parks in the summer, they'll have movies showing in the parks and you can go to the park and watch a movie on a projector. So these are events that are happening at the park. So we have these event nodes, the movie nodes, and the movies have a rating. So we want to show on the website what the rating is of the movie PG, PG 13, G. And these are a taxonomy that we're migrating in. So without further ado, let's try to show the demo and hope that this works. So we've got our Drupal 9 website with no content in it. And the first thing we're going to do is look at the park's migration. So each migration that you create will have one of these YAML files. I find the easiest way to do these is just to create them directly in the config directory and you don't enter the UUID and you create it by copying it from somewhere like the migrate plus has some examples.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And if you import and then export the config it'll automatically generate your UUID so you don't have to have it in the config install folder in your custom module because then you're tracking two versions of the YAML file, you have one in the module and you have one that's being exported and they get out of sync. So our YAML file here is basically broken down into four parts. We have our part up here at the top where we have our ID. This will be referenced throughout the migration and then it's broken down into three other parts. We have source and process and destination. So that maps up with the thing I was showing before where we have our three types of plugins. And for this migration, our plugin is the park source. This is a custom source plugin that I created that's extending the URL source plugin that's part of migrate plus, this is what allows us to pull the source data from the URL.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Could you zoom in a little bit?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>MATTHEW MESSMER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Is that better? So the source data for the migration needs to be mapped. So we have a API call here where we can see all this different information that's returned about the parks and we don't need most of this is, there's just certain fields that we want to use. And so we need to tell the migration which ones we want to use. So we have our park number. This is the value in the API call and we tell it this is the source ID and this is what we're using here to say that this is the source ID of the migration. This will be what's saved in the migrate map table. We specify a bunch of other values from the API that we're using. And then these get mapped in the process section of the YAML file where we have our Drupal value on the left. And then on the right side of the YAML is the value that we declared up in the source section of the API data. So for more complex fields like the address field where it has different elements, we have the different selector for the address line one, the locality, just using that default value process plugin I mentioned.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And then the real magic thing that we're going to be looking at is here for the geo field. This is using the geo data source, but geo data isn't up here in our fields that are coming from the API. So where is geo data coming from? And this is coming from a separate API call that we are adding in the prepare row method of this custom source plugin that I created. So as I mentioned in Prepare row, we can add or manipulate the information, the source data that we're going to be migrating. And this is going to be pulling in from an additional API every park, it's going to make another API call to pull in this geo coded polygon data, the shape of the park on the map. And we need to do this because the initial API doesn't have this information. It has like two GP's coordinates, but that's just one point on the map and we want to show the bounds of the park on the map. And there was a separate API that we can call that has a query parameter to restrict the call to just one park. And so for every park we call this API to get the big long JSON of all the different polygon coordinates.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And this will dynamically call using the park ID, which is being, we get the source property, the source ID sets, that park number, the unique identifier in the API of that particular park. It's not going to be our node ID in Drupal, but it's mapped to that node ID so we know which park is associated with that node ID. And it calls the API and pulls in that data and processes it and sets the source property of geodata with our polygon data. So we can run this. And I didn't update Lando because I thought if I update Lando and it doesn't work, then the demo is going to break. So just leave well enough alone. And we have 581 parks here and we are migrating them in and it goes pretty fast because it's running all the calls locally on the machine. And now if we go back to our site and we refresh this, we should see a bunch of different nodes that got created. We have all our parks. Yeah. And if we go to this view that I set up beforehand, we will see our map with a ton of parks on it. These are all the coordinates that we pulled in from that API.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>It got saved into the node in Drupal and through the magic of the view handler that comes with the geo whatever geolocation module, it makes this map. So that's magic trick number one, calling a subsequent API call for every single row to get additional information loaded in that isn't part of the initial API call we're using for the migration. So the second trick is in our staff migration. And that trick is that we have a CSV migration that's going to create these nodes and it's going to not just create the node, but it's also going to create a media entity and the file entity that's referenced by the media entity, all part of one CSV source file. So it has to be three separate migrations because each entity that's being created has to be its own migration. But we have one CSV file which will then create the three different nodes and they'll all reference each other. The node references the media entity, the media entity references the file entity, and it will also pull the files into the Drupal file system and put them in the correct directory.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So that migration, we have our three migrations here. We have our staff CSV migration. The source here is sources plug in CSV. This is the plugin that's provided by that migrate CSV contrib module that I mentioned. This isn't a custom plugin that's extending it's just the one that comes with the module. We have our path to our CSV file which is here in our custom module. There's a CSV file here for staff. And this is just a standard CSV file. It's kind of hard to see, but we got our stuff up here. One thing I'll mention, make sure you don't have space after your comma because then it won't work. Make sure there's no spaces after the commas. I ran into that when hand typing out the CSV. So we have all our different properties here. I think it, yeah, it'll show it here in a table. We have our ID and this is just something that you can, in this case, you can give it whatever you want. It can be a sequential number identifier, it just has to be something unique. And then there's two fields here, first name, Last name.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>These are concatenated using one of the ready made process plugins that concatenates the first name and the last name properties to create the title of the node. And then we have all our other mappings here. And down here we have our field image. We have the migration lookup plugin, so it's going to look up to the media migration, the staff CSV, media image migration, using that CSV ID as the value to look up which media entity to reference. And because we only have one image for each staff member, we can just reuse the same ID across all three migrations. So here for the media image, we're also using the CSV as the source. We are creating mapping our different media fields, including the target ID, which is then using the image, the file image migration to map it. And this is where we've set our process here for where we want to save the file to. So, we can run all of these together using the group because they're all part of the staff group and it'll run all three then it creates two items for each one.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>The group automatically orders them, right?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>MATTHEW MESSMER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>It seems to, because I've set the dependencies. I've set the dependency here. So each one is depending on the subsequent one and it seems to run them in the correct order. So we have our node and it's got me with my image. This image was saved originally in the module where it's referenced from, but then it gets moved into sites, default files, staff image, because that's where we told it to put it here. And if I do rollback, it'll delete not only the nodes but those images disappeared as well.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>I'm sorry. Remember the source images? I lost track there.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>MATTHEW MESSMER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>The source images for this demonstration were in a custom module. But those could be anywhere. You would just need to tell it where they're coming from. It's here, the source base path is in modules custom migration demo images. But that could be anything. It could even be a remote image. You would put the full URL there of where you're pulling the image from. It could be just anywhere that's accessible where you can have a path. And then here we're using the public files directory as our destination.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>If you were going to migrate images along with them, would you just write a separate migration (INAUDIBLE)?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>MATTHEW MESSMER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>They are separate migrations. It's just that the CSV source file is the same. So you could use this independently. And I could run, migrate, import and the ID of the migration here for just doing the images. And it'll just run that one. I'm running out of time here, but for the last trick is we have the JSON migration of the movies, and this has some special filtering of which things we're going to import based on some settings that can be set in a config form in Drupal. So first to quickly show the settings form, we have a just standard Drupal settings form which makes a page here where we can set information. So we're going to do this. And there's this promoted parks field, which is an entity reference lookup, whatever field, the entity autocomplete field. So this will autocomplete our parks that we migrated so we can specify a park that we want to set as the promoted park. And I set it to Wicker Park because I like Wicker Park. I used to live around there. And then in our movies migration, we have a thing here for promoting the node.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>The feature in Drupal core that you probably never use to promote items to the front page. This will set that and this is just for the purpose of this demo that you probably wouldn't want to actually do the promote thing, but I needed something to set dynamically. So this is the promoted thing and it's set to custom promoted. So where does custom promoted come from? And this comes from the prepare row. But in this case, we're not using a custom source, we're just using the URL plugin that comes from the module. So how do we do our prepare row if we don't have a custom source plugin? And you can do it here in this hook, hook migrate prepare row, which is in the process of being deprecated, but it hasn't been yet. So I'm using it. And we switch based on our migration ID, movies, JSON, that's the idea of our migration and it's going to set the promoted status based on park. So we want to get the park ID which is in the source that ID that we're using for mapping to the node ID and it's going to get our promoted park from that settings form that we just made.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>But the promoted park is going to be a node ID, So how do we remedy that, that we have a node ID, but the migration source, the API doesn't know what our node IDs are? So we can use that migrate map table that I was talking about. So we have a helper function here for map lookup. And it's going to do a DB select query on the migrate map table which we can see here. We have our source ID and our destination ID. The source idea is that park number and the destination IDs are node ID and it's going to get the source ID from, it's going to get the yeah, it's going to get our node ID based on the source ID because we're looking up the source in the migration and getting our node ID to see if it matches the node ID that we've saved in the form which was Wicker Park. So if we then run this with the movies JSON, it'll import. OK, great. It failed. I ran this this morning. And there we go. I don't know why I had to run it with the update flyer, but now we have our movies and the ones that are for Wicker Park will be shown here on the front page in the default view for the Drupal front page that it shows the promoted content.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And we can go to the park page itself, we see the movies in the sidebar in the view that I made. So these are the movies for Wicker Park. If we go look at a different movie, this is in this park that I'm not going to try and pronounce, and it's got one movie for Avengers: Infinity War, and this one didn't get promoted to the front page because it's not associated with the correct park. For this simple example, you wouldn't really need to do this. You could just, like have your front page promoted parks just always be showing Wicker Park ones instead of relying on the promoted value. But maybe you can imagine how in a more complex situation where you have users who want to tweak what's being migrated dynamically without having to update the code of the migration, this could be useful. We've used it in more complex situations where the parks have events that are in, they call it like seasons, and some seasons they don't want to have automatically published on the site so they can enter the name of the season and then the nodes will get imported, but they'll be unpublished.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And this is something that they can manage on the site without having to do a code deploy. Because otherwise that's what you would have to do and you'd have to tweak the migration YAML to set it to Wicker Park using one of those other process plugins provided by the migrate core module or migrate plus. So I think we're about out of time for my demo. Is there anybody have some questions? No, it's all clear.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Have you done any implementations when you're using the CSV source plugin or kind of creating a dynamic form to where users import their own CSVs (INAUDIBLE)?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>MATTHEW MESSMER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>No, but you could do that. You'd have to create your own custom source plugin that's extending the CSV plugin and then have something here, you'd have to have something in your custom source plugin that would then be like in the prepare row fetching the location of that CSV and parsing through it.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Ian could actually do something similar (INAUDIBLE)</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>MATTHEW MESSMER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Why didn't he ask me about it?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>(INAUDIBLE)</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>MATTHEW MESSMER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>He should have been giving this presentation.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Is there any reporting tool (INAUDIBLE)</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>MATTHEW MESSMER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>So the question was, is there any tool that would give a pretty report of what's been migrated or such and not built into it? We have built things where when it migrates, it will send an email every night, which basically was just capturing this drush command output and then putting it in an email because that was all the prettiness that needed to be. But you would have to build something like that.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>That said like if obviously you're using drush to run the migrations but in the migration UI itself, I mean that's pretty nice looking and it gives you, you know, when I do migrations you'll have like, yeah, like a group for like nodes and it's nice because it does give you...</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>MATTHEW MESSMER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>I actually, I forgot that that even existed. There is a UI, there is a UI that I never use that does show it'll list your migrations. So it does exist, I just forgot about it. Because I never do it through the UI. Because it might be better now, but it used to be you could execute it, but this would always break. So I just got out of the habit of even checking that this exists. Since we're almost at the end, one thing I thought we would run out of time that I wanted to show was that here's the code for the the cron that I mentioned I would show that you can run your migrations through cron using cron. This will just run it every time you run cron. We always use the ultimate cron module to track the timings of when the cron jobs get run. If you're not using that, you would have to build some logic in here that's checking the timestamp on when it was last run. But this is going to load your migration. It's going to reset the status to idle just in case so that it won't break and it'll set here, if you want, you can set the update flag so that previously imported things will get imported again and their values updated.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And then here's where you would want to do something to send emails or send some sort of report. Well, if anybody wants to talk to me about migrations, I don't know where my slides are anymore, but I had a slide with my, I don't know, I had a slide with my email address on it I don't know. Here we go. So, yeah, please provide feedback and if you have any questions, feel free to contact me. Thank you.</span></span></span></span></span></span></p></div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-e1c37cf355fd372aecf61664bad8de42dd8ea2379f6ff97c9f8cae7333701f4b">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/6893">https://mid.camp/6893</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+  <section class="map-banner">
+      <div class="views-element-container block block-views block-views-blockevent-venue-block-1" id="block-hatter-views-block-event-venue-block-1">
+  
+    
+      <div><div class="container view view-event-venue view-id-event_venue view-display-id-block_1 js-view-dom-id-2dedd9ca74589209d4f0fdf6b1debf1a27da5bf525ec735b24c453868964daaf">
+  
+    
+      
+      <div class="view-content">
+          <div class="views-row">
+
+
+<div class="map-overlay">
+  <span class="map__label">Location</span>
+  <h2 class="map__title"><span class="field field--name-title field--type-string field--label-hidden">DePaul University - Lincoln Park Student Center</span>
+</h2>
+  
+            <div class="field field--name-field-address field--type-address field--label-hidden field__item"><p class="map__address" translate="no">
+          2250 N Sheffield Ave. <br>
+            Chicago, IL 60614<br>
+  </p>
+</div>
+      
+  <a href="../../about/venue.html" class="cta-link--yellow">Learn more  <span class="cta-arrow"></span></a>
+</div>
+<div id='map' class="map"></div>
+</div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-428ac904aecd781b4ee7af70d1b5f9a0dc8d2eecf7f04180ca8ee34405f5a4b6">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/evolving-web.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2023-04/evolvingweb%20(3).png" width="1517" height="371" alt="Evolving Web" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/debug-academy.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2023-02/Final%20Logo-in-color.png" width="1010" height="864" alt="Debug Academy logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/bounteous.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2023-01/BounteousIndigoSmall.png" width="403" height="67" alt="Bounteous logo" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#6900070f062904000d0a08041947061b0e"><span class="__cf_email__" data-cfemail="deb7b0b8b19eb3b7babdbfb3aef0b1acb9">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/6893","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"ajaxTrustedUrl":{"form_action_p_pvdeGsVG5zNF_XLGPTvYSKCf43t8qZYSwcfZl2uzM":true},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_U1jmi93nTJG2lPAKzexs4tMZWFR2YMMoIoiPckW421U.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJx1yksKgDAMRdENabskSfUZK2kjTfCzeyfiQHB04XBZlQUDVZLL82iRP9At5I4WWTSR9OsLhbakZ3cgzdpKfBogKKgeJjhlsWC043cqMCPGDa0vM_I"></script>
+<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.js"></script>
+<script src="../../sites/default/files/js/js_RAkHj2z9vY4q-6RsYuiXkqPbxgsRWrLsVQRz36mKiGA.js%3Fscope=footer&amp;delta=2&amp;language=en&amp;theme=hatter&amp;include=eJx1yksKgDAMRdENabskSfUZK2kjTfCzeyfiQHB04XBZlQUDVZLL82iRP9At5I4WWTSR9OsLhbakZ3cgzdpKfBogKKgeJjhlsWC043cqMCPGDa0vM_I"></script>
+
+  </body>
+</html>

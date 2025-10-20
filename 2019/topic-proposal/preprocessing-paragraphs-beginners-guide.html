@@ -1,0 +1,1705 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="Paragraphs is a powerful and popular contributed module for creating dynamic pages in Drupal 8. Preprocessing allows us easily to create and alter render arrays to generate tailored markup for any paragraphs type. In this session you will learn about:" />
+<link rel="canonical" href="preprocessing-paragraphs-beginners-guide.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Preprocessing Paragraphs: A Beginner&#039;s Guide | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Preprocessing Paragraphs: A Beginner&#039;s Guide | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_Qoyy92GHt9RyGOt8N3WS_9HRsJcJBywJ2IhXudzvST4.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJw9jFEKwzAMQy-ULkcqTqx2AaceUdbRnX6hpfsRTzyhbEIeMQkR8sVLsT9XkLKCd99ch_OGQa2KlS_CU3pHi6t5EpsyGXiwo16ne1H4jJqg81JgGhv48o1lx3TKMcGH8cxHdX0bfg1uOh4.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_QAC1R0aFoF1mIVQtLAaSE24B2iwnT2ZCa0cZDeZsPV0.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJw9jFEKwzAMQy-ULkcqTqx2AaceUdbRnX6hpfsRTzyhbEIeMQkR8sVLsT9XkLKCd99ch_OGQa2KlS_CU3pHi6t5EpsyGXiwo16ne1H4jJqg81JgGhv48o1lx3TKMcGH8cxHdX0bfg1uOh4.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJw9jFEKwzAMQy-ULkcqTqx2AaceUdbRnX6hpfsRTzyhbEIeMQkR8sVLsT9XkLKCd99ch_OGQa2KlS_CU3pHi6t5EpsyGXiwo16ne1H4jJqg81JgGhv48o1lx3TKMcGH8cxHdX0bfg1uOh4.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJw9jFEKwzAMQy-ULkcqTqx2AaceUdbRnX6hpfsRTzyhbEIeMQkR8sVLsT9XkLKCd99ch_OGQa2KlS_CU3pHi6t5EpsyGXiwo16ne1H4jJqg81JgGhv48o1lx3TKMcGH8cxHdX0bfg1uOh4.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="preprocessing-paragraphs-beginners-guide.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-hatter-midcamp2019navigation-menu" id="block-hatter-midcamp2019navigation" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-midcamp2019navigation-menu">Midcamp 2019 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" title="About MidCamp" data-drupal-link-system-path="node/191">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--venue">
+        <a href="../about/venue.html" data-drupal-link-system-path="node/192">Venue</a>
+            </li>
+          <li class="primary-nav__sublist-item item--travel">
+        <a href="../about/travel.html" title="Travel and Accommodations" data-drupal-link-system-path="node/188">Travel</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../about/lunch.html" title="Lunch options" data-drupal-link-system-path="node/189">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--volunteer">
+        <a href="../article/volunteer-help-midcamp.html" title="Volunteer!">Volunteer!</a>
+            </li>
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2019/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../../2020/news.html" data-drupal-link-system-path="2020/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--attendees">
+        <a href="../attendees.html" data-drupal-link-system-path="2019/attendees">Attendees</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" data-drupal-link-system-path="2019/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--spread-the-word">
+        <a href="../article/spread-word.html" data-drupal-link-system-path="node/371">Spread the Word</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" title="Sponsors" data-drupal-link-system-path="node/197">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--become-a-sponsor">
+        <a href="../sponsor-midcamp.html" title="Sponsor MidCamp" data-drupal-link-system-path="node/186">Become a Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../../jobs.html" title="Jobs" data-drupal-link-system-path="jobs">Jobs</a>
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" title="Schedule" data-drupal-link-system-path="node/190">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--all-sessions">
+        <a href="../sessions.html" data-drupal-link-system-path="2019/sessions">All Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--summits--training-wed">
+        <a href="../schedule/wednesday.html" title="Summits &amp; Training (Wednesday)" data-drupal-link-system-path="2019/schedule/wednesday">Summits &amp; Training (Wed)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-thu">
+        <a href="../schedule/thursday.html" title="Sessions (Thursday)" data-drupal-link-system-path="2019/schedule/thursday">Sessions (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-fri">
+        <a href="../schedule/friday.html" title="Sessions (Friday)" data-drupal-link-system-path="2019/schedule/friday">Sessions (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--contribution-sat-">
+        <a href="../contribution-day.html" title="Contribution Day" data-drupal-link-system-path="node/332">Contribution (Sat) </a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-terms-and-conditions">
+        <a href="../../speaker-terms-and-conditions.html" title="Speaker Terms and Conditions" data-drupal-link-system-path="node/21">Speaker Terms and Conditions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../../speaker-resources.html" title="Speaker Resources">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--topic-tracks">
+        <a href="../../topic-tracks.html" title="Topic Tracks" data-drupal-link-system-path="node/10">Topic Tracks</a>
+            </li>
+  </ul>
+
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2019.html" hreflang="en">MidCamp 2019</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Preprocessing Paragraphs: A Beginner&#039;s Guide</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="215" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2019-03-22T18:35:00Z" class="datetime">Friday, 1:35 pm CDT</time>
+ - <time datetime="2019-03-22T19:05:00Z" class="datetime">Friday, 2:05 pm CDT</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-81" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-name field--type-string field--label-hidden field__item">Room 314A</div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>Paragraphs is a powerful and popular contributed module for creating dynamic pages in Drupal 8. Preprocessing allows us easily to create and alter render arrays to generate tailored markup for any paragraphs type.</p>
+
+<p><strong>In this session you will learn about:</strong></p>
+
+<ul>
+	<li>Getting started with preprocessing paragraphs and structuring your preprocessing methods.</li>
+	<li>Creating custom render arrays and overriding twig templates.</li>
+	<li>Referencing nested entities and pulling data into paragraph twig templates.</li>
+	<li>How to debug your preprocessing and twig files using contributed modules or composer packages without running out of memory.</li>
+</ul>
+
+<p><br>
+You'll leave this session ready to preprocess paragraphs and have a plan of action to reference when debugging any issues. This session is perfect for site-builders or back/front-end devs that are new to preprocessing in Drupal 8 and Twig.</p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/zFCRedtbgbI?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-presenter-slides field--type-file field--label-above">
+    <div class="field__label">Presenter Slides</div>
+              <div class="field__item">
+<span class="file file--mime-application-pdf file--application-pdf"> <a href="../../sites/default/files/2019-03/Midcamp%202019%20-%20Preprocessing%20Paragraphs%20-%20updated.pdf" type="application/pdf">Midcamp 2019 - Preprocessing Paragraphs - updated.pdf</a></span>
+</div>
+          </div>
+
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Larry Walangitan</h4>
+
+      Senior Developer
+
+
+          @
+              <a href="https://chromatichq.com">Chromatic</a>
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p>I am a senior developer and technical PM at Chromatic, building and maintaining custom content management solutions using Drupal for enterprise clients. After hours you can walking my dog around town or trying out new recipes at home.</p>
+</div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2019-12/Screen%20Shot%202019-12-18%20at%203.47.53%20PM.png%3Fitok=nQGp67Xf" width="150" height="220" alt="Larry Walangitan profile picture" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Back-End</div>
+          <div class="field__item">Front-End</div>
+              </div>
+      </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p>welcome to pre-processing paragraphs a</p>
+
+<p>beginner's guide very excited to go</p>
+
+<p>through this let's get started</p>
+
+<p>a couple of things at the top the slides</p>
+
+<p>are posted on the mid camp session so if</p>
+
+<p>you want to download them and follow</p>
+
+<p>along there I'd recommend it also I have</p>
+
+<p>a github sample repo the things that</p>
+
+<p>we're going to be going through today</p>
+
+<p>it's a bit easier to see some of the</p>
+
+<p>text if you open it up on your text</p>
+
+<p>editor since some of the lines are</p>
+
+<p>really small in on the screen so I just</p>
+
+<p>heads-up those two things a little bit</p>
+
+<p>about me first though this is my dog</p>
+
+<p>buco that we just adopted recently my</p>
+
+<p>name is Larry of a long time</p>
+
+<p>I'm a senior developer at chromatic you</p>
+
+<p>can follow me at twitter chromatic just</p>
+
+<p>a little bit about them we are a fully</p>
+
+<p>distributed team now we work with drupal</p>
+
+<p>javascript a bunch of web tech doing</p>
+
+<p>some interesting things we have an</p>
+
+<p>awesome blog and the Twitter presence so</p>
+
+<p>check us out follow us along the game</p>
+
+<p>probably comment to leave this up just</p>
+
+<p>for a second it's a sample module that I</p>
+
+<p>have created where we kind of go through</p>
+
+<p>what we're going to be going through</p>
+
+<p>here today you'll be able to see the</p>
+
+<p>code in further context so it's get IL /</p>
+
+<p>f jf6</p>
+
+<p>y just gonna leave this up here for a</p>
+
+<p>sec</p>
+
+<p>a sensitive no yeah</p>
+
+<p>and while we're waiting and final thing</p>
+
+<p>I have some time left for questions at</p>
+
+<p>the end so if you just want a hold of</p>
+
+<p>your questions at the end and if we run</p>
+
+<p>out of time feel free to come up to me</p>
+
+<p>and talk to me and I'll be happy to talk</p>
+
+<p>through some of the things that we're</p>
+
+<p>going through today what's that supposed</p>
+
+<p>to be</p>
+
+<p>that's what I got you come on Rhonda</p>
+
+<p>I am sorry about this</p>
+
+<p>since she's pretty important it's</p>
+
+<p>supposed to go and look like this</p>
+
+<p>interesting yes it's like gonna have</p>
+
+<p>that calm get to io / f jf 6 wide this</p>
+
+<p>is like the short link that they created</p>
+
+<p>that I pasted which yeah if you search</p>
+
+<p>for me on github well anytime kinetic</p>
+
+<p>paragraphs is a repo there sorry about</p>
+
+<p>this</p>
+
+<p>whereas both the whole URL may be big</p>
+
+<p>good idea</p>
+
+<p>for the recording github.com / wala and</p>
+
+<p>gita n / chromatic underscore of</p>
+
+<p>paragraphs</p>
+
+<p>we we all said that's sorry about this</p>
+
+<p>technical difficulty good all right yeah</p>
+
+<p>so let's step back into the session a</p>
+
+<p>few learning outcomes this is what I</p>
+
+<p>hope everyone takes away from our</p>
+
+<p>session today first is that you'll be</p>
+
+<p>able to pre-process paragraphs and</p>
+
+<p>structure your RP processing methods</p>
+
+<p>will be going through some custom</p>
+
+<p>renderer arrays and how we override the</p>
+
+<p>tweak templates we're gonna talk briefly</p>
+
+<p>about reference nested entities so inode</p>
+
+<p>references or taxonomy references how do</p>
+
+<p>we pull that data into our template for</p>
+
+<p>paragraphs and finally debugging our</p>
+
+<p>pre-processing in our tweet files</p>
+
+<p>without running out of memory or in</p>
+
+<p>calculating the white screen of death</p>
+
+<p>first a few prereqs so all I ask and</p>
+
+<p>hope that you're just familiar with</p>
+
+<p>Jubilees that can mean like you just</p>
+
+<p>have opened it installed it have an idea</p>
+
+<p>what it is</p>
+
+<p>twig the templating language and tweak</p>
+
+<p>files that power the mark-up for Drupal</p>
+
+<p><br>
+familiarity with PHP and also the</p>
+
+<p>paragraphs module as well so let's do a</p>
+
+<p>really quick overview of what the</p>
+
+<p>paragraphs module is essentially when</p>
+
+<p>you install it you are given this entity</p>
+
+<p>with configurable fields the</p>
+
+<p>configurable just like nodes you can</p>
+
+<p>create fields on them they have</p>
+
+<p>different types so you can have multiple</p>
+
+<p>different types of paragraphs just like</p>
+
+<p>you can have multiple different types of</p>
+
+<p>nodes and they all have specific view</p>
+
+<p>modes that you can create to customize</p>
+
+<p>your layout now with pre-processing</p>
+
+<p>we're going to be talking about a full</p>
+
+<p>customization and we're not going to be</p>
+
+<p>using view modes at all so this is an</p>
+
+<p>example like what a paragraph could look</p>
+
+<p>like in your Drupal admin there's</p>
+
+<p>several paragraphs here first we have a</p>
+
+<p>text paragraph at the top with a handful</p>
+
+<p>of fields below it is a quote paragraph</p>
+
+<p>and then below that is a slideshow so</p>
+
+<p>you can structure in your fields however</p>
+
+<p>you want them and when they output to</p>
+
+<p>the page this is a visual representation</p>
+
+<p>of what those paragraphs would look like</p>
+
+<p>so on the right is your your web page as</p>
+
+<p>viewable in their client</p>
+
+<p>and on the left is the paragraphs that</p>
+
+<p>can pose that webpage that you can</p>
+
+<p>configure you can move them around we're</p>
+
+<p>going to be talking about styling and</p>
+
+<p>pre-processing so that we have full</p>
+
+<p>control over how these are represented</p>
+
+<p>on the webpage so pre-processing when we</p>
+
+<p>boil it down it's essentially just data</p>
+
+<p>transformation so we get our field data</p>
+
+<p>and we want to do something with it</p>
+
+<p>also we are separating our concerns so</p>
+
+<p>the logic that we have all lives outside</p>
+
+<p>of the template now twig is super</p>
+
+<p>powerful and there's a lot of things</p>
+
+<p>that we can do within twig to transform</p>
+
+<p>the data or filter it or do multiple</p>
+
+<p>things we're going to be doing all of</p>
+
+<p>this within our preprocessor instead of</p>
+
+<p>twig and finally customization this is</p>
+
+<p>the custom markup that we're going to be</p>
+
+<p>writing and we're outputting as render</p>
+
+<p>arrays now render arrays are what twig</p>
+
+<p>consumes and presents on the webpage so</p>
+
+<p>first we have a few things to get</p>
+
+<p>started we would need to download and</p>
+
+<p>install a paragraphs module configure a</p>
+
+<p>paragraph just like you couldn't figure</p>
+
+<p>any sort of note or entity and then</p>
+
+<p>finally create a custom module I'm sorry</p>
+
+<p>about the sample repo and this is all</p>
+
+<p>setup there and we're going to be</p>
+
+<p>talking about this pre-processing the</p>
+
+<p>recipe so I wanted to take some of the</p>
+
+<p>knowledge that I learned from a client</p>
+
+<p>and how we approached it and apply it to</p>
+
+<p>the talk so with each paragraph we're</p>
+
+<p>going to apply four steps first is in</p>
+
+<p>our hook theme in our custom module we</p>
+
+<p>define the paragraph type second we're</p>
+
+<p>going to be handling all of our</p>
+
+<p>pre-processing inside of a class third</p>
+
+<p>inside of that class each paragraph type</p>
+
+<p>is going to have a corresponding method</p>
+
+<p>where we actually do the transformations</p>
+
+<p>and and the full pre-processing</p>
+
+<p>and then finally we're linking it up</p>
+
+<p>back to our tweak template with a</p>
+
+<p>corresponding paragraph template</p>
+
+<p>now we're going to be going through each</p>
+
+<p>one of these in details so let's start</p>
+
+<p>with the first one hooking our setup</p>
+
+<p>there are three main array keys that we</p>
+
+<p>need to be aware of in order to get</p>
+
+<p>things rolling so that our paragraphs</p>
+
+<p>pre-process as expected and the first is</p>
+
+<p>bass book second is the variables that</p>
+
+<p>we want to create and finally the path</p>
+
+<p>where our template lives so inside a</p>
+
+<p>book theme this is what it would look</p>
+
+<p>like for a paragraph that we defined as</p>
+
+<p>food first we have a Facebook we're</p>
+
+<p>sending in a paragraph we have a few</p>
+
+<p>variables that we're defining and</p>
+
+<p>finally our path now let's dive even</p>
+
+<p>deeper and kind of go through each one</p>
+
+<p>of these piece by piece and the first</p>
+
+<p>one is bass look so bass books these are</p>
+
+<p>defined in another modules hook theme so</p>
+
+<p>like node has a bass hook taxonomy terms</p>
+
+<p>have a bass book with the paragraphs</p>
+
+<p>module we have to make sure we define</p>
+
+<p>the bass book as paragraph so that it</p>
+
+<p>knows to override and extend the</p>
+
+<p>paragraph bass hook with the custom</p>
+
+<p>modules that we are sorry and so with</p>
+
+<p>the custom variables that we are</p>
+
+<p>creating in our custom module so let's</p>
+
+<p>take a look at those variables now</p>
+
+<p>variables this is just an array of</p>
+
+<p>custom variables and their default value</p>
+
+<p>so we're defining here header with a</p>
+
+<p>default value of null and text with a</p>
+
+<p>default value of null and finally our</p>
+
+<p>path this is where our paragraphs custom</p>
+
+<p>template lives now dollar sign path this</p>
+
+<p>variable it's a it's in hook theme so</p>
+
+<p>all that we're doing here is just</p>
+
+<p>concatenating from our modules root</p>
+
+<p>directory so all the templates live in</p>
+
+<p>chromatic underscore paragraphs slash</p>
+
+<p>templates slash paragraph this is just</p>
+
+<p>for organizational sake</p>
+
+<p>now next in the story of how do we</p>
+
+<p>process is the bulk of it handled by our</p>
+
+<p>preprocessor class so in the sample repo</p>
+
+<p>and then our custom module we have</p>
+
+<p>source / paragraph preprocessor dot PHP</p>
+
+<p>this is just setting up a class to</p>
+
+<p>handle all of the sort of programming</p>
+
+<p>and functionality that we want to have</p>
+
+<p>within our preprocessor now within this</p>
+
+<p>we are going to be defining custom</p>
+
+<p>methods which are just functions that</p>
+
+<p>are available to us that we're going to</p>
+
+<p>be creating to do the actual</p>
+
+<p>pre-processing so we're setting up a</p>
+
+<p>preprocessor class here and inside of it</p>
+
+<p>we have a process method defined it as</p>
+
+<p>pre processed food we're gonna see what</p>
+
+<p>this looks like in the actual module in</p>
+
+<p>a second but we're just going to talk</p>
+
+<p>through what this actually does so its</p>
+
+<p>most basic date level all we're doing is</p>
+
+<p>retrieving the data from our paragraph</p>
+
+<p>that we set up in the config and install</p>
+
+<p>and then we're going to be returning</p>
+
+<p>specific variables that we defined</p>
+
+<p>earlier header and text that are</p>
+
+<p>referenced in the render array that we</p>
+
+<p>defined earlier in the hook theme so</p>
+
+<p>further down on our module we have our</p>
+
+<p>class and right below that is our custom</p>
+
+<p>pre process foo method now I'm defining</p>
+
+<p>here at the top content because cuffin</p>
+
+<p>is essentially what we're going to be</p>
+
+<p>looking for for our fields there's a lot</p>
+
+<p>of data in variables that's available to</p>
+
+<p>us this kind of just narrows it down so</p>
+
+<p>that we can essentially follow the same</p>
+
+<p>recipe of content and passing the field</p>
+
+<p>machine name and getting the field</p>
+
+<p>values this way so here we're defining</p>
+
+<p>our variables its header and text like</p>
+
+<p>we're in our hook theme and below that</p>
+
+<p>in comments is what it would look like</p>
+
+<p>when we out put it in our twig template</p>
+
+<p>so let's take a look at that twig</p>
+
+<p>template here we have paragraph - - food</p>
+
+<p>HTML that twig and all it's doing is</p>
+
+<p>just we have our own customizations we</p>
+
+<p>have a div we have our header and we</p>
+
+<p>have our text so we're pulling in that</p>
+
+<p>data that we had in our</p>
+
+<p>processor and we have specific variables</p>
+
+<p>that we can go through and assign in</p>
+
+<p>here so we have full control over over</p>
+
+<p>how we want our template files to look</p>
+
+<p>and kind of variables that are inside of</p>
+
+<p>it in the sample repo there's some more</p>
+
+<p>comments at the top about what's defined</p>
+
+<p>and that sort of thing if you want to</p>
+
+<p>step through it so this kind of is like</p>
+
+<p>the steps of going through and what we</p>
+
+<p>look like to pre-process from our hook</p>
+
+<p>theme to our class to our methods to</p>
+
+<p>then finally our template but there's a</p>
+
+<p>bit of optimization so you can imagine</p>
+
+<p>when you're creating your site you have</p>
+
+<p>a site with you know dozens of different</p>
+
+<p>types of paragraphs we want to avoid</p>
+
+<p>having to do a bunch of copy and paste</p>
+
+<p>since it's like is this same process for</p>
+
+<p>each paragraph is what we're following</p>
+
+<p>with our pre-processing recipe so we're</p>
+
+<p>gonna help optimize that by creating our</p>
+
+<p>first service so in the services ie</p>
+
+<p>animal we're just going to do two things</p>
+
+<p>create our service chromatic paragraphs</p>
+
+<p>paragraphs pre-process and we're going</p>
+
+<p>to call the class that we've been</p>
+
+<p>working with in this presentation today</p>
+
+<p>we're just gonna call paragraph</p>
+
+<p>pre-process which allows us to have</p>
+
+<p>access to the methods that exist on that</p>
+
+<p>class now it looks like this inside of</p>
+
+<p>the text editor we just have services or</p>
+
+<p>chromatic paragraphs and then defining</p>
+
+<p>our class so then now that we have all</p>
+
+<p>of this like how does it finally link up</p>
+
+<p>in our module in our module file we need</p>
+
+<p>to make sure that we call template</p>
+
+<p>pre-process paragraph the type the name</p>
+
+<p>of our paragraph this is the machine</p>
+
+<p>name underscore - slash prove in this</p>
+
+<p>case so this might look different than</p>
+
+<p>what you might be familiar with with</p>
+
+<p>some custom modules like why are we</p>
+
+<p>doing like chromatic paragraphs</p>
+
+<p>underscore pre-process paragraph that</p>
+
+<p>sort of naming convention it's because</p>
+
+<p>we're calling template because template</p>
+
+<p>is a very specific word that will</p>
+
+<p>prepare the variables for our paragraph</p>
+
+<p>template so this was frustration when I</p>
+
+<p>was working through this the first time</p>
+
+<p>when I was trying to pre-process in</p>
+
+<p>paragraphs like why was this not working</p>
+
+<p>it's not super clearly defined in the</p>
+
+<p>documentation in the API but it's</p>
+
+<p>something that's critical that we need</p>
+
+<p>to remember when we're trying to pare</p>
+
+<p>pre-process our paragraphs and this is</p>
+
+<p>going to be this is what it looks like</p>
+
+<p>in the text editor so at the top I've</p>
+
+<p>done a few things first I've defined a</p>
+
+<p>constant so this is something that will</p>
+
+<p>be available to us throughout without</p>
+
+<p>having to like copy and paste is just a</p>
+
+<p>preference of mine in our template</p>
+
+<p>pre-processed paragraph through we are</p>
+
+<p>calling our custom service and it's</p>
+
+<p>going to prepare our variables and</p>
+
+<p>return them with our method that exists</p>
+
+<p>on the class so diving a bit deeper</p>
+
+<p>we're going to talk really quickly about</p>
+
+<p>nested entities so when you have a field</p>
+
+<p>that is calling another entity so you</p>
+
+<p>have a paragraph field that calls a</p>
+
+<p>different kind of node you want to get</p>
+
+<p>field values on that how do we do that</p>
+
+<p>it's two steps first you just load that</p>
+
+<p>entity and then you return the values</p>
+
+<p>now this slide is going to be a bit</p>
+
+<p>small just because of how wide</p>
+
+<p>everything is so it just adds up I'll</p>
+
+<p>define it pretty so at the top we're</p>
+
+<p>just checking to see with that our field</p>
+
+<p>has a value so we have a field another</p>
+
+<p>node is our machine name we're just</p>
+
+<p>checking to make sure that we have a</p>
+
+<p>node reference in there before we do</p>
+
+<p>anything and then stepping down if that</p>
+
+<p>field exists we're going to return the</p>
+
+<p>field header value for the entity</p>
+
+<p>reference and below that in comments is</p>
+
+<p>what our twig what it would look like</p>
+
+<p>output it into a template</p>
+
+<p>so putting it all together let's kind of</p>
+
+<p>go through the steps again so each one</p>
+
+<p>of these we have a paragraph type you</p>
+
+<p>make sure it's defined in the hook theme</p>
+
+<p>and the second one is very important but</p>
+
+<p>we only necessarily just need to do it</p>
+
+<p>once since we're working with paragraphs</p>
+
+<p>is just defining a class that all the</p>
+
+<p>methods live in and each method</p>
+
+<p>essentially is a function and then step</p>
+
+<p>three for each paragraph type we make</p>
+
+<p>sure each one has a corresponding method</p>
+
+<p>we do the actual pre-processing and step</p>
+
+<p>four the result of our hard work each</p>
+
+<p>paragraph type has a tweak template as</p>
+
+<p>an outcome so a quick use case like what</p>
+
+<p>is the ideal use case for pre-processing</p>
+
+<p>paragraphs and I come across the first</p>
+
+<p>one is component libraries now this</p>
+
+<p>component library for now-familiar is a</p>
+
+<p>front-end developer will create like</p>
+
+<p>HTML markup and CSS that matches to what</p>
+
+<p>you want to develop in your CMS and it's</p>
+
+<p>fully defined for you and so with</p>
+
+<p>pre-processing you can just match the</p>
+
+<p>markup and like plugging your values</p>
+
+<p>where you need them to be so for example</p>
+
+<p>here we have a block quote and where</p>
+
+<p>there are certain components in each</p>
+
+<p>block posts we have a citation a source</p>
+
+<p>and attribution now we can define these</p>
+
+<p>fields in a paragraph and with our P</p>
+
+<p>processing define specific variables to</p>
+
+<p>represent each field and just kind of</p>
+
+<p>plug and play with the twig template</p>
+
+<p>into the citation for the block quote</p>
+
+<p>into where the P tag is like that's</p>
+
+<p>where the content would live and then</p>
+
+<p>the by Neil Stevenson would be like</p>
+
+<p>where the attribution field would live</p>
+
+<p>as well now with a component library</p>
+
+<p>like the CSS and JavaScript is usually</p>
+
+<p>all prepared so you can kind of just</p>
+
+<p>like you copy and paste like you mimic</p>
+
+<p>that and you pulling your values that's</p>
+
+<p>what we're trying to do here another</p>
+
+<p>example is an audio paragraph so that we</p>
+
+<p>can have a link to the source where the</p>
+
+<p>audio source lives</p>
+
+<p>we'll have a label for for this and then</p>
+
+<p>also a description so there's a lot of</p>
+
+<p>power in paragraphs because you can</p>
+
+<p>essentially like see your site as</p>
+
+<p>components if you're working with a</p>
+
+<p>front-end developer they can create</p>
+
+<p>these components and you can like</p>
+
+<p>translate them to your twig templates do</p>
+
+<p>your pre-processing set up your</p>
+
+<p>configuration for your paragraph fields</p>
+
+<p>and like plug in the values this helps</p>
+
+<p>us a lot with velocity in terms of you</p>
+
+<p>know just creating things and this is</p>
+
+<p>like my own personal experience with</p>
+
+<p>clients in the past of how we've gone</p>
+
+<p>through the process of them creating</p>
+
+<p>components I translate them into Drupal</p>
+
+<p>into paragraphs they come up with new</p>
+
+<p>components we do the same process again</p>
+
+<p>and again so when it all goes wrong when</p>
+
+<p>things like you follow this process the</p>
+
+<p>things still aren't linking up we debug</p>
+
+<p>so - debugging tools that I want to give</p>
+
+<p>a shout out to the first one is a module</p>
+
+<p>Twigg VAR dumper now this is for</p>
+
+<p>debugging on the front-end so if you</p>
+
+<p>have a twig template and you want to see</p>
+
+<p>what's inside of a variable you can use</p>
+
+<p>twig bar jumper to call call a debugging</p>
+
+<p>function to see what exists in there and</p>
+
+<p>then by default we have a symphony</p>
+
+<p>component var dump earth which plea</p>
+
+<p>bargain for uses this is a back end</p>
+
+<p>debugging so when you're pre-processing</p>
+
+<p>file you you'll be able to call this to</p>
+
+<p>like see that before it gets to the</p>
+
+<p>front end and the template and finally</p>
+
+<p>when you're running out of memory this</p>
+
+<p>is a trick from Morton that I've used a</p>
+
+<p>ton of times this will return all</p>
+
+<p>available values within a template</p>
+
+<p>within the context so you can see like</p>
+
+<p>all of the different keys and variables</p>
+
+<p>that you have available to you inside of</p>
+
+<p>a template and from there do further</p>
+
+<p>debugging so this is it if you're trying</p>
+
+<p>to call those other debugging functions</p>
+
+<p>they don't work this usually where it's</p>
+
+<p>almost on your side of time so we have a</p>
+
+<p>few minutes for some question and</p>
+
+<p>answers but real quick tomorrow I'll get</p>
+
+<p>involved there's a contribution day</p>
+
+<p>senator you don't have to know how to</p>
+
+<p>code in a June highlight from canopy is</p>
+
+<p>going to be doing the training at the</p>
+
+<p>end I'm going to have</p>
+
+<p>my session review here I'll go through</p>
+
+<p>and reload my slides to make sure that</p>
+
+<p>the github that link references the</p>
+
+<p>right page there so get that debug but</p>
+
+<p>yeah that's pre-processing paragraphs</p>
+
+<p>you have some time for questions so</p>
+
+<p>thank you very much yes yes so the</p>
+
+<p>question is what were the benefits of</p>
+
+<p>the two modules so var dumper both that</p>
+
+<p>all of these debugging things are</p>
+
+<p>available to us in Drupal these kind of</p>
+
+<p>extract it so there's an easier way</p>
+
+<p>bargain burner makes it easier to debug</p>
+
+<p>in the front-end in your tweak templates</p>
+
+<p>specifically and var dumper is a</p>
+
+<p>symphony component I found it more</p>
+
+<p>reliable than using Kent or the devel</p>
+
+<p>module and it's available to us as well</p>
+
+<p>so those are two heads up you don't need</p>
+
+<p>to really do much to get it far number</p>
+
+<p>up and running with I believe it's</p>
+
+<p>automatically included now so you should</p>
+
+<p>be able to access it there's a link to</p>
+
+<p>like the documentation on the slide of</p>
+
+<p>how do you do that yes so in this case</p>
+
+<p>this is all done within a module and on</p>
+
+<p>most sites where you're doing the bean</p>
+
+<p>with components that are not really</p>
+
+<p>redistributed well beyond that site how</p>
+
+<p>would you change this if you were doing</p>
+
+<p>it in the theme instead of module</p>
+
+<p>yeah that's a excellent question so the</p>
+
+<p>questions we covered today doing this in</p>
+
+<p>a module how would we do this within a</p>
+
+<p>theme essentially this the same steps</p>
+
+<p>would exist what we're doing with</p>
+
+<p>creating a class and creating methods</p>
+
+<p>within that class would all exist within</p>
+
+<p>your hook theme if you want or you can</p>
+
+<p>create a class in a similar sort of</p>
+
+<p>structure now this is kind of</p>
+
+<p>opinionated in the way that I've done it</p>
+
+<p>based off of client experience we</p>
+
+<p>created it in the module instead of a</p>
+
+<p>theme because there are multiple sites</p>
+
+<p>in separate themes but wanting to use</p>
+
+<p>the same components so if you're in a</p>
+
+<p>theme you'd have the same hook theme you</p>
+
+<p>you know defy you you can cut out some</p>
+
+<p>of the things like the services and you</p>
+
+<p>could just call those template</p>
+
+<p>underscore tree process functions and</p>
+
+<p>inside of there you can do your</p>
+
+<p>pre-processing without having like look</p>
+
+<p>to an external class yeah yeah yeah sure</p>
+
+<p>what's what value does the service</p>
+
+<p>provide like why why make the class in</p>
+
+<p>the first place so another good part oh</p>
+
+<p>sorry</p>
+
+<p>so why make the class in the first place</p>
+
+<p>what does the service component from</p>
+
+<p>providing this this is like also this</p>
+
+<p>whole presentation is like contains with</p>
+
+<p>my own programming opinions and I just</p>
+
+<p>like having things separated out so that</p>
+
+<p>in the module file unit calling separate</p>
+
+<p>classes that are doing different things</p>
+
+<p>so everything within the paragraph</p>
+
+<p>preprocessor and this was you know</p>
+
+<p>working with different people across the</p>
+
+<p>team it was like a paradigm so that</p>
+
+<p>everyone knew that if you're doing any</p>
+
+<p>sort of pre-processing it exists in that</p>
+
+<p>class if we're doing anything external</p>
+
+<p>to it it exists somewhere else and it's</p>
+
+<p>defined differently so it was kind of</p>
+
+<p>just to make sure that you know dents</p>
+
+<p>that were being on-boarded or people</p>
+
+<p>that are inherent in the site know</p>
+
+<p>exactly where to look for pre-processing</p>
+
+<p>instead of having it all with him like</p>
+
+<p>the dot module file or creating a large</p>
+
+<p>module file map because it could exist</p>
+
+<p>there but it's just like making it a bit</p>
+
+<p>easier to find later on</p>
+
+<p>any other questions thoughts</p>
+
+<p>cool night um yeah follow me come talk</p>
+
+<p>to me afterwards</p>
+
+<p>was there a question to this hot temper</p>
+
+<p>what is the service</p>
+
+<p>Oh</p>
+
+<p>so what does the service do essentially</p>
+
+<p>allows us to be able to call that class</p>
+
+<p>anywhere so you have it easily</p>
+
+<p>accessible to us</p>
+
+<p>thank you yeah oh yeah so if anyone has</p>
+
+<p>any questions or some things were like a</p>
+
+<p>bit over your head we can you know step</p>
+
+<p>through some of these things I know that</p>
+
+<p>classes methods be processing it's a lot</p>
+
+<p>especially if you're new into Drupal or</p>
+
+<p>PHP so feel free to reach out to me</p>
+
+<p>follow me in you know</p>
+
+<p>just find me and we can chat after it</p>
+
+<p>but yeah that's my time thanks so much</p>
+
+<p>[Applause]</p>
+
+<p>Captions made possible by ClarityPartners.com. Chicago area Drupal consultants</p>
+
+<p><a href="../sponsor/clarity-partners.html"><img src="../../sites/default/files/2020-02/CFDFAA23-5C59-4C07-9C66-CAFFE0CF3854.png" style="max-width:300px;"></a></p>
+</div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-d9f78d8edfc272f93cd6bee33f9279a93e7ae8bfc3b3659b5508d5db159a8c18">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/215">https://mid.camp/215</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-059c624427c5ff5c86953c52d5b878762b0a5f32652f28fd2af3fcc0ca719315">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/elevated-third.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-11/elevated-third-logo_0.png" width="220" height="220" alt="elevated third logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/pantheon.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-11/pantheon-logo-color@2x.png" width="960" height="354" alt="Pantheon" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/acquia.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2019-03/Acquia_no_tagline.png" width="450" height="94" alt="Acquia" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#abc2c5cdc4ebc6c2cfc8cac6db85c4d9cc"><span class="__cf_email__" data-cfemail="10797e767f507d797473717d603e7f6277">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/215","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_llBcjrkrgAu2wT1DR7VGL_iP6geJyiTnF_8O5ZD57VI.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJxLz89Pz0mNT8xLzKksyUwu1k9HE9DJSCwpSS3ST8_JT0rM0c0qBgAByBPW"></script>
+
+  </body>
+</html>

@@ -1,0 +1,923 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="That afternoon, we’ll be writing our first tests for Olivero. Matt will once again be mentoring. We’ll be concentrating on writing the Nightwatch install script and an initial test. When the Nightwatch test suite executes a test, it runs an installation script to set up the test Drupal site. We’ll need to write a script that enables Olivero and sets up some content. Once we have the install script created, we will test the Olivero menu collapse when a user begins scrolling on the page." />
+<link rel="canonical" href="drupal-core-testing-nightwatch-writing-tests.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Drupal Core Testing With Nightwatch: Writing Tests | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Drupal Core Testing With Nightwatch: Writing Tests | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_Qoyy92GHt9RyGOt8N3WS_9HRsJcJBywJ2IhXudzvST4.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJw1jFEOgzAMQy9U1iOhtDGsUkqmugOx068C8WM961nOJuQZkxAh31xBygo-fXMdzhsGtSpWfghv6R0truZJbMpk4MmOeh_tReEzaoLOS4FpbODHN5Yd0yXHBAfjla_q-jX8AXwTNZQ.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_mK2of_t7UFymkfbTHeA-kHdMPWzqc3DZQCYtX-tC0BA.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJw1jFEOgzAMQy9U1iOhtDGsUkqmugOx068C8WM961nOJuQZkxAh31xBygo-fXMdzhsGtSpWfghv6R0truZJbMpk4MmOeh_tReEzaoLOS4FpbODHN5Yd0yXHBAfjla_q-jX8AXwTNZQ.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJw1jFEOgzAMQy9U1iOhtDGsUkqmugOx068C8WM961nOJuQZkxAh31xBygo-fXMdzhsGtSpWfghv6R0truZJbMpk4MmOeh_tReEzaoLOS4FpbODHN5Yd0yXHBAfjla_q-jX8AXwTNZQ.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJw1jFEOgzAMQy9U1iOhtDGsUkqmugOx068C8WM961nOJuQZkxAh31xBygo-fXMdzhsGtSpWfghv6R0truZJbMpk4MmOeh_tReEzaoLOS4FpbODHN5Yd0yXHBAfjla_q-jX8AXwTNZQ.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="drupal-core-testing-nightwatch-writing-tests.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-midcamp2021navigation-2-menu" id="block-midcamp2021navigation-2" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-midcamp2021navigation-2-menu">Midcamp 2021 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2021/news">News</a>
+            </li>
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" data-drupal-link-system-path="node/6708">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--faq">
+        <a href="../faq.html" data-drupal-link-system-path="node/6724">FAQ</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" data-drupal-link-system-path="2021/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../../speaker-resources.html">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--accessibility--tools">
+        <a href="../accessibility.html" data-drupal-link-system-path="node/6792">Accessibility &amp; Tools</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" data-drupal-link-system-path="node/6710">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--get-started-with-drupal-wed">
+        <a href="../get-started-drupal.html" data-drupal-link-system-path="node/6717">Get Started With Drupal (Wed)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--meet-the-drupal-community-thurs">
+        <a href="../meet-drupal-community.html" title="Meet the Drupal Community (Thursday)" data-drupal-link-system-path="node/6718">Meet the Drupal Community (Thurs)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--share-your-knowledge-fri">
+        <a href="../share-your-knowledge.html" data-drupal-link-system-path="node/6723">Share Your Knowledge (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--give-back-to-drupal-sat">
+        <a href="../contribution-day.html" data-drupal-link-system-path="node/6712">Give Back to Drupal (Sat)</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" data-drupal-link-system-path="node/6711">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--sponsor">
+        <a href="../sponsor-midcamp.html" data-drupal-link-system-path="node/6709">Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../../jobs.html" data-drupal-link-system-path="jobs">Jobs</a>
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2021.html" hreflang="en">MidCamp 2021</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Drupal Core Testing With Nightwatch: Writing Tests</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="6799" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2021-03-25T18:01:00Z" class="datetime">Thursday, 1:01 pm CDT</time>
+ - <time datetime="2021-03-25T20:00:00Z" class="datetime">Thursday, 3:00 pm CDT</time>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>That afternoon, we’ll be writing our first tests for Olivero. Matt will once again be mentoring. We’ll be concentrating on writing the Nightwatch&nbsp;<em>install script</em><em>&nbsp;</em>and an initial test<em>.</em>&nbsp;When the Nightwatch test suite executes a test, it runs an installation script to set up the test Drupal site. We’ll need to write a script that enables Olivero and sets up some content. Once we have the install script created, we will test the Olivero menu collapse when a user begins scrolling on the page.</p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/HFIpMwSs3y4?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Matt Glaman</h4>
+
+      Principal Software Engineer
+
+
+          @
+              <a href="https://www.acquia.com/">Acquia</a>
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p>Matt Glaman is an experienced software engineer and a prominent member of the Drupal community. With over a decade of experience in web development, he has gained a wealth of knowledge and expertise in the field. He is the author of several books, including "Drupal 8 Development Cookbook" and "Drupal 10 Development Cookbook," which provide a comprehensive guide to building and customizing Drupal sites.</p>
+
+<p>As an active member of the Drupal community, Matt is dedicated to sharing his knowledge and expertise with others. He regularly contributes to Drupal projects and is passionate about helping others develop their skills and become more proficient in Drupal development.</p></div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2019-12/3LRfmYzD_400x400.jpg%3Fitok=w2Gli5PW" width="220" height="220" alt="avatar" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p><span><span>SPEAKER:<br>
+And get back to it. So alright, so where we left off is earlier in the day, we got the Nightwatch test running or close to running. Or found out that, hey ChromeDriver can be a pain to set up because it needs to have matching chrome versions. But we walked through setting it up locally, with PHPUnit built-in Server, SQLite and ChromeDriver. Also via DDEV and through Lando, which there's all the configurations in this source project, which I'm going to repaste into the chat in case anybody lost it. So, that was the first part of it. Now, let's get to the fun part where we understand like what is happening. So, if I scroll up in my history, there should be some tests. So, it ran the tests. And that's neat in all, but like what's actually happening? How do we write our own test? So, we dove through this a little bit before, but I'll bring it through again. Inside the core directory, there is, I'm gonna open this ahead of time. There's the test directory, inside of its Drupal. And then we have the Nightwatch directory.</span></span></p>
+
+<p><span><span>There's a handful of things in here, tests are, whoa! My screen went weird. This test directory are the PHP unit tests for Drupal core that don't belong to any modules. So, we want to look inside Nightwatch. Actually, that's the unit test directory. So, we wanna look at Nightwatch. And inside of Nightwatch, we have the assertions commands, pages in the test directory along with Global's and nightwatch.conf.js This configuration file is what, you know, just like PHP unit has phpunit.xml Nightwatch has this file. So, all those environment variables that we were configuring. This is where they're read in. So, the search directory, by default, it looks in the current directory, you know, ignore directories. Here we go the source output folder, the commands path, so commands path looks for any Nightwatch folder that has a commands directory, or assertions, or pages. And these are all part of the nightwatch documentation. We will go through a bit of these with the Quicklink module. And also one of the tests modules I've added in here the test settings.</span></span></p>
+
+<p><span><span>This is where the Selenium port and selenium host. Now remember, Selenium was like a standalone project, but it became an open standard. And that is what is called WebDriver. So, if you see the terms of WebDriver and Selenium use interchangeably, it's because they are WebDriver is the, you know the open standard version of Selenium. And that's where all this gets parsed in in nightwatch reads. So, as it run up that there's the different commands, we'll open this commands file real quick. And one is the Drupal install command. And nightwatch uses this as a node process to run an execution, run the execution of a local command. So, that's what this...execute. There we go, execute synchronously, because you know, JavaScript is asynchronous by default. So, right here, it does this install command, which runs PHP scripts, test site install. That's what this test-site.php is. It's a mini-console application within Drupal. And it installs a base Drupal site for testing. So this test site application, there's a command in here.</span></span></p>
+
+<p><span><span>We'll pop to it real quick. We wanna look at this test site install. And actually, this test user login is used as well to log a user in. But the main thing here is a site install. sets up an installed version of the site for Nightwatch. Just like Drupal functional tests, do a full site install. So, it is Nightwatch. But instead of calling it directly, like in PHPUnit, it's called an outside script. So, this is great for what we would call like BlackBox testing where with PHP unit, the PHP units running inside of an instance of... I just kind of decided to pop in 'cause local development is relevant to some of my interests. I do a lot of things with Lando. So, let's figure it out hang out here., you know, there a lot to learn. Cool. Thanks for joining. So, this is the script that allows Nightwatch, the Nightwatch test runner to have a Drupal site installed to work against. And one of the... Oops! Close that too fast. The main item here is this option called the setup file. So, what happened, right, when you rushed install site, you get a bare minimum site, you don't get any actions installed, you have to click through and do so.</span></span></p>
+
+<p><span><span>And this command allows you to pass a setup file. So, think of it as like a bootstrap file. You know, like bootstrap has something to start up not bootstrap the theming library. So, when you install the site, it then executes this script to configure the site. And that's what this Drupal install command does is it will run that, it will pass the simple test user agent cookie and ensure that passes on. If you're not familiar with this, Drupal will read this cookie and this user agent to determine what is the current test database and know that it's working in a test environment. So, that is actually a really crucial piece. So, that's about the innards of that for the inside. Like if we looked at login, oh, there's actually where it does a full login. Here we go. If you do the command, Drupal login as admin, this is another command which runs a script on the server, which is like Drush ULI but as a test site script command, which allows you to log in as user ID one in your tests. And how these are called will pop into tests.</span></span></p>
+
+<p><span><span>So, let's just look at example tests. So, inside of the test, we have add tags. So, the tags documentation is like grouping your tests, when we were running tests, before we did dash dash tag core. Everything in here is dash core. If you had your own module, you would name it after your module just like your PHP unit tests. And the app before... No, I will actually go to a custom module because I added notes there. Sorry, let me go to this Nightwatch example. So, inside this repo, I actually did add a Nightwatch example test. And I put some notes in there. So let's just go here, since I already wrote a bunch of these notes. This module up on GitHub or anything? It's inside the repo. So, if you go to the project, and you go to web modules, and under modules, there's custom Nightwatch example, test source Nightwatch. This is all already in the repository. And just to reiterate, again, like this Drupal testing workshop that I'm creating inside of custom, I'm gonna be creating a plethora, I want to have at least 50 different modules showing different test cases and uses.</span></span></p>
+
+<p><span><span>So this will be like my education area for test writing. So, if you do want to be able to reference this later on, it is available. And a lot of this is also documented on Nightwatch JS but we're hitting that weird area where it's documentation of the test framework and documentation of well, it's Drupal using something. And we all know what that's like when you finally hit that point where it's integrated into Drupal. So, tags are how tests are grouped and make it easier to run this, you can run a test directly. Oop! Did not want to do that. As we did previously, you can run a test directly by calling it or via...via a tag. So, in here, we could do tag core, or for this example, we have workshop. So, if I did this command, I don't have everything running, maybe I do, but if I ran that it would run my test here. Let's see. So, it should run by integ workshop, it will find my contrib test. And it should execute "Hello world test!" Found it, it's gonna - I didn't turn it back into headless mode.</span></span></p>
+
+<p><span><span>So, again here, the test hello word test, test suite, it launched Chrome, you can see here that it's hitting the browser. And it did, oh, hitting the browser, hitting the webserver. And you can see here that it passed a deep strict equal test. When you write a Nightwatch test, you must add this before a statement. When working with the PHP unit tests, we're used to having the setup method predefined for us by all of the base classes. But we don't have class inheritance here. So, all tests must set up the before hook. And in this, they must call that Drupal install command that we looked at, you need to call a Drupal install. Otherwise, if you don't, you won't have a Drupal site, you'll just hit the install page, and the site will crash or the test will fail, not crash. And in here, you'll see that we're passing a custom site install test script. Now, we could reuse the one provided by core. But this sets up our module. So, I have it in here. So, the path matches its modules custom Nightwatch test site install.</span></span></p>
+
+<p><span><span>This path should always work regardless if you're in a Drupal development repository or in your....in your client work because it matches the root path of the doc root. And I can prove that via the Quicklink module when we pop over to that one. So in here, I have the test site install script. And it does one thing. All these scripts must implement tests set up interface. And this interface defines one thing set up. You know, it's really simple, but it's just that way, when you're implementing it, you know, like, "Oh, I must have a setup command." And all we do is install the module because there's no way to define that inside the test, not like in our PHP unit where you have protected modules. And it's an array of modules to install, you have to write the setup script, which is like a bootstrap that says, OK, Drupal was installed now do things. And anything that you need prepared for your test is done in here. And we'll look at the quick, I guess at the Quicklink module. We'll look at that afterwards because it does a little bit more.</span></span></p>
+
+<p><span><span>So, Drupal is installed, it calls that script which installs this Nightwatch example module, just like you have to call the before hook, you must also call the after hook to uninstalled Drupal. If we look at the commands on install, calls the script once more and drops the database, it runs the teardown command. And if you don't run this, well, then you're going to have a pre-existing site. And I cannot recall if the test site setup will fail. If there's an existing database, it should. I haven't tested that in a while. So, after that, we can finally start defining our tests. If you've worked with any JavaScript testing frameworks, like just Mocha, I think Chai is one I don't know they're all named, half of them are named after like a cafe...cafe drinks. But essentially, we're just adding it to the object. So, this is our test name. See here, running visit a test page, we have visit a test page. And it is this value is a function. This is the shorthand for anonymous function. If you're not used to IES six, this is equivalent to writing function browser Nightwatch will pass a browser instance to your call back to your closure.</span></span></p>
+
+<p><span><span>And that has all of the available commands attached. Commands are either provided by Nightwatch JS, or through modules or core itself. So, unfortunately, there isn't a great type hinting for this and automatic completion. So, if you're OK with having to go dig things up, you're gonna have to kind of remember them. Luckily, there aren't too many helpers. So, it's pretty easy to find them because they're all right here. So, what this does is b browser drupal relative URL, so let's look here, what this does is it just ensures that you're going to the test base URL is otherwise like what if you're running it in a subdirectory like drupal ci does so drupal ci has all tests under what is it localhost slash checkout it's something different now because this actually broke drupal commerce with having it be under slash checkout but let's say it's like localhost slash environment dot index PHP. So, this is their base whereas for you know all of us that are running it locally we don't have a subdirectory.</span></span></p>
+
+<p><span><span>But that command just allows sub-directory support. And then the browser object is documented on nightwatchjs.org under the API reference. So in any API reference, there's the assert, expect page object API commands. All of this can be gone through to find the core items that are available but we'll go to the very bottom or maybe we'll go to document handling sorry to execute. So, execute allows us to run Javascript in the browser that's being tested. So, in this case, we're not testing an element necessarily, we wanna test some data that's on the page. And what we have inside our module we implemented hook page attachments, if you're not familiar with this hook uses a hook to add libraries or drupal settings or HTML head elements that are across every single page or across conditional pages I guess if you have logic in here. But it's meant to be attached to the page, that specific elements. So, in here we're adding drupal settings called Nightwatch test with echo "Hello world!" So, if we were to visit our browser in the console we would do drupal settings we were able to type drupal settings dot Nightwatch test and drupal would return, the console would return an object that looks like this so we wrote a test to make sure that our hook page attachments is properly bubbling this drupal settings data into you know it's actually being attached.</span></span></p>
+
+<p><span><span>So, in this the execute command takes a function and this first function is executed in the browser. So, we're returning drupal settings which is the global object and then we want the Nightwatch property, the second command allows you to pass extra arguments to the function that's called, yes we do have a dog com joining us today. And then the third parameter is the important one because this is called with the result. So, once this function is called with these parameters the result is passed to a third closure callback. And so, maybe we can do an assert, so the browser object has the Node.js Assert library attached. So, anything that's available in the assert library is available here. I had to go look that up, so if you go to Assert the methods from the base Node.js Assert module are also available. So, anything that you use for testing in node.js is available here. I feel like maybe I was in PHP storm but this did actually autocomplete at one time. It might have been PhpStorm or WebStorm.</span></span></p>
+
+<p><span><span>But what we're doing here is we're doing a deep strict equal and this sounds weird but there is just equal is deprecated. So, they made everything be strict equal. But the problem was strict equals the objects aren't exactly the same, so we use deep strict equal which just is like it goes and make sure that all the properties match but it's not the same object. So, we're asserting that on our page we have this object called echo "Hello world!" So, with this test, we were able to verify that this javascript document was the javascript settings were on the page. Now, that's one of the benefits of Nightwatch is if we did this in PHPUnit it would be harder. When thinking about just testing elements on the page it's kind of like well what's the benefit of Nightwatch over functional tests. We even had this discussion in the D9 Theme Channel, when you're using functional tests you can just as easily assert content on the page and the dom. You can fire certain commands but it's harder to test some of these scenarios, some of this interaction when writing PHP to talk to WebDriver versus just running Javascript code, as you can technically execute Javascript code in the functional Javascript tests from PHP unit.</span></span></p>
+
+<p><span><span>But this is much more easy, it's easier. So, that's writing and running a Nightwatch test, before moving on to the next step I wanted to show the Quicklink module. So, this is a module written and maintained by our very own guests Mike Herschel, though we can't see him because we just see his dog staring at somewhere in his backyard. And he was having, Mike I don't quite remember what happened, but like something was wrong, something was broken and we needed to write a test. I was like, "Hey there's this new thing core called Nightwatch, let's try it out." So, we wrote an integration test and the Quicklink module for those who don't know integrates with this library called Quicklink, which is why it's called that. And it will read, it like watches links that are in your viewport and prefetch them, so that way when somebody clicks that link, it's like an instant load. So, it's like having a single page app without having a single-page app. So, we wrote an integration test to verify that the library is loaded.</span></span></p>
+
+<p><span><span>So, in our test, you know, we tied it as Quicklink and we wrote an install script or a setup script. The setup script does a little bit more than the previous example, it not only installs the module but it modifies the settings and turns on debug mode. Because when this module installs debug mode is turned off. But since we're in a test, we want to flip this on so we can have it be more verbose. So, that's the point of some of these setup scripts is not only to install various modules but allows you to modify certain parts of the state. After this we're gonna move into writing one for the Olivero theme, so you could use this to modify some of the Olivero settings versus having it be done manually in the test. So, our test then goes to a relative URL the login script and if you notice here, we have a custom assertion called Quicklink exists. And that's what this assertion folder is for is to hold custom assertions. You should notice that there's nothing here that tells drupal to find this file, when I looked at that night, when I opened up the Nightwatch configuration, it knows to find this pattern of test source Nightwatch assertions.</span></span></p>
+
+<p><span><span>And anything in there should be registered as a custom assertion, And we use this to verify that the Quicklink library is valid on the page. So, the assertion is not to write your own assertions are also documented in the API reference or actually, I think it's the developer guide for extending. And custom assertions like it walks through it pretty well, I remember this wasn't too hard. So, you create this expected which is true, like the assertion is that this should return true. This pass, it passes if the return value is strictly equal to true. The value, this is...you can call it a reducer or mutator, whatever you wanna call it just says, "Based on the value object, what's the actual value that's being called to the pass function?" And in this case, it's result dot value. Popping back to the other item quick, whenever you call the execute command, the result has is an object. The result has like the session ID, another property and then value the value property is the result of what was executed.</span></span></p>
+
+<p><span><span>So, we now have the command, we do this API execute and we check if the Quicklink if the global Quicklink object is a function. And that's a result. So, we return the results and the result that value should be true and it passes if that's true. So, I have a question for you. Yeah. So, I mean could you do something where you're running like the exact command and you just say the global Quicklink is a function and the exact command. But you put that in the actual test as opposed to a mass rotation or...? Yes, we could have done that. I realized that like I didn't know, I don't remember why I went this route when we wrote this. Because we could have easily just done this, what I wrote here is the simpler version that we could have had inside the Quicklink module, basically. So, this line of code inside of this example performs the same operation almost as this assertion. So, this core have been put into the main test instead of being his own standalone assertion. I probably also want to help create an example for people when writing this.</span></span></p>
+
+<p><span><span>Like I know after all, after we do the Olivero thing, there isn't a command for asserting Drupal settings. So, I'll probably be, I'll be opening a issue for core to add this as a command, as an assertion, like assert Drupal settings, pass a key, and it returns that key value. Because we don't have that. So, for example, if we want to modify this, so here's a tenant of test-driven development, right, we wrote the test, and it passed/ ow we're going to change things and make sure it still passes. So, I could change this to say, to change this to key, so we're gonna pass a parameter of key. And we'll pass the key value, the key parameter as an object, key reference, like, take this key out of the Drupal settings. And we'll pass it as an argument here is a string. So, what we've done here, I'll move some things around to make this easier to read, as we're telling it to execute this function and pass these parameters to it. So, now, we've made this function reusable. And this could be moved into its own assertion or helper method, like a command, get Drupal settings.</span></span></p>
+
+<p><span><span>So, if I run the test again, once I get I'm gonna make sure it runs endlessly, so it's a little bit faster and quieter. Copy, Paste. So, now, we put the key we want from the Drupal settings into an argument for the function that gets executed. And it should... And report this to Drupal have a command or assertion or some kind of helper for testing the data push to Drupal settings because there isn't one right now. So, it ran. So, it's still passed. That's great. And if I don't do this, I hope somebody else does or reminds me to make it a core issue for this. So, we have that. And these two examples kind of showed interacting with the JavaScript, like the state of the site. If we look here, so Claro has an autocomplete test. So, it goes in and it goes to add-in modules. It sets the value of the search for form API test. It waits for it to be visible. And this is where things were like, well, we can test this with functional tests, like this right here could be done without JavaScript for a lot of it.</span></span></p>
+
+<p><span><span>Actually. Sorry, not the whole typing part and waiting for it to be visible. So what this does here is it shows that the type to search works on admin modules. And then this whole wait for element to be visible gives it a second to weight. And make sure that it shows up, and then it clicks on the other. So this just sets up and turns on Claro as a default theme, which again, this could be a custom setup script. Like, it doesn't need to click through it, but it does test a few things. Did you say that the functional JavaScript tests can't wait for an element? No, they can, but it would not work. But this helps test... Basically, let me rephrase it. Everything you see here we can do in functional JavaScript tests. There's nothing in this section we do this all the time in Drupal Commerce tests, where it's like assert wait for you know, jQuery to finish wait for the thing to be visible inside of... No, functional webDriver, WebAssert. So, if we, sorry, let me, I'm gonna, no. JS WebAssert, there we go.</span></span></p>
+
+<p><span><span>So, for example in here, it's very similar to items we have in here where it's assertWeight on AJAX request. We're able to execute, we're the session right here is a Mink. Session Mink is the library. Mink Session that connects to the WebDriver instance ChromeDriver. And that the condition is x is JavaScript code. So we are able to execute JavaScript code via functional JavaScript as well. So everything that we read in this Claro autocomplete test can be done here. And a lot of times has been done, there are core tests for the entity reference autocomplete written in functional JavaScript. So for here, wait for element to be removed, it does a wait for. This is also executing a JavaScript command. Wait for element to be visible. So a lot of these things are possible with the functional JavaScript, where it becomes that and that's where it's like kind of like a hard line to draw. It's like, well, which should I use? And like I said, in the d9-theme, like, Brian Mike and I, we sat a few times.</span></span></p>
+
+<p><span><span>Like, well, this could be. It's like, well, I don't know, should it? And kind of back and forth, back and forth. But it really is useful when testing the state of your JavaScript. And like I said, you could do it with the PHP code, but it's just more natural and a little bit easier to do here. And that's why this was added, the Admin UI, is it, was it the Admin UI or the JavaScript Modernization Initiative? And they were both like one the same, really needed this. Cuz it made testing so much easier, and it's actually paying benefits now that we're working on the Decoupled Menus Initiative. And (CROSSTALK) Another thing from my perspective is just to think of a JavaScript developer, you know, having to go write their JavaScript in PHP to test their code. It could be much more natural for them to write something in Nightwatch, I think. Yes. So there is that. And that's when where you know, this weight for element to be visible is provided by Nightwatch.JS. If we went to API, wait for, maybe not, it should be.</span></span></p>
+
+<p><span><span>Let's see, let's search. So, yep. So that's that's given. And you know what? I bet under the hood, it's running the same kind of JavaScript code. So they're very similar, but it is just one like it feels a bit more natural to test JavaScript code with JavaScript than in PHP. You know, Java people do it all the time, though, right. They have Java code that runs Selenium and WebDriver and test JavaScripts. But we yeah, this makes it easier for others to contribute and to do more complex things, which we're about to do one of those complex things. We're going to write a patch for Olivero to test out a feature it has, which I don't have. Let's see, let's very quickly... Go to lb.cm/olivero, if you want. Whoa, what lb dot... Cm/olivero. You're a lifesaver. Not, almost, you almost are. Oh, there we go. I just had to make the screen bigger. So we're gonna write a test. And the Olivero has these awesome, this awesome menu. But wait, there's more. When you scroll, the menu collapses. And what we're gonna write a test for, we're gonna test that, right.</span></span></p>
+
+<p><span><span>We're gonna test that. When you scroll, that this collapses, and we're gonna test that when the browser window shrinks, we get the mobile menu. So we're gonna do some live coding here. I've only written two Nightwatch tests in my life, then the quick link one, a year and eight months ago. And then two nights ago, I wrote the Hello, World test. So, we'll see what happens. And this, like I said, this repo is not set up for core contribution. But luckily, I should be able to just copy and paste. I can copy and paste it into a branch for Drupal core. So, let's get to it. So, we're gonna create a new test called... Do they want all the tests inside this folder? Cuz this feels weird. Brian and Mike, do you know? I would say like, let's put it in for right now, and let him tell us now. Cuz it feels like more appropriate to actually put it in Olivero. It does test discovery for themes. Put it where Claro puts theirs for right now. Like we can change it later. Cuz Claro only puts has one test.</span></span></p>
+
+<p><span><span>Well, for now, we will put it here. (LAUGHTER) Because we're just doing an example and trying to teach. Instead of me going down the rabbit hole of like, well, let's bike shed the placement of this test. Let's just get to it. So, we'll call it oliveromenu test.js. So we do our module dot exports. You know, I wanna see, is there a? Yeah, but these are always bad. Sorry, apparently I have way too high of expectations and I expect the world to just be a perfect place all the time. So don't mind me. Alright, let's see, we'll see how well this works. And hopefully it helps autocomplete a few things. So, cuz I don't have this memorized by heart yet, so, let's, we'll do a side-by-side. Can everybody see this OK? Or do I need to enlarge it? Cuz I can enlarge it to you. I can see it, I have a pretty small screen. Alright. So do tags, we're gonna take it's core. But you know what? I like to have lots of tags because I don't wanna run off tour. I want to be able to run core and just the Olivero things.</span></span></p>
+
+<p><span><span>So, we've got our tags. Let's do a before, and we're gonna do browser. And we'll do browser.drupal install setup file. We're gonna create our setup file. Cuz I don't wanna do all this, this is just ick. i don't wanna click all that stuff. We're writing a test, should be fast. And we'll do, we'll copy this after. Alright, so the setup file we need to create. Let's look at this, this other test. So setup file we'll copy that line. Now, we can close. From here, we can close all that. I think we've got the scaffolding. So inside of core test Drupal test site, test Drupal test site, test site install script. So they have a test site multilingual install script, which pre-install copies over some translations. That's new, I didn't know that. Test site install, we're gonna copy that, we'll call it test site. Oh, you know what? Can you install themes from the command line decently even? Yeah, I guess. Yes. But they manually install it. And I guess I could do that. Well, in the PHP tests, they do something to install.</span></span></p>
+
+<p><span><span>Here let me try to dig it up. And since I'm not in PhpStorm,&nbsp;I have no idea what anything's called right now. So pardon me. So, I'm used to the Symphony plug-in, which auto-completes a bunch of stuff. So, I don't know Jack Dataly, theme manager. Is it theme manager that installs things? Alright, we'll find out. And I guess we can just do service, and we'll say assert theme installer instance of. I'll clean this up to be our code standards friendly. Actually, I'll just do it now. See change all occurrences to theme manager. So theme manager, whoa, two cursors. So theme manager install. No, it's not theme manager. There you go, that's beautiful. Thank you, saving the day. So theme installer. So it was theme installed. That's the one thing with core that kills me is we have thing underscore and thing period. No, I know like habits change, but I wish like we could like make aliases to some of those. So that way we know what's going on. So, we'll do an assert. The reason why I'm doing an assert here is so that way we get the autocompletion.</span></span></p>
+
+<p><span><span>Cuz right now, the IntelliSense, IntelliSense whatever they call their like their static analysis inside VS Code, has no idea what this means, like service returns mixed. So, by doing an inline assert, we're telling the interpreter. Now, the command line, the editor interpreter, like what it actually is. So we'll do theme installer. And now see we do install, and it gives us a list of things. Then we'll kind of copy it verbatim, and then we'll get the ConfigFactory. So we do Drupal ConfigFactory, get editable system dot theme. Oh, sorry that's just config. We'll just say config copy. The no, that's not it. Sorry, copy from Zoom, paste in the editor. Alright, so what this should do then for us is we'll have a test site setup script that gets the theme installer, installs Olivero, and sets it as the default theme. So, let's go find this file again in our sidebar. I'm going to copy the relative path and paste that here and drop the WebPrefix. Why is this? Alright. So let's run the test. So we're gonna say on scroll menu collapses to, what do you call that the mobile menu?</span></span></p>
+
+<p><span><span>We'll say mobile menu. Shit like, we just renamed it in an issue. Call it hamburger button or something, just mobile menu. And I'll change it later. We're gonna say. (CROSSTALK) Can you use a hamburger emoji? Hold on. Let's see if the... I'm tryna do the shortcut of control command spacebar. And now, it's gonna randomly pop up in about three minutes when I start typing. (LAUGHTER) And I can't get my touch bar, just shows zoom. And I can't open the thing. So, yeah, if you paste it (CROSSTALK) (LAUGHTER) Alright, I'm gonna throw it in here, there it is. Alright. Oh. (LAUGHTER) You know. (LAUGHS) Alright, there we go. So what we want to do is we're gonna do some assertions of. So we need to know what state we're working with. So, we have the site header, and it's site header fixable and fixable and JS fixed is what seems to be the trigger. Like, if I delete JS fixed, the menu gets, oh, it does go back. OK, so if I removed this fixable and JS fixable, we get the menu back. You want to do the JS fix, not the fixable.</span></span></p>
+
+<p><span><span>I know, but just oh, so if I removed, how can I? What are you tryna do right now, just like? I'm just tryna show that we could turn it off. I'm tryna analyze the state to know like what it means if it was fixed, which this is it. So we basically need to assert that when we scroll, JSfix is attached. Is there any way instead of that that we can assert that the button is visible? The button that appears right there. Right now, it goes to, I think it goes from like, yeah, visibility visible and then there's visibility hidden. So we need to assert that, it's like visibility visible right now. Yeah, we can. So let's get to finding. Let's look at the docs. I'm gonna try to like browse the NightWatch docs versus the test. Normally, I just go through all the tests and I poke around till I find what I need. But I know the way that I do things doesn't necessarily work best for everybody. So, let's learn how to browse the NightWatch docs, instead of poking around aimlessly in tons of files as I furiously scroll around.</span></span></p>
+
+<p><span><span>So, let's go to Developer Guide. No. Writing assertions, sure of finding. What was that? Somebody had a question? No, OK. We're gonna use existing, I click the wrong link. I wanna make sure I use all the things that they have before going on a tangent and using other items. So we'll use browserdot. I know we need to look up this part, it's the Drupal relative URL. So Drupal relative URL. We wanna go to the home page. And actually, isn't there some default content, Mike, that gets added to the home page? Yeah, there is. So we can test for that too. Let me bring that up for you really quick. I'll shoot you a tugboat link in a second here. I'll show you what that looks like. Well, while that goes, I'm going to realize that this doesn't have Sequel light. Oh, and here we go. We'll see who's faster, my computer or tugboat? My bet is tugboat. Does it be great to also assert that you know, we're on the home page, and we have Olivero data? Maybe there's a way we could do that here. So, if I go to Drupal settings, there is nothing.</span></span></p>
+
+<p><span><span>I'm gonna throw into the chat here. Without like the default state, without content with the standard profile, as soon as I can find my Window here. Somewhere, there it is. Open Chrome. And tugboat was faster than my computer. Alright, so we're gonna assert for this text. Actually, we'll search for this one because it's awesome (CROSSTALK) the Drupal community. Yep, the Olivero is dynamic right there, so that might change. That's like the site name. Oh, OK. So, yep. So we wanna do browser.assert. Oh, contains text. Hey, look at that, great. So the snippets do work. I take it back. I take back any presumed negativity. So let's look for what selector we would want to check. Let's check for block content. So we'll say the CSS selector is block content. There might be multiple block content or yeah, yeah, yeah. You're right. Because that's not the main one. I would use like the ID of the main content or whatever. And that's what you should do. So, if you're a person that's like, I don't like having IDs littered out throughout the code.</span></span></p>
+
+<p><span><span>Like, this is one reason they are kind of nice, because when you do testing like this, it's great to have it added. So let's turn off prettier for now. Can I? Oh, I don't know. We'll just deal with the error marks. Alright, so we wrote our setup file, and we've got a base test right now. Like, let's just run it to make sure that the hamburger test can get this content to be shown, which verifies that our setup script installed Olivero. So, we tagged it with Olivero, not just color. Cuz I don't wanna run all the other core tests. And we'll see if this runs. No problem. (BACKGROUND CONVERSATION) Alright. Never mind, Brian. (LAUGHTER) I would make the CSS selector something like Olivero content space h2 or if you wanna use just content, ID content add a space h2. So, it's not searching all the text on the page. I thought about that, but I don't know how specific we wanna be for the main content. But you're right, cuz main is literally main of everything. So we could do... That region content would be good and then or that you see that block Olivero content that would be a good one, right.</span></span></p>
+
+<p><span><span>Cuz that's a standard Drupal block ID. Where it says Olivero is that like, I'm trying to think of where that, that comes from the site name. It might be, let's look. Yeah, it says page title. So we'll just leave that. We're gonna go back to our test real quick though and type error Drupal relative URL is not a function. Well, it should be. So, let's look at our test, cuz that means I probably did something wrong. So example tests. So we've got before. So our test name is wrong, long. So this browser blah-blah-blah. Did I forget? Yep, that's why, thank you. And you know, I guess we could even be more generic. Like here it says assert body or contains text in the body. But I like this specificity being specific here. Specificity, I can't. I am horrible with words and talking. There are certain words that I just cannot say. And I always feel bad whenever I have to do names. Because my pronunciation is deplorable. So, in the future, if I ever have to say your name and I say it horribly, I'm sorry.</span></span></p>
+
+<p><span><span>Alright, so we've got it running, we should not get any errors now. And if it passes, oh, unmet dependencies. Oh, interesting. So it couldn't be located, but that's because the block module doesn't ex. Wait, unmet dependencies block. This is missing the block module. So just like Kernel tests, we have to enable 5,000 different dependencies. Is there a way you can just install the standard profile? Yep, there is. And I found that minimal is usually enough. (CROSSTALK) Cuz if we look at Drupal install, you'll see here that the install profile is NightWatch testing, which I had no idea that existed. And where our profiles? Profiles NightWatch testing. Minimal profile for running NightWatch tests includes the absolutely required modules only where testing adds page caching. I like having leaner tests, but will Olivero break if we don't have views and block enabled? No, it's not gonna break. And honestly, like that test should still work, like, with the minimal profile. So, we'll try minimal.</span></span></p>
+
+<p><span><span>Yeah, for the PHP unit functional tests, I've had to use minimal. It probably could be made more efficient, but. I'm gonna double check. I have a tugboat preview for minimal too. I'm just gonna make sure that doesn't... The reason why, just so everybody knows like why that broke is the configuration dependencies. So on install, it must be able to install blocks. And you can see here dependencies. Oh, wait, user account menu. It was the user menu? Well, so that's actually not gonna work on the minimal. That test is gonna fail on the minimal account, because that front page is generated via views, which is not installed. So we need standard, we're just gonna do standard. We're gonna avoid any fanciness. I'm tryna have a lean test, and we're just gonna do it. So that's interesting. It's probably because it's a BlockConfig. And even though, like this is one thing that it has a module dependency on system. But it also needs to technically have one on block, because BlockConfig entities are provided by the block module.</span></span></p>
+
+<p><span><span>Yeah, the block module provides BlockConfig entities, block content provides content blocks. So that's why that this failed. Is it explicitly said uninstalled these blocks must be installed? But the block module did not exist. Yeah. It might be worth moving those over to optional too. But then, well, we wouldn't be able to test the menu. Because the menu (CROSSTALK) via blocks. So we can use the standard install, hopefully, it doesn't make it take too much longer, you know. One fix would be to have... We would take the module installer. And cuz we would have it install block and views. Yes, yeah. I guess, the fix would just be to add the dependency in there. Or that, well, but themes can't have dependencies. Can they? Yeah, they can now. That's new. But I mean, like, the config would have a dependency, right. I'm not quite sure how that works. You would move it to optional. And once the dependency is available, that like help. Like, once the help module is installed, the optional dependencies will install.</span></span></p>
+
+<p><span><span>Which is a fun deep dive into the config system if everybody wants to do that later. But our tests, look at the hamburger. We have text, so great. The Olivero theme is installed. It's working. We're start working on the test more. I'm rerun it with the standard profile commented out, to see if the changes to the install script work. So, our next step is, we need to take the header, which we're going to work with the header ID. And believe, I wanna see if there's a way to get the specific element returned and do more scoped inspections, but maybe not. So, let's go to API reference, and I wanna go to assert, page object, API commands, element. So, that would let us get the element. Didn't wanna look at the example test. Page test page, what does this do? Oh, that just gets (UNKNOWN). So, we'll go, and now we gonna do browser. assert. element. We're going to assert that the... We were gonna look at the button. We want to assert this button. Which has (UNKNOWN), so let's look at this API reference.</span></span></p>
+
+<p><span><span>So, finding elements, we wanna do assert. So, assert attribute contains, contains text. Contains visible, here we go. Is there an invisible? Oh not, that's right. Everything has an optional not (UNKNOWN). So, we want to do browser. assert. not visible. Expect, that doesn't look right. I'm not trusting any of the assertions that this is giving me. So, we want it to be button. that, correct? Button there and now we're gonna see how to do a scroll. So ,let's do scroll, element id clear, element id value. Is there a way to just like, element interaction, unlike actions you'll immediately scroll elements into view, and check that it is intractable? Oh, there we go, move to element. Move the mouse by an offset of the specified elements. So, I guess what will have to do.</span></span></p>
+
+<p><span><span>STUDENT:<br>
+And just gotta be like a scroll down or something, right? 'Cause you don't wanna move the mouse. I'm looking on stack overflow right now. And it says there is no native method to do scrolling. What you should do is get location in view for whatever anchor is gonna pop you down. Yeah sure. That's what this is gonna be. So, what we wanna do, is we're gonna just move down to the body text. So ,we'll just... This should be a contest, so browser that move to elements. But then I guess, what is this? Exocet. Well, it looks like Top Gear off, we want move element moves the mouse, get location in view, I think scrolls the browser that can get location in via. Automatically wait for the element to be present, Elmas not found an error is Using Selector .So, this looks like it's still requires an element, you could use the footer. Oh yeah. So just go all the way down to the footer. Perfect. You should just be able to use like. That safer should be fine. We're going to get even more specific than that.</span></span></p>
+
+<p><span><span>(LAUGHTER) Why? So, alright, so we're going to do a certain not visible, then move to Element and assert that it is visible. And we should also... this is the menu inside of here. Yeah, and the menu currently, like it's kind of translated, but it's not removed from the DOM, so I don't really know how visible would react. So, I should probably Google that. So, what does that is visible Night watch? Alright, Invesco, how do you duplicate a line of code option down? Because it's not command d. Now, as you just highlighted, I usually like shift command left and it highlights the whole thing. And then I control seeing (INAUDIBLE). Well, we're gonna find out if it's not visible because it shouldn't be, but it is technically. And that would feel that I need to put an I.D. on that, so let's just run the tests. Let's see where we get. That did feel and here so I'm going to go back and say it has to be the shift out down, that's it. Thank you. I was doing(INAUDIBLE). There it is. So, in this and the install script test, just installing the blocking views module didn't seem to do it, so we just installed the standard profile.</span></span></p>
+
+<p><span><span>Isn't it an intelligent key biding? Should just use intelligent. Alright, so we're gonna rerun this again, and the goal should be we know we got the text to be present. We're going to assert the button is not visible. We're going to scroll down to the footer and make sure that the buttons visible and that the menu is not visible. And one thing I do want to do is be able to view some of this awesome goodness. So, we gonna comment about and run it again in a little bit. Now, all your tests should be highlighted in emojis all the time. That's the only way you communicate if you're gonna work in JavaScript. That's the only way you can talk is in hieroglyphics of emojis. All right, it's just such a bummer because it takes so long when we do the standard install, like I wonder know why this failed. So ,that's the type of thing we could if you leave like that whole like in sound, the blue block and views commented out in there. That's something we could work on. Well, we'll leave it. And that's something they can do.</span></span></p>
+
+<p><span><span>Not during this training. No such element, OK. Is not visible. So, I bet I know why. So ,I'm actually really glad this film. So, the button is not visible, expected, is not visible, but could not even be located. I think that makes sense because you're trying to raise. I'm not sure that button actually exists until it's scroll down. I don't think it's not visible. I don't even think it's there. Well, it exists in the HTML. So, you should be able to find it there. It's there. So, we're going to now this is why it's nice not to run things heedlessly. We gonna run it and let it launch and see if it hangs enough as it waited five seconds for it to be visible. Alright, so there we go. And if you're really fast. You can open this, but you need you can open the dev tools for the test browser, but you need to pop it out right away because otherwise it changes the viewport and that can screw up things if it kicks into like responsive design and things shift around. Was there a way to parse it?</span></span></p>
+
+<p><span><span>Yes, but not in it. You have to run like, you know, like pop, like sleep for thirty seconds. You'd have to write something like that, like you'd have to write your own set time out. but even then, that's not blocking. So, I don't remember. I found a way to do it. But since JavaScript is asynchronous, I can't remember what you have to do. Alright, so there's the power. Too slow, does it show up on a standard install without. it'll be the random error. It's not visible, what? I guess we'll just do not exist. So, the element not present, but that's just seems wrong because it is present. Let's see if we're able to hold on, so it should be writing reports and creating screenshots. Thank goodness. So ,every time we ran this, apparently it created tests and so.... it's, if you go up one right there, you had the mobile menu, like the screen shot or the screen with is too narrow. And that's a common bug. Everybody that's worked with Behat, I'm sure, has worked with that where it's like .I want to make sure my pretests that it widens the browser screen.</span></span></p>
+
+<p><span><span>So, if we do resize window. And we'll change it to one thousand by eight hundred and we'll make that a before. And it'll need to be wider than that may make it easier for I think like that goes away at like twelve hundred pixels or something like that. I was hoping you could like, resize your screen that way. No, Instead you just break JavaScript apparently and(LAUGHTER) you can set it so it changes to fourteen hundred. Alright. So, JavaScript is fun. You can set property and it doesn't reset. So ,we'll rerun it and now we have, so in the reports it is generating screenshots. And the Ximo output, which can be passed as a unit for your C.I. results, there's got to be a way to save the HTML too. So, that way we could see what's happening there. open it in the chrome. There we go. Thank you for finding the way to pause. Too bad there's not a way to make un pause it in viewing, which is one reason that. what we're like wait for user input. And that's one reason a lot of people have become fans of Cyprus, which Cyprus is a truly neat testing sweet.</span></span></p>
+
+<p><span><span>I think it's too much, but it gives you like it's a full like like electron app that runs chromium and web driver and like gives you like a visual test running system. It's great, but it's like so heavy. It's just so heavy. But it has a lot of like nice user feature. I didn't see it scroll. Because it didn't even find the button to be invisible. So, it can't even assert that the button is not visible because it can't find it. So, that's what we're going to set it to not present. But I just wanted to... So,we gonna change it to not. So, it's just weird because it should be. But you know what? Let's see something real quick that might be true. It set the visibility hidden at this point. And it also has no opacity zero. What's below? You see, it does get set to display none. But that that doesn't display flex, I'm so... But why isn't it? Has it opacity is zero somewhere in there, too, because we animate the opacity or maybe I know we animate the icon has the opacity zero. And let me see, why isn't it showing up?</span></span></p>
+
+<p><span><span>Go back to the parent item. Display. Check the box for display flex. Well, we just gonna try this, not present, that just feels incorrect, but that's what it's telling us. So, let's run the test again. Because it is weird when I run the query selector in the console, it finds it so it is present. We'll see. So much fun, just working with Dom Stone down some XPath. Not being able to find a button. I wish there should be a way to replicate scrolling down the page with JavaScript, that's not necessarily like a Nightwatch API function. There is. And that's ideally what would wanna be run. I'm assuming that's what it's doing in the background when we say scroll to this element. I still would like to just run JavaScript that says scroll. It's easy. It's just like window that scroll too. Move to element expects method expects for arguments given to. So, this worked element not present worked. I just didn't. And don't forget to change line 23 or no change my 22 to element present. Alright, or can we keep it visible?</span></span></p>
+
+<p><span><span>I think we can keep it visible because we want to make sure it's not only present but visible. Move to element. Well, that's a slighter X Y.OK. So, expect four or five. How can I expect four elements? The dark say Selector offset, why offset optional callback, that should be fine, but I just saw there's move to. Let's try this. Ship movement master. (INUDIBLE) offset specified the Web by the Web element idea or relative to the current mouse cursor if no element is specified. But the thing is, when you move the mouse, it doesn't scroll it. You're right, what does this say? Well, this says move the mouse as well. What about executing some JavaScript and just doing a window. scroll to. That's what we'll try. I just wanna try this move to real quick .X is up and down, right? No, X is left and right. So, Y is up. OK? I'm the person who gets Lefty Lucy, right?(LAUGHTER).Because you're spinning like it's always it's going left and right, like it doesn't like it's still going in both directions technically.I get very easily confused by my things.</span></span></p>
+
+<p><span><span>So, what would be the JavaScript I get? So, since this is now loaded, the java... Its window when the browser executes or whatever, but it's a window that scroll to. Type it out in here. So, that way I have it. Window that scroll to. There you go. And then x, y so zero and then say like 400. So, that's exactly what the should that move to should be doing. Because I'm assuming when it says the mouse because it doesn't actually ever click anything but it has to move. I think when it says the mouse that means like what's in the viewport. Now, I think it means the mouse. So, you can just JavaScript. We will shoot hopefully this doesn't, if not will do will execute the JavaScript, it's just when you do that, it's asynchronous. So, then our test weird. I'm afraid to move the mouse. So, yeah, you're right, that didn't. So ,still move to element, let's just try the.... When we execute the order, maybe we can do we'll try that .And we'll do Browser execute and I'll go to the API actual quick too.</span></span></p>
+
+<p><span><span>So, that way body ARGs and optional callback, so we know that scrolling 400 was enough. And brought us like Middle of the page, let's say it was 200. That's nice, a little bit of a scroll. So, copy that and once they execute. There so, again, for those who don't work with ESX JavaScript a lot, we just created a an anonymous function and since it only does one line, we're just saying return this value. So, it's a nice little one liner array But with the array at the end that you're passing in(INAUDIBLE) There's an empty arguments. So, I'm really excited because I'm pretty sure PHP were getting this and I am so excited for shorthand closure's, I mean, it's still kind of longhand, but it's a lot better than having to constantly type function or static function for my array maps and array filters. So, this ran and I was too busy paying attention to that. So, it looks like it didn't. Is still saying is not cannot be located. When you look at it in the browser at first loads an error page of some sort and then it loads.</span></span></p>
+
+<p><span><span>Because that happens to with PHP unit because my local(INAUDIBL)and it hits. So, on the first load, it doesn't know that it's the the the simple test user. So ,it actually is hitting the the default database. And then the second time around the simple test, the user agent string and kookiest set and it knows , I'm using this other database prefix. So ,that's one of that. If you were to watch the functional tests and the functional JavaScript test, it will do the same thing on your local if there's an error in your local area like your local site. So, let's try this execute to we're gonna pause. I'm gonna run this pause thing. Because we'll do you pause indefinitely. I'm just baffled. Alright, watch now that we called Browser execute scroll to it's going to work in that .So, let's see. Like your dog turned into three blue dots. No, maybe my phone died. Let me see him. He's still out there. I bet the battery died on my phone. So far, while we wait for this to go, are there any major questions?</span></span></p>
+
+<p><span><span>About Night watch or curiosities. For setting up these tests. I had a quick question, how did you get it to actually show up in Chrome again? So ,for that Of course, they came back. So, to do that, scroll down to the DOT EMV file. So, this is the big like. Asterisks like if you run this with Dev and Landow, you can't run it this way, like it will always be headless in those environments. But there are the, it's commented out. So, I chrome driver. So, in the chrome driver or the Web driver, chrome arguments, want to pass it, this disabled GPU headless and no sandbox and that hides it in the background. But if you're debugging locally, like on your machine, you can comment that out to receive the full browser experience. But that doesn't work on debt for. No, because it's inside of a container. So, that's one where you could. If you want to do it this way you have to run it locally. That's a the thing. If there's some other like neat tricky way there's not, I mean maybe there is, maybe somebody has one but.</span></span></p>
+
+<p><span><span>is that it? It doesn't exist. It's not there. What do you mean it's not there? I don't know. I typed in the same thing. Am I on that test site? Is that tugboat example on nine dot to that I had. And is my local on nine dot one?. And did you introduce a backwards compatibility change I mean Look it is now primary button Even the latest head man. So here's a good lesson for everybody. If you're going to write tests for Core.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+Make sure you're on latest development branch head. So, um, we</span></span></p>
+
+<p><span><span>STUDENT:<br>
+If there was already a test you would have caught that.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+Yep. Yep. This is already a test</span></span></p>
+
+<p><span><span>STUDENT:<br>
+That's a good point.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+Alright. So, cancel that. And we're going to get back to here. And we're going to change this to not visible again. I'm gonna copy that assertion right there. Or I guess I can paste it here. And I'm going to copy. Oh, man. So, we're gonna make a to do. And this is for 9.1.x and 9.2.x. It is, fix before patching.</span></span></p>
+
+<p><span><span>STUDENT:<br>
+And believe it or not, that's actually gonna change one more time.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+That’s not a problem</span></span></p>
+
+<p><span><span>STUDENT:<br>
+But whenever that patch gets committed, we'll fix the test too depending on whatever gets fixed, gets committed first.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+So, that fixed that problem. But it didn’t scroll. That is the other problem. But let's just at least try this. And let me run it. And I'll read the question. So, if you're on Lando, or DDev, and you remove the chrome driver AGS, environment variables. It will run in the browser, but it's going to yell at you that there's no display attached. So, by running it with, so let me.</span></span></p>
+
+<p><span><span>STUDENT:<br>
+So real quick, I wish I could like show this better, I want to make sure we I can see everything. So, if you were in Lando, and you remove this statement, so wouldn't try to run in a headless mode, it would complain that there is no display attached. I don't know who remembers having to run the XVFB command in Travis CI or whatever it's like, XVB99 and you emulated a display. So, unless you ran this command, it's just going to error out, like it will just not run because chrome or WebDriver. Probably I'm assuming the WebDriver part of it would say sorry, there's no display attached to your system, so it can't render. So, you have to run it in headless and I swear this thing… Expect it, is visible but God not visible because it didn't scroll. Come on. NightwatchJS scroll element into view. Which is gonna go. Alright, we'll just do, we'll do that and we're gonna pause it because no. Did this class change? I guess I could check if MIKE: I don't think it did but I would check it.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+I guess I could. I have the code right here so I could have checked that from the get go. Veril templates</span></span></p>
+
+<p><span><span>STUDENT:<br>
+This could be in the page</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+Page?</span></span></p>
+
+<p><span><span>STUDENT:<br>
+Under layout, in the new page. Say footer there it is.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+So that has not changed. So, let's run the test again. Alright, here we go.</span></span></p>
+
+<p><span><span>STUDENT:<br>
+Alright, work work.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+And I think this block of time goes until three so I really want to land this before then to be considerate of everybody's time. And I would love to just have it be. I just want it to work. I just want to walk out of here and we're like Woo! we wrote, we collectively wrote a test for the Olivero theme to make it help get it stabler for Drupal 9.2. Mike, when is the deadline for getting Olivero stable?</span></span></p>
+
+<p><span><span>STUDENT:<br>
+That is a great question. I just asked yesterday that to Larry Escro who’s a core committer and he says it is either May 17th or May 31st. So, we're going with May 17th`. We have a number of accessibility issues in front of us and the accessibility maintainers are super busy so it's hard to get them to review stuff but that and the testing are two main things that we got to do. There's a couple like technical (INAUDIBLE) stuff that we shouldn't have any problem doing.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+So, the month of March would be a great time to sprint on all these tests if we can get it running. It crashed out on me and didn't pause.</span></span></p>
+
+<p><span><span>STUDENT:<br>
+Another time it would be great to sprint on these tests is this Saturday.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+Oh yeah well yeah, this Saturday. Sorry we're getting ready for; I hope everybody now is armed with knowledge on ways to work with Nightwatch and would be comfortable for sprinting on Saturday. I don't remember if I said it or not, I plan on being there but I’m getting my first COVID vaccine on Friday. So, I didn't know I’d be eligible and all of a sudden, they are like hey you're eligible and I was like great. And I almost scheduled it for today without realizing, so I didn't but I picked Friday and I’m hoping that I don't get knocked out of commission because I would love to work on this on Saturday.</span></span></p>
+
+<p><span><span>STUDENT:<br>
+Cool, supposedly the first one isn't too bad but (INAUDIBLE)</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+Well from what I’ve heard is if you've had COVID, the first one is really bad and the second one…</span></span></p>
+
+<p><span><span>STUDENT:<br>
+Cause that's right because you had it.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+Yep, well I was assumed because it was in March of last year and they wouldn't test me because I wasn’t sick enough. So, I’m waiting to see I hope it's not too bad but what</span></span></p>
+
+<p><span><span>STUDENT:<br>
+It’s crashing, isn't it? Or did it just pass?</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+Well testing if is not visible. Wait it's like it won't even get to this get locate, it's crashed it's like it won't run that line of code. Oh, shoot! Because it's a callable, you have to run it OK that's why…</span></span></p>
+
+<p><span><span>STUDENT:<br>
+You have to pass in a function?</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+Yeah, that would do it.</span></span></p>
+
+<p><span><span>STUDENT:<br>
+And what does the function do?</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+It’s a callback</span></span></p>
+
+<p><span><span>STUDENT:<br>
+Oh, and then you need to throw, makes sense.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+So now…</span></span></p>
+
+<p><span><span>STUDENT:<br>
+So, let’s have a handle on the a-sync stuff.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+Yeah, so this asserts this pause. Cancel that log. It looks like it returns result. It's an object a status and the x and y. So, it's always good to read the docs because twice now I let that crash or it didn't even crash. It's just executed and had no callback so it assumed that the test was done, which is silly because there was stuff after it. But it's like after you call that it just considers it, I’m done. Determinant I don't know. There's always time to improve later right now we just want to prove that it works.</span></span></p>
+
+<p><span><span>STUDENT:<br>
+Yeah, get something going.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+Prove upfront improve later. So fun history Mike, how long has it been since the Olivero theme first came to fruition as a contrib project?</span></span></p>
+
+<p><span><span>STUDENT:<br>
+I actually hold on one second. I’ll tell you when I first like reach out to Larry cause I have that conversation right now when we were actually considering about considering doing it. It’s been over a year.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+It did scroll. Did it scroll? Cannot read property pause of undefined. Well, oh shoot! So that's one thing too. We don't want to use an anonymous function here…</span></span></p>
+
+<p><span><span>STUDENT:<br>
+OK</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+Because it lost all context</span></span></p>
+
+<p><span><span>STUDENT:<br>
+Yeah, makes sense. So, we first started thinking about working on it on May 13th 2019.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+Wow! So, like one year. Wait, wait no.</span></span></p>
+
+<p><span><span>STUDENT:<br>
+It's almost two years. In may it'll be two years since when we like started working on it you know. And that includes the design. We didn't start working on the design till like three or four months later and then there was a, I did that proof of concept which was just html and then at Florida Drupal camp 2019, which was like right as, it was like last camp before COVID. We did a sprint there and we actually got the theme kind of working and a little bit</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+Nice.</span></span></p>
+
+<p><span><span>STUDENT:<br>
+And then it's just and then we got to into core for 9.1. And now we're trying to get a stable for 9.2. It's way more work than I thought.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+Yeah, well, I will help write. Tests are my fun thing. Like, that's what I enjoy doing. If you give me a list of like, Matt, we need this tested.</span></span></p>
+
+<p><span><span>STUDENT:<br>
+I have some stuff. I'll maybe create like a little meta issue. I want to create some tests, because I want to learn how to do it. Cause honestly, I've never written tests before. So, I'm like, really excited to learn about this. I'm excited that I'm learning right now.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+And we've got a couple existing issues, too, that have, you know, some testing tasks for me. Alright.</span></span></p>
+
+<p><span><span>STUDENT:<br>
+Look it scrolled down.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+Woo!</span></span></p>
+
+<p><span><span>STUDENT:<br>
+Yay!</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+So we asserted that the menu does its thing when you scroll. So, and then I did the console dot log here, when it moved to the element, you know, maybe this can be optimized.</span></span></p>
+
+<p><span><span>STUDENT:<br>
+So, go into that, go into that page, that HTML.TWIG and let's break something and see what happens. See what fails.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+If I dropped the footer name?</span></span></p>
+
+<p><span><span>STUDENT:<br>
+No, scroll up and like rename the button or something.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+The button’s in here?</span></span></p>
+
+<p><span><span>STUDENT:<br>
+Yeah, the button’s right there. Yeah, there it is.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+Like if we did the breaking change that committed to nav primary button. No, that's not it. I copied what it is. There we go. Wide nav expand.</span></span></p>
+
+<p><span><span>STUDENT:<br>
+Just add like X’s into it. That's what I always do.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+Well, no, I mean, but this is like, this is going to prove like you change the class. Because what happens most oftentimes people make changes. And then they forget to update tests. And that's what the tests are there for is like, hey, something changed? Did, is this expected changes or not? Which is the whole point of visual regression testing is like, did you mean for this page to look different? You can say yes or no. What was the solution to get the window to scroll down?</span></span></p>
+
+<p><span><span>STUDENT:<br>
+There was, there's a, there's a method called get location and view. And what I was doing, as I was just calling it, but apparently you have to give it a callback function. And then you can do assertions inside the callback for that element. There's that like, move to element view, those things just didn't seem to work. But this does. I wonder if that move to element works? I don't know why but like unformed elements, maybe is what it's more suited for. I'm not too sure. But now the test is gonna hang. And if we wait three more seconds, or none. So, we got the air were testing element nav dot primary button is not visible, and it could not be found. Because we changed the class name in the template.</span></span></p>
+
+<p><span><span>MIKE:<br>
+It’s awesome. Cool. Is there a way that you can just throw a patch up on that Nightwatch issue? I can give you the link to that someone that Brian created.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+I just dropped the issue and the link in there. There is a existing fork and feature branch on that issue.</span></span></p>
+
+<p><span><span>STUDENT:<br>
+OK, so you can either create a patch and we'll get it up there or something like that, obviously, your patches against 9.1. But like I would honestly like, like work on it. Maybe tomorrow, Saturday morning before?</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+Has anybody here used the new fork stuff yet?</span></span></p>
+
+<p><span><span>STUDENT:<br>
+Me.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+Okay, so we're gonna run through it. Because this has been my new favorite thing because I am lazy and I don't like to have to tone down code.</span></span></p>
+
+<p><span><span>STUDENT:<br>
+It’s so fast.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+So, we're going to go to the web IDE inside GitLab. So, we're gonna go to core tests, Drupal. Nightwatch, no test site. So, we're gonna go to test site first. We're going to click here, we're gonna do new file. And what did we name it? We named it… Olivero site install script. We're going to do, create file. So, the web IDE is nice because you can do a bunch of changes at once. Otherwise, we could like do like add one file and a few things like that. So, we'll paste this as is. I'll just add a to do right now. Blank line at the top. What? There's a blank line at the top. Thank you. I recently had an issue with that and it broke our installs on Tugboat but not locally or in production. And I couldn't figure it out why. And it was because of that blank line at the top. Oh, gosh. And it drove me nuts. And thankfully, Tugboat helped me solve the problem. So, what was it like right now we need, standard install for dependencies. Dependencies, figure them out here. So, we'll just add that. I’m sure its missing like.</span></span></p>
+
+<p><span><span>Yeah, we'll just add that. And now, this saved it in there, right? I think so. So now we'll create the Olivero menu test, inside of tests, new file. So, I guess even if this local repo doesn't have like, if you use my base, or this, like example here., Why is everything added an extra new line at the top? You could copy and paste stuff into here, at least. It's not extremely the right way to do it. But you could like you could work on it in this example, and then copy things over via the Gitlab UI. What's an actually appropriate name for this test before besides the hamburger?</span></span></p>
+
+<p><span><span>STUDENT:<br>
+I think we should. Don't they have like a bunch of like unicorns or something on some of these tests or something like that?</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+There's llamas everywhere, but we'll say,</span></span></p>
+
+<p><span><span>STUDENT:<br>
+Let's just leave some I want some emojis in here.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+I think Sally would love it.</span></span></p>
+
+<p><span><span>STUDENT:<br>
+Yeah.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+So, we'll just leave it to one. Yeah, that's very subtle. I like it. Yeah. So, we can remove that to do You may want to include the word hamburger just for accessibility. Leave the emoji. Spell it on. Awesome. Good call There we go. The spacing looks weird. Alright, so now we're going. That's it, right, the test script that we're gonna commit. We're gonna commit to add, many tests. We will commit. And so that was committed, we're going to create the new merge request. We're gonna name the merge request here, because we're going to add more stuff to it. Hit submit. So now that this loading, let's go back to the issue, and we will refresh. And you'll see that it now says there's a merge request. And it's queuing test. And we're getting a live preview on Tugboat. You know, for a Tugboat and a tiny boat, I think that thing does a lot of work. A lot of good work. I don't think the live preview will actually install the theme yet. No but</span></span></p>
+
+<p><span><span>STUDENT:<br>
+So, I, if anyone's interested in that, I created an issue to have Tugboat by default installed the umami profile, because at that point, we get like free content and stuff like that. And I also talked about having each core sub component, being able to specify its own like Tugboat YAML file. So, we could even like do special things, like, you know, install different things like that. But right now, yeah.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+Does this. Hey, good. So, it’s always good to guess Admin Admin. You know, our test, our merge request only as a test. So, it doesn't do any good logging into here. But so yeah, so that's how you can contribute to core without having to clone Drupal, I guess, like, right. You could grab my demo environment for just like learning how to write tests. And I went to this. There was already an existing branch, I couldn't show you how to create a new branch. But I went to it, I use the Gitlab web IDE and I created a pull request without having to do anything.</span></span></p>
+
+<p><span><span>STUDENT:<br>
+Well, now, now the test should fail, right? Because you used the old CSS class name. You fix that. OK.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+I fixed it before committing it, so if we look here.</span></span></p>
+
+<p><span><span>STUDENT:<br>
+That’s so awesome.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+Yep, and scroll live net</span></span></p>
+
+<p><span><span>STUDENT:<br>
+OK So, in terms of from my, from my bath. See ya.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+Alright, Derrick you have a question? Or somebody was, Yeah, I was just talking about. I hate talking other (INAUDIBLE) Yeah, I just (INAUDIBLE) like how many tests do you think, is a good number of tests? Because there's a big debate about like, how much test coverage you should have for things. Everything should have a test. There's no such thing as too little test coverage. Now there's a point of absurdity. So, what can I show to you? Um, one second, let me. Alright, opening something in code. So, I'm working on a product called brewed up, which is like untapped, but for coffee. So instead of checking into all the beer you drink, you check into all the coffee you drink and how you brewed it. And inside here, I have several different entities like checking coffee roaster, roaster and tag. Like I said, before I do test driven development. So sometimes I write some kind of like stupid frivolous test, but it helps me make sure that basic bugs are fixed. So, like in the coffee roast test, here.</span></span></p>
+
+<p><span><span>Do I have, so entity test base. I even have it where it says test exists. So, ensures that the entity type definition is discoverable and parsed. For inside a Drupal because I worked on all this code, I wrote all this code before I even installed the Drupal site. So, I will write an absurd amount of basic boilerplate tests to prevent me from having to install Drupal and make sure things are there. So, I guess it depends on how you work. Like if you do test driven development, then you're going to have the right amount of tests. If you don't do test driven development, you're going to have fewer tests, and you may not know what you need to test because your code may not be, you know, like completely abstracted and testable. A good example is my previous live streams for simply test.me. With some of the testing, you know, it's a blend of what's not a waste of time. That’s the best way to put it. You know, test coverage is great. Was it like Martin Fowler is the one who wrote like the book on test driven development.</span></span></p>
+
+<p><span><span>And then he went and worked at Facebook, and was like in culture shock, because they weren't writing tests. But there is no point to because they were at such a scale that you couldn't test for things like there's no point in wasting time writing the perfect test for just to be like, completely destroyed, because it ran in production and production was unpredictable. So just best, I would just use your best judgment. Like don't spend like a day writing all these tests that may not ensure stability in your platform. Like if it ensures stability, and it makes you develop faster, then yes, you know, like is this code testing necessary? Not entirely but… Sorry, no, it's all good, keep going. Where was I? I have a really good habit of somehow messing up my namespaces, or my annotations, and like this really basic check, would catch if I, you know, if I miss type, the annotation here, or if there was some kind of invalid key in my entity annotation, it would cause the entity type manager to throw an exception when it tried to fetch the definition.</span></span></p>
+
+<p><span><span>And when you're first writing your code, and first starting a project, that's really beneficial, because running this test takes two seconds. flushing your caches in Drupal and clicking on pages takes a minute. And that's a difference of 58 seconds, and those 58 seconds add up over time. So that's why I'm a big fan of tests, and but only when it's appropriate, and, you know, gives you the most productivity. If that helps. I didn't answer but I hope it helps guide the answer. Yeah, I don't think there's any, you know, solid answer to it but all critical features, I guess. Yeah. Yeah. Like the critical features and just one that you know, like, you know, I believe in, you know, you should be able to deploy six times a day, if not 20 times, like you shouldn't be afraid to deploy. You should be able to deploy on Fridays. You know, Fridays at 5pm walk out and go get, you know, yourself a dinner, whatever beverage and not have to worry because you have test coverage. And that's kind of like your guidance, you know.</span></span></p>
+
+<p><span><span>Exactly, that's a point that I make in some of my test talks. When you're really when you're really well covered, you're not gonna have any of those times when you pop up in bed in the middle of the night be like, oh my God, this is gonna break. Because you got it although the deploying 20 times a day. For my two big projects right now each of my test suites, like I've got one that has older tests that are all in newer tests that are all in Drupal test rates, running both of those takes over an hour now because there's 6000 steps. But we can do four a day. Yeah, there's you there's within reason. Why did this a new statement? I think it's already running and updated test. Oh, okay. I'm gonna leave it. Yeah, there's that. And also, like, people in Drupal are way too happy to run, drop Drupal cache rebuild, like, I see people doing it first, then config import, then APPDB, then again, and like, Oh, I plan on doing a series about high performance on Drupal deployments. Because you shouldn't be doing that.</span></span></p>
+
+<p><span><span>You shouldn't even need to run cache rebuild when you deploy Drupal. There’s ways to avoid that. And you can easily speed up your deployments. But that's a whole different topic for a different day. If anybody's interested in that. I would absolutely watch that. And would hope people watch that as well. Everybody's interested in that. Oh, well, I will make time for it. Go online and sell tickets. Maybe we might Drupal camp Asheville talk, because that's coming up this summer.</span></span></p>
+
+<p><span><span>STUDENT:<br>
+I got my second-best camp.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+Well behind mid camp. Thanks for saying that about my way. Yeah. I mean, Are there any I know we're coming up on time. And I know there's going to be BoFs and other great things happening at the camp. Are there any other questions?</span></span></p>
+
+<p><span><span>STUDENT:<br>
+I'm excited to do work on this. So, thank you, Matt.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+Cool. Yeah. Anybody who wants to keep this going Saturday, we're going to sprint on tests (INAUDIBLE)</span></span></p>
+
+<p><span><span>STUDENT:<br>
+So, when is it starting? 10 o'clock. 10 to 2 Central time? Yes. I might be. I might be working a little bit earlier in that day. I like to work in the morning. So maybe.</span></span></p>
+
+<p><span><span>MATT:<br>
+Yep. So here give back Saturday 10am to 2pm Central Daylight Time, which I guess everybody in the world finally on daylight savings, right? Europe, their switch? Okay. Because that week is rough trying to figure out the difference. So yeah, 10-2, I'll be there if I'm not too groggy. Or maybe it'll put me in that perfect test writing spot where I won't be hung up on, you know, going down the rabbit hole on bike shedding. And I'll just be loosey doosey, and cranking out tests. But thanks. Thanks, Matt. And I think that the fact that we were able to get a merge request up for this is amazing.</span></span></p>
+
+<p><span><span>STUDENT:<br>
+Yeah.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+Took longer than I thought. But I'm glad that we got here and I hope everybody learned something. So, thanks for coming. Go enjoy the rest of the conference. I think there's just there's one more there's like a BoF session, and then it's the social stuff. Go on and have fun.</span></span></p>
+
+<p><span><span>SPEAKERS:<br>
+Bye, everybody. Thanks, everybody. Thanks.</span></span></p></div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-33cfdef0a778ab985bc9b72897c22ce22b4130d0cea9c6c02462f673ac58c5e7">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/6799">https://mid.camp/6799</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-98aa2901088988b1689049d27744ebcd2d0272379e49d8c3814142ff3f66f9df">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/pantheon.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2021-03/pantheon-logo-tagline-black.png" width="1200" height="370" alt="Pantheon" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/drupal-contractors-esteemed.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2021-02/dcont-logo-v1-stacked-black-01.png" width="220" height="189" alt="Drupal Contractors, by Esteemed " />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/palantir.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2021-02/palantirnet.png" width="480" height="76" alt="Palantir.net logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/tyto-learning-solutions.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2021-02/tytolearning.png" width="2000" height="974" alt="Tyto Learning Solutions" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/bounteous.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2021-02/BounteousIndigoSmall.png" width="403" height="67" alt="Bounteous" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/evolving-web.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2021-02/evolvingweb%20(3).png" width="1517" height="371" alt="Evolving Web" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#b4dddad2dbf4d9ddd0d7d5d9c49adbc6d3"><span class="__cf_email__" data-cfemail="5831363e371835313c3b39352876372a3f">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/6799","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_llBcjrkrgAu2wT1DR7VGL_iP6geJyiTnF_8O5ZD57VI.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJxLz89Pz0mNT8xLzKksyUwu1k9HE9DJSCwpSS3ST8_JT0rM0c0qBgAByBPW"></script>
+
+  </body>
+</html>

@@ -1,0 +1,2445 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="In 2014, I built the first version of the Raspberry Pi Dramble—a cluster of Raspberry Pi single-board computers which ran Drupal 8. In 2017, I started migrating the cluster to use Kubernetes, running Drupal as a scalable, highly-available application on top of Kubernetes." />
+<link rel="canonical" href="everything-i-know-about-kubernetes-i-learned-cluster-raspberry-pis.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Everything I know about Kubernetes I learned from a cluster of Raspberry Pis | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Everything I know about Kubernetes I learned from a cluster of Raspberry Pis | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_Qoyy92GHt9RyGOt8N3WS_9HRsJcJBywJ2IhXudzvST4.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJw9jFEKwzAMQy-ULkcqTqx2AaceUdbRnX6hpfsRTzyhbEIeMQkR8sVLsT9XkLKCd99ch_OGQa2KlS_CU3pHi6t5EpsyGXiwo16ne1H4jJqg81JgGhv48o1lx3TKMcGH8cxHdX0bfg1uOh4.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_QAC1R0aFoF1mIVQtLAaSE24B2iwnT2ZCa0cZDeZsPV0.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJw9jFEKwzAMQy-ULkcqTqx2AaceUdbRnX6hpfsRTzyhbEIeMQkR8sVLsT9XkLKCd99ch_OGQa2KlS_CU3pHi6t5EpsyGXiwo16ne1H4jJqg81JgGhv48o1lx3TKMcGH8cxHdX0bfg1uOh4.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJw9jFEKwzAMQy-ULkcqTqx2AaceUdbRnX6hpfsRTzyhbEIeMQkR8sVLsT9XkLKCd99ch_OGQa2KlS_CU3pHi6t5EpsyGXiwo16ne1H4jJqg81JgGhv48o1lx3TKMcGH8cxHdX0bfg1uOh4.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJw9jFEKwzAMQy-ULkcqTqx2AaceUdbRnX6hpfsRTzyhbEIeMQkR8sVLsT9XkLKCd99ch_OGQa2KlS_CU3pHi6t5EpsyGXiwo16ne1H4jJqg81JgGhv48o1lx3TKMcGH8cxHdX0bfg1uOh4.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="everything-i-know-about-kubernetes-i-learned-cluster-raspberry-pis.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-hatter-midcamp2019navigation-menu" id="block-hatter-midcamp2019navigation" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-midcamp2019navigation-menu">Midcamp 2019 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" title="About MidCamp" data-drupal-link-system-path="node/191">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--venue">
+        <a href="../about/venue.html" data-drupal-link-system-path="node/192">Venue</a>
+            </li>
+          <li class="primary-nav__sublist-item item--travel">
+        <a href="../about/travel.html" title="Travel and Accommodations" data-drupal-link-system-path="node/188">Travel</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../about/lunch.html" title="Lunch options" data-drupal-link-system-path="node/189">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--volunteer">
+        <a href="../article/volunteer-help-midcamp.html" title="Volunteer!">Volunteer!</a>
+            </li>
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2019/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../../2020/news.html" data-drupal-link-system-path="2020/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--attendees">
+        <a href="../attendees.html" data-drupal-link-system-path="2019/attendees">Attendees</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" data-drupal-link-system-path="2019/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--spread-the-word">
+        <a href="../article/spread-word.html" data-drupal-link-system-path="node/371">Spread the Word</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" title="Sponsors" data-drupal-link-system-path="node/197">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--become-a-sponsor">
+        <a href="../sponsor-midcamp.html" title="Sponsor MidCamp" data-drupal-link-system-path="node/186">Become a Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../../jobs.html" title="Jobs" data-drupal-link-system-path="jobs">Jobs</a>
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" title="Schedule" data-drupal-link-system-path="node/190">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--all-sessions">
+        <a href="../sessions.html" data-drupal-link-system-path="2019/sessions">All Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--summits--training-wed">
+        <a href="../schedule/wednesday.html" title="Summits &amp; Training (Wednesday)" data-drupal-link-system-path="2019/schedule/wednesday">Summits &amp; Training (Wed)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-thu">
+        <a href="../schedule/thursday.html" title="Sessions (Thursday)" data-drupal-link-system-path="2019/schedule/thursday">Sessions (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-fri">
+        <a href="../schedule/friday.html" title="Sessions (Friday)" data-drupal-link-system-path="2019/schedule/friday">Sessions (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--contribution-sat-">
+        <a href="../contribution-day.html" title="Contribution Day" data-drupal-link-system-path="node/332">Contribution (Sat) </a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-terms-and-conditions">
+        <a href="../../speaker-terms-and-conditions.html" title="Speaker Terms and Conditions" data-drupal-link-system-path="node/21">Speaker Terms and Conditions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../../speaker-resources.html" title="Speaker Resources">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--topic-tracks">
+        <a href="../../topic-tracks.html" title="Topic Tracks" data-drupal-link-system-path="node/10">Topic Tracks</a>
+            </li>
+  </ul>
+
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2019.html" hreflang="en">MidCamp 2019</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Everything I know about Kubernetes I learned from a cluster of Raspberry Pis</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="207" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2019-03-21T19:50:00Z" class="datetime">Thursday, 2:50 pm CDT</time>
+ - <time datetime="2019-03-21T20:20:00Z" class="datetime">Thursday, 3:20 pm CDT</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-82" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-field-link field--type-link field--label-hidden field__item"><a href="https://zoom.us/my/midcamp314b" target="_blank" class="button--primary">Go to Room 314B - old</a></div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>In 2014, I built the first version of the <a href="http://www.pidramble.com">Raspberry Pi Dramble</a>—a cluster of Raspberry Pi single-board computers which ran Drupal 8.</p>
+
+<p>In 2017, I started migrating the cluster to use Kubernetes, running Drupal as a scalable, highly-available application on top of Kubernetes.</p>
+
+<p>In this presentation, I'll present the new Kubernetes-driven version of the Raspberry Pi Dramble cluster (in person!), and I'll walk through the decision behind switching to Kubernetes, risks and common pitfalls encountered when running Drupal on Kubernetes, and how you can set up your own scalable Kubernetes cluster—either on Raspberry Pis or on some VMs running on your computer!</p>
+
+<p>Before coming to this presentation, you should know:</p>
+
+<ul>
+	<li>Basic server administration.</li>
+	<li>How to build a simple Drupal 8 website.</li>
+</ul>
+
+<p>You will learn:</p>
+
+<ul>
+	<li>How to deploy Kubernetes to a set of Raspberry Pis (or VMs).</li>
+	<li>Why you might not want to deploy Kubernetes to a set of Raspberry Pis.</li>
+	<li>How to deploy Drupal 8 to a Kubernetes cluster.</li>
+	<li>How to evaluate whether Kubernetes is right for your Drupal websites.</li>
+</ul></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/z2g7r7Wyh9g?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-presenter-slides field--type-file field--label-above">
+    <div class="field__label">Presenter Slides</div>
+              <div class="field__item">
+<span class="file file--mime-application-pdf file--application-pdf"> <a href="../../sites/default/files/2019-03/Everything%20I%20know%20about%20Kubernetes%20I%20learned%20from%20a%20Raspberry%20Pi%20Cluster.pdf" type="application/pdf">Everything I know about Kubernetes I learned from a Raspberry Pi Cluster.pdf</a></span>
+</div>
+          </div>
+
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Jeff Geerling</h4>
+
+      Senior Technical Architect
+
+
+          @
+              <a href="https://www.acquia.com">Acquia</a>
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p>Midwestern Drupalist living in St. Louis, MO. I co-organize the St. Louis Drupal Users Group, and do a lot of open source work in my spare time.</p>
+</div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2018-11/Social%20Media%20800px.jpg%3Fitok=Fzh15tkd" width="220" height="220" alt="Jeff Geerling" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Back-End</div>
+          <div class="field__item">DevOps</div>
+              </div>
+      </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p>- [Jeff] As I told everybody<br>
+in here, I always forget that</p>
+
+<p>so it's good that my track<br>
+record is very consistent.</p>
+
+<p>So next time, I'm gonna<br>
+forget to hit the button, too.</p>
+
+<p>But anyway, hopefully you're<br>
+here for this presentation.</p>
+
+<p>If not, you can go and<br>
+find another good one.</p>
+
+<p>This is me.</p>
+
+<p>I am a technical architect at Acquia.</p>
+
+<p>I work in a lot of infrastructure stuff</p>
+
+<p>but kind of, if you know Acquia,</p>
+
+<p>we do a lot of different things.</p>
+
+<p>I'm in a partly obscure team<br>
+that doesn't actually do</p>
+
+<p>a lot of whole lot of Drupal work but I do</p>
+
+<p>some Drupal work in my day-to-day.</p>
+
+<p>But this project is more of</p>
+
+<p>a passionate side project for me,</p>
+
+<p>not something that we do much at Acquia.</p>
+
+<p>Don't worry, we're not running</p>
+
+<p>enterprise websites on Raspberry Pis.</p>
+
+<p>(audience jeers)</p>
+
+<p>This picture here, yeah,<br>
+after this presentation.</p>
+
+<p>I'm sorry for putting a<br>
+very succulent picture</p>
+
+<p>of raspberry pie on the screen.</p>
+
+<p>This is not what we're talking about.</p>
+
+<p>If you came here for a cooking class</p>
+
+<p>on how to make some Kubernete-ful<br>
+raspberry pies to eat,</p>
+
+<p>that is not what we're gonna go over.</p>
+
+<p>We're gonna talk over<br>
+the Raspberry Pi computer</p>
+
+<p>and I heard a couple people say this</p>
+
+<p>before the presentation<br>
+but the one question</p>
+
+<p>that pretty much everyone universally asks</p>
+
+<p>after they get a Raspberry Pi is</p>
+
+<p>what can I actually do with this thing?</p>
+
+<p>And they're cheap enough that<br>
+a lot of us just buy them</p>
+
+<p>because we're techies, we're nerds,</p>
+
+<p>we like computing things<br>
+and they're really cool</p>
+
+<p>and we might have seen a blog post</p>
+
+<p>of somebody doing something cool so like</p>
+
+<p>if I buy a Raspberry Pi,<br>
+I'll do something cool, too.</p>
+
+<p>But that doesn't always follow.</p>
+
+<p>How many people here<br>
+have the Raspberry Pi?</p>
+
+<p>How many people here have<br>
+it sitting in their drawer</p>
+
+<p>or shelf or somewhere?</p>
+
+<p>(audience laughs)</p>
+
+<p>Okay, so it's pretty true,<br>
+it's pretty universally true.</p>
+
+<p>So I'm a little crazy and<br>
+we're running Kubernetes</p>
+
+<p>at Acquia on a few different projects</p>
+
+<p>and we're building very massive things</p>
+
+<p>using these big, hulking servers.</p>
+
+<p>But I wanted to see like on<br>
+the very, very opposite end</p>
+
+<p>of that spectrum, on the<br>
+lowest class of machine,</p>
+
+<p>how well can I actually run Kubernetes</p>
+
+<p>which is like a cloud scale</p>
+
+<p>massive deployments type of thing,</p>
+
+<p>how well can it run on a<br>
+cluster of Raspberry Pis?</p>
+
+<p>I've been toying around<br>
+with these clusters</p>
+
+<p>for about five years<br>
+now with Raspberry Pis</p>
+
+<p>with a lot of different<br>
+little projects that I do</p>
+
+<p>and Kubernetes kind of<br>
+caught my ear in 2016, 2017</p>
+
+<p>when it started getting all<br>
+the hot VC capital funding</p>
+
+<p>and things like that 'cause<br>
+anytime there's something</p>
+
+<p>new and cool looking in<br>
+the infrastructure world,</p>
+
+<p>lots of dollars follow very quickly.</p>
+
+<p>I didn't do it for the<br>
+money but, you know,</p>
+
+<p>if anybody here wants to throw<br>
+a few million dollars my way</p>
+
+<p>to build the next Raspberry<br>
+Pi hosted Kubernetes</p>
+
+<p>cluster service, I'm available to talk.</p>
+
+<p>So anyway, I wanted to<br>
+go a little bit crazier</p>
+
+<p>and deeper than that, though.</p>
+
+<p>Not only do I want to run<br>
+Kubernetes on these things,</p>
+
+<p>I want to run a heavyweight<br>
+CMS that can run</p>
+
+<p>ambitious digital experiences<br>
+on these Raspberry Pis.</p>
+
+<p>I have kind of insane requirements here</p>
+
+<p>and before I get into<br>
+that part of it though,</p>
+
+<p>there's a lot of people here who might not</p>
+
+<p>be that familiar with Kubernetes.</p>
+
+<p>Kubernetes is a very large ecosystem.</p>
+
+<p>It has a lot of different moving parts</p>
+
+<p>but I want to distill it down to something</p>
+
+<p>that I can fit into a</p>
+
+<p>which only has 28 minutes left.</p>
+
+<p>So at a very basic level,<br>
+let's take a typical,</p>
+
+<p>mid to upper tier Drupal site.</p>
+
+<p>You're going to have a<br>
+lot of different things</p>
+
+<p>we're gonna run.</p>
+
+<p>You have to run Drupal<br>
+which is like Drupal,</p>
+
+<p>it might use PHP and Engine X</p>
+
+<p>or it might use Apache with PHP built in.</p>
+
+<p>But something has to run Drupal itself.</p>
+
+<p>You also have to have a database</p>
+
+<p>so MySQL or Postgres or<br>
+some other database running.</p>
+
+<p>You might have Apache Solar for search</p>
+
+<p>to make your searches faster and better.</p>
+
+<p>You might have elastic search.</p>
+
+<p>You might have a chat integration</p>
+
+<p>that runs with a node JS app.</p>
+
+<p>You might have some sort of<br>
+more advanced Cron system</p>
+
+<p>so an external Cron schedule or something.</p>
+
+<p>If you have all these<br>
+different things running,</p>
+
+<p>you might have a centralized<br>
+logging dashboard</p>
+
+<p>that has to run for it.</p>
+
+<p>You might also have<br>
+caching so Redis or unCache</p>
+
+<p>or something running.</p>
+
+<p>So a Drupal site requires a lot of things</p>
+
+<p>if you're gonna run it at scale</p>
+
+<p>or if you want to run it<br>
+with high availability</p>
+
+<p>and the ability to not have downtime.</p>
+
+<p>And every application<br>
+has varying requirements</p>
+
+<p>but a lot of things require at least like</p>
+
+<p>the database and your<br>
+application or something else.</p>
+
+<p>And you also have lots<br>
+of servers nowadays.</p>
+
+<p>So most projects that I've been working on</p>
+
+<p>in the past five or 10<br>
+years have some level</p>
+
+<p>of either service level agreement</p>
+
+<p>or high availability that they expect</p>
+
+<p>and you can't get that<br>
+with one server somewhere.</p>
+
+<p>There's a lot of projects<br>
+that can run on one server</p>
+
+<p>but for a lot of these other projects,</p>
+
+<p>we need more than one server because</p>
+
+<p>if you run on one server<br>
+and that server goes down</p>
+
+<p>which happens very much,<br>
+even fancy cloud environments</p>
+
+<p>where servers are virtual</p>
+
+<p>and they can pop from host to host,</p>
+
+<p>your servers will go down<br>
+and when they go down,</p>
+
+<p>what happens?</p>
+
+<p>So nowadays we have lots of<br>
+servers and traditionally,</p>
+
+<p>you would have some sort of system,</p>
+
+<p>maybe you use configuration management</p>
+
+<p>or some bash scripts where<br>
+you cross your fingers</p>
+
+<p>and run a bunch of manual<br>
+commands on servers</p>
+
+<p>and you get those things<br>
+running on those servers</p>
+
+<p>but it's not super efficient</p>
+
+<p>and when one of those servers goes down,</p>
+
+<p>you still have to do<br>
+something and intervene</p>
+
+<p>to get the services that were<br>
+running on it somewhere else.</p>
+
+<p>So at a very basic level, now this is not</p>
+
+<p>a technical definition of<br>
+all that Kubernetes does</p>
+
+<p>but on a very basic level,<br>
+it puts your stuff on servers</p>
+
+<p>so you have servers, you have stuff,</p>
+
+<p>you get your stuff on the servers,</p>
+
+<p>and then it also makes<br>
+sure that they keep running</p>
+
+<p>the way that you want them to run.</p>
+
+<p>So I'll show you a little bit<br>
+more about that in a minute.</p>
+
+<p>You might be a little<br>
+skeptical at this point.</p>
+
+<p>You might be wondering<br>
+so you're building this</p>
+
+<p>Kubernetes cluster.</p>
+
+<p>Kubernetes sounds kind of complicated</p>
+
+<p>if it's doing scheduling stuff,</p>
+
+<p>scheduling's always hard no<br>
+matter what you're doing.</p>
+
+<p>You're running Drupal which<br>
+is kind of a heavyweight CMS.</p>
+
+<p>It requires a lot of<br>
+RAM and all this stuff.</p>
+
+<p>You must be building some sort<br>
+of large community website</p>
+
+<p>or some big ambitious,<br>
+digital experience, right?</p>
+
+<p>Well, no, I'm actually running pretty much</p>
+
+<p>a static HTML website inside of Drupal</p>
+
+<p>and you might now be thinking OMGWTFBBQ.</p>
+
+<p>Isn't it something like this?</p>
+
+<p>And this is a picture I<br>
+found, I found it on Twitter</p>
+
+<p>while I was working on this presentation.</p>
+
+<p>If you can't see it very well,</p>
+
+<p>it's a large flat bed 18-wheeler truck</p>
+
+<p>and there's basically a brick tied down</p>
+
+<p>in the middle of it.</p>
+
+<p>A lot of times, we infrastructure-y people</p>
+
+<p>and software developers, are<br>
+what I call architecture-nauts.</p>
+
+<p>We want to build the fanciest,<br>
+most exotic limousine</p>
+
+<p>to host a little, teeny tiny thing</p>
+
+<p>that is almost insignificant.</p>
+
+<p>However, it is a good<br>
+learning opportunity and so</p>
+
+<p>the point I want to make about all that is</p>
+
+<p>it doesn't always have to make sense.</p>
+
+<p>For me, it's more of a fun<br>
+passionate side project</p>
+
+<p>and really, what I have<br>
+gotten out of it a few times</p>
+
+<p>in the past is you find things,</p>
+
+<p>when you operate on the very small scale,</p>
+
+<p>when I have four nodes<br>
+and they're physical Pis</p>
+
+<p>and they're using NFS and<br>
+they use the same software</p>
+
+<p>but they're running on very slow hardware</p>
+
+<p>with slow networking and slow disc cable,</p>
+
+<p>you run into some of the<br>
+limitations very quickly</p>
+
+<p>and you learn how to solve<br>
+them on a small scale</p>
+
+<p>and then when you get hit<br>
+by the same kind of a bug</p>
+
+<p>on a larger scale, you<br>
+can kind of know how that</p>
+
+<p>is gonna impact you, you can plan for it,</p>
+
+<p>you can already have ways to mitigate it.</p>
+
+<p>So I have learned a few things.</p>
+
+<p>At least that's what I keep telling myself</p>
+
+<p>to justify buying four or five<br>
+new Raspberry Pis every year.</p>
+
+<p>And on that topic, so a couple<br>
+years ago I was like hey,</p>
+
+<p>the Raspberry Pi 0 is so<br>
+cool it's even smaller</p>
+
+<p>and it was cool.</p>
+
+<p>I had an idea that I would<br>
+have this cluster using WiFi.</p>
+
+<p>The newest ones actually have<br>
+WiFi chips built into them</p>
+
+<p>so you didn't even have to<br>
+have a little dongle like that</p>
+
+<p>but I would have WiFi</p>
+
+<p>and I would have a little battery pack.</p>
+
+<p>I could have that cluster in my pocket</p>
+
+<p>and during the presentation,</p>
+
+<p>I could whip it out and be like look,</p>
+
+<p>this is running this whole thing.</p>
+
+<p>The problem is the Raspberry<br>
+Pi 0 has the slowest processor</p>
+
+<p>ever made, well, ever made<br>
+in the past 15 or 20 years</p>
+
+<p>of all the Raspberry Pis I should say</p>
+
+<p>and it's still a lot faster than the thing</p>
+
+<p>that put us on the moon but it's very slow</p>
+
+<p>and it only has half the<br>
+memory that the Raspberry Pi</p>
+
+<p>actually install Kubernetes on it.</p>
+
+<p>So that was very short-lived.</p>
+
+<p>It also got very hot so I was fearful that</p>
+
+<p>before the presentation<br>
+started, I might be on fire.</p>
+
+<p>(audience laughs)</p>
+
+<p>So I ran with another cluster<br>
+that had five Raspberry Pi 2s</p>
+
+<p>and you might notice that this new model</p>
+
+<p>that's in front of you<br>
+today does not have five,</p>
+
+<p>it only has four.</p>
+
+<p>The maximum of course of that flat truck</p>
+
+<p>is that more is always better.</p>
+
+<p>The problem here is that more is better.</p>
+
+<p>When you hit the fifth Pi though,</p>
+
+<p>you start to buy large power switches</p>
+
+<p>and more device things to go with it</p>
+
+<p>so the scale, there's kind<br>
+of a wall I hit at four</p>
+
+<p>with this new 2019 version.</p>
+
+<p>If you're wondering, the parts that I use,</p>
+
+<p>any of that kind of stuff,</p>
+
+<p>there's a website, pidramble.com.</p>
+
+<p>It's actually running on a Raspberry Pi,</p>
+
+<p>a single Pi in this<br>
+case, on my desk at home.</p>
+
+<p>Please don't hack into it.</p>
+
+<p>If you do, don't do anything too bad</p>
+
+<p>because I'm not home so I can't fix</p>
+
+<p>any problems that you cause.</p>
+
+<p>Anyways, it's running on one Pi at home</p>
+
+<p>and it's been up since</p>
+
+<p>four and a half years with 99.6% uptime.</p>
+
+<p>I'm pretty proud of that<br>
+because almost all of that</p>
+
+<p>downtime was due to my<br>
+wonderful ISP spectrum</p>
+
+<p>having very poor service sometimes.</p>
+
+<p>Anyways, so this is the<br>
+new version of the cluster</p>
+
+<p>and one thing that some<br>
+people wonder a lot is like</p>
+
+<p>what is the best way to put<br>
+Kubernetes on a Raspberry Pi?</p>
+
+<p>Some people wonder wait,</p>
+
+<p>you can put Kubernetes on a Raspberry Pi?</p>
+
+<p>There's a really cool thing,<br>
+I forget the guy's name,</p>
+
+<p>but I think he's in college<br>
+now or something like that.</p>
+
+<p>There was a guy who was like I want to get</p>
+
+<p>Kubernetes on this Pi and<br>
+he spent a lot of time</p>
+
+<p>working in the Kubernetes community</p>
+
+<p>to make sure that all the<br>
+things that they built</p>
+
+<p>were armed and compatible.</p>
+
+<p>Raspberry Pis use a different<br>
+type of processor architecture</p>
+
+<p>than most other computers,<br>
+the Intel and D64 chip.</p>
+
+<p>So he spent a lot of time making sure</p>
+
+<p>that all the binaries<br>
+and everything was built</p>
+
+<p>to run correctly on the<br>
+Raspberry Pi and since about</p>
+
+<p>I think it was Kubernetes</p>
+
+<p>it actually works pretty<br>
+darn well on a Raspberry Pi</p>
+
+<p>so that's cool.</p>
+
+<p>If you search online for how do I install</p>
+
+<p>Kubernetes on a Pi, you're<br>
+gonna end up on like medium.com</p>
+
+<p>and there's these blog posts<br>
+that are 3,000, 4,000 words,</p>
+
+<p>hundreds of instructions,<br>
+all kinds of stuff to do</p>
+
+<p>and the problem is, you<br>
+kind of start getting tired.</p>
+
+<p>If you do that once and then<br>
+you have to do it again,</p>
+
+<p>you start getting tired of<br>
+having to do that over again</p>
+
+<p>and then you start kind<br>
+of burning out on it.</p>
+
+<p>Luckily for you, everything<br>
+that I've done here</p>
+
+<p>is open-source and is in code</p>
+
+<p>and I've chosen to use<br>
+Ansible to do it all</p>
+
+<p>because Ansible is what I<br>
+call configuration management</p>
+
+<p>for humans and cows.</p>
+
+<p>That little cow down there,</p>
+
+<p>that is from the Cowsay<br>
+command line utility.</p>
+
+<p>Ansible has an Easter egg<br>
+that if you install Cowsay</p>
+
+<p>on your computer, it'll<br>
+wrap every command output</p>
+
+<p>in Ansible in a little<br>
+cow and you can customize</p>
+
+<p>the cow that you get and<br>
+all that kind of stuff.</p>
+
+<p>But anyway, a cool thing<br>
+about Ansible is it uses YAML</p>
+
+<p>as its language or as its syntax.</p>
+
+<p>A cool thing about that<br>
+is Kubernetes uses YAML</p>
+
+<p>for its syntax.</p>
+
+<p>Drupal uses YAML for its<br>
+configuration syntax.</p>
+
+<p>A lot of different tools are standardizing</p>
+
+<p>on using YAML for kind<br>
+of a human readable way</p>
+
+<p>of configuring things and once<br>
+you know the basics of YAML</p>
+
+<p>and start getting into how<br>
+to do things a little deeper,</p>
+
+<p>you can start seeing, it's<br>
+kind of like if you know</p>
+
+<p>English or well English<br>
+is a very bad language</p>
+
+<p>to compare with but like Spanish<br>
+or French or what are they,</p>
+
+<p>romance languages or whatever<br>
+that type of language is,</p>
+
+<p>if you know one of them, you<br>
+start seeing the patterns</p>
+
+<p>in the other ones so that's<br>
+a cool thing about Ansible,</p>
+
+<p>Kubernetes, Drupal, a<br>
+lot of different software</p>
+
+<p>symphony is using a<br>
+lot of YAML everywhere.</p>
+
+<p>Anyway, so that's how I did it on there.</p>
+
+<p>Like I said, pidramble.com,<br>
+I have a link to</p>
+
+<p>literally everything about this thing</p>
+
+<p>and I want to get into a little demo.</p>
+
+<p>Lucky for you, this<br>
+presentation is the first one</p>
+
+<p>where I am bringing my little camera.</p>
+
+<p>I just thought of like people<br>
+can never see the thing.</p>
+
+<p>In the back over there, can<br>
+you see everything up here?</p>
+
+<p>Probably not.</p>
+
+<p>You can kind of see a blob<br>
+of green but on the screen,</p>
+
+<p>you can kind of see it.</p>
+
+<p>The other cool thing is<br>
+I can actually say hello</p>
+
+<p>to the people on the web.</p>
+
+<p>Hello people on the web who are<br>
+viewing this on another day.</p>
+
+<p>(audience laughs)</p>
+
+<p>I had never been able to do that before.</p>
+
+<p>Kevin is awesome and<br>
+gets all the recordings</p>
+
+<p>but he doesn't have a<br>
+full video production crew</p>
+
+<p>so here is my video production crew.</p>
+
+<p>Glad to have them with me.</p>
+
+<p>So anyway, I have this picture up here.</p>
+
+<p>Let me see how I'm doing on time.</p>
+
+<p>Pretty good, pretty good.</p>
+
+<p>So I am going to, you're<br>
+not supposed to see this,</p>
+
+<p>I'm supposed to act like<br>
+I don't have a script</p>
+
+<p>and I just memorize all<br>
+this stuff completely</p>
+
+<p>and just dump it out of my<br>
+hands but that's not how I am.</p>
+
+<p>I end up Googling my own blog<br>
+post about three times a day.</p>
+
+<p>(audience laughs)</p>
+
+<p>Hide that.</p>
+
+<p>I am going to first use Ansible</p>
+
+<p>just to give you a really brief overview</p>
+
+<p>of how Ansible can interact<br>
+with multiple servers</p>
+
+<p>and a lot of people also ask like</p>
+
+<p>why are you using Ansible?</p>
+
+<p>You're using Kubernetes.</p>
+
+<p>Kubernetes does all the hard work.</p>
+
+<p>Well, have you ever had<br>
+to upgrade your servers?</p>
+
+<p>Have you ever had to<br>
+configure your servers?</p>
+
+<p>Have you ever needed to set up firewalls?</p>
+
+<p>Have you ever needed to<br>
+integrate your servers</p>
+
+<p>with other things or have<br>
+you ever had to integrate</p>
+
+<p>two services with each other?</p>
+
+<p>On top of that, how did<br>
+you install Kubernetes?</p>
+
+<p>How do you update Kubernetes?</p>
+
+<p>How do you manage the<br>
+Kubernetes configuration files?</p>
+
+<p>There's 101 different ways to<br>
+do that kind of thing nowadays</p>
+
+<p>but there's not a lot of<br>
+ways that are as mature</p>
+
+<p>or as flexible as Ansible and so that's</p>
+
+<p>kind of why I still stick with it</p>
+
+<p>for a lot of the different things I do.</p>
+
+<p>On top of that, Kubernetes<br>
+is a container first solution</p>
+
+<p>whether it's Docker or some<br>
+other container technology.</p>
+
+<p>How are you fielding your images?</p>
+
+<p>How are you scanning your<br>
+images for vulnerabilities?</p>
+
+<p>How are you distributing your images?</p>
+
+<p>Are you managing an image repository?</p>
+
+<p>All these different things<br>
+still have to be automated</p>
+
+<p>and configured so even if<br>
+you're using cloud services,</p>
+
+<p>how are you integrating all that together</p>
+
+<p>and do you have one code base</p>
+
+<p>where you can literally set everything up?</p>
+
+<p>If you use Ansible, you can<br>
+actually say the answer is yes,</p>
+
+<p>I have a code base where I run<br>
+a few commands and literally,</p>
+
+<p>everything comes from nothing.</p>
+
+<p>It's pretty cool, playing God like that.</p>
+
+<p>Anyway, here's Ansible, I'm in a folder,</p>
+
+<p>this is the Raspberry Pi Dramble project.</p>
+
+<p>Like I said, it's on GitHub.</p>
+
+<p>You can clone this and build<br>
+your own little cluster</p>
+
+<p>if you want.</p>
+
+<p>You can even build it<br>
+locally on your computer</p>
+
+<p>if you don't have the Pis and<br>
+even if you only have one Pi,</p>
+
+<p>you can run Drupal on it.</p>
+
+<p>I have another project called Drupal Pi</p>
+
+<p>and I'll talk a tiny bit<br>
+more about that later</p>
+
+<p>but I'm going to use<br>
+the Ansible command line</p>
+
+<p>and there's a lot of different<br>
+ways you can use Ansible.</p>
+
+<p>This is one of them to just</p>
+
+<p>remote control a bunch of servers.</p>
+
+<p>Inventory, the inventory<br>
+file tells Ansible about</p>
+
+<p>the servers so in this case, I<br>
+just gave it the IP addresses</p>
+
+<p>of all the servers and then I say</p>
+
+<p>I'm gonna operate on all the Pis</p>
+
+<p>and I'm gonna use Ansible's service module</p>
+
+<p>which let's me control<br>
+things running on the Pi</p>
+
+<p>and I'm gonna give it some arguments.</p>
+
+<p>I'm gonna say for the service,</p>
+
+<p>Dramble node monitor, I want<br>
+to put into a state of stopped.</p>
+
+<p>That means basically stop the service.</p>
+
+<p>Right now, you'll notice that</p>
+
+<p>all the lights on here are green.</p>
+
+<p>That's because I have a<br>
+service running on the Pi</p>
+
+<p>so it's constantly monitoring the health</p>
+
+<p>of each of the Kubernetes nodes</p>
+
+<p>and if one of them goes<br>
+bad, it'll turn red.</p>
+
+<p>If it comes back, it'll turn green again.</p>
+
+<p>So I'm gonna stop that for now because</p>
+
+<p>I want to show you how Ansible</p>
+
+<p>can remote control everything.</p>
+
+<p>When I stop it, it'll<br>
+connect to all the Pis</p>
+
+<p>and they should all shut off.</p>
+
+<p>There they go and then I can show you,</p>
+
+<p>if I say Ansible -i inventory all -a,</p>
+
+<p>if you don't provide a<br>
+module on the command line,</p>
+
+<p>it just uses the command<br>
+module which literally</p>
+
+<p>runs the command that<br>
+you give it on the Pis</p>
+
+<p>so I'm gonna say blink stick.</p>
+
+<p>These little LED boards<br>
+are called blink sticks,</p>
+
+<p>by the way, cool little<br>
+project from a guy in the UK.</p>
+
+<p>He has a lot of different<br>
+remote control LED boards</p>
+
+<p>for maker type computers.</p>
+
+<p>So blink stick blue and the dash b flag</p>
+
+<p>means run it as pseudo.</p>
+
+<p>You have to have super<br>
+user route privileges</p>
+
+<p>to control the USB hardware on the Pi</p>
+
+<p>so that's why I have to do that.</p>
+
+<p>So you can see how quick<br>
+it is to make changes.</p>
+
+<p>Let's turn them green.</p>
+
+<p>It takes maybe a second<br>
+or two but with Ansible,</p>
+
+<p>you can also have also have<br>
+a lot more control over</p>
+
+<p>how the rollout happens so a lot of times,</p>
+
+<p>like if you're upgrading Kubernetes</p>
+
+<p>or if you're upgrading<br>
+the Drupal container</p>
+
+<p>or something like that<br>
+on multiple servers,</p>
+
+<p>you don't want to do them all at once</p>
+
+<p>and then they all fail right away.</p>
+
+<p>You want to like do one,<br>
+if it worked, do the next,</p>
+
+<p>that kind of thing so you<br>
+can control all this stuff.</p>
+
+<p>Let me go back at screen<br>
+so I want to go to blue.</p>
+
+<p>You can control stuff with forks</p>
+
+<p>or Ansible also calls it serial.</p>
+
+<p>You can do it serially<br>
+in like groups of one,</p>
+
+<p>two, three, or however<br>
+many you want at a time.</p>
+
+<p>So I'm going to do forks equals one</p>
+
+<p>and you'll see now it's doing<br>
+it one, two, three, four</p>
+
+<p>like that and let's turn<br>
+it back to red this time.</p>
+
+<p>If you're color blind, can you<br>
+see blue/green differences?</p>
+
+<p>Okay, alright good.</p>
+
+<p>So you can see red, too, hopefully.</p>
+
+<p>So they're all turning red and stuff.</p>
+
+<p>So that's just a quick overview<br>
+of what Ansible can do.</p>
+
+<p>When you're installing Kubernetes,</p>
+
+<p>there's a few orchestration pieces</p>
+
+<p>like you have to get a<br>
+token from the master server</p>
+
+<p>and then you use it on the<br>
+other servers, things like that,</p>
+
+<p>that make it helpful to be<br>
+able to run a command one place</p>
+
+<p>and then use the data from<br>
+it to go to other places,</p>
+
+<p>that kind of thing, and the<br>
+playbook I have does all that</p>
+
+<p>for you but if you want<br>
+to find out how it's done,</p>
+
+<p>just go into the source<br>
+code and take a look.</p>
+
+<p>So I'm gonna turn back<br>
+on that node monitor</p>
+
+<p>so I'm just gonna change this service</p>
+
+<p>from stopped to started and<br>
+it should switch them all</p>
+
+<p>back to green if they're<br>
+healthy, of course, and they are.</p>
+
+<p>So the next thing I'm<br>
+gonna do is demonstrate</p>
+
+<p>one of Kubernetes's coolest features.</p>
+
+<p>It's the ability to self-heal.</p>
+
+<p>Basically it sees there's<br>
+a failure somewhere</p>
+
+<p>and then it just kind of is like okay,</p>
+
+<p>I'm gonna react and I'm<br>
+gonna move things around</p>
+
+<p>and that way I don't have to wake up Jeff</p>
+
+<p>in the middle of the night.</p>
+
+<p>So I'm going to check really quick.</p>
+
+<p>Kubernetes has a command line<br>
+utility called cube controller</p>
+
+<p>or cube CTL that lets you<br>
+interact with your clusters</p>
+
+<p>so I'm gonna say cube control get pods.</p>
+
+<p>Now I'm gonna mention this later.</p>
+
+<p>You need a dictionary when<br>
+you're working with Kubernetes.</p>
+
+<p>Pods are containers.</p>
+
+<p>That's not a technical definition</p>
+
+<p>and don't memorize that<br>
+but for the purposes</p>
+
+<p>of this presentation, a pod is a container</p>
+
+<p>or an application running on Pi.</p>
+
+<p>So I'm gonna say tell me about<br>
+all the pods that are running</p>
+
+<p>on all namespaces.</p>
+
+<p>I'm not gonna get into namespaces.</p>
+
+<p>Unfortunately, we only have 10 minutes so</p>
+
+<p>I'm gonna get all the pods that<br>
+are running on the cluster.</p>
+
+<p>So you can see there are some Drupal pods,</p>
+
+<p>there's a database in Drupal,</p>
+
+<p>there's some networking<br>
+pods, there's a proxy,</p>
+
+<p>there's a thing that's a<br>
+load balancer, Traefik,</p>
+
+<p>it's kind of like Engine X or HA Proxy</p>
+
+<p>but it's a little more<br>
+cloud native-y or whatever</p>
+
+<p>but it runs really well on the Pi.</p>
+
+<p>That's why I chose it.</p>
+
+<p>And you can see that they're all running.</p>
+
+<p>So I'm gonna say get pods</p>
+
+<p>and I'm just gonna look at<br>
+the Drupal ones for now.</p>
+
+<p>And then I'm also gonna say oh wide.</p>
+
+<p>That lets me see what node<br>
+that they're running on.</p>
+
+<p>So I can see Drupal is running on cube two</p>
+
+<p>and MySQL is running on cube three</p>
+
+<p>and so I'm gonna take<br>
+down cube two really quick</p>
+
+<p>and see what happens.</p>
+
+<p>First of all, here's the<br>
+site that it's serving.</p>
+
+<p>I'm not connected to the internet.</p>
+
+<p>This is running locally<br>
+and the Pi is connected</p>
+
+<p>by a network cable to my computer</p>
+
+<p>so I'm loading these all off the Pi.</p>
+
+<p>And if I say SSH Pi at<br>
+what is it, 10.0.100.62,</p>
+
+<p>and then I'm gonna say I<br>
+could do this with Ansible but</p>
+
+<p>for the purpose of this presentation,</p>
+
+<p>I'm just doing this by hand.</p>
+
+<p>What is it, system controls dot kublet.</p>
+
+<p>Kublet is the service that<br>
+manages Kubernetes stuff per node</p>
+
+<p>so I'm gonna stop that and you should see</p>
+
+<p>that was pretty quick.</p>
+
+<p>It turns it red because<br>
+the node is unhealthy.</p>
+
+<p>If I go over here, I can<br>
+say cube control get nodes</p>
+
+<p>and that's gonna tell me about<br>
+the nodes in the cluster.</p>
+
+<p>So you can see it still<br>
+thinks they're ready.</p>
+
+<p>That's 'cause Kubernetes has timeouts.</p>
+
+<p>It always kind of has like grace periods</p>
+
+<p>and it has back off and things like that</p>
+
+<p>so you don't end up killing yourself</p>
+
+<p>by flipping something on and off a lot.</p>
+
+<p>So it should realize<br>
+within 30 to 40 seconds</p>
+
+<p>that that node is actually not healthy</p>
+
+<p>and it's gonna switch it<br>
+from ready to not ready.</p>
+
+<p>And meanwhile, that pod is<br>
+still running on that node</p>
+
+<p>and if you were still<br>
+connected to that node,</p>
+
+<p>you would still be getting<br>
+requests and things</p>
+
+<p>but a lot of times, like<br>
+in Amazon or in Azure</p>
+
+<p>or in whatever cloud that you operate in,</p>
+
+<p>even if it's a private data center,</p>
+
+<p>networking routes just go bad.</p>
+
+<p>You can see that it<br>
+just marked it not ready</p>
+
+<p>so at this point, too, if I look here,</p>
+
+<p>it'll say that it's still running</p>
+
+<p>and it thinks it's on cube two<br>
+but I'm gonna watch this now.</p>
+
+<p>So we can see it live update<br>
+and within a few seconds,</p>
+
+<p>it's gonna say hey, cube two is unhealthy.</p>
+
+<p>I need to get a new pod running<br>
+on a better node somewhere.</p>
+
+<p>Usually that happens 30 to 40 seconds,</p>
+
+<p>you can actually configure<br>
+all these timeouts</p>
+
+<p>but you can see now it<br>
+marked that one to terminate.</p>
+
+<p>It says I don't know<br>
+if that node is even up</p>
+
+<p>so I'm gonna kill that container.</p>
+
+<p>It can't actually terminate it<br>
+until that node comes back up</p>
+
+<p>but it marks it as I'm<br>
+going to terminate this</p>
+
+<p>but it already popped a<br>
+new Drupal on cube four</p>
+
+<p>so I'm going to go over here<br>
+and it's still loading fine.</p>
+
+<p>So Kubernetes just saved<br>
+me a pager in the middle</p>
+
+<p>of the night because one<br>
+of the servers went down</p>
+
+<p>and just kind of moved the stuff off of it</p>
+
+<p>that it needed to move.</p>
+
+<p>So I'm gonna bring that node back up.</p>
+
+<p>And the light should turn green on here</p>
+
+<p>which it did pretty<br>
+quick and at this point,</p>
+
+<p>Kubernetes should also<br>
+mark that node as ready.</p>
+
+<p>It's a lot quicker about<br>
+marking it as ready</p>
+
+<p>than it is not ready.</p>
+
+<p>I guess it wants to be<br>
+safer, not like killing off</p>
+
+<p>your applications that are running.</p>
+
+<p>So let's see, I still have a few minutes.</p>
+
+<p>So I have time to go through</p>
+
+<p>my favorite part of this presentation.</p>
+
+<p>The next thing I want to<br>
+show is how you can also</p>
+
+<p>scale up very easily,<br>
+scale out I should say.</p>
+
+<p>So Drupal is an application<br>
+that if you have</p>
+
+<p>a lot of logged in users or<br>
+you have a lot of traffic</p>
+
+<p>that you can't cache like an Engine X</p>
+
+<p>or Varnish or something,<br>
+it needs a lot of CPU.</p>
+
+<p>So a lot of times what happens is</p>
+
+<p>your servers get overloaded with CPU</p>
+
+<p>and you need to scale but<br>
+like with Amazon auto-scaling,</p>
+
+<p>it can take minutes or<br>
+lots of minutes to scale up</p>
+
+<p>and there's different container engines</p>
+
+<p>that can all do different things.</p>
+
+<p>With Kubernetes, it's really easy.</p>
+
+<p>You can figure something called HPA</p>
+
+<p>and so I'm gonna say watch<br>
+cube control get HPA.</p>
+
+<p>Cube control is also pretty consistent.</p>
+
+<p>You get resources.</p>
+
+<p>You can ascribe them to get<br>
+like all the data about them</p>
+
+<p>and you can add them, delete them,</p>
+
+<p>all that stuff through the command line</p>
+
+<p>and Ansible also has ways to interact</p>
+
+<p>with all these different commands, too.</p>
+
+<p>The API is very thorough and robust</p>
+
+<p>so I'm going to do this, dash n Drupal</p>
+
+<p>and this is going to show me,</p>
+
+<p>I already configured this HPA,<br>
+horizontal pod auto-scaling.</p>
+
+<p>It basically says I have<br>
+a target of 50% CPU.</p>
+
+<p>You can configure based on<br>
+CPU, memory, HTTP requests,</p>
+
+<p>like whatever metric you want,</p>
+
+<p>you can say when it hits this, scale up</p>
+
+<p>and you can give it limits<br>
+of how big it can scale</p>
+
+<p>and how quickly it scales down.</p>
+
+<p>So right now, it's not doing much</p>
+
+<p>because I'm just sitting<br>
+here refreshing this page</p>
+
+<p>every now and then.</p>
+
+<p>That's not a lot of work for Drupal to do</p>
+
+<p>but we're gonna make Drupal,</p>
+
+<p>we're gonna give Drupal<br>
+a little workout here.</p>
+
+<p>There's no caching turned on</p>
+
+<p>so this is gonna hit Drupal pretty hard.</p>
+
+<p>Let's see.</p>
+
+<p>I'm gonna use WRK which<br>
+is like Apache Bench</p>
+
+<p>but a little easier to use for me.</p>
+
+<p>Dash c five so five connections.</p>
+
+<p>We're gonna run this test for 120 seconds</p>
+
+<p>with five threads and I'm gonna call</p>
+
+<p>the front page of this site.</p>
+
+<p>So I'm gonna start that running.</p>
+
+<p>Basically, what that's doing<br>
+is it's using five threads</p>
+
+<p>on my Mac just to hit<br>
+the site, hit the site</p>
+
+<p>as fast as it can and<br>
+Drupal's gonna be serving</p>
+
+<p>as fast as it can, too.</p>
+
+<p>So you can see it already<br>
+reacted to my earlier,</p>
+
+<p>when I was just refreshing the page.</p>
+
+<p>That brought the CPU up to 2%.</p>
+
+<p>Pretty soon, this is<br>
+gonna start going up more</p>
+
+<p>and this is just, Kubernetes will see that</p>
+
+<p>there's a lot of CPU<br>
+being consumed by Drupal</p>
+
+<p>and once it does that,<br>
+it will start scaling up</p>
+
+<p>and you'll see that this<br>
+replica count will go up.</p>
+
+<p>So we'll give it another 30 seconds or so</p>
+
+<p>and it should start seeing<br>
+that target percentage go up.</p>
+
+<p>Again, with all these<br>
+numbers, you can kind of set</p>
+
+<p>it to be more aggressive or more passive.</p>
+
+<p>I haven't seen if I can set<br>
+it to be passive aggressive</p>
+
+<p>but the servers themselves<br>
+do that to me plenty.</p>
+
+<p>So you can see it just<br>
+went up to 279 over 50.</p>
+
+<p>That's not a very healthy<br>
+way for a container to be</p>
+
+<p>so what it's doing now in the background,</p>
+
+<p>I could be showing you the other things</p>
+
+<p>showing like container creating</p>
+
+<p>but it just created two<br>
+more Drupal replicas</p>
+
+<p>and it's gonna spread<br>
+them out on the loads</p>
+
+<p>as much as it can so that it can get</p>
+
+<p>the requests distributed amongst the Pis.</p>
+
+<p>So if I show you get all the pods,</p>
+
+<p>you'll see that now<br>
+there's three Drupal pods.</p>
+
+<p>There's one on cube two, one<br>
+on cube three, one on cube four</p>
+
+<p>so it automatically knows like<br>
+I need to spread these out,</p>
+
+<p>I need a lot because I'm<br>
+getting a lot of traffic.</p>
+
+<p>That is the live demo portion.</p>
+
+<p>Thank you for actually working, camera,</p>
+
+<p>and good bye people on the web.</p>
+
+<p>(audience laughs)</p>
+
+<p>Let me pop back over here.</p>
+
+<p>And so, yeah?</p>
+
+<p>Okay.</p>
+
+<p>So how was it?</p>
+
+<p>You can see here that it's not</p>
+
+<p>the fastest thing in the world.</p>
+
+<p>It's not the slowest thing<br>
+in the world, either.</p>
+
+<p>There are plenty of production servers</p>
+
+<p>that I have seen that cannot serve as much</p>
+
+<p>authenticated traffic<br>
+as this Pi cluster can</p>
+
+<p>and if you scale up, the<br>
+cool thing about this is</p>
+
+<p>for some parts of it at least</p>
+
+<p>and for some Drupal use<br>
+cases, as you scale up,</p>
+
+<p>the numbers just keep going up.</p>
+
+<p>One thing that I have<br>
+not solved very well yet</p>
+
+<p>is databases in Kubernetes.</p>
+
+<p>I'll mention that in a<br>
+few minutes but if you</p>
+
+<p>have a site that's cache-able</p>
+
+<p>like a lot of anonymous traffic</p>
+
+<p>and you use Engine X or Varnish<br>
+or Cloud Flair or something,</p>
+
+<p>you can handle thousands<br>
+of requests per second,</p>
+
+<p>no sweat at all, and I<br>
+actually have a configuration</p>
+
+<p>on that Drupal Pi project.</p>
+
+<p>You can use it as a load balancer</p>
+
+<p>in front of the Raspberry Pis with caching</p>
+
+<p>and that's what I do at home<br>
+when I have this at home.</p>
+
+<p>I have the little Raspberry Pi as my cache</p>
+
+<p>and these Raspberry Pis<br>
+do the traffic surfing.</p>
+
+<p>Although I've not used them quite as much</p>
+
+<p>since I have fans on them because</p>
+
+<p>the fans get a little annoying sometimes.</p>
+
+<p>A few caveats to doing what I do,</p>
+
+<p>if you want to run your own<br>
+little data center at your</p>
+
+<p>house, you're going to have<br>
+to deal with these things.</p>
+
+<p>I've not met many people<br>
+who have three or four</p>
+
+<p>redundant power supplies,<br>
+backup generators,</p>
+
+<p>and whole house UPSs.</p>
+
+<p>There are a few people<br>
+that do that kind of thing</p>
+
+<p>but most people don't.</p>
+
+<p>You have to deal with networks.</p>
+
+<p>How many of you have three or four ISPs</p>
+
+<p>and all of them are giving<br>
+you like 10 gigabits</p>
+
+<p>or more bandwidth?</p>
+
+<p>Probably not many.</p>
+
+<p>Also, physical security.</p>
+
+<p>I don't know anybody that has a house</p>
+
+<p>where you have five or six<br>
+layers of biometric security</p>
+
+<p>to get into your house.</p>
+
+<p>There are some people<br>
+that do that but not many.</p>
+
+<p>You have to maintain the Pis,<br>
+you have to upgrade them,</p>
+
+<p>what happens if you get a lot of traffic.</p>
+
+<p>At my house, when I get a lot of traffic,</p>
+
+<p>it actually makes my internet slow because</p>
+
+<p>I only have 10 megabits<br>
+of upload bandwidth</p>
+
+<p>so when you're downloading<br>
+stuff from my Dramble site,</p>
+
+<p>that's my upload bandwidth going away.</p>
+
+<p>That makes everything slow.</p>
+
+<p>Kubernetes itself.</p>
+
+<p>I didn't get super deep into it,</p>
+
+<p>I just wanted to give you a little bit of</p>
+
+<p>dip your toes in the waters here</p>
+
+<p>but there's a lot of things<br>
+that you have to consider</p>
+
+<p>if you're ever considering<br>
+using Kubernetes</p>
+
+<p>or building on top of a service<br>
+that's built on Kubernetes.</p>
+
+<p>There's a lot of things that are easy to</p>
+
+<p>shoot yourself in the foot over.</p>
+
+<p>It makes some things way easier</p>
+
+<p>and it makes some things way better</p>
+
+<p>but it's also still maturing<br>
+and it's still becoming</p>
+
+<p>kind of a new standard type thing</p>
+
+<p>so a lot of the things you find online</p>
+
+<p>will quickly give you big security holes.</p>
+
+<p>You're gonna need a dictionary</p>
+
+<p>so I imagine pods, cube control, RBAC,</p>
+
+<p>role-based access control,<br>
+HPA, all these new terms,</p>
+
+<p>you have to learn what<br>
+they mean, what they do,</p>
+
+<p>how to use them, and basically done well,</p>
+
+<p>you can do really cool things.</p>
+
+<p>The projects I'm working on at Acquia,</p>
+
+<p>this little Raspberry Pi cluster,</p>
+
+<p>there's a lot of cool stuff<br>
+you can do with Kubernetes</p>
+
+<p>but if you do it the wrong way,</p>
+
+<p>I call it failure at web scale</p>
+
+<p>because you're tempted to throw<br>
+everything into Kubernetes</p>
+
+<p>and if you have a major security hole,</p>
+
+<p>all of a sudden, everything's exposed</p>
+
+<p>instead of just one thing.</p>
+
+<p>Be careful, be smart about where</p>
+
+<p>you might consider using it.</p>
+
+<p>So in the end, the big question,</p>
+
+<p>how well does Drupal 8 run on Kubernetes</p>
+
+<p>on a cluster of Raspberry Pis?</p>
+
+<p>Pretty well.</p>
+
+<p>I mean, this demo didn't fail.</p>
+
+<p>Two demos ago that I gave of this cluster</p>
+
+<p>in an earlier version,<br>
+my computer actually died</p>
+
+<p>but the Pi cluster was fine,</p>
+
+<p>I just didn't have a way to shut it down</p>
+
+<p>because my computer died.</p>
+
+<p>(audience laughs)</p>
+
+<p>But it runs pretty well.</p>
+
+<p>I'll have these slides online</p>
+
+<p>so you can get to these things<br>
+but the different things</p>
+
+<p>I mentioned.</p>
+
+<p>I know you mentioned,<br>
+Benji, that I have a book.</p>
+
+<p>Actually, I'm terrible at marketing,</p>
+
+<p>so at the end of my<br>
+presentation, here you go.</p>
+
+<p>I have little cards.</p>
+
+<p>This has a 25% discount<br>
+on Ansible for DevOps,</p>
+
+<p>the book that I wrote,</p>
+
+<p>and it actually has a<br>
+chapter on Kubernetes</p>
+
+<p>and it has a chapter on Docker,</p>
+
+<p>both of which are very handy if you're</p>
+
+<p>going to be building this cluster.</p>
+
+<p>And I'm working on a new<br>
+book, Ansible for Kubernetes.</p>
+
+<p>I figured that Ansible<br>
+for is a good theme there</p>
+
+<p>and last couple of slides.</p>
+
+<p>Please give feedback on this session.</p>
+
+<p>So I'm almost exactly on time.</p>
+
+<p>Last night, I was one minute over.</p>
+
+<p>Let's see if I can hit that again.</p>
+
+<p>And then also Contribution<br>
+Day is coming up.</p>
+
+<p>Thank you.</p>
+
+<p>(audience applauds)<br>
+&nbsp;</p>
+
+<p>Captions made possible by ClarityPartners.com. Chicago area Drupal consultants</p>
+
+<p><a href="../sponsor/clarity-partners.html"><img src="../../sites/default/files/2020-02/CFDFAA23-5C59-4C07-9C66-CAFFE0CF3854.png" style="max-width:300px;"></a></p>
+</div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-6146248684318198395184d787eb54d7971e87b39ab147a74d54480d0595d99e">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/207">https://mid.camp/207</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-b17b6b7d976859054e79d026a1323fb7acc38141263e9d3c6d7dd5b84d66dec2">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/elevated-third.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-11/elevated-third-logo_0.png" width="220" height="220" alt="elevated third logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/pantheon.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-11/pantheon-logo-color@2x.png" width="960" height="354" alt="Pantheon" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/acquia.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2019-03/Acquia_no_tagline.png" width="450" height="94" alt="Acquia" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#a6cfc8c0c9e6cbcfc2c5c7cbd688c9d4c1"><span class="__cf_email__" data-cfemail="bbd2d5ddd4fbd6d2dfd8dad6cb95d4c9dc">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/207","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_llBcjrkrgAu2wT1DR7VGL_iP6geJyiTnF_8O5ZD57VI.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJxLz89Pz0mNT8xLzKksyUwu1k9HE9DJSCwpSS3ST8_JT0rM0c0qBgAByBPW"></script>
+
+  </body>
+</html>

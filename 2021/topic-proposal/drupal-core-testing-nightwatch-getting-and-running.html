@@ -1,0 +1,842 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="Thursday morning, Bluehorn Digital’s Matt Glaman will be leading a class on getting up and running with NightwatchJS. The goal of this class is to get Nightwatch tests running locally – with DDEV, Lando, or a regular local environment. We will walk through configuring Nightwatch for your environment, running Chromedriver, and executing an existing test within Drupal core." />
+<link rel="canonical" href="drupal-core-testing-nightwatch-getting-and-running.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Drupal Core Testing With Nightwatch: Getting Up and Running | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Drupal Core Testing With Nightwatch: Getting Up and Running | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_Qoyy92GHt9RyGOt8N3WS_9HRsJcJBywJ2IhXudzvST4.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJw1jFEOgzAMQy9U1iOhtDGsUkqmugOx068C8WM961nOJuQZkxAh31xBygo-fXMdzhsGtSpWfghv6R0truZJbMpk4MmOeh_tReEzaoLOS4FpbODHN5Yd0yXHBAfjla_q-jX8AXwTNZQ.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_mK2of_t7UFymkfbTHeA-kHdMPWzqc3DZQCYtX-tC0BA.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJw1jFEOgzAMQy9U1iOhtDGsUkqmugOx068C8WM961nOJuQZkxAh31xBygo-fXMdzhsGtSpWfghv6R0truZJbMpk4MmOeh_tReEzaoLOS4FpbODHN5Yd0yXHBAfjla_q-jX8AXwTNZQ.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJw1jFEOgzAMQy9U1iOhtDGsUkqmugOx068C8WM961nOJuQZkxAh31xBygo-fXMdzhsGtSpWfghv6R0truZJbMpk4MmOeh_tReEzaoLOS4FpbODHN5Yd0yXHBAfjla_q-jX8AXwTNZQ.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJw1jFEOgzAMQy9U1iOhtDGsUkqmugOx068C8WM961nOJuQZkxAh31xBygo-fXMdzhsGtSpWfghv6R0truZJbMpk4MmOeh_tReEzaoLOS4FpbODHN5Yd0yXHBAfjla_q-jX8AXwTNZQ.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="drupal-core-testing-nightwatch-getting-and-running.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-midcamp2021navigation-2-menu" id="block-midcamp2021navigation-2" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-midcamp2021navigation-2-menu">Midcamp 2021 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2021/news">News</a>
+            </li>
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" data-drupal-link-system-path="node/6708">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--faq">
+        <a href="../faq.html" data-drupal-link-system-path="node/6724">FAQ</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" data-drupal-link-system-path="2021/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../../speaker-resources.html">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--accessibility--tools">
+        <a href="../accessibility.html" data-drupal-link-system-path="node/6792">Accessibility &amp; Tools</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" data-drupal-link-system-path="node/6710">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--get-started-with-drupal-wed">
+        <a href="../get-started-drupal.html" data-drupal-link-system-path="node/6717">Get Started With Drupal (Wed)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--meet-the-drupal-community-thurs">
+        <a href="../meet-drupal-community.html" title="Meet the Drupal Community (Thursday)" data-drupal-link-system-path="node/6718">Meet the Drupal Community (Thurs)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--share-your-knowledge-fri">
+        <a href="../share-your-knowledge.html" data-drupal-link-system-path="node/6723">Share Your Knowledge (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--give-back-to-drupal-sat">
+        <a href="../contribution-day.html" data-drupal-link-system-path="node/6712">Give Back to Drupal (Sat)</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" data-drupal-link-system-path="node/6711">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--sponsor">
+        <a href="../sponsor-midcamp.html" data-drupal-link-system-path="node/6709">Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../../jobs.html" data-drupal-link-system-path="jobs">Jobs</a>
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2021.html" hreflang="en">MidCamp 2021</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Drupal Core Testing With Nightwatch: Getting Up and Running</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="6798" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2021-03-25T15:30:00Z" class="datetime">Thursday, 10:30 am CDT</time>
+ - <time datetime="2021-03-25T17:00:00Z" class="datetime">Thursday, 12:00 pm CDT</time>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>Thursday morning,&nbsp;<a href="https://bluehorn.digital/">Bluehorn Digital</a>’s Matt Glaman will be leading a class on getting up and running with NightwatchJS. The goal of this class is to get Nightwatch tests running locally – with DDEV, Lando, or a regular local environment. We will walk through configuring Nightwatch for your environment, running Chromedriver, and executing an existing test within Drupal core.</p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/6TkuacrAHX8?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Matt Glaman</h4>
+
+      Principal Software Engineer
+
+
+          @
+              <a href="https://www.acquia.com/">Acquia</a>
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p>Matt Glaman is an experienced software engineer and a prominent member of the Drupal community. With over a decade of experience in web development, he has gained a wealth of knowledge and expertise in the field. He is the author of several books, including "Drupal 8 Development Cookbook" and "Drupal 10 Development Cookbook," which provide a comprehensive guide to building and customizing Drupal sites.</p>
+
+<p>As an active member of the Drupal community, Matt is dedicated to sharing his knowledge and expertise with others. He regularly contributes to Drupal projects and is passionate about helping others develop their skills and become more proficient in Drupal development.</p></div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2019-12/3LRfmYzD_400x400.jpg%3Fitok=w2Gli5PW" width="220" height="220" alt="avatar" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p><span><span>SPEAKER:<br>
+Yeah, let's rock and roll. Thanks everybody for sitting in on this. And take it away, Matt.</span></span></p>
+
+<p><span><span>MATT:<br>
+Alright, I'll get started. I'm going to share my desktop because we're going to go through a bit of a training. So thanks for coming to Drupal core testing with Nightwatch getting up and running. So for those who don't know, my name's Matt Glaman, I have my own company, Bluehorn Digital. This is a recent change previously, you might have known me from my work at (INAUDIBLE), but I have started my own company. But today we'll go through running Nightwatch and when sharing, I don't think I can see people, they do the hand raising thing but if you're not familiar with Nightwatch, Nightwatch is one of the testing suites available inside of Drupal. We have PHP unit and we have Nightwatch. Nightwatch.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+And Matt, I'll keep an eye on the chat if anyone raises their hands. And I'll just jump in if there are questions for you.</span></span></p>
+
+<p><span><span>MATT:<br>
+Perfect. Thank you. So Nightwatch is an end-to-end testing framework, JavaScript testing framework. And some people are wondering like, well don't we have PHP unit and functional JavaScript test? The problem with PHP unit test is you have PHP installing Drupal inside the same site instance and testing it with PHP to test JavaScript. So Nightwatch kind of provides us a standalone instance where it's actual JavaScript being executed in the browser and it also makes it a bit easier to run. Functional JavaScript test are calling WebDriver or as many might know it Selenium. Selenium did become like an open standard known as WebDriver. And that's actually the same way that Nightwatch works, but you're just writing JavaScript. So it makes it easier to do several things. This makes accessibility testing and testing of themes a lot easier. The main goal for this, and then the follow-up session after lunch is to get ready to do contributions, to help Olivero, the experimental new front end theme, stable for 9.2.</span></span></p>
+
+<p><span><span>I'm going to share a link for those who want to follow along. I have created a workshop repository and there's (INAUDIBLE). So if you want to follow along, some of it's located there and there is a correlating documentation website that I'll be working on to expand this for folks. So we're going to start by just going through how we're going to run, how you run Nightwatch and we're going to run it locally with DDEV and with Lando, if you do use Docksal or any other kind of like local setup, I picked kind of the most popular or the most common, when I say local this is something that will work if you're running nothing locally or if you're running MAMP or WAMP or any of the other, like we'll call them old school or legacy setups, the non-Docker. I didn't cover Vagrant here, so if you're using Drupal VM, it would basically be like running it locally, just inside of your Vagrant machine. So let's get started. Like I said, the first one I'm going to go through is local and the reason we go through local is it will walk through setting up our tasks and kind of explaining all the different configuration options that are required.</span></span></p>
+
+<p><span><span>So when I say local, I mean it's going to be about as local as it can get. So I'll wait for the terminal to wake up. Oh, there we go. So for this, what I'm even going to do, so oh, one preface is when you are contributing to Drupal core, you will have like the full Drupal repo. This template set up is a composer built. So it'd be great for contributing to contrib projects, not necessarily to core, but I also wanted this to be a repo example for if you start adding these tests to your projects, every project I'm on has PHP unit tests. Like I do test driven development. All of my client work has test driven development. So this is kind of me helping share that knowledge as well. So the first thing we're going to do is we're going to start the local web development server. So for those who didn't know, PHP has a built in web server and you run it by doing php-S, then 127, then you give it a host name and port which I always do 127 and then 80, 80, and then 't' helps you specify a doc route.</span></span></p>
+
+<p><span><span>But I realized since we're going to be running some tests that might need the router, we'll copy a script that core provides. So inside the core directory, there's actually a file called... Why isn't it here? Oh, sorry. It's not, when you're in the composer bill that gets copied out. It's called .ht.router, I actually have no idea what the.ht means. But this provides, when you run the PHP built in server, you can pass it a router script. And that's what the script does. It helps provide routing supposedly it works around a bug in PHP, and it just helps ensure that you can serve Drupal all over the PHP built in server properly. And they actually give you a sample of the command to run. So I'm going to copy that. And I adjust it. I've had issues where I specifically use the word local hosts. So I've gotten into a habit of constantly typing 127.0.0.1. In this case, it probably won't matter, but with some tools, it tries to connect over a socket versus TCP. So that's why I always use 127.</span></span></p>
+
+<p><span><span>So we'll copy, sorry. And when you run this, you need to be inside your doc route. You don't want to specify. So with CD into web and now we've started the development server. So if I were to go to this URL, you'll see that we're at the Drupal install page. So not using Apache, engine X or whatever hosting thing. We're just going to use PHP's built in server for this. This is how I do my testing all the time, when I do testing for contrib or whatever, I'm always using the built in web server. So we'll get started on configuring or the next step for Nightwatch. So Nightwatch is well, there's actually testing instructions. So if we were to go to the core directory tests, then go to Drupal, sorry, it's in the read me. So the documentation is in the code. It could use some updating, I believe, but this insight core test, the read me file does explain some of the various configurations. We will need to run Chrome. You need to have Google Chrome or chromium on your system. And we are going to run Chrome driver, which you can download yourself or thanks to a dependency with NPM actually there is a version of Chrome driver available.</span></span></p>
+
+<p><span><span>So if we go down to here, it will say running Nightwatch. So we're going to go through and we're going to follow these steps. So with the, we're going to let this PHP server keep running. We're going to go to a new tab and we're going to move into the core directory and run yarn install core does use yarn as the package manager over NPM. So you do need to have some understanding of the front end tooling. If you're new to some of this, let me get to the yarn website. NPM composer is the package manager for PHP. NPM is the package manager for JavaScript, but it never supported lock files. It now does, but it does poorly, in my opinion, and yarn was created by Facebook, Google and a few other companies, and is an alternative way to install your JavaScript dependencies. That's more reliable in my opinion, and that is the tool that core uses. So we've run yarn install, and now we need to copy the ENV example to ENV. And one benefit once we go through this is if you are using DDEV or Lando, you can have this automatically configured for you and just do copy paste and not have to rely on manually setting this up, but I'm making sure to go through the manual part so that you kind of understand what all the pieces are.</span></span></p>
+
+<p><span><span>So we've copied ENV example to ENV, and this tells Nightwatch how to run. So we're going to go through and configure each one, the base URL. Well, we know it is 127, 8080 so we'll copy and paste that. The test database URL it's wonderfully pre-populated with SQLite. So you do need to have SQLite on your machine or, and a PHP extension, which should always come with, or you can point this to a local, MySQL database. I do all of my testing with SQLite because I don't have MariaDB or MySQL instance running out of my host machine. So in this example, we are going to use SQLite and the DDEV and Lando examples. We will use the database provided by those local development stacks. The Drupal test WebDriver host name, we are going to run ChromeDriver off of our local host. So this, you don't need to change when you're running it locally, unless you have like an external ChromeDriver. You just keep it set to that. It can actually run ChromeDriver for you. So, as I said, it has it as a dependency.</span></span></p>
+
+<p><span><span>So if we look at the package that JSON into this wild, wonderful, JSON file right here, you see ChromeDriver as a devDependency. So you don't need to download anything extra, it will be there for you. So we'll leave it to auto-start true. So that way it runs the one that has been added when you do PHP unit and functional JavaScript, maybe you're going to run it yourself, and then you can set this to false. We'll explain that when we go to the DDEV and Lando site. Now, this is extremely important right here. Especially if you're running in containers, but you want to run it heedlessly. So we're going to uncomment this and you want these three parameters. I was working on this template earlier and I was hitting an issue where this ran. I wrote a blog post a year and a half ago to do this, and I couldn't get it to run. When you have a headless environment where it's like a Docker container, you need the no sandbox flight. So we're going to run our tests, both with, we're going to start our tests.</span></span></p>
+
+<p><span><span>I have no idea what command does that. So we're going to copy this and to show you what this looks like. We'll pass it with no command. So we'll let it run in a headed mode. So it will actually launch Chrome and we can see the test run, which can be neat, especially for debugging. But also can be annoying because it keeps popping up and taking priority. So I always run my tests in headless mode, but since this might be the first time for some folks doing this, we'll run it in a headed mode or non-headless, and then the Nightwatch output, this saves various reports. You can keep it as the default. Same with the ignore directories, keep this as a default. The search directory customizes how tests are found. So if you were running your own client project and using Nightwatch, you would want to customize this to help find your root level test if they weren't inside custom modules or anywhere else. But we have Nightwatch configured, we added the base URLs, so now we can run a test. We'll run.</span></span></p>
+
+<p><span><span>So when you run tests, you do yarn test Nightwatch and you specify different tags, or you can run individual tests. We're going to run against core or actually we're going to go with a quicker test. This project already has the Quicklink module installed, which was created by Mike. And it was my first time writing a Nightwatch test actually. And that's when (INAUDIBLE) dig through me go through how to write a test later on. So let's run a copy of this command and we will do...</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+Can you put that command in the chat too, please?</span></span></p>
+
+<p><span><span>MATT:<br>
+Yes. So does yarn test call in Nightwatch? And if you're wondering where that even comes from inside the pack is .JSON in the script's definition we have test Nightwatch. So if you are using vscode, you could find it in the NPM scripts explore right here, test Nightwatch. Or if you're using PHPStorm it would show there as well. The only problem is you can't pass tag, so it runs every single test which you may want, if it is your own project. So we're going to do tag and inside of the Quicklink, just to explain how I know it's there. The test has a tags annotation that says Quicklink. So if I start it, it's going to take a little bit to run. And while that gets booting up, I'll explain what it's going through. So Nightwatch, even though it's a JavaScript testing framework, it actually executes PHP code on your host. Oh, wait. This version of ChromeDriver only supports Chrome 87.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+You're getting an end to that. Go ahead, (INAUDIBLE). I said, I'm getting an error too, the session I created. Yeah. Oh yeah. I am getting the version 87 there. Yeah.</span></span></p>
+
+<p><span><span>MATT:<br>
+Yeah. So</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+I ran into that while I was testing locally as well. And I had to upgrade the dependency to be able to get it right.</span></span></p>
+
+<p><span><span>MATT:<br>
+MATT: This is where, alright. So how I recommended using ChromeDriver, I was hoping we could, I should have run through that first, don't. Because it's not going to match your environment. That dependency is pinned to the Drupal CI container, so you can download ChromeDriver from Chrome, I'll paste that link. So I already have this setup and this way you can assure you have ChromeDriver matching your version of Chrome and this, so you would just download it and you can copy it into your, so I usually download it and then I copy it into user/local/bin/chromedriver. I'm pretty sure you could do, if you're on Linux or Mac iOS, you could do brew, install, ChromeDriver to get it. So that's various ways you can access it when you're using DDEV and Lando. We actually mount it as a container, so you don't have to download it. So let's say that you had downloaded ChromeDriver. You're able to just type ChromeDriver and hit enter and run it as the default. So you don't need to add pass any flags to it.</span></span></p>
+
+<p><span><span>There are certain flags you can pass, but you technically don't need to, you can work with the default. So to recap, we have our PHP server running, we have ChromeDriver running, now we're going to try to rerun the test.</span></span></p>
+
+<p><span><span>S1:<br>
+So if we run it, Oh, you do need to go back into the core directory and run the test. So now that that's going, I want to show some of the innards of Nightwatch. No that's the test suites. So if we go to Nightwatch, OK. Launch. So it will, when you have it in non-headless mode, it will launch a browser. And you'll see a notice that says Chrome being controlled by automated test software. And now it ran through and it ran our test. It was really short-lived. So let's actually go run Chrome, but you'll see that we ran, we visited the test page and it asserted that the Quicklink library has been added. Let's tag core for something that might run a little bit longer but you will notice that it launched Chrome and there was a lag of time that it took to be able to show the page that's because, and the, that's the configuration. So inside the tests, there are various commands it runs such as Drupal install. And this actually executes a PHP code on the server to install the site. So the script ran installed the site, and now Nightwatch is going through and executing its various tests.</span></span></p>
+
+<p><span><span>So it uses PHP to install Drupal, and then it logs in and does all the assertions inside of the browser instance. It's like here in enabled Claro and is working with the permissions form.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+So Matt, I'm just jumping back a little bit. So I'm a little bit confused what we need to do to get ChromeDriver running. I did a brew install, ChromeDriver and I'm still getting some similar error messages.</span></span></p>
+
+<p><span><span>MATT:<br>
+So you have to make sure you download the correct version of ChromeDriver for the version of Chrome you have.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+Now the error message, yeah. So alright.</span></span></p>
+
+<p><span><span>MATT:<br>
+So like in this, I have Chrome 89, so I would have downloaded this version of ChromeDriver. So you have to check what version of Chrome you have and then download that ChromeDriver. So as you update, as Google Chrome updates, you do have to update ChromeDriver. And whenever that error comes up, I usually just go in and re-download it. What error, do you want to paste the error you have?</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+Yeah, so I'm having a couple of different ones and the Chrome driver version when I'm in ChromeDriver-V is completely different. It's like 2.45.something other.</span></span></p>
+
+<p><span><span>MATT:<br>
+Because that's the version of Chrome driver and the versions of Chrome driver are different than the versions of Chrome.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+OK. So.</span></span></p>
+
+<p><span><span>MATT:<br>
+Go ahead.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+I'm just trying to figure out what I need to do. I can give you the error message that I have.</span></span></p>
+
+<p><span><span>MATT:<br>
+Yeah send me the error message and I can help debug it. And it looks like we might be frozen a little bit or it's taking, so one thing it does. So this version of Chrome only supports Chrome version 87. So it sounds like you have an old, you installed with Homebrew?</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+Yeah I just did a Homebrew install right now.</span></span></p>
+
+<p><span><span>MATT:<br>
+So I think the Homebrew install is behind because you received this version right here and you might need to go manually download one of these.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+So I just download that and just override the binary.</span></span></p>
+
+<p><span><span>MATT:<br>
+Yup so you can just download this and override the binary. This is one reason I do like running Chrome in a Dockerized environment sometimes because it will be a little bit simpler. Now I'm trying to figure out if this is frozen.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+So I have Chrome 89 latest stable release for, I just downloaded the latest stable release for Chrome 89. And I just say Chrome, the drive around back 64, OK.</span></span></p>
+
+<p><span><span>MATT:<br>
+And this kind of shows one reason it's nice to have the Dockerized set up.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+Yeah.</span></span></p>
+
+<p><span><span>MATT:<br>
+So you noticed like that took forever to run, right? Like that test was hanging it's because it installed the umami demo. Wow. And it did a really quick test, so it passed away real fast. So each test, and this is one thing we'll go through in the next session. When you go through tests, it executes this test site dot PHP script, which was added into the script's directory. Sorry, scrolling to find it. So what test site does, is it installs a bootstrap and it runs a symphony application. It's just like drudge site install, except it allows you to pass a setup file and the install profile to be run. So when you write a test, you have to pass it almost like a bootstrap file that says, OK, you've installed Drupal for me. I need you to do some post-processing to make sure that I can run my tests. And that's the main part of the second session this afternoon is great we've got tests running. How are we going to write our own setup files and actually create tests? And we'll review the quick link module.</span></span></p>
+
+<p><span><span>And I have another custom one in here and we'll try to write some test for (INAUDIBLE). So go ahead, Mike.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+So do you want me to hold it for questions for the end? I've downloaded the latest version of Chrome driver and it's doing the exact same thing. I don't know if you want to like go over all like everything now and then?</span></span></p>
+
+<p><span><span>MATT:<br>
+We will go over it at the end. Visit is one that can be finicky. And I think this is proving the point of like, if you are a Lando-person or a DDVEV-person run it there and we'll figure out how to get the Chrome driver, because honestly it's one of those that I've just had it set up for so long that I don't know. I don't even remember how I installed Chrome driver. I think I just download the latest one and say giddy up. While we're going through this, try just downloading the latest version for 90 and see if it works.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+I downloaded it for 89. Because that's the version of Chrome that I have, but I'll download 90.</span></span></p>
+
+<p><span><span>MATT:<br>
+So we had a failure when running the test suite, I got a page not found. It looks like, and that can be one that can sometimes be a problem when using the built-in PHP server. I've had it where, especially when testing like the field UI, it breaks due to the length of the paths I've noticed. But we were able to get the test running. If I go back to this ENV file and I changed, I'm going to change that to false for the auto start and we'll modify the Chrome marks to be disabled. GPU has this is a sandbox. And if we run the test again. I've also had instances where tests failed when it wasn't headless. Like somehow me using the computer in the browser existing and being shown cause like weird side effects. So that's one thing too that's one reason I always like to run it and headless, I only disabled headless if I'm trying to like debug a visual problem that taking screenshots or HTML dumps doesn't work for. So as you can see, our tests are running and there's no Chrome that was launched.</span></span></p>
+
+<p><span><span>So this will be written up as steps into this folder here, I'm into this locally. I'm going to copy them in right now since I was not able to do that before. So that way we can have it and then I'll dive into running it with Lando or DDEV, then we'll do Lando. So again, we did in one terminal window. We did CD web and then we did PHPS 1270 001-8080 and then to the router script. And that is what has been running over here. And then in another terminal, we launched Chrome driver, which was just a simple call, the Chrome driver. We I'll use air quotes for simple, since you could have conflicts with your Chrome version. And then you installed the dependencies, which you go into CD web core, and then you run yarn install and then run tests. And to do that you CD web core and then yarn test Night-watch and I'll add tags there for you default, which that is what is currently running here and going through the paces, it's not test it's tag. So let's, I'm going to cancel this. I'm going to close that tab and I'm going to cancel Chrome driver as you saw, we had some issues I don't know if anybody else was trying to run this along and had issues as well, but that can be the problem with having local services running.</span></span></p>
+
+<p><span><span>So we'll start off with how many people use DDEV can you please click the raise hand option? I want to see if I see it in the participants. OK so there's a handful now I'm assuming the other half might use Lando or might not use anything. I know there can be quite the local development or over who prefers what.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+I use both.</span></span></p>
+
+<p><span><span>MATT:<br>
+SPEAKER: I use both to, I got, I am a DDEV person, but I got thrown onto a WordPress project that uses Lando. And just for the record, I think it's great that there are two companies that are building local development environments and trying to streamline this piece of this major component in our lives. And Blue Horn Digital is a sponsor of both organizations because I couldn't work if I didn't have either tool. So let's go to DDEV. So DDEV allows you to provide custom service definitions. And what that means is you can extend the default things that run with when you launch a DDEV site, because by default with Drupal, it would just give you the, the application container, which has PHP and node and on my SQL container and like PHP, my admin as well. So with this, we're going to create a Docker compose dot testing file. And inside your DDEV folder, anytime you create a Docker, compose dot, whatever dot YML, it gets in an added to the running services. So what we'll do is we're going to add, define a new service, and this service will be called Chrome driver, and we're going to use the Drupal CA Chrome driver production tag.</span></span></p>
+
+<p><span><span>You might see on the web there's various documentation that points to a WebDriver. I think the image is web driver-Chrome driver. These images are the same thing. I pained Ryan Aslet who's mixed logic from the DA and the infrastructure team. And it's something about like the script when it was generated they're the same thing. So if you see either tag name, they are the same, we're giving it a container name to match the other ones where it's DDEV, DDEV site name, Chrome driver, and a few of the labels. So that way DDEV knows how to discover our container. This is all documented in the DDEV read the docs for defining custom services. So I will add this to the docs for DDEV as well. Paste that into here. So that's where we are running Chrome driver. We're not installing Chrome diver on our container or onto the app container because we don't have to. That's the beauty of Docker is everything is a service. We are updating the web service to link to chrome driver that way from the web container, we can do HTTP Chrome driver and it knows how to network and access it.</span></span></p>
+
+<p><span><span>And now for the next step you recall, we went into the core folder and we had to copy this ENV file and configure it. Well, I'm going to delete it because we don't need it anymore. So I'm going to move it to the trash because what we will do is we're going to define it as environment variables on the web container. So you'll see here, Drupal test base URL, HTTP web, because it knows that the website is accessible from the web host name. We're going to pass the DB URL, which we will pass the database connection string for the DDEV database. Jack you're on Doxie this should be. So once we get into this territory, especially DDEV, it should be easy to copy paste visits, compose YML, Lando is different because they just have the Lando file. So the good news here is this file is a Docker compose file. So you can reuse it for any kind of Docker based set up that uses Docker compose. So you see the WebDriver host name that matches the name of our service up here. And then we're going to set auto start to false.</span></span></p>
+
+<p><span><span>The Chrome has, basically everything we configure in that dot ENV file, which stands for environment file. We pass as environment variables to our Chrome to the web container. So that way it knows how to talk to the Chrome driver. So now we'll get back into the terminal and we're going to run DDEV start. In this example, I do have it taken care of some of our maintenance items or grunt work. So using their hooks after it's been started, I have it CD into the main directory and run compos or install. I then also have it run yarn install for Drupal core. So that way you don't forget about that. And this is used for PHP unit, which is outside the scope of this training, but will be documented in the full repository. So as you can see I run DDEV start, and now it's running yarn install for me. So that way I don't have to worry about it being out of date or forgetting. And once that runs, we'll run some special commands I crafted. So DDEV allows you to trade custom commands, which are just bash scripts that it can parse and lets you run DDEV my command name and they run in the web container.</span></span></p>
+
+<p><span><span>We have a Night-watch command and this is just like a shortcut. So you don't need to run DDEV SSH CD web core. It just runs it for you. So at this we're able to run DDEV Night-watch as we did before we can do DDEV Night-watch tag core. And once this finishes installing, we will rerun it. It had to recompile the node modules because the operating system changed. It's a different environment. I did a yarn install on my Mac and then it determined that, oh, I'm an indifferent environment. I have to rebuild the modules that were installed as dependencies. A little bit it takes a while because it's running inside Docker for Mac and Docker for windows and Mac both have really bad performance problems. It's not Docker's fault. It's just containers don't run natively on those operating systems. So they have a virtual machine layer that is hiding in the background. And if you are curious about how to write custom commands with DDEV that is documented as well, just to fill the time while we wait for 20,000 dependencies to get linked.</span></span></p>
+
+<p><span><span>I love JavaScript, Tulane what type con oh yeah. Container commands. So I'll copy this into those docs as well. That's in the read me, side so the read me, will have all these documented. So that way anybody can come back as a point of reference and you know, testing is my jam. That's what I really enjoy doing. And I would like this to be an open repository for more people to get involved in testing, because then you have good coverage and you can ship reliable code and you can contribute to core and other country by helping ensure test coverage. Man, this has taken long. So in the end, when you run this, it'll take you more time to get your dependencies installed than it will to configure DDEV and the services file. Now I realize when going into this. I didn't clarify that if you are using DDEV, you might need to have some knowledge of Docker. And I keep talking about a services file and Docker compose Docker compose is a tool with Docker that lets you compose an app. So you have these Docker compose files, that specify services that are run, and it will ensure that they all execute together and build a network.</span></span></p>
+
+<p><span><span>OK, great so this is now run. So if I type, if I were to type DDEV, you'll see that my custom Night-watch command shows up here. And so does the documentation for it, which was parsed from the description and usages here. So if we type DDEV, Night-watch, I'm going to hit up to go into my history and we'll run tag core. So this is going to run the same thing that we ran locally. But with inside the web container and sorry. It's going to run it in the correct directory, it's going to run test Night-watch and we didn't have to type all of this. We didn't have to write DDEV SSH to get into the server. We just had to execute all of these. We just had to execute this custom command and it would run everything. And we did not have to configure the dot ENV because we provided overrides for everything right here. So Night-watch is going to read from the global environment variables added to our container. And no one had to copy the dot ENV file because let's say that you upgraded Drupal core to a new major version.</span></span></p>
+
+<p><span><span>When you do that with composer, it usually deletes the dependency and then reinstalls it, which means this core file folder would go away. That means your dot ENV file that you so gracefully, crafted and spend time configuring, was deleted. There's ways to work around this to preserve it, but by putting it into your local environment variables, it helps prevent any of these files from being deleted. Drupal's this weird doc where our dependencies live inside our actual project files instead of off to the side. And we are requested to modify our dependency files for things to work. So I like putting these into the environment variables because then I don't have to worry about this file being removed. Now, if you are working on core, the dot ENV file is ignored. So you don't have to worry about accidentally committing it. But if you were working with your own custom project or your client project, I would put it into environment variables. So you don't have to worry about updating Drupal core and losing a file, or if you've patched core, every time that you install it, it gets deleted and re-installed.</span></span></p>
+
+<p><span><span>Which means that that file disappears. I know that happened to me a lot with PHP unit dot XML, and that might be the most comparable situation for most folks. So that was one benefit of using the environment variables. So as you'll see we've got everything up and running right in the command. It is going through the Clara-audit, complete test, it passed. It's now moving to another one. And all we had to do was copy in and set up the services dot YML well sorry, I spent time earlier, but now all you need to do or anyone else needs to do is just copy this file and there'll be up and running.</span></span></p>
+
+<p><span><span>S1:<br>
+There is a tool called quick sprint that DDEV creates and manages. Thanks to Mr. Radcliffe.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+We have an issue opened to add this file so that we can automatically be scaffolded so if you are using the quick sprint, you'll have this available immediately and not have to copy paste anything so that will be a nice benefit for those who are sprinting. Yeah, and Jack so you had the problem with PHP unit that xml I have for those who are curious in this readme I go over a blog post on how I configure PHP unit that xml to prevent that from happening you just copy it into your project route and adjust some of the paths but i want to try to stay on topic here because I know I am one that bounces around quite a bit so I’m going to cancel the test because we've proven that this works. So now what I’m going to do is I’ll show off how we can do this in Lando. So, I’m going to run DDev power off. If you don't have the pleasure of working between Lando, DDev or with Pygmy or any of the other local development environments.</span></span></p>
+
+<p><span><span>MATT:<br>
+Every local development tool has its own router which is what says hey you went to food.DDev.site it goes to this container. Oh you're on Lando, if you go to lando.site, it goes to this container. Both command both systems have a power off which stops all projects and removes the router so that we don't have a conflict because if you have DDev start and then DDev start and then you turn it off but go start a Lando project it complains that port 80 and port 443 are in conflict. So, I am very grateful that both have a power off command to make it easy to switch between projects that are using Lando or DDev. So, before I run Lando I’ll quick show the Lando file. So, Lando has a Lando file. It's using the Drupal nine recipe and I haven't using composer two. Unlike DDev the app server takes a more you could say like holistic approach or one that you would see in production where it only has Apache and PHP. You might even see, you know normally, you would have your PHP fpm service and then Apache to the side or Nginx to the side.</span></span></p>
+
+<p><span><span>But that's going into dev-oppy things but for Lando the app server just has PHP and Apache. DDev puts its tooling also in the main server so as I brought up before Nightwatch needs to execute PHP code because that is how it installs the Drupal site and run some other various commands. So, you could add another service, a node service that has PHP. I started with that but then you have yet another docker image or container running that you don't need to and yet another image I luckily now have two terabytes on this machine. My last MacBook had 256 gigs only and I was in a constant battle of docker images eating up my disk space so the easier alternative is to just add this build as route option route or route depends on where you're from and run the node install script which is luckily two lines of code and then we install Yarn as well. So, this way our app server container has node available and then in our build we run composer install and then also yarn install just like the post start commands in our DDev.</span></span></p>
+
+<p><span><span>This just gets everything set up so if you did want to start working on some contrib tests you could just use this template. And then we specify an overrides. So, with Lando when you have a recipe you provide overrides to some of the services. Now in the end this gets mapped to a docker compose file with Lando abstracts it more than DDev does. So, it looks the same but it's not the same. And again, we basically copied everything over we did some modifications. You know instead of web, it's app server because that's the name of our app server hostname. The DB URL when it's the recipe, based on the Lando recipe or environment you have set up it gives you different database names. So, the DDev it's always d-b, d-b, d-b, d-b, just d and b across the board. With Lando it's Drupal nine for the username password and database name. I'm pretty sure if you use the Drupal eight recipe, it's Drupal eight, Drupal eight etc. We are giving it the same hostname of chrome driver cause that's defined below.</span></span></p>
+
+<p><span><span>Again auto start false. Chrome AGS is the same. So pretty much the same setup, pretty safe. You know, in the end, it's just Docker. And to add a custom service, you'd under your services, collapse app server. So, under the services key, you define chrome driver. It's type compose. This is documented inside the Lando docs. So, if but if you're familiar with Lando, you probably know what this is. We specify the same image. And one thing I found out cause this kept crashing is when you define a custom service with Lando, it always overrides the entry point. Now, if you're not familiar with Docker, every Docker image at the very bottom of the Docker file says what do I run, you specify a command and that's what it runs and the Docker image lives so long as that command keeps on running. Lando swaps that out for probably their own entry point command and then wraps what you parse to it. So, we have to copy this command from the Docker file. For those who are curious, you can find this information actually in the Drupal CI environments project on drupal.org.</span></span></p>
+
+<p><span><span>So, I had to go into the Docker file. And at the bottom, you'll see the command is here. I removed the log ins so that way it would all be exposed to Lando, because you can run Lando logs to see the log output. And then for Lando to create custom commands, you actually add to the tooling definition. So here I added one for PHP unit to run PHP unit. But the one we're going to execute is Nightwatch. So, the service is our app server, give it a description, the command, you'll notice here I have the command shortened to just yarn, test colon Nightwatch, because you can specify the working directory. So, we're telling it to run an app web core. So, I'll get back to the terminal. And for anyone who's curious, I am using the Ctrl key and the tilde key to toggle terminal. I have no idea how you get to it. I don't know what you click. That's just that's what I know. I don't primarily use VS code, but I use PHP storm but I know VS codes used by a lot of people. So maybe it would be more familiar for folks.</span></span></p>
+
+<p><span><span>So, if I do Lando start, the party is going to get started. And it started our proxy is going to start our various services. Reading the chat. So, chrome driver via homebrew on Linux migrated from core to a cask and cask are only supported on Mac OS. Fun. And like so I'm pretty sure with homebrew a cask is any recipe or any software that's a user interface. Like I think that's what they differentiate casks to be. It really is one that, it's one that installs an app and installs a Mac app. So that what a cask is.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+OK. So that's what a cask is. Oh, so it's just they just straight up remove support from Linux then because... It never had it on Linux. Yeah. OK, go it. Sorry. I mean, Chrome driver, like Chrome driver was just full on removed from the Linux homebrew install, because it got moved to a cask and cask are Mac OS only. OK. Got it. So yeah, so you're better off just downloading it or, you know, if you want it to, you can also just, you could just run chrome driver as a container on your machine if you have Docker. But I'm guessing if you have Docker, you're probably using one of these local environments. So now we have our Lando site running. And if I type Lando and scroll up a little bit, you'll see we have the Lando Nightwatch command. So, I'm going to copy that, and we'll run it with Taig core. And just like DDev, this should be pretty uneventful and just run without anything exploding because we have everything configured properly. So, it's actually, I was gonna say it's pretty easy. It can be straightforward to configure the setups.</span></span></p>
+
+<p><span><span>Probably the worst part is the chrome driver conflicts. Which now that this is running, you guys we can circle back to Mike How's it going?</span></span></p>
+
+<p><span><span>MIKE:<br>
+Pretty good. Thanks. Thanks to Brian Perry's help. So, I ended up modifying the package JSON to, to say like version 89 re-did a yarn install. And at that point it worked. I also had to leave that comment, that line 47 of .ENV, where you specify the various kind of switches and stuff like that. I had to leave that on commented. And at that point, it's, it's running.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+So that way I can document this. So, you change this to 89?</span></span></p>
+
+<p><span><span>MIKE:<br>
+Hold on one second, let me look at your screen. Yep. Yeah, so I change that to 89. And then to the yarn install.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+OK, so let me And that's probably I mean, that'll work for us. Now, it's probably not a great long-term solution, though. Because it's Yeah, editing core.</span></span></p>
+
+<p><span><span>MIKE:<br>
+I'm getting a phone call, I'm gonna, I'm gonna take this. This is as important.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+OK, I'll make a note of that. So that way, anybody who wants to run it locally, can try to solve that. Or install chrome driver. And actually, wouldn't even be, I wonder if it'd be better just to say at latest to override it. I'll try that after we do this training. So, does anybody have questions? I know this was kind of like, abstract because we didn't like dive into running the test yet. Or we have the tests running. But there's just setting this up can be the hardest part. And I just wanted to make it be reproducible. And something people can mostly copy paste. Fortunately, the local one isn't something you can really copy and paste because you have to configure it. But does anybody have questions? So you wrote, like three blog posts on doing this with the DDev like a year or two ago? They will be (INAUDBLE) thing on the thing, and you've got them in the readme? Yes. Do those need updating? Are you going to update us? Yeah, I'm going to update them. Because if I go to the first one.</span></span></p>
+
+<p><span><span>Let's see. Since we're doing Nightwatch, let me even go to the Nightwatch one. So, in this Nightwatch blog post, I don't configure any of the Nightwatch ENV files. Yeah. But part of that's due to the fact I wanted people to understand what they mean. So, I think I want to update this to have the shortcut. To have it all inside the DDev, or maybe I'll just update it to move to the to this format, and not fully explain everything. So that way, people do have some eat more easily to copy paste. But my plan is to go through and update all of these. Excellent. That'd be at the same URL? Yep, same URL. So, for anybody who's interested, they are in the blog, they are in the readme for that repo. I wrote a series on running PHP unit for Kernel unit for unit, the unit Kernel and functional tests. And then also for running functional JavaScript. Which functional JavaScript is our PHP unit tests that execute chrome driver and JavaScript tests? The good news, if you are using this the setup that I've outlined, I'm sure you've noticed, because it's not hard to miss it.</span></span></p>
+
+<p><span><span>It has the PHP unit configuration here. So, you're able to execute cores, PHP unit tests, and Nightwatch tests with these configurations. If I close that, and I did. PHP, I can't type I got a new keyboard, and it is just taking some time to get used to. It’s like here, if I targeted the functional JavaScript test inside of the action module. It will run because we have the environment variables here and ready to go.</span></span></p>
+
+<p><span><span>MATT:<br>
+And another reason I do want to make this easy to run is every test every fix for core requires a test and I know a Drupal Commerce. I would not accept a single patch unless it had a test and like good test, not like oh, well I did a basic assertion like no like it needs to prove this thing works left, right up and down and into the future. So, writing tests isn't necessarily hard. The hard part is running them and verifying them. And I want to help document that and make it be something that everybody can enjoy. Because I love writing tests. The hard part is maintaining them.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+Oh, yeah, maintaining them too. Well, yeah, I mean, but that's the good part. If they don't break, that means things are working, you need to be scared when you make big major changes and nothing breaks, that's when you got to be scared. So, yes, thanks, I want to make sure to show different setups. I know I'm impartial to my way of just running locally, because then I don't need to have Docker running. Especially, you know, back when we used to be able to travel and go on planes. I want to use my flights to just write tests for things so and Docker eats up CPU and battery. So being able to just run PHP is built in web server and you SQL lite is a very efficient way to just write tests and get things rolling, and can be a little bit faster sometimes. Any other questions? Or any testing related stuff like OK, so anything around there, Benji? So, I have a question about Lando. Um, if you chose to have a separate node container running, would it run into trouble because the Nightwatch is running node, which then has to run PHP, which is on the other container?</span></span></p>
+
+<p><span><span>Yes. So, let me actually show you the close pull request. Oh, that's one cool thing, too. I want to show about this. So, add, add, add, test Nightwatch and workflows. So previously, let me find, pass no sandbox. Believe it's in this commit. So, before we pass this override, and I can run a Lando rebuild to add this, but it might take a while. Essentially, it gets to this script. And the test runner. So, Drupal Nightwatch commands. So Nightwatch lets you create different commands. And inside the Drupal install command, it uses nodes, exec, or execute command and runs PHP.</span></span></p>
+
+<p><span><span>MATT:<br>
+So, it executes a PHP script. So even though it's an end-to-end JavaScript test framework that's running in node, it's still makes a call to PHP to install the site because otherwise, we would have to go through the visual installer like functional JavaScript tests do. I wish that our functional Java or functional tests ran this command. So, to run Nightwatch, you do need to have PHP on the server so that way it can install Drupal for you. And yeah, so if you ran, so before Nightwatch, pointed to the node service. And if you did that, it would it would bootstrap chrome driver, get Nightwatch Friday, and then exit out with an error about PHP not being available. So, to clarify, like you, you, the new container that you're using has both node and PHP in it.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+Correct. And there isn't a default, Lando provided container that does that I that is that build as root step, which is documented somewhere in here. So, if we do build as root. So, build steps. So, this outlines all the various ways you can do it. And I'm actually, you know, what I think I found is I typed a node, and they have a guide for installing node in your Lando PHP service. So, I copied it from here. And then I had to do the extra step of installing yarn, since that's an additional dependency. which honestly, like if I had, I'm on a project right now, it's a Laravel app. And we have a separate node service to run our compiler things. I might just do this to the app server instance just to remove like the extra service. Maybe not, I don't know. But yeah... There's different philosophies on that. But I have had to do a similar thing to get yarn working with BLT So, you know, because this one of like, let's face it, like a perfect world, you would have a service for everything like PHP would be its own service.</span></span></p>
+
+<p><span><span>But it's local development, right? You're not. This isn't for deploying the app. So local development, you know, it's nice to just have a larger app container that has your tooling in it, because it can remove some complexity. It's just a matter of preference. Oh, I know I wanted to show one thing too. So if you are curious there's tests, so this repo actually runs Lando and DDEV and local and executes the test. So inside the GitHub workflows, the local is a little bit more convoluted because I do have to set up PHP and cash it. But this is the non-documented documentation where you run composer, install, you run, the web server, you run Chrome driver. I don't have to install it because the get hub image already has it. We run PHP unit and we run Night-watch. Inside Lando, we run the Lando installer for Dibbern. Dibben, Dibbern I never say it right. I don't know which one is right. Run Lando start run, Lando PHP unit, run Lando Night-watch. And then I was having issues with Chrome drivers.</span></span></p>
+
+<p><span><span>So I haven't run Lando logs on Chrome driver, if there's a failure. And for DDEV, somebody already wrote a GitHub action for setting up DDEV which I want to contribute to.</span></span></p>
+
+<p><span><span>MATT:<br>
+Cause it seems to take about a minute longer than Lando and I wonder if it could be sped up, but again, this test, the custom commands and the exports, the logs from Chrome driver. So as this has worked on and we improve any of the local environment setups, it does have automated testing for the automated testing integrations. And I hope that this can also serve some examples for integrating with CI services. So that way you can have your test be happy and running as well. The one thing I wanted to cover, but I didn't is actually running Drupal CI locally for all of this, but I figured that's a more convoluted setup and this would be more streamlined for most people. Any other questions or anybody having anybody that tried to set up and having some setup woes? So if no one else has anything, I have something again.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+Yeah. So I have Night-watch running I have one, when I do the tag core tests, I have one command that fails and it's a new mommy thing. The command that fails is like the PHP command that runs like the test site install. So I try to troubleshoot that by running that command from the command line first and then I identified that I was running into memory issue I fixed that. And now that command, like when I run that command it doesn't produce any output. So I don't know why it's still failing. How would I go about troubleshooting something like that? So what we can do, so let me alright, let me power off Lando. And so normally I don't do it. I don't run that in VS code what I'll do is set up various terminals that I-term, because this is a lot easier to kind of see things that are going on. Oh, no, I like your I-term theme. I don't know what it is. I set it up once. (LAUGHTER) I think they came up with a new update and it has like a clean approach that, changes this tab stuff. Alright, so we've got Chrome driver running.</span></span></p>
+
+<p><span><span>We got PHP built in server running. So you went to, so what command did you run again? You did yarn tests, Night-watch. Yeah so I didn't start Chrome driver in like a separate window or anything. I just kind of. You used the Built-In that's right you used the one that is a dependency. So let me close that out. Let me, I forgot I deleted the configuration. So let me just get back to that state real quick, packaged that G-sign Chrome driver. I want to try something real quick to yarn install Chrome driver. What is it, what do they use? Is it at next or latest? I have no clue. Let's try out latest. Oh, you're an ad, right you're supposed to be the front vendor and you're supposed to live in with, I don't even know what JavaScript is. Oh, D hey, check at work. Yeah it worked. So I'm going to copy paste that. So that's an easy way to get things updated, and we're going to put that into the handy-dandy collection of notes. And let me just reconfigure this really quickly. So HTTP one to seven, you sequel lights, hosts name.</span></span></p>
+
+<p><span><span>Yeah, local hosts. Auto-start is true I don't need to change anything else. So you ran yarn test Night-watch and you did take. Take core. But the umami theme is what broke. Yeah it runs a command that says like the PHP install command, and it has a setup file and install profile and all that. Was it the install profile test? Yeah, I believe that's it right there. Alright so let's do copy relative path, and I think I just need to do that and that's how you can run. Oh, shoot that's not a tag sorry so you are able to run individual tests by giving it a path name. That is documented here in the read me the one at the bottom. Oh, let me give you a preview. So it's actually readable. Yeah, so I forgot to turn into headless. Somewhere in here, it says that you can run a test that way oh, it's run a single test. There you go. To run a single test, you just pass that for debug, you are able to that's for PHP unit. I know in somewhere, sorry, one second life find out, oh, I don't have it in for Bosma you're able to pass dash debug to get verbose output.</span></span></p>
+
+<p><span><span>MATT:<br>
+But I think the only thing it will show are the Jason data it posts to the WebDriver or Chrome driver well, it's a Chrome drivers to the WebDriver API end points inside of Chrome driver. Not necessarily the local execution script. So let's see if this runs, so it is going to take a while because it's running the demo umami. So I guess we'll dive, I'm going to go through this again in the afternoon, but we'll kind of dive into it here with the test since we have it open. So this Drupal install file that you see right here on sidebar, that Drupal install maps to this command called Drupal install a little bit of magic. So exports command function, Drupal install it takes a setup file and install, profile, and land code. So this test is saying install with the test site, install script, and we want the demo umami theme, and then it executes the command as web server, which down here you'll see pseudo, oh, I didn't realize it did that. Wait if, oh, never mind. That's if the environment has that pass, which it doesn't Drupal CI, otherwise it just runs the command.</span></span></p>
+
+<p><span><span>So it doesn't try to do pseudo on your local machine and that executes this script called test site, which is the test site application, which runs the install command. And this is the same install command as the Quick start command as well. I think maybe they're different actually are different, but this is like running Drudge as I said before. OK, we quit so this wait, Mike, so this failed for you? Yeah, that did fail. And I also tried running, I ran the test just like you, did I pass it in the actual test?</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+Want to paste the error? Yeah, sure, I'll paste the whole thing. Where do you want to past it? You can do it in the chat so that way everybody can see. Yeah sure. There is one thing I'd like to do is in the read me, I even opened like a notes area about the no sandbox. So that way people don't have that problem with running it headless. There's a way to fix that and I've opened a. I have actually opened an issue and use the new GitHub or the get lab merge request to open a merge request to fix that. So we hopefully don't need a pass, no sandbox anymore. I don't think it's letting me paste too much. I'm going to do a number of things here. So connected fail. Sorry let me put so many characters at a time. Alright so testing element is present in five seconds. So it sounds like your site is just not reachable. As I read that, oh, wait, it is command OK never mind. So it timed out reaching the site, but that's because command failed PHP scripts, test sites set up, install, file, install, profile, the deep URL as Jason.</span></span></p>
+
+<p><span><span>What you could do want to copy that PHP script and run it locally and see what happens. Yeah, I already did. And I ran into one issue that I resolved. It was a max memory PHP memory issue. But now when I run it after resolving that I get any output and I'm running it again right now. OK I'm going to make a note.</span></span></p>
+
+<p><span><span>MIKE:<br>
+Just a little plug here. The reason to use a Docker base local development environment is so your whole team can do it without you to do any support. Yep that's what (LAUGHTER).</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+So if you don't want to have problems like Mike in this DDEV or Lando. Unless you have to do it on an airplane. Unless you got to do it on an airplane.</span></span></p>
+
+<p><span><span>MIKE:<br>
+But actually you can. I mean, I think, I don't know about Lando, but DDEV works fine on an airplane I mean.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+I would always run it locally, so I didn't have to have Docker running, but if you've got an outlet, then do it.</span></span></p>
+
+<p><span><span>MIKE:<br>
+I mean, I'm a big fan of local installations. I did everything that way for years. The problem is when you have to teach somebody else how to do it, or you have to change the config. I mean, you know, like what you're trying to do. I mean, if Mike had a little more time to work on this, he'd get, his just perfect until he needed to change it. Till Chrome updated. Yeah, exactly. Well, I'll tell you what, this isn't that important because I know where that I can run the other tests directly, you know? So you know, we can write some Allavara tests and run those directly.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+So sounds like one, I want to just at least make the note here because now I lost the, is going to be a horrible note, but probably no. It is a horrible note man. Probably memory demo takes a lot to install. I mean, that's probably it's installing the umami demo, which installs all that default content. So that's probably your issue. And when we work on the allavara tests after lunch, we shouldn't have any of those issues. So we're getting close to time and I just wanted to do.</span></span></p>
+
+<p><span><span>MIKE:<br>
+I got a couple of questions.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+Oh yeah go ahead.</span></span></p>
+
+<p><span><span>MIKE:<br>
+So I'm trying to get it set up with Lando. So I guess you started with a composer create projects to get Drupal and the web directory and all that stuff.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+Yes which if you're going, are you setting up so you can contribute to Drupal core?</span></span></p>
+
+<p><span><span>MIKE:<br>
+So if I do that, I have to use the 9.2 Point next branch.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+If you did that, you actually want to download, you want to, so I realized that after I got this all set up, that this isn't a great example if you want to contribute to core, because when you use composer create project. It turns things around. Yeah it uses the composer install.</span></span></p>
+
+<p><span><span>MIKE:<br>
+Right.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+So you'll want to create it off of the actual development trunk or the development repository.</span></span></p>
+
+<p><span><span>MIKE:<br>
+OK I can do that.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+Yeah but otherwise go ahead sorry.</span></span></p>
+
+<p><span><span>MIKE:<br>
+So the other questions are for Lando site, I found it in your repo, you have the surfaces defined site was able to copy and paste that. Can you give us the tooling somewhere?</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+Oh yeah the tooling should be at the bottom of it.</span></span></p>
+
+<p><span><span>MIKE:<br>
+And Matt, I don't know if you're asking us from the perspective of trying to add this to that Lando, triple contributions, and repository. But I'm actively trying to do that right now. If I do have something I'll post the PR in the chat.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+Right so Matt maybe I just haven't figured out where, what you're looking at and whether it's public. I see the... (CROSSTALK)</span></span></p>
+
+<p><span><span>MIKE:<br>
+Where?</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+In the GitHub work in my workshop example.</span></span></p>
+
+<p><span><span>MIKE:<br>
+Yeah.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+So if you go to dot Lando dot YML, we have services then at the bottom is where it has the tooling definition.</span></span></p>
+
+<p><span><span>MIKE:<br>
+OK I can see now thanks.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+So what you could do is you don't even, like, you don't need to run Lando in net. You could just copy this file and paste it into there. Which is one thing that I'm adding now. So this repository is based on a composer build and not meant for core contributions can't type it is fine for contrib to set up your own core contrib for contribution environments, follow the following. I'll make that better wording. So you could do get clone there. And then if Lando, if DDEV, so I'll add these quick notes into here so that all folks can get a bit of this. And I'm going to commit these changes. I was about to yep thank you. I forgot to fix that. You know what VS code doesn't have like spell check built into it. There's some plugin for that one.</span></span></p>
+
+<p><span><span>MIKE:<br>
+Yeah there is a good plug in for that.</span></span></p>
+
+<p><span><span>SPEAKER:<br>
+Ah, yeah, there's a good plugin in Microsoft, (LAUGHTER) there we go. So how long have you been using a light theme there, Matt? For about four months because I realized dark themes were hurting my eyes and I use the dark theme only for PHP code rust, light theme, go light theme, JavaScript, light theme, Java, light theme, PHP, Dracula. And then I was like, why? So I finally went to light themes, which they, I feel like they also work better when I do my live streams and screen-sharing. It was just PHP was the holdout probably because I use a dark theme for like my IDE with PHP for the past 12 years, but nothing else. And then I finally changed it. Any other questions? I pushed up that change, which would also, if you do go to the GitHub pages version that lets GitHub pages, at auto updates as well.</span></span></p>
+
+<p><span><span>MATT:<br>
+So I'm going to try to work on this being like a documentation page, which then folks can help me figure out where this belongs in the Lando DDEV and Drupal documentation. I'd be more than willing to get it into its proper home, but don't want to go to my main organization. So, yep. So I hope this was helpful and I hope this gave everyone a way to jumpstart getting their local testing environment set up with their favorite way.</span></span></p></div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-38499876b130ec10a7611e3549d7cab272591ee97abdde716418cd0696dc84ee">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/6798">https://mid.camp/6798</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-af9e2fb00eb93785b79220dba42b973ba7fb6091888c8b24b0e111a365a4ab3e">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/drupal-contractors-esteemed.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2021-02/dcont-logo-v1-stacked-black-01.png" width="220" height="189" alt="Drupal Contractors, by Esteemed " />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/evolving-web.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2021-02/evolvingweb%20(3).png" width="1517" height="371" alt="Evolving Web" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/tyto-learning-solutions.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2021-02/tytolearning.png" width="2000" height="974" alt="Tyto Learning Solutions" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/pantheon.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2021-03/pantheon-logo-tagline-black.png" width="1200" height="370" alt="Pantheon" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/palantir.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2021-02/palantirnet.png" width="480" height="76" alt="Palantir.net logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/bounteous.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2021-02/BounteousIndigoSmall.png" width="403" height="67" alt="Bounteous" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#eb82858d84ab86828f888a869bc584998c"><span class="__cf_email__" data-cfemail="0a63646c654a67636e696b677a2465786d">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/6798","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_llBcjrkrgAu2wT1DR7VGL_iP6geJyiTnF_8O5ZD57VI.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJxLz89Pz0mNT8xLzKksyUwu1k9HE9DJSCwpSS3ST8_JT0rM0c0qBgAByBPW"></script>
+
+  </body>
+</html>

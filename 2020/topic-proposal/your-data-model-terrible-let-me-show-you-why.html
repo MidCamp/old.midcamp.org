@@ -1,0 +1,1641 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="Drupal is a world class data modeling tool, but that doesn’t mean it prevents you from making terrible choices. In this session we’re going to explore common site building and data modeling techniques, what those techniques actually mean for your site’s long term maintainability and scalability, and what other options you might have that will be easier to maintain and scale with your needs. Topics covered will include: Understanding Benefits and Tradeoffs of Entity References Paragraphs and Entity Reference Revisions" />
+<link rel="canonical" href="your-data-model-terrible-let-me-show-you-why.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Your data model is terrible! Let me show you why. | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter_2019/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Your data model is terrible! Let me show you why. | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_gt5LiAM1qLGUH5e845uOb7R_lJ9dUwTXmnhGDR2yY20.css%3Fdelta=0&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlj90OwiAMhV9oA_XOp1lgHDaSQg3FLfPph_sxGm_a03Oa5mtPRmTR1giaftc-0EdHiJgBcs6JXc04o6ocDYUXmtGUgtzdLte7HoitobYXOe33Ze05lV_na1EWKYg7whQcuEO0cJ.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_UMuvjHSQ9iJFDCuYZXW-ThtEaBNBWxN9AUvYSTjbZi4.css%3Fdelta=1&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlj90OwiAMhV9oA_XOp1lgHDaSQg3FLfPph_sxGm_a03Oa5mtPRmTR1giaftc-0EdHiJgBcs6JXc04o6ocDYUXmtGUgtzdLte7HoitobYXOe33Ze05lV_na1EWKYg7whQcuEO0cJ.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_JumHJ3UqLO9Mdu1kygD5e19MOiNh5iD_a9p0FH6QrHQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlj90OwiAMhV9oA_XOp1lgHDaSQg3FLfPph_sxGm_a03Oa5mtPRmTR1giaftc-0EdHiJgBcs6JXc04o6ocDYUXmtGUgtzdLte7HoitobYXOe33Ze05lV_na1EWKYg7whQcuEO0cJ.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_LovagMoZZFoM80YhT0zgW4b6oNarRMdF8ooxvYiQ9tA.css%3Fdelta=4&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlj90OwiAMhV9oA_XOp1lgHDaSQg3FLfPph_sxGm_a03Oa5mtPRmTR1giaftc-0EdHiJgBcs6JXc04o6ocDYUXmtGUgtzdLte7HoitobYXOe33Ze05lV_na1EWKYg7whQcuEO0cJ.css" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="your-data-model-terrible-let-me-show-you-why.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-2019-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-hatter-2019-midcamp2020navigation-menu" id="block-hatter-2019-midcamp2020navigation" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-2019-midcamp2020navigation-menu">Midcamp 2020 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" data-drupal-link-system-path="node/403">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../news.html" title="News" data-drupal-link-system-path="2020/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" data-drupal-link-system-path="2020/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--virtual-camp">
+        <a href="../article/midcamp-2020-going-digital.html" title="MidCamp is going virtual" data-drupal-link-system-path="node/6689">Virtual Camp</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsor">
+        <a href="../sponsor-midcamp.html" data-drupal-link-system-path="node/6250">Sponsor</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--community-organizations">
+        <a href="../sponsor/community-organization-introduction.html" data-drupal-link-system-path="node/6251">Community Organizations</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sponsors">
+        <a href="../sponsors.html" data-drupal-link-system-path="node/6253">Sponsors</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" data-drupal-link-system-path="node/6258">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--sessions-thu">
+        <a href="../schedule/thursday.html" data-drupal-link-system-path="2020/schedule/thursday">Sessions (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-fri">
+        <a href="../schedule/friday.html" data-drupal-link-system-path="2020/schedule/friday">Sessions (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--contribution-sat">
+        <a href="../contribution-day.html" title="Contribution Day" data-drupal-link-system-path="node/6378">Contribution (Sat)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--accepted-sessions">
+        <a href="../accepted-sessions.html" data-drupal-link-system-path="2020/accepted-sessions">Accepted Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../../2023/speaker-resources.html" data-drupal-link-system-path="node/345">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-terms-and-conditions">
+        <a href="../../speaker-terms-and-conditions.html" data-drupal-link-system-path="node/21">Speaker Terms and Conditions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--topic-tracks">
+        <a href="../../topic-tracks.html" data-drupal-link-system-path="node/10">Topic Tracks</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--donate">
+        <a href="https://tickets.midcamp.org/" title="Register for MidCamp">Donate</a>
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-2019-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2020.html" hreflang="en">MidCamp 2020</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-hatter-2019-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Your data model is terrible! Let me show you why.</span>
+</h1>
+
+
+  </div>
+<div id="block-hatter-2019-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="6311" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2020-03-19T14:45:00Z" class="datetime">Thursday, 9:45 am CDT</time>
+ - <time datetime="2020-03-19T15:45:00Z" class="datetime">Thursday, 10:45 am CDT</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-82" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-field-link field--type-link field--label-hidden field__item"><a href="https://zoom.us/my/midcamp314b" target="_blank" class="button--primary">Go to Room 314B - old</a></div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>Drupal is a world class data modeling tool, but that doesn’t mean it prevents you from making terrible choices. In this session we’re going to explore common site building and data modeling techniques, what those techniques actually mean for your site’s long term maintainability and scalability, and what other options you might have that will be easier to maintain and scale with your needs.</p>
+
+<p><strong>Topics covered will include:</strong></p>
+
+<ul>
+	<li>
+	<p>Understanding Benefits and Tradeoffs of Entity References</p>
+	</li>
+	<li>
+	<p>Paragraphs and Entity Reference Revisions</p>
+	</li>
+	<li>
+	<p>Compound Fields</p>
+	</li>
+	<li>
+	<p>Layout Builder</p>
+	</li>
+</ul>
+
+<p>To get better visibility into these topics, we’re going to be using the contrib depcalc module, which will show how entities inter-relate to any other entity. We’ll couple this with common data model examples and some alternatives to see exactly how each data model example works and what its potential ramifications are.</p>
+
+<h2>Learning Objectives</h2>
+
+<p>Common Data modeling principles in Drupal</p>
+
+<p>Understanding of how a data model affects your site</p>
+
+<p>Improvements that can be made to common data models.</p>
+
+<h2>Target Audience</h2>
+
+<p>Site builders of all stripes! If you're building sites, this is information you should know.</p>
+
+<h2>Prerequisites</h2>
+
+<p>If you've ever created a Drupal site with content types that use entity references, this session will be chalk full of information you care about.</p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/MAd4xU3wP7o?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-presenter-slides field--type-file field--label-above">
+    <div class="field__label">Presenter Slides</div>
+              <div class="field__item">
+<span class="file file--mime-application-pdf file--application-pdf"> <a href="../../sites/default/files/2020-03/Midcamp%202020.pdf" type="application/pdf">Midcamp 2020.pdf</a></span>
+</div>
+          </div>
+
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Kris Vanderwater</h4>
+
+      Sr. Software Engineer, Tech Lead
+
+
+          @
+              <a href="https://www.acquia.com/">Acquia</a>
+        
+  </div>
+    <div class="l-66-33--2"></div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Back-End</div>
+          <div class="field__item">Site Building</div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-feedback-form field--type-webform field--label-above">
+    <div class="field__label">Feedback Form</div>
+              <div class="field__item"><form class="webform-submission-form webform-submission-add-form webform-submission-session-feedback-form webform-submission-session-feedback-add-form webform-submission-session-feedback-node-6311-form webform-submission-session-feedback-node-6311-add-form" data-drupal-selector="webform-submission-session-feedback-node-6311-add-form" action="your-data-model-terrible-let-me-show-you-why.html" method="post" id="webform-submission-session-feedback-node-6311-add-form" accept-charset="UTF-8">
+  
+    <div data-drupal-selector="edit-0" class="webform-message js-webform-message js-form-wrapper form-wrapper" id="edit-0"><div data-drupal-messages>
+    <div role="contentinfo" aria-label="Status message" class="messages messages--status">
+                  <h2 class="visually-hidden">Status message</h2>
+                    Sorry...This form is closed to new submissions.
+            </div>
+    </div>
+</div>
+<input autocomplete="off" data-drupal-selector="form-i1qigzw8oh4xyjfopzrpd-g1ib0soneypbghd2pd-xm" type="hidden" name="form_build_id" value="form-I1QIGZw8Oh4XYjFOpZrPd_g1iB0SonEYpBGHD2pD-xM" />
+<input data-drupal-selector="edit-webform-submission-session-feedback-node-6311-add-form" type="hidden" name="form_id" value="webform_submission_session_feedback_node_6311_add_form" />
+<div class="url-textfield js-form-wrapper form-wrapper" style="display: none !important;"><div class="js-form-item form-item js-form-type-textfield form-type-textfield js-form-item-url form-item-url">
+      <label for="edit-url">Leave this field blank</label>
+        <input autocomplete="off" data-drupal-selector="edit-url" type="text" id="edit-url" name="url" value="" size="20" maxlength="128" class="form-text" />
+
+        </div>
+</div>
+
+
+  
+</form>
+</div>
+          </div>
+
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <h3 class="field__label">Transcript</h3>
+              <div class="field__item" tabindex="0"><p>let's go ahead and get started great so</p>
+
+<p>I'm Chris if you've seen me on</p>
+
+<p>drupal.org I go by eclipse you see there</p>
+
+<p>I do a lot of things that hopefully have</p>
+
+<p>positively affected people's lives I am</p>
+
+<p>one of the commentators for CTools</p>
+
+<p>I'm a Drupal 8 contributor I helped I'm</p>
+
+<p>like a subsystem maintainer for the</p>
+
+<p>plug-in system and I'm senior software</p>
+
+<p>engineer over Acquia specifically I</p>
+
+<p>helped with our content hub product by</p>
+
+<p>being the tech lead there and I'll</p>
+
+<p>actually talk about that a little bit</p>
+
+<p>this this session isn't a pitch for for</p>
+
+<p>what we do there but a lot of what a lot</p>
+
+<p>of what we do there informs this session</p>
+
+<p>so there's like a lot of good kind of</p>
+
+<p>interesting stuff there I have a</p>
+
+<p>multi-year focus on page layout so I've</p>
+
+<p>been heavily involved in things like the</p>
+
+<p>layout builder panels panelizer page</p>
+
+<p>manager for many many years now and I</p>
+
+<p>also at this point have a multi-year</p>
+
+<p>focus on data model replication</p>
+
+<p>strategies and I'll touch on that just a</p>
+
+<p>tiny bit as well during this so data</p>
+
+<p>modelling if we're going to get into</p>
+
+<p>this let's talk just a little bit about</p>
+
+<p>it first question of course is what is</p>
+
+<p>this and you know from a technical</p>
+
+<p>perspective data modeling is a subset of</p>
+
+<p>what we refer to as information</p>
+
+<p>architecture but fundamentally it's</p>
+
+<p>really just how do you store your data</p>
+
+<p>where do you put your fields and you</p>
+
+<p>know how is that data related from one</p>
+
+<p>item to another so within Drupal terms</p>
+
+<p>you're going to expect us to talk about</p>
+
+<p>entity references indeed that's exactly</p>
+
+<p>what we're gonna kind of touch on here I</p>
+
+<p>have kind of a special a special way</p>
+
+<p>that I like to think about interview</p>
+
+<p>references that I want to kind of</p>
+
+<p>communicate here but interview</p>
+
+<p>references are really really powerful we</p>
+
+<p>use them all the time</p>
+
+<p>Drupal uses them</p>
+
+<p>just baseline Drupal a lot there the</p>
+
+<p>regular entities that are installed for</p>
+
+<p>everyone with like a standard</p>
+
+<p>installation have a number of different</p>
+
+<p>interrelated entity references on them</p>
+
+<p>and their power is due to things like</p>
+
+<p>their ability to be data typed you want</p>
+
+<p>to reference users you can forcefully</p>
+
+<p>reference just users or if you want to</p>
+
+<p>reference just articles you can just</p>
+
+<p>reference articles they're multilingual</p>
+
+<p>so we can have different references for</p>
+
+<p>different languages of the same entity</p>
+
+<p>there revisional we can have more than</p>
+
+<p>one of them if you see this term</p>
+
+<p>cardinality that's what that means in</p>
+
+<p>short they follow the same rules as the</p>
+
+<p>drupal field system does so we do things</p>
+
+<p>like change references per revision to</p>
+
+<p>with them where you know one version of</p>
+
+<p>a node may be referenced a completely</p>
+
+<p>different author so Drupal core does</p>
+
+<p>this to where people who come in and</p>
+
+<p>make changes to a node they're the</p>
+
+<p>revision author not necessarily the node</p>
+
+<p>author but we know that a particular</p>
+
+<p>user was the author of a given revision</p>
+
+<p>and we keep track of that over time we</p>
+
+<p>also do the other way paragraphs does</p>
+
+<p>this if there are any paragraphs users</p>
+
+<p>where will reference a specific revision</p>
+
+<p>of an entity so in two key reference</p>
+
+<p>revisions does this and it allows us to</p>
+
+<p>do things like tie current node revision</p>
+
+<p>to a particular paragraph revision yeah</p>
+
+<p>entity reference revisions module does</p>
+
+<p>this and paragraphs uses that so having</p>
+
+<p>said all of that I want to kind of</p>
+
+<p>challenge some of the preconceived</p>
+
+<p>notions here by telling you that in my</p>
+
+<p>opinion entity references are also the</p>
+
+<p>foundation of most data problems and I'm</p>
+
+<p>gonna provide a couple of examples here</p>
+
+<p>so I have an example for Drupal 7 and an</p>
+
+<p>example for Drupal 8 so let's talk about</p>
+
+<p>Drupal 7 Drupal 7 isn't ancient history</p>
+
+<p>this point we're still supporting it for</p>
+
+<p>I think well into 2021 so there are</p>
+
+<p>still sites out there who are using</p>
+
+<p>these sorts of approaches and the</p>
+
+<p>particular story I want to tell is a</p>
+
+<p>Drupal Commerce story now full</p>
+
+<p>disclosure I've worked for Acquia for</p>
+
+<p>almost six years now and I worked for</p>
+
+<p>Drupal I worked for commerce guys for</p>
+
+<p>four years before that so I have a lot</p>
+
+<p>of experience with Drupal commerce and</p>
+
+<p>I've seen a lot of interest and setups</p>
+
+<p>there some good some bad</p>
+
+<p>this one was not great and so in terms</p>
+
+<p>of how they actually set this up I had a</p>
+
+<p>customer who had of course stereotypical</p>
+
+<p>product displays which are nodes in</p>
+
+<p>Drupal 7 and product variants which are</p>
+
+<p>a custom entity type and the</p>
+
+<p>relationship of these things was such</p>
+
+<p>that they also wanted to relate other</p>
+
+<p>products together by saying oh these are</p>
+
+<p>related products right and if you're not</p>
+
+<p>familiar with what product variants are</p>
+
+<p>just to kind of like level set on that</p>
+
+<p>the product variant is like you can</p>
+
+<p>think of it in terms of t-shirt sizes</p>
+
+<p>you might have the t-shirt with some</p>
+
+<p>graphic on it and you want to sell a</p>
+
+<p>small a medium and a large version</p>
+
+<p>they're all the same product but they're</p>
+
+<p>different product variations right and</p>
+
+<p>so in this case what the customer had</p>
+
+<p>done was they had created all of these</p>
+
+<p>different product variations and linked</p>
+
+<p>them together based upon products that</p>
+
+<p>were related and because of the nature</p>
+
+<p>of their products they ended up with</p>
+
+<p>over 700,000 different product</p>
+
+<p>variations in their system and now</p>
+
+<p>normally that would be a very large</p>
+
+<p>profile of products but it wasn't in</p>
+
+<p>their case for a couple of instances and</p>
+
+<p>what was interesting about this was</p>
+
+<p>because of the interrelated nature of</p>
+
+<p>their data they could have single pages</p>
+
+<p>that referenced as many as 64,000 other</p>
+
+<p>product variants on page load that's a</p>
+
+<p>lot</p>
+
+<p>of entity loading to deal with all at</p>
+
+<p>once and so in order to even get a page</p>
+
+<p>up and running we had to do things like</p>
+
+<p>set timeouts to be over 30 minutes just</p>
+
+<p>to cache one page and then once the page</p>
+
+<p>was cached you couldn't do any Ajax on</p>
+
+<p>the page to do things like change</p>
+
+<p>product variation because each product</p>
+
+<p>variation load had to go through this</p>
+
+<p>same sort of process and so it was just</p>
+
+<p>absolutely positively not going to work</p>
+
+<p>ever for them so I came in I took a look</p>
+
+<p>at what was going on here and the way we</p>
+
+<p>we fixed this was we actually just</p>
+
+<p>changed some elements of their data</p>
+
+<p>model and by doing this we actually got</p>
+
+<p>a thousand-to-one compression of</p>
+
+<p>variance we went from 700,000 products</p>
+
+<p>to 700 products and so we did this by</p>
+
+<p>moving fields that dentapreg affect</p>
+
+<p>price off of variants and onto line</p>
+
+<p>items and so if you've ever done any</p>
+
+<p>Drupal commerce and you found yourself</p>
+
+<p>with a ton of variants and not really</p>
+
+<p>knowing like how to handle that one of</p>
+
+<p>the little like tricks of the commerce</p>
+
+<p>trade is that you know if you have</p>
+
+<p>things that you might consider</p>
+
+<p>variations but they don't actually</p>
+
+<p>affect the price of your product any</p>
+
+<p>those things can be put on custom line</p>
+
+<p>item types and just even knowing that</p>
+
+<p>this kind of data reshuffling is</p>
+
+<p>possible is really really powerful to to</p>
+
+<p>change kind of the nature of your data</p>
+
+<p>model</p>
+
+<p>so now I'm going to talk about a Drupal</p>
+
+<p><br>
+one that most of you are going to be</p>
+
+<p>familiar with the one degree or another</p>
+
+<p>so hold this closure not a big</p>
+
+<p>paragraphs fan I know that a lot of</p>
+
+<p>people use it today and I think that it</p>
+
+<p>has its place but I think that some of</p>
+
+<p>the some of the ways that we're using it</p>
+
+<p>as a community are actually really bad</p>
+
+<p>practice going forward so one of these</p>
+
+<p>is specifically around layout and as I</p>
+
+<p>mentioned early on I have a multi-year</p>
+
+<p>focus on layout and have helped to build</p>
+
+<p>many of those tools so one of the things</p>
+
+<p>that we see a lot with paragraphs these</p>
+
+<p>days is people wanting to just use it in</p>
+
+<p>order to to layout a page and so they'll</p>
+
+<p>end up creating different like layout</p>
+
+<p>bundles where maybe they have one column</p>
+
+<p>and two column and three column</p>
+
+<p>paragraphs and then they'll nest</p>
+
+<p>paragraphs inside of paragraphs in order</p>
+
+<p>to create more complicated layouts and</p>
+
+<p>so it seems this a lot where we end up</p>
+
+<p>with nested layout bundles with some</p>
+
+<p>sort of data component sitting inside of</p>
+
+<p>them and you know this customer that I</p>
+
+<p>was talking with who had this situation</p>
+
+<p>they told me that they had 50 gig data</p>
+
+<p>tables just holding entity reference</p>
+
+<p>revisions from all of the all of the</p>
+
+<p>data manipulation that they had done and</p>
+
+<p>you know if that's accurate I haven't</p>
+
+<p>seen these tables for myself but if</p>
+
+<p>that's accurate you know that's really</p>
+
+<p>just an enormous table holding integers</p>
+
+<p>and I'm actually going to kind of show a</p>
+
+<p>demo of this here in a couple minutes so</p>
+
+<p>is there a happy ending to this one</p>
+
+<p>there's there's really not so much of</p>
+
+<p>what we're doing around this today</p>
+
+<p>results in an enormous amount of kind of</p>
+
+<p>cruft in the database and there are</p>
+
+<p>whole modules being built just to try to</p>
+
+<p>clean up</p>
+
+<p>through this and and kind of rectify it</p>
+
+<p>but it could be worse at least we have</p>
+
+<p>entity reference autoloading so</p>
+
+<p>situations like the one that I outlined</p>
+
+<p>in Drupal 7 they they can still happen</p>
+
+<p>in Tripoli but you have to go to a lot</p>
+
+<p>of effort to make them happen in this</p>
+
+<p>case you know we we weren't seeing</p>
+
+<p>things like that so while we're talking</p>
+
+<p>about fields that reference stuff I want</p>
+
+<p>to just pause for a moment and point out</p>
+
+<p>that the entity reference field isn't</p>
+
+<p>the only field that references things if</p>
+
+<p>you're going to look at your data model</p>
+
+<p>you need to kind of look at it</p>
+
+<p>holistically and there's some things</p>
+
+<p>that you can modify and some things that</p>
+
+<p>you can't so I'll talk a bit about both</p>
+
+<p>of those so obviously we have an author</p>
+
+<p>field in the case of things like nodes</p>
+
+<p>and I'm sure that you knew that was an</p>
+
+<p>entity reference they also have taxonomy</p>
+
+<p>terms and those are obviously references</p>
+
+<p>to but did you know that every taxonomy</p>
+
+<p>term has a parent and so if it's a</p>
+
+<p>hierarchical taxonomy vocabulary when</p>
+
+<p>you're looking at one term you could</p>
+
+<p>actually be looking at a reference to</p>
+
+<p>many different terms up to the stream</p>
+
+<p>of course we have traditional image and</p>
+
+<p>file fields we also have media</p>
+
+<p>references which I don't go into it all</p>
+
+<p>but it's like an extra layer of</p>
+
+<p>abstraction from an entity perspective</p>
+
+<p>around all of this and I know we're all</p>
+
+<p>moving to it and I think that it's a</p>
+
+<p>good thing to be using but people should</p>
+
+<p>really be aware of exactly what we're</p>
+
+<p>getting into here links link fields or</p>
+
+<p>entity references at least if they're</p>
+
+<p>done internally so if I have you know</p>
+
+<p>one page of a site that references</p>
+
+<p>another page of the same site and those</p>
+
+<p>are done via entities then you know I do</p>
+
+<p>a lot of data replication and if I want</p>
+
+<p>to replicate that data it means that I</p>
+
+<p>actually now have to reach completely</p>
+
+<p>across a site to a totally what might</p>
+
+<p>have seemed unrelated piece of content</p>
+
+<p>and pull it across with just in order to</p>
+
+<p>maintain all of these sorts of</p>
+
+<p>connections as of Drupal 8 8 paths</p>
+
+<p>aliases these are entities and they're</p>
+
+<p>they're revision able entities so that's</p>
+
+<p>worth knowing the underlying workflow if</p>
+
+<p>you're doing any sort of workflow</p>
+
+<p>management for your content these are</p>
+
+<p>all introduced to</p>
+
+<p>then layout builder I mentioned you know</p>
+
+<p>I helped build layout builder and</p>
+
+<p>underneath the hood layout builder can</p>
+
+<p>reference a whole bunch of things like</p>
+
+<p>it references blocks if one of those</p>
+
+<p>blocks were a view that's an entity it</p>
+
+<p>can also reference custom blocks so you</p>
+
+<p>know Drupal has long had the ability to</p>
+
+<p>create custom block types that you can</p>
+
+<p>just put content in and this is actually</p>
+
+<p>in many ways very similar to paragraphs</p>
+
+<p>from from a data storage mechanism but</p>
+
+<p>we have this as well formatted text this</p>
+
+<p>one's actually my favorite because the</p>
+
+<p>formatted text field most people don't</p>
+
+<p>think about it as being an entity</p>
+
+<p>reference but it actually is an entity</p>
+
+<p>reference in many many different ways</p>
+
+<p>because if you have if you have a text</p>
+
+<p>for matter</p>
+
+<p>that's a config entity if you start</p>
+
+<p>doing things like entity embedding for</p>
+
+<p>media or images or that sort of data</p>
+
+<p>then your text could actually have many</p>
+
+<p>different entities in it and so there</p>
+
+<p>are lots of different ways that this</p>
+
+<p>stuff is actually interrelated and</p>
+
+<p>locked together in a meaningful way</p>
+
+<p>of course the entity bundle field you</p>
+
+<p>know your node type isn't just a string</p>
+
+<p>it's actually backed up by a whole other</p>
+
+<p>set of entities and I like to think of</p>
+
+<p>these as being kind of invisible</p>
+
+<p>references I'm also just going to take a</p>
+
+<p>moment and say that I love that I can</p>
+
+<p>use smaller text because we're all</p>
+
+<p>staring at roughly the same sized screen</p>
+
+<p>so invisible references what do I mean</p>
+
+<p>when I say this well not only is your</p>
+
+<p>node type also an entity but you have</p>
+
+<p>form displays and view displays</p>
+
+<p>underneath all of this that are also</p>
+
+<p>entities and those you know you have at</p>
+
+<p>least one form display guaranteed if</p>
+
+<p>you're looking at a Content entity and</p>
+
+<p>one or more view displays if you're</p>
+
+<p>looking at content entity and when we</p>
+
+<p>get into those they actually reference</p>
+
+<p>field</p>
+
+<p>config' field config actually references</p>
+
+<p>the old storage and so it's it's just</p>
+
+<p>kind of Turtles all the way down</p>
+
+<p>so let's talk about a simple article and</p>
+
+<p>I went ahead and I just put this one out</p>
+
+<p>here all at once so we just can kind of</p>
+
+<p>process this we've looked at a lot of</p>
+
+<p>these fields already obviously a simple</p>
+
+<p>standard Drupal article as it as it</p>
+
+<p>comes out of the standard install</p>
+
+<p>profile it's gonna have an author a</p>
+
+<p>bundle the taxonomy term in the form of</p>
+
+<p>tags image alias form display view</p>
+
+<p>display field config and field storage</p>
+
+<p>then it's gonna do all of that again for</p>
+
+<p>every user image and taxonomy term</p>
+
+<p>that's associated with this so if you</p>
+
+<p>boot up a new standard Drupal install</p>
+
+<p>and you go and you create a new article</p>
+
+<p>with one of everything in it you're</p>
+
+<p>gonna have somewhere around 40 entities</p>
+
+<p>as being dependencies of that one piece</p>
+
+<p>of content okay</p>
+
+<p>and I think that's really important to</p>
+
+<p>kind of understand because if in three</p>
+
+<p>fields we can escalate to 40 entities</p>
+
+<p>you know how many more are involved in</p>
+
+<p>the complex data models that we build</p>
+
+<p>today and should we really be</p>
+
+<p>considering what it means to build these</p>
+
+<p>data models</p>
+
+<p>so I'm gonna take a couple minutes and</p>
+
+<p>I'm gonna pick on paragraphs we already</p>
+
+<p>know that I'm not a big fan here but</p>
+
+<p>let's at least define what paragraphs is</p>
+
+<p>paragraphs to me is a simple entity that</p>
+
+<p>holds field data and is revision able</p>
+
+<p>okay it's really useful for like</p>
+
+<p>grouping multiple fields together so you</p>
+
+<p>know I have a little example here where</p>
+
+<p>maybe you could imagine on a node you</p>
+
+<p>want to have a list of users and what</p>
+
+<p>Department they're in so you might build</p>
+
+<p>a paragraph that has two fields on it</p>
+
+<p>one they use a reference field and</p>
+
+<p>another a Department select list right</p>
+
+<p>and you could potentially add as many of</p>
+
+<p>those as you want and in this sense it's</p>
+
+<p>actually really useful for building this</p>
+
+<p>sort of data modelling because building</p>
+
+<p>cum compound fields like this in Drupal</p>
+
+<p>is actually a very difficult sort of</p>
+
+<p>task the community however makes use of</p>
+
+<p>this parlez out and I've touched on this</p>
+
+<p>a little bit already so we tend to</p>
+
+<p>create bundles with references to other</p>
+
+<p>paragraphs and then each of those</p>
+
+<p>references becomes a column in some</p>
+
+<p>template layout that we're going to do</p>
+
+<p>and we start nesting these together to</p>
+
+<p>make more complicated layouts okay this</p>
+
+<p>is very stereotypical I've seen this out</p>
+
+<p>of Acquia I've seen this like out of</p>
+
+<p>almost everybody everybody's done this</p>
+
+<p>at some point</p>
+
+<p>and underneath the hood entity reference</p>
+
+<p>revisions is storing paragraph revision</p>
+
+<p>IDs and it links this stuff in a parent</p>
+
+<p>to child revision strategy right so if</p>
+
+<p>you have node revision ID one it's low</p>
+
+<p>it can be referencing a paragraph</p>
+
+<p>revision ID one or you know as you go</p>
+
+<p>forward changing new revisions you can</p>
+
+<p>get new revisions of each thing here</p>
+
+<p>unfortunately</p>
+
+<p>Drupal can't tell when a user has</p>
+
+<p>actually interacted with its field or</p>
+
+<p>not so if you hit the edit button on any</p>
+
+<p>page that has that has paragraphs on it</p>
+
+<p>and you just hit safe you're gonna get a</p>
+
+<p>whole new set of revisions each time so</p>
+
+<p>it's needlessly creating these in the</p>
+
+<p>background I'm actually going to show</p>
+
+<p>the demo of this just so you can kind of</p>
+
+<p>see exactly what's going on here</p>
+
+<p>ultimately this adds a ton of cruft to</p>
+
+<p>your database and its complexity that</p>
+
+<p>your data model has to rectify at some</p>
+
+<p>point in the future right this is kind</p>
+
+<p>of like where we bury the bodies so why</p>
+
+<p>don't I figure out how I'm going to demo</p>
+
+<p>this on two screens give me just second</p>
+
+<p>you</p>
+
+<p>okay that's</p>
+
+<p>that is going to be a little big</p>
+
+<p>you</p>
+
+<p>and of course now I've lost it alright</p>
+
+<p>here we go</p>
+
+<p>can everybody see that okay yes awesome</p>
+
+<p>alright so let's just make sure my</p>
+
+<p>servers running good servers running</p>
+
+<p>okay so I went to the effort of going</p>
+
+<p>ahead and just creating some very simple</p>
+
+<p>stuff here so I'll quickly kind of show</p>
+
+<p>you what I'm doing I have a paragraphs</p>
+
+<p>page bundle for nodes and if we look at</p>
+
+<p>that it's just got one field on it for</p>
+
+<p>paragraphs and it can reference any of</p>
+
+<p>the paragraph types that I've made then</p>
+
+<p>if I come in here and I look at</p>
+
+<p>paragraph types you'll see I made an</p>
+
+<p>image links of text and then I made a</p>
+
+<p>two column layout here so while I'm at</p>
+
+<p>this I'm going to get one more thing</p>
+
+<p>together</p>
+
+<p>okay so this is sequel pro this is</p>
+
+<p>sequel pro for the site for staring it</p>
+
+<p>so I just want to look at paragraphs</p>
+
+<p>here so that you know there's there's no</p>
+
+<p>magic going on here so we have paragraph</p>
+
+<p>item revisions field data and paragraph</p>
+
+<p>item revisions so we'll come back to</p>
+
+<p>this in just a second as you can see I</p>
+
+<p>haven't created any content for this</p>
+
+<p>site so let's go ahead and fix that and</p>
+
+<p>I'll just make a new paragraph page and</p>
+
+<p>this will be you know who and we're</p>
+
+<p>gonna add a two column to it and on the</p>
+
+<p>left on the left I'm going to add text</p>
+
+<p>and then on the right I'm going to add</p>
+
+<p>an image</p>
+
+<p>you</p>
+
+<p>oh and if I hit save on this we're gonna</p>
+
+<p>end up with about what you'd expect we</p>
+
+<p>have a paragraph that says this is a foo</p>
+
+<p>the image here.</p>
+
+<p>And if you go to SQL pro, we have three new paragraphs in here and we have various field data. &nbsp;And I'm going to try to open this a little bit to maximum on this screen.</p>
+
+<p>And, you know, this is simple. &nbsp;This is three paragraphs on a page, and anybody who has done this workflow before with paragraphs knows that you are going to end up with dozens under most circumstances.</p>
+
+<p>And so if I just hit edit, and then save, again, so I'm not actually doing, if I come over here and refresh, we have six of these revisions. &nbsp;And you can imagine, if we start nesting and nesting and nesting data together, this can get really nasty, really quickly. &nbsp;And we don't even have to go so far as contriving a situation where we are hitting edit and save. &nbsp;If you want to edit the data, you change one value of the paragraph and hit save and all of the paragraphs on that page got new revisions in the database. &nbsp;All of them, except for one, needlessly.</p>
+
+<p>And this is just kind of a shortcoming of how the field and field API systems work together in the first place, it is worth knowing that this is what is happening underneath the covers of paragraphs when you are making use of it.</p>
+
+<p>Let's see if I can go back to my presentation.</p>
+
+<p>Cool, can everybody see the presentation okay now?&nbsp;</p>
+
+<p>&gt;&gt; Yes.&nbsp;</p>
+
+<p>&gt;&gt; Yes.&nbsp;</p>
+
+<p>&gt;&gt; Cool. &nbsp;So I have ragged on paragraphs a lot, I'm going to do a tiny bit more and then we will move on. &nbsp;Under most circumstances, paragraphs would actually be better served from a data modeling perspective if you didn't use it, and instead went to the effort of building a custom field type.</p>
+
+<p>And there are far fewer entities involved when we are doing that, because you really only have the entity that you're attaching the field to. &nbsp;There is no new entity, you are just writing the plugins to do the work. &nbsp;This is a superior data model 99 percent of the time. &nbsp;There is an outside edge case situation in which paragraphs is the only solution, but it is very, very uncommon. &nbsp;I have literally seen it once in my career.</p>
+
+<p>And unfortunately, this is a whole lot easier said than done, building a new plugin custom field type is not that trivial to do. &nbsp;It takes a little bit of effort, a little bit of know‑how, and probably today in the current Drupal climate, if I, you know, was a&nbsp;‑‑ was involved in a site build and I said to one of my developers, hey, why don't you build a custom field type for that, they would say, why don't you just use paragraphs. &nbsp;There are things we need to rectify as a community. &nbsp;One of the big things we can do is by making this process easier. &nbsp;I have some thoughts about that, but it is for a completely different discussion. &nbsp;Ultimately, though, the objective at looking at custom field types, this is data, there is no layout information.</p>
+
+<p>So we will talk about layout builder just a little bit. &nbsp;It is important to touch on it, I don't want to pick on paragraphs the whole time and not provide any alternatives or any reasoning for my alternatives. &nbsp;So in cores these days, I encourage you to play with it.</p>
+
+<p>And much of what was said in the previous slide, it is usually a whole lot better if you can build a custom field type for the data you want to store. &nbsp;This is how layout builder stores the layout overrides. &nbsp;So in layout builder, if you wanted to let each of your node articles have its own layout, we do this via field data. &nbsp;So we actually deploy a field to the node and that field now holds layout data for the node. &nbsp;So we are leveraging custom field storage here and under the hood we use layout and blog plugins in order to visualize what is going to be on the screen. &nbsp;And we can use content blocks, they are like a defined paragraphs, they are a simple, revisionable, fieldable content type default in core. If you have created new content and placed it somewhere, that is done with content or custom blocks, these are often interchangeable terms. So it is very similar to paragraphs, and the important thing to keep in mind about how layout builder does this, it deploys its own userface for all interactions with entities appearing there. &nbsp;We are not dependent on form and field API in the way that paragraphs would be, we can tell when the data is changed and we make updates as relevant, there is less cruft and since there are no extry entities to define how the data is stored in the first place, it ends up being generally cleaner. And also, if you are wanting to control the layout, I generally think it is better to have some sort of visual aid for that and layout builder is exclusively trying to show people what their page is going to look like when they're done. &nbsp;So as a visual editing tool, I generally consider it to be in a completely different category. &nbsp;So let's take a couple minutes here and talk about Drupal data modeling best practices, and these are my best practices, and I'm trying to pass on a little bit what I learned here. &nbsp;These are my guidelines. &nbsp;You should limit the number of related entities, as we dig into the bits that we're going to show, you will see why I think this is really important. &nbsp;But I hope some of the examples I have given help hit this home. &nbsp;The more entities you have collaborating together on a screen, the more over, you know, there's a cost for doing that. &nbsp;Don't use data modeling tools for page layout. &nbsp;I'm specifically calling out paragraphs here, paragraphs is a data modeling tool and when used a lot of the problems we see with it are largely mitigated. &nbsp;When we use it as a layout tool it complicates the situation dramatically. &nbsp;If you are going to use paragraphs, don't nest them. &nbsp;Again, there might be a handful of situations where that is necessary, but if you can avoid it, I would heavily encourage it. &nbsp;And finally, custom field types are always greater than paragraphs, if you have the technical expertise to build custom field types to hold your data, it is a far better place to be than having the data model that paragraphs is bringing along with it.</p>
+
+<p>So, I've talked a lot about the underlying data modeling principles that we have here, but I want to talk a little bit about when and where we reference things. &nbsp;Because this is one of the unseen choices we tend to make and we tend to make it incorrectly. &nbsp;So keep in mind, with everything we are about to say, there are always tradeoffs. &nbsp;It doesn't matter which approach we use, there are going to be pros and cons to all of them. &nbsp;The two most obvious approaches here are parents referencing children, and children referencing paragraphs&nbsp;‑‑ ha, parents.</p>
+
+<p>For reference, paragraphs kind of does both of these things. &nbsp;I will talk about that a tiny bit, it is just worth noting. &nbsp;So let's talk about the first one, parents referencing children. &nbsp;This is fine under most circumstances if you are doing a one to one reference. &nbsp;If you have a parent node that needs to reference a child node and it needs to do that once, that's probably fine. &nbsp;It doesn't really matter where you put that data.</p>
+
+<p>But the second we start considering a situation where we want a parent to reference many children, there's a whole host of questions you need to stop and ask yourself because this can get dicy really quickly. &nbsp;So first question that I think people need to consider here is how long are these references going to exist? And so I'm going to kind of contrive a project management tool for the sake of this conversation. &nbsp;If you can imagine having an organization that references projects and projects that references tasks, this is interesting quickly. &nbsp;If you are sitting in your Gira queues and dealing with stuff in that way, you don't want to go and look at your project and see a thousand different tasks as part of the referencing of fields in there, right?</p>
+
+<p>So how many references are going to be there, are we going to archive references over time, what does that look like? And there are UX considerations that need to be made here. &nbsp;If we're going to do this, what is the UX of it going to be? This is the most obvious approach to doing this, and the Drupal community at large has built many tools around doing specifically this.</p>
+
+<p>And if you have ever dealt with in line entity form, which was built in order to help futillitate how Drupal commerce does many of the things it does, this is specifically the expectations that it has in order to work.</p>
+
+<p>Dan, do you want me to address that now, or should I hold it until the end for questions?&nbsp;</p>
+
+<p>&gt;&gt; No, until the end. &nbsp;</p>
+
+<p>&gt;&gt; Okay, cool. &nbsp;It is also the most dependency encumbered approach, I keep saying I will talk about that, but I will. &nbsp;When you have a child referencing a parent, it is naturally one to one almost always. &nbsp;There may be some very strange circumstances where a single child might reference multiple parents, but that is not super common. &nbsp;The more common thing is sticking with the project management example, a task can say this is my project. &nbsp;And we have the same relationship in the other example, except there is one field to fill out and there are not multiple values ever. &nbsp;And if you are going to do it, you have to set up queries and views in the Drupal sense to display at the parent layers to get the interrelated tasks. &nbsp;And I generally consider this UX to be simpler, there is more code to set it up properly and I will demo that here in a couple minutes and the dependencies for it are much simpler as well.</p>
+
+<p>And also things like my example of archiving, this usage over team can be accounted for by the queries and views that you build. &nbsp;So if you want to show all tasks that are not currently archived, that's a view you have probably built some version of in the past.</p>
+
+<p>Paragraphs, as I mentioned, does parent/child relationships. &nbsp;This is obvious and how you interact with it. &nbsp;And it has fields for parent type and ID if you look at the schema, if you are interacting with it from a PHP perspective, it has nodes to load those parents. &nbsp;This is really important for my use case, when doing data replication, I have to know this stuff. &nbsp;If you edited a paragraph, I need to make sure the chain of dependencies is in tact. &nbsp;And this is just field values&nbsp;‑‑ that is good and bad depending on how you want to look at it. &nbsp;I'm just calling it out here. &nbsp;In case you ever need it, know that paragraphs does have this reference. &nbsp;I'm going to speed up here because I'm running towards the end of my time. &nbsp;There's another topic I have not covered at all, when to create a new entity type. &nbsp;And if we are talking about data modeling, we have to acknowledge that you are not stuck with the existing entities, you can create your own. &nbsp;So a few things worth noting: You should only consider this if an existing entity type does not suffice. &nbsp;That's my doorbell.</p>
+
+<p>So ask yourself some questions. &nbsp;Is it stand‑alone page? It might be a node. &nbsp;Does it display many other items together? It might be a term, or a view.</p>
+
+<p>Right?</p>
+
+<p>Is it used on many pages independently? It might be a block, right?</p>
+
+<p>So whatever the case, just make sure that if you're building a new entity type, you have specific special criteria that no other entity type is matching for you.</p>
+
+<p>I will, however, throw out a quick warning that if you are going to do this, everything we've talked about up until this point is possible to happen on your custom entity types as well, if they are a typical content entity that is fieldable and bundlable and revisionable.</p>
+
+<p>So why do I know all this?</p>
+
+<p>As I mentioned earlier, I'm the tech lead for Acquias content hub. &nbsp;And content hub, we will have plenty of time for questions, thanks Bob.</p>
+
+<p>Content hub is a tool that does data replication, okay?</p>
+
+<p>So we released the 2X version of content hub last year sometime. &nbsp;And what we have to do with this tool, since it is a data replication is that we need to identify all entity dependencies of any given entity. &nbsp;So that example is, like, a simple article that I gave earlier, that's a real example. &nbsp;I&nbsp;‑‑ it is not hypothetical, the software that my team and I write and maintain actually has to have the capability to navigate through all of that, find all of those dependencies, and put them in some sort of format that we can communicate from one Drupal site to another. &nbsp;If we cannot do that, we cannot succeed at our job. &nbsp;Right?</p>
+
+<p>So we deal with data models all the time, and some of these data models are very simple, and some of these data models are very complicated. &nbsp;Sometimes the customer wants to dynamically re‑sort their data models as they syndicate them and that's a whole different ballgame.</p>
+
+<p>So what I want to do is I just want to kind of demo a couple of those ideas for you, and then we will open it up for questions and we can go from there.</p>
+
+<p>So let me grab my other window.</p>
+
+<p>So I mentioned earlier that we can think of things in terms of maybe a project management tool, and so what I actually did here is I went to the effort of building out, like, a really scaled down version of these two competing data model ideas so that you can see what they were doing underneath the hud.</p>
+
+<p>And let's start with data model A. &nbsp;So if I come in here, I have an organization, Acquia, that has projects of Acquia content hub. &nbsp;If I look at this, you can see exactly what I expect it to be, in line entity references, yes, maybe I could have set things up better, because these are auto collapsing, but I have 1s and 2s of things. &nbsp;So it doesn't matter for my use case. &nbsp;So you can see, I have the reference to my project, if I click into the project, you can see that it references three tasks I can do. &nbsp;So we have an upcoming release here in the near term future for ADAX2.12. &nbsp;So I have this blank task for it. &nbsp;And this is, again, very stereo typical. If I look at the project, it has three tasks under it and I wanted to add another, I could. &nbsp;And many people are using a model that looks similar to this for layout or page paragraphs, using in line entity form, complex where they can start collapsing things and they have, like, individual edits. &nbsp;And these are all going to be good things to be doing if you are going with this approach. &nbsp;And knowing that, I have a term in the window here somewhere.</p>
+
+<p>And of course, zoom is over it.</p>
+
+<p>Sorry, hold on a second.</p>
+
+<p>So I'm going to use a tiny bit of the tooling that we actually built for content hub here. &nbsp;So I will grab this so you can see it. &nbsp;No session is safe. &nbsp;I have to get technical at some point. &nbsp;So within what we do, within content hub, this is technical details, we actually want the ability to move data around. &nbsp;So what we do, in order to simulate this, I have commands that let me build a manifest file that says, hey, I want to export the node we think of as this new UID and all of its dependencies. &nbsp;This is model A.YAML and I run the command and it gives me this. &nbsp;And this is a great, big, JSON value for every single entity that is required in order to make model A work. &nbsp;And you can see if I scroll through this to the bottom, this is 2,800‑plus lines of code, or of JSON definition in here. &nbsp;And this tells us about the interdependencies and it has the raw data in here and it tells me what fields are associated for each thing. &nbsp;The config entities are in here, all of this is sitting in here for me to play with. &nbsp;And I also wrote myself a little count script so I can see what is going on here, that's what we're going to do. &nbsp;I will count all of the individual items in the model A JSON. &nbsp;You can see there are 37 different entities collaborating together in order to make this happen. &nbsp;And why is that less than the articles I talked about? That's because these are simple data models, they don't have a value or sort to them, they are dependencies. &nbsp;So I'm asking for the org, I'm asking for the organizational node, and it navigates down into the project because there's an entity reference there and then it navigates to the tasks because there are entity references there and it pulls all of the data across. &nbsp;To re‑create that organization from the perspective of where I spend most of my time, I would need to pull across all of that data. &nbsp;Now let's go and look at the other example. &nbsp;I have these model Bs, and as you can see, I have an organizational model B for Acquia in here as well. &nbsp;I stuck a view in here, because I didn't have field references. &nbsp;If I hit edit, it is just a title and body. &nbsp;There is no entity reference here. &nbsp;If I come into the project and we edit it, you will see that it has a reference backed to its organization. &nbsp;Okay?</p>
+
+<p>And if I come to any one of these tasks, and I edit them, you will see they have a reference back to their project. &nbsp;So all the way down, I'm building this relationship back up to where I started.</p>
+
+<p>And there are things that are not as easy as I would like, obviously, because I wanted to actually create administrative details of this since I no longer have at my disposal in line entity form, I have to be savvy about this. &nbsp;And this is where as a community we can come together and build some tools for this. &nbsp;In Drupal6 and 7, I had tools for this and did not bring it forward to 8. &nbsp;And you can see that it auto references Acquia, if I have a project, and it is the same sort of thing. &nbsp;It is referencing my problem automatically, I cannot edit it. &nbsp;It was passed along my url here. &nbsp;And so you can see that it is node 7 add task. &nbsp;So that is kind of how I'm structuring this to make it work. &nbsp;And then the visualization is coming in through views, you have to do it since there is no field reference for it.</p>
+
+<p>And I will do a quick compare and contrast here. &nbsp;We also have a model B YAML, which is referencing that&nbsp;‑‑ the org node, it is referencing the model B org node. &nbsp;So in that case, if we look at the JSON here, you will see that this one is actually about half as long. &nbsp;It is 1,300 lines, and there's really very little difference between these entity models, except where I chose to place the references and what those references actually imply and mean.</p>
+
+<p>So think of it in these terms. &nbsp;Can an organization stand alone without its projects? Yes, it absolutely could. &nbsp;That is meaningful on its own. &nbsp;It is isolated in such a way that we understand it. &nbsp;Could a project stand alone without its organization? Probably not. &nbsp;That would be confusing if it could. &nbsp;The dependency in terms of, the human level of communication implies that the project needs to know about its organization, not the other way around. &nbsp;And so I will do the count here really quick. &nbsp;And having said all of that, I will come back to the session here. &nbsp;We will open it up for questions. &nbsp;Dan had a question I want to go ahead and address first. &nbsp;So Dan, I will read your question. &nbsp;Can you talk about custom field plugins more and if and how they would replace the groups of the field patterns that paragraphs use, such as a list of call‑out entities that include header, field, and body fields. &nbsp;So I'm probably not going to get all of that perfect, but obviously we can build custom field types and those types can have whatever normal promatives we think of as the fields today.</p>
+
+<p>So in that sense, what do you mean by a call‑out entity?&nbsp;</p>
+
+<p>&gt;&gt; Sorry, I can use the thing&nbsp;‑‑ if you wanted to do that una custom field type, where you have a project with a field and it had a couple fields on it, a couple text fields in it. &nbsp;</p>
+
+<p>&gt;&gt; Right.&nbsp;</p>
+
+<p>&gt;&gt; Yeah, so the thing to keep in mind, I guess, cardinality answers a lot of these questions. &nbsp;If you look at something and you say, like, let's use my users and department example from earlier.</p>
+
+<p>If I have a list of users and the corresponding department, we can conceptually conceive of that as maybe we have as many of these as we want, it is an unlimited field value. &nbsp;That is okay to consider. &nbsp;But if we're going to do that, we want to know, like, is it ever unlimited within the field values? Could a person exist in multiple departments? If a person only ever exists in one department, then this is a unit that you can build as its own custom field and it is sensible. &nbsp;If we start getting into things, like, you say header here, and I'm maybe conflating that with layout, do you mean something about layout here, or no?&nbsp;</p>
+
+<p>&gt;&gt; No, so sorry. &nbsp;I was not trying to make it complicated.</p>
+
+<p>Let's say you have an article and sections of an article and an article has an image and text or whatever, there are multiple fields and you can have any number of them on the article page. &nbsp;The order is what the order is, but the layout is not important. &nbsp;Can you have the image and the field be a single field and a name? Is that what you are saying, when you say a custom field type?&nbsp;</p>
+
+<p>&gt;&gt; That's exactly what I'm saying. If I have data that looks like it goes together, if you would build a paragraph and associate multiple pieces of data, add multiple fields within that bundle, you can stop and say, should this be a custom field?</p>
+
+<p>Because there's a significant possibility the answer is yes. &nbsp;If you are doing that, you can actually just deploy the field to the entity and attach it directly and you will have a cleaner data storage for that. &nbsp;It will deploy two tables, one for the field and one for the field revisions if the field you are adding it to is revisionable and you are only storing the data that went into that field and you are only modifying that data as you interact with the node.</p>
+
+<p>Does that answer your question?&nbsp;</p>
+
+<p>&gt;&gt; Yes, there are other questions. &nbsp;I can figure out the details right now. &nbsp;But yeah, I was not aware that is optional.&nbsp;</p>
+
+<p>&gt;&gt; Okay, cool.&nbsp;</p>
+
+<p>&gt;&gt; We have a couple minutes before the session close here.&nbsp;</p>
+
+<p>&gt;&gt; How many?&nbsp;</p>
+
+<p>&gt;&gt; About three minutes for our session ending here. &nbsp;There's a couple of questions that are on deck in the chat. &nbsp;If people have further follow‑up, you can&nbsp;‑‑ we can take it over to Slack for that, or use one of the rooms that is not being used right now, like the hallway chat. &nbsp;</p>
+
+<p>&gt;&gt; Yep.&nbsp;</p>
+
+<p>&gt;&gt; So there's a couple of those questions, do you want to tackle one of them?&nbsp;</p>
+
+<p>&gt;&gt; Um, yeah.</p>
+
+<p>I'm going to paint with a broad brush store here, David, which I know is probably not good enough. &nbsp;We should be looking to look field composition easier within Druple core, so you don't need something like paragraphs. &nbsp;So I guess what I'm saying here is&nbsp;‑‑ and this may touch on the next question, you are asking about multi‑field in seven. &nbsp;We should probably figure out how it is that we can generate new field type plugins without generating content entities to store all of their data, which is what paragraphs does. &nbsp;There is another way to go about this that would be more raw in the data sense.</p>
+
+<p>And that's the world we should be looking towards. &nbsp;The project management tool stands, like, this is a thing that people should be aware of, the decisions where we put reference fields matters in the long term and you are looking at that with your approach as well. &nbsp;I will run through the last two slides and then I will hop over to hallway chat for anybody that wants to engage. &nbsp;Please provide feedback, top rated sessions are going to be captioned. &nbsp;You can find mine at this url, which is not easy to click. &nbsp;And please come to the contribution day on Saturday. &nbsp;Many of you have done that for a long time. &nbsp;It is great to see this continue to succeed, even in a virtual format. &nbsp;Thank you for your time. &nbsp;I appreciate it.</p>
+</div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+
+</div>
+  </section>
+
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-84a82ff524f6f66e5733f8665f8ba29e9d476d9d8b5da38eb64c40b7e391e7f0">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/pantheon.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2020-02/pantheon-logo-tagline-black.png" width="1200" height="370" alt="Pantheon logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/clarity-partners.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2020-02/CFDFAA23-5C59-4C07-9C66-CAFFE0CF3854.png" width="1534" height="387" alt="Clarity Partners logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/bounteous.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2019-11/Bounteous_indigo_large.png" width="1676" height="279" alt="Bounteous logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/palantirnet.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2020-02/palantirnet-logo.png" width="1200" height="198" alt="Palantir.net logo" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-2019-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#d2bbbcb4bd92bfbbb6b1b3bfa2fcbda0b5"><span class="__cf_email__" data-cfemail="41282f272e012c282522202c316f2e3326">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-2019-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-2019-footer-menu" id="block-hatter-2019-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-2019-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/6311","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"ajaxTrustedUrl":{"form_action_p_pvdeGsVG5zNF_XLGPTvYSKCf43t8qZYSwcfZl2uzM":true},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_sul8js76f3THBVtv8nspP93BoCHSgntyTCisS6lai4M.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter_2019&amp;include=eJx1ykEKgDAMBdELaavuPI2k-o1K2kITFG_vRkQEVwOP4ZxZMFAiOW0d1fMHqoXMUIauaXvPkgNJvT0aSPHSA2HOJfq7DoKIZG6C0SrqlHb8ThGqxLgAGZ04Cw"></script>
+
+  </body>
+</html>

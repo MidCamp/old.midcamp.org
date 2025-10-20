@@ -1,0 +1,895 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="Nearly all Drupal developers use git to track changes to their code, but how does git actually work? In this session, we will take a peek under the hood at what is actually happening when you run git add and git commit." />
+<link rel="canonical" href="git-demystified.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Git Demystified | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Git Demystified | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_gt5LiAM1qLGUH5e845uOb7R_lJ9dUwTXmnhGDR2yY20.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OgzAMgy8E7ZFQSg1UShrUdDB2-lX87GUviZ0vkj0ymR0-kKEbLz0l_mmBGc2wx2eNjWlBU0WI0wfdQrWi-Jk1EPej2XMRWoO-OzusQq6ILUXoAAmIw5TA0RfYqtnShv6E7QW7-XM.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_QAC1R0aFoF1mIVQtLAaSE24B2iwnT2ZCa0cZDeZsPV0.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OgzAMgy8E7ZFQSg1UShrUdDB2-lX87GUviZ0vkj0ymR0-kKEbLz0l_mmBGc2wx2eNjWlBU0WI0wfdQrWi-Jk1EPej2XMRWoO-OzusQq6ILUXoAAmIw5TA0RfYqtnShv6E7QW7-XM.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OgzAMgy8E7ZFQSg1UShrUdDB2-lX87GUviZ0vkj0ymR0-kKEbLz0l_mmBGc2wx2eNjWlBU0WI0wfdQrWi-Jk1EPej2XMRWoO-OzusQq6ILUXoAAmIw5TA0RfYqtnShv6E7QW7-XM.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OgzAMgy8E7ZFQSg1UShrUdDB2-lX87GUviZ0vkj0ymR0-kKEbLz0l_mmBGc2wx2eNjWlBU0WI0wfdQrWi-Jk1EPej2XMRWoO-OzusQq6ILUXoAAmIw5TA0RfYqtnShv6E7QW7-XM.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+<link rel="stylesheet" media="all" href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.css" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="git-demystified.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-midcamp2023navigation-menu" id="block-midcamp2023navigation" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-midcamp2023navigation-menu">MidCamp 2023 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" data-drupal-link-system-path="node/6857">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--by-the-numbers">
+        <a href="../../2020/about/by-the-numbers.html" data-drupal-link-system-path="node/6252">By the Numbers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--venue">
+        <a href="../../about/venue.html" title="Venue" data-drupal-link-system-path="node/7048">Venue</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../speaker-resources.html" data-drupal-link-system-path="node/345">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--health--safety">
+        <a href="../health-safety.html" data-drupal-link-system-path="node/6973">Health &amp; Safety</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../about/lunch-options.html" data-drupal-link-system-path="node/6970">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--volunteer-opportunities">
+        <a href="../article/volunteer-help-midcamp.html" data-drupal-link-system-path="node/6975">Volunteer Opportunities</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" data-drupal-link-system-path="2023/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--travel">
+        <a href="../about/travel.html" data-drupal-link-system-path="node/6865">Travel</a>
+            </li>
+          <li class="primary-nav__sublist-item item--accommodations">
+        <a href="../about/accommodations.html" data-drupal-link-system-path="node/6948">Accommodations</a>
+            </li>
+          <li class="primary-nav__sublist-item item--registration">
+        <a href="../register.html" data-drupal-link-system-path="node/6977">Registration</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" data-drupal-link-system-path="node/6860">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--sponsor">
+        <a href="../sponsor-midcamp.html" data-drupal-link-system-path="node/6858">Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" data-drupal-link-system-path="node/6859">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--hybrid-sessions">
+        <a href="../schedule/hybrid.html" data-drupal-link-system-path="node/7053">Hybrid Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-wed">
+        <a href="../schedule/wednesday.html" data-drupal-link-system-path="2023/schedule/wednesday">Sessions (Wed)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-thu">
+        <a href="../schedule/thursday.html" data-drupal-link-system-path="2023/schedule/thursday">Sessions (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--birds-of-a-feather-bofs">
+        <a href="../schedule/bofs.html" data-drupal-link-system-path="node/7054">Birds of a Feather (BoFs)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--contribution-day-fri">
+        <a href="../schedule/friday.html" data-drupal-link-system-path="2023/schedule/friday">Contribution Day (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--topic-tracks">
+        <a href="../../topic-tracks.html" data-drupal-link-system-path="node/10">Topic Tracks</a>
+            </li>
+          <li class="primary-nav__sublist-item item--all-sessions">
+        <a href="../schedule/sessions.html" data-drupal-link-system-path="2023/schedule/sessions">All Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--session-submission">
+        <a href="../submit-session.html" data-drupal-link-system-path="node/14">Session Submission</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2023/news">News</a>
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../../jobs.html" data-drupal-link-system-path="jobs">Jobs</a>
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2023.html" hreflang="en">MidCamp 2023</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-midcamp2023schedulenav" class="block block-block-content block-block-contente066b47a-a80d-432a-8edd-6c60b28b7c95">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><div class="schedule__nav">
+<p><a href="../schedule/hybrid.html">Hybrid</a>&nbsp;|&nbsp;<a href="../schedule/wednesday.html">Wednesday</a> | <a href="../schedule/thursday.html">Thursday</a> | <a href="../schedule/friday.html">Friday</a></p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Git Demystified</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="6901" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2023-04-27T14:15:00Z" class="datetime">Thursday, 9:15 am CDT</time>
+ - <time datetime="2023-04-27T15:15:00Z" class="datetime">Thursday, 10:15 am CDT</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-272" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-name field--type-string field--label-hidden field__item">Room 314B</div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p><span><span><span><span><span><span>Nearly all Drupal developers use git to track changes to their code, but how does git actually work? In this session, we will take a peek under the hood at what git does when you run various commands. Starting with git init and working through git add, we will explore how versions of code are tracked throughout your project. We will also review merging and rebasing branches, as well as the conflicts that arise when we do so.</span></span></span></span></span></span></p>
+
+<p>To get the most out of this session, attendees should have prior git use.</p>
+
+<p>Slides and code can be found at&nbsp;<a href="https://ramir.dev/mc23">https://ramir.dev/mc23</a></p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/R41RyzYhrEY?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-presenter-slides field--type-file field--label-above">
+    <div class="field__label">Presenter Slides</div>
+              <div class="field__item">
+<span class="file file--mime-application-vnd-openxmlformats-officedocument-presentationml-presentation file--x-office-presentation"> <a href="../../sites/default/files/2023-04/Git%20demystified.pptx" type="application/vnd.openxmlformats-officedocument.presentationml.presentation">Git demystified.pptx</a></span>
+</div>
+          </div>
+
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Matthew Ramir</h4>
+
+      Senior Web Developer
+
+
+          @
+              <a href="http://bounteous.com">Bounteous</a>
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p>Matthew is a product of Chicago’s Andersonville neighborhood transplanted to the Mountains of Denver. He cultivated his passion for website development while apprenticing with a former computer science teacher in high school. He is a jack-of-all-trades, employing his skills in back-end development, server management, database management, and front-end development to expertly tackle a wide-range of client projects. Matthew stayed local to earn a degree in computer science from the University of Illinois in Chicago and has been working with Drupal since his graduation in 2013. He is also an Acquia Certified Grand Master.</p></div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2023-01/CAM19020.1_1.jpg%3Fitok=lROCAKnp" width="220" height="220" alt="Photo of Matt" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Back-End</div>
+          <div class="field__item">DevOps</div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-feedback-form field--type-webform field--label-above">
+    <div class="field__label">Feedback Form</div>
+              <div class="field__item"><form class="webform-submission-form webform-submission-add-form webform-submission-session-feedback-form webform-submission-session-feedback-add-form webform-submission-session-feedback-node-6901-form webform-submission-session-feedback-node-6901-add-form" data-drupal-selector="webform-submission-session-feedback-node-6901-add-form" action="git-demystified.html" method="post" id="webform-submission-session-feedback-node-6901-add-form" accept-charset="UTF-8">
+  
+    <div data-drupal-selector="edit-0" class="webform-message js-webform-message js-form-wrapper form-wrapper" id="edit-0"><div data-drupal-messages>
+    <div role="contentinfo" aria-label="Status message" class="messages messages--status">
+                  <h2 class="visually-hidden">Status message</h2>
+                    Sorry...This form is closed to new submissions.
+            </div>
+    </div>
+</div>
+<input autocomplete="off" data-drupal-selector="form-spxhld6nqo-g2mfzw1nk-gnskbgsvhc6t9it0kssmrc" type="hidden" name="form_build_id" value="form-spXHld6nQo_g2MFzW1Nk-gNSKbgsVHC6T9IT0KsSMRc" />
+<input data-drupal-selector="edit-webform-submission-session-feedback-node-6901-add-form" type="hidden" name="form_id" value="webform_submission_session_feedback_node_6901_add_form" />
+<div class="url-textfield js-form-wrapper form-wrapper" style="display: none !important;"><div class="js-form-item form-item js-form-type-textfield form-type-textfield js-form-item-url form-item-url">
+      <label for="edit-url">Leave this field blank</label>
+        <input autocomplete="off" data-drupal-selector="edit-url" type="text" id="edit-url" name="url" value="" size="20" maxlength="128" class="form-text" />
+
+        </div>
+</div>
+
+
+  
+</form>
+</div>
+          </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Alright, y'all, let's get at it. Welcome to Git Demystified. I am Matthew. Happy to be here. Super excited about this talk. I'm gonna get real nerdy, so I hope you all can keep up. A little bit about me. I am currently living in Denver, originally from Chicago. We were there back in March 2020 when COVID hit. Good timing. I stayed in Chicago for a degree in computer science at UIC. (INAUDIBLE) my whole life up until a couple of years ago. Started playing with Drupal back in 2012 when I was in college. My first Drupal website was for the LGBTQ group in college back on Drupal 7. That was painful. I'm currently a lead developer. I love DevOps. I have a Linux tattoo. I play with Linux all day, love being in the command line. And I have a disability called Trundle Cerebral Palsy. Obviously it makes it hard to talk sometimes when I get excited, so if you have any trouble understanding me, let me know and I will calm down, hopefully (LAUGHTER). I work at Bounteous is based on Chicago. We're a digital consultancy.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>We work directly with our clients coming to meeting. We do everything from technology, Drupal, (UNKNOWN) to design, marketing, UI, UX, all that fun stuff. Yeah. I did put some links to the slides. There's gonna be a lot of code in this talk. So if you wanna follow along with the code, you can hit that link. It's also in the session description. There's a shell file that you can look at on GitHub if you wanna come back and look at this stuff. So what we're gonna talk about today, I'll give us a little bit of an intro to Git, what it's for, how to get it initialized. And then I'm gonna talk about Git objects, which are the brain of Git, how it tracks data, how it remembers your information. And then I'll get into some Git commands and talk about how those commands are altering your working tree and keeping track of your history. So that being said, this is a really technical talk. I'm gonna get into the (UNKNOWN). Talk about what's happening under the hood in the world of Git. And previous use of Git is helpful, it's not required though.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Hopefully if you know, if you're not super familiar with Git, there will be a couple of spots for questions. Happy to fill people in if you get lost. And then as far as these slides, there's going to be a lot of code on the slide. So I tried to make it a little clearer about what's happening. So the commands that I'm running are going to be uncommented, the output from those comments, the output from those commands will be commented for clarity. So the green text is just the output from whatever we're running. And again, all of this is in the shell file. If you wanna take a look at it now or later. So that being said, let's get in the groove. I promise you, this is the only pun in this talk (LAUGHTER). Wink, wink. So Git is an open source version control system used to track code over the history of your project. Track changes in files over time. It was created in 2005 by Linus Torvalds for the development of the Linux kernel. It's really not that old. If that name sounds familiar, it's the guy who created Linux and he created it for the development of the Linux kernel, to keep track of those changes over time.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>There are other version control systems out there like SVN that people can use that are a little bit older. It's used heavily by the Drupal project to track changes to Drupal. So, you know, if you've ever looked at the current code, open the pull request for anything in Drupal you're working and GitLab currently that's obviously driven by Git. So used heavily in Drupal and it's the most widely used version control system currently. I think I saw something like 70% of projects are currently using Git to track their development. So little a little basics about how Git works. So I grabbed this image from, Git has really good documentation online. This is one of their diagrams. So when you're working in Git. Wrong button. So you have your working directory, you're making changes to code. You know all that is great. When you're ready to finalize your changes, you're gonna add them into a staging area. So kind of a middle area between your working directory and then the history of your project.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So once you're ready to finalize your changes, you will commit them to your repository, at which point all the changes you made are put into your .git directory and stored there for everyone to use and makes them permanent in your history. So if you have little old Drupal 7 days or if you've ever done a pull request review, this might look a little familiar. This is a diff, it shows you what line was added in green, what line was taken away and communicates to us how a file has changed over the course of our repository. And really, what I want you to take away from this talk is that Git stores snapshots. It does not store diffs. So that's not how Git thinks it's not Git is doing. It's just how it communicates to us what has changed over time. So when we created a repository we used the git init command and we can take a quick peek. So you know on the on the right here on line nine, I'm creating a new repository. I list out the repository, we see a bunch of files here. The first one, that config file is our information about our remote and our branches.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So whenever you do like a git push or git pull, you're sending and receiving code based on what's in that config file. We're not gonna talk about that too much. Likewise, the HEAD file here is represents your currently checked out commit. So whatever commit is currently active in your working directory is referenced in that HEAD file. It's how Git knows what the changes are in comparison to your current environment or your current working directory. And then .git/index. The index file, it's a single file, it's our staging area. Whenever we do git add or we're adding stuff to our staging area, it's actually putting it in that index file and updating it. We'll show how that works. And then objects, we're gonna spend a lot of time talking through kind of like the brain of git. It's how it's actually remembering what files have changed and what the state of your data is at any given moment. So anytime you make a change to your file and commit it, it's gonna end up in that object directory.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And then refs, our pointers to git objects. Well, we'll see what those are for. So all objects we're gonna focus in on objects. Talk about objects for a little bit. All objects are identified by an Object ID, also known as a Hash. Git gives us this really cool command where we can actually calculate the Hash of a given string. So line 26 here, we're giving it the string of 'Hello world' pass it to the hash object, which is a Git command that will take that data, give you the hash for it. The -w flag means create this as an object in your database. So if you do that with our Hello World string, we have this commit or this object 557db0. That's something I'll be referencing for these first slides. We can actually see that object as a file in our file system. So we saw that .git/objects/55/the rest of that hash. And we can also get the contents of an object using the cat -file command. So the -p says pretty print out this object, give it that object ID and it gives us that hello world string based off of that hash object function that we just ran.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>These hashes are sha1 newer versions of git depending on your configuration, might use sha56. A sha1 hash is 160 bits long index that equals 40 characters. So you will see the length of that hash that we're given is actually 40 characters. And we can reference those objects by a partial hash. So we give you the git cat - file of our whole object. We give you reference to our object by 557dv0. We could also reference it by just 557d, as long as you have a unique string in the front of your reference, it'll find it. So as you have more objects in your database, you'll have to add more characters to that hash to identify it as your reference. As you're referencing it a lot of the time on my GitLab and GitHub, you'll see that six character hash. So that's what I'll be talking through or referencing when I'm talking about this Hello world hash or object. So objects really are the brain of Git. I did, just listing out our objects directory here after if you commit. Oh see, we have like seven different objects.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>They're all different types of objects. So, all hashes are stored as a file. You'll notice that there's not any file extension on these. So if you're adding the README.txt file to your project, it's not gonna show that as .txt in the object directory. It's just gonna store it with whatever the hash of that object is. And there are different types of objects. We're gonna talk through each of them and how they reference each other. We'll see there's blob objects which are a file. There's tree objects which are directory and commit objects which are a commit. Let's see how these come together. So starting with blob objects, a blob object is the contents of a file. It is only the contents of a file and it is a snapshot in time. It is not a diff between one commit or another. It's gonna be the entire contents of a file at a specific point in time. You're also not gonna see any metadata in a blob object. You're not gonna see file permissions. You're not gonna see file name. You're just gonna see the content of whatever is in that file at a given point in time.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So we have a single file, whole file. Nothing about the file. So help me run plus some additional stuff that helps us identify what that object is so that 5570dv0 hash is not the hash of Hello World. It's the hash of Hello World plus some additional data that tells you that it is an object. We're not gonna worry about that too much. And then blob objects get created when you run the git add command. So let's see what that looks like. git add, we have our staging area. We have our working directory. We're making changes in our working directory, ready to turn them into a commit and then add them into our project. So I'm gonna take that Hello world string. Put it into README.txt, run a git add on that file. And we're gonna get status to see the current status of whether or not things are in our staging area ready to be committed. So we'll see on line 52 we have said we have a new file that we're adding. And tell us what our next commit is gonna look like. So if we take that Hello world string that we know the hash for, put it into README.txt file, git gives us this really cool command called ls - files --stage.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>This prints out the contents of that staging area which is stored in that index file. So we'll see now we have file permissions and metadata. So the first part we have our. Yeah. So we have our permission bits. We have the object ID that that file is pointing to. So it's our Hello World string. We have a flag after that hash that tells us the conflict status of a file. So we'll see how that how that shows up in the future. And then we have the file name. And again this blob is a file on this is still made of Git objects 557dv0, which has that Hello world string. So when we're ready. Oh, staging you can have multiple files in it. So if we make a directory called docroot, take that same Hello world string, put it into index.html, run that same, git ls - files. We will see that we now have two files in our staging area reading that txt index.html. They're both referencing the same blob because they have the same data in them. So you can kind of start to see here how git does some magic to save space and save calculations as it's determining the state of your code.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So if we take that staging area, we can turn it into a commit, add it to our git history via the git command. And we'll see some output that tells us what git just created. So we have some, we have a list of changes. We have two different files here. One is README.txt, one is index.html. Well, you also get this fancy objects. So when you run a commit, it's also creating an object in your objects directory. And that commit object is what identifies the history of your project. So again, we can take the hash for that commit object. So ecdb I made that really hard to say for me. This is awesome. We can run that same cat - file command, see what the contents of that object are. We get something like this, we have our committed information. We have that commit message that we just added. It tells us what this set of changes represent. And then we also get this really cool tree object, which is another object with a different hash. And if you take a peek at that tree or that object, again with a cat - file command, we'll get something like this.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And this is where we start to see metadata about the history of our project. So we can see that this tree object is pointing to our 557dv0 blob via README.txt. But then we also have another tree object pointing to docroute. And again, we can go a level deeper. Take a look at that object. And when you see our index.html file pointing to 557dv0. And that ends up looking something like this. So at the top there, we have our commit, that commit object is pointing to a tree. That tree object is pointing to a blob as well as another tree. And that other tree references a blob object. So this is how Git represents your data in your project. Whenever you're looking at a commit and it uses that to determine what the exact contents of your code at that point in time. So I'm gonna pause in a second, but I wanted to add a little bit of complexity before we do that with a second commit. So if we take a different string Git rules, put it in README.txt, you could run that same git add ls - files --stage.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>We see something a little bit different now. So the hash for reading .txt has now changed. It's pointing to a different blob object. We still have our docroot/index that each html file in our staging area even though it hasn't changed. So whenever you do ls - files --stage, it gives you the state of every file in your code and the blob that it points to. So if we make a second commit with that Git rule string, we'll get another commit object. If we take a peek at that commit object, we have our same commit information as well as a different tree that we're pointing to. It's a different tree because it's pointing to different files with different content. So you can see on the left here we have an additional tree. That tree is still pointing to your old Hello world blob via the docroot trees. So it's still pointing to that old tree, but it's also pointing to a new blob via the README.txt file. So this is how Git is representing data under the hood. It's how it determines the state of your code at any given time.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>It's not remembering what it's changed, it's just remembering the snapshot of a file at a specific point in time. So I'm gonna give you all a second to catch up. I know this is a lot I just threw at you. Anyone like, have questions about this first part? I'm gonna hop into merging workstreams together, git rebase, all that fun stuff. But this is kind of the setup for how we're thinking about what Git is doing. Yes.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Drink first, I might have misunderstood when you say that when you ls files in stage. It shows you every, the current state of every file in the project.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah. So Git ls - files --stage shows you every file in your project regardless of whether or not it has changed in your current commit or added it to your staging area.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>So there's a flag on one of those if it is actually staged.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah. Well it just looks at that blob so it doesn't know whether or not a file is different. It's just pointing to that blob object. And it'll look when you do a commit and compare it to the previous tree and tell you what has changed.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Gotcha. Cool.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Any other questions? This is fun (LAUGHTER). So let's look at branches. Who wants to guess what a branch is? Yeah.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>A tree.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>No. So great. Sorry.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>A deviation.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Not a deviation, a branch. Also a little bit of a scenario here. So leaving our old commits behind I'm gonna simplify things a little bit give us a new tree. So we have our root commit at our main branch on the left. The squares are our branches, circles are commits and then we have two separate branches here. branchA that says Git sucks and branchB that says Git rules. We can take that branch object and see what it is. And branch objects are stored in .git/refs. They are not objects, they are just pointers to objects. So you don't need to do like git cat file. You can just cat out, print out the contents of that file. You'll get whatever hash that that branch is pointing to. So branchA is pointing to commit c, branchB is pointing to commit e. So Git doesn't care what branches are. And likewise, we can create new branches. We can also create tags which are both references to commit objects. The difference between a branch and a tag is that a branch can be changed, a tag cannot be changed.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So branches are mutable. Tags are immutable, but they're both stored in the same way. So a tag pointing to commit d, we can tell it to create a tag or branch at a specific point by doing checkout -b or tag and giving it that commit hash Git will go look up that commit hash, make a new reference object and pointer to that hash in that file. We got it. So I'm gonna talk about merging and combining these two workstreams. So we have two different workstreams and a few different ways to combine them. So we're gonna work on combining branchA and branchB. We'll talk about merging, which is on the left. We'll talk about rebasing, which is in the middle. Everyone has fun with that and then we'll talk about how cherry picking works as well. So let's start with a merge. If we check out branchB, we're on branchB, we wanna merge branchA. You can run git merge branchA. And since those two branches both have changes in the same file, we get a really fun merge conflict, that everyone loves (LAUGHTER).</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Right? Maybe. So what's actually happening when we run git merge? So Git does what's called a three way merge between these two branches. It starts by finding their common ancestor. So branchB we have two commits after commit a branchA, we have two commits after commit a. It's gonna go back through our history, go through each one of those commit objects, find the parent until it finds two parents that match. So it grabs that and then it runs a diff. So diff is what we saw in that patch file. It'll compare the content of commit e to commit a and give us that as a diff. And it'll do the same for commit a and commit c and then we get two separate diffs like this. So you'll get diff allows us to run that same process and see kind of looks like a patch file. If we do git diff a to branchB we'll see that we're adding the string Git rules. If we do git diff a to branchA, we'll see that we're adding Git stinks. And there's a little bit of information about here about the file that changed. It's gonna look and see that the bytes in these two files that changed the lines in these two files changed which is why there's a merge conflict.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So if there's not a conflict, it'll pull in the changes from both sides. If there is a conflict, it'll yell at us and tell us that we need to fix it. So when we're in this state, if we actually take a look at the README.txt file, we'll see something that looks like the following might look a little familiar to you. And this is telling us that in our current commit, we have Git rules and the branch that we're trying to merge, we have Git sucks and it's up to us to come in here and actually update this file and put the correct contents in it. So you can either do that, an IDE, some IDEs have that built in where you can resolve conflicts. You can also just go and update the file directly and change it to whatever you want it to be that is correct. It's also possible to commit this without updating anything, in which case you'll break all your stuff. We won't talk about that. But I think it's really interesting though. If we take that same git ls - files --stage, we'll see we now have the reading of that txt file listed three times and we have that merge conflict indicator set.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So the first line is our object for our a Hello world string 557db0. We'll have branchB so the representation there which is Git rules and then branchA which is Git sucks. And these are all running that same hash object to get the contents of that file. So this is how git knows that you're currently in a merge conflict. It looks at this index and it says I have these files flagged as conflict and it'll also update that file to show what the conflict is. So if we were to just put whatever content we want, resolve those conflicts, I'm gonna put Git rules, run that same git add command and ls - files --stage. We'll see that we no longer have those three entries because that conflict has been marked as resolved. So we're back to our normal state. We just have a blob representing whatever's in the contents of that file ready to be committed to our repository. So when we resolve that conflict and run git commit, we're given another commit hash. So in this case, we're at commit f. Which represents our merge between branchA and branchB.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Again, we can cut out that object. We'll see that we have a tree object that it's referencing that tells us the state of the files, but then we'll see that we actually have two parents instead of one parent. So this tells us that this commit came from these two places. And there are actually ways to merge more than one branch at a time. There's different algorithms merging. If you really wanted to get crazy, you're gonna have however many parents you want in there and how many branches merged together at once. So that's merge. Let's talk about rebase really quick. So rebase is a really fun one. The difference between merge and rebase is, in rebase you're not making a merge commit, you're copying history from one branch to another. And the way it does this is again will find that common ancestor and then it checks out the branch that we are rebasing on to. So branchB moved from commit e up to commit c. So at this point we're just starting our rebase. Both our branches are pointing to the same place.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And then it runs through that diff process again. So it's gonna compare instead of comparing commit e to commit a, it's gonna compare a to commit d. So it gets that diff and sort of across the whole chain, it's just gonna do one commit at a time. So it gets that diff and then it adds it on to the end of branchA and updates our branchB pointer to have that and it'll use the same commit information. So you'll see the same author, you'll see the same commit time. And it'll be pointing to a different tree and then it'll repeat that process for the next two commits. So it's gonna take commit d, compare it to commit e, we have that git rule string when we apply it to branchA again current branchB, we know it'll move our pointer forward. We're also gonna get a conflict here and it works in the same way. So we rebase and we have a conflict between our two changes, it'll yell at us. We have to go and update that and make sure,t resolve the conflict. Run, git add, rebase, continue and it'll continue on with the process.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So differentiating merge and rebase, is merge combines everything to one commit rebase takes those changes and puts them on top of another branch. But what's really cool here in this diagram flashing git is that those old commits are still there. They're still in the object directory. They don't go away even though our branch isn't referencing them anymore. So if we want to, we can move branchB back to where it was via the git reset command. So we took it from e' and moved it back to e and now branch is pointing to commit e again. Likewise our rebase commits are also still in the history. So if we wanted to we can move it back and forth. Git doesn't care where that branch is it just knows that that branch is pointing to a specific commit so we can move it around, put it wherever we want. And if we do something that we don't like we can always go back in history and find the old objects that it used to reference, update that pointer to the old objects. And you can do git reset hard, git reset soft.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>The difference between hard and soft is hard will get rid of your changes. Soft will just update the pointer, but it won't reset your changes so you'll still have that same working directory. You'll still have that same tree, you'll have the same blob objects. It's just pointing to a different place. I'm not gonna jump into that too much. But from here, let's take a look at cherry picking. And of course, I'm like flying through this. But so if we wanted to cherry pick that commit, the difference between a merge is combining two trees a rebase takes a tree and puts it on top of another one. A cherry pick takes a single commit and puts it somewhere else. So if we were to cherry pick the e commit from branchB to branchA, again, it's gonna take that diff between e and its current. It's not gonna go back to P, it's not going to compare anything beyond that. It'll just compare commit e to commit d, get a diff between those two things and then put it at the end of your branch. And in this case I'm cherry picking a commit on to branchA, so I'm not doing it on to commit b but it will.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>You'll run into those same conflicts because the strings are different. The same file changed and then. Yeah. You will have another commit with a new tree, with the new contents of that file point to, but on top of branches. So that's how cherry pick works. And of course, what's really interesting is that, since Git sees these two commits as there are two different objects, they have different parents, they'll have a different hash. You could actually cherry pick a commit twice. So we cherry pick e or yeah, cherry e we'll have it on branchA. We could actually cherry pick that again and then we'll have it in our branchA twice. And again we'll have to resolve conflicts. It might yell at you and say nothing has actually changed we do this because it's actually in the same state of code. But know point being that it doesn't really care what your objects are. Doesn't care where your branches are pointing. All it cares about is the state of your code in that time and how to get from one commit to another.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So in summary, that's fine. So Git is a file-based version control system. There's other version control systems. It uses objects and then references those objects to determine the the history of code. Branches are refs, they're just pointing to objects. It don't care what's actually on that branch. They're just references. Git stores an entire snapshot of a file. So when you go from one commit to another, it's not saying, oh, this line was added here. It's saying this is the exact state of my code at this point in time in the commit. Commit objects, it was two types of objects. Commit objects pointing to tree objects, tree objects pointing to blob objects. And that's how it's determining the state of things. Branches or pointers. Git doesn't care what they're pointers to. So it's a really interesting technology and I always thought it was like remembering the diff between various commits, but it's not actually doing that. It's actually remembering the exact state of your code at any given point in time.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And that's what I got. There's my other pun. (UNKNOWN). Yeah that was, that was a lot. I can go back if people have questions. I think there are certain things that you all want me to touch on, talk through. What's up, Bob?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>So you've got multiple people working on a team. You're committing everything and you end up with conflicts between different branches.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yep.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>What would cause it if you have duplicate events going up in your changes?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah. So if we go back to that. Yeah. So if we go back a couple of slides here, how do I do things? So in this example, not this example, this example not that one, that one. So this is an example of having a duplicate commit. So we cherry picked e once we'll have that on branchA if we cherry pick it again, it'll be there duplicated. Git's not gonna say that like they're the same thing. It's just looking at them. It's two different objects in your history based off of like what you told it to commit whatever the parents are. And it's just getting to know the state of files at that point in time.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>So if you get those duplicates and you haven't been using cherry pick. Yeah, it can come from... Maybe 'cause you've got two parents out there.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>It can come from like if you merge a branch or I guess it depends. So if you merge a branch twice it won't make that duplicate commit, it'll just have like pointing it will have a merged commit. But if you're rebasing or something you could end up with those duplicates. I think you can you can't rebase the branch by yourself. But if you were to revisit a branch twice and then cherry pick or do something weird of merging, you can definitely end up with duplicate commits. Git doesn't know they're duplicates, so it just thinks there are different commits. They might be pointing to the same tree object, but they're gonna have different parent objects. So Git's gonna see them as two different things. And you could actually, you can rewrite that history. So like we did with the git reset command.. Where did that go. So no, Yeah, so if your branch is pointing to commit e' e'' and it's if we have a duplicate commit there, we can say hey Git take this branch pointer, point it to a earlier point in history and you'll have just that single commit at whatever time.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Your duplicate commit is still gonna be in your object database. It won't push it up to your repo if there's not a branch pointing to it, but you're still gonna have that old object, Git doesn't care where your branch is pointing, it's just pointing to a specific commit in time. Cool. Other questions.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Squash. When you squash commits, does it remove the references?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah. So? So a squash. What it does is it well, I guess it would just grab the tree of the last commit because it doesn't care like what the commits are. It just gonna look at that tree object so when you squash it's gonna make a new commit pointing to that same tree object with whatever kind of squash method you want. And you'll still have your old commits that you can go back and reference. But it cleans up the history so that you only have a commit object, a single commit object versus multiple.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>So the object still exists, but it just cleans up the commit.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Right, yeah.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Two different things.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah. So,</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Objects are not history.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah, exactly.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>(UNKNOWN).</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>That's it a good question (LAUGHTER). I don't know, my guts would be when you're stashing, it's probably gonna make another object in your database and add a reference somewhere to it. So maybe I could imagine, when you do a git stash, it makes a new tree object, puts that tree object in your object database and then probably adds a reference somewhere to, say when you wanna pop it, apply this tree to the current working directory. So kind of like checking out a commit.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>OK. Nice. Yeah. How do you choose between, like, a merge or a rebase?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah. Yeah. So the question is, how do you choose between merge, rebase, cherry pick? So typically a merge is when your work is coming together. So when you open a pull request, you're gonna merge two branches together and it'll have that new tree. When you're doing a rebase typically that's when, if you're working on something locally, you've made a lot of changes, but your, the upstream like branch has changed or something. You wanna take all your work and put it on that other branch that has all your other changes in it. And then cherry pick is if you only want one change that you made in your history, it'll take that one change and put it onto the branch. Well, did I answer your question?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>OK, cool. Anyone else?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>So when you're doing a git pull it's gonna grab your whatever your origin branch is, right?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>And it will fetch it and it will merge it.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>So when you do. Yeah.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>There's also the option to set it up to rebase all the time.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>I don't know if you can pull actually, I think you can pull rebase but when you do just like a regular git pull, it'll treat it like a merge. So if you have changes locally that are different than what's upstream, it'll merge those two together, make a new merge event. It actually allows you to like update like commit message. Yeah. Thought. Yeah.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Occasionally we've been getting a message saying that you to say actually. It's saying that you can set it up to automatically rebase every time you look at (INAUDIBLE).</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Merge or merge and rebase I guess is. Right.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>It's doing both of those things or not.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah. So do you follow this merge. If you're, if when you do a merge, if your two branches are coming from the same place. So like if you are, if you have changes locally that are on top of whatever is remote and you do a get pull, it'll do what's called a fast forward. So instead of making a merge commit locally, it's gonna do more of like a rebase where it will take those commits and just apply them on top of whatever the remote branches and update the pointer to whatever that latest commit is.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>I think this comes up usually when we're running into conflicts on that whole.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah. So you got merge conflicts. It's going to look at those two commits in the history. Find the common parent and then see what is that and do that same diff process between the two, oh my God, commits. That's what you're gonna conflict if you know something upstream has changed something in your branch has changed and it's gonna do that same merge process. See that there's a conflict. It'll pause so it won't completely merge and make you commit. It'll give you a chance to resolve those conflicts and then you can commit directly. Cool. Anything else? Was this helpful?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Very helpful.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Awesome. Love it.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>So most of these presentations that I've seen don't go into what Git does in the background.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah, this is a lot of fun, (CROSSTALK)</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Figuring out what is it doing and why am I.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>This problem.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah, exactly. Yeah. And I mean, like I said, I was really surprised that it's not like storing diffs. It's just storing whatever the exact state of your code is at any given time.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>That seems so surprising. Like counterintuitive because it seems like that would be more expensive than SVN which Git store diffs, right. (UNKNOWN)</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>I didn't look. I think SVN is also snapshot based. I'm not sure.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>It makes sense though because otherwise you'd have to compare tons of diffs like commit a commit d commit c and you'd have to store the diffs for each variation. That's a snapshot, makes sense and then need to run a function or something to get the diff. And that makes sense. The contents of the files are stored as hashes, not.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah. As blob objects with a specific hash.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah. (UNKNOWN) question should go back from earlier from one of the first two bits where you're pointing to the blobs.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Oh, yeah. Love that. I'm just gonna leave that here.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>And the main question I had, you had both the README.txt and the index.html, pointing to the same blob.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Right.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>And I just don't understand why. I don't quite understand that.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah, I can get to that really quick here. Oh, technology. Oh, there it is. So, see, in our last event here, they are pointing to the same blob, right. We had two different files. And that's because those two files both have the Hello World Stream. So the hash blob object is just the contents of the file. It's not gonna store the file name or the permissions or anything. It's just the literal contents of that file. So since those two objects or those two files have the same content, they have the same hash. So they point to the same place.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Not often gonna happen (UNKNOWN) sort of thing.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah. Well as you're updating history, it'll still point to that old object, right? So it's gonna keep that. If you were to, revert a file in the future, it'll point back to that old blob because of the same file contents. Cool. Any other questions? Awesome. Thank you all. This is a lot of fun to me. Hope it was helpful.</span></span></span></span></span></span></p></div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-9a11fff90452b6e17d971bebc3c8db5c9f8b65081503c39ace6c495209a350f9">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/6901">https://mid.camp/6901</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+  <section class="map-banner">
+      <div class="views-element-container block block-views block-views-blockevent-venue-block-1" id="block-hatter-views-block-event-venue-block-1">
+  
+    
+      <div><div class="container view view-event-venue view-id-event_venue view-display-id-block_1 js-view-dom-id-1abefded6a7953506eb0e5af5664b771cdd4e520a73738ddc6e3b7267dd1a6c2">
+  
+    
+      
+      <div class="view-content">
+          <div class="views-row">
+
+
+<div class="map-overlay">
+  <span class="map__label">Location</span>
+  <h2 class="map__title"><span class="field field--name-title field--type-string field--label-hidden">DePaul University - Lincoln Park Student Center</span>
+</h2>
+  
+            <div class="field field--name-field-address field--type-address field--label-hidden field__item"><p class="map__address" translate="no">
+          2250 N Sheffield Ave. <br>
+            Chicago, IL 60614<br>
+  </p>
+</div>
+      
+  <a href="../../about/venue.html" class="cta-link--yellow">Learn more  <span class="cta-arrow"></span></a>
+</div>
+<div id='map' class="map"></div>
+</div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-154d37e7fe62d36370fd19f7bae119fb8ab73cca97e4d60e07a80a469fe050e5">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/bounteous.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2023-01/BounteousIndigoSmall.png" width="403" height="67" alt="Bounteous logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/evolving-web.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2023-04/evolvingweb%20(3).png" width="1517" height="371" alt="Evolving Web" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/debug-academy.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2023-02/Final%20Logo-in-color.png" width="1010" height="864" alt="Debug Academy logo" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#6d04030b022d0004090e0c001d43021f0a"><span class="__cf_email__" data-cfemail="01686f676e416c686562606c712f6e7366">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/6901","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"ajaxTrustedUrl":{"form_action_p_pvdeGsVG5zNF_XLGPTvYSKCf43t8qZYSwcfZl2uzM":true},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_U1jmi93nTJG2lPAKzexs4tMZWFR2YMMoIoiPckW421U.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJx1yksKgDAMRdENabskSfUZK2kjTfCzeyfiQHB04XBZlQUDVZLL82iRP9At5I4WWTSR9OsLhbakZ3cgzdpKfBogKKgeJjhlsWC043cqMCPGDa0vM_I"></script>
+<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.js"></script>
+<script src="../../sites/default/files/js/js_RAkHj2z9vY4q-6RsYuiXkqPbxgsRWrLsVQRz36mKiGA.js%3Fscope=footer&amp;delta=2&amp;language=en&amp;theme=hatter&amp;include=eJx1yksKgDAMRdENabskSfUZK2kjTfCzeyfiQHB04XBZlQUDVZLL82iRP9At5I4WWTSR9OsLhbakZ3cgzdpKfBogKKgeJjhlsWC043cqMCPGDa0vM_I"></script>
+
+  </body>
+</html>

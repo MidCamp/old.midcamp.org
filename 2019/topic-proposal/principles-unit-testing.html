@@ -1,0 +1,3277 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="The proliferation of testing strategies outside of a broadly agreed set of definitions has caused confusion and a waste of effort by not fully understanding how to apply the fundamentals of unit testing. Let&#039;s change that." />
+<link rel="canonical" href="principles-unit-testing.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Principles of Unit Testing | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Principles of Unit Testing | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_Qoyy92GHt9RyGOt8N3WS_9HRsJcJBywJ2IhXudzvST4.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJw9jFEKwzAMQy-ULkcqTqx2AaceUdbRnX6hpfsRTzyhbEIeMQkR8sVLsT9XkLKCd99ch_OGQa2KlS_CU3pHi6t5EpsyGXiwo16ne1H4jJqg81JgGhv48o1lx3TKMcGH8cxHdX0bfg1uOh4.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_QAC1R0aFoF1mIVQtLAaSE24B2iwnT2ZCa0cZDeZsPV0.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJw9jFEKwzAMQy-ULkcqTqx2AaceUdbRnX6hpfsRTzyhbEIeMQkR8sVLsT9XkLKCd99ch_OGQa2KlS_CU3pHi6t5EpsyGXiwo16ne1H4jJqg81JgGhv48o1lx3TKMcGH8cxHdX0bfg1uOh4.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJw9jFEKwzAMQy-ULkcqTqx2AaceUdbRnX6hpfsRTzyhbEIeMQkR8sVLsT9XkLKCd99ch_OGQa2KlS_CU3pHi6t5EpsyGXiwo16ne1H4jJqg81JgGhv48o1lx3TKMcGH8cxHdX0bfg1uOh4.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJw9jFEKwzAMQy-ULkcqTqx2AaceUdbRnX6hpfsRTzyhbEIeMQkR8sVLsT9XkLKCd99ch_OGQa2KlS_CU3pHi6t5EpsyGXiwo16ne1H4jJqg81JgGhv48o1lx3TKMcGH8cxHdX0bfg1uOh4.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="principles-unit-testing.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-hatter-midcamp2019navigation-menu" id="block-hatter-midcamp2019navigation" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-midcamp2019navigation-menu">Midcamp 2019 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" title="About MidCamp" data-drupal-link-system-path="node/191">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--venue">
+        <a href="../about/venue.html" data-drupal-link-system-path="node/192">Venue</a>
+            </li>
+          <li class="primary-nav__sublist-item item--travel">
+        <a href="../about/travel.html" title="Travel and Accommodations" data-drupal-link-system-path="node/188">Travel</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../about/lunch.html" title="Lunch options" data-drupal-link-system-path="node/189">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--volunteer">
+        <a href="../article/volunteer-help-midcamp.html" title="Volunteer!">Volunteer!</a>
+            </li>
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2019/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../../2020/news.html" data-drupal-link-system-path="2020/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--attendees">
+        <a href="../attendees.html" data-drupal-link-system-path="2019/attendees">Attendees</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" data-drupal-link-system-path="2019/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--spread-the-word">
+        <a href="../article/spread-word.html" data-drupal-link-system-path="node/371">Spread the Word</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" title="Sponsors" data-drupal-link-system-path="node/197">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--become-a-sponsor">
+        <a href="../sponsor-midcamp.html" title="Sponsor MidCamp" data-drupal-link-system-path="node/186">Become a Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../../jobs.html" title="Jobs" data-drupal-link-system-path="jobs">Jobs</a>
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" title="Schedule" data-drupal-link-system-path="node/190">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--all-sessions">
+        <a href="../sessions.html" data-drupal-link-system-path="2019/sessions">All Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--summits--training-wed">
+        <a href="../schedule/wednesday.html" title="Summits &amp; Training (Wednesday)" data-drupal-link-system-path="2019/schedule/wednesday">Summits &amp; Training (Wed)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-thu">
+        <a href="../schedule/thursday.html" title="Sessions (Thursday)" data-drupal-link-system-path="2019/schedule/thursday">Sessions (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-fri">
+        <a href="../schedule/friday.html" title="Sessions (Friday)" data-drupal-link-system-path="2019/schedule/friday">Sessions (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--contribution-sat-">
+        <a href="../contribution-day.html" title="Contribution Day" data-drupal-link-system-path="node/332">Contribution (Sat) </a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-terms-and-conditions">
+        <a href="../../speaker-terms-and-conditions.html" title="Speaker Terms and Conditions" data-drupal-link-system-path="node/21">Speaker Terms and Conditions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../../speaker-resources.html" title="Speaker Resources">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--topic-tracks">
+        <a href="../../topic-tracks.html" title="Topic Tracks" data-drupal-link-system-path="node/10">Topic Tracks</a>
+            </li>
+  </ul>
+
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2019.html" hreflang="en">MidCamp 2019</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Principles of Unit Testing</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="301" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2019-03-21T18:30:00Z" class="datetime">Thursday, 1:30 pm CDT</time>
+ - <time datetime="2019-03-21T19:30:00Z" class="datetime">Thursday, 2:30 pm CDT</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-83" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-name field--type-string field--label-hidden field__item">Room 324</div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p dir="ltr"><span>The proliferation of testing strategies outside of a broadly agreed set of definitions has caused confusion and a waste of effort by not fully understanding how to apply the fundamentals of unit testing. Let's change that.</span></p>
+
+<p dir="ltr"><span>In this session, we will cover the five types of test doubles: dummy, fake, stub, spy, and mock, showing code examples of how to use each with PHPUnit and Prophecy. Layered on top of this we will observe the difference between sociable and solitary tests, as coined by Jeffrey Fields. Lastly, we will look at how test smells naturally surface and what strategies can be used to mitigate them, such as Arrange-Act-Assert, object mothers and data builders.</span></p>
+
+<p dir="ltr"><span>If you are looking to understand the value of unit testing, how to do it, and when it is appropriate, this session might be for you. The key takeaway from this session will be a deep knowledge of unit testing: when to apply one double versus another, when to use solitary vs sociable, and how to mitigate test smells.</span></p>
+
+<p>Slides: <a href="https://josephdpurcell.github.io/principles-of-unit-testing/presentations/2019-03-21-MidCamp/index.html">https://josephdpurcell.github.io/principles-of-unit-testing/presentations/2019-03-21-MidCamp/index.html</a></p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/1CRmF0kazWY?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-presenter-slides field--type-file field--label-above">
+    <div class="field__label">Presenter Slides</div>
+              <div class="field__item">
+<span class="file file--mime-application-pdf file--application-pdf"> <a href="../../sites/default/files/2019-03/Principles%20of%20Unit%20Testing.pdf" type="application/pdf" title="Principles of Unit Testing.pdf">See GitHub for slides</a></span>
+</div>
+          </div>
+
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Joseph Purcell</h4>
+
+      Lead Drupal Architect
+
+
+          @
+              <a href="https://www.bounteous.com/">Bounteous</a>
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p>Joseph D. Purcell has been part of the PHP community since 2003. He has a highly diverse technical background with extensive experience in front- and back-end development, system administration, and database administration. He has been responsible for finding and resolving performance bottlenecks in complex highly available systems, using and promoting PHP and web standards and best practices, upgrading and extending legacy PHP platforms, and integration and release management. As a technologist, he is inspired by emerging technologies and the discoveries being made from cross-disciplinary research. He is exercising these many talents at Bounteous in Chicago.</p>
+</div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2019-03/current.jpg%3Fitok=9X50J82J" width="220" height="220" alt="Joseph Purcell" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">DevOps</div>
+              </div>
+      </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p>[Joe] My name's Joe Purcell.</p>
+
+<p>I work at</p>
+
+<p>a company called Bounteous.</p>
+
+<p>We have a few different offices,</p>
+
+<p>but two of them are here in Chicago.</p>
+
+<p>I've been</p>
+
+<p>working with PHP for,</p>
+
+<p>well, since about 2003.</p>
+
+<p>Probably for the last six years or so</p>
+
+<p>I've focused mostly on Drupal.</p>
+
+<p>We're hiring, so</p>
+
+<p>if you're looking, come<br>
+talk to me afterwards.</p>
+
+<p>Something else that's<br>
+new, I am a new parent.</p>
+
+<p>That is--</p>
+
+<p>- Congrats.<br>
+- Congrats.</p>
+
+<p>(audience applauds)</p>
+
+<p>- [Joe] It's interesting,<br>
+'cause like your day-to-day</p>
+
+<p>is just very different.</p>
+
+<p>- [Man] Is this your first?</p>
+
+<p>- [Joe] This is the<br>
+first, yeah, for us, yeah.</p>
+
+<p>- [Man] How old?</p>
+
+<p>- [Joe] He's six months old.</p>
+
+<p>- [Man] Oh, it's starting to<br>
+get really fun then. (laughs)</p>
+
+<p>- [Joe] (laughs) Yeah, so<br>
+I'm enjoying that a lot,</p>
+
+<p>but it's funny, 'cause when<br>
+I think about who am I,</p>
+
+<p>certainly professional<br>
+things that are relevant,</p>
+
+<p>but sometimes the personal<br>
+bits are fun to talk about.</p>
+
+<p>A few years ago, I was<br>
+inspired to add this slide,</p>
+
+<p>and I wanted to add this<br>
+again to this presentation</p>
+
+<p>to just say thank you to people</p>
+
+<p>who helped get me into Drupal.</p>
+
+<p>Coming to a camp like this<br>
+is a great opportunity</p>
+
+<p>to just say hi to<br>
+somebody you've never met,</p>
+
+<p>and who knows?</p>
+
+<p>Maybe the next thing you know,</p>
+
+<p>you'll be writing your<br>
+own contrib modules,</p>
+
+<p>or contributing back, or<br>
+maybe you find a solution</p>
+
+<p>to some problem you're working on,</p>
+
+<p>but I've personally found<br>
+the Drupal community</p>
+
+<p>to be very helpful.</p>
+
+<p>So I throw this up there just<br>
+as encouragement to you all</p>
+
+<p>to meet new people.</p>
+
+<p>I am expecting that you all have</p>
+
+<p>some experience with unit testing.</p>
+
+<p>This is an intermediate talk.</p>
+
+<p>It'll be more advanced for<br>
+some, less so for others.</p>
+
+<p>If you're not, like if<br>
+you would fall in the,</p>
+
+<p>I'm more of a novice with<br>
+unit testing, that's okay.</p>
+
+<p>I'll try to take it a bit slower</p>
+
+<p>with the parts that are really relevant</p>
+
+<p>and pause for a question or two.</p>
+
+<p>And then for those who have<br>
+done a lot of unit testing,</p>
+
+<p>what I encourage you to do is<br>
+to take the ideas I'm sharing,</p>
+
+<p>mull them over, and let me<br>
+know if it jives with you,</p>
+
+<p>if it resonates with how you<br>
+think about unit testing.</p>
+
+<p>In The Mythical Man-Month,</p>
+
+<p>it's a book published by<br>
+Fred Brooks years ago,</p>
+
+<p>this is actually on the cover in it,</p>
+
+<p>he's talking about how<br>
+projects large and small</p>
+
+<p>have gone through challenges, whether it's</p>
+
+<p>budget,</p>
+
+<p>timeline,</p>
+
+<p>you launch the product and<br>
+it's no longer relevant.</p>
+
+<p>If you've been doing this long enough,</p>
+
+<p>you've certainly gone<br>
+through this experience</p>
+
+<p>where you feel like the<br>
+gravity of the codebase</p>
+
+<p>or whatever the challenges<br>
+are in the project</p>
+
+<p>are just weighing you down, and so,</p>
+
+<p>doesn't matter if you<br>
+like push really hard</p>
+
+<p>and you get one paw up out of the tar pit,</p>
+
+<p>another paw is sinking down again.</p>
+
+<p>And I like this to frame up the problem</p>
+
+<p>that we're talking about,<br>
+which is quality software,</p>
+
+<p>and unit testing is one way</p>
+
+<p>that we can help ensure<br>
+quality in our work.</p>
+
+<p>I find myself surprised</p>
+
+<p>by running into the same<br>
+problems over and over again,</p>
+
+<p>but if we're to solve them,<br>
+then we need to be clear</p>
+
+<p>about what the problems are</p>
+
+<p>and the solutions that we're proposing,</p>
+
+<p>so something that you'll hear<br>
+me talk about several times</p>
+
+<p>over and over again is about<br>
+coming to a clear definition</p>
+
+<p>of what unit testing is<br>
+that we all agree and adopt.</p>
+
+<p>There's two things I want<br>
+you to come away with.</p>
+
+<p>One is what is unit testing,</p>
+
+<p>and the other is when it's valuable,</p>
+
+<p>'cause not every scenario</p>
+
+<p>is going to be a good<br>
+scenario for unit testing.</p>
+
+<p>So if you can come away</p>
+
+<p>and you can articulate these two things,</p>
+
+<p>I'll consider it a successful session.</p>
+
+<p>The way we'll go about this</p>
+
+<p>is I'll start with a definition.</p>
+
+<p>I'll talk about two principles.</p>
+
+<p>I consider these principles</p>
+
+<p>because regardless of the language</p>
+
+<p>or testing framework you're working with,</p>
+
+<p>these two ideas are going to be relevant,</p>
+
+<p>and if you can understand<br>
+them and execute them,</p>
+
+<p>you will be able to do unit testing well.</p>
+
+<p>I'll go through two examples<br>
+using those principles.</p>
+
+<p>I'm actually going to skip<br>
+the test smells section</p>
+
+<p>just for a matter of time,</p>
+
+<p>and I'll talk about<br>
+motivations at the end.</p>
+
+<p>The motivations is the fun part.</p>
+
+<p>I will say this is more of a,</p>
+
+<p>I don't wanna say it's a dry talk,</p>
+
+<p>'cause I personally<br>
+find it really exciting</p>
+
+<p>to talk about the nitty-gritty<br>
+details of coding,</p>
+
+<p>but I'm not intending this to<br>
+be like really entertaining.</p>
+
+<p>So there's going to be a<br>
+lot of knowledge-sharing,</p>
+
+<p>so please speak up if you have a question.</p>
+
+<p>Yeah.</p>
+
+<p>- [Man] Since you're skipping test smells,</p>
+
+<p>can you take a minute<br>
+to describe what it is?</p>
+
+<p>- [Joe] Yes, I certainly will, yep.</p>
+
+<p>I actually have one slide I<br>
+will go over with test smells.</p>
+
+<p>Okay, definition.</p>
+
+<p>Raise your hand if you feel frustrated</p>
+
+<p>by the inconsistency of<br>
+definition about unit testing</p>
+
+<p>and other types of testing.</p>
+
+<p>You feel like it's a bit ambiguous.</p>
+
+<p>So about half the room or more?</p>
+
+<p>Okay.</p>
+
+<p>So in my journey through unit testing</p>
+
+<p>and other types of testing,</p>
+
+<p>I'm repeatedly frustrated<br>
+by the definition.</p>
+
+<p>I find that in conversation<br>
+you end up in these circular,</p>
+
+<p>like circular logic, and then you realize,</p>
+
+<p>oh, we're not talking about unit testing,</p>
+
+<p>we're really talking about integration</p>
+
+<p>or functional or</p>
+
+<p>UI testing.</p>
+
+<p>One challenge with the definition is that</p>
+
+<p>pretty much every testing<br>
+framework has its own definition,</p>
+
+<p>either implicit in</p>
+
+<p>how it talks about testing<br>
+methodology, or explicit.</p>
+
+<p>I've gone through every book</p>
+
+<p>that I could find about unit testing.</p>
+
+<p>Pretty much everyone has<br>
+a different definition.</p>
+
+<p>Blog posts, podcasts, everybody's<br>
+talking about unit testing</p>
+
+<p>in at least nuanced in different ways,</p>
+
+<p>sometimes very different.</p>
+
+<p>What I'm going to present here</p>
+
+<p>is what I would consider<br>
+a consolidation, or a,</p>
+
+<p>but what is common that I<br>
+see across those definitions,</p>
+
+<p>so what you take away I<br>
+do expect will be relevant</p>
+
+<p>even if your team</p>
+
+<p>or the blog post you're<br>
+reading treats it differently,</p>
+
+<p>the concepts here should apply.</p>
+
+<p>So what is a unit test?</p>
+
+<p>I've found the Wikipedia<br>
+page most often quoted,</p>
+
+<p>which is interesting, 'cause it's like</p>
+
+<p>just a huge paragraph description.</p>
+
+<p>In the xUnit testing book,</p>
+
+<p>they actually put the<br>
+definition in a glossary</p>
+
+<p>at the back of the 1,500-page book.</p>
+
+<p>I wanna bring that to the front.</p>
+
+<p>Martin Fowler</p>
+
+<p>in a post phrased it as it<br>
+being a situational thing.</p>
+
+<p>Let the team decide for their purposes</p>
+
+<p>and understanding of the<br>
+system what a unit test is.</p>
+
+<p>I like this because it<br>
+gets at the heart of it.</p>
+
+<p>Ultimately, your team<br>
+needs to own unit testing</p>
+
+<p>if you're gonna do it well.</p>
+
+<p>But he also calls out</p>
+
+<p>that the software development community</p>
+
+<p>simply hasn't settled on<br>
+well-defined terms around testing,</p>
+
+<p>and I want to do better,<br>
+I think we can do better,</p>
+
+<p>so I'm gonna take a crack at it.</p>
+
+<p>Here's my proposed definition:</p>
+
+<p>A unit test verifies a unit's correctness</p>
+
+<p>against a specification.</p>
+
+<p>So what I like about<br>
+this is it gets back to</p>
+
+<p>the roots of formal verification</p>
+
+<p>and mathematics.</p>
+
+<p>Some of those terms are used there.</p>
+
+<p>You can think of a unit as a function,</p>
+
+<p>a method on a class, or a script.</p>
+
+<p>I think the third one, sometimes<br>
+we don't consider this,</p>
+
+<p>but you could consider<br>
+a script a unit of code</p>
+
+<p>'cause it's something you can invoke.</p>
+
+<p>It's one thing, and if<br>
+you've used a step debugger,</p>
+
+<p>it might be helpful to think of it</p>
+
+<p>as one frame in the call stack.</p>
+
+<p>So here, this is getting a cache ID.</p>
+
+<p>You could think of that as one thing,</p>
+
+<p>or you could go up the stack and say</p>
+
+<p>the middleware's handle method is a unit.</p>
+
+<p>Very simple example.</p>
+
+<p>Here's a function called increment.</p>
+
+<p>It takes a parameter</p>
+
+<p>and it returns that<br>
+parameter plus one integer.</p>
+
+<p>So it's incrementing by one, and there's</p>
+
+<p>the test here.</p>
+
+<p>This is a simple test.</p>
+
+<p>Most of my examples are gonna be PHPUnit.</p>
+
+<p>So this shows a very basic way to test it,</p>
+
+<p>to verify that if you<br>
+pass the integer one,</p>
+
+<p>it returns the integer two.</p>
+
+<p>So here in our test, we call<br>
+increment with the integer one,</p>
+
+<p>and we're writing an assertion</p>
+
+<p>that says the result of<br>
+calling increment with one</p>
+
+<p>is the integer two, and<br>
+so this should pass.</p>
+
+<p>When you're looking through<br>
+the Drupal codebase,</p>
+
+<p>and when you're talking<br>
+about unit testing,</p>
+
+<p>I think it's helpful to talk<br>
+about the levels of testing.</p>
+
+<p>The simplest or lowest level</p>
+
+<p>is what I'll call solitary unit testing.</p>
+
+<p>I'll explain what I mean by solitary,</p>
+
+<p>but you'll see the UnitTestCase in Drupal.</p>
+
+<p>I think that kind of corresponds</p>
+
+<p>to what we're talking about there,</p>
+
+<p>or there might be sociable unit testing,</p>
+
+<p>which is a little higher level,</p>
+
+<p>and you'll find the KernelTestBase class</p>
+
+<p>is used for a bit higher<br>
+level than the unit tests,</p>
+
+<p>and then functional testing,</p>
+
+<p>which BrowserTestBase<br>
+would correspond to that.</p>
+
+<p>The thing that's confusing,</p>
+
+<p>all these can be done in<br>
+unit tests in PHPUnit.</p>
+
+<p>So bear with me</p>
+
+<p>as we take a step back<br>
+from specific frameworks</p>
+
+<p>to understanding high-level conceptual,</p>
+
+<p>like what are we talking<br>
+about with unit testing.</p>
+
+<p>I'll do a quick analogy.</p>
+
+<p>I don't know if this'll stick,</p>
+
+<p>but maybe for some of you it'll help.</p>
+
+<p>This is a photo of a<br>
+bridge that's been built,</p>
+
+<p>and they're testing it</p>
+
+<p>by driving a coal train across the bridge,</p>
+
+<p>and there's a person<br>
+underneath inspecting it</p>
+
+<p>to see if there's any faults<br>
+in the concrete or whatever.</p>
+
+<p>This is not a unit test.</p>
+
+<p>Once you have the whole thing built</p>
+
+<p>and you're testing the thing as a whole,</p>
+
+<p>that is not a unit test.</p>
+
+<p>But, so in this image, I show a steel beam</p>
+
+<p>that maybe is used in that bridge,</p>
+
+<p>and before it goes into<br>
+the bridge, you're testing,</p>
+
+<p>you're doing a stress test on the steel</p>
+
+<p>to make sure it meets some kind of,</p>
+
+<p>whatever the regulation is,</p>
+
+<p>so maybe it's amount of<br>
+pressure put on the beam.</p>
+
+<p>So does that make sense?</p>
+
+<p>- Yes.<br>
+- Okay.</p>
+
+<p>Principles.</p>
+
+<p>If you don't come away with anything,</p>
+
+<p>pay attention to this part,<br>
+'cause these two principles,</p>
+
+<p>I think if you can really understand</p>
+
+<p>and adopt them with your team,</p>
+
+<p>I think it'll make unit<br>
+testing go more smoothly.</p>
+
+<p>How many of you know<br>
+what a test double is,</p>
+
+<p>if I use the phrase test double?</p>
+
+<p>A couple of you?</p>
+
+<p>That is the first concept.</p>
+
+<p>I use this image.</p>
+
+<p>If you haven't seen Black Panther,</p>
+
+<p>the Marvel film, I encourage you to do so.</p>
+
+<p>It's a really good movie.</p>
+
+<p>On the left you see Danai,</p>
+
+<p>who's playing the character of Okoye,</p>
+
+<p>and on the right you'll see Janeshia,</p>
+
+<p>who's the stunt double for her.</p>
+
+<p>So some of the action scenes in the movie</p>
+
+<p>are actually played by someone<br>
+who kinda looks like Danai,</p>
+
+<p>but has some of the skills and training</p>
+
+<p>to do some of those stunts.</p>
+
+<p>What's kinda interesting about Janeshia,</p>
+
+<p>she was a professional wrestler.</p>
+
+<p>She was part of the US<br>
+national bobsled team,</p>
+
+<p>she did tae kwon do and gymnastics,</p>
+
+<p>and for the film she would<br>
+train like eight to 10 hours</p>
+
+<p>every day for weeks<br>
+leading up to the film.</p>
+
+<p>But the point of this<br>
+image is that a test double</p>
+
+<p>is two things that look very similar,</p>
+
+<p>but they're different,</p>
+
+<p>so one is meant to impersonate the other.</p>
+
+<p>The reason we use test doubles is cases</p>
+
+<p>where we have indirect inputs,</p>
+
+<p>and I'll show an example<br>
+of what that looks like.</p>
+
+<p>You might also call this shared state,</p>
+
+<p>so it's information that is used</p>
+
+<p>by different areas of the codebase.</p>
+
+<p>An easy example would be<br>
+pulling data from a database.</p>
+
+<p>The other scenario where<br>
+you use test doubles</p>
+
+<p>is indirect output, so your side effects,</p>
+
+<p>so maybe you're writing to a database.</p>
+
+<p>You might use a test double there.</p>
+
+<p>You can think of it as anything</p>
+
+<p>that makes it not a pure function,</p>
+
+<p>and if you don't know<br>
+what a pure function is,</p>
+
+<p>make a note to go read about it.</p>
+
+<p>PHP is not...</p>
+
+<p>There are some languages</p>
+
+<p>that are purely functional languages,</p>
+
+<p>and it's interesting to read about them</p>
+
+<p>and the problems that are introduced</p>
+
+<p>when you have a language</p>
+
+<p>that's not purely functional like PHP.</p>
+
+<p>An example of an indirect input,</p>
+
+<p>so we have a function called get_product.</p>
+
+<p>In it,</p>
+
+<p>let's assume that this is loading</p>
+
+<p>that product from the database.</p>
+
+<p>That's an indirect input.</p>
+
+<p>Why is this a problem?</p>
+
+<p>Well, when you execute<br>
+that function under a test,</p>
+
+<p>if you don't have a database,<br>
+there's an exception.</p>
+
+<p>There's no database to read from.</p>
+
+<p>So a test double can</p>
+
+<p>be a replacement for<br>
+having a live database.</p>
+
+<p>An indirect input would<br>
+look something like this,</p>
+
+<p>where we're calling<br>
+increment_product_favorite_amount.</p>
+
+<p>I'm making this example up,</p>
+
+<p>but just imagine you pass<br>
+a product to this function</p>
+
+<p>and what it does is it<br>
+increments the favorite count</p>
+
+<p>and then saves that product.</p>
+
+<p>Well, if you try to<br>
+execute that under a test</p>
+
+<p>and there's no database, it'll<br>
+throw an exception, right?</p>
+
+<p>There are five different<br>
+types of test doubles</p>
+
+<p>that you can use.</p>
+
+<p>A dummy is never called.</p>
+
+<p>It's just a class or piece of information</p>
+
+<p>that's needed to actually<br>
+instantiate the class</p>
+
+<p>or unit under test.</p>
+
+<p>A fake, it's similar to a<br>
+dummy, but it is called.</p>
+
+<p>So a dummy, you never call it,<br>
+you never interact with it,</p>
+
+<p>but maybe it's a parameter<br>
+that has to be passed in,</p>
+
+<p>but a fake, you would actually<br>
+call it and interact with it,</p>
+
+<p>and a fake you would likely<br>
+have hardcoded information</p>
+
+<p>into the test double.</p>
+
+<p>A stub</p>
+
+<p>is similar,</p>
+
+<p>but typically a stub</p>
+
+<p>lets you provide indirect inputs</p>
+
+<p>in your test,</p>
+
+<p>so you can vary what<br>
+the indirect inputs are.</p>
+
+<p>A spy, it's similar to a stub,</p>
+
+<p>but it's also gonna capture<br>
+your indirect outputs,</p>
+
+<p>and we'll show an example<br>
+of what each of these are,</p>
+
+<p>so just kind of take a<br>
+moment to absorb these.</p>
+
+<p>And then the last one is a mock,</p>
+
+<p>and it provides indirect inputs</p>
+
+<p>and it verifies indirect outputs.</p>
+
+<p>Something that makes me disappointed</p>
+
+<p>is when people say mock and<br>
+they really mean test double,</p>
+
+<p>because mock is just one type of five.</p>
+
+<p>There's five different<br>
+types of test doubles.</p>
+
+<p>So let's go through some examples.</p>
+
+<p>So imagine we have a test, and<br>
+in this test we wanna verify</p>
+
+<p>that this voter</p>
+
+<p>class</p>
+
+<p>by default grants the created permission,</p>
+
+<p>and so we set up a token dummy</p>
+
+<p>'cause this is just a<br>
+piece of data that's needed</p>
+
+<p>when I call the vote method.</p>
+
+<p>We create another dummy</p>
+
+<p>and pass that in to our vote method.</p>
+
+<p>Something to call out here<br>
+is that the token dummy,</p>
+
+<p>the first one, in<br>
+PHPUnit, you call getMock,</p>
+
+<p>and what it does is it returns</p>
+
+<p>an object that is a double<br>
+of the class you pass in.</p>
+
+<p>So what's cool about that is</p>
+
+<p>if you don't want to</p>
+
+<p>have to deal with some of the parameters,</p>
+
+<p>like construction parameters<br>
+of the class you want to dummy,</p>
+
+<p>you can do that by just calling getMock.</p>
+
+<p>You can look up some examples</p>
+
+<p>if you wanna know more about that.</p>
+
+<p>Or maybe you can just<br>
+pass in a standard class,</p>
+
+<p>so the object dummy in this<br>
+example, it required an object,</p>
+
+<p>but by default it's never<br>
+called, so I have to pass it in,</p>
+
+<p>'cause if I don't, it's gonna<br>
+fail, but I don't necessarily</p>
+
+<p>have to have information on the object.</p>
+
+<p>So this is an example of<br>
+where a dummy can be used.</p>
+
+<p>In this test</p>
+
+<p>I'm verifying that</p>
+
+<p>a BinaryFileResponse by default</p>
+
+<p>is setting the X-Accel-Redirect<br>
+to the path of the file.</p>
+
+<p>So here I set up a fake file,</p>
+
+<p>and you can see this is a fake file class.</p>
+
+<p>Now imagine,</p>
+
+<p>I'm not showing the code<br>
+here, but imagine I had gone</p>
+
+<p>and created this class called FakeFile,</p>
+
+<p>and it has all the methods and such on it,</p>
+
+<p>but it's never like reading<br>
+and writing from disk.</p>
+
+<p>It just, even if there's a read method,</p>
+
+<p>it just returns some hard-coded values.</p>
+
+<p>I pass that into the BinaryFileResponse,</p>
+
+<p>and what that does, it<br>
+allows me to run an assertion</p>
+
+<p>that says that header is the<br>
+path of the file that I said.</p>
+
+<p>So fakes can be used when...</p>
+
+<p>I think a file system is<br>
+a really good example,</p>
+
+<p>'cause if you write a fake file</p>
+
+<p>you can use it in all kinds of tasks</p>
+
+<p>and you never actually<br>
+have to have a file system.</p>
+
+<p>A stub</p>
+
+<p>lets you provide indirect inputs.</p>
+
+<p>So in this case, what I'm showing here</p>
+
+<p>is that this authorization_checker class,</p>
+
+<p>the isGranted method</p>
+
+<p>will return true.</p>
+
+<p>So I mentioned that with PHPUnit,</p>
+
+<p>you can get a double of a class.</p>
+
+<p>Another thing you can do<br>
+once you have that double</p>
+
+<p>is you can say, all right,<br>
+this method is gonna return</p>
+
+<p>a particular value, and you can do that</p>
+
+<p>with whatever method is on that class.</p>
+
+<p>So in this case, we do it</p>
+
+<p>so that when we instantiate our controller</p>
+
+<p>and check if it's granted, we<br>
+wanna assert that that's true,</p>
+
+<p>and granted, this example<br>
+is a bit contrived,</p>
+
+<p>but you can see how stubs, all it is</p>
+
+<p>is you're passing in<br>
+indirect information, right?</p>
+
+<p>I did not pass true into<br>
+the test controller,</p>
+
+<p>I passed an object that<br>
+had a method on it.</p>
+
+<p>A spy.</p>
+
+<p>There's a library called Prophecy,</p>
+
+<p>and you can use it in<br>
+conjunction with PHPUnit</p>
+
+<p>to capture indirect outputs.</p>
+
+<p>So in this case, what we're doing is</p>
+
+<p>we're creating a fake user,<br>
+or a double I should say,</p>
+
+<p>a test double of a user.</p>
+
+<p>You pass that into this profile class,</p>
+
+<p>and then we're gonna assert<br>
+later in the last two lines,</p>
+
+<p>we're gonna assert that<br>
+when you call getFullName,</p>
+
+<p>it's gonna call the first and last name.</p>
+
+<p>Now you're not asserting that like...</p>
+
+<p>This avoids having to</p>
+
+<p>like create an actual user</p>
+
+<p>with a first and last name<br>
+and validate the output is,</p>
+
+<p>like the full name is<br>
+the first and last name.</p>
+
+<p>This lets you just know like, okay,</p>
+
+<p>when I getFullName, it's<br>
+calling these two methods on it.</p>
+
+<p>Again, a bit contrived, but<br>
+hopefully you get the idea.</p>
+
+<p>A spy is capturing what<br>
+methods were called.</p>
+
+<p>A mock does something similar.</p>
+
+<p>This looks similar to a stub,<br>
+but there's one difference.</p>
+
+<p>Here we're saying that the getFirstName</p>
+
+<p>should be called one time.</p>
+
+<p>So here's the getFirstName method.</p>
+
+<p>We're even specifying what<br>
+value should be returned,</p>
+
+<p>and then we're expecting</p>
+
+<p>that the last name is gonna be called,</p>
+
+<p>and what's different between<br>
+a mock, a stub, and a spy,</p>
+
+<p>yes, they're all<br>
+providing indirect inputs,</p>
+
+<p>but a mock on execution will,</p>
+
+<p>it'll throw a failure<br>
+if this is not called.</p>
+
+<p>So a mock does its<br>
+assertion during runtime.</p>
+
+<p>One thing, and this is one reason</p>
+
+<p>I don't care for mocks much,<br>
+is your assertion is not clear.</p>
+
+<p>You would have to read in<br>
+your setup in your test,</p>
+
+<p>you would have to read there<br>
+for where the assertion is.</p>
+
+<p>We'll come back to why<br>
+that's a problem later.</p>
+
+<p>What should you double?</p>
+
+<p>So when should you use test doubles?</p>
+
+<p>There are different approaches,</p>
+
+<p>but I'm gonna categorize it as</p>
+
+<p>it depends on if you're doing</p>
+
+<p>solitary or sociable unit testing.</p>
+
+<p>So going back to our bridge analogy,</p>
+
+<p>when you take a unit</p>
+
+<p>and you're only testing that in isolation,</p>
+
+<p>that is very solitary, so<br>
+it's similar to that example</p>
+
+<p>where you have a steel beam</p>
+
+<p>and you're testing its endurance.</p>
+
+<p>Sociable would mean that<br>
+you have more things,</p>
+
+<p>more code being executed during<br>
+runtime that you're testing.</p>
+
+<p>So how do they differ?</p>
+
+<p>I actually took this idea from Jay Fields.</p>
+
+<p>He wrote a book called Working<br>
+Effectively With Unit Tests,</p>
+
+<p>and how he describes the difference</p>
+
+<p>is that sociable testing<br>
+will cross some boundaries,</p>
+
+<p>and we'll talk about what a<br>
+boundary is here in a second,</p>
+
+<p>but solitary will never cross boundaries.</p>
+
+<p>With sociable testing,</p>
+
+<p>you'll have one or more<br>
+concrete classes during test,</p>
+
+<p>but with solitary, you only have one.</p>
+
+<p>So during solitary testing,</p>
+
+<p>you only have the unit you're testing</p>
+
+<p>that's instantiated and running.</p>
+
+<p>A boundary is a database, a queue.</p>
+
+<p>It could be a network call,<br>
+it could be a collaborator.</p>
+
+<p>So if you're looking at a bit of code</p>
+
+<p>and you see it calling a<br>
+method on another class,</p>
+
+<p>that other class would be outside<br>
+the boundary of that unit.</p>
+
+<p>You might think of this<br>
+as single responsibility.</p>
+
+<p>That may be another way<br>
+to think of a boundary.</p>
+
+<p>So if it's calling a<br>
+method on another class,</p>
+
+<p>that other thing is not the responsibility</p>
+
+<p>of the unit you're testing.</p>
+
+<p>What does one concrete class mean?</p>
+
+<p>This means that any dependency<br>
+you have in a class,</p>
+
+<p>you would use a test double for.</p>
+
+<p>So if you're testing a class</p>
+
+<p>that's got four constructor parameters,</p>
+
+<p>each of those should have a test double</p>
+
+<p>if you're doing solitary testing.</p>
+
+<p>It also means the collaborators<br>
+that return objects</p>
+
+<p>should return test doubles.</p>
+
+<p>So if you have a collaborator</p>
+
+<p>that returns another collaborator,</p>
+
+<p>that class should also be doubled,</p>
+
+<p>'cause again, it's solitary, it's lonely,</p>
+
+<p>nothing else is going on.</p>
+
+<p>Statics violate this.</p>
+
+<p>So Drupal uses a lot of statics.</p>
+
+<p>If you use Laravel, it<br>
+has a lot of static calls.</p>
+
+<p>Strictly speaking, if<br>
+you have a static call</p>
+
+<p>in the unit that you're testing,</p>
+
+<p>that would violate this<br>
+principle of solitary testing.</p>
+
+<p>One caveat to that is a value object.</p>
+
+<p>So if you have a class that<br>
+has no behavior at all,</p>
+
+<p>all it's doing is just returning data,</p>
+
+<p>I would say that that's an exception.</p>
+
+<p>So you can have that class<br>
+instantiated during runtime</p>
+
+<p>and still follow this<br>
+principle of solitary testing,</p>
+
+<p>'cause in that case I<br>
+would consider that object</p>
+
+<p>to be a data construct and<br>
+not a class that has behavior.</p>
+
+<p>At this moment, your<br>
+head might be exploding,</p>
+
+<p>and you may not be sure if<br>
+it's a whole bunch of knowledge</p>
+
+<p>or just confused, so let me<br>
+recap what we just covered</p>
+
+<p>and then you can ask some questions.</p>
+
+<p>So a unit test verifies<br>
+a unit's correctness</p>
+
+<p>against a specification.</p>
+
+<p>Use test doubles for indirect inputs,</p>
+
+<p>and there's five of those.</p>
+
+<p>A boundary is an indirect input or output.</p>
+
+<p>With sociable testing you<br>
+can cross some boundaries</p>
+
+<p>and have multiple classes during the test.</p>
+
+<p>And in solitary, you<br>
+never cross boundaries</p>
+
+<p>and you only have one concrete<br>
+class during the test.</p>
+
+<p>Any questions?</p>
+
+<p>Everybody tracking okay?</p>
+
+<p>Okay.</p>
+
+<p>- I have a question.<br>
+- Question.</p>
+
+<p>- [Joe] Yeah, please.</p>
+
+<p>- [Woman] So would you<br>
+be testing with that also</p>
+
+<p>from this like testing for outliers?</p>
+
+<p>Like for that first one, you had,</p>
+
+<p>you were doing something very specific,</p>
+
+<p>you're expressing very specifics about it.</p>
+
+<p>Would you also have as<br>
+part of unit testing</p>
+
+<p>testing your outliers which<br>
+you're not thinking about,</p>
+
+<p>or is that part of a<br>
+different type of testing?</p>
+
+<p>- [Joe] So the question<br>
+is with unit testing,</p>
+
+<p>would you test for outliers,<br>
+or maybe you could phrase it</p>
+
+<p>as positive versus negative testing like,</p>
+
+<p>I know the specification of<br>
+my test, I pass an integer</p>
+
+<p>and it should return<br>
+that integer plus one,</p>
+
+<p>but should you have a test that says,</p>
+
+<p>what if I pass a string,<br>
+what's the return value there?</p>
+
+<p>I would argue that that type of unit test</p>
+
+<p>is often more valuable<br>
+than the positive case,</p>
+
+<p>and you probably have more unit tests</p>
+
+<p>about the negative cases<br>
+than you do the positive.</p>
+
+<p>Error handling and edge cases<br>
+in software is important.</p>
+
+<p>I think in web development,<br>
+many times it goes overlooked</p>
+
+<p>because of the criticality, right?</p>
+
+<p>Some websites, it's not,</p>
+
+<p>like the impact of one of those edge cases</p>
+
+<p>might be pretty small,</p>
+
+<p>but in other areas of<br>
+the software industry,</p>
+
+<p>that's really important, like aviation.</p>
+
+<p>If you're not testing for<br>
+an unexpected scenario,</p>
+
+<p>that's a huge liability, right?</p>
+
+<p>So does that help?</p>
+
+<p>- [Woman] Yeah, it is part--</p>
+
+<p>- [Joe] So yeah, the<br>
+short answer is yes, yeah.</p>
+
+<p>Any other questions before we move on?</p>
+
+<p>And we'll talk a bit more about that.</p>
+
+<p>Okay.</p>
+
+<p>All right.</p>
+
+<p>Principles by example.</p>
+
+<p>So I pulled these from Drupal.</p>
+
+<p>I'm gonna go through these a bit quick,</p>
+
+<p>so</p>
+
+<p>I won't pause for questions.</p>
+
+<p>This is more for us to<br>
+look at these things</p>
+
+<p>and exercise those two<br>
+principles that we saw.</p>
+
+<p>So when I look at this batch storage class</p>
+
+<p>and I look at this load method,</p>
+
+<p>and say I want to unit test<br>
+it, there are a couple things</p>
+
+<p>that would make this<br>
+difficult to unit test.</p>
+
+<p>Not sure if you see those things yet,</p>
+
+<p>but I'll call them out.</p>
+
+<p>This method assumes that you have</p>
+
+<p>the ability to start a session.</p>
+
+<p>Do you have session storage set up</p>
+
+<p>before you're executing this?</p>
+
+<p>Sometimes your testing framework</p>
+
+<p>already handles this for<br>
+you, but if it doesn't,</p>
+
+<p>you need to account for that.</p>
+
+<p>It's also assuming you have a database.</p>
+
+<p>Do you have a database<br>
+when you're running this?</p>
+
+<p>How does that impact the</p>
+
+<p>speed of the test when<br>
+you're running it to have it?</p>
+
+<p>It assumes that you have some<br>
+service to get a CSRF token.</p>
+
+<p>Let's go through an example using a mock.</p>
+
+<p>So here's our test, and<br>
+the test that I want,</p>
+
+<p>or my specification, is<br>
+that I just wanna verify</p>
+
+<p>that loading a batch is<br>
+going to start the session.</p>
+
+<p>So here, I mock the session start.</p>
+
+<p>So this is</p>
+
+<p>saying that the start<br>
+method is getting called,</p>
+
+<p>and this is actually<br>
+our assertion, remember,</p>
+
+<p>'cause a mock actually does<br>
+the assertion of your test.</p>
+
+<p>I stub the input from the database</p>
+
+<p>so that I don't have to<br>
+have a database running.</p>
+
+<p>I dummy the CSRF token 'cause<br>
+I don't actually need a value,</p>
+
+<p>and then lastly I execute<br>
+the class under test.</p>
+
+<p>So this works, right?</p>
+
+<p>This is a unit test that works,</p>
+
+<p>but can we make the<br>
+assertion more apparent?</p>
+
+<p>This is where knowing your<br>
+test doubles can be helpful.</p>
+
+<p>So let's try it using a spy.</p>
+
+<p>So here we have a whole bunch of setup,</p>
+
+<p>and I don't call this out,</p>
+
+<p>but you can see where I'm using a spy.</p>
+
+<p>That first line is creating a test double</p>
+
+<p>using the Prophecy framework,<br>
+and this line I've highlighted</p>
+
+<p>we're calling the class under test,</p>
+
+<p>and our assertion is<br>
+called out here at the end.</p>
+
+<p>So this is called, this practice<br>
+of arrange, act, assert,</p>
+
+<p>means that all of your setup</p>
+
+<p>is done at the top of your test.</p>
+
+<p>You're acting on the unit under test,</p>
+
+<p>and the null assertions hap at the end.</p>
+
+<p>So you remember how I said</p>
+
+<p>that I don't care for mocks too much?</p>
+
+<p>This is an example.</p>
+
+<p>You can't really do arrange,<br>
+act, assert using a mock,</p>
+
+<p>but you can do it using a spy,</p>
+
+<p>so it makes it a little more clear.</p>
+
+<p>A second example, this one's<br>
+going to be more complicated,</p>
+
+<p>and if you have trouble<br>
+tracking, that's okay.</p>
+
+<p>We'll run through it and I wanna<br>
+go on to some other things.</p>
+
+<p>So this is a maintenance mode subscriber</p>
+
+<p>that I pulled out of Drupal 8.</p>
+
+<p>There's a lot going on here.</p>
+
+<p>See if you can spot the indirect<br>
+inputs, indirect outputs.</p>
+
+<p>There's a few of them here.</p>
+
+<p>We have a static call, two of them.</p>
+
+<p>We have a function call.</p>
+
+<p>We can't solitary unit test this,</p>
+
+<p>so what I'm gonna propose<br>
+is that we refactor it</p>
+
+<p>so that we can unit test it.</p>
+
+<p>But before we refactor,<br>
+we wanna have a test</p>
+
+<p>to make sure that we're not<br>
+breaking anything, right?</p>
+
+<p>So long story is write a higher-level test</p>
+
+<p>that maybe adds the database.</p>
+
+<p>Delete the untestable code.</p>
+
+<p>We'll re-implement it later.</p>
+
+<p>Break the class into two responsibilities.</p>
+
+<p>So we're gonna have one<br>
+that's just checking,</p>
+
+<p>or one that's just generating<br>
+the maintenance page</p>
+
+<p>because we don't wanna assume</p>
+
+<p>that every page is gonna be HTML.</p>
+
+<p>It might be JSON, it might be XML.</p>
+
+<p>And the other responsibility<br>
+is gonna be determining</p>
+
+<p>if the maintenance mode page<br>
+is turned on and should apply.</p>
+
+<p>We'll write our unit test,</p>
+
+<p>and then eventually delete<br>
+our higher-level test</p>
+
+<p>'cause we don't need it,<br>
+'cause we now have a unit test.</p>
+
+<p>I'm just gonna show kinda<br>
+how this would play out</p>
+
+<p>with separating the responsibilities</p>
+
+<p>and writing the unit test.</p>
+
+<p>So responsibility one,</p>
+
+<p>one thing that's cool about PHPUnit,</p>
+
+<p>you don't actually need an<br>
+implementation of an interface</p>
+
+<p>to use a test with it,</p>
+
+<p>'cause remember, I said<br>
+getting a test double,</p>
+
+<p>it just creates a double of the class,</p>
+
+<p>so as long as my implementation<br>
+is looking for the interface</p>
+
+<p>and not the concrete class,</p>
+
+<p>I can write a whole test<br>
+suite just with the interface</p>
+
+<p>and not having any concrete<br>
+classes that actually exist.</p>
+
+<p>So let me go back.</p>
+
+<p>So this here is, this class<br>
+is gonna be responsible</p>
+
+<p>for getting the response,</p>
+
+<p>so it's gonna read the Accept headers,</p>
+
+<p>detect if it needs to return JSON,</p>
+
+<p>or XML, or HTML, or whatever,<br>
+and return the response.</p>
+
+<p>I'm refactoring the<br>
+maintenance mode subscriber</p>
+
+<p>to just check</p>
+
+<p>that the maintenance mode applies</p>
+
+<p>and whether the user is exempt<br>
+from that maintenance page.</p>
+
+<p>Everything else is now<br>
+handled by that other class.</p>
+
+<p>So now we can test it pretty easily.</p>
+
+<p>I say easy, but unit tests<br>
+with doubles are difficult.</p>
+
+<p>So here we get a test<br>
+double for our account.</p>
+
+<p>We have three dependencies to account for.</p>
+
+<p>The account,</p>
+
+<p>we stub the maintenance mode,</p>
+
+<p>so we say maintenance mode is turned on.</p>
+
+<p>We stub the response.</p>
+
+<p>We stub the request, and<br>
+then call the unit under test</p>
+
+<p>and make an assertion.</p>
+
+<p>So the thing we're asserting here is that</p>
+
+<p>if the maintenance mode is turned on,</p>
+
+<p>that a applicable maintenance<br>
+mode page implementation</p>
+
+<p>can set the response.</p>
+
+<p>What's great about this,<br>
+so what we just did</p>
+
+<p>is like we took this class<br>
+that'd be hard to test</p>
+
+<p>and we made it testable<br>
+by doing that refactoring.</p>
+
+<p>Our class does one thing now.</p>
+
+<p>It's good, single responsibility,<br>
+solid programming.</p>
+
+<p>We can test one thing.</p>
+
+<p>The class has three<br>
+dependencies instead of seven,</p>
+
+<p>so we're now decoupling our code.</p>
+
+<p>It's more readable, it's easier to test,</p>
+
+<p>and it's abstracted so non-HTML<br>
+responses can be returned.</p>
+
+<p>So I don't know if you<br>
+read it, but anyway.</p>
+
+<p>Let's see, what time do<br>
+we gotta be out of here?</p>
+
+<p>We got 10 minutes?</p>
+
+<p>- 2:30.</p>
+
+<p>- [Joe] So we got about 10 minutes?</p>
+
+<p>Okay.</p>
+
+<p>Yeah, 10 minutes?</p>
+
+<p>Okay.<br>
+- No, we've got till 2:30.</p>
+
+<p>- 2:30 is--<br>
+- 20 minutes.</p>
+
+<p>- 20 minutes.<br>
+- 20 minutes.</p>
+
+<p>- [Joe] Great, great, okay.</p>
+
+<p>I love these Boromir memes.</p>
+
+<p>You don't simply write unit tests.</p>
+
+<p>I think that on a high level,</p>
+
+<p>many people are onboard<br>
+with unit testing is good,</p>
+
+<p>but once you dig into code,<br>
+you can see that it is,</p>
+
+<p>some code is really hard to test.</p>
+
+<p>When you have a whole<br>
+library or a codebase</p>
+
+<p>where you're using TDD, or you<br>
+simply have a legacy codebase</p>
+
+<p>and you want to write unit tests for it,</p>
+
+<p>you're gonna run into problems,</p>
+
+<p>and that's where you get into test smells.</p>
+
+<p>We won't cover all of them.</p>
+
+<p>So there's a book by Martin<br>
+Fowler called Refactoring,</p>
+
+<p>and in it</p>
+
+<p>he itemizes different</p>
+
+<p>code smells.</p>
+
+<p>If you look in the xUnit testing book,</p>
+
+<p>they talk about test smells.</p>
+
+<p>Both cases are when you're looking at code</p>
+
+<p>and working with code<br>
+and you find something</p>
+
+<p>that's really stinky,<br>
+it's hard to work with,</p>
+
+<p>that's a test smell.</p>
+
+<p>So it doesn't necessarily<br>
+mean that there's something...</p>
+
+<p>It doesn't always mean<br>
+somebody did something wrong,</p>
+
+<p>but it smells.</p>
+
+<p>So the example that</p>
+
+<p>Martin Fowler refers to<br>
+is if you have a kid,</p>
+
+<p>a baby, and you need,</p>
+
+<p>like when do you change a baby's diaper?</p>
+
+<p>The advice that he got was,</p>
+
+<p>well, if the diaper stinks,<br>
+you should change it.</p>
+
+<p>So the principle of test<br>
+smells applies here too.</p>
+
+<p>So if the test is, or<br>
+code is hard to work with,</p>
+
+<p>then change it.</p>
+
+<p>So I won't go through all the<br>
+test smells because of time,</p>
+
+<p>but I left the slides in<br>
+here, and at the last,</p>
+
+<p>at the end I'll give you<br>
+a reference to the slides</p>
+
+<p>so you can look at them later.</p>
+
+<p>So if you're doing unit<br>
+testing on your team,</p>
+
+<p>maybe check this out.</p>
+
+<p>There's some what I think<br>
+is good advice in there</p>
+
+<p>that I pulled from other<br>
+people, it's not mine.</p>
+
+<p>Motivations, so this is the fun part.</p>
+
+<p>Actually, I don't wanna show that yet.</p>
+
+<p>Let's look at this picture.</p>
+
+<p>So this picture is of a bridge,</p>
+
+<p>and I got this from a friend of mine,</p>
+
+<p>and imagine you're in a remote area.</p>
+
+<p>The bridge is made of wood.</p>
+
+<p>There's plenty of wood around.</p>
+
+<p>The bridge might be<br>
+mostly pedestrian traffic.</p>
+
+<p>It looks like the bridge<br>
+that it's going over,</p>
+
+<p>it's not like a big cavern<br>
+or gorge or something</p>
+
+<p>where if someone fell off the bridge</p>
+
+<p>they'd be severely injured.</p>
+
+<p>It's a relatively safe<br>
+area, let's pretend.</p>
+
+<p>How valuable would it be to<br>
+spend months of preparation on</p>
+
+<p>and lots of money building<br>
+a steel bridge here?</p>
+
+<p>Well, maybe steel isn't abundant.</p>
+
+<p>Maybe it's easier to,</p>
+
+<p>like if a board in this<br>
+wooden bridge is worn out,</p>
+
+<p>they could like easily replace it.</p>
+
+<p>So I'm like painting this<br>
+like fictional scenario.</p>
+
+<p>I don't know if it's<br>
+actually true of this bridge.</p>
+
+<p>Unit testing wouldn't be very valuable,</p>
+
+<p>or at least it would have lower value</p>
+
+<p>because the impact and the<br>
+cost of it would be low.</p>
+
+<p>Bear with me.</p>
+
+<p>Let's contrast that scenario with, say,</p>
+
+<p>one of the bridges downtown Chicago</p>
+
+<p>where it's a two-level bridge,<br>
+you have pedestrian traffic</p>
+
+<p>and vehicle traffic on the lower level,</p>
+
+<p>and above it you have the L train.</p>
+
+<p>And the L train, or the<br>
+CTA, there's 750,000 people</p>
+
+<p>who go across this every day on average.</p>
+
+<p>There's a huge impact if anything fails.</p>
+
+<p>If there's a single bolt that comes undone</p>
+
+<p>and causes a failure in this bridge,</p>
+
+<p>that's a huge deal, right?</p>
+
+<p>So in these two scenarios<br>
+that I'm trying to paint,</p>
+
+<p>it's like there are scenarios</p>
+
+<p>where unit testing has a high<br>
+impact and a lot of value,</p>
+
+<p>and I think that there<br>
+are some that are not.</p>
+
+<p>Give me feedback if you<br>
+think that analogy works.</p>
+
+<p>That was like something<br>
+that I've been working on.</p>
+
+<p>- [Mike] On that first picture,</p>
+
+<p>I wouldn't necessarily drive<br>
+my car or truck across that.</p>
+
+<p>I'd run out and jump up and down.</p>
+
+<p>(Joe laughs)</p>
+
+<p>I'd pretest it.</p>
+
+<p>A lot less expensive testing, right?</p>
+
+<p>- [Joe] Yeah, sure.</p>
+
+<p>- [Mike] Get out there and look at it.</p>
+
+<p>- [Joe] Yeah, so the comment<br>
+is looking at this bridge,</p>
+
+<p>I wouldn't necessarily drive my car on it.</p>
+
+<p>- [Mike] Until I tested it.</p>
+
+<p>- [Joe] Yeah, until you tested it.</p>
+
+<p>- [Man] But with a really cheap--</p>
+
+<p>- [Joe] Yeah, right.</p>
+
+<p>Yeah, like the train test<br>
+that I showed earlier</p>
+
+<p>where like you build the thing</p>
+
+<p>and then run a train across<br>
+it and see what happens.</p>
+
+<p>- [Mike] If I was with you, you'd say,</p>
+
+<p>hey Mike, go out there.</p>
+
+<p>(audience laughs)</p>
+
+<p>And if you come back,<br>
+then we'll drive across.</p>
+
+<p>(audience laughs)</p>
+
+<p>- [Joe] But let me spell<br>
+it out in a different way,</p>
+
+<p>so let's go beyond analogy.</p>
+
+<p>Rule of three, if you have three classes</p>
+
+<p>or three areas of code that's<br>
+using a particular unit,</p>
+
+<p>unit testing would have a lot of value.</p>
+
+<p>If you're writing a library,<br>
+if you're writing something</p>
+
+<p>that other people are using<br>
+in their composer, JSON,</p>
+
+<p>please unit test.</p>
+
+<p>If you have legacy code that<br>
+you're planning to refactor,</p>
+
+<p>unit testing can help make sure</p>
+
+<p>that you're not breaking<br>
+things as you're refactoring.</p>
+
+<p>If there's a high amount<br>
+of necessary complexity,</p>
+
+<p>so encryption, compression,</p>
+
+<p>certain algorithms, maybe<br>
+a sorting algorithm,</p>
+
+<p>sometimes there's code</p>
+
+<p>that doesn't really<br>
+make sense to decouple.</p>
+
+<p>Unit testing is gonna have a lot of value,</p>
+
+<p>'cause you can't break it<br>
+out into simpler parts.</p>
+
+<p>Exploratory work, test-driven development,</p>
+
+<p>there can be a lot of value to<br>
+forcing yourself to sit down,</p>
+
+<p>write a unit test, and then write the unit</p>
+
+<p>that implements the test<br>
+or makes the test pass.</p>
+
+<p>Going back to the bridge in Chicago,</p>
+
+<p>if there is even a high<br>
+cost to very minor bugs,</p>
+
+<p>unit testing is gonna have a lot of value.</p>
+
+<p>If you're writing in a framework,</p>
+
+<p>so this is kinda similar to</p>
+
+<p>if you have a composer dependency,</p>
+
+<p>you wanna make sure that<br>
+your framework code is solid.</p>
+
+<p>When does it have low value?</p>
+
+<p>If you're writing glue code.</p>
+
+<p>So what I see glue code is<br>
+is like if you're writing</p>
+
+<p>maybe like a theme hook<br>
+or something in Drupal,</p>
+
+<p>I don't know that<br>
+there's a lot of value in</p>
+
+<p>unit testing that.</p>
+
+<p>What you really care about is<br>
+you want to be able to assume</p>
+
+<p>that Drupal's doing its job,</p>
+
+<p>and that you're wiring up something</p>
+
+<p>so that the presentation is correct.</p>
+
+<p>In that scenario, you<br>
+probably have more value</p>
+
+<p>from a higher-level test</p>
+
+<p>'cause you don't have like<br>
+a lot of unique complexity</p>
+
+<p>in the units of code you're writing.</p>
+
+<p>There are some exceptions,<br>
+but just broad stroke,</p>
+
+<p>if you're writing glue code,</p>
+
+<p>unit testing probably has low value.</p>
+
+<p>Maintenance cost is significantly higher</p>
+
+<p>than the cost of a bug.</p>
+
+<p>Also applies to some websites.</p>
+
+<p>You're writing code in a platform.</p>
+
+<p>This is probably similar to the first one,</p>
+
+<p>but I'm just saying that like,</p>
+
+<p>if you're writing code that's<br>
+stitching things together,</p>
+
+<p>you would probably benefit more from,</p>
+
+<p>say, an integration test than a unit test.</p>
+
+<p>There's a more valuable form of testing,</p>
+
+<p>like using a integration or</p>
+
+<p>UI testing.</p>
+
+<p>Solitary or sociable.</p>
+
+<p>I had to throw this in here.</p>
+
+<p>So sociable unit testing, I think...</p>
+
+<p>- (laughs) Awesome.<br>
+- I think what helps,</p>
+
+<p>so this image is somebody made</p>
+
+<p>these cabinets, and you can't<br>
+open a drawer all the way</p>
+
+<p>because the cabinet comes at a corner</p>
+
+<p>where the drawers butt<br>
+up against each other.</p>
+
+<p>You may have tested to the extreme</p>
+
+<p>each one of these drawers individually,</p>
+
+<p>but until you've put things together</p>
+
+<p>and tried it in combination,</p>
+
+<p>those unit tests were useless.</p>
+
+<p>I'm not gonna say<br>
+useless, that's too harsh,</p>
+
+<p>but they didn't surface this problem</p>
+
+<p>when you have the whole<br>
+application working together.</p>
+
+<p>So that's one value of sociable testing,</p>
+
+<p>but it's hard to debug.</p>
+
+<p>It requires a lot of setup and teardown.</p>
+
+<p>You might need the database, right?</p>
+
+<p>It requires a lot of test doubles.</p>
+
+<p>If you've ever had to write<br>
+a KernelTest in Drupal 8,</p>
+
+<p>you'll know what I'm talking<br>
+about when it comes to</p>
+
+<p>sociable tests can be difficult.</p>
+
+<p>Solitary, it allows higher code coverage,</p>
+
+<p>so you have more control over<br>
+the scenarios you're testing.</p>
+
+<p>It promotes decoupling.</p>
+
+<p>Remember the example we went through,</p>
+
+<p>we were factored and split things out</p>
+
+<p>to make it easier</p>
+
+<p>to test.</p>
+
+<p>It executes faster and enables<br>
+better software design.</p>
+
+<p>Simon Honeywell has a book called</p>
+
+<p>Functional Programming in PHP,</p>
+
+<p>and he made a comment<br>
+that stuck out to me.</p>
+
+<p>It should not be underestimated</p>
+
+<p>how much easier these functions,</p>
+
+<p>he's referring to pure functions,</p>
+
+<p>how easier they are to test</p>
+
+<p>than their state-filled counterparts.</p>
+
+<p>So when you're writing code<br>
+and you want it to be testable,</p>
+
+<p>consider if you can avoid<br>
+shared state and side effects.</p>
+
+<p>I would say that solitary unit testing</p>
+
+<p>forces you to write good code.</p>
+
+<p>All that said, if you know<br>
+the story of the Lorax,</p>
+
+<p>there's the Once-ler<br>
+who comes into this area</p>
+
+<p>that has lots of resources,</p>
+
+<p>and he builds and builds and builds,</p>
+
+<p>and essentially destroys all<br>
+the resources that are there.</p>
+
+<p>And the Lorax is pleading<br>
+with him, saying,</p>
+
+<p>"Look, I know you're<br>
+focused on production,</p>
+
+<p>"you're focused on churning out that code,</p>
+
+<p>"but unless you pause and<br>
+like consider the impact of</p>
+
+<p>"lobbing code into a release,</p>
+
+<p>"you may be foregoing</p>
+
+<p>"severe implications of<br>
+the problems in your code."</p>
+
+<p>And</p>
+
+<p>the Lorax says,</p>
+
+<p>"Unless someone like you<br>
+cares a whole awful lot,</p>
+
+<p>"nothing is going to<br>
+get better, it's not."</p>
+
+<p>Talking about unit testing is great,</p>
+
+<p>talking about software quality is great,</p>
+
+<p>but ultimately it's gonna come down to</p>
+
+<p>the people, the developers,<br>
+who are close to the code</p>
+
+<p>to speak for it.</p>
+
+<p>So in the story of the Lorax,</p>
+
+<p>it says the trees have no tongues.</p>
+
+<p>Code doesn't speak for itself.</p>
+
+<p>You all are the experts of<br>
+the code, you speak for it.</p>
+
+<p>An easy example, a friend of mine,</p>
+
+<p>he sent me a Slack message,<br>
+this was a while ago,</p>
+
+<p>and he said, "This is<br>
+why Drupal 8 is good."</p>
+
+<p>And he was referring to someone</p>
+
+<p>who had pushed back on a<br>
+code submission saying,</p>
+
+<p>"This is simply too much<br>
+code for a blind commit."</p>
+
+<p>Supporting comments won't<br>
+help, we need tests.</p>
+
+<p>This is it.</p>
+
+<p>This is where like that<br>
+Lorax hat comes into play.</p>
+
+<p>You are the one to<br>
+really make a difference.</p>
+
+<p>If you have a codebase</p>
+
+<p>and you don't really know where to start,</p>
+
+<p>I'll give some suggestions,</p>
+
+<p>and this really applies to like frameworks</p>
+
+<p>and places where unit<br>
+testing has high value.</p>
+
+<p>There's a tool called PhpMetrics.</p>
+
+<p>For this graph, I actually<br>
+used an older version of it,</p>
+
+<p>'cause it lets you generate this chart</p>
+
+<p>where it shows cyclomatic<br>
+complexity along the y-axis.</p>
+
+<p>Cyclomatic complexity is a measurement of,</p>
+
+<p>essentially a measurement of</p>
+
+<p>how many different paths<br>
+there are through a function,</p>
+
+<p>so it's a metric of how<br>
+complex your code is.</p>
+
+<p>Efferent coupling is along the x-axis,</p>
+
+<p>and this means how many<br>
+dependencies are there</p>
+
+<p>in the unit you're working with.</p>
+
+<p>The more dependencies you have,</p>
+
+<p>then the more doubles you need</p>
+
+<p>if you wanna do solitary testing.</p>
+
+<p>I've been doing this analysis<br>
+on Drupal 8 for a while.</p>
+
+<p>This one's on Drupal 8.6.</p>
+
+<p>Since 8.3, this plot has not changed much,</p>
+
+<p>but I wanna call out a few things.</p>
+
+<p>You'll see there's some<br>
+entity-related classes</p>
+
+<p>that have high complexity<br>
+and have a lot of coupling.</p>
+
+<p>I think those are good examples</p>
+
+<p>where you may wanna look at that.</p>
+
+<p>You may say, look, we<br>
+don't wanna decouple this.</p>
+
+<p>It's too complex, we just<br>
+wanna keep this in this class.</p>
+
+<p>But what I'm saying is, if<br>
+you wanna look for areas</p>
+
+<p>where unit testing might have high value,</p>
+
+<p>high complexity, lot of<br>
+coupling, if you unit test those,</p>
+
+<p>potentially break them<br>
+out and decouple them,</p>
+
+<p>then you can focus on<br>
+making more clear assertions</p>
+
+<p>and assumptions about<br>
+what your code is doing.</p>
+
+<p>Yeah, and then I call out<br>
+a few different examples.</p>
+
+<p>There's Form Builder.</p>
+
+<p>ArchiveTar is a class that<br>
+has really high complexity,</p>
+
+<p>almost no coupling, so it doesn't need,</p>
+
+<p>it's not depending on<br>
+a lot of other classes,</p>
+
+<p>but high complexity,</p>
+
+<p>probably 'cause of all the<br>
+compression it's doing.</p>
+
+<p>But if you look at that,<br>
+it's like one big file.</p>
+
+<p>There might be benefit<br>
+to breaking that out</p>
+
+<p>into separate files so<br>
+that you can unit test it.</p>
+
+<p>Symfony, yeah.</p>
+
+<p>- Five minutes.<br>
+- Oh, five minutes, okay.</p>
+
+<p>Great, I'm almost done.</p>
+
+<p>Symfony is really successful with reuse.</p>
+
+<p>If you go around to different<br>
+frameworks and platforms,</p>
+
+<p>like Drupal is using<br>
+some Symfony components.</p>
+
+<p>Why is Symfony so successful<br>
+in being reusable?</p>
+
+<p>I'm not saying this is like truth,</p>
+
+<p>but I have some observations.</p>
+
+<p>It's good object-oriented code.</p>
+
+<p>If you read some of those Symfony classes,</p>
+
+<p>they're pretty clean,</p>
+
+<p>not too many cases where you look at it</p>
+
+<p>and you're just, you throw up your hands.</p>
+
+<p>You may not be familiar with<br>
+it, but not like ArchiveTar.</p>
+
+<p>No surprise, the tests are mostly,</p>
+
+<p>if not entirely, solitary unit tests.</p>
+
+<p>Not all of them, but<br>
+there's some kernel tests,</p>
+
+<p>but I wonder if we did<br>
+more solitary testing</p>
+
+<p>if our frameworks and libraries<br>
+would benefit a lot from it.</p>
+
+<p>So remember the two principles,</p>
+
+<p>test doubles, solitary versus sociable.</p>
+
+<p>Thank you.</p>
+
+<p>Please provide feedback.</p>
+
+<p>Rate this session.</p>
+
+<p>Here's a link to the slides.</p>
+
+<p>I'll come back to that.</p>
+
+<p>Contribution Day is on Saturday.</p>
+
+<p>You don't have to know code to contribute.</p>
+
+<p>We'll be doing some<br>
+Drupal 9 readiness work,</p>
+
+<p>so come join that.</p>
+
+<p>If you're new to contributing,</p>
+
+<p>there's a training by AmyJune<br>
+at 10 o'clock to noon.</p>
+
+<p>We have like four minutes for questions.</p>
+
+<p>Yeah.</p>
+
+<p>- [Woman] So what do you use on your team</p>
+
+<p>to help like automate ensuring</p>
+
+<p>that you have proper test coverage?</p>
+
+<p>Which ones do you find<br>
+that's most useful for you?</p>
+
+<p>- Depends on the--<br>
+- Could you repeat</p>
+
+<p>the question?</p>
+
+<p>- [Joe] Oh yeah, yes,<br>
+thank you, thank you.</p>
+
+<p>I usually remember.</p>
+
+<p>What tools do I find useful for testing?</p>
+
+<p>- [Woman] For automating the<br>
+test coverage, for example.</p>
+
+<p>- [Joe] Automating test coverage?</p>
+
+<p>If you want a test coverage report</p>
+
+<p>to see what code does<br>
+not have a unit test,</p>
+
+<p>there's a service called<br>
+Coveralls that I've used.</p>
+
+<p>I'm sure there's others.</p>
+
+<p>Does anyone know of a<br>
+test coverage report tool?</p>
+
+<p>That's one that I've used before.</p>
+
+<p>I'm sure there's others.</p>
+
+<p>I think CircleCI.</p>
+
+<p>CircleCI does, it's kind of like Travis,</p>
+
+<p>it's like does a build test in the cloud.</p>
+
+<p>I think they have a tool for it.</p>
+
+<p>Any other questions?</p>
+
+<p>Comments, objections?</p>
+
+<p>Okay.</p>
+
+<p>Yeah, yeah.</p>
+
+<p>- [Woman] What type of<br>
+issues have you experienced</p>
+
+<p>when like, for example,</p>
+
+<p>you're like trying to<br>
+get more unit tests done,</p>
+
+<p>or like how do you deal with, for example,</p>
+
+<p>when you have like a project<br>
+that's on a tight deadline,</p>
+
+<p>and you have like a project manager saying</p>
+
+<p>you need to get this stuff going,</p>
+
+<p>but you want to take time<br>
+to do all the unit tests,</p>
+
+<p>like spreading this out.</p>
+
+<p>How do you...</p>
+
+<p>- [Joe] (sighs) If I had... (laughs)</p>
+
+<p>So the question is</p>
+
+<p>what problems have you experienced trying,</p>
+
+<p>you have a deadline, but you<br>
+need to do the unit tests?</p>
+
+<p>If I had an answer to<br>
+that I would share it.</p>
+
+<p>(audience laughs)</p>
+
+<p>I'll give a quick take and<br>
+then, Mike, if you have.</p>
+
+<p>- [Mike] I only intuit.</p>
+
+<p>- [Joe] (laughs) What I found<br>
+is that there needs to be,</p>
+
+<p>the stakeholders need to weigh in.</p>
+
+<p>You have a choice.</p>
+
+<p>You understand, it's like the the Lorax,</p>
+
+<p>it's like the Once-ler.</p>
+
+<p>If you if you wanna push<br>
+this through, you can,</p>
+
+<p>but it's at the cost of this practice</p>
+
+<p>that we believe will help<br>
+us control the pollution</p>
+
+<p>in our codebase, or the<br>
+things that are incorrect,</p>
+
+<p>it'll help us root out bugs.</p>
+
+<p>Mike would.</p>
+
+<p>- [Mike] Along the same lines,</p>
+
+<p>if you're not using the<br>
+Agile, then consider it,</p>
+
+<p>because if you start down the process,</p>
+
+<p>if you start the processes<br>
+with an agile methodology</p>
+
+<p>where testing is built into each sprint</p>
+
+<p>and you get your stakeholders<br>
+involved with the process</p>
+
+<p>and they attend the<br>
+sprint planning meetings</p>
+
+<p>and they are responsible<br>
+for the sprint review,</p>
+
+<p>if they see a lack of quality,</p>
+
+<p>if they see a lack of test plans,</p>
+
+<p>in expected results versus actual,</p>
+
+<p>if they see a lack of unit tests,</p>
+
+<p>they'll push back and they'll<br>
+help people speak up more.</p>
+
+<p>A lot depends on the team.</p>
+
+<p>You have to get your team,</p>
+
+<p>everyone has to onboard with quality.</p>
+
+<p>- [Joe] So Mike was saying,<br>
+if I summarize this well,</p>
+
+<p>that agile methodology will help here.</p>
+
+<p>At each sprint review,</p>
+
+<p>they can see what has<br>
+test coverage or not,</p>
+
+<p>and they can weigh in and say,</p>
+
+<p>weigh in sprint by sprint</p>
+
+<p>and say whether more time<br>
+should be invested in testing.</p>
+
+<p>- [Mike] Just not to leave<br>
+the testing till the end.</p>
+
+<p>- [Joe] Yeah.</p>
+
+<p>All right, we're at time, but maybe one--</p>
+
+<p>- [Man] I'll follow up with you.</p>
+
+<p>- [Joe] Yeah, yeah.</p>
+
+<p>Come talk to me.</p>
+
+<p>I'm on Twitter, reach out to me.</p>
+
+<p>Thank you all for coming.</p>
+
+<p>(audience applauds)</p>
+
+<p>Captions made possible by ClarityPartners.com. Chicago area Drupal consultants</p>
+
+<p><a href="../sponsor/clarity-partners.html"><img src="../../sites/default/files/2020-02/CFDFAA23-5C59-4C07-9C66-CAFFE0CF3854.png" style="max-width:300px;"></a></p>
+</div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-ae6f6146aaac51ac971e34255cf6f51846c1e782f4bd38e4e4a30449189c5b33">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/301">https://mid.camp/301</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-b4ad0bc2f0de337f0a1a762fb7a8c6bb12295b059f593fead9e537035a7baa21">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/pantheon.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-11/pantheon-logo-color@2x.png" width="960" height="354" alt="Pantheon" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/elevated-third.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-11/elevated-third-logo_0.png" width="220" height="220" alt="elevated third logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/acquia.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2019-03/Acquia_no_tagline.png" width="450" height="94" alt="Acquia" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#70191e161f301d191413111d005e1f0217"><span class="__cf_email__" data-cfemail="2d44434b426d4044494e4c405d03425f4a">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/301","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_llBcjrkrgAu2wT1DR7VGL_iP6geJyiTnF_8O5ZD57VI.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJxLz89Pz0mNT8xLzKksyUwu1k9HE9DJSCwpSS3ST8_JT0rM0c0qBgAByBPW"></script>
+
+  </body>
+</html>

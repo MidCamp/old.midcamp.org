@@ -1,0 +1,3517 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="Perhaps you consider yourself a proficient Drupal developer, but you’re curious to learn what everyone else uses for their local development work. Or, maybe you’re just getting started with Drupal and you’d like validation that you’re on the right “path.” This session will cover all the basics you need to know to be able to evaluate and determine what’s the best development setup for you, your team or your dev shop." />
+<link rel="canonical" href="local-dev-environments-dummies.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Local Dev Environments for Dummies | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Local Dev Environments for Dummies | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_Qoyy92GHt9RyGOt8N3WS_9HRsJcJBywJ2IhXudzvST4.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJw9jWsOgzAMgy9U1iOhtDWsUkJQ3bGx0w-B2B_r80NyViH3mIQI-eKp6p8NpMzg7RcvR-cNBzUTrV-Ep_SOFmf1JDpk8k5M1uSfwJ0ddl1stcBHWEIZpwotsYGrL6wbhrM8JngznvowLy_.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_QAC1R0aFoF1mIVQtLAaSE24B2iwnT2ZCa0cZDeZsPV0.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJw9jWsOgzAMgy9U1iOhtDWsUkJQ3bGx0w-B2B_r80NyViH3mIQI-eKp6p8NpMzg7RcvR-cNBzUTrV-Ep_SOFmf1JDpk8k5M1uSfwJ0ddl1stcBHWEIZpwotsYGrL6wbhrM8JngznvowLy_.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJw9jWsOgzAMgy9U1iOhtDWsUkJQ3bGx0w-B2B_r80NyViH3mIQI-eKp6p8NpMzg7RcvR-cNBzUTrV-Ep_SOFmf1JDpk8k5M1uSfwJ0ddl1stcBHWEIZpwotsYGrL6wbhrM8JngznvowLy_.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJw9jWsOgzAMgy9U1iOhtDWsUkJQ3bGx0w-B2B_r80NyViH3mIQI-eKp6p8NpMzg7RcvR-cNBzUTrV-Ep_SOFmf1JDpk8k5M1uSfwJ0ddl1stcBHWEIZpwotsYGrL6wbhrM8JngznvowLy_.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+<link rel="stylesheet" media="all" href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.css" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="local-dev-environments-dummies.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-hatter-main-menu-menu" id="block-hatter-main-menu" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-main-menu-menu">Midcamp 2018 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" data-drupal-link-system-path="node/2">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--venue">
+        <a href="../../about/venue.html" title="Venue" data-drupal-link-system-path="node/7048">Venue</a>
+            </li>
+          <li class="primary-nav__sublist-item item--travel">
+        <a href="../travel.html" title="Travel and Accommodations" data-drupal-link-system-path="node/65">Travel</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../lunch.html" title="Lunch Near Campus" data-drupal-link-system-path="node/162">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2018/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" title="Meet the Team!" data-drupal-link-system-path="2018/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../../2023/about/lunch-options.html" data-drupal-link-system-path="node/6970">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--accommodations">
+        <a href="../../2023/about/accommodations.html" data-drupal-link-system-path="node/6948">Accommodations</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" data-drupal-link-system-path="node/9">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--become-a-sponsor">
+        <a href="../become-a-sponsor.html" title="Become a Sponsor" data-drupal-link-system-path="node/7">Become a Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../../jobs.html" title="Jobs" data-drupal-link-system-path="jobs">Jobs</a>
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" data-drupal-link-system-path="node/128">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--training-thu">
+        <a href="../training.html" data-drupal-link-system-path="node/195">Training (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--bofs-fri-sat">
+        <a href="../birds-feather-bofs.html" title="Birds of a Feather (BoFs)" data-drupal-link-system-path="node/167">BoFs (Fri/Sat)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-fri">
+        <a href="../schedule/friday.html" title="Friday Sessions" data-drupal-link-system-path="2018/schedule/friday">Sessions (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-sat">
+        <a href="../schedule/saturday.html" title="Saturday Sessions" data-drupal-link-system-path="2018/schedule/saturday">Sessions (Sat)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sprints-sun">
+        <a href="../../sprints.html" title="Sprints">Sprints (Sun)</a>
+            </li>
+  </ul>
+
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2018.html" hreflang="en">MidCamp 2018</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Local Dev Environments for Dummies</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="69" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2018-03-09T17:00:00Z" class="datetime">Friday, 11:00 am CST</time>
+ - <time datetime="2018-03-09T18:00:00Z" class="datetime">Friday, 12:00 pm CST</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-84" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-name field--type-string field--label-hidden field__item">Room 325</div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p dir="ltr">Perhaps you consider yourself a proficient Drupal developer, but you’re curious to learn what everyone else uses for their local development work. Or, maybe you’re just getting started with Drupal and you’d like validation that you’re on the right “path.” This session will cover all the basics you need to know to be able to evaluate and determine what’s the best development setup for you, your team or your dev shop.</p>
+
+<p dir="ltr">We’ll review the pros and cons of a number of approaches, and by the time you leave our session, you should have a good idea of where (at least, we think) you should be headed.</p>
+
+<p dir="ltr">Topics we’ll cover include:</p>
+
+<ul>
+	<li dir="ltr">
+	<p dir="ltr">What should a local dev environment accomplish?</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">Vagrant 101</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">Docker 101</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">Mac vs Windows</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">Who is this Composer and why should I care?</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">How important is automated deployment</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">How important is mirroring your production environment</p>
+	</li>
+</ul>
+
+<p dir="ltr">We’ll provide our list of top tools, using our JUJU ranking (Jeff’s Unabashed Judgement of Usefulness). Jeff and Chris have worked together on a wide spectrum of projects large and small, and bring different viewpoints, from novice to advanced. Our hope is that no matter your experience level, everyone will be able to learn something.</p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/MXuNYJgpI2U?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-presenter-slides field--type-file field--label-above">
+    <div class="field__label">Presenter Slides</div>
+              <div class="field__item">
+<span class="file file--mime-application-pdf file--application-pdf"> <a href="../../sites/default/files/2018-03/Local%20Dev%20Environments%20for%20Dummies%20-%20MidCamp%202018.pdf" type="application/pdf" title="Local Dev Environments for Dummies - MidCamp 2018.pdf">Updated PDF of slides with notes, summary results of 2018 Drupal Developer Survey</a></span>
+</div>
+          </div>
+
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Jeff Geerling</h4>
+
+      Senior Technical Architect
+
+
+          @
+              <a href="https://www.acquia.com">Acquia</a>
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p>Midwestern Drupalist living in St. Louis, MO. I co-organize the St. Louis Drupal Users Group, and do a lot of open source work in my spare time.</p>
+</div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2018-11/Social%20Media%20800px.jpg%3Fitok=Fzh15tkd" width="220" height="220" alt="Jeff Geerling" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+          <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Chris Urban</h4>
+
+      Manager, Professional Services
+
+
+          @
+              <a href="https://www.acquia.com">Acquia</a>
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p>Chris is a JIRA nerd trapped in a Drupalist's body: he<span>&nbsp;is one of the organizers&nbsp;<span><span>of Drupaldelphia, Philadelphia's Drupal Camp, and is also a Certified ScrumMaster, Scrum Professional, Drupal Site Builder and Drupal 8 Developer.&nbsp;</span></span></span>Chris<span>&nbsp;has presented sessions and BoFs on&nbsp;</span><span><span><span>project management methodology, delivery best practices and ChatOps for project teams&nbsp;</span></span></span><span>at DrupalCon New Orleans, Baltimore and Vienna; sessions at Drupaldelphia, DrupalCamp NJ, NYCCamp, SandCamp, BADCamp and TexasCamp.</span></p></div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2018-03/chris-urban-sm.jpg%3Fitok=TtGXx7RO" width="220" height="220" alt="Profile picture for user urbanlegend" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Back-End</div>
+          <div class="field__item">DevOps</div>
+              </div>
+      </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p>hi everybody okay welcome to MidCamp your</p>
+
+<p>first session right yeah okay so I'm</p>
+
+<p>Chris Urban this is Jeff Geerling right</p>
+
+<p>here he and I work at Acquia you're in a</p>
+
+<p>local development for dummies this is a</p>
+
+<p>session we kind of threw together and</p>
+
+<p>we're presenting it for the first time</p>
+
+<p>so we'll appreciate feedback in</p>
+
+<p>questions at the end of our presentation</p>
+
+<p>all right so let us take a minute and</p>
+
+<p>introduce ourselves</p>
+
+<p>Jeff go first I'm from st. Louis and in</p>
+
+<p>st. Louis I am one of the many code</p>
+
+<p>Tomita organizers I started using Drupal</p>
+
+<p>in 2008 so it's been 10 years now and</p>
+
+<p>everything has changed so much since</p>
+
+<p>then</p>
+
+<p>so this is from probably five or six</p>
+
+<p>years ago on I've been deeply involved</p>
+
+<p>in local development environment and</p>
+
+<p>stuff and Acquia that I am billable for</p>
+
+<p>I do a lot of work around local</p>
+
+<p>development environments and team</p>
+
+<p>team-based development things like that</p>
+
+<p>so that's kind of my background on this</p>
+
+<p>session</p>
+
+<p>I'm the counterpart to Jeff not nearly</p>
+
+<p>as awesome as him but I'm from the</p>
+
+<p>project management side it's so</p>
+
+<p>different different awesome I'm one of</p>
+
+<p>the co-organizers of Drupal Delphia</p>
+
+<p>which is a little camp in Philadelphia</p>
+
+<p>which were actually still opening</p>
+
+<p>accepting sessions today so if you have</p>
+
+<p>any interest in presenting talk to me</p>
+
+<p>Edwards as a project management guy I'm</p>
+
+<p>sure a nerd by default and I'm also a</p>
+
+<p>little bit I let's say I used to be a</p>
+
+<p>developer I dabble in it a little bit so</p>
+
+<p>I have a an interest in this as well</p>
+
+<p>just because one of the questions that</p>
+
+<p>often comes up at camps is what do you</p>
+
+<p>use what do you do and it was a time out</p>
+
+<p>and so that's why we that's where we</p>
+
+<p>started this session so questions why</p>
+
+<p>are you here you want something to do</p>
+
+<p>before lunch you think that what was my</p>
+
+<p>joke you heard about composer but you're</p>
+
+<p>telling death your outrigger is stuck in</p>
+
+<p>the lagoon okay no bad jokes there</p>
+
+<p>realizes your Drupal developer you know</p>
+
+<p>you should be deploying at the sakoda</p>
+
+<p>production but you don't have a look</p>
+
+<p>over where you feel confident and it</p>
+
+<p>says so many choices out there and you</p>
+
+<p>don't know where to start and doctorate</p>
+
+<p>baker and I know mine so that's really</p>
+
+<p>why you're here right ok so let's talk</p>
+
+<p>first before we answer that question who</p>
+
+<p>are we because the question you can only</p>
+
+<p>answer what should you be using for your</p>
+
+<p>local Drupal environment</p>
+
+<p>it depends what do you do are you a</p>
+
+<p>developer are you a site builder are you</p>
+
+<p>working by yourself are you working with</p>
+
+<p>a team are you on Windows are you on Mac</p>
+
+<p>where are you so to answer that question</p>
+
+<p>you may have seen we put out on Twitter</p>
+
+<p>a couple weeks ago a survey and this</p>
+
+<p>survey is to find out what you use for</p>
+
+<p>your environment with a couple of other</p>
+
+<p>anonymous questions like where are you</p>
+
+<p>located what do you do</p>
+
+<p>who do you work with that URL so works</p>
+
+<p>and we're going to continue taking</p>
+
+<p>responses up to Drupal con but for all</p>
+
+<p>intents and purposes this is really the</p>
+
+<p>first time we're releasing all of this</p>
+
+<p>info</p>
+
+<p>and this will answer the question who</p>
+
+<p>you are and that will let us give you</p>
+
+<p>some direction about what we think are</p>
+
+<p>some good development scenarios for you</p>
+
+<p>so first thing we're going to do is go</p>
+
+<p>through some of the results take a</p>
+
+<p>couple minutes here so be prepared for</p>
+
+<p>her awesome statistics worksite to 744 I</p>
+
+<p>can't keep up with this</p>
+
+<p>we're up to over 700 submissions from</p>
+
+<p>over 60 countries which is fantastic</p>
+
+<p>we've got representation from every</p>
+
+<p>continent the last one that it's not</p>
+
+<p>labeled as Africa</p>
+
+<p>obviously dominated by the United States</p>
+
+<p>and Europe I kind of expected that I</p>
+
+<p>didn't expect to get a good</p>
+
+<p>representative sample from other</p>
+
+<p>countries so we're very pleased by that</p>
+
+<p>aside from the US because otherwise the</p>
+
+<p>skew of the truck gets out of whack you</p>
+
+<p>can kind of see where we're getting</p>
+
+<p>survey results from so a pretty decent</p>
+
+<p>scattering around and that's only in two</p>
+
+<p>weeks without the US the top ten again</p>
+
+<p>not surprising english-speaking</p>
+
+<p>countries Ireland in the United Kingdom</p>
+
+<p>ooh and blanked out again followed by</p>
+
+<p>the rest of the most populated Jirka</p>
+
+<p>European countries and Canada they make</p>
+
+<p>up the top ten and like I said the list</p>
+
+<p>keeps going and going going if you're</p>
+
+<p>interested in details later let me know</p>
+
+<p>and I can tell you within the United</p>
+
+<p>States again most popular states kind of</p>
+
+<p>where you expect everybody to be all the</p>
+
+<p>way down to where I'm from Pennsylvania</p>
+
+<p>and</p>
+
+<p>where is there even a little bit you're</p>
+
+<p>a little ahead of me so again no</p>
+
+<p>surprise there so one of the questions</p>
+
+<p>we asked was well what kind of types of</p>
+
+<p>projects are you working on Drupal 8</p>
+
+<p>mostly dribble a little seven mostly</p>
+
+<p>seven little six and this kind of breaks</p>
+
+<p>it out I'm in really intrigued by the</p>
+
+<p>most by these do the highest proportion</p>
+
+<p>of all eight projects in Asia and</p>
+
+<p>Oceania Oceania is strangling New</p>
+
+<p>Zealand all those little Philippines all</p>
+
+<p>that stuff out there that Asia includes</p>
+
+<p>India but within the US and Europe this</p>
+
+<p>is a really nice number this is telling</p>
+
+<p>me that we have I think was it eighty</p>
+
+<p>percent ninety or no but I can't see my</p>
+
+<p>speaker notes eighty or ninety percent</p>
+
+<p>is Drupal eight solidly mostly are all</p>
+
+<p>Drupal eight which is great news because</p>
+
+<p>we've heard before about this low</p>
+
+<p>adoption Ranger blade this is Tony</p>
+
+<p>that's not exactly sure there are still</p>
+
+<p>room for improvement</p>
+
+<p>but the majority of the fend that we're</p>
+
+<p>spending is on your plate and you'll see</p>
+
+<p>that one outlier in red over there is</p>
+
+<p>the one guy that's working on Drupal 6</p>
+
+<p>the other question we had was about the</p>
+
+<p>size of the Drupal team that this is a</p>
+
+<p>tricky question because I asked about</p>
+
+<p>the number of developers that Drupal</p>
+
+<p>meaning you you and somebody you and a</p>
+
+<p>bunch of others are you and a whole</p>
+
+<p>Drupal army and again the vast majority</p>
+
+<p>is you work in teams of five or less</p>
+
+<p>those are the two blue colors and then</p>
+
+<p>they're scattering goes all the way out</p>
+
+<p>to 50-plus and there's a handful not</p>
+
+<p>insignificant but a handful that are in</p>
+
+<p>those large large teams but</p>
+
+<p>predominantly this kind of reinforces</p>
+
+<p>the notion that this this question is</p>
+
+<p>really hitting a nerve because these are</p>
+
+<p>folks that are working with maybe one</p>
+
+<p>other person and those are the two</p>
+
+<p>that's your very small feedback loop for</p>
+
+<p>trying and testing new things out so</p>
+
+<p>with this survey hopefully you will</p>
+
+<p>learn some other tools that you may not</p>
+
+<p>be aware of reinforce the decisions</p>
+
+<p>you've made maybe encourage you to try</p>
+
+<p>something else</p>
+
+<p>other dev team this is to kind of cover</p>
+
+<p>well maybe I work in a small group in a</p>
+
+<p>smaller agency I cannot imagine to</p>
+
+<p>Drupal developers maybe a front-end or</p>
+
+<p>maybe a JavaScript specialist maybe</p>
+
+<p>there's a DBA because there's a guy that</p>
+
+<p>does that man I don't know but this kind</p>
+
+<p>of answers that question and the black</p>
+
+<p>is none so this really for me it</p>
+
+<p>reinforces yeah they are predominantly</p>
+
+<p>solo or pairs that are working in Drupal</p>
+
+<p>you want to talk about this one is my</p>
+
+<p>favorite yeah it's it's an interesting</p>
+
+<p>because I know in the past the few there</p>
+
+<p>haven't been a whole lot of these kind</p>
+
+<p>of surveys which is kind of sad because</p>
+
+<p>it's hard to see a historical data but I</p>
+
+<p>I remember when phpstorm with something</p>
+
+<p>that like the only people that would</p>
+
+<p>ever use it are people that came from</p>
+
+<p>like Java to PHP and back five six years</p>
+
+<p>ago that was a very small number of</p>
+
+<p>people but ever since Drupal 8 came out</p>
+
+<p>and Drupal 8 is based on symphony and</p>
+
+<p>has a lot more components that require</p>
+
+<p>more of an IDE to build things really</p>
+
+<p>easily I mean all the other tools can</p>
+
+<p>work with it great the PHP storm was</p>
+
+<p>like setup for it and got tons of uptake</p>
+
+<p>so it's the clear victor at this point</p>
+
+<p>if you're looking for a good development</p>
+
+<p>tool for for Drupal 8 code but it's</p>
+
+<p>sublime text which has been super</p>
+
+<p>popular for years is still kind of</p>
+
+<p>holding its ground that seems to be</p>
+
+<p>slowly withering down from the next</p>
+
+<p>three mature digital studio code then</p>
+
+<p>and Adam a bunch of other tools out</p>
+
+<p>there it's it's interesting a lot of</p>
+
+<p>developers will just applying the tool</p>
+
+<p>learn it and then use it for life</p>
+
+<p>basically so you know there's people</p>
+
+<p>using using BBEdit</p>
+
+<p>and some other tools which are there</p>
+
+<p>still updated they're still valid but</p>
+
+<p>they don't have a lot of the</p>
+
+<p>cutting-edge things that made them</p>
+
+<p>amazing back when they first came out</p>
+
+<p>yeah there was one other interesting</p>
+
+<p>thing here as well it we correlated this</p>
+
+<p>back to the team size and location and</p>
+
+<p>projects types and overwhelmingly</p>
+
+<p>obviously you see Europe at 73% but the</p>
+
+<p>phpstorm users overwhelming the one and</p>
+
+<p>two percent groups so that is even more</p>
+
+<p>like the redefining that these guys have</p>
+
+<p>I don't call it monopoly but a pretty</p>
+
+<p>pretty strong grip on it the larger</p>
+
+<p>teams other ones that are using that</p>
+
+<p>second tier sublime vim Visual Studio</p>
+
+<p>and</p>
+
+<p>a notepad and on those are like the</p>
+
+<p>outliers are also predominantly Europe</p>
+
+<p>Oceania</p>
+
+<p>and Asia I guess they you know you like</p>
+
+<p>writing in a trouble</p>
+
+<p>QA methodology so now this is a first of</p>
+
+<p>a couple questions that we left the</p>
+
+<p>other open answers aloud and actually</p>
+
+<p>this is not showing my the two answers</p>
+
+<p>at the bottom which are luck slash wing</p>
+
+<p>slash prayer and Wraiths tests they're</p>
+
+<p>down at the long tail at the end but if</p>
+
+<p>you can't read those or read this down</p>
+
+<p>because this is worth mentioning the</p>
+
+<p>number one is developer does own tests</p>
+
+<p>far and away and that is also</p>
+
+<p>overwhelmingly it's overwhelmingly</p>
+
+<p>popular across the board the next group</p>
+
+<p>down which is peer review the architect</p>
+
+<p>does code review or you rely on a QA</p>
+
+<p>team that's generally consistent Asia</p>
+
+<p>much much higher than the rest on those</p>
+
+<p>categories and then the rest is filled</p>
+
+<p>in by fill in the blanks and those</p>
+
+<p>really kind of run the run the gamut</p>
+
+<p>automated testing and linting are at the</p>
+
+<p>top continuous integration tools PHP</p>
+
+<p>code sniffer client reviews so you're</p>
+
+<p>letting your customer do your QA</p>
+
+<p>brilliant the hat tests PHP unit tests</p>
+
+<p>code Stander's Soner cube circle CI PHP</p>
+
+<p>mess detector and BLT and then like I</p>
+
+<p>mentioned at the end Wraith and luck</p>
+
+<p>winged prayer my they quote dumb luck</p>
+
+<p>just wing it let's do it live ship it if</p>
+
+<p>it works</p>
+
+<p>it's awesome it compiles it compiles</p>
+
+<p>ship it you want to talk about this one</p>
+
+<p>yeah so that I actually wrote a blog</p>
+
+<p>post on this topic a couple years ago</p>
+
+<p>I'm talking about vagrant in particular</p>
+
+<p>but what some people don't realize</p>
+
+<p>getting into the Drupal community</p>
+
+<p>especially if you've been at a shop that</p>
+
+<p>didn't do Drupal before is getting into</p>
+
+<p>it or something or a lot of PHP link or</p>
+
+<p>a lot of PHP projects the culture is</p>
+
+<p>incredibly focused on Mac Linux UNIX II</p>
+
+<p>Linux II based environments and this</p>
+
+<p>survey kind of just reinforces that</p>
+
+<p>there's there's been more more and more</p>
+
+<p>uptake of Windows 10 as Windows 10 now</p>
+
+<p>has the windows subsystem for Linux</p>
+
+<p>which really makes Windows 10 actually</p>
+
+<p>like usable with some of the tools that</p>
+
+<p>are required to do moderate development</p>
+
+<p>but like there's still a lot of people</p>
+
+<p>using Windows 7 Windows 8 and things</p>
+
+<p>like that which are harder but the point</p>
+
+<p>that I had in my blog post was you know</p>
+
+<p>it's it's an uphill battle when you're</p>
+
+<p>not using a Mac or Linux computer</p>
+
+<p>operating system just because everyone</p>
+
+<p>else doesn't so you're going to have to</p>
+
+<p>find out all your own problems and</p>
+
+<p>research all their own solutions and</p>
+
+<p>you know I meant what I can but I don't</p>
+
+<p>use Windows daily so and there's very</p>
+
+<p>few people who are like me who also have</p>
+
+<p>a Windows laptop even to test something</p>
+
+<p>out for you so just so one note the</p>
+
+<p>scale across the bottom is like a total</p>
+
+<p>percentage because these were move one</p>
+
+<p>or more choices so you could pick let's</p>
+
+<p>say all three of the top three but this</p>
+
+<p>should give you some relative scale that</p>
+
+<p>just between Mac and Linux how how much</p>
+
+<p>more room Windows 10 has to grow or</p>
+
+<p>hopefully stay put but the windows 7 5</p>
+
+<p>lines 6 lines down that is really</p>
+
+<p>trailing off which is for us this is a</p>
+
+<p>great sigh of relief I was also</p>
+
+<p>surprised that arch is so small because</p>
+
+<p>the arch users are so vocal I won't say</p>
+
+<p>annoying but so tell me how you feel</p>
+
+<p>about fashion ok all right so now next</p>
+
+<p>to is the same grouping but now broken</p>
+
+<p>out by reaching and then by project type</p>
+
+<p>so that you can kind of see Mac is kind</p>
+
+<p>of evenly spread out it's evenly popular</p>
+
+<p>whereas let's say looking at Windows 10</p>
+
+<p>this is much more popular in africa and</p>
+
+<p>oceania</p>
+
+<p>way out of proportion if you look at the</p>
+
+<p>purple purple there very even that as</p>
+
+<p>opposed to this which is kind of</p>
+
+<p>representative of its goal what's the</p>
+
+<p>percentage mean its total like the</p>
+
+<p>number of respondents who picked it but</p>
+
+<p>it's the aggregate I wanted to divide to</p>
+
+<p>show a representation like that</p>
+
+<p>so if if I had a thousand submissions</p>
+
+<p>that I got a thousand people responding</p>
+
+<p>that was a hundred so basically four</p>
+
+<p>times the population yeah</p>
+
+<p>[Music]</p>
+
+<p>it's the scale of the scale of the color</p>
+
+<p>bands that's what I'm trying to convey</p>
+
+<p>yeah yeah right so then my project</p>
+
+<p>here's what's interesting is you see</p>
+
+<p>overwhelmingly for mostly Interpol and</p>
+
+<p>again all Drupal but then you come down</p>
+
+<p>here and you see like Linux other and</p>
+
+<p>windows nobody's doing Drupal seven</p>
+
+<p>they're still doing seven not as much</p>
+
+<p>eat right so it's not you didn't that's</p>
+
+<p>that's the point</p>
+
+<p>yeah so this will be the same thing so</p>
+
+<p>this is the other question and this was</p>
+
+<p>a little confusing I think now going</p>
+
+<p>back I would probably rewrite this a</p>
+
+<p>little bit different of the screen went</p>
+
+<p>down ago so we asked what do you use for</p>
+
+<p>your local dev technology and the</p>
+
+<p>question really was did it again</p>
+
+<p>it was a couple of questions up front</p>
+
+<p>and then there's another question where</p>
+
+<p>I give the sample solutions we're trying</p>
+
+<p>to keep it broad the question is we</p>
+
+<p>provided where the answers we provided</p>
+
+<p>were I don't know custom docker custom</p>
+
+<p>vagrant or the local operating system so</p>
+
+<p>yeah</p>
+
+<p>okay sorry so we just asked custom</p>
+
+<p>docker custom vagrant and I think that</p>
+
+<p>was it the rest of the suggestions were</p>
+
+<p>this is the right one right yeah I think</p>
+
+<p>I think we had a list of like the ones</p>
+
+<p>that are capitalized yeah we're in our</p>
+
+<p>list the other ones were right and</p>
+
+<p>answers maybe yes that's it that's right</p>
+
+<p>so for example I don't know that we</p>
+
+<p>don't remember that we had Vlad or</p>
+
+<p>ballet or lagoon that we had eager and</p>
+
+<p>homebrew and Albert or docks all this</p>
+
+<p>was not in our list this is a pure</p>
+
+<p>in-depth estoppel and Noah kill box and</p>
+
+<p>Drupal genome but again this this is the</p>
+
+<p>this is the money slide right here just</p>
+
+<p>to see what everybody was responding the</p>
+
+<p>top six custom vaguer and custom docker</p>
+
+<p>dev desktop MAMP</p>
+
+<p>surprise drupal vm and Lando Cowboys</p>
+
+<p>those are solving solutions that are</p>
+
+<p>pretty is using then there's like the</p>
+
+<p>middle group and then there's a lot of</p>
+
+<p>there's a lot more outliers anything</p>
+
+<p>that I had like just one response were</p>
+
+<p>like you know I wouldn't fit on the side</p>
+
+<p>basically I try to consolidate as much</p>
+
+<p>as as we could and I think this one we</p>
+
+<p>break out also yeah by region and then</p>
+
+<p>by project also because this is</p>
+
+<p>interesting for example nobody's using</p>
+
+<p>out where you're for anything other than</p>
+
+<p>so for anything other than e no surprise</p>
+
+<p>this one is the regional one that's the</p>
+
+<p>regional one yeah I'm gonna save that oh</p>
+
+<p>right</p>
+
+<p>so nobody outside the u.s. is using</p>
+
+<p>outrigger or a D dev or what was the</p>
+
+<p>other one that was very heavy yeah yeah</p>
+
+<p>and the other ones are pretty much</p>
+
+<p>uniformly scattered across all regions</p>
+
+<p>to get to the projects I should be the</p>
+
+<p>next one there we go</p>
+
+<p>so solid the mostly drew blade some</p>
+
+<p>Drupal 7 those are the ones that are</p>
+
+<p>filling in the top three the docker</p>
+
+<p>lando and Drupal VM the proportion again</p>
+
+<p>for dock saw and D dev and he doctored</p>
+
+<p>for pupil and anchor really and</p>
+
+<p>surprising how much there is and in</p>
+
+<p>those groups okay now just to know I've</p>
+
+<p>got like there was an 8 least another</p>
+
+<p>half dozen slides that Jeff and I</p>
+
+<p>decided forget it because it's just way</p>
+
+<p>too many numbers and pretty colors they</p>
+
+<p>really get into the hardcore statistics</p>
+
+<p>nitty gritty if you've got questions or</p>
+
+<p>just curious want to love me now happy</p>
+
+<p>to answer and pull other slides to show</p>
+
+<p>you after the session but we want to</p>
+
+<p>make sure I have enough time to talk the</p>
+
+<p>real meat and potatoes which is okay</p>
+
+<p>let's now take what we've learned and</p>
+
+<p>turn it into for ten people asking the</p>
+
+<p>question what should I do for my local</p>
+
+<p>development environment so well we've</p>
+
+<p>come up with</p>
+
+<p>all right I can do it you can do yeah</p>
+
+<p>what I what I think our main goal of</p>
+
+<p>this session was like in 2018 if you're</p>
+
+<p>a certain type of person developer site</p>
+
+<p>builder or something what is the best</p>
+
+<p>option and we want to try to give that</p>
+
+<p>to you so that you can go there and</p>
+
+<p>instead of spending like</p>
+
+<p>like I do sometimes hours in a day</p>
+
+<p>trying lie about seven or eight</p>
+
+<p>different solutions completely blowing</p>
+
+<p>up your computer and then trying to get</p>
+
+<p>back to a fresh state so you can try</p>
+
+<p>another few solutions then at the end of</p>
+
+<p>it like Chris mentioned earlier you're</p>
+
+<p>totally confused and you hate your ball</p>
+
+<p>all of a sudden so we came up with these</p>
+
+<p>four personas that I think cover a</p>
+
+<p>pretty wide variety of people that I</p>
+
+<p>interact with at least uncover a lot of</p>
+
+<p>the people that we saw in those slides</p>
+
+<p>and the you know the one the two person</p>
+
+<p>teams and that kind of thing and just</p>
+
+<p>running through quick some of these are</p>
+
+<p>a little controversial if you're another</p>
+
+<p>person who develops a local development</p>
+
+<p>environment but for the site builder</p>
+
+<p>persona this is like somebody who puts</p>
+
+<p>together a Drupal website or might build</p>
+
+<p>some different brochure type sites or</p>
+
+<p>things like that or even like a person</p>
+
+<p>like Chris sometimes when he's working</p>
+
+<p>on evaluating a project or something he</p>
+
+<p>just needs a Drupal site running on his</p>
+
+<p>laptop and he wants to do some things or</p>
+
+<p>play around or something like that or</p>
+
+<p>it's like Drupal filled up here drupal</p>
+
+<p>Zofia whatever that thing is like if you</p>
+
+<p>need to do some work on it he might need</p>
+
+<p>running on this on his desk or on its</p>
+
+<p>laptop but he doesn't necessarily want</p>
+
+<p>to spend a lot of time customizing and</p>
+
+<p>tweaking it making it high performance</p>
+
+<p>and all that and the recommendation we</p>
+
+<p>have is aquatab desktop which is Mike</p>
+
+<p>man or WAMP but it it basically gets you</p>
+
+<p>a local environment and the Drupal site</p>
+
+<p>on your computer with like a few button</p>
+
+<p>clicks which is really helpful if you're</p>
+
+<p>trying to get something up and running</p>
+
+<p>quicker if it's the first time you're</p>
+
+<p>ever using Drupal or if you're a little</p>
+
+<p>more adventurous like if you're like</p>
+
+<p>Chris and you have a little more</p>
+
+<p>technical knowledge and you want to get</p>
+
+<p>a little deeper into it you can try out</p>
+
+<p>something like Doc cell or Orlando or</p>
+
+<p>something like that</p>
+
+<p>follow the getting started guide and go</p>
+
+<p>through it see see if it's I mean some</p>
+
+<p>of those tools have more flexibility and</p>
+
+<p>and might have some features you need so</p>
+
+<p>one caveat all be clear yes we are both</p>
+
+<p>from aqua and now I'm saying how could</p>
+
+<p>that that's not you you know obviously</p>
+
+<p>inclined to be cynical and conspiracy</p>
+
+<p>theorist and say oh this is a secret</p>
+
+<p>advertisement to get you to download</p>
+
+<p>something that's free okay you know no</p>
+
+<p>it's there the rubric we're using is to</p>
+
+<p>figure out something that someone</p>
+
+<p>without let's say command-line</p>
+
+<p>experience can go download click a</p>
+
+<p>couple things and get up and running as</p>
+
+<p>easy as possible that was for me the</p>
+
+<p>goal knowing a little bit as dangerous</p>
+
+<p>knowing more is even more dangerous the</p>
+
+<p>restriction here is really and this kind</p>
+
+<p>of narrows the field almost</p>
+
+<p>automatically we expect that there'll be</p>
+
+<p>more work coming out of Cal bucks and</p>
+
+<p>probably other outfits to make it more</p>
+
+<p>UI friendly but right now if you give me</p>
+
+<p>a laptop and I have to show somebody how</p>
+
+<p>to put together a site give them at your</p>
+
+<p>pool 101 to work that's what I would do</p>
+
+<p>I'd probably do lando or Docs all or</p>
+
+<p>dead that sound and in the old days I</p>
+
+<p>would recommend like mam or zamp or</p>
+
+<p>something like that but the big</p>
+
+<p>difference is those tools you install it</p>
+
+<p>and then you have to create a database</p>
+
+<p>and then you have to download drupal's</p>
+
+<p>codebase and you have to follow all</p>
+
+<p>these instructions with dev desktop if</p>
+
+<p>you click a button and you have a Drupal</p>
+
+<p>site that's that's kind of the point</p>
+
+<p>yeah you with tools like that desktop if</p>
+
+<p>you guys find that going to get feedback</p>
+
+<p>from like integrating with other teams</p>
+
+<p>being stuck to get out of there that and</p>
+
+<p>to cause any problems or I know that</p>
+
+<p>that's not it it has that I can't even</p>
+
+<p>talk my head that a particular file but</p>
+
+<p>just like a addy def file that kindly</p>
+
+<p>comes along in Caribe oh I think I've</p>
+
+<p>had some experience where that has</p>
+
+<p>caused like something shoes and I don't</p>
+
+<p>know if maybe that's some of the lack of</p>
+
+<p>flexibility that you were talking about</p>
+
+<p>damn using my thumb salad I know yeah I</p>
+
+<p>would say that a lot of people outgrow</p>
+
+<p>that desktop like a person like Chris</p>
+
+<p>has outgrown it I would say and you know</p>
+
+<p>it's there's a lot of things where it's</p>
+
+<p>not the best solution but if you're</p>
+
+<p>getting started in Drupal or if you're</p>
+
+<p>if you need to get a site built quickly</p>
+
+<p>something like that and you don't want</p>
+
+<p>to worry about the details that's what</p>
+
+<p>it's best for I want to teach my</p>
+
+<p>daughter Drupal I'm gonna put aren't</p>
+
+<p>that desktop first Larry play with that</p>
+
+<p>man when she gets adventurous you know</p>
+
+<p>put her on land oh and then hopefully in</p>
+
+<p>like two weeks you'll be doing custom</p>
+
+<p>and docker for a possible so he's</p>
+
+<p>setting up kubernetes clusters exactly</p>
+
+<p>so for a single developer like a one-man</p>
+
+<p>team one one developer doing you know</p>
+
+<p>front-end site building whatever but</p>
+
+<p>somebody who's a little bit more coding</p>
+
+<p>oriented I would say doing a custom</p>
+
+<p>docker setup which is what I actually do</p>
+
+<p>for most of my anything outside the box</p>
+
+<p>a basically is best because a it's super</p>
+
+<p>lightweight and you only have to learn</p>
+
+<p>as much as you need to get something</p>
+
+<p>running and be there's thousands of</p>
+
+<p>guides for how to do something like you</p>
+
+<p>just need a PHP and</p>
+
+<p>Apache and my sequel thing and you put</p>
+
+<p>them together and mash them up when</p>
+
+<p>there's tons of examples out there</p>
+
+<p>another option is as you get a little</p>
+
+<p>bit more into it you realize oh all</p>
+
+<p>these other tools do these things for me</p>
+
+<p>that I have to do on my own</p>
+
+<p>so another thing that I do sometimes is</p>
+
+<p>I like take the wad beat containers or</p>
+
+<p>take Lando or something like that kind</p>
+
+<p>of strip things out that I don't need</p>
+
+<p>and then make it really lightweight for</p>
+
+<p>myself but the idea is that docker is</p>
+
+<p>super easy to pick up and can be really</p>
+
+<p>flexible and easy and if you're a single</p>
+
+<p>developer you don't have to worry as</p>
+
+<p>much about like making the docker</p>
+
+<p>environments perfect for everyone on</p>
+
+<p>your team and making configurations that</p>
+
+<p>match your production perfectly and all</p>
+
+<p>that like you can do those things but</p>
+
+<p>it's it's easy to get started it's super</p>
+
+<p>fast and it works on Windows Mac and</p>
+
+<p>Linux really well nowadays and I would</p>
+
+<p>say it's funny because I maintain Drupal</p>
+
+<p>fan which uses vagrant but I would say</p>
+
+<p>avoid if you're if you're just doing</p>
+
+<p>small small projects or if you're a</p>
+
+<p>single developer contracting that kind</p>
+
+<p>of thing and you don't need to share</p>
+
+<p>your codebase in development</p>
+
+<p>environments avoid something like</p>
+
+<p>vagrant just because it's I would I'd</p>
+
+<p>say there's more overhead there of</p>
+
+<p>having vagrant and VirtualBox running it</p>
+
+<p>uses more resources on your computer so</p>
+
+<p>you can't run as many virtual machines</p>
+
+<p>at the same time and it's it's Ruby</p>
+
+<p>there's you don't have to know Ruby but</p>
+
+<p>there's a little bit of Ruby involved</p>
+
+<p>and who wants to know Ruby</p>
+
+<p>[Music]</p>
+
+<p>we news 10</p>
+
+<p>yeah then we have this is a good one to</p>
+
+<p>get into a little bit because I don't</p>
+
+<p>know it's in this room who here uses</p>
+
+<p>Windows so we have it it's that's pretty</p>
+
+<p>reflects it's a pretty normal</p>
+
+<p>distribution I'd say at this time the</p>
+
+<p>reason I recommend Drupal VM is because</p>
+
+<p>as somebody who's made team careful vm</p>
+
+<p>for years</p>
+
+<p>drupal vm has gone through years and</p>
+
+<p>years of making sure things work on</p>
+
+<p>Windows and I literally have a laptop at</p>
+
+<p>my house sitting on my desk where every</p>
+
+<p>time I do a Drupal VM updates I test it</p>
+
+<p>on Windows you're not going to get that</p>
+
+<p>with most of the other solutions right</p>
+
+<p>now</p>
+
+<p>a lot of the docker solutions are</p>
+
+<p>getting there but docker on Windows is a</p>
+
+<p>little different and the way networking</p>
+
+<p>works and Windows is a little different</p>
+
+<p>and if you use the windows subsystem for</p>
+
+<p>Linux it's a little different so right</p>
+
+<p>now I'd say rack my our nation is Drupal</p>
+
+<p>again next year that might change but</p>
+
+<p>mostly it's based on the fact that your</p>
+
+<p>Mac you'll actually get a little bit of</p>
+
+<p>support there's a lot of other tools</p>
+
+<p>I guess dev desktop to yeah but when</p>
+
+<p>you're on a team the desktop can have</p>
+
+<p>some issues yeah and avoid anything that</p>
+
+<p>doesn't support Windows 10 basically</p>
+
+<p>there's there's a lot of good tools out</p>
+
+<p>there that will work on Windows but if</p>
+
+<p>you look in their documentation they say</p>
+
+<p>we support Mac and Linux it's like well</p>
+
+<p>what about Windows it's like works there</p>
+
+<p>but you're gonna find that if you open</p>
+
+<p>an issue in there is you hear that was</p>
+
+<p>close it didn't</p>
+
+<p>yeah nobody else is using Windows with</p>
+
+<p>that tool so you're not going to get any</p>
+
+<p>support</p>
+
+<p>and then for a team of developers doing</p>
+
+<p>all Drupal 8 development using a Mac I</p>
+
+<p>would recommend one of the docker tools</p>
+
+<p>because they're all getting mature</p>
+
+<p>enough now or you can kind of replicate</p>
+
+<p>whatever environment you need to you can</p>
+
+<p>share the configuration in your code</p>
+
+<p>base so that everybody can get up and</p>
+
+<p>running really quickly at this point in</p>
+
+<p>time I would say if if the most</p>
+
+<p>important thing is to make your local</p>
+
+<p>environment exactly like production for</p>
+
+<p>a lot of cases you might want to use</p>
+
+<p>Drupal them for that because you can</p>
+
+<p>tweak literally everything about it</p>
+
+<p>whereas some of the docker solutions you</p>
+
+<p>can tweak most things but not all things</p>
+
+<p>some of them are coming up to speed</p>
+
+<p>there and getting a little better but at</p>
+
+<p>this time that's the only time I'd say</p>
+
+<p>the Trivium is like much better than</p>
+
+<p>some of the other solutions but again</p>
+
+<p>anything that slows things down like</p>
+
+<p>I've I've seen a lot of issues where</p>
+
+<p>like two developers it works and the</p>
+
+<p>third developer it doesn't because their</p>
+
+<p>laptop is running whatever this thing is</p>
+
+<p>or some proxy or some VPN or whatever</p>
+
+<p>and vagrant seems to have more issues</p>
+
+<p>more often than docker</p>
+
+<p>with a more complex project like the one</p>
+
+<p>that you do if you're doing all Drupal 8</p>
+
+<p>and have a team of developers with front</p>
+
+<p>tools and nodejs and things like that</p>
+
+<p>for a team a team of Drupal developers</p>
+
+<p>so let's say there's a small group we</p>
+
+<p>assume that there's probably it's a</p>
+
+<p>group effort to do a group</p>
+
+<p>administration but if it's a larger</p>
+
+<p>group let's say 25 or higher where you</p>
+
+<p>may or you're likely to have so many</p>
+
+<p>performing sysadmin duties is there any</p>
+
+<p>difference in the recommendation that</p>
+
+<p>way let's say for the for the few groups</p>
+
+<p>that are bigger than 20 30 40 people or</p>
+
+<p>you do have like an aqua we have three</p>
+
+<p>or four people in our group that uses</p>
+
+<p>these tools that do devops see things</p>
+
+<p>and secend and things like that's one of</p>
+
+<p>the reasons we use Drupal dam is because</p>
+
+<p>we can kind of make your it towards our</p>
+
+<p>needs a little bit when we need to and</p>
+
+<p>make sure that it works well with tools</p>
+
+<p>like BLT and Acquia cloud and all that</p>
+
+<p>and some of the other tools too like</p>
+
+<p>what is it Kalibak started out with more</p>
+
+<p>focus on Pantheon that it's pointing</p>
+
+<p>that's reach and Lando's now for pretty</p>
+
+<p>much everything a lot of the tools came</p>
+
+<p>out of like a dev shop needed something</p>
+
+<p>for themselves and then they open</p>
+
+<p>sourced it and if you have enough people</p>
+
+<p>it might make sense for you to either</p>
+
+<p>fork one of those projects and customize</p>
+
+<p>it for your shop or to start with</p>
+
+<p>something custom and really build it for</p>
+
+<p>your needs there's a lot of tools a lot</p>
+
+<p>of the longtail tools are things that a</p>
+
+<p>def shop built for themselves and it's</p>
+
+<p>really nice but it's a little bit tuned</p>
+
+<p>to their needs so it's not as flexible</p>
+
+<p>in general</p>
+
+<p>yeah with this current slide the all</p>
+
+<p>truly team</p>
+
+<p>yeah yeah so in that case would you say</p>
+
+<p>doctor I would say same thing it's it</p>
+
+<p>really depends on how closely you want</p>
+
+<p>to mirror production because like Drupal</p>
+
+<p>VM can can customize all the little</p>
+
+<p>fine-tune bits for every piece of your</p>
+
+<p>infrastructure no Jess and the Drupal</p>
+
+<p>and Postgres and nginx and varnish and</p>
+
+<p>hundreds of other things there are a</p>
+
+<p>couple like a I don't know I haven't</p>
+
+<p>looked as much into Lando but a couple</p>
+
+<p>of the other doctor solutions do have a</p>
+
+<p>lot of tweaks that you can put in but if</p>
+
+<p>it's not going to be the same versions</p>
+
+<p>of the same same kind of infrastructure</p>
+
+<p>setup as your production environment</p>
+
+<p>that's the one case where I'd say doctor</p>
+
+<p>might not yet be the best solution but</p>
+
+<p>yeah even if you're doing decoupled</p>
+
+<p>drupelets with different tech I would</p>
+
+<p>say a doctor is still a good option yeah</p>
+
+<p>I'm not familiar with vaguer you explain</p>
+
+<p>a little bit deeper we're gonna get one</p>
+
+<p>okay I knew that question was coming up</p>
+
+<p>thank you yeah so these personas do you</p>
+
+<p>find like this is obviously a</p>
+
+<p>recommendation or a good set of</p>
+
+<p>recommendations and people sort of</p>
+
+<p>what do you think when maybe the organ</p>
+
+<p>on one big project which is a</p>
+
+<p>development project iMac but you have a</p>
+
+<p>couple of people on you know a g7 site</p>
+
+<p>or something else if you do that</p>
+
+<p>recommend they adopt a different tool</p>
+
+<p>set for each persona or sort of try to</p>
+
+<p>find one that fits across how many</p>
+
+<p>person as they may be fit I I would lean</p>
+
+<p>towards what your organization's more</p>
+
+<p>comfortable is because you know if you</p>
+
+<p>have three developers let's say and two</p>
+
+<p>of them are on Windows one on Mac or</p>
+
+<p>something yeah it's nicer to have a tool</p>
+
+<p>that everybody knows and then you can</p>
+
+<p>help each other out because there's a</p>
+
+<p>there's a lot of times when like the</p>
+
+<p>first time you set up a new project you</p>
+
+<p>have some bug that you can't figure out</p>
+
+<p>and if you have three people using the</p>
+
+<p>same thing they might be like oh I found</p>
+
+<p>that bugger oh I know what to search on</p>
+
+<p>Google to figure it out but if you have</p>
+
+<p>three different tools each one of you</p>
+
+<p>has to do your own research every time</p>
+
+<p>that you sew to save to save the kind of</p>
+
+<p>best fit across all those</p>
+
+<p>I would say yeah and it's gonna be</p>
+
+<p>different for every organization and the</p>
+
+<p>hardest thing would be if you have a lot</p>
+
+<p>of different teams like one team has one</p>
+
+<p>developer one team has five developers</p>
+
+<p>one team has no jazz and Drupal and the</p>
+
+<p>other one that's only triple so Kristin</p>
+
+<p>oh well I just wanted to your point</p>
+
+<p>about the couple Drupal if you're using</p>
+
+<p>something like reservoir or one of the</p>
+
+<p>Web Services distributions reservoir for</p>
+
+<p>example has a docker container available</p>
+
+<p>that you can just pull off and</p>
+
+<p>you wanna learn more yeah well in that</p>
+
+<p>that will bring us I'll talk more about</p>
+
+<p>that in a couple minutes yep those are</p>
+
+<p>slide so those are the personas and</p>
+
+<p>recommendations but we I mean the basic</p>
+
+<p>principles is whatever local development</p>
+
+<p>environment you use and you evaluate</p>
+
+<p>should make it easy to start a new</p>
+
+<p>project like you shouldn't have to</p>
+
+<p>wrestle it every time that you build a</p>
+
+<p>new project it should make it so that if</p>
+
+<p>you get a new developer on your team</p>
+
+<p>they can get up and running and I would</p>
+
+<p>say in an hour or less it takes more</p>
+
+<p>than an hour you need to think about</p>
+
+<p>using something else and you should also</p>
+
+<p>be able to set a global configuration</p>
+
+<p>like the PHP version and the nodejs</p>
+
+<p>version and the Apache version and all</p>
+
+<p>those kind of things so should be able</p>
+
+<p>to be shared with your team and ideally</p>
+
+<p>inside your codebase at aqua we have it</p>
+
+<p>so called VLP that does all this stuff</p>
+
+<p>and it puts it all and together using</p>
+
+<p>composure and magic and stuff like that</p>
+
+<p>we'll talk about that at Drupal con dark</p>
+
+<p>magic yeah and then finally ideally you</p>
+
+<p>want to make your local environment be</p>
+
+<p>as much as as much like your production</p>
+
+<p>environment as you can</p>
+
+<p>realizing that you know if you're like</p>
+
+<p>hosting an aqua cloud you're not going</p>
+
+<p>to set up like seven VMs and have all</p>
+
+<p>these things and load balancers and</p>
+
+<p>certificate management stuff and you</p>
+
+<p>know next slide that's an expression</p>
+
+<p>yeah why is it important yeah the most</p>
+
+<p>important thing is there's a lot of</p>
+
+<p>times when you develop like if you're</p>
+
+<p>one of the majority of developers who</p>
+
+<p>the developer does their own testing or</p>
+
+<p>if you pray and what does the other one</p>
+
+<p>copy rest your fingers you hope that you</p>
+
+<p>don't die there's there's a lot of times</p>
+
+<p>and you know it's the littlest things</p>
+
+<p>like updating a module you update the</p>
+
+<p>module it works fine locally you push it</p>
+
+<p>to production and then your site dies</p>
+
+<p>like why did that happen</p>
+
+<p>oh we're using PHP 7.1 on the live site</p>
+
+<p>and I'm using</p>
+
+<p>so locally you know those kind of things</p>
+
+<p>do happen so you know in descending</p>
+
+<p>order to the PHP versions the most</p>
+
+<p>important for drupal having apache or</p>
+
+<p>nginx if you have that on your server</p>
+
+<p>that's important</p>
+
+<p>using my sequel or Postgres there's who</p>
+
+<p>here uses postcards or even knows what</p>
+
+<p>it is see okay so now there's a couple</p>
+
+<p>of people so I mean that's not as</p>
+
+<p>important that there's like using the</p>
+
+<p>same kind of version range like if</p>
+
+<p>you're using my sequel five five on your</p>
+
+<p>production server using my sequel five</p>
+
+<p>seven locally that's a bad situation</p>
+
+<p>because you're going to end up writing a</p>
+
+<p>query that works locally but then when</p>
+
+<p>it runs in production you get a white</p>
+
+<p>screen of death so some of the tools</p>
+
+<p>lando Drupal VM Doc's al drew yeah some</p>
+
+<p>of them are better at this than others</p>
+
+<p>so yeah you know and you'll find that</p>
+
+<p>pretty quick if you read the</p>
+
+<p>documentation and it's like just change</p>
+
+<p>these variables and it'll change things</p>
+
+<p>the some of the tools are better at</p>
+
+<p>getting you to that point than others if</p>
+
+<p>it's really if it's a struggle it might</p>
+
+<p>not be the right fit for you</p>
+
+<p>all right so now we do a little quick</p>
+
+<p>well quick we got a couple minutes to do</p>
+
+<p><br>
+right doesn't know what maker is let's</p>
+
+<p>service or haven't used it or kind of</p>
+
+<p>roughly thing know what you heard is it</p>
+
+<p>have you heard he's dead okay all right</p>
+
+<p>anybody you're using it okay a couple so</p>
+
+<p>for the rest of you some vagrant was</p>
+
+<p>it's probably eight or ten years ago or</p>
+
+<p>something a lot of people realize like</p>
+
+<p>it's better to use a virtual machine</p>
+
+<p>than to install this junk on your laptop</p>
+
+<p>because if you have a patchy and PHP and</p>
+
+<p>all this and you have two projects what</p>
+
+<p>if one project needs PHP seven and one</p>
+
+<p>project needs PHP five six now you think</p>
+
+<p>maybe like do weird things to set up</p>
+
+<p>virtual environments inside your laptop</p>
+
+<p>of foo do magic and then you end up</p>
+
+<p>screwing up your laptop then you gotta</p>
+
+<p>wipe your entire laptop</p>
+
+<p>that so people were like oh there's this</p>
+
+<p>thing called VirtualBox and it creates a</p>
+
+<p>virtual machine running Ubuntu were</p>
+
+<p>running some form of Linux and then I</p>
+
+<p>can install Apache and stuff in there</p>
+
+<p>and keep a nice separate separation of</p>
+
+<p>all my project stuff from my laptop and</p>
+
+<p>oh I can also take this stuff that I</p>
+
+<p>just built and put it on my friend's</p>
+
+<p>computer so we both have the same exact</p>
+
+<p>identical environment the problem with</p>
+
+<p>the originally that was is every single</p>
+
+<p>person had like install VirtualBox and</p>
+
+<p>then like install a virtual machine and</p>
+
+<p>then go in there and type in the files</p>
+
+<p>and commands and install things on it so</p>
+
+<p>vagrant managed those virtual machines</p>
+
+<p>vagrant makes it so that you can like</p>
+
+<p>define either a shell script or ansible</p>
+
+<p>playbooks or chef cookbooks or whatever</p>
+
+<p>kind of automation that you want and you</p>
+
+<p>say like I want Apache I want my sequel</p>
+
+<p>I want Linux and I want PHP a Triscuit</p>
+
+<p>HP is important beautiful you want those</p>
+
+<p>things and then you save a file on in</p>
+
+<p>your code base and then any developer</p>
+
+<p>can run the vagrant up and it builds</p>
+
+<p>that for them so it was like it's the</p>
+
+<p>same model that docker uses just it</p>
+
+<p>takes a little longer usually because it</p>
+
+<p>has to do the things unless you pre</p>
+
+<p>build a base box for yourself that</p>
+
+<p>vagrant makes it so that you can build</p>
+
+<p>isolated environments for your Drupal</p>
+
+<p>site on any laptop it works well with</p>
+
+<p>Windows Mac</p>
+
+<p>Linux another advantage for vagrant is</p>
+
+<p>it has a really mature networking model</p>
+
+<p>or if you want to do things like have</p>
+
+<p>custom host names for your sites have</p>
+
+<p>custom DNS have your site available on</p>
+
+<p>the public internet or just on your</p>
+
+<p>computer have it like pick IP addresses</p>
+
+<p>from your local network do all these</p>
+
+<p>different things like it does all that</p>
+
+<p>pretty automatically that's one thing</p>
+
+<p>where it has a little bit of an</p>
+
+<p>advantage right now for doctor still</p>
+
+<p>doctor has its own internal network</p>
+
+<p>that's a little different and doesn't</p>
+
+<p>work the same on Mac Windows and Linux</p>
+
+<p>so like you have something that works on</p>
+
+<p>Linux laptops you send it over your Mac</p>
+
+<p>laptops and it doesn't work there and</p>
+
+<p>you're like what's going on so that's</p>
+
+<p>vagrant it builds an entire copy of a</p>
+
+<p>virtual computer inside your computer so</p>
+
+<p>it's a little heavyweight but it let you</p>
+
+<p>have isolated environments you just</p>
+
+<p>delete it if you messed it up and you</p>
+
+<p>wouldn't affect your laptop docker</p>
+
+<p>is the same kind of thing but instead of</p>
+
+<p>having a full virtual environment with a</p>
+
+<p>full network card and sound card and USB</p>
+
+<p>ports and all that attached to it doctor</p>
+
+<p>kind of threw away all the things that</p>
+
+<p>that are not necessarily necessary for</p>
+
+<p>running a separate environment inside</p>
+
+<p>your environment and really messing up</p>
+
+<p>the technical part of it but this is</p>
+
+<p>what docker does it basically bundles up</p>
+
+<p>everything without all the junk that</p>
+
+<p>VirtualBox adds and to make like a</p>
+
+<p>completely virtualized computer another</p>
+
+<p>streaming simulation yeah and and it it</p>
+
+<p>also lets you do things like build</p>
+
+<p>layers on top of your docker images</p>
+
+<p>instead of instead of having to rebuild</p>
+
+<p>a entire machine every time you can just</p>
+
+<p>say like I just want to change out the</p>
+
+<p>codebase in my docker container</p>
+
+<p>in the real world a lot of times they're</p>
+
+<p>very similar in the way that you build</p>
+
+<p>things if you do it all custom but</p>
+
+<p>docker is faster usually for getting</p>
+
+<p>things set up because a lot of times the</p>
+
+<p>things you need already pre-built</p>
+
+<p>and you don't have to install things</p>
+
+<p>yourself it's much my spilled sugar just</p>
+
+<p>changed racket sometimes it's that fast</p>
+
+<p>and then another thing that I Kris was</p>
+
+<p>asking me do I want to leave this n do I</p>
+
+<p>not I wanted to talk a little bit about</p>
+
+<p>composure even though it's not strictly</p>
+
+<p>part of a local development environment</p>
+
+<p>but I think that in the next year or two</p>
+
+<p>it's been a long journey for Drupal 8</p>
+
+<p>and composer to be friendly with each</p>
+
+<p>other in the beginning it was really</p>
+
+<p>rough and there is a session at Drupal</p>
+
+<p>con last year that kind of showed a lot</p>
+
+<p>of different things that people are</p>
+
+<p>having trouble with and a lot of those</p>
+
+<p>things are not like how do you get</p>
+
+<p>nodejs stuff in your drupal project for</p>
+
+<p>front-end development and how do you how</p>
+
+<p>do you get custom modules and how do you</p>
+
+<p>integrate patches from Drupal core and</p>
+
+<p>things like that a lot of those issues</p>
+
+<p>have been ironed out but one thing that</p>
+
+<p>I think will be happening over the next</p>
+
+<p>year or two is environment like your</p>
+
+<p>local environment will be a dependency</p>
+
+<p>of your project so you know when you</p>
+
+<p>build a new project instead of</p>
+
+<p>downloading Drupal VM or downloading dev</p>
+
+<p>desktop or downloading lando and then</p>
+
+<p>like downloading Drupal code and then</p>
+
+<p>downloading other things you'll just</p>
+
+<p>create a composer Drupal project like</p>
+
+<p>say I want a new Drupal project and I</p>
+
+<p>want to use Drupal VM and then it will</p>
+
+<p>all just kind of magically wire itself</p>
+
+<p>together composer can do all this stuff</p>
+
+<p>and it makes it a lot more simple to get</p>
+
+<p>up and running and Drupal VM the next</p>
+
+<p>version will be a composer plugin so</p>
+
+<p>it'll literally be you have a Drupal</p>
+
+<p>project and you want to add Drupal VM</p>
+
+<p>you say composer</p>
+
+<p>head plug-in or whatever</p>
+
+<p>rupal p.m. and then it will configure</p>
+
+<p>everything for you and you can modify it</p>
+
+<p>if you want but it'll make it easier to</p>
+
+<p>integrate the local environment with</p>
+
+<p>your project without having to do a</p>
+
+<p>bunch of things like move files around</p>
+
+<p>or download something yes yes sir yeah</p>
+
+<p>this was always a question you know and</p>
+
+<p>again this goes back through the Windows</p>
+
+<p><br>
+projects together together and</p>
+
+<p>separately where the customer</p>
+
+<p>development team has windows developers</p>
+
+<p>with seven or ten and there it is</p>
+
+<p>there's a number of factors that go into</p>
+
+<p>it</p>
+
+<p>you know the skillset of the developer</p>
+
+<p>how advanced of a Drupal developer they</p>
+
+<p>actually are you know were they coming</p>
+
+<p>from a for example dotnet or ASP</p>
+
+<p>background or are they and they've been</p>
+
+<p>doing Drupal development for a while as</p>
+
+<p>well as the complexity of the site is</p>
+
+<p>there a lot of custom work that's been</p>
+
+<p>done that's been added as opposed to my</p>
+
+<p>site that's been built mostly in</p>
+
+<p>contributed modules we've seen kind of</p>
+
+<p>both ends of the spectrum where we came</p>
+
+<p>into one customer that was initially</p>
+
+<p>Windows now they're doing all the</p>
+
+<p>development on Macs they halfway through</p>
+
+<p>the project they said forget it we're</p>
+
+<p>just getting max it's way easier running</p>
+
+<p>the numbers the time spent to debug the</p>
+
+<p>environments in Windows it was cheaper</p>
+
+<p>to buy brand new Macs for the dollar</p>
+
+<p>amount and you have to look at it that</p>
+
+<p>way</p>
+
+<p>you laugh but when I run the numbers and</p>
+
+<p>I put it in front of the decision maker</p>
+
+<p>it's a very clear decision there's</p>
+
+<p>issues about you know network in IT</p>
+
+<p>security whatever the if especially if</p>
+
+<p>it's a larger enterprise but generally</p>
+
+<p>they can be accommodating equally</p>
+
+<p>present is the situation where customers</p>
+
+<p>have Windows developers like I said</p>
+
+<p>they're Windows 10 they're savvy they</p>
+
+<p>can they can manage they have it down</p>
+
+<p>they have a solution they're using</p>
+
+<p>docker they're using VM</p>
+
+<p>Drupal VM and it works you know as long</p>
+
+<p>as things don't break right</p>
+
+<p>the major PHP release or change in we</p>
+
+<p>BLT sometimes that you have to go back</p>
+
+<p>and reconstruct everything but that's</p>
+
+<p>healthy progress I'm gonna let you talk</p>
+
+<p>more about that yeah have you had a</p>
+
+<p>question first why don't they just put</p>
+
+<p>arch on their workstations she's being</p>
+
+<p>an art role I spent a lot of time</p>
+
+<p>working on Windows support and Drupal VM</p>
+
+<p>probably three four hundred hours at</p>
+
+<p>this point and I I bought with my</p>
+
+<p>personal money not their money a PC</p>
+
+<p>laptop just to be able to test these</p>
+
+<p>things like as I said you're not going</p>
+
+<p>to get that level of support from most</p>
+
+<p>projects and I don't even know why I did</p>
+
+<p>I think I did that because I actually</p>
+
+<p>started on Windows 10 no windows 8 a few</p>
+
+<p>years ago with one of my first bigger</p>
+
+<p>Drupal projects and so I felt the pain</p>
+
+<p>and I has this yes attraction the pain I</p>
+
+<p>guess I don't know but you know just</p>
+
+<p>realize that going into it and you know</p>
+
+<p>if you're on Windows and you you don't</p>
+
+<p>have the resources and your team to do</p>
+
+<p>DevOps things or have people that can</p>
+
+<p>debug issues and things like that it</p>
+
+<p>could be it could be painful enough that</p>
+
+<p>you might want to consider getting a Mac</p>
+
+<p>or installing Linux on one of the pcs or</p>
+
+<p>doing something like that yeah yeah</p>
+
+<p>that's obviously you know a cheaper</p>
+
+<p>alternative and especially if you're a</p>
+
+<p>small shop and it is not an easy thing</p>
+
+<p>to do going the virtual route is</p>
+
+<p>probably a better solution or do Arch</p>
+
+<p>Linux</p>
+
+<p>all right last topic down if we don't</p>
+
+<p>want to still cover got a we got a</p>
+
+<p>minute or two yeah we have a couple</p>
+
+<p>minutes I'll just run through it really</p>
+
+<p>quick some of the development</p>
+
+<p>environments have their own kind of</p>
+
+<p>integration set up for deploying things</p>
+
+<p>to production or they have integrations</p>
+
+<p>like aqua TLT integrates with Drupal VM</p>
+
+<p>so that you can do some stuff on local</p>
+
+<p>and then you run a command and it pushes</p>
+
+<p>it up to Okwe cloud</p>
+
+<p>you could probably modify it to push to</p>
+
+<p>other places I know Lando has like</p>
+
+<p>recipes for aqua cloud and for Pantheon</p>
+
+<p>and a few others platform maybe and they</p>
+
+<p>make it easier to do those kind of</p>
+
+<p>things and so that's something to</p>
+
+<p>consider when you're looking at these</p>
+
+<p>tools like if your hosting provider</p>
+
+<p>really recommends one you might want to</p>
+
+<p>use that just to make life easier for</p>
+
+<p>you as long as it solves all your other</p>
+
+<p>needs too yeah please don't fix your</p>
+
+<p>code on production anyway that's it yeah</p>
+
+<p>so let's open it up to questions maybe</p>
+
+<p>I'm sure you have questions sure sir</p>
+
+<p>yeah reason I don't use arch and</p>
+
+<p>I used to have a real job until I got</p>
+
+<p>fired for being bold we can't not quit</p>
+
+<p>my practice and I do windows DevOps for</p>
+
+<p>remember small businesses</p>
+
+<p>IBM's definition of a small business is</p>
+
+<p>under a hundred million dollars a</p>
+
+<p>thousand play something might</p>
+
+<p>the IDS therefore I ve got your wet dev</p>
+
+<p>ops team and everything else so I know</p>
+
+<p>how to do DevOps and they need Windows</p>
+
+<p>and I could give lots of reasons why</p>
+
+<p>they don't like Windows but my clients a</p>
+
+<p>small business they went around quick</p>
+
+<p>they went around Auto cam they have no</p>
+
+<p>choice but a Windows entire yep</p>
+
+<p>so my Davone machines our windows so</p>
+
+<p>that's a majority of my practice and</p>
+
+<p>then the lightweight Drupal developer</p>
+
+<p>and I really thought dev desktop was</p>
+
+<p>great at Windows</p>
+
+<p>the only problem with it is sometimes it</p>
+
+<p>goes out to lunch and you got to restart</p>
+
+<p>it and sometimes you got to reboot</p>
+
+<p>and one time when it was a really</p>
+
+<p>inconvenient time not even rebooting</p>
+
+<p>after I've made a minor change to a</p>
+
+<p>theme from the Drupal you simple Drupal</p>
+
+<p>web page nothing what happens it was</p>
+
+<p>completely dead then they started</p>
+
+<p>looking around and I found a lot of</p>
+
+<p>people who agree that patchy is a piece</p>
+
+<p>of crap and PHP works really well it had</p>
+
+<p>issues in version 5 that were worse than</p>
+
+<p><br>
+and EP 7 works my sequel works before</p>
+
+<p>the five seven twenty installer if you</p>
+
+<p>try to install Windows my sequel it did</p>
+
+<p>not install all of the DLL that it</p>
+
+<p>needed sometimes it's all wrong ones but</p>
+
+<p>you could work around that and once you</p>
+
+<p>got it installed it worked and the</p>
+
+<p>current five seven twenty it's all it</p>
+
+<p>does work so PHP and my sequel work the</p>
+
+<p>only problem is the number of people all</p>
+
+<p>agree that Apache it doesn't work and a</p>
+
+<p>number of other people said that I asked</p>
+
+<p>is the old</p>
+
+<p>the web server that does work on videos</p>
+
+<p>so I looked into it there is a website</p>
+
+<p>called Drupal 8 and Windows is something</p>
+
+<p>like that yep and they document how to</p>
+
+<p>get iis to work and I had some good</p>
+
+<p>results of that I did not know about</p>
+
+<p>Drupal vml give that a try yeah okay so</p>
+
+<p>you sound like in advance</p>
+
+<p>well not advanced but not a beginner</p>
+
+<p>developer I use a bit advanced beginner</p>
+
+<p>DevOps guy and a beginner so I skew you</p>
+
+<p>to pass the and I'm sure Jeff will back</p>
+
+<p>me on this I'd say you've probably read</p>
+
+<p>them past dev desktop and to try Drupal</p>
+
+<p>VM my other question is is the</p>
+
+<p>importance of mimicking the server</p>
+
+<p>environment in your local is running ISS</p>
+
+<p>what is your what's the actual site</p>
+
+<p>living on is that on that when do the</p>
+
+<p>service ventilator server bright</p>
+
+<p>matching my sequel and PHP seems to work</p>
+
+<p>and</p>
+
+<p>I guess doesn't have an HD access yeah</p>
+
+<p>yes there's a there's a lot of minor</p>
+
+<p>configuration then but once you get</p>
+
+<p>momentum that is to to do PhD which is</p>
+
+<p>that yeah it's pretty easy okay I've had</p>
+
+<p>trivial reconfiguration that was a pious</p>
+
+<p>moving from IAS to Apache as long as I</p>
+
+<p>have the right version of my sequel and</p>
+
+<p>PHP and that's something we didn't</p>
+
+<p>really cover too much in this</p>
+
+<p>presentation but there are a large</p>
+
+<p>number of developers who basically do</p>
+
+<p>run everything local like there's a guy</p>
+
+<p>that aqua who always like he's always</p>
+
+<p>making fun of Drupal the end because</p>
+
+<p>he's like why not just install Apache on</p>
+
+<p>your Mac and when I'm just gonna solve</p>
+
+<p>this it's like yeah I did in Drupal 6</p>
+
+<p>not now yeah yeah it does it does work</p>
+
+<p>what you do run into issues where</p>
+
+<p>sometimes there might be something like</p>
+
+<p>HD access could cause issues we need to</p>
+
+<p>play to production and you have a</p>
+
+<p>difference in your I asked configuration</p>
+
+<p>right that you know you didn't you</p>
+
+<p>didn't notice but if you're if you're a</p>
+
+<p>developer who can manage it it's not the</p>
+
+<p>end of the world if you're on a large</p>
+
+<p>team of developers and you're the only</p>
+
+<p>one doing it that's it that's one case</p>
+
+<p>where it can be a major problem and you</p>
+
+<p>know sometimes we're like look you know</p>
+
+<p>get in line we have five developers</p>
+
+<p>they're all using this thing none of</p>
+
+<p>them have a problem you have tons of</p>
+
+<p>problems you're doing your very</p>
+
+<p>customized setup just use the same thing</p>
+
+<p>as everyone else okay hey I don't have</p>
+
+<p>this problem anymore you know so but if</p>
+
+<p>you know for me I if if I weren't as</p>
+
+<p>much in the DevOps I'd probably just had</p>
+
+<p>like ma'am or doom you know</p>
+
+<p>do a local environment thing if I were</p>
+
+<p>just doing a site or two since I work at</p>
+
+<p>aqua and we do tons of sites and I'm</p>
+
+<p>always switching things I have to use</p>
+
+<p>either a VM or docker because otherwise</p>
+
+<p>I just want some my computer all the</p>
+
+<p>time as opposed to a solo show</p>
+
+<p>yeah weird someone say exactly it's a</p>
+
+<p>big difference and I you mentioned</p>
+
+<p>windows subsystem for Linux is growing</p>
+
+<p>this really impressive now it does have</p>
+
+<p>some issues and fall creators up they</p>
+
+<p>removed the word beta from its title but</p>
+
+<p>it still has some issues it's still paid</p>
+
+<p>up exactly yeah although some day it</p>
+
+<p>might be there's a bunch of real smart</p>
+
+<p>people we're gonna yeah yes yeah I'm</p>
+
+<p>serving out that's good that's just the</p>
+
+<p>time in it I know first of all think</p>
+
+<p>these types of data analysis is great</p>
+
+<p>especially your own here you can see</p>
+
+<p>trends did you um I don't think I saw</p>
+
+<p>something in it but we didn't you know</p>
+
+<p>ask but hosting provider makeup they</p>
+
+<p>know I didn't ask time hosting provider</p>
+
+<p>and my question was do you use dev stage</p>
+
+<p>and prize you know that's another</p>
+
+<p>question is it because I know like</p>
+
+<p>there's like high correlation for my</p>
+
+<p>pants and catalogs yeah in fact the</p>
+
+<p>question I asked earlier which is do you</p>
+
+<p>fit both what were some is of buckets</p>
+
+<p>and therefore find a toilet</p>
+
+<p>investments across them you know having</p>
+
+<p>come from an agency sometimes the client</p>
+
+<p>it takes that you got these awkward I</p>
+
+<p>got these my garden you can oh yeah I'd</p>
+
+<p>be very curious to see if you were able</p>
+
+<p>to tease out so no you can't return the</p>
+
+<p>survey this year</p>
+
+<p>no no but for future yeah that's good I</p>
+
+<p>appreciate it that's good and then if</p>
+
+<p>anybody else has any questions or</p>
+
+<p>feedback you want to pass along please</p>
+
+<p>please let me know also if you know of</p>
+
+<p>anybody who hasn't taken a survey</p>
+
+<p>between now and Nashville in a couple</p>
+
+<p>weeks low note as well I'm going to</p>
+
+<p>continue aggregating up for the next few</p>
+
+<p>weeks you</p>
+
+<p>yeah yeah I'll post them so when once</p>
+
+<p>the recording is done I go back and</p>
+
+<p>transcribe slides in that that slides</p>
+
+<p>and I'll put the details in the PDF will</p>
+
+<p>be posted on the mid campsite great</p>
+
+<p>question I give you the question so this</p>
+
+<p>might be out of the scope of what you're</p>
+
+<p>not much today in general I'm someone</p>
+
+<p>who's pretty muted rupal so if you have</p>
+
+<p>any recommended tools for debugging so</p>
+
+<p>these can be things either in the</p>
+
+<p>browser or modules you can add on to a</p>
+
+<p>Drupal install that you would recommend</p>
+
+<p>like beckoned yes yeah right so you're</p>
+
+<p>building a custom module is not working</p>
+
+<p>or you don't know what variable is give</p>
+
+<p>access to and what do you recommend the</p>
+
+<p>name of the game is X debug and it's it</p>
+
+<p>integrates with phpstorm sublime texts</p>
+
+<p>and other things so that you can</p>
+
+<p>basically save a file go to the page</p>
+
+<p>refresh it and it'll pop up all the</p>
+
+<p>debugging information</p>
+
+<p>Austin's set breakpoints and stuff</p>
+
+<p>Drupal VM supports a box lando does</p>
+
+<p>almost all the major ones do now some of</p>
+
+<p>them might not that it's if you need to</p>
+
+<p>install on your own it's not too hard</p>
+
+<p>it's a PHP extension you install yeah</p>
+
+<p>but that's an industry standard what you</p>
+
+<p>call yeah every it's whatever</p>
+
+<p>okay yeah you're doing theming work for</p>
+
+<p>brandy other question sir yes that's</p>
+
+<p>mostly because I so the Drupal VM backer</p>
+
+<p>stuff is very selfishly developed just</p>
+
+<p>for me I wanted a quick Drupal</p>
+
+<p>environment that I could build like I</p>
+
+<p>have twenty something personal sites and</p>
+
+<p>small business things from way before</p>
+
+<p>aqua at time that I maintain still most</p>
+
+<p>one Drupal 7 and I wanted to have like</p>
+
+<p>literally like docker compose up and</p>
+
+<p>three seconds later I'm doing</p>
+
+<p>development because I painted the whole</p>
+
+<p>like spending five minutes waiting to be</p>
+
+<p>able to make one change to a theme or</p>
+
+<p>update one module and check it so that I</p>
+
+<p>mainly developed it for my personal use</p>
+
+<p>doing that but it does have support for</p>
+
+<p>building one container with all of your</p>
+
+<p>customizations and then you can either</p>
+
+<p>stay that container or if your team like</p>
+
+<p>put it up on docker or put it somewhere</p>
+
+<p>where you can share it but that's one</p>
+
+<p>thing a little different with Drupal</p>
+
+<p>vm's approach as to many of the other</p>
+
+<p>approaches it's like one VM one</p>
+
+<p>container with everything so you have</p>
+
+<p>like a 500 megabyte</p>
+
+<p>or megabyte container with some of the</p>
+
+<p>other 20 containers or seven containers</p>
+
+<p>one for PHP one for my sequel one for</p>
+
+<p>something else</p>
+
+<p>technically speaking to other approaches</p>
+
+<p>more doctor-like and all that but in my</p>
+
+<p>opinion if you're not running docker in</p>
+
+<p>production there's no reason to make</p>
+
+<p>things more complicated than they have</p>
+
+<p>to be that's just my personal opinion</p>
+
+<p>and many people attacked me for it</p>
+
+<p>keep it simple I build things that work</p>
+
+<p>and I do things that are easy to</p>
+
+<p>maintain and sometimes those things</p>
+
+<p>don't reflect the exact perfection that</p>
+
+<p>some people envision with docker</p>
+
+<p>yes yep if you're running a website for</p>
+
+<p>six years you don't want to have to</p>
+
+<p>spend you know hours every year every</p>
+
+<p>time the Packer updates a major version</p>
+
+<p>redoing all the networking because</p>
+
+<p>everything changed again does that</p>
+
+<p>change the cover that's why you're here</p>
+
+<p>any other questions does this first</p>
+
+<p>thing my group backer and Windows does</p>
+
+<p>it work it works pretty well that the</p>
+
+<p>only thing that sometimes Cantore off is</p>
+
+<p>the networking it's the same thing with</p>
+
+<p>the Mac doctor was backers built on</p>
+
+<p>Linux stuff right I think things that</p>
+
+<p>are essential to parts of Linux see</p>
+
+<p>groups and things like that in jails and</p>
+
+<p>all that Windows doesn't have that out</p>
+
+<p>of the box so docker builds its own</p>
+
+<p>little virtualization layer and then</p>
+
+<p>does docker stuff inside of it same</p>
+
+<p>thing on a Mac so the main difference</p>
+
+<p>that you'll find between Mac Linux and</p>
+
+<p>Windows is when you do networking and do</p>
+
+<p>IP addresses and things like that if you</p>
+
+<p>try doing some of that stuff you'll find</p>
+
+<p>that it behaves differently and</p>
+
+<p>but actually running a docker container</p>
+
+<p>is pretty simple Madeline windows</p>
+
+<p>running most of these environments works</p>
+
+<p>out of the box but like I said some of</p>
+
+<p>them have no support for Windows yeah so</p>
+
+<p>you know they don't even have</p>
+
+<p>instructions for if you're on Windows</p>
+
+<p>download windows or docker for Windows</p>
+
+<p>they just say like if you're on Mac do</p>
+
+<p>this and try and Linux do that right</p>
+
+<p>okay I guess you don't care most most of</p>
+
+<p>the tools that we've had in the survey</p>
+
+<p>or docker based it seems like the world</p>
+
+<p>is kind of moving that way just because</p>
+
+<p>it's usually faster easier quicker and</p>
+
+<p>kind of like in Drupal 8 we have like a</p>
+
+<p>thousand libraries and dependencies we</p>
+
+<p>throw into something to make it easier</p>
+
+<p>of a docker you can just take</p>
+
+<p>everybody's potentially an insecure</p>
+
+<p>infrastructure code and just throw it in</p>
+
+<p>the container and put it out there if</p>
+
+<p>you do docker in production it's a lot</p>
+
+<p>different story than that current</p>
+
+<p>culture environments</p>
+
+<p>awesome alright</p>
+
+<p>[Applause]</p></div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-48497a9d1539590e5b38512843d6a97d4c87e679f677d1eb0cde227c8095801c">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/69">https://mid.camp/69</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+  <section class="map-banner">
+      <div class="views-element-container block block-views block-views-blockevent-venue-block-1" id="block-hatter-views-block-event-venue-block-1">
+  
+    
+      <div><div class="container view view-event-venue view-id-event_venue view-display-id-block_1 js-view-dom-id-8f9cfcfcd22aadd37298b105146b39e14c7186b0c0d79a3cf9ee5a085d264851">
+  
+    
+      
+      <div class="view-content">
+          <div class="views-row">
+
+
+<div class="map-overlay">
+  <span class="map__label">Location</span>
+  <h2 class="map__title"><span class="field field--name-title field--type-string field--label-hidden">DePaul University - Lincoln Park Student Center</span>
+</h2>
+  
+            <div class="field field--name-field-address field--type-address field--label-hidden field__item"><p class="map__address" translate="no">
+          2250 N Sheffield Ave. <br>
+            Chicago, IL 60614<br>
+  </p>
+</div>
+      
+  <a href="../venue/depaul-university-lincoln-park-student-center.html" class="cta-link--yellow">Learn more  <span class="cta-arrow"></span></a>
+</div>
+<div id='map' class="map"></div>
+</div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-9c239dd5ddbf30be2c3a91da5059cb38e1fc3b70dc97cdaf50b02c9972848f58">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/pantheon.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-11/pantheon.png" width="500" height="157" alt="Pantheon" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/acquia.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-02/Acquia_no_tagline.png" width="450" height="94" alt="Acquia" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/platformsh.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-02/platform.png" width="400" height="79" alt="Platform.sh" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#81e8efe7eec1ece8e5e2e0ecf1afeef3e6"><span class="__cf_email__" data-cfemail="deb7b0b8b19eb3b7babdbfb3aef0b1acb9">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/69","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_llBcjrkrgAu2wT1DR7VGL_iP6geJyiTnF_8O5ZD57VI.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJxLz89Pz0mNT8xLzKksyUwu1k9HE9DJSCwpSS3ST8_JT0rM0c2CC-QmFiTlVwAAPmAZQA"></script>
+<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.js"></script>
+<script src="../../sites/default/files/js/js_pODGOpSPRR3Y_Zt-7Fy-5B_pNv18oFAWhyhwUPCQZu4.js%3Fscope=footer&amp;delta=2&amp;language=en&amp;theme=hatter&amp;include=eJxLz89Pz0mNT8xLzKksyUwu1k9HE9DJSCwpSS3ST8_JT0rM0c2CC-QmFiTlVwAAPmAZQA"></script>
+
+  </body>
+</html>

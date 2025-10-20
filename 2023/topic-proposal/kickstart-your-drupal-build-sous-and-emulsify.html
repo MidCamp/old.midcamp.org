@@ -1,0 +1,763 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="In this session, we’ll walk through the steps of starting a new Drupal site based on the Sous project, customizing the starter theme, and adding a new paragraph component to the site. Along the way we’ll give a tour of what’s included with each system (Sous and Emulsify) and discuss the pros and cons of using these tools as a foundation for your Drupal build. Participants will leave with a shiny new site installed locally that they can continue to expand and experiment with." />
+<link rel="canonical" href="kickstart-your-drupal-build-sous-and-emulsify.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Kickstart Your Drupal Build with Sous and Emulsify | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Kickstart Your Drupal Build with Sous and Emulsify | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_gt5LiAM1qLGUH5e845uOb7R_lJ9dUwTXmnhGDR2yY20.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OgzAMgy8E7ZFQSg1UShrUdDB2-lX87GUviZ0vkj0ymR0-kKEbLz0l_mmBGc2wx2eNjWlBU0WI0wfdQrWi-Jk1EPej2XMRWoO-OzusQq6ILUXoAAmIw5TA0RfYqtnShv6E7QW7-XM.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_QAC1R0aFoF1mIVQtLAaSE24B2iwnT2ZCa0cZDeZsPV0.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OgzAMgy8E7ZFQSg1UShrUdDB2-lX87GUviZ0vkj0ymR0-kKEbLz0l_mmBGc2wx2eNjWlBU0WI0wfdQrWi-Jk1EPej2XMRWoO-OzusQq6ILUXoAAmIw5TA0RfYqtnShv6E7QW7-XM.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OgzAMgy8E7ZFQSg1UShrUdDB2-lX87GUviZ0vkj0ymR0-kKEbLz0l_mmBGc2wx2eNjWlBU0WI0wfdQrWi-Jk1EPej2XMRWoO-OzusQq6ILUXoAAmIw5TA0RfYqtnShv6E7QW7-XM.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OgzAMgy8E7ZFQSg1UShrUdDB2-lX87GUviZ0vkj0ymR0-kKEbLz0l_mmBGc2wx2eNjWlBU0WI0wfdQrWi-Jk1EPej2XMRWoO-OzusQq6ILUXoAAmIw5TA0RfYqtnShv6E7QW7-XM.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+<link rel="stylesheet" media="all" href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.css" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="kickstart-your-drupal-build-sous-and-emulsify.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-midcamp2023navigation-menu" id="block-midcamp2023navigation" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-midcamp2023navigation-menu">MidCamp 2023 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" data-drupal-link-system-path="node/6857">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--by-the-numbers">
+        <a href="../../2020/about/by-the-numbers.html" data-drupal-link-system-path="node/6252">By the Numbers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--venue">
+        <a href="../../about/venue.html" title="Venue" data-drupal-link-system-path="node/7048">Venue</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../speaker-resources.html" data-drupal-link-system-path="node/345">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--health--safety">
+        <a href="../health-safety.html" data-drupal-link-system-path="node/6973">Health &amp; Safety</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../about/lunch-options.html" data-drupal-link-system-path="node/6970">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--volunteer-opportunities">
+        <a href="../article/volunteer-help-midcamp.html" data-drupal-link-system-path="node/6975">Volunteer Opportunities</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" data-drupal-link-system-path="2023/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--travel">
+        <a href="../about/travel.html" data-drupal-link-system-path="node/6865">Travel</a>
+            </li>
+          <li class="primary-nav__sublist-item item--accommodations">
+        <a href="../about/accommodations.html" data-drupal-link-system-path="node/6948">Accommodations</a>
+            </li>
+          <li class="primary-nav__sublist-item item--registration">
+        <a href="../register.html" data-drupal-link-system-path="node/6977">Registration</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" data-drupal-link-system-path="node/6860">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--sponsor">
+        <a href="../sponsor-midcamp.html" data-drupal-link-system-path="node/6858">Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" data-drupal-link-system-path="node/6859">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--hybrid-sessions">
+        <a href="../schedule/hybrid.html" data-drupal-link-system-path="node/7053">Hybrid Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-wed">
+        <a href="../schedule/wednesday.html" data-drupal-link-system-path="2023/schedule/wednesday">Sessions (Wed)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-thu">
+        <a href="../schedule/thursday.html" data-drupal-link-system-path="2023/schedule/thursday">Sessions (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--birds-of-a-feather-bofs">
+        <a href="../schedule/bofs.html" data-drupal-link-system-path="node/7054">Birds of a Feather (BoFs)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--contribution-day-fri">
+        <a href="../schedule/friday.html" data-drupal-link-system-path="2023/schedule/friday">Contribution Day (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--topic-tracks">
+        <a href="../../topic-tracks.html" data-drupal-link-system-path="node/10">Topic Tracks</a>
+            </li>
+          <li class="primary-nav__sublist-item item--all-sessions">
+        <a href="../schedule/sessions.html" data-drupal-link-system-path="2023/schedule/sessions">All Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--session-submission">
+        <a href="../submit-session.html" data-drupal-link-system-path="node/14">Session Submission</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2023/news">News</a>
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../../jobs.html" data-drupal-link-system-path="jobs">Jobs</a>
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2023.html" hreflang="en">MidCamp 2023</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-midcamp2023schedulenav" class="block block-block-content block-block-contente066b47a-a80d-432a-8edd-6c60b28b7c95">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><div class="schedule__nav">
+<p><a href="../schedule/hybrid.html">Hybrid</a>&nbsp;|&nbsp;<a href="../schedule/wednesday.html">Wednesday</a> | <a href="../schedule/thursday.html">Thursday</a> | <a href="../schedule/friday.html">Friday</a></p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Kickstart Your Drupal Build with Sous and Emulsify</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="6921" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2023-04-27T15:30:00Z" class="datetime">Thursday, 10:30 am CDT</time>
+ - <time datetime="2023-04-27T16:30:00Z" class="datetime">Thursday, 11:30 am CDT</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-81" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-name field--type-string field--label-hidden field__item">Room 314A</div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>In this session, w<span><span><span><span><span><span>e’ll walk through the steps of starting a new Drupal site based on the Sous project, customizing the starter theme, and adding a new paragraph component to the site. Along the way we’ll give a tour of what’s included with each system (Sous and Emulsify) and discuss the pros and cons of using these tools as a foundation for your Drupal build. Participants will leave with a shiny new site installed locally that they can continue to expand and experiment with.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Sous is a starter project for Drupal that is managed with Composer. It includes a set of contrib modules and starter configuration for media that is commonly used in site builds. Developers can hit the ground running with a basic setup that follows Four Kitchens’ standards and best practices. It also includes a custom starter theme generated from Emulsify.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Emulsify is an open-source tool for creating design systems with reusable components and clear guidelines for teams. It integrates nicely with Drupal and allows you to decouple front-end and back-end development while maintaining consistent and accessible design patterns.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>This is a great introduction for anyone who is interested in learning about:</span></span></span></span></span></span></p>
+
+<ul>
+	<li><span><span><span><span><span><span>Drupal starter projects</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>Component-driven themes</span></span></span></span></span></span></li>
+</ul>
+
+<p><span><span><span><span><span><span>This session will be facilitated by technical strategists and engineers from Four Kitchens.</span></span></span></span></span></span></p>
+
+<p><strong><span><span><span><span><span><span>Come to our BoF</span></span></span></span></span></span></strong></p>
+
+<p><span><span><span><span><span><span>Join us at our BoF at 1:45 where we will have a hands-on workshop we will wire a component together!</span></span></span></span></span></span></p>
+
+<p><span><span><span><strong><span><span>Synopsis</span></span></strong></span></span></span></p>
+
+<p><span><span><span><span><span><span>Participants will start a new Drupal site with Sous, customize base elements in the theme, and add and style a new paragraph component. </span></span></span></span></span></span></p>
+
+<p><span><span><span><strong><span><span>Prerequisites</span></span></strong></span></span></span></p>
+
+<ul>
+	<li><span><span><span><span><span><span>Working knowledge of composer-managed Drupal sites</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>Working knowledge of CSS,&nbsp; Twig, and YAML</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>To participate hands-on, a laptop with Git, Composer, Lando, and NPM installed</span></span></span></span></span></span></li>
+</ul></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/MeQYhdfUwxY?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-presenter-slides field--type-file field--label-above">
+    <div class="field__label">Presenter Slides</div>
+              <div class="field__item">
+<span class="file file--mime-application-pdf file--application-pdf"> <a href="../../sites/default/files/2023-04/MidCamp%202023%20Kickstart%20Your%20Drupal%20Build%20with%20Sous%20and%20Emulsify%20_1.pdf" type="application/pdf" title="MidCamp 2023 Kickstart Your Drupal Build with Sous and Emulsify _1.pdf">Download the slidedeck (PDF) to follow along</a></span>
+</div>
+          </div>
+
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Brian Goldstein, Laura Johnson, Amanda Luker, and Callin Mullaney</h4>
+
+      Senior Software Engineer
+
+
+          @
+              <a href="https://www.fourkitchens.com/">Four Kitchens</a>
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p>Brian Goldstein is a Technical Strategist, and Laura Johnson, Amanda Luker, and Callin Mullaney are Senior Software Engineers at Four Kitchens.</p></div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2023-04/fourkitchens-logomark-kitchenskelly-rgb-square-padded.png%3Fitok=9ikV4cDt" width="220" height="220" alt="Four Kitchens Logo" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Back-End</div>
+          <div class="field__item">DevOps</div>
+          <div class="field__item">Front-End</div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-feedback-form field--type-webform field--label-above">
+    <div class="field__label">Feedback Form</div>
+              <div class="field__item"><form class="webform-submission-form webform-submission-add-form webform-submission-session-feedback-form webform-submission-session-feedback-add-form webform-submission-session-feedback-node-6921-form webform-submission-session-feedback-node-6921-add-form" data-drupal-selector="webform-submission-session-feedback-node-6921-add-form" action="kickstart-your-drupal-build-sous-and-emulsify.html" method="post" id="webform-submission-session-feedback-node-6921-add-form" accept-charset="UTF-8">
+  
+    <div data-drupal-selector="edit-0" class="webform-message js-webform-message js-form-wrapper form-wrapper" id="edit-0"><div data-drupal-messages>
+    <div role="contentinfo" aria-label="Status message" class="messages messages--status">
+                  <h2 class="visually-hidden">Status message</h2>
+                    Sorry...This form is closed to new submissions.
+            </div>
+    </div>
+</div>
+<input autocomplete="off" data-drupal-selector="form-tk2u7vjies2hcu9xo3jri0nup6xe5cipq9icbgh48yo" type="hidden" name="form_build_id" value="form-TK2U7vJIeS2hCu9xO3JRI0NuP6xe5cIPQ9IcBGh48yo" />
+<input data-drupal-selector="edit-webform-submission-session-feedback-node-6921-add-form" type="hidden" name="form_id" value="webform_submission_session_feedback_node_6921_add_form" />
+<div class="url-textfield js-form-wrapper form-wrapper" style="display: none !important;"><div class="js-form-item form-item js-form-type-textfield form-type-textfield js-form-item-url form-item-url">
+      <label for="edit-url">Leave this field blank</label>
+        <input autocomplete="off" data-drupal-selector="edit-url" type="text" id="edit-url" name="url" value="" size="20" maxlength="128" class="form-text" />
+
+        </div>
+</div>
+
+
+  
+</form>
+</div>
+          </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>My name is Brian Goldstein. I'm a technical strategist at Four Kitchens. I am joined by my fabulous and incredibly more talented colleagues, Callin, Laura, and Amanda. Today, we're going to talk about the why and the how of kickstarting your Drupal Build with Sous and Emulsify. What we're going to go over today is, like I said, we're going to start with some of the more theoretical like the why we're doing this and why it solves some of the things that we find most irritating. I'm going to give a very, very brief introduction to the theory undergirding it, which is this idea of component-driven development. And then, like I said, my way more talented colleagues are going to actually step you through an example component development. Two things of a front matter before we get going. First, the slides are up on the session description page on the (UNKNOWN) site. If you want to follow along with the instructions, go ahead and download them. I believe there are PDF. The other thing is if you get stuck on any step, if you're following along or have difficulty with anything, we are having a birds-of-a-feather session.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Please come and join us. It's at 1:45 in one of the BOF rooms. So, I briefly mentioned who we are. For those of you who are not in attendance and are watching this later, Laura Johnson is a senior engineer, Callin Mullaney is also a senior engineer and Amanda is a senior Front End engineer. I'm a technical strategist and a passable Front End engineer. We'll use a lot of terms today. We're going to be throwing them around pretty fast and we won't have a stop and define them each time. But how we're using them today and what they mean in this context are Emulsify is the design system and component library tool that we're using. It is CMS agnostic. It is organized by the atomic design methodology and we're going to talk more about that later and how that fits into everything. And it uses storybook as our front-end workshop to build and test components independent from whatever CMS that you're working in. Sous is our starter kit for Drupal that comes with an Emulsify-based theme. So, if you use Sous, you have Emulsify there to use as well.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Last compound is a library of pre-built components. The component that we're going to be looking at as an example is one of the components that comes in compound. But we're going to give a lot of guidance toward the end of this presentation about best practices when you go to build your own more complicated components. So, let's talk about why we would use these tools in the first place. We all have lots of problems as Drupal devs, Drupal specifically, but like generally it's very complicated to build a website well these days. And what are some of those problems? The biggest one is, is that there's no good answer for all of these problems all the time. One size fits none. Let's say you want to work with higher ed clients. There are distributions out there in the Drupal community, but all of them are pretty bloated. Either they have more functionality than you need and you have to take things out or the front ends are all mess and that's just one vertical. You could look at any vertical and find the same thing.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Workflow Disconnect. Good luck fitting one of those distributions or any other pre-built things with like your CI or CD integrations. Good luck getting your staging environments and your production environments all synced up. Good luck getting your local setup to be smooth and efficient. Probably the hardest thing for me in my role as a technical strategist is getting everybody to call everything by the same name and having a lot of difficulty getting people to use terms not interchangeably to get to use accordion to mean an accordion. I've seen it referred to in one project as expendables, draws, items, labels, lists. And again, none of those are correct. But people and especially people who are non-technical will use them interchangeably. So, getting people simply to use the same naming convention at the same time is a huge problem that most systems don't even try to account for. And last, if you have a system that is really dependent on everybody working together well, it can be very herky-jerky.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>It certainly doesn't support agile methodology if you have to hand tickets back and forth between a front-end developer and a back-end developer or a site builder or a content editor. So, having a tool that allows work to progress along independent tracks is a huge, huge benefit. And that is why Sous and Emulsify solves so many problems. I'm going to talk about how they solve those problems right now. It makes minimal assumptions about what you'll need. Obviously, there's enough of a starting point. It comes with most of the modules that we use on every single project. Very common ones, common ones that we run into using a bunch, but we don't try to like overburden you. And on the front end, using Emulsify and Storybook, we give the option of using compound which comes with pre-built components. We don't make a ton of assumptions about the kinds of things that you'll need too. That's all up to you. But we give you a logical starting point and we're going to talk some about like a blank Sous and Emulsify install versus the demo one that we have today.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>There is a slight difference there, but my colleagues will talk about that. Workflow support. One of the best things about Sous now and going forward is how it fits in with CI tools like Tugboat, how it fits in with Pantheon, and how it fits in with spinning up multiple environments etc. So, it supports a modern development workflow. Integrating Storybook into Emulsify the way that we have provides a one-stop shop reference for your clients, for your designers, for your front-end and back-end engineers, and your technical strategist architect types like me to all agree on the same name and agree on the same things about that feature. So, it also provides a place to test things independent from the CMS itself, which is a very, very big concern and gets into my last reason why we use these tools in the first place. We can actually have separation of concerns and separation of efforts and that is going to improve accuracy, efficiency, and lets people work on things independent and agile from each other.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Real quick, I want to give a grounding in the theory behind why this all works together, and that's component-driven development. The why is or let's start with defining it. One of the problems we run into, I'm sure that the Drupal shop people in here can sympathize with is Drupal uses a lot of common terms in very specific ways. So, we have to be very air quoty when we say certain words like features or panels or stuff like that. Please note if you hear me say a Drupal term in this slide, I'm referring to it in a general colloquial sense, not the Drupal-specific sense. Basically, component-driven development is our way of looking at a site in terms of its constituent parts. They're air quotes, features, not the Drupal sense, the generic sense. And we do this so that we can make each feature as best as possible. Not every site needs every feature, not every site needs every version of every feature. One of the things we talk a lot about as tech strategists is this idea of simple, lovable, complete as a starting point, and then enhancing for that as it gets more complex for the needs of all.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And so this whole way of building sites is based around this idea that you can look at things as discrete components and then build those things separately well and with high quality. So, that's how these tools all support these things. And then why would we do it this way? Well, I've got a lot of reasons here, and I want to go deep on two of them. The first one says, clarity in user stories, acceptance criteria, and estimation. So, if you think about building out specifications for a site, you've got all your different features and you've got all your different stories for those features, you could write a feature as an eight-point (UNKNOWN). It has a back end, it has a front end, it has authoring experience requirements, etc. You could do it as one ticket and put all those user stories into one ticket and you could write all your acceptance criteria on it and you can say, OK, that's one point ticket and move on to the next feature. Or with component-driven development and with what Emulsifying Sous allow us to do is we can break that into two or three separate tickets that are smaller and easier than to break up user stories, break up acceptance criteria into smaller things, and easier to estimate.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Smaller tickets are easier to estimate. They're also simpler to test, and it makes it possible to include a little bit more nuance in your user stories. So, if your only concerned on a ticket is the front-end stuff or your only concern on the ticket, is the authoring experience or an architecture, you can test for that. And you might say, OK, why would I take a one eight-point ticket and turn it into three three-point tickets? Isn't that going to like cause story point bloat over time? You might argue that. I would argue that it makes each testing smaller, which makes it easier and simpler to do. And that'll increase your velocity over the course of a build. In our experience those things compound. So, you might end up with 100 three-point tickets as opposed to 40 eight-point tickets and net 20 story points over the course of the build. Something like that is really, really important. And again, you're not winning on any one ticket. You're winning over the whole build. So keep that in mind.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Lego complexity is the other one I wanted to talk about. I mentioned atomic design before and Callin can talk about this. Laura and Amanda can talk about this more in their sections. But basically, the idea is, is that atomic design takes a small thing and then builds on top of it. What Lego complexity is, is like taking the next logical step with that, which is if you go to like a Lego store, you can buy a set, get a distribution and it'll have all the pieces you need to build that thing. With this is we're giving you the pick a brick wall. And if you've ever been to the Lego Store, they have this giant wall where you can take these kinds of bricks and those kinds of bricks and those kinds of bricks and combine them in any way. So, we're giving you the best of all worlds with it, which is we allow you to make your own bricks, basically. And that's what Lego complexity really is about, is we give you the ability to build the tiny things, to build the bigger things in any way that you want.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So, this can take that feeling of every site feeling the same and instantly make it a lot more variable. This is something that Callin can show you or talk about from our Smith build right now and the different options that we've built into it. A ton of flexibility for content editors as well. When we do sprint demos now, it is remarkable to see clients' heads basically explode like, oh, I can do that with it. So, I've talked for a long time, probably longer than it actually takes to set up a Sous and Emulsify project. And on that note, I'm going to throw it over to my colleague Laura. Oh, gosh darn it. (CROSSTALK). Oh, shoot. It is this USB. There it goes. Here we go. We're back. Thank you, Brian. Little excitement into the mix. One of the things that I find really cool about Sous as a project at our agency is that not just back-end developers, but front-end developers and technical (UNKNOWN) are all kind of interested in it. I am a back-end developer and also a tech lead, so I'm going to sort of give you my perspective as a tech lead.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So, Sous is our starter project. It installs and configures a set of modules that we're using as the base for most of our projects. And tech leads one of the great things about it is that we've basically with a combination of composer create plus some scripts that we run, we can set up the entire thing with just one command. So, as a tech lead, you know, I can run this one command and it installs and configures all of my modules, installs media components, and I can basically take that entire thing, commit it to a repo, and it's just about ready for devs to start contributing to it. So, here is the command composer create. And so by the way, we have all of these commands listed and the resources at the back of the end of the slide deck, which is linked in the session description. So, if you would like to run it now and follow along, if you have Lando, you can go ahead and run it, give it a try yourself, and yeah. And again, we encourage you to come to the BOF where we're going to sort of do all together kind of wire components from scratch.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So, yeah, so there is the command composer create the name of the repository and project name. And it creates. So, when you run this, you'll see it install the C composer run, it installs all of the modules and then you'll see it run some scripts. So, it creates a new theme based on our Emulsify. The theme is whatever you call your project name, that's what your custom theme is going to be named, and you'll find that in the custom directory. Then we've got some additional commands that build Storybook and the whole thing runs and at the end, it will run (UNKNOWN) and will spit out a link that you can use to log in as the administrative user. And you're ready to go. If you're interested in checking out the scripts that we use to make all of it happen, you can take a look in the composer. We use the composer post create project command and you'll see the scripts listed there and you can check them out in the scripts directory. So, when you first run the first command, that is what you'll see.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>The one on the left is what we are basically using as a jumping-off point for new projects. So, they're like, we were looking at the, the, the custom theme that's based on Emulsify is very blank. And so that is where our front-end developers are going to come and create a whole new custom theme. It doesn't have any components in it like when you first set it up. We have a CLI that you can use with compound to either install all of the default content components or you can sort of pick and choose which you want. So, for the purposes of this demo and wiring up a component, we thought it'd be better if we actually had a more developed theme so that when we wire it, it actually looks like something and just this white blank screen. So, we created this lovely theme actually, Callin created it. And so we have another command Lando's Sous demo install that installs some default content. So, it installs some paragraphs and it installs some components from compound and it installs this demo theme.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And so that's basically where we used to jump off from in this demonstration. And now I'm going to pass it over to Amanda to talk about working through an example component. So, we're going to wire a text with media component. And also go over some pointers for how wiring in Drupal with Emulsify works. This component text with media it comes when you... It's one of the default components from compound our component library that we maintain and it's also a paragraph that installs by default with Sous. And this is what it looks like. This is what it will look like when we've wired it to Emulsify. It's a single image and a block of text. The image can be aligned right or left, and that's controlled by a field on the paragraph in Drupal. So, let's get started. Like we said before, you'll want to do Lambo compound install and then that installs the compound library. So, if you do install the compound library, it will give you all these great components to kind of like build off of and alter as needed.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>You can also build your own. It's just really nice to not have to create all these things that you use in every website from scratch so it gives you a good place to start. Once you've done that, you can run npm run theme watch and that will start your Storybook instance. Alan. Really quick. Is there a way we can install compound without having Lando on our machines? So, for instance, let's say we have some developers who like to use DDEV for local development or some other kind of local development process. I believe so. So, we set up Lando compound install just to make this simple single command that's easy to read and understand. There's also (UNKNOWN) into your Emulsify theme. You can run the Emulsify CLI command. I think its emulsified system install compound is the component library that we're using. So, this is just a (CROSSTALK). To make it easy for... There are other component libraries out there that (UNKNOWN) is working on. Yale has their own component library and we also in our contribution community check ins for Emulsify once a month, there's some other contributors that are using their own component libraries.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So, we want to be extensible. And these commands are run in the theme directory. The ones that we're showing here don't need to be run from the theme directory. These were kind of simplified just for this presentation. But yeah, like Callin said, Emulsify has a command line interface that you can run all these things from too. And when you run the setup process, it does reference those Emulsify commands as well. So, the output in your CLI, once you run the composer create command will kind of show you all these. But for these purposes, we just want to make some nice, easy commands that you can run from the project room. Great. So yes, once you run your theme watch, then it'll spit out this URL here. You can just visit your local host URL the big red arrow is pointing to and that will show you your Storybook instance. And just another reminder about the BOF today at 1:45 in case you have questions about this whole side of things. So, this is an example of what the Emulsify's Storybook instance would look like.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Right here we've got an example teaser. It's really nice because Storybook comes with these great tools for the front end. There's an accessibility tab which you can see down below and that will tell you right away if you've got any accessibility issues. You don't have to wait till you get to the Drupal side of things to catch those things. You can do it right from Storybook. It also comes with the controls tab. This is something you configure within your component, but it allows for different variations to be created, and then like even the client can toggle between a left and right-aligned image, for example. That's what Brian was talking about when clients are really wowed by what they're seeing and just in Storybook. So yeah, different colors, different layouts, those are a lot of different some of the different options that you can. Oh, and sometimes you can put a little field. There isn't an example in this picture, but you could put a text area where they could type in their own text to replace the text showing in the teaser, for example.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Working in Storybook. So, I've kind of been using Emulsify and Storybook interchangeably. Storybook is just kind of what it's like the workshop that Emulsify is built on top of, and it's organized in the atomic design structure. So, atoms, molecules, organisms built in that like building block methodology. We can use Storybook to build out everything starting from fonts, styles, colors, spacing, breakpoints, and then all the way up to being able to see a full page layout. It will just be like an example of what that will look like once you get to Drupal. So, in this instance, we're just going to be looking at a molecule, kind of a mid-level component and it'll contain a heading, a text, a link and media field. So, each Emulsify component contains a twig template. That's where your markup is. That's where your variables will live. Then you'll also see usually you'll see a Sass and a JavaScript file. Not necessarily JavaScript, but most of the time you'll have its own Sass file. Then there's a yml file.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Sorry, I skipped around there. Switched those two. The yml file will contain your example data. I'll show you an example in a second, but it's not data that's going to be used in the final product. It's just to show your example. And then there's a storyies.js file and that's where a lot of the kind of like puts the whole component together and allows you to declare your different variations. Great. So, this is the text with image twig file. An example of one. So, first, we're declaring the base class text with image. This is going to allow you to kind of with the BEM function just kind of like use it throughout the whole component. Next, we're setting some attributes for the component, like the image position data attribute for the position of the image. So, by default, it sets the left. That's something that you can change in your yml file or once you get to Drupal you'll be able to set that there, class names. And below that we've got our markup content. The heading, we're including a lower-level component, the heading.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And then, you know, those variables that are associated with that element and then the rest of it. You've got our text component is included and then an optional link is included. And then finally the image at the very end there, and that is wrapped with a twig block. And the reason why we do that is because we'll end up completely replacing that with the Drupal image component. You're not going to want to use the path to the image. You want to use the actual full image from Drupal and we'll get to more about why that's important later. And this is the yml file. Like I said, it's these are the variables for example only. It's kind of like just a placeholder content. And the stories.js file is a very simple version of it. You're just declaring the twig file, the yml file, and then naming it, and then putting them all together. There's a lot more that can be done here. Like I showed, you can put your controls and your variables to make it a lot more dynamic once you get to Storybook. And so this is what that looks like in Storybook.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>We've got the image on the left, title, text, and the link. So, we got it working in Storybook. The next part is to wire it in Drupal. I'm gonna hand it over to Callin. Cool. Thanks, Amanda. Alright, so let's get Drupal to render that component now that we've built it out in Storybook. So, we're going to go ahead and take a look at what we have in Drupal. So, the content architecture, we want to first verify that that's all in place and ready to go. In this instance we're using Sous relies on paragraphs for our content architecture specifically for components. So, here we have a simple text with image. We name our component in Storybook the same as our paragraphed entity here. And you can see the architecture for it's pretty simple. We have our formatted text fields, we have a media reference field, and then our simple select list for our alignment field that's a simple left and right select list. And then the next step here is we want to take a look at how the managed display options that are for this specific paragraph.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And we want to look at the field outputs that are happening here. You'll notice here that we're hiding all the labels. We say the formatted text field should just display by default. It's a default formatted option. We have our media SC set to render the actual media entity in a specific view mode that we've pre-set up that we want to show for this component specifically. You'll notice that the rendered view mode is set to paragraph text with image. That's just my naming convention that I like to use. I like the set media entity display mode labels to where the entity type and the bundle that I like to use them in. It helps me kind of keep things separated out and know exactly what image or what view mode is used where in the system. But you might have your own naming conventions that you can use. And then lastly, we have our media alignment, which if you remember, was just a simple text select list. For these fields that you might want to use as display options, it's best to use the key value, the key instead of the value.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>The value is what gets shown to the user. That can change in a future update pretty easily with just simply changing the configuration. But the key is a bit more stable. It's lowercase, there's no spacing characters in it and it's much harder to change down the line, especially if there's already content in the system. So, here's an example of if we were just to add content to that paragraph, we get kind of a not-great output by default from Drupal. So, we do rely on the core stable nine-core theme, which gives us the bare minimum we need to kind of render markup. But as you'll notice, we have a bunch of empty wrapping divs that don't have a class on them. The paragraph classes are somewhat useful, but they don't follow a BEM architecture and there are other markup in there that just it's hard to style. I could probably style this, but it would make my styling my Sass pretty ugly and probably pretty nested to try and get this working. So, let's wire this up to the component. Actually, before we do that, I want to just show the output to compare the output of what Amanda built previously.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So, you can see here that we do have I don't have a cursor. You can see that we have our BEM functions with text, with image that gets prefixed. We have our data attribute image position being added to the system and then our content section and our image section have nice unique classes using the BEM architecture or BEM class convention, thank you, that makes it easy for styles to be unique and target specific elements without worrying of my styling that I'm writing bleeding into other components that we don't want to affect. Alright. So, here we have our custom theme here. And we have our two directories that we need to worry about when it comes to wiring. So, as I mentioned at the top in Emulsify the components directory, this is our atomic design organizational structure. So, we have our atoms, molecules, and organisms. And that's kind of where that legal complexity that Brian mentioned earlier comes into play where atoms build into molecules, molecules built into organisms. The Drupal template files is probably something if you've done theming in Drupal before, you've seen that service.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>It's kind of loosely organized by entity type, although there's some miscellaneous stuff in there as well. This is Stable 9's way that they group them. You can organize your templates any way that you really want within Drupal still pick it up as long as they're named properly. And as well as when it comes to wiring, you might not want to wire every single template in the system. You might just want to target your paragraphs and wire them that way, or nodes or other custom entities. So, what we're going to do is we're going to wire this up. So, in our molecules folder, we have our text with image, that twig file that Amanda showed earlier. And then below that, we have our unique paragraph that we've built or that comes with Sous. So, our paragraph--text-with-media. So, it allows us to target our entity and then our entity bundle there based on the naming convention of that template. We're not doing any special template suggestions here to get that. That's just a standard output that you can get through Drupal's twig suggestions and their services that (UNKNOWN) you able.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So, you'll notice here in the first line we have a shorthand namespace molecules app molecules section. With Sous, we are pre-installing the components module. This allows us to namespace our components so it makes just referencing and embedding and including our components a bit easier and easier to read. So, instead of saying embed back out of this directory, go into components 02-molecules, and then dive into it, we can just namespace it to app molecules and reference our component that way. With that embed, we are then using the width property there to map our variables to the component. So, we have our text with image underscore text that gets mapped directly to our text, our formatted text field, and then we have our text with image position variable that gets mapped to the key value output of the media alignment field. You'll notice with that section there I am diving into that field to get the actual string value because that's what our component expects. If I just reference content.field media alignment, you would then get the field template being injected into your component.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So, you really just want to get the string value there. And again, because we're targeting the key, we're getting the value all lowercase, no spacing characters and that's unlikely to change in future updates with configuration. And then below that, we have our block that we're replacing and there we are actually outputting the entire field output from Drupal. We're not targeting the image URL or anything like that. We're just saying spit out that whole output. We always use responsive image styles in setting up a media output and what Drupal outputs with that responsive image style module is pretty solid markup and we tend to use that just to save a lot of time without making the need to create our own responsive image component. So, highly recommend you just use that output there. And once we do that we have a fully wired component. So, here we're looking at our Drupal front end. This is the demo front end here and we have now our markup. Instead of having all those extra divs with no classes and a lot of extra markups, we have our BEM function and our attributes, and all of our unique classes getting injected into our rendered from Drupal.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>But now our image is from the media library from Drupal, and this is the text that the content editor actually edits within Drupal itself. So, with that, so this was an example of a really simple component. It was a discrete object. We have an image, we have a block of text, and we have ways to adjust the display of that. But because, you know, websites often involve other complex components, I'll give you some tips here on how to handle some things like nesting or looping or other ways that you might have multiple entities affecting a single component. So, just to cover some of the twig names and functions that we are using, the blocks I mentioned earlier, these are replaceable chunks within your twig file. This is where you just say, I want to just output the content of this field and replace the image completely with what we were using from our yml file within Emulsify. Includes are probably the simplest way to reference another twig file. It just does include your component and you can do simple variable mapping with that.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Embeds are the most flexible and probably the most used. If you are doing wiring, not only can you do the variable mapping with the width property, but you can also replace blocks with embeds. And then extends are more of a parent-child template type of relationship generally used when you use an extend, you're essentially saying completely reuse this other component or other template and just replace the specific blocks of it. I tend to use these more for page layouts where I want to replace the entire header section with a specific component or something like that. So, when it comes to looping, this is something I see as a common problem for people when they start kind of getting into Emulsify and wiring templates. So, it's very tempting to treat your more complex component like a discrete object when splitting it up into multiple templates. It actually makes it much easier not only to read but to also manage. So, it's like I said, it's tempting to, you know, embed your component and then embed within an embed within and embed.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And it gets really complex if you start doing that. It's possible. I've seen it. I've done it myself, but it makes it really, really hard. And then you have this gigantic twig template file that you cannot affect anything because it's very brittle. It's looping through loops. So, in this example, this small example, here we have an accordion component, accordion component, we have our main heading, and then we have our accordion items. The accordion items are a reference field to another paragraph we call the accordion item that we want to basically loop through. Now, I could, instead of replacing the block and rendering the entire field, I could embed within an embed and try and draw out those specific fields from that sub-entity. But you'll see here that we just have a seven-line template file just for the accordion itself. And we're just saying, hey, reference field, just render out those accordion items. And if we look at why I'm doing that, what we've done here is we have this intermediate step where we have the content accordion item field prints its own field template, the field template by default from stable nine already does the looping for you.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So, if it's a multi-value field, which in this case it would be, it's going to loop for you and we're just going to let it do its thing. So, we're going to print the whole field value. And then for the paragraph accordion item entity in a separate template, we just map the partial accordion item and that's where we have our variables that we can just do a simple include and map them according to the heading that always shows that the user clicks and then the content that gets revealed once you click. So, instead of dealing with loops and adding force and creating a file that's probably 30 or 40 lines long, we have two simple files that are less than six lines each. So, a couple of things here is that it can be time-consuming to reinvent and wire all instances of markup. I mentioned this before with a responsive image module. The markup that that module gives you is pretty solid. I mentioned you can create your own responsive image component, but we all have limited time. We have limited budgets.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Rely on the output that some of these modules give you, where it seems to work really well. So, as I mentioned, media, we're just going to print our media as we see fit. Some other examples of where you'd want to rely on Drupal to just output the markup you want to use are contextual menus, forms, web forms, and views expose forms. They spit out something that's nice, that's easy to work with. And then if possible, create a unique template form and wrap them in some BEM class functions there just to make your styling easier. But it's not completely necessary. And then just to wrap up here, we have just some good guidance on kind of how to handle some of this stuff. Drupal's Render arrays-of-doom always do that in the Drupal template first and send clean formatted data to your components. This makes logic in your components much easier. They don't have to handle like date formatting or something like that within your twig file. You let Drupal do the date formatting for you and you send that clean output to your component.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Use Drupal Responsive image system. Let Drupal render forms and form inputs and use view modes wherever possible to create unique twig templates that you can do your wiring for. And Brian, want to wrap us up here? Yeah. Thank you, everyone. We are good on time, so there's plenty of time for questions or stepping through other examples. If you want to go to the next couple of slides, we do have a couple of appendices here. The first one is commands used today, so we've got your command to get a working Drupal site up and running, to install the default content and demo theme compound components in Storybooks. Oh, sorry, I'm going to pass in front of everybody. Yep. Recording. Yeah. Sorry. We are good on time. We have plenty of time for questions. And like I was saying, going through some of these appendices real fast, we have all the commands that we used today. If you are joining us or watching this later, please go to the session page, download the notes. I know we've said that a bunch, but all of this is there for you as well.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>We also have further resources and documentation. We've been working with Sous and Emulsify for several years now and there are a lot of notes and things out there that will help you get up to speed really fast if this is your first project or first time using it. Please check out the actual sites and documentations. If you want more information about Storybook itself, they've got great documentation and tutorials on their site. Of course, you can always check out our new site fourkitchens.com. We also have a couple of good reference articles and tutorials that we have found helpful. So, that is the final slide in the deck. We have nothing else to cover on that ground. We covered a ton of ground today. And once again, thank you to my fabulous and amazingly talented colleagues for stepping through some of those technical details. Does anyone have any questions that we could answer while we're here? Do you recommend learning all of these things at once altogether (INAUDIBLE) or should we just learn about them (INAUDIBLE)?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Oh, that's a good question. I think I have to... Oh, sorry. Alan reminds me to repeat the question for recording sake. This is a lot to learn. Do you recommend learning it sequentially in any particular order all at once or like individually? And my default answer would be whatever suits your learning style. If you are the kind of person who can absorb it that way by inhaling all of it at once, go for it. If you need to be more peaceful, go with it. I know with our latest release of Sous, we have tried to build it so that it will be Drupal 10 upgradable and more of a starter kit and less of a distribution. So, there will be time for you to learn these things. And my personal recommendation would be just start building something with it and see what comes up as a personal thing. If anybody else from my group wants to jump in with a more technical answer, by all means. So, it depends on kind of, you know, your profession and kind of where you want to focus. If you don't want to have Drupal in the mix, you want to focus in on just front-end development, you can install Emulsify without Sous, without Drupal install.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And that's using this Emulsify CLI. Check out the site for how to run that. And you can install (UNKNOWN) Emulsify. Just work on that. Have your Storybook install and build your components that way and then worry about integrating it into Drupal or WordPress or Gatsby later on. So, it is a platform agnostic. The one that we have pre-generated with Sous is a Drupal-specific theme that has like your dot info file, your dot libraries file. So, if you want to have Drupal in the mix, I'd suggest using that composer create command and you have a default blank install of Drupal ready to go to build whatever project you want. But yeah, if you're just a front-end person, just use Emulsify CLI and you can get things working that way. Yeah, I was just going to say, if you're more of a back-end person and you want to know, like as a back-end developer, how do I actually wire Drupal data into a component? The exercise that we plan on doing at the BOF is in our Sous demo theme, we have all of the templates wired already.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So, as an exercise, we were going to take the (UNKNOWN) media component Drupal template and just throw it in the trash and start basically wiring from scratch, which is a good exercise for back-end developers to try and figure out how to do that. Are you guys providing an easy way out of Sous? Because I know the challenge for distribution is that once you buy into it, you are stuck. I think if we learn anything from (UNKNOWN) is that (INAUDIBLE) you're not going to support it anymore. Those projects will probably have to see what they do because changing themes is high enough to (INAUDIBLE). Do you want me to talk? OK. Yeah. Repeat the question. Yeah. So, the question was, is Sous easy to back out of because distributions are kind of locked into your installation and are very hard to manage as distributions can become out of date? And then you have a dependency problem that's happening there. So, Sous originally was a distribution and we ran into those exact same problems where we never meant it to really be something that we wanted to continuously update.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>We always want it to be something that it's a ground-level thing that we start with and we build whatever project you need from. Sous recently had a 5.0 update which removes the installation profile completely, and we are just installing default configuration during the Drupal install process. So, there is no Sous dependency, there's nothing distribution in your install anymore. From Drupal's perspective, it's just a standard installation so there's no other dependencies. Everything is in your composer file. There's no, you know, bundle of unlike in a distribution where you have that as a dependency which has other dependencies, all your modules are just in your composer file. Yep. Do you use this on all of your projects or is there a certain type of project complexity or front-end elements that this is a good fit for? Yeah, we use Emulsify on all our projects. Sous in the past because we've had distributions, we've decided to strategically not use it. But with this new version, this is the plan going forward is that for every site, whether it's higher education or media publishing, we can use this going forward because of that dependency of the distribution is now gone.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And it's flexible enough and it makes little to no assumptions on what site you're going to build for, but it gives you a ground level of what to use. So, if you want to build a blog or if you want to build a media publishing site or you have a college site, that college multi-site that you need to do, you can build with this as a ground, as a starting point. Anything else? I have another question. Tell me, does this help at all with collaboration with your designers? And more specifically, have you examined Figma into Storybook integration or anything? Yeah. So, our compound component library by default makes no assumptions on styling. So, when you get it, it's basically like solid markup, solid accessibility, and you build on top of that. We are working on not a sequel to compound, but a sister project called the UI Kit that works with design tokens. So, the designer designs in Figma, they export their design tokens, which I think comes out as a JSON file. They send that to a developer, we import it in there and we have all our colors, spacing variables, everything that matches what Figma outputs.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So, when we theme as front enders, we. Just say use that design token. I don't care what the value is, just use whatever that design token is and then if the designer changes it down the line, we just re-import and it updates those values. I think you had a (INAUDIBLE). Is that your point? OK. That's good. Yeah. So, that's coming down the line. That's something that we're currently working in and our director, our creative director is kind of is really pushing for that internal project to get that ready for a (UNKNOWN) presentation. Callin, may I? Yeah. One additional point on that. Yes, our designers and creative team go into the Storybook instance to do their testing so you can look at the accessibility plug-in like Amanda mentioned. You can also look at the responsive nature of the Storybook instance itself to test does this work on mobile, does this work on tablet, etc, etc. So yes, it does help enhance that cross-discipline collaboration. Do you guys have like a roadmap of other things coming down the pipeline?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>The question was, do we have a roadmap? Nothing that's well defined. But we do have the concept of recipes that we're working with now. Currently, Sous relies on paragraphs as our content architecture for components, but there's a big push for layout builder, custom blocks, and other ways besides paragraphs. Our recipe concept that we're currently prototyping happens. You can basically like include a recipe that has active configuration that bundles everything together. So, if we have a recipe that's for media publishing, we can make very opinionated functionality and configuration within that recipe, that's an optional install on top of Sous. The same goes with multi-sites or whatever type of site. So, we want to build Sous as the platform that's generic enough to fit anywhere but then have these recipes that then streamline that process for something that's a bit more vertically integrated. Is that the Drupal community (UNKNOWN) concept. Yes. Yeah, we have a couple of developers that are... You have so many overloaded terms (CROSSTALK).</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Yeah, that's right. We're running out of the terms. Yes. Yeah. It's funny how it fits with Four Kitchen's recipes. No, we talked about this years ago and a couple of our developers internally have been contributing to that effort as well. And part of this prototyping is can we make that core patch work in a solid way that then pushes the project along. So yeah, it is the same thing. Yeah. Outside developer helping us migrate data from (UNKNOWN) seven to nine and now we are applying this Emulsify for us. During the migration paragraph, content was kind of difficult. We had to manually recreate this for this. Currently, we are using Emulsify for (UNKNOWN) for the paragraph data migration (INAUDIBLE), will we have any problem in the future? I don't think so. That's a great question. How... I can say to you, generally migrating paragraphs is very tricky. A lot of times people just fall back (INAUDIBLE) doing it. So, I missed the presentation, so I don't know if (INAUDIBLE) just in general.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Paragraph migration is usually (UNKNOWN). So, the question was about migration, and specifically migrating from paragraphs, it is very difficult. Emulsify does not solve for that currently. Sous does not solve for that currently. I don't think that's going to be part of the spec. But yeah, there's another web chef here by the name of Michael Lutz. If you find him, he is a bit of our in-house migration expert and he might be able to shed more light on that specific question. We are doing a D7's panels to D9 paragraphs migration right now, and that is very, very tricky and coming with a lot of issues too. So, we feel your pain. We have no direct aid for that just yet. Thank you. We only have a few more minutes. If anybody has any questions or other concerns, please come join us at our Birds-of-a-Feather session today at 1:45. From that, lunch is about next. So, do we want to head out for an early lunch? Alright. Thank you so much.</span></span></span></span></span></span></p></div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-e5acdb5154fabb3efa663c2cd2a9fa5e156e3c82bdda9edadc9fb6623ad2233d">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/6921">https://mid.camp/6921</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+  <section class="map-banner">
+      <div class="views-element-container block block-views block-views-blockevent-venue-block-1" id="block-hatter-views-block-event-venue-block-1">
+  
+    
+      <div><div class="container view view-event-venue view-id-event_venue view-display-id-block_1 js-view-dom-id-2f7ba583454570a57e0322715e59c955fc1dc830e139494f5e6a5772b1c5ad3d">
+  
+    
+      
+      <div class="view-content">
+          <div class="views-row">
+
+
+<div class="map-overlay">
+  <span class="map__label">Location</span>
+  <h2 class="map__title"><span class="field field--name-title field--type-string field--label-hidden">DePaul University - Lincoln Park Student Center</span>
+</h2>
+  
+            <div class="field field--name-field-address field--type-address field--label-hidden field__item"><p class="map__address" translate="no">
+          2250 N Sheffield Ave. <br>
+            Chicago, IL 60614<br>
+  </p>
+</div>
+      
+  <a href="../../about/venue.html" class="cta-link--yellow">Learn more  <span class="cta-arrow"></span></a>
+</div>
+<div id='map' class="map"></div>
+</div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-4f76f155c8bf8c1de79062152648fcb29d420f1328ed8143dae60b74f2dfe4a3">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/evolving-web.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2023-04/evolvingweb%20(3).png" width="1517" height="371" alt="Evolving Web" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/debug-academy.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2023-02/Final%20Logo-in-color.png" width="1010" height="864" alt="Debug Academy logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/bounteous.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2023-01/BounteousIndigoSmall.png" width="403" height="67" alt="Bounteous logo" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#345d5a525b74595d50575559441a5b4653"><span class="__cf_email__" data-cfemail="2940474f466944404d4a48445907465b4e">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/6921","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"ajaxTrustedUrl":{"form_action_p_pvdeGsVG5zNF_XLGPTvYSKCf43t8qZYSwcfZl2uzM":true},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_U1jmi93nTJG2lPAKzexs4tMZWFR2YMMoIoiPckW421U.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJx1yksKgDAMRdENabskSfUZK2kjTfCzeyfiQHB04XBZlQUDVZLL82iRP9At5I4WWTSR9OsLhbakZ3cgzdpKfBogKKgeJjhlsWC043cqMCPGDa0vM_I"></script>
+<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.js"></script>
+<script src="../../sites/default/files/js/js_RAkHj2z9vY4q-6RsYuiXkqPbxgsRWrLsVQRz36mKiGA.js%3Fscope=footer&amp;delta=2&amp;language=en&amp;theme=hatter&amp;include=eJx1yksKgDAMRdENabskSfUZK2kjTfCzeyfiQHB04XBZlQUDVZLL82iRP9At5I4WWTSR9OsLhbakZ3cgzdpKfBogKKgeJjhlsWC043cqMCPGDa0vM_I"></script>
+
+  </body>
+</html>

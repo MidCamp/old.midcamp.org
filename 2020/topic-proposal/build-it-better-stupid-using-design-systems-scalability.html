@@ -1,0 +1,1006 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="Atomic design and design systems are all the rage in our industry right now—but how can these principles be applied within Drupal? In this talk, we will show you how these principles influence our implementation process to increase consistency and flexibility for designers, developers, and clients alike." />
+<link rel="canonical" href="build-it-better-stupid-using-design-systems-scalability.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Build It Better, Stupid: Using Design Systems for Scalability | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter_2019/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Build It Better, Stupid: Using Design Systems for Scalability | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_gt5LiAM1qLGUH5e845uOb7R_lJ9dUwTXmnhGDR2yY20.css%3Fdelta=0&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlT9EOwiAM_KEN1De_hsC4bSSFGopb5teLY0s0vrTXu0t7HciKbNpZQTc0HCFiJ8g5J_ZV44yKcrQUXuhmWwqyuV2udz0RO0v9IHLSn2165FR-mS-jbFIQ29kleLBBdPBmDCCvM-.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_q7cxd-C3noAE-s-u3xDxrLWFMO_wjpGZ5xcFfomX0n4.css%3Fdelta=1&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlT9EOwiAM_KEN1De_hsC4bSSFGopb5teLY0s0vrTXu0t7HciKbNpZQTc0HCFiJ8g5J_ZV44yKcrQUXuhmWwqyuV2udz0RO0v9IHLSn2165FR-mS-jbFIQ29kleLBBdPBmDCCvM-.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_JumHJ3UqLO9Mdu1kygD5e19MOiNh5iD_a9p0FH6QrHQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlT9EOwiAM_KEN1De_hsC4bSSFGopb5teLY0s0vrTXu0t7HciKbNpZQTc0HCFiJ8g5J_ZV44yKcrQUXuhmWwqyuV2udz0RO0v9IHLSn2165FR-mS-jbFIQ29kleLBBdPBmDCCvM-.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_LovagMoZZFoM80YhT0zgW4b6oNarRMdF8ooxvYiQ9tA.css%3Fdelta=4&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlT9EOwiAM_KEN1De_hsC4bSSFGopb5teLY0s0vrTXu0t7HciKbNpZQTc0HCFiJ8g5J_ZV44yKcrQUXuhmWwqyuV2udz0RO0v9IHLSn2165FR-mS-jbFIQ29kleLBBdPBmDCCvM-.css" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="build-it-better-stupid-using-design-systems-scalability.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-2019-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-hatter-2019-midcamp2020navigation-menu" id="block-hatter-2019-midcamp2020navigation" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-2019-midcamp2020navigation-menu">Midcamp 2020 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" data-drupal-link-system-path="node/403">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../news.html" title="News" data-drupal-link-system-path="2020/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" data-drupal-link-system-path="2020/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--virtual-camp">
+        <a href="../article/midcamp-2020-going-digital.html" title="MidCamp is going virtual" data-drupal-link-system-path="node/6689">Virtual Camp</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsor">
+        <a href="../sponsor-midcamp.html" data-drupal-link-system-path="node/6250">Sponsor</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--community-organizations">
+        <a href="../sponsor/community-organization-introduction.html" data-drupal-link-system-path="node/6251">Community Organizations</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sponsors">
+        <a href="../sponsors.html" data-drupal-link-system-path="node/6253">Sponsors</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" data-drupal-link-system-path="node/6258">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--sessions-thu">
+        <a href="../schedule/thursday.html" data-drupal-link-system-path="2020/schedule/thursday">Sessions (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-fri">
+        <a href="../schedule/friday.html" data-drupal-link-system-path="2020/schedule/friday">Sessions (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--contribution-sat">
+        <a href="../contribution-day.html" title="Contribution Day" data-drupal-link-system-path="node/6378">Contribution (Sat)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--accepted-sessions">
+        <a href="../accepted-sessions.html" data-drupal-link-system-path="2020/accepted-sessions">Accepted Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../../2023/speaker-resources.html" data-drupal-link-system-path="node/345">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-terms-and-conditions">
+        <a href="../../speaker-terms-and-conditions.html" data-drupal-link-system-path="node/21">Speaker Terms and Conditions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--topic-tracks">
+        <a href="../../topic-tracks.html" data-drupal-link-system-path="node/10">Topic Tracks</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--donate">
+        <a href="https://tickets.midcamp.org/" title="Register for MidCamp">Donate</a>
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-2019-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2020.html" hreflang="en">MidCamp 2020</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-hatter-2019-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Build It Better, Stupid: Using Design Systems for Scalability</span>
+</h1>
+
+
+  </div>
+<div id="block-hatter-2019-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="6295" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2020-03-19T14:45:00Z" class="datetime">Thursday, 9:45 am CDT</time>
+ - <time datetime="2020-03-19T15:45:00Z" class="datetime">Thursday, 10:45 am CDT</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-80" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-name field--type-string field--label-hidden field__item">Room 312</div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>Atomic design and design systems are all the rage in our industry right now—but how can these principles be applied within Drupal? In this talk, we will show you how these principles influence our implementation process to increase consistency and flexibility for designers, developers, and clients alike.</p>
+
+<p>First, we will walk through what a design system is, and how it shapes our design team's approach to wireframes. We will then show how our designers and developers leverage a shared language to document a site's component structure, using tools like Sketch and InVision's Design System Manager. Wrapping up, we will demonstrate how Drupal modules, such as Paragraphs or Layout Builder, can be used to translate the design system into an extendable and easy-to-use component library.</p>
+
+<h3>Learning Objectives</h3>
+
+<p>At the end of this session, designers and developers will be able to:</p>
+
+<ul>
+	<li>Apply design system principles to maintain consistency throughout a project</li>
+	<li>Document the architecture of a build for a smooth handoff from design to dev</li>
+	<li>Successfully structure a theme in preparation for component-based design</li>
+	<li>Improve a content admin's editing experience as it relates to atomic design</li>
+</ul>
+
+<h3>Target Audience</h3>
+
+<p>This session is best suited for:</p>
+
+<ul>
+	<li>Design and development leads who collaborate on projects and make high-level architecture decisions</li>
+	<li>Anyone who is&nbsp;interested in implementing design systems (components) into their workflows</li>
+	<li>Anyone who is looking to brush up on best practices</li>
+</ul>
+
+<h3>Prerequisites</h3>
+
+<ul>
+	<li>A general understanding of component-based design</li>
+	<li>A general understanding of Drupal theming</li>
+</ul></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/Po1dyDrliMc?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Jessica Ito</h4>
+
+      UX / Digital Designer
+
+
+          @
+              <a href="https://www.elevatedthird.com/">Elevated Third</a>
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p>After four years in the Marine Corps as a communication specialist, Jessica found herself wanting to go down a more creative path in life. She studied design at the Art Institute of Colorado and has spent the last three years designing in Denver.</p>
+<p>Jessica strives to find creative solutions that are authentic, lasting, and impactful. Design systems are her jam, and she is also a little bit of a spreadsheet geek – hooray organization! In her ongoing quest to improve experiences for clients and users alike, her husband and young son are her biggest supporters - always pushing her to be her best self.</p>
+</div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2019-12/Jessicaaaa%202.jpg%3Fitok=Vmtp99z7" width="220" height="220" alt="Image of Jessica Ito" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+          <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Eric Schmidt</h4>
+
+      Drupal Developer
+
+
+          @
+              <a href="http://www.elevatedthird.com">Elevated Third</a>
+        
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2019-12/10590465_10105734953863381_292234880637133703_n.jpg%3Fitok=jyQrLnAb" width="220" height="220" alt="profile image" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Design</div>
+          <div class="field__item">End users / Content Admin</div>
+          <div class="field__item">Front-End</div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-feedback-form field--type-webform field--label-above">
+    <div class="field__label">Feedback Form</div>
+              <div class="field__item"><form class="webform-submission-form webform-submission-add-form webform-submission-session-feedback-form webform-submission-session-feedback-add-form webform-submission-session-feedback-node-6295-form webform-submission-session-feedback-node-6295-add-form" data-drupal-selector="webform-submission-session-feedback-node-6295-add-form" action="build-it-better-stupid-using-design-systems-scalability.html" method="post" id="webform-submission-session-feedback-node-6295-add-form" accept-charset="UTF-8">
+  
+    <div data-drupal-selector="edit-0" class="webform-message js-webform-message js-form-wrapper form-wrapper" id="edit-0"><div data-drupal-messages>
+    <div role="contentinfo" aria-label="Status message" class="messages messages--status">
+                  <h2 class="visually-hidden">Status message</h2>
+                    Sorry...This form is closed to new submissions.
+            </div>
+    </div>
+</div>
+<input autocomplete="off" data-drupal-selector="form-f8jbveid6qyeyols0vt73unf3dtpfsnzboa-q-yqhui" type="hidden" name="form_build_id" value="form-f8jBvEiD6qyeyols0VT73unF3dtpfSnzBoA_q_yQHUI" />
+<input data-drupal-selector="edit-webform-submission-session-feedback-node-6295-add-form" type="hidden" name="form_id" value="webform_submission_session_feedback_node_6295_add_form" />
+<div class="url-textfield js-form-wrapper form-wrapper" style="display: none !important;"><div class="js-form-item form-item js-form-type-textfield form-type-textfield js-form-item-url form-item-url">
+      <label for="edit-url">Leave this field blank</label>
+        <input autocomplete="off" data-drupal-selector="edit-url" type="text" id="edit-url" name="url" value="" size="20" maxlength="128" class="form-text" />
+
+        </div>
+</div>
+
+
+  
+</form>
+</div>
+          </div>
+
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <h3 class="field__label">Transcript</h3>
+              <div class="field__item" tabindex="0"><p>&gt;&gt; JESSICA ITO: &nbsp;Before we get started, I just wanted to get a quick idea of who in this session is part of an in‑house or product team, and then who is working in an agency. &nbsp;</p>
+
+<p>So really quick, you can unmute or you can just pop a quick hello in the chat. &nbsp;But let me know if you're part of an agency or an in‑house team. &nbsp;</p>
+
+<p>A lot of agency&nbsp;... &nbsp;</p>
+
+<p>Looks like it's pretty even. &nbsp;Awesome. &nbsp;</p>
+
+<p>Well, thanks, guys. &nbsp;That helps us get a good idea of who we're talking to today. &nbsp;It looks like we have a pretty solid mix of agency and in‑house folks, as well as some freelancers. &nbsp;So we're going to go ahead and get started. &nbsp;</p>
+
+<p>First things first. &nbsp;Without a guiding light, Drupal can get pretty messy. &nbsp;</p>
+
+<p>And I just have a couple of examples of that. &nbsp;</p>
+
+<p>So this is one example of a client who came to us for help with a migration project, and they actually had 73 content types, which I had never seen a Drupal site have this many types before. &nbsp;It was difficult to figure out. &nbsp;We had to map pages from a site that that company had acquired, and just trying to figure out which one we were supposed to use was extremely difficult. &nbsp;</p>
+
+<p>Another example, this client, instead of using paragraphs, and the fields within the paragraphs to make content entry easy, this client used the same paragraph for every single component on their site. &nbsp;And then they just changed out the source code in the description, which is pretty crazy. &nbsp;I'm a designer myself, and we'll get to introductions here in a quick minute. &nbsp;</p>
+
+<p>But thankfully I knew enough HTML and CSS to get by trying to figure out what I was doing here. &nbsp;</p>
+
+<p>Eric. &nbsp;</p>
+
+<p>&gt;&gt; ERIC SCHMIDT: &nbsp;[Muted].&nbsp;</p>
+
+<p>&gt;&gt; Eric, you're muted. &nbsp;</p>
+
+<p>&gt;&gt; ERIC SCHMIDT: &nbsp;Thank you so much! &nbsp;</p>
+
+<p>[Laughter.]&nbsp;</p>
+
+<p>Anyway, this just isn't happening to Drupal small companies, and it's not specific to Drupal. &nbsp;We're definitely focusing on Drupal, obviously, but this happens to big companies, small companies, all kinds of companies and it can be argued that the bigger the company, the worse this is, because you get into massive amounts of technical debt. &nbsp;As you get thousands of pages added in this manner, it's unwieldly. &nbsp;A good example that we have for this is HubSpot. &nbsp;It's not a Drupal site, they did conduct a component audit in 2018 as they were trying to build out their own design system and they found out they were using a ton of inconsistent design components throughout their site. &nbsp;And this included 100‑plus shades of gray, 40‑plus textiles, 16 modal styles, five different ways to filter a table, thousands of lines. &nbsp;Custom CSS. &nbsp;It just happens, if you don't have something to guide you, stuff just gets hacked in quick and dirty. &nbsp;It just gets unmaintainable. &nbsp;</p>
+
+<p>So with that&nbsp;... &nbsp;</p>
+
+<p>&gt;&gt; JESSICA ITO: &nbsp;Quick introductions. &nbsp;My name is Jessica Ito, a UX designer. &nbsp;</p>
+
+<p>&gt;&gt; ERIC SCHMIDT: &nbsp;And I focus on front‑end stuff and open‑source initiatives. &nbsp;</p>
+
+<p>&gt;&gt; JESSICA ITO: &nbsp;We work at a digital agency called Elevated Third. &nbsp;We're a Drupal only agency, and we focus on full website redesigns of Enterprise&nbsp;‑‑ [indistinct]&nbsp;‑‑ B2B companies. &nbsp;</p>
+
+<p>&gt;&gt; ERIC SCHMIDT: &nbsp;Cool. &nbsp;Just a little bit more about us. &nbsp;And some of our bona fides. &nbsp;We've been around for about 15 years. &nbsp;Originally based in Denver, Colorado but now have offices in Raleigh, North Carolina and Seattle, Washington. &nbsp;We have four of the 150 worldwide grand masters, which is pretty cool, as you know. &nbsp;We're a certified Acquia partner specializing in B2B, and strong supporter of the dual community, whether through contributed modules or different sponsorships, and we are heavily involved in the Drupal Camp‑Colorado conference in Denver. &nbsp;Several of us are huge contributors as well. &nbsp;And this is so you know you can trust what we're saying is valid. &nbsp;</p>
+
+<p>[Laughter.]&nbsp;</p>
+
+<p>&gt;&gt; JESSICA ITO: &nbsp;Cool. &nbsp;Getting in the design systems, they're all the rage right now. &nbsp;But the word means different things to different people, as we learned sort of figuring out it out for ourselves, as well as working with other partners who have been doing things a little bit differently. &nbsp;</p>
+
+<p>So now we're going to spend some time telling you a little bit about what a design system means to us, so we can all be on the same page moving forward. &nbsp;</p>
+
+<p>But first, before we talk about design systems, we need to touch on atomic design, and I'm sure you're familiar with those principles. &nbsp;</p>
+
+<p>So we throughout the UX and visual process, we use atomic design principles in order to create a more scaleable site that can accommodate different use cases, and more specifically, I guess we used to rely heavily on Paragraphs. &nbsp;Now, of course, as we move more into focusing on Layout Builder, we're relying on blocks and sections, but similar ideas. &nbsp;</p>
+
+<p>And then of course our content types to build our design system. &nbsp;</p>
+
+<p>&gt;&gt; ERIC SCHMIDT: &nbsp;Cool. &nbsp;Yeah. &nbsp;From a dev perspective, our biggest reason for building atomically, our end goal is pretty much we should always be able to add any component to any page as needed, and it should just work, without much dev effort. &nbsp;And what that means is that you should be thinking in a componentized mindset with your selectors and your templating so that component is not tied to a page on which it originally was build. &nbsp;</p>
+
+<p>Occasionally there are use cases for that, and there's ways around that to still keep the componentization impact when you need to be relying on your parent. &nbsp;But that's the end goal and that is what started this, was our technical director noticed some of the sites we were building out did not have this. &nbsp;And he said, it's just like unacceptable that we were spending time refactoring components&nbsp;when we can build it&nbsp;‑‑ and the clients are like, I like this page, and all of a sudden, "It's going to take a couple of hours to refactor," when you can be thinking about it at the beginning. &nbsp;It's easy to add one‑off stuff, and it still happens but it's always better in the long run to just take a little bit more time at the beginning, take a step back, think of things out before you start building. &nbsp;And just strife for reusability, just before you even start any coding. &nbsp;Just really jot stuff down or map stuff out and think ahead and it will save you tons of time in the long run and tons of technical debt. &nbsp;[Chuckles].&nbsp;</p>
+
+<p>&gt;&gt; JESSICA ITO: &nbsp;So in a minute we're going to talk about some of the different types of design systems. &nbsp;But they should all serve a similar function. &nbsp;And for us, that's serving as a source of truth for designers, developers, and our clients. &nbsp;</p>
+
+<p>And we consider design systems to be a living document that should stay up‑to‑date with the site so it's usable as a reference both right now and forever, I guess, as you move forward through your project or as your designs adapt throughout the product's life cycle. &nbsp;So at Elevated Third we are fans of design systems and I will tell you why. &nbsp;They gave the entire team, including the client, a common language that reduces confusion and misconceptions. &nbsp;A good example is the term landing page. &nbsp;If you see "landing page" and you're talking to someone in marketing, they think of it being, you know, a page that you land on that has a form and it's really, like, incursion focused. &nbsp;</p>
+
+<p>Whereas for us, we&nbsp;‑‑ we name a lot of our unstructured, or super unstructured content types a landing page. &nbsp;Those are the pages that our clients are using to&nbsp;‑‑ as they're building out a lot of, like, the unstructured component, Layout Builder‑type stuff. &nbsp;</p>
+
+<p>They also help us develop more scaleable websites. &nbsp;And they force designers and developers to remain consistent. &nbsp;</p>
+
+<p>For us, it's the rule book, and we don't make exceptions to the rules unless there's a good reason to. &nbsp;</p>
+
+<p>They serve as a useful internal tool that provides a smooth transition from design to development. &nbsp;So if the lead designer and developer are annotating everything together, which it's time to bring on support devs later on in a project who don't have as much context, then they reference the design system and they know what they need to know to move forward. &nbsp;</p>
+
+<p>And lastly, they also serve as a useful tool for our clients to refer back to when they're doing content entry. &nbsp;</p>
+
+<p>Cool. &nbsp;</p>
+
+<p>So now we're going to talk about some of the different types of design systems that we've seen, and the first one is really just not having a design system at all. &nbsp;</p>
+
+<p>I'm thinking about this amount like the design system maturity model. &nbsp;</p>
+
+<p>So step one is no design system. &nbsp;This means you don't have any type of documentation. &nbsp;And&nbsp;‑‑ and this leads to&nbsp;‑‑ this is what really leads to that inconsistent implementation if we think about the HubSpot example. &nbsp;</p>
+
+<p>The second is the tactical design system. &nbsp;You're starting to have some documentation. &nbsp;It's probably kept in more so of a static document. &nbsp;So it's a huge&nbsp;‑‑ to keep it updated. &nbsp;But at this point you're including lists of components. &nbsp;Maybe you have digital‑style rules in there. &nbsp;And there are probably only a few teams that know that it even exists. &nbsp;Most likely just the dev team and the design team. &nbsp;</p>
+
+<p>The third type, strategic. &nbsp;It starts to get more integrated into the design process. &nbsp;This design system is dynamic, and it's consistently updated and well maintained. &nbsp;At this point you might start to including some code snippets in there with the documentation, and it becomes more well‑known within an organization. &nbsp;</p>
+
+<p>And then lastly, we have the integrated design system, which is when the design system is fully built into an organization's process. &nbsp;It's still dynamic but taken up a notch with releases and version control, and instead of code snippets, maybe now you're using the pattern library in conjunction with that documentation. &nbsp;And like I said, it's just built in the organization's process. &nbsp;So that company, you see a lot of more of the company‑wide adoption, a lot more teams being familiar, at least familiar with the concept of what a design system is, to inform some decision‑making. &nbsp;</p>
+
+<p>So because we are an agency, we find that our sweet spot with, like, thinking about the cost‑benefit ratio for creating a design system is right in between tactical and strategic. &nbsp;We're working on dozens of projects as an agency at a time, and all of them have fixed time lines and budgets. &nbsp;So we don't have the time to invest more than we need to in a design system. &nbsp;</p>
+
+<p>For us, the approach we take is a "good enough" approach. &nbsp;And that ends up being like what makes most sense for us. &nbsp;It still helps us do all of the things I talked about before, like having that common language and smooth transition from assign to dev, and it ends up being a great tool for our clients to use as well. &nbsp;</p>
+
+<p>But for in‑house or product teams, this investment becomes a lot more worth it in the long run. &nbsp;And we've worked with some partners who have done this type of setup in the past, and it actually, like, amazes me the level of detail that they go in with some of this stuff. &nbsp;And the time that they spend investing and decreeing this super built‑out design system with symbols in Sketch and pattern libraries and things like that. We just typically as an agency don't have the time to do that, unfortunately. &nbsp;So we don't have a whole lot of firsthand experience with this type of design system. &nbsp;So we're going to be spending most of the rest of the talk really focusing on, like, how we get to that sweet spot and showing you a couple of examples of what that means. &nbsp;</p>
+
+<p>So really quick, I'm going to share two examples of design systems we've done in the past. &nbsp;</p>
+
+<p>This first one, this is definitely more of, like, your static design system. &nbsp;So we actually laid this out in Sketch. &nbsp;</p>
+
+<p>Oh, no, I just got a notification my internet connection is&nbsp;unstable. &nbsp;Let me know if you have problems. &nbsp;</p>
+
+<p>We're using a lot more paragraphs. &nbsp;We sort of, like, along with the atomic design idea, we break out our components. &nbsp;We typically did in, like&nbsp;‑‑ like, simple components are the smaller pieces, and then we have our compound components. &nbsp;So when you start to combine more of those simple components, that's what these look like. &nbsp;</p>
+
+<p>But you will see, typically for each component, we'll have a description. &nbsp;We'll list out that the fields for each one, and let everybody know what's required. &nbsp;</p>
+
+<p>And then we'll have, like, a "things to know" section. &nbsp;In this example, this testimonial, you're adding simple testimonials. &nbsp;Each one of these tabs is a simple testimonial. &nbsp;</p>
+
+<p>And in this example, up to five simple testimonials could be added. &nbsp;We like to note those things out. &nbsp;So everybody on the team is aware, and it's especially helpful when our clients are planning for content entry. &nbsp;</p>
+
+<p>Another example. &nbsp;</p>
+
+<p>So this is a more recent one that we've put together, using InVision's design system manager. &nbsp;And I'll show you guys in a little bit how we actually use Sketch to put this together. &nbsp;But this starts to get a little bit more dynamic here. &nbsp;You can actually, like, interact with the menu over here. &nbsp;You can see all of your components in one list, or you can just narrow it down to, like, the molecule level. &nbsp;</p>
+
+<p>And then when you click into one of these&nbsp;... &nbsp;whoops, that's a bad example&nbsp;... &nbsp;</p>
+
+<p>When you click into one of these, we can actually include this documentation right here. &nbsp;</p>
+
+<p>I'm a fan of doing it this way, because it's just a lot quicker. &nbsp;You don't have to worry about little, like, nuances with laying things out. &nbsp;You're just uploading screenshots, and you can add your copyright in here. &nbsp;InVision's design system manager, you can start to add some of the cosnippet in here as well, but we haven't&nbsp;‑‑ we haven't fully explored that route yet. &nbsp;It is something that we're looking into. &nbsp;</p>
+
+<p>Cool. &nbsp;</p>
+
+<p>Now, we're going to spend time talking a little bit about how this works as part of our process, and how we get to the end result of some of those design systems. &nbsp;</p>
+
+<p>&gt;&gt; ERIC SCHMIDT: &nbsp;Awesome. &nbsp;Yeah. &nbsp;And just to chime in from a dev perspective, this really succeeds when both design and dev are fully invested and fully collaborative in this process. &nbsp;It's easier said than done, project to project. &nbsp;We're lucky enough to have a majority of projects where it's in‑house, and it's definitely, like, the ideal situation. &nbsp;However, it can still happen without, you know, without having both teams on the internal side. &nbsp;</p>
+
+<p>It needs to be a feedback loop. &nbsp;You can't&nbsp;‑‑ things get bogged down when you have a design team sending you stuff, not thinking through Drupal componentization or design systems. &nbsp;</p>
+
+<p>If dev is not thinking in a componentized mindset, it sets things up to be awkward. &nbsp;</p>
+
+<p>So at the outset, it's great to get buy‑in from everybody at the beginning to be kind of closely in touch and iterative throughout the process when it comes to breaking stuff down. &nbsp;Design is great at componentizing stuff, how they see fit. &nbsp;However, Drupal has limitations that they may or may not know. &nbsp;That's where dev comes in and can help out with that as well. &nbsp;</p>
+
+<p>&gt;&gt; JESSICA ITO: &nbsp;Yeah so as the designer, it's part of my job, like, Eric mentioned, to start thinking about the design system and the components and the atomic design as I am putting the wire frames together. &nbsp;I'm constantly thinking about what could be a component, how can I consolidate things that are similar, and what the functionality of something might be. &nbsp;</p>
+
+<p>And personally, I feel like I've gotten so used to thinking this way that I sometimes&nbsp;‑‑ I have to, like, just as a designer, you know, we of course have goals of being creative. &nbsp;So sometimes I have to force myself to stop thinking about this so much, so that it doesn't, like, limit me and keep me in the box. &nbsp;</p>
+
+<p>But I think it's a good thing and a bad thing. &nbsp;It can be&nbsp;‑‑ it can be a limiting mindset, as a creative. &nbsp;But it is really helpful as you move into the dev process. &nbsp;</p>
+
+<p>And then once I have done my part with the wire frames and they're completed, the lead designer&nbsp;‑‑ this screenshot here is an example of a project that Eric and I were lead designer and lead dev on. &nbsp;We came together and this is where I was able to tell him all the things I was thinking about as I put the wires together and we can start annotating them. &nbsp;We'll have discussions on them, and this is really the time when we start making a lot of those decisions. &nbsp;</p>
+
+<p>So I can let him know, "Hey, I was thinking about this component in this way. &nbsp;This is how we can reuse it across the site. &nbsp;Here are some fields. &nbsp;And, like, some functionality." &nbsp;In this example, you can select up to six, but the client left it manually. &nbsp;And we also start thinking about naming conventions as well at this time. &nbsp;</p>
+
+<p>So Eric, do you have anything to add? &nbsp;</p>
+
+<p>&gt;&gt; ERIC SCHMIDT: &nbsp;Yeah, if you want to bump to the next slide, I can tie it together, and go ahead one more. &nbsp;</p>
+
+<p>&gt;&gt; JESSICA ITO: &nbsp;Okay.&nbsp;</p>
+
+<p>&gt;&gt; ERIC SCHMIDT: &nbsp;There we go. &nbsp;Calling this back to the last slide that Jess showed with the annotations, we go back and forth quite a bit on there, and then that is what eventually results in what we call a build spec, a fully fleshed out spreadsheet where he can architect our ideas. &nbsp;</p>
+
+<p>It codifies the collaboration between design and dev and it allows for quick iterations of architecture. &nbsp;Instead of going into Drupal and building the content type out and seeing if it works, we have a tab for nodes, for components, for fields, and just kind of list these things out and can quickly just iterate and see, does this feel right? &nbsp;How does this work? &nbsp;For one, do it quickly, and also it allows for passing things off as well too. &nbsp;</p>
+
+<p>If I have an idea in terms of architecture but don't necessarily have the time to build it out, I can document it here and shoot it over to somebody else and they know exactly what I was thinking of and can get that built out and just again, just makes it much, much easier. &nbsp;It's kind of akin to doing wire frames as a dev instead of doing something fully high‑fidelity. &nbsp;I'm just doing roughs to get a feel for how it would work and it turns it into a boiler plate for a design system. &nbsp;When she was screen‑sharing, the design system manager in InVision, this is me giving them the build spec and they're going through the build spec and making it pretty and putting it into the design system manager, putting the fields in, the requirements, and adding the screenshots. &nbsp;So it's this, again, constant feedback loop that we've created that just ends up coming up with something awesome that we're able to refer to, now and in the future. &nbsp;If you want to go back to that last one, since I got out of order here. &nbsp;</p>
+
+<p>And then finally, just kind of one last point on this as we get into the collaborative process between Jess and I. &nbsp;It's very easy to end up with components that just with get overly complex. &nbsp;By that, I mean components that end up having tons and tons of options. &nbsp;It could have a background image. &nbsp;Or teasers of different content types. &nbsp;All of a sudden you end up with all of these different pieces into a single component. &nbsp;And I have just learned the lesson many times the hard way to just break these out as they start getting more complex and more options are needed. &nbsp;It's just much better to break these things out into their own components. &nbsp;</p>
+
+<p>They get unwieldly both for de&nbsp;‑‑ devs and content add minutes. &nbsp;I'm dealing with if statements and templating conditionals, because I'm trying to account for different ways it should look. &nbsp;And for content admins, they're adding a component to a page with 100 different options and they have no idea how to get to the component they're trying to make when they're looking at the design. &nbsp;It's really hard to figure out&nbsp;‑‑ okay, what do I need to do to add to this page? &nbsp;</p>
+
+<p>That's where it gets kind of tough. &nbsp;It's a case by case basis. &nbsp;There's no hard and fast rules for when you should break it out. &nbsp;But for me it's a gut feeling. &nbsp;If something feels unwieldly, it probably is, and it's time to think about breaking it out. &nbsp;</p>
+
+<p>It may seem more time consuming to build a whole another&nbsp;‑‑ or content type but in the long run it's quicker especially if you're iterating about the build spec. &nbsp;</p>
+
+<p>That's all I got there. &nbsp;Jessica, do you want to pop back through there? &nbsp;Sorry about that. &nbsp;</p>
+
+<p>&gt;&gt; JESSICA ITO: &nbsp;No worries. &nbsp;We saw the front end of the design system and what that looks like earlier. &nbsp;I'm going to hop over to Sketch and show you guys how we use Sketch and the Craft plugin. &nbsp;</p>
+
+<p>So this is&nbsp;‑‑ these are my design layouts in Sketch here. &nbsp;</p>
+
+<p>And we've got the Craft plugin, plugged into Sketch. &nbsp;If you're not familiar with that, I'll add a link to our presentation page with the slides. &nbsp;And I can add a link to Craft as well. &nbsp;</p>
+
+<p>But it's really great. &nbsp;It&nbsp;‑‑ [muttering] puts the tool bar over to the side. &nbsp;The nice thing about it, you can use it to upload an art board to Sketch. &nbsp;If you upload an art board to Sketch, versus just exporting it as a flat‑end file, then this is what allows developers to use the inspect mode on InVision. &nbsp;Which is nice. &nbsp;</p>
+
+<p>But for the design system, the hotkey, if you're on a Mac, it's command‑L. &nbsp;</p>
+
+<p>You open up like this, and you see it pulls in colors. &nbsp;Your textiles. &nbsp;If you have determined what those textiles are and you have them in Sketch, you can add them here and it will upload everything that a developer may need to know. &nbsp;</p>
+
+<p>If you have any layer styles, and I don't have icons in this design system, but it's really nice, because you can upload them directly from Sketch, and anybody can reference the design system and download them as an SVG from there, which is cool. &nbsp;But for components, you can add however many folders you need to. &nbsp;However your organization organizes, your components, you can reflect that in the affordable system here. &nbsp;</p>
+
+<p>But let me just show you how you can add a component. &nbsp;</p>
+
+<p>Okay. &nbsp;</p>
+
+<p>So we'll add&nbsp;‑‑ we'd add this component to the design system here. &nbsp;Right now I have this&nbsp;‑‑ my layers are a huge mess. &nbsp;But I just have this named "group 15." &nbsp;[Laughs.]&nbsp;</p>
+
+<p>If I go over here to the design system manager, I can click this plus here. &nbsp;And you will see, it's adding it. &nbsp;It's adding it outside of my folders because I didn't have a folder selected. &nbsp;But if I click on that component, I can rename it. &nbsp;So we'll say this is, like, um&nbsp;... &nbsp;just related content component. &nbsp;</p>
+
+<p>And then you can&nbsp;‑‑ you can really just add whatever type of description you want to in here. &nbsp;</p>
+
+<p>So, like, I mentioned earlier, we typically just add, like, a description. &nbsp;If we have a specific use case for this component, and we will note that here, and the fields, and any functionality. &nbsp;In this particular example, this component, we would let our clients know that it's pulling in dynamically pulling in related content, based on the tags that are applied to that parent page. &nbsp;And it can pull in a couple of different content types. &nbsp;Like articles, webinars, and resources. &nbsp;So that's pretty cool. &nbsp;</p>
+
+<p>But they can also manually override any of these as well. &nbsp;</p>
+
+<p>So it may automatically populate the teaser for this featured one, but they would be able to override really any of these&nbsp;... &nbsp;</p>
+
+<p>Then I'm going to jump back over on it what it looks like on this site. &nbsp;And it'll let me know here if I have this open in the browser. &nbsp;That I'm viewing an out of date version of the library, because I refreshed it, or I changed it in Sketch. &nbsp;So I can just refresh it. &nbsp;And then if I go back out to the components, we'll see that this component has been added here. &nbsp;And anybody, as long as you have, like, the sharing permission set up right, anybody who has this link can come here and read whatever documentation we have about this component. &nbsp;</p>
+
+<p>So that's it for the demo for right now, for my side. &nbsp;But if you guys have any additional questions about Sketch or InVision or the Craft plugin, I'm happy to meet you guys on the Slack channel after this talk, and we can get those questions answered. &nbsp;</p>
+
+<p>And then, Eric, I am going to stop sharing so that you can start sharing. &nbsp;</p>
+
+<p>&gt;&gt; ERIC SCHMIDT: &nbsp;Yeah, that sounds good. &nbsp;</p>
+
+<p>All righty. &nbsp;</p>
+
+<p>Everybody see this okay? &nbsp;</p>
+
+<p>&gt;&gt; JESSICA ITO: &nbsp;Yep. &nbsp;</p>
+
+<p>&gt;&gt; ERIC SCHMIDT: &nbsp;All righty. &nbsp;</p>
+
+<p>Let's full screen here. &nbsp;</p>
+
+<p>Good enough. &nbsp;Cool. &nbsp;</p>
+
+<p>Yeah, so now I'm going to start running through some of the development tools that we use to implement the design system that Jessica or other designers come up with after the discovery phase and the back and forth that we have. &nbsp;We have quite a few tools, some of them are contributed modules, or internal tools, or theme‑level tools, stuff like that. &nbsp;I'm going to run through the highlights. &nbsp;Every project's a little bit different. &nbsp;Might have different needs or restrictions on what we can and can't use. &nbsp;But these are the kind of the highlights that pretty much find their way onto each and every project we're using. &nbsp;Run through some of these here. &nbsp;</p>
+
+<p>First one, Paragraphs. &nbsp;Which is pretty much the quintessential componentization for Drupal. &nbsp;Most people probably have experience with this. &nbsp;</p>
+
+<p>If you don't, it's just a great way to essentially allow, for one, multivalue fields and it lets you create custom inline entities that can be added to each and every page, allowing one field to have multiple different types of components added. &nbsp;For instance, a header field that allows you to add multiple header component types. &nbsp;Basic or more full‑featured banners, stuff like that. &nbsp;It has been used by us for years now. &nbsp;We've gotten good at using it, and we've honed it in, especially when we've&nbsp;‑‑ when I get into some of the modules that we use with this as well, that just make it a really awesome asset to our tool belt. &nbsp;It's slowly getting replaced by Layout Builder now that it's stable, and I will go into that a little bit here well. &nbsp;Layout Builder is not as full as&nbsp;‑‑ fully&nbsp;‑‑ I don't know&nbsp;‑‑ the bells and whistles are not all the way there yet, in my opinion. &nbsp;So we're still using Paragraphs for different use cases, mainly the for pages that are not using Layout Builder, because Layout Builder is an all other nothing thing. &nbsp;When you have it on a page, it's pretty much only going to be using Layout Builder. &nbsp;We have certain pages that are more strict, like a blog&nbsp;‑‑ structured, like a blog page may have it at the bottom, and we leverage a Paragraph field there. &nbsp;It still gives us great flexibility for componentization and it targets your styling and templating in a very compartmentalized fashion. &nbsp;Above and beyond Paragraphs we use Paragraphs browser. &nbsp;This is a module that we built in‑house and it's on Drupal.org, so it's open‑source and usable by anybody that would like to use it. &nbsp;</p>
+
+<p>I think it was released two or three years ago? &nbsp;I think it's technically not a full release yet, by the definitely&nbsp;‑‑ but it's definitely stable enough that we've been using it without issue. &nbsp;</p>
+
+<p>The beauty of that module, rather than having small buttons with a title when you're adding your paragraphs, it lets you actually have a whole modal window, and I will show you a live example. &nbsp;</p>
+
+<p>It gives you the ability to show descriptions and screenshots is the clincher of each component. &nbsp;This is how we translate that design system that Jess was just showing. &nbsp;</p>
+
+<p>So they can look at the design system, see the component they're looking for, pop over to Drupal, open Paragraphs processor and it's a one to one. &nbsp;Here is that in the design system and here is it in Drupal. &nbsp;I know what I'm trying to add. &nbsp;Just makes it super, super easy. &nbsp;And I think it's a great module to use, if you're using Paragraphs. &nbsp;So I have a quick example I can show. &nbsp;</p>
+
+<p>This is a UBT, a bank website we recently rolled out. &nbsp;I have got a header, different fields, using a paragraph. &nbsp;I'll show you main content here. &nbsp;</p>
+
+<p>Essentially it just&nbsp;‑‑ instead of having a bunch of different buttons or a dropdown or whatever, it gives you one button for adding a component. &nbsp;If I click it, it's going to pop up a modal window. &nbsp;You have different filters for different types. &nbsp;If I scroll down you will see there's quite a few. &nbsp;And the word billboard might not mean something to somebody, necessarily. &nbsp;But when they see an image, they're like, oh, you know what that is. &nbsp;Or a bridge. &nbsp;Just makes it easy to add. &nbsp;If I click add it plops the paragraph right in there. &nbsp;It's running a little slow for some reason. &nbsp;</p>
+
+<p>But yeah. &nbsp;</p>
+
+<p>Super powerful module. &nbsp;</p>
+
+<p>I highly recommend checking it out if you haven't. &nbsp;</p>
+
+<p>Configuration's a little&nbsp;‑‑ it's not hard. &nbsp;It's just&nbsp;‑‑ it's a slightly learning curve. &nbsp;Documentation is written well but if you have any questions I'm happy to answer questions in Slack afterwards. &nbsp;It's a great module to dig into. &nbsp;</p>
+
+<p>Cool. &nbsp;</p>
+
+<p>So those are our main two power houses that we've leveraged a lot in the past. &nbsp;But we're starting to dabble quite a bit in Layout Builder. &nbsp;And this is cutting‑age componentization for Drupal. &nbsp;Just made stable in the 8.8 release&nbsp;‑‑ or it might be 8.7. &nbsp;It feels like the wild west. &nbsp;There's great opportunities, and we've seen powerful ideas come to light with this. &nbsp;It's just&nbsp;‑‑ it's got some needs still. &nbsp;There's still some gaps with it. &nbsp;</p>
+
+<p>But the beauty of this module now that we're discovering as we've dived in, I think when we growing like the fourth project that we've leveraged this, to varying degrees of success and complexity. &nbsp;</p>
+
+<p>Starting very simple with very small sites. &nbsp;And then moving into larger sites, and we're rebuilding our internal site, and leveraging Layout Builder fully and this is where we're finding the true power. &nbsp;And the true power, it's pushing dev and design to be thinking more about fluid componentization, meaning with Paragraphs, you can pretty much restrict what components can go where into which paragraph field. &nbsp;</p>
+
+<p>Whereas other at least at this point anyway, if there's&nbsp;‑‑ at this point you can't really restrict what block goes into which section. &nbsp;If you have a block that goes into a column, you can add in your banner. &nbsp;</p>
+
+<p>But you can envision a fourth column, where they can drag it up into a big column. &nbsp;We're having to think through, you know, what does that look like? &nbsp;Should we be accounting for this? &nbsp;And it's kind of a delicate balance of content entry training. &nbsp;"Hey, maybe you shouldn't do this because you won't look right," but would inform design in that manner. &nbsp;"Maybe this will give you a cool idea that you didn't think of. &nbsp;You're thinking of this in a fourth column. &nbsp;Imagine what it would look like in a full column." &nbsp;</p>
+
+<p>And all of a sudden you've created a new component, almost with minimal effort because it just kind of works. &nbsp;It's creating a cool, even more back and forth communication. &nbsp;Where we're just&nbsp;‑‑ the design and dev are informing each other in whole new ways. &nbsp;That's when we're digging into this and leveraging it into its full potential. &nbsp;</p>
+
+<p>Cool. &nbsp;</p>
+
+<p>So this does have some additional modules that we're leveraging quite a bit as well. &nbsp;There's three primary modules that we've found that just make Layout Builder way, way easier to use and nicer for admins as well. &nbsp;</p>
+
+<p>First one being Layout Builder browser. &nbsp;</p>
+
+<p>Cool. &nbsp;What it does, it makes the side bar on your page a little bit easier to&nbsp;‑‑ to manage. &nbsp;</p>
+
+<p>And I'll show you an example of this&nbsp;... &nbsp;</p>
+
+<p>Here. &nbsp;And I don't know, if you're not familiar with Layout Builder, this might all be super wild. &nbsp;But it cleans up this side bar and allows you to add icons or images to I will straight what the components are and it allows you to compartmentalize, similar to how Paragraphs browser lets us compartmentalize and categorize stuff. &nbsp;Layout Builder gives&nbsp;‑‑ this gives you see the ability to hone more in and make content for admins. &nbsp;</p>
+
+<p>And the other one is Layout Builder modal, which gives us an additional layer of functionality that kind of resembles what Paragraphs browser does. &nbsp;</p>
+
+<p>This is, if you add a component, it's going to pop over a modal window. &nbsp;To let you do inline editing on the block. &nbsp;Example, as I click text, it gives you a popover here and you can add the block directly, instead of having to do it in the side bar or other wonky ways. &nbsp;</p>
+
+<p>And then the&nbsp;‑‑ let's see. &nbsp;</p>
+
+<p>Yeah. &nbsp;</p>
+
+<p>The one gotcha with this that we've encountered, this is&nbsp;‑‑ Layout Builder is leveraging your front end theme, not your admin theme. &nbsp;So we've ran into issues because our admin theme makes it look pretty but on the front end it's not styled to resemble what it looks like. &nbsp;A quick fix is we've been included our admin kit or theme on our front end Layout Builder pages and that kind of definitely has helped to make this look a lot better. &nbsp;</p>
+
+<p>And then third and final module that we've been leveraging is called Layout Builder restrictions. &nbsp;</p>
+
+<p>[Muttering].&nbsp;</p>
+
+<p>Open page as well&nbsp;... &nbsp;</p>
+
+<p>The main reason we use this one is to restrict which layouts are available to be added to each page, meaning we don't necessarily want every single page to have every single layout added, and this gives the ability to choose which sections are to be added to each page. &nbsp;</p>
+
+<p>Again, this&nbsp;‑‑ like I said, this is the wild west. &nbsp;There are tons of contrib opportunities for this, to one to make the admin experience nicer, and also some of the ability to restrict by block and stuff could be nice but it's opening to thinking outside of the box. &nbsp;</p>
+
+<p>So just worth keeping in mind and digging into. &nbsp;</p>
+
+<p>And then on top of this, I'm going to kind of dive into our two internal tools that we built out. &nbsp;They're both open‑source but originally they were internal tools that we used the first of which being Paragon, our Drupal 8 base billed. &nbsp;It's on Drupal.org as an install file. &nbsp;It's not stable yet but we have been using it ourselves to build out projects. &nbsp;It essentially just preinstalls many common modules, shortens the setup time for Drupal from hours to minutes, especially as it relates to configuring complex stuff like media libraries and entity browsers and stuff like that. &nbsp;That stuff comes out of the box preconfigured and ready to rock and roll. &nbsp;</p>
+
+<p>It takes the guesswork out of spinning up the sites. &nbsp;In addition to Paragon it comes with Themekit. &nbsp;If you're not familiar with Foundation, it's a responsive framework that gives you, for one, tons and tons of out of the box, ready to use, accessible components, such as like accordions and responsive navs, tabs, stuff like that. We leverage those extensively so we're just not reinventing the wheel. &nbsp;We can just reference the foundation component, throw it in and know it's going to be accessible and easy to use. &nbsp;In addition, it give us componentized theme structure out of the box. &nbsp;And I will show a demo of how we are directing our themes currently. &nbsp;We are&nbsp;‑‑ with our new side build and with Layout Builder, becoming a&nbsp;... &nbsp;plug my computer in before I die. &nbsp;</p>
+
+<p>With Layout Builder making us start to think outside of the box. &nbsp;We're rethinking how we're componentizing our theme layer. &nbsp;Give you&nbsp;‑‑ [indistinct].&nbsp;</p>
+
+<p>And final point, it's build with Webpack for optimized code. &nbsp;It helps us aid in that componentization, and I'll give you a demo of how we use Webpack as well. &nbsp;Webpack is a lot more extensively used for front end frameworks and stuff like that. View, react, and stuff like that. &nbsp;We're taking bits and pieces of those front end frameworks and adapting it to the Drupal theme with quite a bit of success as well. &nbsp;With that, I will&nbsp;‑‑ we will jump over to my ID and give you guys an example. &nbsp;</p>
+
+<p>Cool. &nbsp;Just a basic install here. &nbsp;</p>
+
+<p>Themes, custom, and I've got my theme kit. &nbsp;Admin is our admin theme. &nbsp;I think it's definitely the rock star here. &nbsp;Again, it's set up with Webpack, so you have a Webpack config. &nbsp;</p>
+
+<p>It allows us to create different entry points for the different components and they can only include that CSS or that JavaScript in that particular component, as its own individual library. &nbsp;</p>
+
+<p>So there's tons of entry points and it's confusing, but what this is doing&nbsp;‑‑ let's go down to components. &nbsp;I've got a component called page turns. &nbsp;This is to specify the CSS or the SASS file, go ahead and compile that, and it compiles into the desk folder with a file name called Htran here, and I can create a library for that&nbsp;‑‑ in this library file. &nbsp;I'm creating a library for that and it's including this page‑turn. &nbsp;It might not be huge but you will see tons of CSS and JavaScript. &nbsp;When you compartmentalize this and takes it over to the template, you can include that and only that. &nbsp;</p>
+
+<p>If the component is not on the page, it won't render. &nbsp;And we're seeing huge performance improvements. &nbsp;To give you an example of how that looks once we get down&nbsp;‑‑ first we have global&nbsp;‑‑ this is the stuff that you are including, all across the site, all of your global templates and your global SASS, your base typography, but the meat and potatoes is this directory, and if we drill into components, and we had a sample, and then page turn right here. &nbsp;We're organizing this in the same manner as that design system was organized, and I've got my&nbsp;‑‑ my CSS here, and I've got&nbsp;‑‑ there's a little bit of wizardry going on with this where it's including this theme kit library, depending on the name of the component, only that page. &nbsp;</p>
+
+<p>So this is kind of a simple example. &nbsp;And like I said, the performance improvement of&nbsp;‑‑ including the CSS from a super small CSS file only on one page might not be huge but when you compound it across the entire site and you're only loading the components as you need them, it's powerful. &nbsp;And we're seeing awesome results. &nbsp;</p>
+
+<p>The added benefit is&nbsp;‑‑ that example is only CSS but we're including templates with the component. &nbsp;</p>
+
+<p>If somebody else comes into the project at a later date, they know exactly&nbsp;‑‑ if they're looking at a resource they can look at the theme and they know exactly what is controlling what. &nbsp;Just by looking in this one directory, instead of having to look in templates where there's all your templates, and look in your SASS, instead of doing that, we're kind of fog that front‑end framework. &nbsp;View likes to do this a lot, to keep stuff in the same directory. &nbsp;We're adapting that and it's making it a lot easier. &nbsp;There's a little bit of a learning curve getting Webpack rolling, and that's the beautiful of Themekit it gives you that point. &nbsp;</p>
+
+<p>Checking on time. &nbsp;Okay. &nbsp;We're good. &nbsp;</p>
+
+<p>So yeah. &nbsp;This is the main&nbsp;‑‑ the main dev piece that I wanted to show case, just because this relates to design systems in a great way, and it's just really cool to think kind of bring that full circle all the way back to how that design system affects design, affects dev planning, and affects dev implementation and then that all filters out down to the client as well. &nbsp;And they end up benefitting immensely from this componentization as well. &nbsp;So we can bounce over to&nbsp;... &nbsp;</p>
+
+<p>Client training and content entry. &nbsp;And I'll let Jess jump in here. &nbsp;</p>
+
+<p>&gt;&gt; JESSICA ITO: &nbsp;Cool, yeah. &nbsp;Yeah. &nbsp;So wrap it up, we're going to talk a little bit about how all of this, like, Eric mentioned, comes together to benefit the client, to help them sort of understand the value of a design system, and how it ‑‑ and how it helps them. &nbsp;</p>
+
+<p>Eric, can you make your window a little bit bigger? &nbsp;</p>
+
+<p>&gt;&gt; ERIC SCHMIDT: &nbsp;Oh, yeah. &nbsp;Sorry about that. &nbsp;There we go. &nbsp;</p>
+
+<p>&gt;&gt; JESSICA ITO: &nbsp;Cool. &nbsp;Thank you. &nbsp;</p>
+
+<p>All right. &nbsp;For unstructured content types where the components play a really large role, we urge our clients to spend the time making a plan for each page. &nbsp;And I would organize, like, for content entry, that this is one of the most important steps of doing, like, that actual manual content entry process. &nbsp;</p>
+
+<p>Making a plan for a page ahead of time allows&nbsp;‑‑ we have to tell our clients it allows them to move quickly once it's time to start migrating, and making time to think through the content and the page polls, how we can use components will help them get the most out of the design system. &nbsp;Typically what we recommended, and we'll show you a couple of quick examples of ways that clients can do this, but&nbsp;‑‑ that they have the current page of their old site up&nbsp;‑‑ current page of their old site up, as well as the component guide or the design system, like, the component portion of the design system. &nbsp;And then we tell them to think about the current content on the page, and the goal of the page, and does anything need to change from there. &nbsp;</p>
+
+<p>They can use the component guide to find components that will accommodate, or adapt the page to fit. &nbsp;</p>
+
+<p>And then start documenting that plan so when it's time to enter that page into the site, they can reference that plan to just quickly build the page later on. &nbsp;</p>
+
+<p>So most of the time, the clients that we work with, they are starting off with what we lovingly refer to&nbsp;‑‑ like, on the left‑hand side is a wall of text marketing page. &nbsp;So really what that means, there's just&nbsp;‑‑ it's just really text‑heavy. &nbsp;</p>
+
+<p>So our goal, one of our big goals with the design system and componentization is to just make their&nbsp;‑‑ help their content be more engaging and making it more scannable for that you are users to understand the point of that page better. &nbsp;</p>
+
+<p>For the clients, the idea&nbsp;‑‑ sometimes they've been doing things a certain way for a long time. &nbsp;</p>
+
+<p>And the idea of figuring out how the content on those long copy‑marketing pages fits into the new componentized designs can be overwhelming at first. &nbsp;</p>
+
+<p>So teaching them how to use the design system to aid in that process is pretty important. &nbsp;And we just, at this stage, emphasize to clients that the components are probably not going to be one to one with what they currently have on the site. &nbsp;</p>
+
+<p>So sometimes it's probably not going to be clear right away which component a client will have to use. &nbsp;And in those cases, we really advise adapting content to fit into one of the new components. &nbsp;</p>
+
+<p>In this whole process of going through the planning phase really, I think, helps clients critically think through and, like, just&nbsp;‑‑ just taking that step to plan it out will help them get the most out of their design system, so that they don't just rebuild what they currently have. &nbsp;And then these are just some quick ideas for how a client can document their plan. &nbsp;</p>
+
+<p>Some of our clients have had success with the hands‑on approach to planning their content, which literally, like, #1 is just literally printing out the components, cutting them up, and, like, rearranging them on a table or something like that. &nbsp;</p>
+
+<p>And taking a photograph to document that plan. &nbsp;</p>
+
+<p>If you click on, Eric, the second example. &nbsp;</p>
+
+<p>This is a way that our clients can do that digitally. &nbsp;So this is another InVision tool that we like to use a lot called InVision free hand. &nbsp;What I've done on the left‑hand side is taking screenshots and added in screenshots of every component within the design system. &nbsp;And then we tell our clients to copy or paste or, like, option‑drag those components out to put together plans for a page. &nbsp;</p>
+
+<p>Can you zoom in just really quickly on the example page plan? &nbsp;</p>
+
+<p>&gt;&gt; ERIC SCHMIDT: &nbsp;Yeah. &nbsp;</p>
+
+<p>&gt;&gt; JESSICA ITO: &nbsp;Cool. &nbsp;So you'll see, like, they can just copy and paste those components. &nbsp;And even though the content itself is going to change, it helps them sort of go through that exercise of thinking about what components they're going to use. &nbsp;They can quickly just, like, document what they want to change, like, maybe they want the image on the left. &nbsp;So the sections there. &nbsp;Or documenting notes about, like, content, what type of content you want to use that component for. &nbsp;Which testimonial you want in the future, which sort of, like, tags you would want that content to be populated, based on. &nbsp;It's a good way to help people start thinking about design systems and the way that we're used to doing every day. &nbsp;</p>
+
+<p>And then the third example&nbsp;‑‑ you can just show it super fast. &nbsp;But this is&nbsp;‑‑ this is another way that we've had clients approach us in the past. &nbsp;</p>
+
+<p>So this particular client created a separate content doc for every single page. &nbsp;And then actually had some people from our team do content entry. &nbsp;But you can see, like, in blue, they have the name of the component up there. &nbsp;They have maybe, like, if it's a variation. &nbsp;They've outlined what the H2 is. &nbsp;What all the copy is that I need to have in there. &nbsp;</p>
+
+<p>They'll even include links to images and stuff. &nbsp;They've gone through the planning process. &nbsp;This is the output of that, with taking it to the next level and having some real content in there. &nbsp;</p>
+
+<p>And then when&nbsp;‑‑ when you're going through and doing, like, the manual migration process, we, like, to use a spreadsheet to manage that process. &nbsp;It's easy for every page to just throw in a link to that content doc and it has the plan. &nbsp;I already know which components I'm using, what order they're going in. &nbsp;I have all of the copy. &nbsp;And everything that I need to build on it that page, without needing to bother anybody. &nbsp;[Chuckles].&nbsp;</p>
+
+<p>Cool. &nbsp;</p>
+
+<p>&gt;&gt; ERIC SCHMIDT: &nbsp;Cool. &nbsp;All right. &nbsp;Yeah, one final note, from myself in terms of a dev perspective on, like, client training and content entry, the utmost importance of help text. &nbsp;The main point being because it makes sense to you doesn't mean it makes sense to your content editors. &nbsp;And just because it makes sense to you now doesn't mean it will in a year when you come back. &nbsp;I find that it's extremely helpful to make sure you document each and every content type component, field, every content type should have a description. &nbsp;As an admin is adding content, they may not remember which is which. &nbsp;If you have a description, it's helpful. &nbsp;You don't want to get into a situation where a client's all of a sudden doing content entry and adding page upon page, and now you have a view, and having&nbsp;‑‑ being sure to comment that.&nbsp;</p>
+
+<p>But again, any nonstandard field should just have some help text added. &nbsp;If it's a heading, it's fairly obvious what it's going to do so you may not need it there but it's a field to create a custom sort or something like that, Drupal makes it easy to add help text. &nbsp;It'll save you time in the long run and make your admins more happy. &nbsp;</p>
+
+<p>Yeah. &nbsp;This helps content admins as well as yourself and other devs in the future. &nbsp;</p>
+
+<p>Quick example from UVT, that bank website that you showed you before, for just help text. &nbsp;This one's actually an interesting example because of headings. &nbsp;You might think a heading or microtiles wouldn't need a description. &nbsp;But this one had SEO implications where these small title appearing above the anything title, that's H1, and content admins may not know that. &nbsp;If they're trying to be SEO‑conscious, that's an instance where you want to be explicit with that stuff, and that filters down through different&nbsp;‑‑ other components. &nbsp;Just adding help text where necessary. &nbsp;It doesn't take much time. &nbsp;As you're thinking through the build spec and stuff like that, it helps to do it then and there rather than after it's built. &nbsp;Just keep that in mind as you're building stuff out, and you will thank yourself later. &nbsp;</p>
+
+<p>Cool. &nbsp;And that's&nbsp;... &nbsp;</p>
+
+<p>Pretty much all we have. &nbsp;I know there's kind of limited time. &nbsp;We got about three minutes left. &nbsp;If there's any questions, we can try and squeeze it in. &nbsp;But again, Jess and I will be in the room Slack after this, if you have any questions, more than happy to answer them. &nbsp;</p>
+
+<p>&gt;&gt; JESSICA ITO: &nbsp;I threw a note in the Zoom chat with the link to the MidCamp Slack. &nbsp;And you let you guys know which channel you can find us in, in Slack as well, if you have any follow‑up questions. &nbsp;</p>
+
+<p>&gt;&gt; ERIC SCHMIDT: &nbsp;Yeah. &nbsp;And then just two more final slides. &nbsp;Feedback is definitely appreciated. &nbsp;If you guys have any feedback, feel free to visit this link on this deck here. &nbsp;</p>
+
+<p>Positive, negative, we want it all. &nbsp;Let us know how we did. &nbsp;</p>
+
+<p>And finally, contrib day is happening, digitally. &nbsp;Don't forget about that on Saturday. &nbsp;They pop in there. &nbsp;It's great to give back to the community. &nbsp;We all get a lot out of Drupal, and I think it's extremely beneficial to try and give back whenever possible. &nbsp;Just because you don't know how to code doesn't mean you can't give back. &nbsp;Documentation can be written. &nbsp;UI and UX can happen. &nbsp;I know there's a ton of that happening with the new Claro admin theme. &nbsp;Just because you aren't a coder doesn't mean you can't help contribute. &nbsp;Keep that in mind. &nbsp;</p>
+
+<p>And with that, thank you. &nbsp;</p>
+
+<p>&gt;&gt; Great. &nbsp;Trans, everybody. &nbsp;‑‑ thanks, everybody. &nbsp;I'm going to stop the recording and figure out what happens next. &nbsp;</p>
+
+<p>If you will stop sharing your screen. &nbsp;</p>
+
+<p>I can put on the loop slide. &nbsp;</p>
+
+<p>&gt;&gt; ERIC SCHMIDT: &nbsp;I've quit sharing. &nbsp;</p>
+
+<p>&gt;&gt; I can still see your screen.&nbsp;</p>
+
+<p>&gt;&gt; ERIC SCHMIDT: &nbsp;Sorry about that. &nbsp;</p>
+
+<p>&gt;&gt; Sweet. &nbsp;Thank you. &nbsp;</p>
+
+<p>&gt;&gt; ERIC SCHMIDT: &nbsp;Jeremy and David and Ryan, you have questions. &nbsp;Pop over the Slack room and we can talk about that stuff. &nbsp;</p>
+
+<p>Thanks, guys. &nbsp;</p>
+</div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+
+</div>
+  </section>
+
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-6880c7b6cf084e2db266f51465a8453e70748c92dee5b7949845c5ff0c21f67b">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/pantheon.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2020-02/pantheon-logo-tagline-black.png" width="1200" height="370" alt="Pantheon logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/bounteous.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2019-11/Bounteous_indigo_large.png" width="1676" height="279" alt="Bounteous logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/clarity-partners.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2020-02/CFDFAA23-5C59-4C07-9C66-CAFFE0CF3854.png" width="1534" height="387" alt="Clarity Partners logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/palantirnet.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2020-02/palantirnet-logo.png" width="1200" height="198" alt="Palantir.net logo" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-2019-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#e28b8c848da28f8b8681838f92cc8d9085"><span class="__cf_email__" data-cfemail="88e1e6eee7c8e5e1ecebe9e5f8a6e7faef">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-2019-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-2019-footer-menu" id="block-hatter-2019-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-2019-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/6295","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"ajaxTrustedUrl":{"form_action_p_pvdeGsVG5zNF_XLGPTvYSKCf43t8qZYSwcfZl2uzM":true},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_sul8js76f3THBVtv8nspP93BoCHSgntyTCisS6lai4M.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter_2019&amp;include=eJx1ykEKgDAMBdELaavuPI2k-o1K2kITFG_vRkQEVwOP4ZxZMFAiOW0d1fMHqoXMUIauaXvPkgNJvT0aSPHSA2HOJfq7DoKIZG6C0SrqlHb8ThGqxLgAGZ04Cw"></script>
+
+  </body>
+</html>

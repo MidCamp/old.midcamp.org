@@ -1,0 +1,805 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="The team behind Drupal.org began a study of developer tools in 2017, migrated our backend services to GitLab in 2019, and has ramped up to enable merge requests for the project in 2020. Now we’re working on making GitLab CI available and using GitLab for issues. We’re not taking the tools right off the shelf, we’re tuning them to the Drupal community’s collaboration style. Join us for this session to learn about the initiative." />
+<link rel="canonical" href="drupalorg-gitlab-acceleration-update.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Drupal.org GitLab Acceleration Update | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Drupal.org GitLab Acceleration Update | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_gt5LiAM1qLGUH5e845uOb7R_lJ9dUwTXmnhGDR2yY20.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OgzAMgy8E7ZFQSg1UShrUdDB2-lX87GUviZ0vkj0ymR0-kKEbLz0l_mmBGc2wx2eNjWlBU0WI0wfdQrWi-Jk1EPej2XMRWoO-OzusQq6ILUXoAAmIw5TA0RfYqtnShv6E7QW7-XM.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_QAC1R0aFoF1mIVQtLAaSE24B2iwnT2ZCa0cZDeZsPV0.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OgzAMgy8E7ZFQSg1UShrUdDB2-lX87GUviZ0vkj0ymR0-kKEbLz0l_mmBGc2wx2eNjWlBU0WI0wfdQrWi-Jk1EPej2XMRWoO-OzusQq6ILUXoAAmIw5TA0RfYqtnShv6E7QW7-XM.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OgzAMgy8E7ZFQSg1UShrUdDB2-lX87GUviZ0vkj0ymR0-kKEbLz0l_mmBGc2wx2eNjWlBU0WI0wfdQrWi-Jk1EPej2XMRWoO-OzusQq6ILUXoAAmIw5TA0RfYqtnShv6E7QW7-XM.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OgzAMgy8E7ZFQSg1UShrUdDB2-lX87GUviZ0vkj0ymR0-kKEbLz0l_mmBGc2wx2eNjWlBU0WI0wfdQrWi-Jk1EPej2XMRWoO-OzusQq6ILUXoAAmIw5TA0RfYqtnShv6E7QW7-XM.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+<link rel="stylesheet" media="all" href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.css" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="drupalorg-gitlab-acceleration-update.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-midcamp2023navigation-menu" id="block-midcamp2023navigation" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-midcamp2023navigation-menu">MidCamp 2023 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" data-drupal-link-system-path="node/6857">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--by-the-numbers">
+        <a href="../../2020/about/by-the-numbers.html" data-drupal-link-system-path="node/6252">By the Numbers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--venue">
+        <a href="../../about/venue.html" title="Venue" data-drupal-link-system-path="node/7048">Venue</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../speaker-resources.html" data-drupal-link-system-path="node/345">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--health--safety">
+        <a href="../health-safety.html" data-drupal-link-system-path="node/6973">Health &amp; Safety</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../about/lunch-options.html" data-drupal-link-system-path="node/6970">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--volunteer-opportunities">
+        <a href="../article/volunteer-help-midcamp.html" data-drupal-link-system-path="node/6975">Volunteer Opportunities</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" data-drupal-link-system-path="2023/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--travel">
+        <a href="../about/travel.html" data-drupal-link-system-path="node/6865">Travel</a>
+            </li>
+          <li class="primary-nav__sublist-item item--accommodations">
+        <a href="../about/accommodations.html" data-drupal-link-system-path="node/6948">Accommodations</a>
+            </li>
+          <li class="primary-nav__sublist-item item--registration">
+        <a href="../register.html" data-drupal-link-system-path="node/6977">Registration</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" data-drupal-link-system-path="node/6860">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--sponsor">
+        <a href="../sponsor-midcamp.html" data-drupal-link-system-path="node/6858">Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" data-drupal-link-system-path="node/6859">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--hybrid-sessions">
+        <a href="../schedule/hybrid.html" data-drupal-link-system-path="node/7053">Hybrid Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-wed">
+        <a href="../schedule/wednesday.html" data-drupal-link-system-path="2023/schedule/wednesday">Sessions (Wed)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-thu">
+        <a href="../schedule/thursday.html" data-drupal-link-system-path="2023/schedule/thursday">Sessions (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--birds-of-a-feather-bofs">
+        <a href="../schedule/bofs.html" data-drupal-link-system-path="node/7054">Birds of a Feather (BoFs)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--contribution-day-fri">
+        <a href="../schedule/friday.html" data-drupal-link-system-path="2023/schedule/friday">Contribution Day (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--topic-tracks">
+        <a href="../../topic-tracks.html" data-drupal-link-system-path="node/10">Topic Tracks</a>
+            </li>
+          <li class="primary-nav__sublist-item item--all-sessions">
+        <a href="../schedule/sessions.html" data-drupal-link-system-path="2023/schedule/sessions">All Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--session-submission">
+        <a href="../submit-session.html" data-drupal-link-system-path="node/14">Session Submission</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2023/news">News</a>
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../../jobs.html" data-drupal-link-system-path="jobs">Jobs</a>
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2023.html" hreflang="en">MidCamp 2023</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-midcamp2023schedulenav" class="block block-block-content block-block-contente066b47a-a80d-432a-8edd-6c60b28b7c95">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><div class="schedule__nav">
+<p><a href="../schedule/hybrid.html">Hybrid</a>&nbsp;|&nbsp;<a href="../schedule/wednesday.html">Wednesday</a> | <a href="../schedule/thursday.html">Thursday</a> | <a href="../schedule/friday.html">Friday</a></p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Drupal.org GitLab Acceleration Update</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="6933" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2023-04-27T15:30:00Z" class="datetime">Thursday, 10:30 am CDT</time>
+ - <time datetime="2023-04-27T16:30:00Z" class="datetime">Thursday, 11:30 am CDT</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-271" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="clearfix text-formatted field field--name-description field--type-text-long field--label-hidden field__item"><p>This is a Hybrid location type where the speaker will present on-site and the session will be streamed remotely. Participants may either join remotely via the linked YouTube live stream or attend in person.</p></div>
+      
+            <div class="field field--name-field-link field--type-link field--label-hidden field__item"><a href="https://www.youtube.com/@midcamp" target="_blank" class="button--primary">Go to Room 314B (Hybrid Onsite)</a></div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Organizer Note</h4>
+    
+            <div class="field field--name-field-eyebrow field--type-string field--label-hidden field__item">This is a Hybrid session where the speaker will present on-site and the session will be streamed remotely. Participants may either join remotely via the linked YouTube live stream or attend in-person.</div>
+      
+  </div>
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>The team behind Drupal.org began a study of developer tools in 2017, migrated our backend services to GitLab in 2019, and has ramped up to enable merge requests for the project in 2020. Now we’re working on making GitLab CI available and using GitLab for issues. We’re not taking the tools right off the shelf, we’re tuning them to the Drupal community’s collaboration style. Join us for this session to learn about the initiative.</p>
+
+<p><br>
+In this session we’ll review our observations of the way the Drupal community collaborates, and talk about how that is informing our integration of GitLab into the Drupal community’s workflow.&nbsp;Since GitLab is increasingly-widely used, and rapidly adding features, there is an opportunity to integrate additional tools and workflows, to help improve contributing to Drupal.</p>
+
+<p>The Drupal community has a single-threaded collaboration style, with multiple contributors, that has unique benefits in a world where contribution for other open source projects often means forks-of-forks-of-forks. By building an integration of GitLab into Drupal.org’s existing issue queue, we’re preserving that collaboration, while gaining the benefits of GitLab’s fork &amp; branch management, merge requests, code review tools, and GitLab CI.<br>
+<br>
+At the end of this talk, we’ll have an open feedback session where we’ll answer your questions and take your suggestions for further improvements to our tools.</p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/V5PwS839YEI?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-presenter-slides field--type-file field--label-above">
+    <div class="field__label">Presenter Slides</div>
+              <div class="field__item">
+<span class="file file--mime-application-pdf file--application-pdf"> <a href="../../sites/default/files/2023-04/MidCamp%202023%20-%20Drupal.org%20GitLab%20Acceleration%20Update.pdf" type="application/pdf">MidCamp 2023 - Drupal.org GitLab Acceleration Update.pdf</a></span>
+</div>
+          </div>
+
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Neil Drumm</h4>
+
+      Senior Technologist
+
+
+          @
+              <a href="https://www.drupal.org/association">Drupal Association</a>
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p>Neil Drumm&nbsp;helps build Drupal.org as part of the Drupal Association’s Engineering team.</p></div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2020-01/Ycn%25ooEvR8i4K4gnCyy0Jw_thumb_56c.jpg%3Fitok=MkZopbKB" width="220" height="174" alt="Photo of Neil Drumm" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Community</div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-feedback-form field--type-webform field--label-above">
+    <div class="field__label">Feedback Form</div>
+              <div class="field__item"><form class="webform-submission-form webform-submission-add-form webform-submission-session-feedback-form webform-submission-session-feedback-add-form webform-submission-session-feedback-node-6933-form webform-submission-session-feedback-node-6933-add-form" data-drupal-selector="webform-submission-session-feedback-node-6933-add-form" action="drupalorg-gitlab-acceleration-update.html" method="post" id="webform-submission-session-feedback-node-6933-add-form" accept-charset="UTF-8">
+  
+    <div data-drupal-selector="edit-0" class="webform-message js-webform-message js-form-wrapper form-wrapper" id="edit-0"><div data-drupal-messages>
+    <div role="contentinfo" aria-label="Status message" class="messages messages--status">
+                  <h2 class="visually-hidden">Status message</h2>
+                    Sorry...This form is closed to new submissions.
+            </div>
+    </div>
+</div>
+<input autocomplete="off" data-drupal-selector="form-roqjgbxpdjimeadnbdlhzs6y4vqiy22diprchbuwmac" type="hidden" name="form_build_id" value="form-roQjgBxPdJIMeADnbdlHzs6Y4vQIy22diPRChbuwmac" />
+<input data-drupal-selector="edit-webform-submission-session-feedback-node-6933-add-form" type="hidden" name="form_id" value="webform_submission_session_feedback_node_6933_add_form" />
+<div class="url-textfield js-form-wrapper form-wrapper" style="display: none !important;"><div class="js-form-item form-item js-form-type-textfield form-type-textfield js-form-item-url form-item-url">
+      <label for="edit-url">Leave this field blank</label>
+        <input autocomplete="off" data-drupal-selector="edit-url" type="text" id="edit-url" name="url" value="" size="20" maxlength="128" class="form-text" />
+
+        </div>
+</div>
+
+
+  
+</form>
+</div>
+          </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p><span><span><span><span><span><span>NEIL DRUMM:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Alright, So I'll go ahead and get started. I'm Neil Drumm. I work for the Drupal Association on the engineering team there. And so the Drupal Association we're the people who keep drupal.org running off Drupal.org, including the subsites like events.drupal.org, Drupal CI and git.drupalcode.org of course. And yeah, we're only four people on staff, plus tag one for infrastructure support for the engineering team. So just kind of recap from the start. Why GitLab? So we want to improve the developer tools on Drupal.org, making it more smooth for people to contribute code back to through Drupal. Anything that goes to the repository. And, you know, a few years ago we migrated git.drupalcode.org to GitLab. But we're not using all of its capabilities right now. And GitLab, as a company can do more than our small team as far as providing functionality around Git. So it's not just GitLab we're doing, we improved the whole contribution process. So that includes account creation, making it easier to sign up for an account on Drupal.org and that includes things like social signance.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So if you want to sign up with your GitHub account or Google account or GitLab.com account. Projects and releases, those aren't changing a whole lot. Those are staying on Drupal.org projects. They have some metadata that's not in the repository and project balancing on Drupal.org. And releases, those Drupal core specs packaging and as part of this we're also able to simplify Drupal.org a bit. And we'll get into that a bit more later, but it'll help us upgrade Drupal.org in the future if there's less stuff and more simple stuff to upgrade. GitLab CI and issues, of course, are being migrated. That's kind of the end goal. So account creation. Let's see. Account creation. Just to be in line with all my notes from when I wrote these. Yeah, basically what I said earlier, we had to kind of essentially custom solution before, a couple other places used bakery module. I think Acquia used to use bakery module for something on Acquia.com, sort of switching to key cloak for single sign in and social sign in, and that'll also provide federated login.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So a campsite like if Mid Camp wanted logging into the Midcamp.org site with your Drupal.org account, that should be possible in the future. So that causes some other changes. Multiple email addresses. Those used to be on your account on Drupal.org, now git.drupalcode.org manages those. So good simplification there and notifications are enabled via GitLab. And you'll see the login page will look a little bit different in the future. Projects and releases. Those aren't changing a whole lot. You know, we have project browsing on Drupal.org and we want to support project browsing within Drupal itself and that needs metadata that isn't in Git and you know all these pages that aren't in Git. And Drupal core, it expects packaging of releases updates to the info YAML file and packages at Drupal.org, that's part of what you use when you install the Drupal site with composer that handles some, making Drupal dependencies work for composer. And those notifications, those are under settings, under preferences on git.drupalcode.org.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So they're a little bit hidden but yeah, you can set up notifications and this is also where SSH key management and email management went. And as part of simplifying Drupal.org projects pages changed a little bit. There used to be on the top right, the maintainers used to be the, how many commits they made, which it's a little unnecessary focusing on code contributions and something Drupal.org just didn't need to do as far as keeping track of all the commits. So we no longer maintain a database of how many commits someone's made. GitLab has a few visualizations of commits over time, which are better than what we could provide. And let's see. Documentation that used to link off to just the guides on Drupal.org, now you can put any URL in, so if you want to use GitLab pages in the future, that's a place you can put documentation. And in the future when issues migrate, that whole issue account block that will have to, something will have to change with that because we won't be able to count issues anymore because we won't have a local database to get those numbers quickly.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Profile pages again. There used to be a count of commits at the very bottom of your profile page. That's replaced with a count of issue credits, which we can easily provide, and it's little bit more inclusive of other types of contribution, not just code contribution. An example of something GitLab provides that we would have taken more effort for us to provide in the past if we wanted to build it or had time to build it is code search. So this still took a bit of effort for us to build out, basically setting up, I think Elasticsearch server, Elasticsearch server for GitLab to use, but it handled all of the indexing and everything. There's one big trick to it. We only index the project group. There's also issue forks and sandboxes, which we don't index. So that means you kind of have to get to the project group before you search, and then code search will be there. And big thing that's in progress right now is replacing Drupal CI. So, you know, the aim is to get GitLab CI to be feature-complete with Drupal CI.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So testing both core and contrib projects and the current Drupal 10, 11 core and Legacy Drupal 7 that's still maintained if we need core and contrib tested for those. And Drupal CI it's everything from the container stack. We have to custom build some containers to get extra debugging output and things like that. Actually the big thing is Drupal supports a really wide variety of PHP versions and database versions and stuff that other people aren't maintaining containers for. Like Drupal 7 has some amount of PHP 5 something compatibility and no one else cares about those containers. So we have to build them. And we'll keep building them with GitLab CI. It's all containers, just changing how we orchestrate them. Assembling a Drupal code base of contrib testing that's assembled in roughly the same way. Linting, PHP lint, CSS lint and actually running the tests and reporting the results. So the big difference with GitLab CI is, you know, with Drupal we had patterns established. We could code those into Drupal CI.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>We know what testing a Drupal project roughly looks like. But with GitLab CI of course it's, you know, you can put any projects on GitLab, there's no standard way of testing them. So GitLab CI is going to be a bit decentralized. And the other kind of big win is GitLab CI is going to handle all the orchestration. Right now we have a Jenkins server, you might have seen dispatcher.drupalci.org I think is the domain. You really shouldn't be running a public Jenkins server like that and it's not really designed to, you know Jenkins CI system is OK for this, but we're kind of pushing the limits of what Jenkins can do PHP is here to have GitLab do all of that work situation running all the mechanics of running the tests. And, yeah, as a maintainer, since GitLab is more decentralized, you will need to set up a GitLab CI YAML file in your repository and that will have all the configuration replacing the UI on Drupal.org as far as like what to run on commit, what to run on weekly, what to run, the scheduling of all the tasks.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And, setting up a GitLab CI YAML file can be work for every maintainer who wants to keep their testing running. So we want to make that transition as easy as possible. The good news is we have templates that basically you can include portions of that YAML from somewhere else from these templates. So those get you started with testing a Drupal project. Right now, those templates are in a good spot to start I'd say, maybe better quality and we're ready to have people, project maintainers, request GitLab CI and test out those templates, see how they work, provide feedback to us and help improve those templates. So the slides are linked from the Mid Camp site, so you don't have to type that all out. But we have that documented and in the next few weeks we'll enable CI for all projects, probably.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>This is great news.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>NEIL DRUMM:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Thanks. And of course, GitLab CI has no idea what patch file is. So when a project switches to GitLab CI, they're also saying you have to use virtual classes to contribute. So no more uploading patch files, no more inter diffs and all the mechanics around that. So, different set of tools to learn with merge requests. Yeah.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Is there any sort of reply or feedback for contributor coming to a project (INAUDIBLE to show them that, don't submit patches or is it up for the maintainers to sort of give them that feedback?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>NEIL DRUMM:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>So, I'll repeat the question. Is there any feedback on the issue page about issue patches are no longer accepted for projects using GitLab CI? Not currently, but we'll certainly need to add that once GitLab CI gains traction. And yeah, we do, as the maintainer you can use Drupal CI and GitLab CI in parallel for a little bit until you get get GitLab CI up and running testing everything correctly. We do ask that you don't run both indefinitely because we do pay for the compute and everything to actually run those tests. So, yeah, we'll have that in the future.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>What's your assessment for the state of the documentation for someone who's interested in GitLab CI (INAUDIBLE).</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>NEIL DRUMM:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>So I didn't write the documentation, my coworker finished writing it two days ago. So it looks pretty thorough but, you know, not a lot of people have used it and it was finished two days ago. So I'm sure it needs work.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>It's gotten attention. That's goodness.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>NEIL DRUMM:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah. You've had a. Which is always.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>NEIL DRUMM:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>So once a project is moved off of Drupal CI and testing is working for them with all GitLab, then we can now look at issues. So the thing that's different about the Drupal project from the other open source projects is we do things like contribution days, have contribution areas at conferences and sprints. So it's a lot more common in the Drupal community to have changes to the code handed off from person to person. Not the same, you know, I might start a merge request and say, I don't know how this should be tested and just leave it for someone else to pick it up and add the testing code and that's not the way you see GitLab or GitHub usually used. It's usually one person and one change. So yeah, I ran the stats a few days ago. On average 5.6 people are credited for every Drupal core contribution and you know, they're not all coding. But you know, there's a lot of non code contributions around the receive credit but it's expected that the code changes are handed off from person to person.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So we have to figure out how to keep that collaborative sense and that's why we have the issue forks and merge requests set up the way we do. And credit, that's also something that's become really important in the Drupal ecosystem that is not seen in the same way in other open source projects. And before getting into that issue credit too much, I want to remind people it's not just issues that are on your plate. I consider credit to be anything that shows up on your user profile, anything that shows up on your organization profile if you have an organization. So, we've added contributor roles, stuff like ongoing roles in the community and documentation that you've maintained that's linked from your user profile page. And what else do I have on here? Yeah. Organizations, if they're supporting a project as in sponsor maintainer, that's been in case studies. But for GitLab, the main thing it's going to be affecting is issue credit. So GitLab, they don't have anything like issue credit built in.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And GitLab as product is not like Drupal, where we can just add something to a page. So, we'll be rebuilding it on Drupal and pulling in data from git.drupalcode.org. And, the only interface we have to put stuff on the screen in GitLab is places like posting a comment. So, there'll be prompts in the GitLab UI for, Hey, this issue was closed out. Remember to update your, if you are contributor to this issue, remember to, say if it was on behalf of organization or as a volunteer and if you're a maintainer, go say which contributor has made useful contributions. And you of course can do this throughout the issue lifecycle. You don't have to wait until the end but it'll be a separate system over on Drupal.org. We have a bit of UI work to do, but you know, it's all filtered data and stuff Drupal can handle as far as actually building that.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>(INAUDIBLE)</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>NEIL DRUMM:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>So the question was if it's all manual or through the CUI or if you can, (INAUDIBLE) Well yeah, the commit message, we can pull that in the commit messages that... I have a feeling this might have to change the formatting. The standard Git commit message to credit someone is commit trailer like the signed off by colon, email address reviewed by colon email address, kind of like headers at the bottom of the commit message. That's more likely to be fit into how GitLab will make commit messages automatically. The whole listing usernames at the front, that's not something I've seen other projects do. And it's a little harder to parse because usernames you git.drupalcode.org is actually technically could be different from your drupal.org username and people change usernames. But yeah, it will be some amount of UI on a separate site to remember still. There's also stuff throughout Drupal.org that depends on issues such as the change records. So anything that's referencing issues on Drupal.org.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>We have this nice kind of color coding that we can't do that anymore because we will have issues in the local Drupal database. So to unwind all of that integration and replace it with GitLab integration. So you might have noticed Change records have changed slightly in the last few months. That's where we're preparing for the unlocking. Yep.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>(INAUDIBLE)</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>NEIL DRUMM:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah. So case by case, some things, those references to issues on Drupal.org, they'll just go away and we're not replacing the functionality. Places like change records, it's important to keep that functionality. So we have to build a new integration with GitLab, which will be more code than integrating with Drupal because Drupal has any reference module built in and stuff like making references to other content on the site, it's natural in Drupal. But that depends on having the entity there in the database so you can query it. And GitLab, you build API integrations. So stuff like, if we want to do that color coding, we can make a request on the front end in JavaScript to check GitLab API, Hey, is this open or closed? What color should we make it? So yeah, the JavaScript code is you know, it's not that much more than entity reference and whoever was doing this in PHP, but it's a reimplementation potentially a little bit more, more code or code base. So kind of the theme is like, this isn't saving work or complexity on Drupal.org not having issues.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Yeah, that's a little less complexity there. But, you know, about half of the functionality on issues was the contribution credit. Like, that's not moving since GitLab doesn't have it. And then the actual migration of issues once solved, the, you know, once all of the things kind of coupling issues to Drupal are uncoupled, then we can actually start migrating issues. And the way we'll do that is project by project. So it won't be a we can't migrate everything all at once. And you know, we aim to preserve as much as practical of the metadata. GitLab keeps track of metadata in a little bit different way. They don't have the, you know, the eight fields or whatever we have for status and priority, but they do have labels that can replace that. And so we got a little bit of a head start in the code. For that, we have a draft that's, you know, of the code that can migrate issues. But of course they'll need a lot of review and we have all of those links to Drupal.org like, issues, those references and Drupal CI.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So, yeah, this is where we are. And also, the little Drupal icons on these. You know, we're also, Drupal.org site, Drupal seven site so we're looking to ways to simplify, have less to migrate and once we move to Drupal 10, stuff like the issue credit, we're building that UI completely on Drupal 10. We're not going to build it on seven and then migrate it. And, yeah, the meta issue to follow along is there on the screen. there's a Drupal slack channel. Best way to help is to help test things as they become available, especially merge requests and especially GitLab CI. Now that we have that documented and we're ready for a few more project maintainers to give that a try. And also, there's a couple people, probably only one person working on making the testing work for Drupal core. So we'll need that as well. And yeah, look through these slides and the feedback form are on the Mid Camp website. Any questions? Yeah.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>So GitLab of course includes, are that all the templates are intended to be used?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>NEIL DRUMM:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yes. Yeah. So yeah. GitLab CI YAML, it's a whole syntax. And I don't personally write a lot of GitLab CI files, but it's a programming language crammed into a YAML file and it has (UNKNOWN).</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Great. That was my big (INAUDIBLE) and everybody just includes that template that's hosted by the different people or whatever and they don't need to customize it or (INAUDIBLE). Awesome.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>NEIL DRUMM:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>So yeah, in the future, when people come up with good automations like the Project Update Bot Run Richter and all the other tools in that suite. Yeah, they can either in our default templates, we could add a build step, run, was it the project update or? Yeah, run project updater. And either, hopefully in the template say like, by default, run it weekly or something like that.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>So are there going to be any new restrictions (INAUDIBLE) or?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>NEIL DRUMM:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>No. So, yeah, we don't... The question was, are there restrictions on the types of containers. And yeah, we're not able to put restrictions in for that. So we will be monitoring how many CI minutes people run their tests for because we don't want to pay for abuse of the system or just over testing. Like if you're testing every supported version of PHP with every database, multiply that by every supported version of Drupal core, you could easily get to, you know, ten, 20, 30 tests running on commit. And you don't need to be running 30 minutes or an hour of testing for every commit or. So, yeah, we will have to limit how many minutes the projects run for because we do the compute costs money and we're outside of all the free tiers of GitLab.com. They'll give you a little bit of testing for free but not the amount we need.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>So, like these templates are they're going to have the ability to save (INAUDIBLE)?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>NEIL DRUMM:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah. This is what the documentation looks like. I think that's, So, it has scheduling and... I can't read any of this since it's up on the screen. But, this sort of, this is where we are with the documentation so. Far. Any other questions?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Can you talk a little bit about, I'm sure you've had discussions about timing. Projects that are potentially very old and don't really have people maintaining them. But people might be using those projects and have composer files with patches. I guess, as we go on, eight to nine and nine to ten, things will be sort of deprecated by default, (INAUDIBLE). Have you had much discussion about timing and about when will there be a hard cutoff where the issues system will not work anymore, where patches won't be available? (INAUDIBLE)</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>NEIL DRUMM:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>So, yeah, around timing, everything we do will be project by project. Right now it's an opt in process for GitLab CI. And be like that for some number of months likely. You know, even when we enable the ability to use Drupal or GitLab CI for all projects still requires that manual step of adding GitLab CI YAML file. And yeah, at some point six months or a year from now, however, the timing works out, we'll wind down Drupal CI and exit its technical debt. We can't be maintaining two CI systems.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>So would you still be having those patches available? (INAUDIBLE)</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>NEIL DRUMM:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Everything in the SUQ will be migrated. So yeah, patches will become attachments to the GitLab issue just like any other files on the issues.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>(INAUDIBLE)</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>NEIL DRUMM:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah. Although probably redirects and everything. Like we aim to keep the transition as smooth as possible. So any images uploaded to the issue, those will either be uploaded to the GitLab issue or we could link them over and keep them hosted in our static file server. But yeah, they'll be available so you'll know every image, every patch that's been uploaded previously. And a quick guide since you mentioned patching Drupal installs, you can get a patch for a merch request, dot patch or dot (UNKNOWN) URL on GitLab on the merge request. But don't deploy that. Don't reference that directly because any merge request, any pull requests on GitHub, it could change in the future. And you probably want to know what you're deploying. So you know, make a local copy of the patch, apply that with composer patches or if you have a bunch of stuff going on in your code base, maybe make a private fork like you would do on any other project you would be deploying. That's all? You had another question?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>(INAUDIBLE)</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>NEIL DRUMM:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah. As far as automating, enabling GitLab CI and actually using GitLab CI, I could imagine potentially, these GitLab CI YAML files for each project, they'll follow a pattern pretty well, and we could potentially generate a good place to start and open a merge request for each project and say, Hey, this looks like a good place to start. As a general rule, we don't make automatic commits to your repository. We've stayed away from that.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>(INAUDIBLE)</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>NEIL DRUMM:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah. GitLab does have project templates for new projects, so that is something that could be set up.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>(UNKNOWN) And in addition to that, there's an option to submit to the GitLab itself, the option to have default template. (INAUDIBLE). But it takes work and takes time.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>NEIL DRUMM:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah. I'm not sure I can summarize all that for the recording, but yeah. One of the learning experiences around using GitLab has been, you know, our old system is maintenance free. Nothing changed. So there was no real maintenance burden. Sometimes, you know, we would look at it like, how is this still running? There's like a python SSH statement somehow that was still working. But don't touch it. It keeps working. GitLab, they're on a release schedule. They put in a bunch of new features every month. So they have security releases every once or twice a month. So, you know, we're in the same position everyone else is with updating Drupal core potentially every month. You want to update it pretty quickly and we're about around the beginning of the month, we know someday there sometime there will be a GitLab security release. So do those updates promptly and this is the disk use for that past six months. Something changed around January 1st, and now it's becoming a problem. So we need to figure out where to get 40% of the disk back or the other solution would be buy more disks or provision more disks on AWS.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>But things change every month and this one, we kind of let it ride for what? January was four months ago, three months ago but now it's becoming a problem. So that's that's part of, we're not just moving things over to GitLab, we're also doing production support being site reliability engineers for this product. Yeah.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>So it just checked. And not only when you're setting up a new project, but also an existing project GitLab provides buttons to add or renew, add a license, add a Changelog and set up CI CD. It looks as though if you use that button, you get the standard GitLab YAML file. So what sort of the UI is there and what you have to do is figure out how to get the Drupal specific CI configuration so that you get that report. So yeah, the question or comment was, yes, GitLab has all of these kind of, on GitLab they have a business interest in using GitLab CI because GitLab.com you know, you'll pay for it. And their business model is to become, I think full stack like ideation to deployment system for code. So they want, so GitLab CI there's all sorts of on roads to enabling GitLab CI but there's a few, there's some options with that we can keep finding more ways to put the Drupal templates front and center like have that, I believe when you enable GitLab CI for a project through the GitLab UI, it gives you a choice of templates, and I think we can add stuff to that list.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>But yeah, there's places we can make that more kind of the defaults or available options. I would love to see that for new projects. I think there's still this value for existing projects, the great work we're doing. You know, not committing code (INAUDIBLE) but promoting that this work is available in places that (INAUDIBLE). The other example I would give (INAUDIBLE) a lot of people don't know that that exists. And, you know, (INAUDIBLE) somewhere in the project page or maintainers that you can (INAUDIBLE). So I think there's a bit of like, it's kind of a marketing piece to the technology work that you all are doing, and it's really great to see more people made aware of it. Yeah. I definitely have seen in GitLab, you can have customised new project templates, so we could make a specific Drupal module template. We never want to, you know, we also want that to be an option because you might be bringing your code base from somewhere else, importing, Git repository, so you should always have the option to start with a blank repository, but we should also have the option to start a what most Drupal projects look like, themes, modules.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>(INAUDIBLE)</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>NEIL DRUMM:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah. And we can keep adding stuff like more advertisements of features to Drupal.org. Within the GitLab UI options are a little limited to, you know we can't add arbitrary things to this new page other than or merge request page other than comments. But yeah, part of the collaboration will be a comment made by a bot on the issue, like here's the fork for this to contribute code, just a little bit of information on how to get started. Yes, go ahead and commit stuff to this. It's fine. And here's the commands to set it up in the, set up your get copy the way you would like. Or use the GitLab Web ID there. They're also pushing that. I think I saw the latest release of GitLab has like more autocomplete stuff in within the GitLab web ID itself. They are on the whole AI bandwagon. See how it does.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>(INAUDIBLE_</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>NEIL DRUMM:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Right, any other questions? Thanks.</span></span></span></span></span></span></p></div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-13ddca059117221f1d6def9dc24eb7e98b6bb94d89af4cc9741f233e104659a6">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/6933">https://mid.camp/6933</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+  <section class="map-banner">
+      <div class="views-element-container block block-views block-views-blockevent-venue-block-1" id="block-hatter-views-block-event-venue-block-1">
+  
+    
+      <div><div class="container view view-event-venue view-id-event_venue view-display-id-block_1 js-view-dom-id-05168f09ed6e672a289b2c0ca5216bbed67cf2bcbea953d19d623bd860e87bd5">
+  
+    
+      
+      <div class="view-content">
+          <div class="views-row">
+
+
+<div class="map-overlay">
+  <span class="map__label">Location</span>
+  <h2 class="map__title"><span class="field field--name-title field--type-string field--label-hidden">DePaul University - Lincoln Park Student Center</span>
+</h2>
+  
+            <div class="field field--name-field-address field--type-address field--label-hidden field__item"><p class="map__address" translate="no">
+          2250 N Sheffield Ave. <br>
+            Chicago, IL 60614<br>
+  </p>
+</div>
+      
+  <a href="../../about/venue.html" class="cta-link--yellow">Learn more  <span class="cta-arrow"></span></a>
+</div>
+<div id='map' class="map"></div>
+</div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-f4f4e21838afdf85b3ce89d832a59596c805aaaeaa1d08dc60625c5a7d479830">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/debug-academy.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2023-02/Final%20Logo-in-color.png" width="1010" height="864" alt="Debug Academy logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/bounteous.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2023-01/BounteousIndigoSmall.png" width="403" height="67" alt="Bounteous logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/evolving-web.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2023-04/evolvingweb%20(3).png" width="1517" height="371" alt="Evolving Web" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#7e171018113e13171a1d1f130e50110c19"><span class="__cf_email__" data-cfemail="254c4b434a65484c41464448550b4a5742">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/6933","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"ajaxTrustedUrl":{"form_action_p_pvdeGsVG5zNF_XLGPTvYSKCf43t8qZYSwcfZl2uzM":true},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_U1jmi93nTJG2lPAKzexs4tMZWFR2YMMoIoiPckW421U.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJx1yksKgDAMRdENabskSfUZK2kjTfCzeyfiQHB04XBZlQUDVZLL82iRP9At5I4WWTSR9OsLhbakZ3cgzdpKfBogKKgeJjhlsWC043cqMCPGDa0vM_I"></script>
+<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.js"></script>
+<script src="../../sites/default/files/js/js_RAkHj2z9vY4q-6RsYuiXkqPbxgsRWrLsVQRz36mKiGA.js%3Fscope=footer&amp;delta=2&amp;language=en&amp;theme=hatter&amp;include=eJx1yksKgDAMRdENabskSfUZK2kjTfCzeyfiQHB04XBZlQUDVZLL82iRP9At5I4WWTSR9OsLhbakZ3cgzdpKfBogKKgeJjhlsWC043cqMCPGDa0vM_I"></script>
+
+  </body>
+</html>

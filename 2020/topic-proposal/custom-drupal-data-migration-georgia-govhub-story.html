@@ -1,0 +1,729 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="As Digital Services Georgia upgraded their Drupal 7 multisite platform to Drupal 8, they capitalized on the opportunity to make improvements to their content model. Data migrations were customized to move and shape data to fit into new content types and fields.  Let&#039;s take a look at some of the strategies, tools, and techniques used to migrate site data from the GeorgiaGov Platform to Georgia GovHub. Topics that will be covered:" />
+<link rel="canonical" href="custom-drupal-data-migration-georgia-govhub-story.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Custom Drupal data migration: a Georgia GovHub story | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter_2019/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Custom Drupal data migration: a Georgia GovHub story | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_gt5LiAM1qLGUH5e845uOb7R_lJ9dUwTXmnhGDR2yY20.css%3Fdelta=0&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlj90OwiAMhV9oA_XOp1lgHDaSQg3FLfPph_sxGm_a03Oa5mtPRmTR1giaftc-0EdHiJgBcs6JXc04o6ocDYUXmtGUgtzdLte7HoitobYXOe33Ze05lV_na1EWKYg7whQcuEO0cJ.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_UMuvjHSQ9iJFDCuYZXW-ThtEaBNBWxN9AUvYSTjbZi4.css%3Fdelta=1&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlj90OwiAMhV9oA_XOp1lgHDaSQg3FLfPph_sxGm_a03Oa5mtPRmTR1giaftc-0EdHiJgBcs6JXc04o6ocDYUXmtGUgtzdLte7HoitobYXOe33Ze05lV_na1EWKYg7whQcuEO0cJ.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_JumHJ3UqLO9Mdu1kygD5e19MOiNh5iD_a9p0FH6QrHQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlj90OwiAMhV9oA_XOp1lgHDaSQg3FLfPph_sxGm_a03Oa5mtPRmTR1giaftc-0EdHiJgBcs6JXc04o6ocDYUXmtGUgtzdLte7HoitobYXOe33Ze05lV_na1EWKYg7whQcuEO0cJ.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_LovagMoZZFoM80YhT0zgW4b6oNarRMdF8ooxvYiQ9tA.css%3Fdelta=4&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlj90OwiAMhV9oA_XOp1lgHDaSQg3FLfPph_sxGm_a03Oa5mtPRmTR1giaftc-0EdHiJgBcs6JXc04o6ocDYUXmtGUgtzdLte7HoitobYXOe33Ze05lV_na1EWKYg7whQcuEO0cJ.css" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="custom-drupal-data-migration-georgia-govhub-story.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-2019-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-hatter-2019-midcamp2020navigation-menu" id="block-hatter-2019-midcamp2020navigation" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-2019-midcamp2020navigation-menu">Midcamp 2020 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" data-drupal-link-system-path="node/403">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../news.html" title="News" data-drupal-link-system-path="2020/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" data-drupal-link-system-path="2020/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--virtual-camp">
+        <a href="../article/midcamp-2020-going-digital.html" title="MidCamp is going virtual" data-drupal-link-system-path="node/6689">Virtual Camp</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsor">
+        <a href="../sponsor-midcamp.html" data-drupal-link-system-path="node/6250">Sponsor</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--community-organizations">
+        <a href="../sponsor/community-organization-introduction.html" data-drupal-link-system-path="node/6251">Community Organizations</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sponsors">
+        <a href="../sponsors.html" data-drupal-link-system-path="node/6253">Sponsors</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" data-drupal-link-system-path="node/6258">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--sessions-thu">
+        <a href="../schedule/thursday.html" data-drupal-link-system-path="2020/schedule/thursday">Sessions (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-fri">
+        <a href="../schedule/friday.html" data-drupal-link-system-path="2020/schedule/friday">Sessions (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--contribution-sat">
+        <a href="../contribution-day.html" title="Contribution Day" data-drupal-link-system-path="node/6378">Contribution (Sat)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--accepted-sessions">
+        <a href="../accepted-sessions.html" data-drupal-link-system-path="2020/accepted-sessions">Accepted Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../../2023/speaker-resources.html" data-drupal-link-system-path="node/345">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-terms-and-conditions">
+        <a href="../../speaker-terms-and-conditions.html" data-drupal-link-system-path="node/21">Speaker Terms and Conditions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--topic-tracks">
+        <a href="../../topic-tracks.html" data-drupal-link-system-path="node/10">Topic Tracks</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--donate">
+        <a href="https://tickets.midcamp.org/" title="Register for MidCamp">Donate</a>
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-2019-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2020.html" hreflang="en">MidCamp 2020</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-hatter-2019-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Custom Drupal data migration: a Georgia GovHub story</span>
+</h1>
+
+
+  </div>
+<div id="block-hatter-2019-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="6294" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2020-03-19T19:00:00Z" class="datetime">Thursday, 2:00 pm CDT</time>
+ - <time datetime="2020-03-19T19:30:00Z" class="datetime">Thursday, 2:30 pm CDT</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-81" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-name field--type-string field--label-hidden field__item">Room 314A</div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>As Digital Services Georgia upgraded their Drupal 7 multisite platform to Drupal 8, they capitalized on the opportunity to make improvements to their content model.&nbsp;Data migrations were customized to move and shape data to fit into new content types and fields.&nbsp;</p>
+
+<p>Let's take a look at&nbsp;some of the&nbsp;strategies, tools,&nbsp;and techniques&nbsp;used to migrate site data from the GeorgiaGov Platform to Georgia GovHub.</p>
+
+<p>Topics that will be covered:</p>
+
+<ul>
+	<li>Discovery and planning</li>
+	<li>Strategies and workflow</li>
+	<li>Sample solutions
+	<ul>
+		<li>Site specific overrides</li>
+		<li>Nested Paragraphs</li>
+		<li>Circular dependencies</li>
+	</ul>
+	</li>
+</ul></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/yZLM0hS8uok?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-presenter-slides field--type-file field--label-above">
+    <div class="field__label">Presenter Slides</div>
+              <div class="field__item">
+<span class="file file--mime-application-pdf file--application-pdf"> <a href="../../sites/default/files/2020-03/MidCamp_2020_Custom_Drupal_Data_Migration_A_Georgia_GovHUB_Story.pdf" type="application/pdf">MidCamp_2020_Custom_Drupal_Data_Migration_A_Georgia_GovHUB_Story.pdf</a></span>
+</div>
+          </div>
+
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>April Sides</h4>
+
+      Principal Software Engineer
+
+
+          @
+              <a href="http://redhat.com">Red Hat</a>
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p>April has over a decade of experience with Drupal web development. Her journey has taken her from higher education and federal government roots to agency and big tech opportunities.</p><p>Along the way, she's been involved in the Drupal community as lead organizer of Drupal Camp Asheville and a Drupal Community Working Group Community Health Team member. She often attends and speaks at Drupal events in North America and helps organize the Accessibility Talks virtual meetup.</p><p>April is passionate about connecting people in the community as well as providing knowledge and resources for new developers to grow professionally and personally.</p><p>Outside of work and volunteering, April enjoys collecting LEGO Harry Potter, watching Star Wars and Marvel media, and going on adventures with her step-grandchild.</p></div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2025-01/April_Sides_dcon-2024-resized.jpg%3Fitok=fUf_fE5f" width="220" height="220" alt="April Sides" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Back-End</div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-feedback-form field--type-webform field--label-above">
+    <div class="field__label">Feedback Form</div>
+              <div class="field__item"><form class="webform-submission-form webform-submission-add-form webform-submission-session-feedback-form webform-submission-session-feedback-add-form webform-submission-session-feedback-node-6294-form webform-submission-session-feedback-node-6294-add-form" data-drupal-selector="webform-submission-session-feedback-node-6294-add-form" action="custom-drupal-data-migration-georgia-govhub-story.html" method="post" id="webform-submission-session-feedback-node-6294-add-form" accept-charset="UTF-8">
+  
+    <div data-drupal-selector="edit-0" class="webform-message js-webform-message js-form-wrapper form-wrapper" id="edit-0"><div data-drupal-messages>
+    <div role="contentinfo" aria-label="Status message" class="messages messages--status">
+                  <h2 class="visually-hidden">Status message</h2>
+                    Sorry...This form is closed to new submissions.
+            </div>
+    </div>
+</div>
+<input autocomplete="off" data-drupal-selector="form-i8kk90tjcz3a0bn4zfupvqnkowyuj8xlxlxbb576zm0" type="hidden" name="form_build_id" value="form-I8Kk90tjCz3A0BN4zFUpVqnKoWYUj8XlXlxbB576Zm0" />
+<input data-drupal-selector="edit-webform-submission-session-feedback-node-6294-add-form" type="hidden" name="form_id" value="webform_submission_session_feedback_node_6294_add_form" />
+<div class="url-textfield js-form-wrapper form-wrapper" style="display: none !important;"><div class="js-form-item form-item js-form-type-textfield form-type-textfield js-form-item-url form-item-url">
+      <label for="edit-url">Leave this field blank</label>
+        <input autocomplete="off" data-drupal-selector="edit-url" type="text" id="edit-url" name="url" value="" size="20" maxlength="128" class="form-text" />
+
+        </div>
+</div>
+
+
+  
+</form>
+</div>
+          </div>
+
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <h3 class="field__label">Transcript</h3>
+              <div class="field__item" tabindex="0"><p>&gt;&gt; APRIL SIDES: &nbsp;Hey, everybody. &nbsp;And welcome to custom Drupal data migrations: &nbsp;A Georgia GovHUB story. &nbsp;My name is April Sides. &nbsp;I'm a senior developer at Lullabot, and I've been working at Lullabot for about a year and a half now. &nbsp;The GeorgiaGov project was my first project and my first migration, so I'm really excited to show you what we did. &nbsp;</p>
+
+<p>I'm also the lead organizer of Drupal camp Asheville, which is currently scheduled for July 10th through 12th this year. &nbsp;So visit DrupalAsheville.com, and follow us on social media to stay up to date on what's to come. &nbsp;We're discussing options at this point, but there's still a lot of unknowns. &nbsp;So, let us know what you think of the virtual MidCamp, and we might look into doing something similar. &nbsp;</p>
+
+<p>So, at Lullabot, we provide strategy design and Drupal development for large scale publishers. &nbsp;So if you're interested in working with us, reach out to me in the MidCamp Slack. &nbsp;</p>
+
+<p>All right. &nbsp;So, first, I want to introduce the migration team. &nbsp;Me, of course. &nbsp;Karen Stevenson, who is our chief technology officer. &nbsp;She had a lot of migration experience and provided a lot of guidance and direction. &nbsp;Marcos Canno is a senior developer. &nbsp;He did all the file migrations and was instrumental in keeping our code clean and organized. &nbsp;Darren Peterson, senior technical product manager was our fearless leader and was key for keeping us moving. &nbsp;And James Sansbury, who is now Tugboat technical account executive, was responsible for the dev ops magic and made all of our work possible. &nbsp;</p>
+
+<p>Also want to give a shoutout to the digital services Georgia team. &nbsp;They're definitely one of my favorite clients, for sure. &nbsp;</p>
+
+<p>So what we'll cover. &nbsp;We'll talk about the discovery and planning, the strategies and workflow, and a little magical Nerdery. &nbsp;</p>
+
+<p>So, discovery and planning. &nbsp;So, into migration, we move content from a source to a destination. &nbsp;So, in this case, the source was a Drupal 7 multisite with 85 plus sites. &nbsp;Each site had its own database so it actually was very beneficial in this move. &nbsp;It was hosted on Acquia. &nbsp;They had 27 content types, 15 of which we migrated content from. &nbsp;14 taxonomy vocabularies, nine of which we migrated. &nbsp;And the architecture was paragraphs, field collections, and entity embeds. &nbsp;</p>
+
+<p>So our destination site is a Drupal 8 multisite, and we were migrating them at about groups of six at a time. &nbsp;It is also hosted on Acquia. &nbsp;</p>
+
+<p>There were 20 content types in the Drupal 8 site, 14 of which we populated through the migration. &nbsp;17 taxonomy vocabularies, ten of which were populated. &nbsp;And we move the architecture to more of a microcontent types and entity embeds sort of architecture. &nbsp;</p>
+
+<p>So, the microcontent type is, there are actual content types, but they're not viewable as a standalone page, they were only viewable as entity embeds or references. &nbsp;So instead of using paragraphs, we use content types in this format. &nbsp;</p>
+
+<p>So, this is a very complex migration. &nbsp;Mostly because it was multisite, and it had a completely new architecture. &nbsp;</p>
+
+<p>So if you're looking to migrate, don't be afraid of this particular migration. &nbsp;This was a very complex one. &nbsp;So, kicking off with the discovery, Karen Stevenson collected all the field instances for all entity types using a script, and then converted that to a Google sheet, and this was very useful in determining our source fields for field mapping. &nbsp;</p>
+
+<p>At the same time, our content strategy team delivered content model documentation for the Drupal 8 architecture. &nbsp;So this documentation was used to manually build the new content types in Drupal 8. &nbsp;And we also used it to help determine what our destination fields were going to be for field mappings. &nbsp;</p>
+
+<p>So this document was created to track the field mappings. &nbsp;So, we have a column here &nbsp; &nbsp;this is towards the end of the project where you're seeing what field is going to what, has it migrated, and we had various different phases that we were doing so we went from basic to complex and we could keep a high level track of the status of the field migrations for each content type. &nbsp;</p>
+
+<p>So this is actually a new iteration of the field mapping documentation that we're using on a current project. &nbsp;So this one is based more on Karen's field instance document, and we added some conditional formatting, so you can see that one of these fields is going to be a new field, so it highlights in yellow. &nbsp;Some of these things aren't migrating, so they're grayed out. &nbsp;And there is more duplication on the content on the left, but it was more focused on field mapping or field migration instead of entity migration. &nbsp;</p>
+
+<p>But, you can also in this case create these filter views, because we pulled it into Google sheets, so you can create a filter view for each content type, and so you're only seeing those field rows when you're looking at it. &nbsp;</p>
+
+<p>So, I actually used this document during the discovery phase of this project, and I was able to hand it off to our developer with clear directions on what needed to be migrated, and it's also been useful to share with the client to make sure that our assumptions are correct, that we're migrating everything that they want us to migrate. &nbsp;Yeah. &nbsp;</p>
+
+<p>So I actually created a module on Drupal.org called migration planner, which creates a command that will generate this kind of document for your site, so you can run it in Drupal 8 with your Drupal 7 database connected through the settings of that PHP file, and it will create the tabs for various entities and give you at least a good starting point. &nbsp;I also have a Google sheets link on the Drupal.org page that you can use to copy the formatting if you want to use the conditional formatting. &nbsp;</p>
+
+<p>So there's a dev branch available, so I encourage you to check it out. &nbsp;Let me know how it is. &nbsp;</p>
+
+<p>So another tool that we developed for the discovery is a custom command called SQueaLer. &nbsp;So it runs in the Drupal 8 site using the Drupal 7 database similar to the one I just talked about configured in the settings file. &nbsp;It runs scans to determine if there are going to be any issues during the migration. &nbsp;Identifying things like image tags or absolute links, things like that. &nbsp;We had a scan for each different type of case that we were looking for. &nbsp;</p>
+
+<p>And so we used this to determine if things needed to be changed in Drupal 7 before the migration, or just to inform the migration logic to identify edge cases that we needed to consider. &nbsp;</p>
+
+<p>So as we went along, the list grew, and we had other questions throughout the development process, so we could just add new reports and scan each site and integrate it into part of the migration workflow, so we could scan the site, make that available to the client, and then they could take a look at any issues that they want to fix, and we could take a look at identifying, okay, this one didn't migrate properly. &nbsp;I can actually go and force the migration of this particular ID and see what's going on. &nbsp;</p>
+
+<p>So you would just run it in drush, and it generates an Excel file with the tabs for each report in the site directory, site files directory, in a folder called GA SQueaLer. &nbsp;We had a costume module. &nbsp;</p>
+
+<p>So the report would look like this. &nbsp;The goal was to trace back any issues back to the nodes. &nbsp;That's what the alias links are. &nbsp;It traces it back to the node where the problem or the edge case lives and then you can investigate from there, and you can see we have different tabs at the bottom for the different reports. &nbsp;</p>
+
+<p>If there wasn't anything found for a particular scan, there wouldn't be a tab, so it just &nbsp; &nbsp;only the reports that were there. &nbsp;So we have this in the Google sheets so we can share it with the client. &nbsp;</p>
+
+<p>So I've created a space for SQueaLer. &nbsp;It's not yet ready for primetime, for any Drupal 7 site, but I am working on that, so stay tuned for that. &nbsp;</p>
+
+<p>All right. &nbsp;Strategies and work flows. &nbsp;There are things that we did not migrate and things that we did migrate. &nbsp;In this case, we did not migrate structural elements, the content types and field definitions. &nbsp;The vocabularies themselves, the structure of them, or paragraphs in field collection bundles. &nbsp;We didn't migrate views and we didn't migrate the web form submissions. &nbsp;We did migrate the data elements. &nbsp;So, for select nodes and field data. &nbsp;Select taxonomy terms. &nbsp;Menus, web forms, and files. &nbsp;</p>
+
+<p>So this is a list of the migration modules that we used. &nbsp;We used the core migrate and migrate Drupal modules. &nbsp;And then these are the contributed modules that we used. &nbsp;And I added migrate source UI on here. &nbsp;This was used because the client wanted a way to import data from CSV files during and after the migration so that they could manage data that way. &nbsp;So it wasn't integrated necessarily to part of the automated migration of the site, but was something that, you know, used the migration system. &nbsp;</p>
+
+<p>So you can see we have a GA migrate source ui custom module as well, it's just the way you can create a migration and it's selectable, and they can download it and import it that way. &nbsp;Impressive our main migration module was the ga_migrate module, and the second was used for site overrides, or site specific overrides and I'll talk about that a little bit later. &nbsp;</p>
+
+<p>Our development tools for local development, we use Lando. &nbsp;Our QA environment is tugboat.qa. &nbsp;In the dev ops magic was CircleCI and Quay.io, used to manage our docker containers for dugboat and local development. &nbsp;</p>
+
+<p>Tugboat is a Lullabot product. &nbsp;Each request that you submit generates a preview site so you can test your code prior to merge or show it to the client for review, and it was very much integrated into our workflow for this project. &nbsp;</p>
+
+<p>So as far as our development workflow, we focused on field mappings from &nbsp; &nbsp;by complexity and content type. &nbsp;So we would migrate, you know, like blog posts with just the basic fields, like title, maybe there's some basic text fields, and we would submit a PR for that and have that reviewed and approved and merged, and then we would do another round where we would come back and take a look at rich fields or files and images. &nbsp;We just sort of moved down the pike of complexity. &nbsp;That way the client had something to look at. &nbsp;They could see our progress happening incrementally and we could keep our PRs small and reviewable. &nbsp;</p>
+
+<p>So our migration development strategy was &nbsp; &nbsp;we created and edited the migration configuration files directly in the config sync directory. &nbsp;We preserved the note IDs for stand alone content. &nbsp;We migrated unpublished content because we didn't want to have broken links and menu issues. &nbsp;And we wanted to prioritize the ability to roll back and reimport. &nbsp;We're doing this in groups of six, and, you know, the migration is running for all these different sites, 85 different sites. &nbsp;We wanted the ability to roll back the migration. &nbsp;So we didn't use things like entity generate as a process plugin. &nbsp;So we wanted to be able to roll things back out. &nbsp;</p>
+
+<p>We used ga_migrate_site for specific site overrides and log skips and exceptions using a custom logging solution, which I'll show you in a second. &nbsp;</p>
+
+<p>Our solution order of how we're trying to solve a problem is first we tried to do it with configuration and using core and contrib modules. &nbsp;If we couldn't do it there, we would look Atticus Tom source process plugins and services in the ga_migrate module. &nbsp;If we couldn't do it that way, that's when we defaulted to using the hook system. &nbsp;</p>
+
+<p>Custom logging. &nbsp;This is something that was very helpful for migration. &nbsp;We were able to share logs with the client through migrating all of these sites. &nbsp;Marcus Canno developed it so that we could track these skips and exceptions throughout the migration process. &nbsp;</p>
+
+<p>So we use this function if our logic skipped a row or if we felt we needed a record of something, or if something unexpected occurred. &nbsp;All sorts of varying cases. &nbsp;With varying severity. &nbsp;And so we would be able to track down the issue. &nbsp;We just had this function we could use anywhere in our code with GA migrate log. &nbsp;It could provide a detailed message with any IDs that could help us track down the problem. &nbsp;The migration ID of the current migration that's running. &nbsp;The audience was whether if the client was digital services Georgia or the dev team, like who needs to look at this issue. &nbsp;Sometimes we just wanted to record that something happened and we wanted to make sure that something happened. &nbsp;</p>
+
+<p>And then severity. &nbsp;Was it a warning notice or error. &nbsp;The category was just a short descriptor where we could use to sort things out. &nbsp;And the real ID. &nbsp;The current item being migrated. &nbsp;</p>
+
+<p>There's a drush command along with this module that created a TSV file from a table of messages. &nbsp;And we would import this into Google sheets and it was useful for tracking down those edge cases. &nbsp;You could filter by various things. &nbsp;You could look up an ID. &nbsp;And it helped us fine tune the migrations. &nbsp;So how do we migrate 85 plus sites? &nbsp;The answer is in phases. &nbsp;</p>
+
+<p>So the migration phases were staggered in groups of about six sites over two week periods. &nbsp;In each phase, this is an overview of the procedures. &nbsp;So we would add the new sites to Tugboat and remove the old group of sites. &nbsp;We'd run the migrations on Tugboat. &nbsp;And then let the client QA the migration on Tugboat. &nbsp;Any issues that they found they would give to the development team. &nbsp;The development team would fix those issues. &nbsp;Then the migration would run on production and the client would prepare the site for launch, meaning any manual migrations, any new content that needed to be created, and then the site would launch. &nbsp;</p>
+
+<p>All right. &nbsp;Magical Nerdery time. &nbsp;Karen told me this was the most complex migration she'd ever done. &nbsp;Most migrations are not this complicated. &nbsp;But I wanted to pick out some of the more complex problems that we solved and show you what we did, so it's time to put on your technical hats. &nbsp;</p>
+
+<p>Here we go. &nbsp;Site specific overrides. &nbsp;So you've got 85 sites, there's going to be some sites that want to do things a little bit differently. &nbsp;These are all government agencies. &nbsp;So I'm going to give credit to Karen for the solution, she came up with this. &nbsp;</p>
+
+<p>So we have a ga_migrate_site module in our top level directory. &nbsp;That module is mostly empty. &nbsp;We had some constants, like an interface with some constants that we were using in some of our logic, but mostly it was empty. &nbsp;</p>
+
+<p>So, if any site needed to override anything in the migration process, they would copy that module into their site specific module's directory, and from there, they can make changes. &nbsp;They could use the hook system to make some modifications to the way that the migration was happening. &nbsp;</p>
+
+<p>And so &nbsp; &nbsp;yeah. &nbsp;So, since the &nbsp; &nbsp;so the overridden module is in the site specific directory, that's the one Drupal is going to find for that particular site. &nbsp;Everybody else will be &nbsp; &nbsp;all the other sites will be using a top level basic module. &nbsp;And we set it up so that the ga_migrate_site module is enabled to run for all sites and it's set to run after ga so it can override. &nbsp;</p>
+
+<p>This is really the only code that was in the module, an interface that just had some constants. &nbsp;We had some logic that would change the state of press releases after the press release migration, if they were older than three years. &nbsp;Yeah, 3 years old. &nbsp;We also had a skip list that you could say what node needed to be skipped and that was mostly used if a node page was being released by a view page. &nbsp;So just a few things there. &nbsp;</p>
+
+<p>And then the module &nbsp; &nbsp;that module file was actually completely empty, but here's where, if you needed to tap into the migration process, you could use the hooks. &nbsp;All right. &nbsp;How we doing? &nbsp;Thumbs up? &nbsp;Yeah? &nbsp;I'm not seeing your reactions. &nbsp;But this is Zoom. &nbsp;</p>
+
+<p>All right. &nbsp;Nested paragraphs. &nbsp;So, in Drupal 7, the site had two types of paragraphs, container paragraphs that were used for layout purposes, your one column, two column, three column, four column. &nbsp;</p>
+
+<p>And then they had other content &nbsp; &nbsp;or other paragraphs were called content paragraphs. &nbsp;That's what I identified them as. &nbsp;Things that would hold the actual content, like an image, the content reference, the text area, things like that. &nbsp;</p>
+
+<p>So if we looked at an example in box form, we had a node and the node has a field like field content. &nbsp;Field content holds container paragraphs. &nbsp;And then those container paragraphs hold the actual content paragraphs. &nbsp;So, fun stuff. &nbsp;</p>
+
+<p>So our paragraph strategy was to convert the paragraphs into Drupal 8 mark up, including entity embeds and stack that new content in the body field during the migration. &nbsp;</p>
+
+<p>So in the migration configuration, we processed field content using a custom process plugin called GA microcontent to text, and we scored it in a pseudo field or temporary field which is prepared field content, in this case. &nbsp;It's kind of like a custom variable specific to this migration. &nbsp;So we had that rendered content. &nbsp;And what do I mean by rendered? &nbsp;</p>
+
+<p>So what I wanted was, what should the Drupal 8 mark up be for this paragraph when placed in the WYSIWYG body field? &nbsp;Is it text mark up? &nbsp;Entity embed code? &nbsp;File download link? &nbsp;For the container paragraphs, are there aligner adjustments we need to make sure make it to Drupal 8? &nbsp;</p>
+
+<p>So using a function that can call itself, the process plugin iterates deep until it hits a content paragraph, renders at that level, and then renders its way back out until it reaches the field level. &nbsp;</p>
+
+<p>So in this case, the first thing that gets rendered is the related links, the paragraph related links paragraph. &nbsp;Then the image, and then we come back out to the container paragraph because maybe the image needs to be aligned right or left. &nbsp;Next, inside it, to the text area, we render that, come back out to the one column container paragraph. &nbsp;</p>
+
+<p>And then take all of those strings and smash them into one value for field content. &nbsp;And then that string can be concatenated in the body field. &nbsp;This is how you would reference that pseudo field with the at symbol, and above anything that might be in the body field in Drupal 7. &nbsp;</p>
+
+<p>Last one. &nbsp;Circular dependencies.</p>
+
+<p>This is an example of a site page that we were migrating it, but they had a field called field related links and we wanted to migrate that field data into its own microcontent node called a link collection. &nbsp;And then we wanted to reference that link collection in the body field when we migrate the site page. &nbsp;</p>
+
+<p>So we broke it out into a migration of site page with just that field related links, migrating to a link collection node. &nbsp;</p>
+
+<p>And then when the site page node migration happens, we can use the node ID to look up the link collection node and then generate the entity embed code and put it in the body field, then migrate it to a topic page node. &nbsp;</p>
+
+<p>So we did the pseudo field again. &nbsp;So, this is the prepared field related links. &nbsp;This is in the site page migration. &nbsp;We're doing a migration look up to that field related links migration, using the node ID, and then we're raising another process plugin, custom process plugin to figure out what the entity embed code needed to look like. &nbsp;So that is now going to be a string value that we can use that prepared field related links pseudo field. &nbsp;We use that value and concatenate it to the bottom of the body field in this case. &nbsp;So our dependencies look something like this. &nbsp;The site page is dependent on the field related links because we want that link collection to exist, so that we can reference it and inject it into the body field. &nbsp;</p>
+
+<p>But as we got into the migration, we found an edge case. &nbsp;We found the catch. &nbsp;So what if the site page is linking to a site page that has not migrated yet? &nbsp;What happens is that we end up with a null or empty link. &nbsp;We lose those links when we're migrating field related links. &nbsp;</p>
+
+<p>We added this to the field related links migration. &nbsp;So the only purpose for this pseudo field is to stub content for the site pages. &nbsp;So we're not even going to use this value. &nbsp;We just want the stub process that the migration system has where it will generate the node and it just kind of has a gobbled title or whatever. &nbsp;But when the site page migration runs afterwards, it's going to fill in all that content and the references will all make connections. &nbsp;</p>
+
+<p>So we're doing a migration look up to see if it exists. &nbsp;Let's see. &nbsp;We're processing the references. &nbsp;I'm trying to remember what I did here. &nbsp;Let's see. &nbsp;We're just subbing the site page in the field related links references, if they don't already exist. &nbsp;</p>
+
+<p>So if this happens, this is a stubbed entity that we can link to. &nbsp;So this link will migrate during the field related links migration, and then it will be filled in by the site page. &nbsp;So the tricky part here is that when we are stubbing the site pages, we're looking at the migration to see if that site page has migrated already. &nbsp;So we're doing a look up, and then stubbing those site page nodes using that migration look up. &nbsp;</p>
+
+<p>So we're referencing the site page migration. &nbsp;Which means that now the site page migration is a dependency of the field related links. &nbsp;So we've got circular dependencies. &nbsp;Both are dependent on each other. &nbsp;So that was fun. &nbsp;</p>
+
+<p>So we found out that it works. &nbsp;It's a non specified dependency, the site page dependency in this case, is &nbsp; &nbsp;the migration ID is alphabetically before the current migration. &nbsp;So because ga_d7_node_site_page was before the field ID, it worked. &nbsp;It didn't work when we tried it with an index list, doing the same thing, it wouldn't work. &nbsp;And the reason was just that alphabetical listing. &nbsp;</p>
+
+<p>So the fix or the hack was to put a 1 to make it alphabetically before. &nbsp;I created an issue on Drupal.org for this. &nbsp;It's probably very much an edge case, but it's very interesting, and I didn't have time to dive into it, but maybe there's a way that we can identify all of the migration IDs. &nbsp;The issue would be that the migration didn't exist because it hadn't already been registered alphabetically before. &nbsp;So that was an interesting case. &nbsp;</p>
+
+<p>Oh, we made it. &nbsp;All right. &nbsp;We made it through the magical Nerdery. &nbsp;If you want to know more about the GeorgiaGov project, there is a case study that was presented by Darren Peterson last summer. &nbsp;It's also coming to Drupal Con Minneapolis 2020. &nbsp;Mark Drummond also did a presentation about the front end part of this site at.gov con as well. &nbsp;We had a podcast where we talked about migrations, talked a little bit about this project. &nbsp;We had some other articles from Juampy, and we interviewed Mauricio Dinarte on his blog. &nbsp;More to come. &nbsp;I need to write some more articles. &nbsp;Hopefully, I'll be able to write some more articles about the things that I talked about today that is a little more in depth and give you a little idea of how to do some of the similar things. &nbsp;</p>
+
+<p>Thank you. &nbsp;</p>
+
+<p>So, please provide your feedback. &nbsp;I'd love to hear your feedback. &nbsp;That's the link, 6294. &nbsp;Contribution Day is on Saturday from 10:00 a.m. to 4:00 p.m. &nbsp;So, yeah. &nbsp;Any questions? &nbsp;I see one. &nbsp;</p>
+
+<p>Is ga microcontent to text any place to take a look at? &nbsp;That was a custom process plugin. &nbsp;So I want to try &nbsp; &nbsp;maybe if I can get these articles written, and all of my spare time now, I will write some articles and try to share more details into how we did it. &nbsp;We did use some services that we shared between various parts of the migration and hopefully I'll be able to share some of that information. &nbsp;</p>
+
+<p>So, another question. &nbsp;What was the purpose of converting the paragraphs into micro content type? &nbsp;So, I'm not sure what the decision was that was actually part of the content strategy team. &nbsp;We just operated it on that, that we were going to be creating these microcontent types and populating them with the content. &nbsp;And those nodes would then be embedded using entity embeds. &nbsp;So, yeah, I don't have the background on that decision, but that was the way that we went. &nbsp;</p>
+
+<p>For a D7 site with heavy use of container paragraphs, would migration to layout builder be conceivable? &nbsp;</p>
+
+<p>So we didn't actually migrate &nbsp; &nbsp;we're using layout builder, but we didn't migrate anything to layout builder. &nbsp;So, I'm not really sure what that would look like. &nbsp;It would be pretty interesting, for sure. &nbsp;But we didn't do that. &nbsp;</p>
+
+<p>All right. &nbsp;Any other questions? &nbsp;I think I'm out of time. &nbsp;I'm not sure what my time is. &nbsp;Have a little bit of time? &nbsp;Which one is better, paragraph or embedded content types? &nbsp;</p>
+
+<p>So there's actually an article by Jeff Eaton on Lullabot.com where he talks about various ways to think about the architecture and how you want to lay out pages and things like that. &nbsp;I highly suggest checking that article out. &nbsp;Because he was part of the content strategy team that decided we needed to do microcontent types. &nbsp;I mean, I know there are some drawbacks with paragraphs in cases of, like, translation and things like that, and maybe &nbsp; &nbsp;I can't remember, or visioning. &nbsp;There's some issues. &nbsp;Sometimes it works for you fine, it really depends on your use case. &nbsp;</p>
+
+<p>Can SQueaLer and Migration Planner not be used from a D site with Drush 8? &nbsp;I've thought about that. &nbsp;Right now, for our purposes, whenever I ran this, I was already in the Drupal 8 site and had the Drupal 7 database available. &nbsp;So that's just the way it worked. &nbsp;</p>
+
+<p>It might be nice to port that back to Drupal 7 so that you can run it before you even have the Drupal 8 site available. &nbsp;And maybe with all the spare time I have, that will happen. &nbsp;We'll see. &nbsp;</p>
+
+<p>All right. &nbsp;Any more questions? &nbsp;All right. &nbsp;Thanks, everybody, for joining me in my office. &nbsp;</p>
+
+<p>&gt;&gt; Thank you, April! &nbsp;</p>
+</div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+
+</div>
+  </section>
+
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-d071a5eb8db23c2969f38b4f27392410073832ef8886ce4a98f97a409437cbd6">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/bounteous.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2019-11/Bounteous_indigo_large.png" width="1676" height="279" alt="Bounteous logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/palantirnet.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2020-02/palantirnet-logo.png" width="1200" height="198" alt="Palantir.net logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/clarity-partners.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2020-02/CFDFAA23-5C59-4C07-9C66-CAFFE0CF3854.png" width="1534" height="387" alt="Clarity Partners logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/pantheon.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2020-02/pantheon-logo-tagline-black.png" width="1200" height="370" alt="Pantheon logo" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-2019-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#3851565e577855515c5b59554816574a5f"><span class="__cf_email__" data-cfemail="c6afa8a0a986abafa2a5a7abb6e8a9b4a1">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-2019-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-2019-footer-menu" id="block-hatter-2019-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-2019-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/6294","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"ajaxTrustedUrl":{"form_action_p_pvdeGsVG5zNF_XLGPTvYSKCf43t8qZYSwcfZl2uzM":true},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_sul8js76f3THBVtv8nspP93BoCHSgntyTCisS6lai4M.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter_2019&amp;include=eJx1ykEKgDAMBdELaavuPI2k-o1K2kITFG_vRkQEVwOP4ZxZMFAiOW0d1fMHqoXMUIauaXvPkgNJvT0aSPHSA2HOJfq7DoKIZG6C0SrqlHb8ThGqxLgAGZ04Cw"></script>
+
+  </body>
+</html>

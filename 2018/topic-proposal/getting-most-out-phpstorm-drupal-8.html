@@ -1,0 +1,2806 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="Have you Looked at a class, seen nothing but {@inheritdoc} and been annoyed?  Gotten tired of using kint() and page reloads to view variable values? Forgotten a use statement at the top of your file? Had your merge requests and patches rejected due to code styling?  Missed a required method when implementing an interface?  Then this session for you." />
+<link rel="canonical" href="getting-most-out-phpstorm-drupal-8.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Getting the most out of PHPStorm for Drupal 8 | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Getting the most out of PHPStorm for Drupal 8 | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_Qoyy92GHt9RyGOt8N3WS_9HRsJcJBywJ2IhXudzvST4.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJw1jGsOgzAMgy9U1iOhtPVYpYSgumNjp18F4o_1-SFnFfKISYiQLzaQsoC3X72MzhsGNROtP4SX9I4WF_UkOmXyTky25N_Agx123e61wGdYQpmfFVpiAzdfWXdMZzkm-DCe-jAvb8UfjYM.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_mK2of_t7UFymkfbTHeA-kHdMPWzqc3DZQCYtX-tC0BA.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJw1jGsOgzAMgy9U1iOhtPVYpYSgumNjp18F4o_1-SFnFfKISYiQLzaQsoC3X72MzhsGNROtP4SX9I4WF_UkOmXyTky25N_Agx123e61wGdYQpmfFVpiAzdfWXdMZzkm-DCe-jAvb8UfjYM.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJw1jGsOgzAMgy9U1iOhtPVYpYSgumNjp18F4o_1-SFnFfKISYiQLzaQsoC3X72MzhsGNROtP4SX9I4WF_UkOmXyTky25N_Agx123e61wGdYQpmfFVpiAzdfWXdMZzkm-DCe-jAvb8UfjYM.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJw1jGsOgzAMgy9U1iOhtPVYpYSgumNjp18F4o_1-SFnFfKISYiQLzaQsoC3X72MzhsGNROtP4SX9I4WF_UkOmXyTky25N_Agx123e61wGdYQpmfFVpiAzdfWXdMZzkm-DCe-jAvb8UfjYM.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+<link rel="stylesheet" media="all" href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.css" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="getting-most-out-phpstorm-drupal-8.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-hatter-main-menu-menu" id="block-hatter-main-menu" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-main-menu-menu">Midcamp 2018 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" data-drupal-link-system-path="node/2">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--venue">
+        <a href="../../about/venue.html" title="Venue" data-drupal-link-system-path="node/7048">Venue</a>
+            </li>
+          <li class="primary-nav__sublist-item item--travel">
+        <a href="../travel.html" title="Travel and Accommodations" data-drupal-link-system-path="node/65">Travel</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../lunch.html" title="Lunch Near Campus" data-drupal-link-system-path="node/162">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2018/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" title="Meet the Team!" data-drupal-link-system-path="2018/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../../2023/about/lunch-options.html" data-drupal-link-system-path="node/6970">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--accommodations">
+        <a href="../../2023/about/accommodations.html" data-drupal-link-system-path="node/6948">Accommodations</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" data-drupal-link-system-path="node/9">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--become-a-sponsor">
+        <a href="../become-a-sponsor.html" title="Become a Sponsor" data-drupal-link-system-path="node/7">Become a Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../../jobs.html" title="Jobs" data-drupal-link-system-path="jobs">Jobs</a>
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" data-drupal-link-system-path="node/128">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--training-thu">
+        <a href="../training.html" data-drupal-link-system-path="node/195">Training (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--bofs-fri-sat">
+        <a href="../birds-feather-bofs.html" title="Birds of a Feather (BoFs)" data-drupal-link-system-path="node/167">BoFs (Fri/Sat)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-fri">
+        <a href="../schedule/friday.html" title="Friday Sessions" data-drupal-link-system-path="2018/schedule/friday">Sessions (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-sat">
+        <a href="../schedule/saturday.html" title="Saturday Sessions" data-drupal-link-system-path="2018/schedule/saturday">Sessions (Sat)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sprints-sun">
+        <a href="../../sprints.html" title="Sprints">Sprints (Sun)</a>
+            </li>
+  </ul>
+
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2018.html" hreflang="en">MidCamp 2018</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Getting the most out of PHPStorm for Drupal 8</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="108" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2018-03-09T20:45:00Z" class="datetime">Friday, 2:45 pm CST</time>
+ - <time datetime="2018-03-09T21:45:00Z" class="datetime">Friday, 3:45 pm CST</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-84" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-name field--type-string field--label-hidden field__item">Room 325</div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>Have you</p>
+
+<ul>
+	<li>Looked at a class, seen nothing but {@inheritdoc} and been annoyed?&nbsp;</li>
+	<li>Gotten tired of using kint() and page reloads to view variable values?</li>
+	<li>Forgotten a use statement at the top of your file?</li>
+	<li>Had your merge requests and patches rejected due to code styling?&nbsp;</li>
+	<li>Missed a required method when implementing an interface?&nbsp;</li>
+</ul>
+
+<p>Then this session for you.</p>
+
+<p>This session will cover how to use many of the tools in PHPStorm that make developing for D8 faster and easier. We'll look at how tools like phpcs and phpmd will warn you about your code style violations. Do an overview of the most useful shortcuts and interfaces provided by PHPStorm that make looking up function documentation and writing new code a breeze. And end with using Xdebug to make debugging and developing with unfamiliar code seem easy.</p>
+
+<p>&nbsp;</p>
+
+<h4>Slides:&nbsp;<a href="https://ctrladel.github.io/midcamp18/#/">https://ctrladel.github.io/midcamp18/</a></h4></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/wrjGpCTQokA?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Kyle Einecker</h4>
+
+      Founder &amp; Principal 
+
+
+          @
+              <a href="https://truesummit.dev">True Summit</a>
+        
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2023-01/Kyle%20Einecker.png%3Fitok=v3TDaxNd" width="220" height="220" alt="Kyle Einecker" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Back-End</div>
+              </div>
+      </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p>all right so we love to cover somebody</p>
+
+<p>get started on time here and people come</p>
+
+<p>in late they can just kind of find a</p>
+
+<p>seat so this is getting the most out of</p>
+
+<p>each piece or burger plate obviously</p>
+
+<p>with your plate is all object oriented</p>
+
+<p>it's based on symphony so there's a lot</p>
+
+<p>of differences between on your blade and</p>
+
+<p>ripple Simon between procedural and our</p>
+
+<p>target so it really changes how you use</p>
+
+<p>your ID and how effectively your ID can</p>
+
+<p>like make your day easier so we're</p>
+
+<p>taking over a lot of the bass nut basics</p>
+
+<p>but more as intermediary shortcuts and</p>
+
+<p>screens and like things like XD bug</p>
+
+<p>things that are you know you don't</p>
+
+<p>necessarily need but make life easier</p>
+
+<p>first a little bit about me I've been</p>
+
+<p>working at digital bridge solutions for</p>
+
+<p>just over two years now</p>
+
+<p>I'm a senior developer they're mainly</p>
+
+<p>focused on beautiful and recently aura</p>
+
+<p>which is also a symphony based platform</p>
+
+<p>my Google name and getup name is</p>
+
+<p>controller lay down the slides will be</p>
+
+<p>available later under my github and</p>
+
+<p>we're actually viewing the same slides</p>
+
+<p>that will be up there so there's so many</p>
+
+<p>changes I don't have a personal Twitter</p>
+
+<p>but feel free to treat my company deeper</p>
+
+<p>in Chicago if you feel like shouting out</p>
+
+<p>to us with me some don't get it back to</p>
+
+<p>me not a little bit about you guys so</p>
+
+<p>how many of you are currently using PHP</p>
+
+<p>storm and how many of you currently had</p>
+
+<p>the Drupal code styles that PHP storm</p>
+
+<p>that's not good</p>
+
+<p>all right is it I think it asks you to</p>
+
+<p>set it if it all goes like this it will</p>
+
+<p>yeah but if it doesn't you can also go</p>
+
+<p>in the Senate manually does what it</p>
+
+<p>provides actually meet all the it meets</p>
+
+<p>the generic like syntax standards like</p>
+
+<p>spaces tabs to spaces that for new lines</p>
+
+<p>new lines with brackets where there</p>
+
+<p>should be so yeah that's all good</p>
+
+<p>how many of you are currently using ax</p>
+
+<p>debug alright now as many people and how</p>
+
+<p>many are using or using any kind of code</p>
+
+<p>testing static analysis or sniffing when</p>
+
+<p>you commit do repos alright in fewer so</p>
+
+<p>those those are really nice they keep</p>
+
+<p>repos nice and clean and the most</p>
+
+<p>annoying part about using phpstorm well</p>
+
+<p>is colleagues that don't use it well</p>
+
+<p>because your ID starts looking really</p>
+
+<p>cluttered from people committing stuff</p>
+
+<p>that doesn't match what phpstorm was</p>
+
+<p>expecting and the automated code testing</p>
+
+<p>is sniffing just really helps with that</p>
+
+<p>because it it forces those standards</p>
+
+<p>across entire repo alright so plugins</p>
+
+<p>that I have in phpstorm</p>
+
+<p>that we'll be seeing today get I know a</p>
+
+<p>lot of people use get on the command</p>
+
+<p>line I personally do like 80% of my get</p>
+
+<p>through phpstorm I find the interface</p>
+
+<p>really intuitive and it does all the</p>
+
+<p>easy things for me so there's no reason</p>
+
+<p>to use the command line really</p>
+
+<p>dalek nor and that ignore Gray's Alec</p>
+
+<p>files that are ignored in the repo so</p>
+
+<p>you know if you're editing something</p>
+
+<p>that you know isn't going to be</p>
+
+<p>committed</p>
+
+<p>the symphony plug-in and the Drupal</p>
+
+<p>Symphony bridge both of these are</p>
+
+<p>plugins that make or integrate Symphony</p>
+
+<p>into PHP storming provide a lot of</p>
+
+<p>autocomplete dating and I'll I think</p>
+
+<p>it's mostly just Auto completing various</p>
+
+<p>and various singers one note about these</p>
+
+<p>is the simply plug in those have to be</p>
+
+<p>turned on for every project you can't</p>
+
+<p>just turn it on in phpstorm so you have</p>
+
+<p>to go in and turn on every time and</p>
+
+<p>we'll go over that once I get into a PHP</p>
+
+<p>storm PHP annotations is required by</p>
+
+<p>symphony there's some people again and</p>
+
+<p>that provides all the completes inside</p>
+
+<p>about the annotation blocks inside if</p>
+
+<p>you played and and keep them rotor X so</p>
+
+<p>this is what I'm actually installed to</p>
+
+<p>help me with this presentation what it</p>
+
+<p>does is anytime it sees you doing</p>
+
+<p>something that there's a shortcut for it</p>
+
+<p>prompts you to use the shortcut well it</p>
+
+<p>tells you that you could use the</p>
+
+<p>shortcut and how many times you've</p>
+
+<p>clicked instead of using a shortcut so</p>
+
+<p>you'll see that popping up in the bottom</p>
+
+<p>right of my phpstorm so first we're just</p>
+
+<p>going to do a quick overview I'm not</p>
+
+<p>gonna notice too much detail and one</p>
+
+<p>note about this presentation the slides</p>
+
+<p>are mainly for reference most of the</p>
+
+<p>value will be like going through</p>
+
+<p>phpstorm itself so if you can't read</p>
+
+<p>something on the slide don't really</p>
+
+<p>worry about it because we'll be doing it</p>
+
+<p>in phpstorm</p>
+
+<p>so first the tool window so you're going</p>
+
+<p>to view tools windowed version control</p>
+
+<p>it'll pop up without a window that shows</p>
+
+<p>all to get information so view tool</p>
+
+<p>windows version control and you can see</p>
+
+<p>I have my get history here for this repo</p>
+
+<p>and if I click on welcome its it pulls</p>
+
+<p>up what's been changed and we do control</p>
+
+<p>D it pulls up the dip for that specific</p>
+
+<p>file and you can see I changed some text</p>
+
+<p>in here</p>
+
+<p>but also the see manager branches so see</p>
+
+<p>where your branches are narrow narrow by</p>
+
+<p>branch so that's the quick overview does</p>
+
+<p>merging and pulling and rebasing I like</p>
+
+<p>this stuff I do really enjoy the merge</p>
+
+<p>resolution because it does a three pane</p>
+
+<p>resolution where you get yours on the</p>
+
+<p>left the server on the right and you</p>
+
+<p>combine them in the middle and it does</p>
+
+<p>the diff highlighting like character by</p>
+
+<p>character so it does this as well or</p>
+
+<p>highlights exactly what changed in the</p>
+
+<p>line which makes it super easy to just</p>
+
+<p>click things over into the middle file</p>
+
+<p>and resolve everything</p>
+
+<p>history we went over local history all</p>
+
+<p>right so this isn't related to get but</p>
+
+<p>phpstorm does attract the local local</p>
+
+<p>file changes as you make them so if</p>
+
+<p>you've made if you know you have a good</p>
+
+<p>state in your file somewhere and you've</p>
+
+<p>changed a bunch of things and you can't</p>
+
+<p>remember how far back you have to go</p>
+
+<p>with on do you can open up local history</p>
+
+<p>show history and these are all the</p>
+
+<p>various changes I've made over the past</p>
+
+<p>hour getting ready for the ready for</p>
+
+<p>this presentation this has been a bit</p>
+
+<p>Aniki for me between sessions</p>
+
+<p>so if PHP sort of closes unexpectedly or</p>
+
+<p>the runs out of memory or something like</p>
+
+<p>that this sometimes disappears so don't</p>
+
+<p>rely on it entirely it's a really great</p>
+
+<p>reference point or if you knew you had</p>
+
+<p>something working at some point and you</p>
+
+<p>just want to go back to it and you can</p>
+
+<p>see this goes back all the way to</p>
+
+<p>yesterday at 10:17 when I created the</p>
+
+<p>repo</p>
+
+<p>like I said that control-d any any blue</p>
+
+<p>or green file and the local changes here</p>
+
+<p>open up the diff also right-click</p>
+
+<p>the history and that if</p>
+
+<p>munching sniffing so this is probably</p>
+
+<p>one of the most useful things do you</p>
+
+<p>really get you in tune with what the</p>
+
+<p>truthful coding standards really are</p>
+
+<p>because it will really complain to you</p>
+
+<p>that you're doing something wrong right</p>
+
+<p>now well so peach BCS is peach pico</p>
+
+<p>zippered which enforces the sniffing</p>
+
+<p>standards for drupal if you download the</p>
+
+<p>Drupal coder module I believe it is it</p>
+
+<p>has a PHP CSS rule setting for Drupal</p>
+
+<p>which is great and I've linked in</p>
+
+<p>installation instructions they're fairly</p>
+
+<p>simple but a little bit involved with</p>
+
+<p>composer and Simulink and that kind of</p>
+
+<p>stuff so I won't go over it in detail</p>
+
+<p>but we can see right now I have some</p>
+
+<p>pretty basic issues with this file we</p>
+
+<p>drug this like it's telling me I'm not</p>
+
+<p>declaring about the 19 I need to and</p>
+
+<p>leave this the only issue is showing me</p>
+
+<p>and I have some typos but if I go to</p>
+
+<p>settings which is HP so this is the</p>
+
+<p>wrong area for sniffing but symphony Wow</p>
+
+<p>turn on you just go here so PHP Symphony</p>
+
+<p>enable and make sure to change your web</p>
+
+<p>directory some some hosts do web some</p>
+
+<p>dude a fruit</p>
+
+<p>Okwe does doctorate this is an aqueous</p>
+
+<p>site so absent-minded doctor</p>
+
+<p>editor because I know there we go editor</p>
+
+<p>your Co style inspections peach because</p>
+
+<p>it's never so once you install code</p>
+
+<p>error correctly Drupal pop up here just</p>
+
+<p>luck that</p>
+
+<p>some people like to set this as air</p>
+
+<p>instead of warning but I personally like</p>
+
+<p>to take the air for things that actually</p>
+
+<p>break the sight and warning for things</p>
+
+<p>that are nice to fix but not necessary</p>
+
+<p>so we turn that on and you can see right</p>
+
+<p>now</p>
+
+<p>now I was complaining that I'm exceeding</p>
+
+<p>the line length limit you can is</p>
+
+<p>complaining that there must be an</p>
+
+<p>oblique line after an inline comment it</p>
+
+<p>should be complaining that there's no</p>
+
+<p>new line found so really this is all</p>
+
+<p>some tactical stuff but it feeds up the</p>
+
+<p>code and makes it a lot easier to look</p>
+
+<p>at so we get rid of that great this up</p>
+
+<p>we still have six feet for this phone</p>
+
+<p>don't tell me this is indented correctly</p>
+
+<p>it should be that there we go and put</p>
+
+<p>these on your mind</p>
+
+<p>alright that's good enough so if we get</p>
+
+<p>rid of this because it needs that later</p>
+
+<p>you can see this is this looks a lot</p>
+
+<p>prettier than when we started</p>
+
+<p>and phpstorm is obviously a lot happier</p>
+
+<p>and it's a bit more obvious if you're</p>
+
+<p>using a darker theme for the week</p>
+
+<p>weddings are because are highlighted in</p>
+
+<p>yellow by default day to day I have a</p>
+
+<p>very dark theme but white is better</p>
+
+<p>contrast for the projector style hunting</p>
+
+<p>so you can do PHP code linting and then</p>
+
+<p>there's a CSS unless it's a splitting</p>
+
+<p>settlement is the Drupal standard as of</p>
+
+<p>a point forward it's not available like</p>
+
+<p>when there's a test run on themes and</p>
+
+<p>matured modules it's not currently</p>
+
+<p>available but there's an issue for it so</p>
+
+<p>if will be there eventually and you can</p>
+
+<p>install module for styling that or a</p>
+
+<p>plug-in for styling that will highlight</p>
+
+<p>all your</p>
+
+<p>sdss issues according to the silent</p>
+
+<p>settings personally as a front-end</p>
+
+<p>developer I don't have a good feeling</p>
+
+<p>for the defaults so it's nice to get</p>
+
+<p>yelled at when I write a class name</p>
+
+<p>wrong or use a use a hex instead of a</p>
+
+<p>variable the insolence is the same thing</p>
+
+<p>but for JavaScript I don't write that</p>
+
+<p>much JavaScript so I haven't actually</p>
+
+<p>set it up but it is available</p>
+
+<p>incessant which is the one we actually</p>
+
+<p>had installed on our sites it's the same</p>
+
+<p>as style and just alternative and I</p>
+
+<p>don't think I have MSDS file ready but</p>
+
+<p>you can see right here right so color is</p>
+
+<p>complaining about something field set</p>
+
+<p>and like right here something there's</p>
+
+<p>not gonna be a space between these or</p>
+
+<p>that there's not a space between these</p>
+
+<p>and really it's the same thing as HB</p>
+
+<p>just keeps your style sheets nice and</p>
+
+<p>clean and looking uniform navigating</p>
+
+<p>code alright so this is where a lot of</p>
+
+<p>the nice day-to-day things really our</p>
+
+<p>lynching is great it makes you makes</p>
+
+<p>your people look nice and clean but</p>
+
+<p>really just actually work navigating</p>
+
+<p>code actually gives you the answers for</p>
+
+<p>your questions so searching everywhere</p>
+
+<p>you can do shift shift if we want to</p>
+
+<p>look up like a Content entity the</p>
+
+<p>content entity class and go to that base</p>
+
+<p>class open it up nice and quick</p>
+
+<p>hierarchy view so if you're writing a</p>
+
+<p>block class for the per block for the</p>
+
+<p>first time and you want to find examples</p>
+
+<p>another block you can do you can go to</p>
+
+<p>this block base which the class is</p>
+
+<p>extending do your controller H and it</p>
+
+<p>will pull up all the other classes that</p>
+
+<p>are sending this one so this is a great</p>
+
+<p>way to find examples of things already</p>
+
+<p>being done inside of Drupal</p>
+
+<p>like the hook block it's obviously doing</p>
+
+<p>quite a bit more than we're doing and</p>
+
+<p>it's got quite a bit more logic inside</p>
+
+<p>of our build but maybe that'd be useful</p>
+
+<p>for us if we're actually building a</p>
+
+<p>complex block and you can see that it</p>
+
+<p>will even do like the hierarchy so this</p>
+
+<p>views block base is it's lending the</p>
+
+<p>block the base nerve is extending block</p>
+
+<p>based but then there's other classes</p>
+
+<p>that extend this one so it's showing you</p>
+
+<p>that hierarchy inside the hierarchy</p>
+
+<p>which is nice and you can always open up</p>
+
+<p>with the base one if you want to see it</p>
+
+<p>so Copic has obviously sometimes you</p>
+
+<p>need to share a line of code with</p>
+
+<p>somebody on your team to get their</p>
+
+<p>opinion or frozen</p>
+
+<p>let's check something out you can do</p>
+
+<p>ctrl shift C to get the full path to the</p>
+
+<p>file or you can get control or control</p>
+
+<p>shift alt C you will get you path plus</p>
+
+<p>the line number and that's just real</p>
+
+<p>simple just like the 42 ctrl shift C and</p>
+
+<p>there we go that's the relative path in</p>
+
+<p>the repo which is super handy for just</p>
+
+<p>pasting the slack I mean it can you</p>
+
+<p>check this out or is this where I want</p>
+
+<p>to be</p>
+
+<p>function definitions so one of the first</p>
+
+<p>things I was really annoyed about what</p>
+
+<p>people ate is you go and look at a class</p>
+
+<p>and like most of us added hair doc that</p>
+
+<p>doesn't mean anything to me but if you</p>
+
+<p>press ctrl Q on this it will just pop up</p>
+
+<p>the documentation</p>
+
+<p>I don't have this name frankly</p>
+
+<p>all right there we go so now it's giving</p>
+
+<p>us the documentation for why we're build</p>
+
+<p>the built documentation is actually</p>
+
+<p>found just great you can also do this on</p>
+
+<p>function calls</p>
+
+<p>so fan comment this do a ctrl Q I'll</p>
+
+<p>tell us what this function is doing the</p>
+
+<p>code I don't go look it up and now it's</p>
+
+<p>on me</p>
+
+<p>it should give me a link open it</p>
+
+<p>yeah tell me where it is right here</p>
+
+<p>that's pretty useful</p>
+
+<p>I go into the function declaration so</p>
+
+<p>let's say you did pull up the</p>
+
+<p>documentation it wasn't enough for you</p>
+
+<p>and you actually want to go to the</p>
+
+<p>function you can do control B or</p>
+
+<p>control-click and get to the same place</p>
+
+<p>and then all right you actually we're</p>
+
+<p>just function define you see the code</p>
+
+<p>see what it's doing and if it's what you</p>
+
+<p>wanted to be doing or if it's not</p>
+
+<p>returnable you want it to return so it's</p>
+
+<p>a nice way to quickly open up the code</p>
+
+<p>that's actually being around find usages</p>
+
+<p>so so that was finding the where the</p>
+
+<p>function is fine but if you want to find</p>
+
+<p>all the usages of that function you can</p>
+
+<p>do alt f7 and this one's going to return</p>
+
+<p>a bunch but you can see I said here's</p>
+
+<p>the method we look up method calls 137</p>
+
+<p>in these various files</p>
+
+<p>and that wasn't the best example because</p>
+
+<p>this woman only has method Falls but</p>
+
+<p>it'll sort out what the different usages</p>
+
+<p>are in here like the other one is like</p>
+
+<p>in comments which is useful so if you're</p>
+
+<p>looking for where it's called it'll be</p>
+
+<p>method call as if you're looking for it</p>
+
+<p>in comments that have been comments if</p>
+
+<p>you're looking for word like in the</p>
+
+<p>string that'll be in the string so as</p>
+
+<p>breaks it up for us I'm just giving you</p>
+
+<p>a list of everything you know as it</p>
+
+<p>found it</p>
+
+<p>most actions you can alt enter so it's</p>
+
+<p>not always easy to know what's available</p>
+
+<p>in phpstorm so we go back to our base</p>
+
+<p>block and we do like lots of enter here</p>
+
+<p>it will ask me to generate a Symphony</p>
+
+<p>service I don't know if a storm would do</p>
+
+<p>that for me that's cool we go here</p>
+
+<p>alright so it open for the string inject</p>
+
+<p>language</p>
+
+<p>replace quotes alright so this will take</p>
+
+<p>me to deciding to change things for</p>
+
+<p>double close to single quotes apparently</p>
+
+<p>and this little light bulb kind of does</p>
+
+<p>the same stuff so I'd teach be common I</p>
+
+<p>guess I did</p>
+
+<p>that's not really useful if this was</p>
+
+<p>like an entity you could say this is an</p>
+
+<p>entity of block type block and then it</p>
+
+<p>would start auto completing functions</p>
+
+<p>for you actually so this is wrong</p>
+
+<p>because markup is not a block but</p>
+
+<p>phpstorm thinks it is so if we do markup</p>
+
+<p>now we're getting all of the function is</p>
+
+<p>for block</p>
+
+<p>like gutter icons took me a while to</p>
+
+<p>find this one but they are fairly useful</p>
+
+<p>three have seen is ìoh i is implement so</p>
+
+<p>it shows implications of parent methods</p>
+
+<p>or children implementing a method so</p>
+
+<p>[Music]</p>
+
+<p>right</p>
+
+<p>the other one is Oh which is shows of</p>
+
+<p>methods overriding parent or is</p>
+
+<p>overridden by a child and you tell based</p>
+
+<p>on the arrows you know up or down in</p>
+
+<p>this screenshot</p>
+
+<p>there's narrowed down here and arrow up</p>
+
+<p>here these are both oh this one is an</p>
+
+<p>eye with an up arrow and the third one</p>
+
+<p>is H which is folks not as relevant in</p>
+
+<p>d8 but still kind of relevant it will</p>
+
+<p>show you all the picking with</p>
+
+<p>annotations and they'll also show you</p>
+
+<p>where the book is defined so you can</p>
+
+<p>open that up easily so here builders</p>
+
+<p>overriding the base build and you can</p>
+
+<p>see these are all the classes that</p>
+
+<p>implement the building method</p>
+
+<p>and if we open up in module five</p>
+
+<p>so we have our hook help and we can go</p>
+
+<p>up to so it'll show us where the book is</p>
+
+<p>invoked it also show us the</p>
+
+<p>documentation you can click on any of</p>
+
+<p>those open up it's a real quick way to</p>
+
+<p>kind of get to the definitions of folks</p>
+
+<p>or seeing if something's being</p>
+
+<p>overwritten or it method completion in</p>
+
+<p>boilerplates so navigating code is fun</p>
+
+<p>but eventually you have to write it and</p>
+
+<p>what Stephanie comes a bit of</p>
+
+<p>boilerplate code and a bit of guessing</p>
+
+<p>at what name of things are and phpstorm</p>
+
+<p>will help with that so first of all I</p>
+
+<p>recommend Drupal console it's great for</p>
+
+<p>generating things there's a lot of</p>
+
+<p>generation commands it doesn't have</p>
+
+<p>everything but it covers a lot it will</p>
+
+<p>generate and that's the tea it'll I want</p>
+
+<p>to say it'll generate a forum it'll</p>
+
+<p>write a lot of code for you that you</p>
+
+<p>don't necessarily need to know how to</p>
+
+<p>write unless you really want to so</p>
+
+<p>implementing or implement interface</p>
+
+<p>methods so block base at some point</p>
+
+<p>extends or implements an interface class</p>
+
+<p>saying it needs this build method so if</p>
+
+<p>we delete this</p>
+
+<p>we do control I it'll say we should</p>
+
+<p>implement the build method or these are</p>
+
+<p>all that like kind of default optic ones</p>
+
+<p>that you can ferment or there's a</p>
+
+<p>translate apparently trait that we could</p>
+
+<p>implant here so we cook this we can we</p>
+
+<p>have a couple settings here maybe I can</p>
+
+<p>shrink this so I'd phpdoc default copy</p>
+
+<p>from base class or added her puck I was</p>
+
+<p>like the third one and it just puts a</p>
+
+<p>stop in for us but that's pretty useful</p>
+
+<p>right if you don't know all the methods</p>
+
+<p>you can implement just press control a</p>
+
+<p>lot and I'll show you what's available</p>
+
+<p>from the other classes</p>
+
+<p>the other alternative to that is we</p>
+
+<p>delete this again this is not</p>
+
+<p>complaining that it's not saying all the</p>
+
+<p>methods we need for extending this class</p>
+
+<p>so if you press ENTER it'll add all the</p>
+
+<p>method stubs for us and this one's a bit</p>
+
+<p>annoying because it gives you the full</p>
+
+<p>documentation that's that we write it so</p>
+
+<p>like this could put in ten different</p>
+
+<p>subs for you and if you don't know what</p>
+
+<p>they all do having the documentation</p>
+
+<p>there's handy and once you're done you</p>
+
+<p>can just go ahead and hair doc and</p>
+
+<p>that's that</p>
+
+<p>you statements if you autocomplete</p>
+
+<p>things in phpstorm</p>
+
+<p>it'll add you you see it min for you so</p>
+
+<p>block base you can see use pops up here</p>
+
+<p>which is pretty cool</p>
+
+<p>but say you copy some code in from Stack</p>
+
+<p>Overflow or something and it doesn't use</p>
+
+<p>but then you save in it if you we</p>
+
+<p>convert this to an all Center it'll ask</p>
+
+<p>us to import the class and it just kind</p>
+
+<p>of assumed one we wanted but if there's</p>
+
+<p>options it'll give you a drop-down you</p>
+
+<p>pick which one you actually want to use</p>
+
+<p>and then we do a bunch of stuff</p>
+
+<p>all right</p>
+
+<p>so</p>
+
+<p>what I've done is I just removed the</p>
+
+<p>full class name and now it just says</p>
+
+<p>block so it's going to ask me to import</p>
+
+<p>the class MA all right so we have this</p>
+
+<p>up here down and it says it's on use and</p>
+
+<p>that's because this actually isn't using</p>
+
+<p>block is just kind of type in thing and</p>
+
+<p>if we get rid of this entirely they'll</p>
+
+<p>still say unused so we know we can</p>
+
+<p>safely delete this because you don't</p>
+
+<p>actually use it inside your code all to</p>
+
+<p>complete options so this is by far one</p>
+
+<p>of most handy things when it comes to</p>
+
+<p>services and annotations and those are</p>
+
+<p>the two main areas that I use them for</p>
+
+<p>so you have a service and we have one</p>
+
+<p>here</p>
+
+<p>and it will type in I'll tell you what</p>
+
+<p>the argument supposed to be from the</p>
+
+<p>decorate declaration of the class and if</p>
+
+<p>you kind of do a net and a control space</p>
+
+<p>it'll pull every possible option for you</p>
+
+<p>and there's tons of them but you can see</p>
+
+<p>we're looking for intensity site manager</p>
+
+<p>interface so it's kind of peach piece or</p>
+
+<p>most guests at which ones we actually</p>
+
+<p>want here so we want entity type manager</p>
+
+<p>service and it will do the same thing</p>
+
+<p>for tags so those bunch of different</p>
+
+<p>tags that you can use this one's</p>
+
+<p>supposed to be about subscriber let's</p>
+
+<p>say you didn't know that you can control</p>
+
+<p>space and because I used it recently</p>
+
+<p>it's at the top here but that won't</p>
+
+<p>always be the case</p>
+
+<p>and just like services there's a</p>
+
+<p>function them to choose from so this</p>
+
+<p>kind of a great way to discover what the</p>
+
+<p>valid options are for these areas if you</p>
+
+<p>don't necessarily know what you're</p>
+
+<p>supposed to be putting in there or maybe</p>
+
+<p>you know you're referencing something it</p>
+
+<p>doesn't it's not exactly the same</p>
+
+<p>because like entity type manager has</p>
+
+<p>changed I think in earlier versions of</p>
+
+<p>Drupal 8 it's just entity manager and</p>
+
+<p>then the change of density type and</p>
+
+<p>there's just a small name change but it</p>
+
+<p>couldn't really they're off like if</p>
+
+<p>you're reading older questions or</p>
+
+<p>documentation so that subscriber and</p>
+
+<p>that's that the other useful part of</p>
+
+<p>Auto completing is annotations so with a</p>
+
+<p>block way to define our annotations if</p>
+
+<p>you have no idea what's supposed to go</p>
+
+<p>in here you can do control space then it</p>
+
+<p>will pop up the ones that are supposed</p>
+
+<p>to be in here so we need an ID</p>
+
+<p>and I mean that in labor</p>
+
+<p>so it's just that's another great way of</p>
+
+<p>discovering valid options for this</p>
+
+<p>annotation block because that can always</p>
+
+<p>be difficult to kind of figure out what</p>
+
+<p>what goes there</p>
+
+<p>I've gotten covered annotation box</p>
+
+<p>covered all right so we want what you</p>
+
+<p>did the services file over there now in</p>
+
+<p>this get container or container get we</p>
+
+<p>can also all complete all available</p>
+
+<p>services so once again great if you kind</p>
+
+<p>of have an idea of what you want I don't</p>
+
+<p>know the exact name</p>
+
+<p>refactoring class names so if you decide</p>
+
+<p>you want to reach Ange or change your</p>
+
+<p>class name after you've written it and</p>
+
+<p>maybe used it in a couple places a</p>
+
+<p>couple other places in code because</p>
+
+<p>final names do actually kind of matter</p>
+
+<p>with classes you can right-click</p>
+
+<p>refactor rename and would you like to be</p>
+
+<p>sorted by the rate okay so that's</p>
+
+<p>whatever you name your class to hit</p>
+
+<p>enter and it'll ask me to rename file</p>
+
+<p>and they'll also update any of the use</p>
+
+<p>statements inside the code I don't have</p>
+
+<p>any for this one but it will do that so</p>
+
+<p>if you refactor your classes you don't</p>
+
+<p>think about kind of flipping through</p>
+
+<p>your code and making sure you catch</p>
+
+<p>everything will do it for you</p>
+
+<p>which is really nice and that's</p>
+
+<p>something that's available for methods</p>
+
+<p>as well I can fire your name this to</p>
+
+<p>build broken broken it will look for all</p>
+
+<p>the usages inside the code any time like</p>
+
+<p>that classes use explicitly it'll look</p>
+
+<p>up the build function to rename it to</p>
+
+<p>build broken but there aren't any it's</p>
+
+<p>not going to find any and inside of a</p>
+
+<p>method it will do that for variables as</p>
+
+<p>well so I keep I keep right-clicking but</p>
+
+<p>you can shift f6</p>
+
+<p>and they'll do that first either method</p>
+
+<p>where is context like where that</p>
+
+<p>variable is being used within this</p>
+
+<p>context so if you want to kind of clean</p>
+
+<p>up your code or change the name in to</p>
+
+<p>make more sense phpstorm will make your</p>
+
+<p>life a lot easier and update everything</p>
+
+<p>for you it's pretty handy</p>
+
+<p>okay and refactoring that's just the</p>
+
+<p>screen we went through where I'll show</p>
+
+<p>you everything is going to refactor and</p>
+
+<p>why and on to X debug so this is the</p>
+
+<p>really fun one my recommendation for</p>
+
+<p>configuring X debug is to use something</p>
+
+<p>that size it up for you I personally use</p>
+
+<p>Drupal VM I believe and oval set up for</p>
+
+<p>you aqua desktop I'm not sure most of</p>
+
+<p>the docker images I've seen also come</p>
+
+<p>with X debug it's really handy that's</p>
+
+<p>kind of a pain to set up on the server</p>
+
+<p>so I would recommend using something</p>
+
+<p>assess it for you enabling xdebug once</p>
+
+<p>you do have it on the server there's two</p>
+
+<p>parts you need a browser extension to</p>
+
+<p>send the piece the right X debug headers</p>
+
+<p>to phpstorm then you need phpstorm</p>
+
+<p>listening for those headers so we've got</p>
+
+<p>my company website here</p>
+
+<p>and we've got the extension and you can</p>
+
+<p>see I've turned on XD bug if I turn off</p>
+
+<p>this little bug goes gray and a phpstorm</p>
+
+<p>well you've got this little phone here</p>
+
+<p>so with the red and the green that's not</p>
+
+<p>listening and now we're listening</p>
+
+<p>and if you click in the gutter to set a</p>
+
+<p>breakpoint</p>
+
+<p>Hey broke something field open required</p>
+
+<p>it's not like many names</p>
+
+<p>fool</p>
+
+<p>well</p>
+
+<p>and this is working before the</p>
+
+<p>presentation</p>
+
+<p>which one do we want this one</p>
+
+<p>revert</p>
+
+<p>all right nothing kind of leap it should</p>
+
+<p>work</p>
+
+<p>and there we go all right we got next</p>
+
+<p>book so when it hits the breakpoint here</p>
+
+<p>it will stop and show you all the</p>
+
+<p>variables available I'll show you a call</p>
+
+<p>stack over here and any watches you have</p>
+
+<p>set here so you can see we had this mark</p>
+
+<p>up variable and then here market value</p>
+
+<p>right here and then this will all the</p>
+
+<p>default Drupal symfony stuff and server</p>
+
+<p>server information cookie server session</p>
+
+<p>all that good stuff this is really handy</p>
+
+<p>for stopping right at this very specific</p>
+
+<p>point and finding out the value so</p>
+
+<p>instead of having to do with DPM and</p>
+
+<p>refreshing page and seeing what it dumps</p>
+
+<p>out you just kind of hit the big point</p>
+
+<p>here and you're done</p>
+
+<p>the next part is you can set multiple</p>
+
+<p>and as it goes to the coda to stop it</p>
+
+<p>all of them so like if you want to see</p>
+
+<p>well the value is here before loop and</p>
+
+<p>then you stop it immediately after the</p>
+
+<p>to see what the value is that that's one</p>
+
+<p>page fall instead of you know doing that</p>
+
+<p>two or three times with DPM so on the</p>
+
+<p>left here there's a couple of different</p>
+
+<p>actions resume is it will just send</p>
+
+<p>program off running again</p>
+
+<p>stop stop debugging and just kill the</p>
+
+<p>page request so that will like four or</p>
+
+<p>four five hundred the window in the</p>
+
+<p>browser this one shows you all I pick</p>
+
+<p>three points in the code and you can</p>
+
+<p>manage them from here</p>
+
+<p>this will pause execution or pause great</p>
+
+<p>points this is a super dangerous button</p>
+
+<p>that can kill a lot of time so when you</p>
+
+<p>click this X debug will not stop on any</p>
+
+<p>of your great points in your code and</p>
+
+<p>the only real notification you have is</p>
+
+<p>that they turn gray and this box is</p>
+
+<p>outlined in the shadow more than once I</p>
+
+<p>have turned this on and then been</p>
+
+<p>wondering why XD bug is not stopping my</p>
+
+<p>fake points it's not a fun experience</p>
+
+<p>let's turn that back on and these get</p>
+
+<p>into window settings for X debug then on</p>
+
+<p>the right here we have a couple of</p>
+
+<p>different ones debugger is this window</p>
+
+<p>console you can run some commands</p>
+
+<p>literally at this point in time in the</p>
+
+<p>code what was this one show execution</p>
+
+<p>point so that'll take you back to the</p>
+
+<p>break point if you can navigate to some</p>
+
+<p>code and you're not really sure where</p>
+
+<p>you've stopped step-over will take you</p>
+
+<p>to the next step in the code without a</p>
+
+<p>click it'll just take you to the next</p>
+
+<p>step as if there was a great point there</p>
+
+<p>so if we click step over here this is</p>
+
+<p>what's called after the build function</p>
+
+<p>completes and returns unset the little</p>
+
+<p>hashtag block</p>
+
+<p>step into will built into the line</p>
+
+<p>you're at so when I click into this</p>
+
+<p>we're going to go into the onset</p>
+
+<p>function or alright so if I click this</p>
+
+<p>will go into the if function</p>
+
+<p>and is checking write is empty so</p>
+
+<p>because we have this not element it</p>
+
+<p>calls is empty a content and now we're</p>
+
+<p>in the is empty function and we can</p>
+
+<p>still see the values for this function</p>
+
+<p>so elements and is checking if there's</p>
+
+<p>anything here which there's four step</p>
+
+<p>into I haven't had a lot of luck in but</p>
+
+<p>this will take you into so let's say</p>
+
+<p>that we're here and we want to go into</p>
+
+<p>here regardless of the condition if you</p>
+
+<p>for step into and it should take you</p>
+
+<p>into there I don't use it all that often</p>
+
+<p>I usually just hard code the conditions</p>
+
+<p>if I want to get into the block but I</p>
+
+<p>can't be useful and step out will take</p>
+
+<p>us back so</p>
+
+<p>that's two</p>
+
+<p>yeah so you can see we were at this</p>
+
+<p>empty and step out so goes to the next</p>
+
+<p>line and if statement instead taking us</p>
+
+<p>further into this right so we would we</p>
+
+<p>could have gone into counts or array</p>
+
+<p>keys or empty so flex debug like the</p>
+
+<p>buggers are super powerful for helping</p>
+
+<p>you navigate the code and seeing the</p>
+
+<p>actual values that are being interpreted</p>
+
+<p>at the specific times they're being</p>
+
+<p>interpreted now let's say you have a</p>
+
+<p>loop though and like you have a thousand</p>
+
+<p>calls or a thousand things that you're</p>
+
+<p>looping over well you don't want to</p>
+
+<p>press resume a thousand times to get to</p>
+
+<p>the 501 which is the problem so at your</p>
+
+<p>break point you can right-click you can</p>
+
+<p>turn them off and suspend them</p>
+
+<p>individually so you can also write just</p>
+
+<p>like simple if condition it's like empty</p>
+
+<p>so this will only stop in this very</p>
+
+<p>point if Marco is empty which is useful</p>
+
+<p>if you're trying to figure out you know</p>
+
+<p>if the markups empty and it's not</p>
+
+<p>returning anything and that's why this</p>
+
+<p>block isn't showing up so we'll resume</p>
+
+<p>and not the page finishes loading and</p>
+
+<p>we'll just set this completing a few</p>
+
+<p>string and we'd expect this to stop now</p>
+
+<p>because it is empty so because I took</p>
+
+<p>too long</p>
+
+<p>index debug the browser interpreted as a</p>
+
+<p><br>
+this is fairly normal if you really get</p>
+
+<p>into your sessions it's just kind of</p>
+
+<p>part of life you have to do it to</p>
+
+<p>refresh all right so it stopped because</p>
+
+<p>markups empty and if we put the string</p>
+
+<p>back</p>
+
+<p>so yes 926</p>
+
+<p>unexpected syntax</p>
+
+<p>okay so that time we did not stop an XT</p>
+
+<p>bug because the string is not empty so</p>
+
+<p>yeah that condition is super useful if</p>
+
+<p>you're going through loops or have kind</p>
+
+<p>of complex conditions where you want to</p>
+
+<p>stop if it's only breaking and not every</p>
+
+<p>other time because there are there's</p>
+
+<p>loops and there's also functions that</p>
+
+<p>you called like a hundred times in page</p>
+
+<p>build and you don't want to stop it all</p>
+
+<p>hundred and try to figure out which one</p>
+
+<p>you need to actually stop at setting</p>
+
+<p>breakpoints all right you can</p>
+
+<p>right-click on the gutter or not click</p>
+
+<p>on the gutter and I was at the</p>
+
+<p>breakpoint next about interface we went</p>
+
+<p>over evaluating code so I got rid of the</p>
+
+<p>condition if i refresh the page so when</p>
+
+<p>you're stopped you can run any code you</p>
+
+<p>want and I simply do it through</p>
+
+<p>right-clicking in here evaluate</p>
+
+<p>expression and you can literally run</p>
+
+<p>anything so we just wanna get to buy up</p>
+
+<p>markup which is really simple whatever</p>
+
+<p>if we want to do like Drupal get</p>
+
+<p>container and we want to get some</p>
+
+<p>container I don't actually know what the</p>
+
+<p>head maybe</p>
+
+<p>oh I don't like it but you can write any</p>
+
+<p>code you want in here and get the value</p>
+
+<p>up it doesn't have to be related to</p>
+
+<p>where you're stopped at all</p>
+
+<p>you have the full of people bootstrap</p>
+
+<p>that will return whatever it would</p>
+
+<p>return if you wrote it in the code so</p>
+
+<p>this is useful if you're trying to like</p>
+
+<p>figure out how to navigate and that's T</p>
+
+<p>or you trying to figure out if you need</p>
+
+<p>a to string or a value function because</p>
+
+<p>you can just check immediately like try</p>
+
+<p>it three or four times without repeating</p>
+
+<p>the refresh on the page and you know</p>
+
+<p>stopping or changing your code so that's</p>
+
+<p>evaluating expection expressions the</p>
+
+<p>other thing to do is actually change the</p>
+
+<p>value of your variables so if I</p>
+
+<p>right-click and do set value</p>
+
+<p>I've just added some text to the Marco</p>
+
+<p>string so now when we hit resume we're</p>
+
+<p>going to see that text on the page even</p>
+
+<p>though the code even though the code</p>
+
+<p>hasn't changed a phpstorm</p>
+
+<p>it's showing up on page because we</p>
+
+<p>changed it MIT process so if you really</p>
+
+<p>want to make it live at it and see well</p>
+
+<p>what would happen if this value is this</p>
+
+<p>instead of this just do it in there and</p>
+
+<p>it will evaluate as if that's what</p>
+
+<p>happened before before you got to that</p>
+
+<p>breakpoint vendor mapping so this is a</p>
+
+<p>word of warning vendor isn't always</p>
+
+<p>mapped if you're trying to set great</p>
+
+<p>points inside offender so like inside of</p>
+
+<p>a symphony or I don't think there's an</p>
+
+<p>issue might be an issue with Drupal</p>
+
+<p>modules but I don't remember anyways if</p>
+
+<p>you go to settings</p>
+
+<p>as usual languages in fingers please be</p>
+
+<p>the bug no servers so here you can see</p>
+
+<p>there's some mapping information this is</p>
+
+<p>the local domain that I'm using and then</p>
+
+<p>we have the file directory so this is in</p>
+
+<p>phpstorm and this is the path to it on</p>
+
+<p>the server so like because phpstorm</p>
+
+<p>won't always make the connection to</p>
+
+<p>vendor correctly I can set this to</p>
+
+<p>that's not a Kurdish vendor and that'll</p>
+
+<p>make sure that when xdebug is running</p>
+
+<p>and knows where to find the code and</p>
+
+<p>they don't hit the breakpoints inside</p>
+
+<p>that code otherwise the mappings just</p>
+
+<p>kind of mapping could not be set and</p>
+
+<p>then actually bug doesn't know where to</p>
+
+<p>stop so if you ever get a message on the</p>
+
+<p>right or maybe it'll show me very fresh</p>
+
+<p>so when that happens</p>
+
+<p>yeah I don't have fun here it will pop</p>
+
+<p>up an error message that says files may</p>
+
+<p>not be mapped correctly that's when you</p>
+
+<p>want to go in and make sure you're</p>
+
+<p>mapping the very pointy files correctly</p>
+
+<p>it also show up in this variables thing</p>
+
+<p>if you set a breakpoint beforehand and</p>
+
+<p>that's just one of those catches this</p>
+
+<p>nice know about why breakpoints aren't</p>
+
+<p>being hit inside the vendor</p>
+
+<p>any questions on XD bug because that's a</p>
+
+<p>very tough topic yes this might be</p>
+
+<p>related to my Lando configuration but</p>
+
+<p>when I try to set it up I've had a</p>
+
+<p>situation where I was using</p>
+
+<p>configuration for a new site that was</p>
+
+<p>the same as the old though just with the</p>
+
+<p>updated site name and everything it</p>
+
+<p>wouldn't start for like three hours like</p>
+
+<p>I was I just gave up on it and did</p>
+
+<p>something else I came back and suddenly</p>
+
+<p>asked if I was working does it take a</p>
+
+<p>lot of memory or liquid</p>
+
+<p>oh yeah that's actually a really good</p>
+
+<p>point so X debug does slow down</p>
+
+<p>page B and in extreme cases I heard 3</p>
+
+<p>hours but it has turned like a minute :</p>
+
+<p>- a 5-minute call or a minute call into</p>
+
+<p>a 10-minute call and what I've noticed</p>
+
+<p>the most is it depends on the number of</p>
+
+<p>PHP files is trying to get through and</p>
+
+<p>typically there's not really good answer</p>
+
+<p>that because you are using a debugging</p>
+
+<p>tool it's going to slow things down but</p>
+
+<p>it's good to know that like if your</p>
+
+<p>little pulse though and you're not using</p>
+
+<p>X debug turn it off but you do have to</p>
+
+<p>be like go into PHP D my peach beat that</p>
+
+<p>any settings and actually turn it off</p>
+
+<p>you can't just turn off the browser</p>
+
+<p>extension and PC storm because it will</p>
+
+<p>still be running on the server or like</p>
+
+<p>on your site so yeah if you're having</p>
+
+<p>performance issues next bug could be</p>
+
+<p>hope for it</p>
+
+<p>so this is kind of a bonus section</p>
+
+<p>hatching so with the 8 there's a lot of</p>
+
+<p>active film we going on which means</p>
+
+<p>sometimes you need to apply patches to</p>
+
+<p>your codebase from controller for and</p>
+
+<p>phpstorm will do that for you I do</p>
+
+<p>highly recommended like if you're gonna</p>
+
+<p>be patching things to use the composer</p>
+
+<p>patches package and what that does is in</p>
+
+<p>your composer JSON you can define</p>
+
+<p>patches to apply to your codebase when</p>
+
+<p>you can post or install and you can</p>
+
+<p>either define like a local path to the</p>
+
+<p>patch or just a Drupal like a URL to a</p>
+
+<p>Drupal patch on drupal.org so it's super</p>
+
+<p>useful and it's a great way to make sure</p>
+
+<p>the patches you apply actually apply</p>
+
+<p>every time somebody installs a</p>
+
+<p>repository</p>
+
+<p>but if you're just trying out a patch</p>
+
+<p>phpstorm will allow you to apply the</p>
+
+<p>pads either from your clipboard or if</p>
+
+<p>you select it I don't think I have one</p>
+
+<p>base that I could apply let's take a</p>
+
+<p>look</p>
+
+<p>I'll see one here let's take a look at</p>
+
+<p>our those are done Jason</p>
+
+<p>so we don't have any patches on the side</p>
+
+<p>at the moment but if I had a patch to</p>
+
+<p>apply if you do a flight match and they</p>
+
+<p>pick up a patch from in here and apply</p>
+
+<p>it to the right code base so you could</p>
+
+<p>take one for like address module and</p>
+
+<p>Drupal and it would find address module</p>
+
+<p>in your depository and apply it and tell</p>
+
+<p>you what's going to change and if we can</p>
+
+<p>apply it successfully so it's a great</p>
+
+<p>way to test out patches really quickly</p>
+
+<p>you don't really have to worry about</p>
+
+<p>using it to apply them feature so we'll</p>
+
+<p>just kind of do it for you you can just</p>
+
+<p>copy it straight out of the people that</p>
+
+<p>we're at issue queue and there's your</p>
+
+<p>clipboard the other thing is sometimes</p>
+
+<p>you have to write patches for controls</p>
+
+<p>or court to fix errors that you wrote in</p>
+
+<p>YouTube on are resolved yet the fastest</p>
+
+<p>way I've done to do this like as a hacky</p>
+
+<p>get the site working not necessarily</p>
+
+<p>high you should be developing contribute</p>
+
+<p>for it is install the module from source</p>
+
+<p>which is composer installed with a</p>
+
+<p>preferred source and what this will do</p>
+
+<p>is it will clone the repo down to the</p>
+
+<p>site or down into the Oklahoma module</p>
+
+<p>repo into your code base and then in</p>
+
+<p>phpstorm you can set it up as a sub git</p>
+
+<p>repository so all the changes in that</p>
+
+<p>folder structure will be tracked in your</p>
+
+<p>gate changes so they would show up in</p>
+
+<p>this version control like if I started</p>
+
+<p>editing</p>
+
+<p>all right so we got plenty pot here so</p>
+
+<p>right now if I change anything inside a</p>
+
+<p>pilot</p>
+
+<p>she's not a good example because this</p>
+
+<p>this refill track and compare attracting</p>
+
+<p>check in this folder all right new</p>
+
+<p>repository</p>
+
+<p>so there's a couple things we can show</p>
+
+<p>you here close that they saw a bunch of</p>
+
+<p>patches alright so we have a lot of</p>
+
+<p>patches for this repository and so we</p>
+
+<p>probably don't need as many at this</p>
+
+<p>point but as you can see there's no</p>
+
+<p>limit so we can you can see that that</p>
+
+<p>ignore is now showing us like these are</p>
+
+<p>all grayed out because they're not being</p>
+
+<p>tracked which is super useful and if I</p>
+
+<p>want to actually change something it's</p>
+
+<p>not gonna tell me that I can changed</p>
+
+<p>because well that's not tracking it but</p>
+
+<p>let's see if it was finished</p>
+
+<p>all right</p>
+
+<p>so this should be a repository now we go</p>
+
+<p>to version control</p>
+
+<p>you can all right so I've done this for</p>
+
+<p>commerce let's go into the farmers</p>
+
+<p>module members</p>
+
+<p>so now if I start deleting things</p>
+
+<p>should tell me</p>
+
+<p>all right this isn't working as well as</p>
+
+<p>it should the joys of live demos</p>
+
+<p>anyways pretty follow the steps and not</p>
+
+<p>do it on the fly it will show you to get</p>
+
+<p>changes inside of phpstorm two modules</p>
+
+<p>you've installed with me first source</p>
+
+<p>and you can add them as sub git</p>
+
+<p>repositories and the benefit to that is</p>
+
+<p>when you make your changes you can just</p>
+
+<p>create your patch directly from inside</p>
+
+<p>your site repository</p>
+
+<p>either you can upload Ino them or you</p>
+
+<p>can just put them in your patches folder</p>
+
+<p>which we've done a couple times on this</p>
+
+<p>site so we have a patches directory at</p>
+
+<p>the top level and some of these we've</p>
+
+<p>written ourselves some ways we took from</p>
+
+<p>other resources but most of them were</p>
+
+<p>written by adding module as the sub git</p>
+
+<p>repository inside phpstorm and just</p>
+
+<p>writing it directly in there other</p>
+
+<p>useful thing is if you're debugging in</p>
+
+<p>module and you're trying to keep track</p>
+
+<p>of the changes you have made this is</p>
+
+<p>another great way to do it because the</p>
+
+<p>tracks I think it and you can revert it</p>
+
+<p>otherwise you're just kind of editing a</p>
+
+<p>flat file and if you a composer may</p>
+
+<p>install view back to the default State</p>
+
+<p>all right so that's kind of a quick</p>
+
+<p>patching or oh I do patching a PHP storm</p>
+
+<p>PHP CBF is PHP code beautifier and what</p>
+
+<p>this does is it'll actually go through</p>
+
+<p>and automatically fix your code sniffing</p>
+
+<p>issues it the set up is a bit involved</p>
+
+<p>it is nice to them and it'll show you a</p>
+
+<p>nice little message and see if I have it</p>
+
+<p>working so</p>
+
+<p>I don't think is on the screen with this</p>
+
+<p>many tools external tools here we go</p>
+
+<p>so it wasn't that useful you can see he</p>
+
+<p>said fixing file zero by there oh so it</p>
+
+<p>was useful so it fixed nine things and</p>
+
+<p>if it's all of them but if we run it</p>
+
+<p>again</p>
+
+<p>I'm just going to the external tools</p>
+
+<p>there we go yeah so it didn't find any</p>
+
+<p>fixable ones because it corrected 9 the</p>
+
+<p>first time that's a useful tool if</p>
+
+<p>you're trying to update a lot of code at</p>
+
+<p>once I would say it's not as useful if</p>
+
+<p>you're writing good code the first time</p>
+
+<p>it's easier just to fix it and you can</p>
+
+<p>set it to do either sync a file</p>
+
+<p>directory or just ice it it's really</p>
+
+<p>good for bulk updating or fixing your</p>
+
+<p>code and other things phpstorm will do</p>
+
+<p>it does composer management to some</p>
+
+<p>extent never tried it but it has told me</p>
+
+<p>multiple times when they open a phpstorm</p>
+
+<p>that don't match composer for me</p>
+
+<p>and these perform will run Drupal tests</p>
+
+<p>if you set it up correctly and mec</p>
+
+<p>Lehman who is here as a plug-in for</p>
+
+<p>running tests because Commerce has a</p>
+
+<p>bunch of tests in it once again not</p>
+
+<p>something I do a lot but it can't be set</p>
+
+<p>up and questions yes</p>
+
+<p>do you ever click on a directory and go</p>
+
+<p>up to edit and refactor coverage yeah so</p>
+
+<p>you're talking about if we undo the PHP</p>
+
+<p>so you have stuff and you</p>
+
+<p>reformat good yes yeah yeah that does a</p>
+
+<p>very similar thing but it won't take the</p>
+
+<p>coat sniffer settings it's just kind of</p>
+
+<p>the settings inside of phpstorm so when</p>
+
+<p>you go to settings editor Co style so</p>
+
+<p>it's only applying like stuff in this</p>
+
+<p>area and not actual the the code sniffer</p>
+
+<p>settings any other questions I think</p>
+
+<p>I've used it once or twice but it's</p>
+
+<p>really just for running PHP code and</p>
+
+<p>it's yeah yeah yeah it's very similar I</p>
+
+<p>just kind of like the evaluate</p>
+
+<p>expressions I'm taking face more yeah</p>
+
+<p>does anybody like something in phpstorm</p>
+
+<p>that I didn't cover control ship and</p>
+
+<p>which I'll let you search by file name</p>
+
+<p>so that could be useful control ships oh</p>
+
+<p>that reminds me that you go to help</p>
+
+<p>there's a key map reference in here</p>
+
+<p>which opens up a PDF file a bunch of key</p>
+
+<p>map references</p>
+
+<p>controlling yeah</p>
+
+<p>yep alright I guess one more thing up</p>
+
+<p>here if you're trying to navigate so</p>
+
+<p>let's say we do ctrl shift and and we go</p>
+
+<p>to the entity class that's right we've</p>
+
+<p>opened up that one file but it is not</p>
+
+<p>open on the left here in your entity or</p>
+
+<p>in your structure so if you actually</p>
+
+<p>want to get to these files up here if</p>
+
+<p>you click and you can open up any of the</p>
+
+<p>files in the same directory or you can</p>
+
+<p>double click and it'll open up on the</p>
+
+<p>left so you're trying to get some</p>
+
+<p>context and you have the file open and</p>
+
+<p>navigate to the code for you</p>
+
+<p>all right that's all I have we got two</p>
+
+<p>minutes question yeah</p>
+
+<p>see if I could get the right directory</p>
+
+<p>here</p>
+
+<p>yeah so let me show you the colors we</p>
+
+<p>need to find them it's also got the</p>
+
+<p>picker and we have in each week here</p>
+
+<p>it will do some autocomplete iam</p>
+
+<p>functions available or filters and</p>
+
+<p>that's what the control space as well so</p>
+
+<p>yeah peach use for muscle is very</p>
+
+<p>powerful inside of tweak all right</p>
+
+<p>[Applause]</p></div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-eeddfe388210274cbe5b48b81e85ed36365f2a2ec52003e53a9136b2b8be7d30">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/108">https://mid.camp/108</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+  <section class="map-banner">
+      <div class="views-element-container block block-views block-views-blockevent-venue-block-1" id="block-hatter-views-block-event-venue-block-1">
+  
+    
+      <div><div class="container view view-event-venue view-id-event_venue view-display-id-block_1 js-view-dom-id-ac6b1e4fbf60ac0dc7225cfbea1fa44b7bd1aa6caa3c2a621a12a9ca4aa12054">
+  
+    
+      
+      <div class="view-content">
+          <div class="views-row">
+
+
+<div class="map-overlay">
+  <span class="map__label">Location</span>
+  <h2 class="map__title"><span class="field field--name-title field--type-string field--label-hidden">DePaul University - Lincoln Park Student Center</span>
+</h2>
+  
+            <div class="field field--name-field-address field--type-address field--label-hidden field__item"><p class="map__address" translate="no">
+          2250 N Sheffield Ave. <br>
+            Chicago, IL 60614<br>
+  </p>
+</div>
+      
+  <a href="../venue/depaul-university-lincoln-park-student-center.html" class="cta-link--yellow">Learn more  <span class="cta-arrow"></span></a>
+</div>
+<div id='map' class="map"></div>
+</div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-103ef8c62247b076db24f296347a3586978be242502de2cd692c9bd693776c5b">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/platformsh.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-02/platform.png" width="400" height="79" alt="Platform.sh" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/acquia.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-02/Acquia_no_tagline.png" width="450" height="94" alt="Acquia" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/pantheon.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-11/pantheon.png" width="500" height="157" alt="Pantheon" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#c7aea9a1a887aaaea3a4a6aab7e9a8b5a0"><span class="__cf_email__" data-cfemail="e48d8a828ba4898d8087858994ca8b9683">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/108","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_llBcjrkrgAu2wT1DR7VGL_iP6geJyiTnF_8O5ZD57VI.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJxLz89Pz0mNT8xLzKksyUwu1k9HE9DJSCwpSS3ST8_JT0rM0c2CC-QmFiTlVwAAPmAZQA"></script>
+<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.js"></script>
+<script src="../../sites/default/files/js/js_pODGOpSPRR3Y_Zt-7Fy-5B_pNv18oFAWhyhwUPCQZu4.js%3Fscope=footer&amp;delta=2&amp;language=en&amp;theme=hatter&amp;include=eJxLz89Pz0mNT8xLzKksyUwu1k9HE9DJSCwpSS3ST8_JT0rM0c2CC-QmFiTlVwAAPmAZQA"></script>
+
+  </body>
+</html>

@@ -1,0 +1,866 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="This conference session will explore the human and automation side of preparing the contributed project ecosystem for Drupal 10. From maintaining the tooling to automate detections of deprecated code with PHPStan and to automating their code replacements with Drupal Rector to distributing patches en masse via the Project Update bot. Automation only goes so far, often requiring human intervention to provide backward compatibility and fix things that cannot be automated - complicated code paths or JavaScript. Are we ready to start all over again in a year and a half?" />
+<link rel="canonical" href="lessons-learned-helping-port-top-contrib-projects-drupal-10.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Lessons learned from helping port the top contrib projects to Drupal 10 | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Lessons learned from helping port the top contrib projects to Drupal 10 | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_gt5LiAM1qLGUH5e845uOb7R_lJ9dUwTXmnhGDR2yY20.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OgzAMgy8E7ZFQSg1UShrUdDB2-lX87GUviZ0vkj0ymR0-kKEbLz0l_mmBGc2wx2eNjWlBU0WI0wfdQrWi-Jk1EPej2XMRWoO-OzusQq6ILUXoAAmIw5TA0RfYqtnShv6E7QW7-XM.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_QAC1R0aFoF1mIVQtLAaSE24B2iwnT2ZCa0cZDeZsPV0.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OgzAMgy8E7ZFQSg1UShrUdDB2-lX87GUviZ0vkj0ymR0-kKEbLz0l_mmBGc2wx2eNjWlBU0WI0wfdQrWi-Jk1EPej2XMRWoO-OzusQq6ILUXoAAmIw5TA0RfYqtnShv6E7QW7-XM.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OgzAMgy8E7ZFQSg1UShrUdDB2-lX87GUviZ0vkj0ymR0-kKEbLz0l_mmBGc2wx2eNjWlBU0WI0wfdQrWi-Jk1EPej2XMRWoO-OzusQq6ILUXoAAmIw5TA0RfYqtnShv6E7QW7-XM.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OgzAMgy8E7ZFQSg1UShrUdDB2-lX87GUviZ0vkj0ymR0-kKEbLz0l_mmBGc2wx2eNjWlBU0WI0wfdQrWi-Jk1EPej2XMRWoO-OzusQq6ILUXoAAmIw5TA0RfYqtnShv6E7QW7-XM.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+<link rel="stylesheet" media="all" href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.css" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="lessons-learned-helping-port-top-contrib-projects-drupal-10.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-midcamp2023navigation-menu" id="block-midcamp2023navigation" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-midcamp2023navigation-menu">MidCamp 2023 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" data-drupal-link-system-path="node/6857">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--by-the-numbers">
+        <a href="../../2020/about/by-the-numbers.html" data-drupal-link-system-path="node/6252">By the Numbers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--venue">
+        <a href="../../about/venue.html" title="Venue" data-drupal-link-system-path="node/7048">Venue</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../speaker-resources.html" data-drupal-link-system-path="node/345">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--health--safety">
+        <a href="../health-safety.html" data-drupal-link-system-path="node/6973">Health &amp; Safety</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../about/lunch-options.html" data-drupal-link-system-path="node/6970">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--volunteer-opportunities">
+        <a href="../article/volunteer-help-midcamp.html" data-drupal-link-system-path="node/6975">Volunteer Opportunities</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" data-drupal-link-system-path="2023/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--travel">
+        <a href="../about/travel.html" data-drupal-link-system-path="node/6865">Travel</a>
+            </li>
+          <li class="primary-nav__sublist-item item--accommodations">
+        <a href="../about/accommodations.html" data-drupal-link-system-path="node/6948">Accommodations</a>
+            </li>
+          <li class="primary-nav__sublist-item item--registration">
+        <a href="../register.html" data-drupal-link-system-path="node/6977">Registration</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" data-drupal-link-system-path="node/6860">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--sponsor">
+        <a href="../sponsor-midcamp.html" data-drupal-link-system-path="node/6858">Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" data-drupal-link-system-path="node/6859">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--hybrid-sessions">
+        <a href="../schedule/hybrid.html" data-drupal-link-system-path="node/7053">Hybrid Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-wed">
+        <a href="../schedule/wednesday.html" data-drupal-link-system-path="2023/schedule/wednesday">Sessions (Wed)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-thu">
+        <a href="../schedule/thursday.html" data-drupal-link-system-path="2023/schedule/thursday">Sessions (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--birds-of-a-feather-bofs">
+        <a href="../schedule/bofs.html" data-drupal-link-system-path="node/7054">Birds of a Feather (BoFs)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--contribution-day-fri">
+        <a href="../schedule/friday.html" data-drupal-link-system-path="2023/schedule/friday">Contribution Day (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--topic-tracks">
+        <a href="../../topic-tracks.html" data-drupal-link-system-path="node/10">Topic Tracks</a>
+            </li>
+          <li class="primary-nav__sublist-item item--all-sessions">
+        <a href="../schedule/sessions.html" data-drupal-link-system-path="2023/schedule/sessions">All Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--session-submission">
+        <a href="../submit-session.html" data-drupal-link-system-path="node/14">Session Submission</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2023/news">News</a>
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../../jobs.html" data-drupal-link-system-path="jobs">Jobs</a>
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2023.html" hreflang="en">MidCamp 2023</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-midcamp2023schedulenav" class="block block-block-content block-block-contente066b47a-a80d-432a-8edd-6c60b28b7c95">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><div class="schedule__nav">
+<p><a href="../schedule/hybrid.html">Hybrid</a>&nbsp;|&nbsp;<a href="../schedule/wednesday.html">Wednesday</a> | <a href="../schedule/thursday.html">Thursday</a> | <a href="../schedule/friday.html">Friday</a></p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Lessons learned from helping port the top contrib projects to Drupal 10</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="6884" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2023-04-26T14:45:00Z" class="datetime">Wednesday, 9:45 am CDT</time>
+ - <time datetime="2023-04-26T15:45:00Z" class="datetime">Wednesday, 10:45 am CDT</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-81" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-name field--type-string field--label-hidden field__item">Room 314A</div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>This conference session will explore the human and automation side of preparing the contributed project ecosystem for Drupal 10. From maintaining the tooling to automate detections of deprecated code with PHPStan and to automating their code replacements with Drupal Rector to distributing patches en masse via the Project Update bot. Automation only goes so far, often requiring human intervention to provide backward compatibility and fix things that cannot be automated - complicated code paths or JavaScript. Are we ready to start all over again in a year and a half?</p>
+
+<p>We will cover the following topics: &nbsp;</p>
+
+<ul>
+	<li>The process of upgrading Drupal modules from version 9 to 10, including automated toolings like PHPStan and Rector.</li>
+	<li>The importance of thorough testing and backward compatibility tricks in ensuring compatibility with Drupal core 9.4, 9.5, and 10.0.</li>
+	<li>The challenges of coordinating with module maintainers and managing release schedules.</li>
+	<li>Best practices for upgrading modules and working with maintainers to ensure a smooth upgrade process.</li>
+	<li>Strategies for improving the compatibility process for future Drupal versions.</li>
+</ul>
+
+<p>Attendees of this session will come away with a better understanding of the process for upgrading Drupal modules and how to effectively coordinate compatibility across many modules. This information will be valuable for Drupal developers and organizations looking to upgrade their modules and sites to Drupal 11 and future versions.<br>
+&nbsp;</p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/dMq_gmTyiTU?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-presenter-slides field--type-file field--label-above">
+    <div class="field__label">Presenter Slides</div>
+              <div class="field__item">
+<span class="file file--mime-application-pdf file--application-pdf"> <a href="../../sites/default/files/2023-04/Lessons%20learned%20from%20helping%20port%20the%20top%20contrib%20projects%20to%20Drupal%2010.pdf" type="application/pdf">Lessons learned from helping port the top contrib projects to Drupal 10.pdf</a></span>
+</div>
+          </div>
+
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Matt Glaman</h4>
+
+      Principal Software Engineer
+
+
+          @
+              <a href="https://www.acquia.com/">Acquia</a>
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p>Matt Glaman is an experienced software engineer and a prominent member of the Drupal community. With over a decade of experience in web development, he has gained a wealth of knowledge and expertise in the field. He is the author of several books, including "Drupal 8 Development Cookbook" and "Drupal 10 Development Cookbook," which provide a comprehensive guide to building and customizing Drupal sites.</p>
+
+<p>As an active member of the Drupal community, Matt is dedicated to sharing his knowledge and expertise with others. He regularly contributes to Drupal projects and is passionate about helping others develop their skills and become more proficient in Drupal development.</p></div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2019-12/3LRfmYzD_400x400.jpg%3Fitok=w2Gli5PW" width="220" height="220" alt="avatar" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Back-End</div>
+          <div class="field__item">Community</div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-feedback-form field--type-webform field--label-above">
+    <div class="field__label">Feedback Form</div>
+              <div class="field__item"><form class="webform-submission-form webform-submission-add-form webform-submission-session-feedback-form webform-submission-session-feedback-add-form webform-submission-session-feedback-node-6884-form webform-submission-session-feedback-node-6884-add-form" data-drupal-selector="webform-submission-session-feedback-node-6884-add-form" action="lessons-learned-helping-port-top-contrib-projects-drupal-10.html" method="post" id="webform-submission-session-feedback-node-6884-add-form" accept-charset="UTF-8">
+  
+    <div data-drupal-selector="edit-0" class="webform-message js-webform-message js-form-wrapper form-wrapper" id="edit-0"><div data-drupal-messages>
+    <div role="contentinfo" aria-label="Status message" class="messages messages--status">
+                  <h2 class="visually-hidden">Status message</h2>
+                    Sorry...This form is closed to new submissions.
+            </div>
+    </div>
+</div>
+<input autocomplete="off" data-drupal-selector="form-xxqce7a0qtfn-ikjszxnn8lw-qw-lnxbxdcs2zslebw" type="hidden" name="form_build_id" value="form-XXQCE7A0qtfn-IKJsZxnN8LW-QW_lnXbxdCS2ZSLEbw" />
+<input data-drupal-selector="edit-webform-submission-session-feedback-node-6884-add-form" type="hidden" name="form_id" value="webform_submission_session_feedback_node_6884_add_form" />
+<div class="url-textfield js-form-wrapper form-wrapper" style="display: none !important;"><div class="js-form-item form-item js-form-type-textfield form-type-textfield js-form-item-url form-item-url">
+      <label for="edit-url">Leave this field blank</label>
+        <input autocomplete="off" data-drupal-selector="edit-url" type="text" id="edit-url" name="url" value="" size="20" maxlength="128" class="form-text" />
+
+        </div>
+</div>
+
+
+  
+</form>
+</div>
+          </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p><span><span><span><span><span><span>MATT GLAMAN:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Bright and early, thanks for coming in. So this is lessons learned from helping port the top contrib projects to Drupal 10. My name is Matt Glaman. I'm a principal software engineer at Acquia and also the maintainer of phpstan-Drupal and a major contributor to Drupal-rector. Hopefully, you've had some nice experience using those tools. We're gonna talk about them a little bit today. But first, who has made their project sites Drupal 10 ready so far?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>All of them?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>MATT GLAMAN:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>OK. How many have started? Or at least like It's not all the way, oh, OK. There we have more people there. OK, Good start. I know it's not always the easiest process, and we're gonna be talking about ways that we can make that better. Alright. So let's go for another sub audience that who has made contributed modules Drupal 10 ready? OK. How about half the people that have worked in their Drupal 10 site means you probably had to make a patch or work on something. Well, some good news is that as of April 12th, 2900 projects are stable and ready for D ten. 1500 need stable releases. So some are on devs, some say RC just if you're a module maintainer, don't be scared of stable releases. Just go for it. You can, releases are cheap. And then there's still a handfull that need work done. This is taken from dev.acquia.com under resources there's like a deprecation dashboard. Maybe you've seen this, maybe you haven't. But it's a cool way that shows the entire ecosystems results. I'll talk about that page a little bit later.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So this is lessons learned from my team and we tracked over 180 contributed modules as part of our Drupal ten Readiness Initiative. As part of that, we were credited on over 90 modules getting to Drupal ten ready and three Drupal core issues. And I actually really wanna take a minute to pause about the Drupal core issues. It's important to work on your modules early so you can find problems in the next major version. Drupal nine deprecated temporary query, temporary tables in your database like MySQL temporary tables. And it was removed in a Drupal ten. Search API DB relies on that to work, So as part of our D ten readiness for Acquia search, we need to get search API D ten ready. Acquia search uses solar. We don't use the database, but we got that functionality back in core to unblock search API. So that was like a really great effort. And then also two things around CK editor five because one of my modules, the dam module does a lot of CK editor five stuff. So there and then also the entity embed module needed the CK editor five plugins needed to allow derivatives to work.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So by working on module readiness you uncover the things that aren't quite there ready in the next major version. So it's really important to work on those things. And so this was our goal, like our mission statement for, we did this from Q three to Q four. So it was like June to December of 2022. Ensure all of Acquia's product modules and dependencies were ready for the release of Drupal ten. And then we're like, Oh yeah, let's include the top-use modules as well. Let's make sure they get over. I know Sasha took care of token and redirect, but we were gonna help track and make sure and give assistance if needed. So what team is this? It's Acquia's Drupal integration team. We maintain Acquia's product module. So Acquia Connector, Acquia Search, Acquia DAM, media Acquia DAM, things like that. You might be more familiar with the DAT team, which used to be OKTA, like Drupal acceleration team. The Drupal acceleration team, they work on Drupal core, we are in the contrib space. And I really wanted to highlight the team that was part of this effort because hopefully you've seen their names on some of the modules and it was Acquia kind of colliding on this that made it all possible.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Jakob Perry was one of the leads and I call him our semantic versioning champion and customer experience. We had lots of arguments about releases and semantic versioning, which I'll talk about there to try to make sure that end users had the best experience. Then there's myself. I worked more on Drupal-rector and phpsan-Drupal and trying to figure out how to make everything automatic and robotic for you in this process. Attila, Abhishek, Balint, and Nejc, they were like, say, like our worker bees. They're the ones that swarm the issues. And Balint is the one that really, he spent like a month on entity embed in CK editor five, and Wim Leers trying to make sure that entity embed could be possible even in Drupal ten. Now, here's the question. Did you know that there's something big happening next year? Drupal 11 is coming in 2024. It is. There's a policy issue it's doo-I3330791. The plan is for August 2024 with a fallback to December. They'll mind you the same thing that happened to Drupal ten.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>It was originally slated for August, but due to CK editor was fell back to Drupal or to december. Same thing for Drupal 11 just next year. So we got what, year and a half? Which means we've got like probably eight, nine months before we should start thinking about Drupal 11 readiness. Yeah. So it's one year away and I'm not actually scared or worried about the fact that there's another like readiness initiative and I want this session to kind of help alleviate any fears you have in ways that we can make the upgrade from Drupal ten to 11 even easier than it was from eight to nine and nine to ten. So what have we learned from this process of Drupal nine to Drupal ten and how can we make upgrading to Drupal 11 even easier? So one thing we need to do is look back at the changes that went from nine to ten. You know, maybe you're like, I'm gonna upgrade my site and I'm just gonna fix some deprecations, but there's more. So there was a lot of major version bumps in our dependencies. We had, of course, Drupal nine to ten, everybody's dependency PHP from 7.4 minimum supported to 8.1.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Now technically people should have already been on PHP eight because 7.4 with end of life. But let's be real. There still sites run on PHP 5.2 out there. People don't upgrade stuff when they need to. PHP unit went from 8.5 to nine. Guzzle six to seven, which was a whole thing of itself as well. And then Symfony four to six, we skipped five like Drupal ten Alpha one supported Symfony five and then they dropped it. So there's like that little gap of a bridge. And then of course CK editor four to five, which was one reason that the Drupal ten release was delayed. And something new that we didn't have with Drupal nine is JavaScript changes and library removals. jQuery once, you know the library that everybody writes. So that way Drupal Ajax doesn't put something on the page 5000 times that was moved to a new once library that doesn't have a dependency on Drupal core. So that was a big change. jQuery UI gone, moved to contrib. I don't know how many people were aware of that, but I know that caught us at 9.3 or 9.4 going.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>The contrib modules for jQuery UI aren't even D ten ready, but you can't depend on them because they're deprecated libraries, and then backbone and underscore these are libraries, not everybody is using contrib. I did because of course I found a way and these weren't able to be removed yet because it was really entangled in our JavaScript, their libraries from like 2012. But they were marked internal, which means that you shouldn't use them because they'll eventually go away. All of this is pain from a long Drupal eight life cycle. I have, I couldn't get my speaker notes up, but Drupal eight was released like November 2017. No, before that it was a six-year life. It is on the slide. There we go. Way to go, old me. So November 2015 is when Drupal eight released. I remember being at mid-camp as like the last like rush for this to happen and then 8.9 dot whatever patch version, the last patch version was released November 2021. That is six years for software to exist and the world change around it.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So yeah, like Drupal nine was a two-year window to say, Oh, we need to upgrade and fix everything. So I don't think Drupal ten to 11 will be as bad because we're not gonna have such a large amount of cleanup to have to do. So like i said, this is a lot of work, a lot of changes and we needed to track our progress. 180 modules. It's a lot of things. That's a lot of patches. There is that readiness dashboard I showed up that's hosted on Dev.acquia.com. It's maintained by Gabor on the DAT team, our community manager. I'm sure many of you have seen Gabor, but the way that it works is there's a Jenkins job that scans all the contrib projects on Drupal.org and it pushes that to an artifact. And then you've got to download the artifact and you've got to upload it and then you get a chart. But that job was very fragile. Sometimes it didn't work. Then involved pinging and mixed logic from the DA's and hey, can you run this on top of getting GitLab ready? And it wasn't very active. Like you can't track patches on it.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Like you can't go to an issue and say, hh, there is a D ten patch, incorporate it to this result. And actually, the code for this dashboard is available at slash project deprecation underscore status if you wanna check it out. And then the asterisk because Bjorn stabilized this project data sourcing onto GitLab CI. So now we can do it weekly and it doesn't really fail. There's a few hiccups, but it's much more streamlined and I'll be talking about that later on too. So this is how we did it. We decided upfront that we needed to track this progress and we needed it to be very instantaneous since it's gonna move fast. So we built a canary, or at least that's what we call it. Like a canary in the coal mine. Because our jobs was failing, the site would fail if there were things that we said were D-ten ready but actually failed checks. So this was invented at DrupalCon Portland when I was at the booth with Jacob, and we're like, Well, we know we got to do this in two months. How are we gonna do it?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So we use composer meta-packages to group modules. So we have a stable meta package dev and unstable and anything that's unstable has to have a stable release otherwise the validation fails. Dev means it's a dev release or patched and then unstable means that it's not gonna pass. But we had CI jobs that would say, OK, remove all the unstable projects, run, upgrade status, and verify. We also had another one because Guzzle seven upgrade is that some modules used Guzzle seven, Guzzle six or used a dependency that was a hard set on Guzzle six or PSR bridges, Guzzle seven was kind of a really big knot untangle. So we did a job that just said, composer why not Guzzle seven so we could go nudge like I think Content Hub, the Content Hub team had a library that needed to be fixed, like nudging that. OK. Can you support both? So that way we had daily jobs that would tell us if things are passing or not, what modules we need to go back and open new issues for, and also distribute it to our entire organization.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And we could take patches, apply them. It would show us how many patches were replied and what things need to be fixed. So that's how we were tracking it. Let's walk through the process of fixing a module for Drupal ten, right? So step one is you scan it, you got to find the deprecations and changes. For this, you're using upgrade status, or you're using Drupal check or you've got PHP sin running on your own which leverages PHPstan-Drupal. Great, you've found the problems. Now you fix them. Those little error messages say how you should fix it. You can do that manually. Or you could use Drupal rector for php-based problems. So you've made the changes. You've got a patch-up. Now you just need to get somebody to commit it. And they did so, whoo-whoo right, the module is Druple ten ready. The fix has got committed and it's compatible with Drupal ten. You can wipe your hands clean and walk away. But wait, there's more. Is it really ready? So did you test that change on Drupal 9.4 and 9.5 and Drupal ten?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Because I've got a good guess. If you fix everything for Drupal ten it's broken on 9.4. Because by fixing deprecations that were introduced in 9.5 you're using code that was added in 9.5. That doesn't exist in 9.4. So you broke the module and there could also be new deprecations Aquia DAM used Popper JS and Popper JS was ripped out at the final hour of 9.5, so I thought we were Drupal ten ready, but we weren't because as soon as you went to go use CK editor it crashed because Popper JS was removed and I didn't catch that. So and then also release needs to be made. I didn't talk about a release and that's like our biggest blocker. Things get merged and then a release never comes because you might fix Drupal ten early and I don't wanna make a release yet, what if there's more changes? Like I said Git tags are cheap, releases are cheap, at least often. Just don't let it languish. So that's the process and some of the problems there. So here are what we learned, here's some things we learned about this process.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Tooling. This falls in my realm. We need improved tooling to facilitate these required changes and the tooling gets out of date. Another question for the audience who tried to use Rector and then it just exploded or wouldn't install with composer because of who knows why? Handful yeah, because Rector changes ten times a day and sometimes it's broken because it is like beta software and Thomas does a great work, but it's really hard to have a tool that integrates with it because it's always changing. So about three times a year I end up, that's my main contribution to Rector it's like, OK, does it still run? No, it doesn't. So our tooling can get out of date really fast. PHPStan isn't as bad, but it is a major problem if we're not maintaining our tooling regularly. So then we also got to talk about the cadence. We act like Drupal ten, nine, all these things are coming out of left field and we didn't know. But every six months there's a release of Drupal core that tells us things are deprecated but we don't fix things until the last minute.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So why don't we should set a better cadence before like before every major release. We just need to do it like at every minor release. And just like get the patches in. But the problem is this whole backwards compatibility, that's a lot of work and we're gonna find another way that we can improve that. Best practices. We need, there are no best practices. There's no doc, you can link to a maintainer 'cause I feel like that was part of our work is we found like the ImageMagick module and like its dependency, the person did all these like breaking changes, and then created a new major version and said, I'm good to go, but you can't get from two to three that way unless you upgrade that module with Drupal core, which could cause other issues. So it'd be great like if Jacob and I are talking to somebody and they go, you're full of it. Look, there's actually community doc, where we decided these are the best ways to do things and this is how you should resolve these problems. We don't have that yet.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And yes, it's open source. Maybe I should have opened that by now. That is my fault. So if anybody feels empowered by that, come talk to me and we can actually make that happen. Which ties into coordination. It is very ad hoc and it would be nice if we had, I know everybody's doing this in the free time, I don't have all the time in the world, but some kind of committee that was just always active. It's getting better and it seems to be that way. There is a D11 readiness channel already on Slack, but just some way of coordinating a little bit more of the efforts. So let's dive into some more specifics that were covered. Like backwards compatibility. So Drupal core support, there's technically three versions of Drupal Core supported at any single time. Right now and modules should. They don't have to, but they should support all those versions. Some might say well only two. I don't, I only want a year worth of Drupal support. That's up to the maintainer, but ideally, it should support at least those three.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So like right now drupal 10.0 is available. So as 9.5 and 9.4, we have one year of Drupal code that is still under security support. 9.4 drops security support in June when 10.1 is released, but that still means we have six months of Drupal nine code like one minor release that still should be supported by modules. Yeah. So fixing the, as I said before fixing the deprecation uses new code that didn't exist. So if you fix the deprecations in 9.5, you run it at a 9.4, it goes this service doesn't exist because it's still a function. So we need these modules to provide backward compatibility layers for people so it doesn't matter what version you've installed. I found modules that support 8.9 to nine to ten. It's possible there are modules that can work and even complex modules that could support Drupal eight, which is gone. So these backward compatibility layers help ease end users, most of you with your process of upgrading your sites. So here's one example and Drupal 9.1, early days they changed the signature for event dispatcher to match what Symfony did to be forward compatible.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Now you don't need a backwards compatibility layer, but you would get a ton of deprecation messages all the time and clog up your logs. So what we did is we compared the version number and said, Hey, if it's greater than or equal to 9.1 for Drupal, put the event object first and then the name. Otherwise, so at this time 8.8 and 8.9, sorry. 8.9, 9.0, 9.1. So if you're on 8.9 or 9.0, do the old way that has always been. So these are what I mean by backwards compatibility layers. Another one was in 9.4, a kind of quirky one was Git implementations was deprecated for invoke all with, again the same thing. It's does the method exist on the module handler service? Great. Use it if not, fall back to the old way. And this allows your module to work with Drupal nine dot anything to Drupal ten. Now these backward compatibility layers. I had to go back every single time and look it up in our code. The thing about what we did. And I think all change records should have this in here, the change record says before or after.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>I think as part of the sign-off and I don't know how to make this like an official policy, if you will, but if we have that the signed-off published change records should have that example of how to add it to your module with backwards compatibility. So module maintainers, copy, paste, tweak. Now, they don't have to think that cognitive load is gone or contributors, right? Contributors wanna help fix modules. It can now be a junior task. One thing we realized is a lot of this work is like a junior mid-level developer fix, but you end up needing senior-plus people because there's nuances. But speaking of nuances, let's talk about releases and semantic versioning. Again, another place that we need guidelines and recommendations for. Semantic versioning already like nobody can agree on what it really means. PHP says it's semantically versioned. It's kind of, it's a very loose concept, but with the guidelines that we wanted to set. When you make a new major version of your module, when you're breaking changes from Symfony or other dependencies.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Like Guzzle six, seven, if you have a dependency that doesn't bridge between the two. An example of a major version. (COUGHS) Sorry. If you're on like the old version of 8.x, whatever it would be 8.x3 from two or 2.0 to 3.0. A minor version bump is when you're adding support for a new version of Drupal Core. But while you're doing that, you're gonna drop a previous version. So I have an example that will show that, but adding support for a new major and at the same time you're dropping a previous minor support. So old way would be 2.8 to 2.9 because technically that dot is considered a minor in the old ways. Or here it would be 2.0 to 2.1. And then patch releases, we saw so many people make major version upgrades 'cause they added Drupal ten support. If you use backward compatibility layers, it should just be a patch release. It's like a bug fix like it's a small change. Don't make major releases and cause your end users pain when trying to upgrade their modules or if your module is a dependency of another module.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And now that module needs to figure out how to make it work. We saw a lot of that as well. So again, adding a new Drupal core version. If you use backwards compatibility layers, it's a patch version, it's a small fix. And with that, that's where you need to create releases that bridge versions of Drupal. So that way we don't have the problem of I need to get to Drupal ten, but I can't just say composer upgrade Drupal core, it's Drupal core, and this module and that module I try to make it so they don't need to upgrade everything at once. So an example of that would be you have version two that supported Drupal nine and then eventually, like, you know what, I'm gonna drop 9.0, 9.1, 9.2. 9.3 is my baseline. For that you create a minor version. And then for 2.1 or for 2.2 actually I'm gonna drop to just. 9.4. So I need 9.4, 9.5, and Drupal ten. Done. So you create a new minor 2.2 that supports that range. Then you decide, You know what, I'm gonna create a new major version of three. Because I want all the goodies of PHP 8.1 and Drupal ten.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>I don't want any backwards compatibility stuff. I want all the cool stuff. The main point is that this 2.2 allows people to use their Drupal nine site, upgrade your module and then upgrade to ten and choose to get the next major version. It's a seamless process for them and not a composer nightmare that says cannot resolve packages. All the reasons. And also supporting a new PHP version isn't a breaking change. Just because you adopt PHP 8.1 doesn't mean you're gonna start using annotations and union types and whatever else you can just support 8.1, fix some deprecations. And then do another major release that kills off like PHP seven code. It doesn't always need to be a drastic change by supporting something new. Which again is why we need these guidelines, because it's a conversation that just kept going and going and can be very exhausting like mentally. And then we got a fun one. What about adding dependencies to fix deprecations in libraries? This is a good question. jQuery UI was removed.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Do you make a minor version to add that dependency or is it a patch version because composer magic or is it a major version? I don't know. I've asked a few of these questions like the Laravel community and this one's kind of out the door. 'Cause it's really unique to Drupal. Jacob wrote a great blog post. I do the slides online because medium or you can get the slides from the node on midCamp. There's no like short URLs for medium, so there's a bear to look at. But Jacob wrote a blog post called Don't go making major version Changes. I wante him to title it to like that TLC song Don't go chasing waterfalls. So that's how you remember not to always make a major version. Then there's also the challenge for releases of getting maintainers to commit fixes. We have lots of modules. I'm guilty, yep, I wrote that. ISF orientation, totally forgot I maintained it, created it. Lucas Hedding was like, hey, can I become a CO maintainer to merge and release this? I was like, yes, thank you. I forgot that I'm a maintainer for this.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So get him to commit or there's the whole commit i'll come back later in release. Tick tock, tock, release never actually happens. Or you have a maintainer that can merge but can't do releases because we do have that kind of granularity. For that, there is the Drupal ten readiness product project adoption initiative. So there's actually a group that's out there. Lucas is one of them. He sent me a nice email that said, I appreciate your work in the past, but can I be a short-time maintainer to help get this for Drupal ten? Really nice way that they're doing things and it was something we were kind of missing from eight to Drupal nine. This is a new one. So yeah, JavaScript fixes. There's no tools. We have nothing. And when I went on the internet, I was like, somebody has got to do like a Rector for JavaScript. Well, there is kind of, there's a few tools, the one that I found was JS Code Shift. Which is a code mod toolkit by Facebook. Here's a gobbledygook example, but it takes JavaScript, parses it to an abstract syntax tree, and then you can rewrite your code in place.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>I did an experiment on my GitHub. So it's Mglaman/jquery-once-jscodeshift. It worked, I used it. I couldn't figure out how to package it as a standalone. But ironically, Theo Nod used the same tool in the Drupal core issue that migrated Drupal core away from jQuery once library. And he shared me a link and there's a patch and there's the JS code shift tooling in that patch. But then it got removed. So he used it for Drupal core and then contrib had to go write its own. So the question is should Drupal core provide these scripts? Like if Drupal core builds a script to migrate away, should it be available or made in such a way that contrib can use it? Or is it another standalone tool that somebody has to maintain? I'm not sure yet 'cause we haven't had enough of this to really know, but Drupal ten is adding more JavaScript deprecations around like theming functions. So this is a new era of tooling. So if anybody is hot to trot on JavaScript. It could be an interesting way to contribute and help make major versions possible.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Not possible, easier. So PHPStan learnings. This is my domain. So I gave a talk at Florida Drupal camp last year. It was last year about how we need to start doing scans at level two because right now Drupal check upgrade status to level zero. Basically, this is PHPStan. I don't care about anything else. Just tell me the deprecations, where level one and two say this method doesn't exist. You're talking to something that is imaginary and we're silencing those right now. So here's hopefully an example that you can see on your screen. So hook node insert, right? It does entity interface note. It says, you're gonna receive an entity of entity interface. Great nodes implement that it passes. But there was a deprecated method in Drupal eight called get revision author. At level zero, PHPStans like yeah, it looks good, but if you turn it to level two, it says hold on, get revision author is an undefined method. It doesn't exist in entity interface. So it'd go, Oh you're right. So you'd edit your code and say actually hook its node entity interface I'm getting.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>There's no harm in changing your types on hooks unless you do the wrong one. Now PHPStan would go oh, get revision author, yes, that is a method. That error is gone. But know what shows up? the deprecation. And with 8.9 to ten there are so many bug reports thrown at me because of this. So that's why I believe that we need to start doing level two, which I did at the end of Portland, Drupal check now runs at level two. Unfortunately, that means maintainers got a lot of patches that had extra type changes in it when there's maybe no Drupal ten deprecations because if you tell a junior run Drupal check, fix what it says, go forward, they're not gonna know like actually, this change is kind of junk. Like yes, it's a good improvement, but it's not unblocking Drupal ten. So now maintainers are getting these patches and they're looking at me being like. What's this extra noise? But again, I think we'll get there and it will be useful. It's gonna make life easier in the long run. This goes, there's custom rules that PHPStan Drupal provides.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>This goes to the whole like needing to have updated tooling. One example is deprecated global constants. Global constants aren't available via the Reflection API. So we have a custom rule that has to track them. So if a constant is deprecated in Drupal core, I need to know the change record happened so I can copy it or usually Gabor holds me pretty good to that, like tracks it. My favorite change of all is that content entities on entity queries must call access check. It can't be implicitly implied anymore. You need to explicitly do it. That was about six months of work to get PHPStan Drupal to actually scan and recognize these. To find out that actually, it should exclude config entities and there's bugs on config entity count queries. And then also like we deprecated the usage of Symfony CMF routing. So this meant like, this was tricky, we were gonna remove a dependency, but we couldn't mark them as deprecated because we don't own the code. So I had to write custom code that checked for instances and usages of that code and said, hey, this is gonna go away in a few months.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And then a few things with like renders arrays and callbacks Upgrade status. I actually didn't have anything for this. And then at the final hour, I realized what if upgrades could say, hey, jQuery UI was removed. You need to add jQuery UI or whatever modules as Dependencies to your composer.JSON. This was a gap and I think it would have been great if we made that patch for upgrade status. I can't remember if I made an issue yet for it, but that way if anything in Drupal core gets moved to a contrib upgrade status can warn you better. It might already have a warning, but maybe it can make it a little bit larger. And then also allowing upgrade status to run at PHPStan level two. Make that a flag because earlier somebody brought up that feature and I think that would be nice. Like upgrade status is a user interface for PHPStan plus more. Rector, my favorite tool. It's great for end users. I hope you all use it and love it because it's just bam gets your site ready without having to think.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>For the most part it's really horrible. I say it rough, but honestly, it's really really horrible for contrib. And why? backwards compatibility. Rector is a one-way street. It comes in and says, I fix you, I fix you, I fix you, you're good to go. It's very opinionated in that fashion. And that's a good thing for the tool. But it would be great if it could provide backward compatibility to the fixes. And if we could put those behind a feature flag. So when you run it for your site, it doesn't add backwards compatibility because your site has one version of Drupal core. You're not running multiple, but if we had a flag that said, hey, this is for contrib, make sure the patch supports the previous versions, otherwise it's manual intervention. Maintainers get a patch, they can't accept it. They've got to go look up the old way, edit the patch, it's extra work and it'd be great to remove that extra work so everybody's a little bit happier. So I wrote a blog post about this. Oh wait, this doesn't have the blog post on it.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>But I open an issue seeing if we could automate this. I spent about four hours on it and it is not going well, but I am not turned away from it. I still think it can be possible. It just requires a lot of trickery. And then the project update bot is, are most people familiar with what the project update bot is or have you heard of it before? OK, handful. OK, so I think I covered here, so the project update bot takes is an automated bot that goes for Drupal. org and takes patches generated to fix modules and distributes them to every module. So you'll see a lot of, it's like nine readiness Drupal ten readiness soon I hope we'll see Drupal 11 readiness and I created a little workflow that kind of walks through it and actually I forgot that the update bot is actually not much of the process, it just consumes an artifact and posts it. Earlier I brought up that Jenkins job that did the analysis and created an artifact. We'd have to tap and mix the logic like, hey, run it. It would go scan all the contrib from Drupal.org.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>It then runs upgrade status to find out what the reports are and says, did this module have any errors reported? No, great It moves on. If yes, it has code that fixes info.yaml and composer.jason issues. It then runs Rector and when that's all done it collects the patches and puts that into the artifact. So there's an artifact that's available. If you want to go find your patch, it's really hard to go dig through like the tens of thousands of files, but your patch is there. The update bot is a tool that just downloads that and then creates issues or updates issues and puts those patches on Drupal.org for modules. So this has now been moved from Jenkins to a project on Drupal.org, a general project called Project Analysis by Bjorn. So that whole instability and night kicking Jenkins and hoping it works it's now on GitLab CI so anybody can contribute to this like a bunch of jobs are failing due to BC math for commerce so Drupal commerce was just crashing the ship. Well now anybody could have, like we did, we edited a Docker file and said add BC math extension.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Great, the community can now improve this. It's not locked away and managed just by the DA. So there's actually no difference to this workflow except for the fact that it's on GitLab. And I'm hoping that we can start to see improvements to this. This part, the update bot is closed source because it talks about how to automate going on drupal.org and uploading files. So the idea is let's not make that public. Yes, if you're bored enough you can figure it out, but let's not necessarily encourage that. If you're curious about the update bot and you're going to DrupalCon. Bjorn has a session called Project Update bot, the road to Drupal 11, where we're gonna figure out like the next steps. I won't be at DrupalCon because I have conflicts, but I will be excited to watch the video of this and it'll be really interesting to see how we can make life a lot easier. But the problem is this process is only as good as our tooling which we kind of we keep coming back to. Like the update bot can only deliver patches as well as we create or as well as the tooling provides.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So again, Rector needs to provide backwards compatibility for these patches to work at scale. Also back to the question can we automate JavaScript fixes? Could project analysis also run JS code shift to deliver patches for like jQuery once type of things? How amazing would that be If your patch fixes your info.yaml, your library.yaml, and then the javascript and it really is just like good to go. Though who knows what backwards compatibility with JavaScript looks like. That's a whole other thing. And then automating the dependency changes. I open an issue for this that if it detects it from upgrade status then it should generate that as a patch. But the main thing is we can just keep moving forward. And onwards to Drupal 11. I'm really looking forward to this next round. I kind of dreaded it when it was November. I was like, Man, we got to do this in a year and I can't but I'm feeling much more confident because we have better tooling, better processes. If you think about it, we didn't have to do this for Drupal eight 'cause that was like a hard fork from D seven to eight.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Drupal nine, eight to nine was our first rodeo, Drupal eight lived for a long time. This is only our second time doing it as a community and I think that's pretty good considering that no other community has this issue. Laravel doesn't have as many dependencies and it's kind of like a you snooze, you lose like whatever. Symfony is a framework and they make, they do more releases more often and they're minor versions of drop things. So we're unique and I think we're handling it the best we can. So thanks for coming. I hope this was informational on how we're hoping to improve the contrib experience 'cause if we make the contrib experience better, that means you when you do your client sites, your business sites. It makes your upgrade process even easier. So thanks for coming and then any questions?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>How can, so project update bot is fantastic that they, do you foresee it being possible or beneficial to make it easier for contrib projects to run Rector much more regularly?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>MATT GLAMAN:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yes.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>So we're not waiting until the point when we start the update bot for Drupal 11 and then we can get out of this.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>MATT GLAMAN:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>So I'll reiterate for the recording. So the question is, is there a way that modules could run Rector sooner and not need the update bot?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yes, but I know any module could configure it all themselves, but I'm specifically curious if you see a benefit...</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>MATT GLAMAN:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Automated on Drupal 11, Yes.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>In some way, yeah.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>MATT GLAMAN:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>So to automate it, and this is one reason I'm glad that project analysis isn't on Jenkins because, right Neil, are you helping with the Git Labs? You're doing the GitLab stuff and Brian together, right? It's not just one of you.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>NEIL:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Ryan went to work for Linux Foundation. So it's just me.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>MATT GLAMAN:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>OK. Never mind, didn't know that. Alright. So the fact that project analysis is off, Jenkins and on GitLab means that Neil doesn't have to worry about tinkering with Jenkins. And we're working on getting to GitLab for everybody. So the main idea was there, then you can just focus on GitLab so everybody could do it, which means that you could have Rector run on Akron like Weekly. It says, hey, GitLab, GitLab CI, run this weekly run, Rector. If there's a patch add it as an artifact. So when the run fails, you can go with GitLab CI to that job you click download artifact, bam, you got a patch. I don't know about the whole automating it as a merge request. Maybe now it's more difficult 'cause we do issue forks and the whole bit and I don't know how GitLab CI on self-hosted handles secrets to be able to open your own merge request for your own repo. But once we move everything to GitLab CI that door is wide open that the update bot may not be needed because it's a GitLab CI job that again documentation and guidelines it's copy this YAML and go and to be fair I haven't looked a lot at the GitLab stuff so maybe there are ways to automate that, but I foresee it being maybe for Drupal 11, for 12 when we do 11 to 12 as the next one in four years, whatever it will be.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>GitLab is just churning out patches for us. We don't need the update bot and we don't even need project analysis because it's all decentralized. Any other questions?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>I was just gonna offer a suggestion with maintainers that have like a library dependency or something that needs to be regularly updated. If they make like a YouTube video of them going through the process and post that link then on their project page, then including the testing and everything, then somebody else could look at it and see if they could apply it and create an issue, and then test it. And even if they don't know how to fix the things, they could pair with the information and say, hey, I tested it, here's the results. I got things like that and take a light off the maintainer that way.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>MATT GLAMAN:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah. So the statement is about if we could get project maintainers to help detail updating those dependencies and the list and the steps to verify for like JavaScript library. So that way when it needs to be changed, somebody, anybody could go through and watch it. I would say like words over video 'cause I know I can't watch a video. I'm not able to...</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Well then it's easy to do, while you are doing it</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>MATT GLAMAN:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah, but it comes on to and like documentation is hard. Like just holding yourself accountable to write things. I'm bad at it. I'll admit it. Like I should do it way more and I don't. But we should do it more. Any other questions?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Have you looked at like other like WordPress or something like that that have a similar problem?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>MATT GLAMAN:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>The only thing I can say about WordPress is I created a plugin called Facebook Albums that got shut down because of Trademark in 2012. And people still email me 'cause it works on the latest WordPress.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Wow.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>MATT GLAMAN:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>So WordPress doesn't have this problem. You know, like I must not have used like PHP five stuff in there or whether these people are running PHP five, I don't know.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>They're running PHP five. (LAUGHS)</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>MATT GLAMAN:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>So yeah, sorry. The question, just to reiterate the way I said that is, I was asked if WordPress has the same issues and I...</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Or like any other software...</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>MATT GLAMAN:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>No because we're weird like we're a snowflake. And ae weird in a good way. Like I said, Laravel, it's all packages, everybody builds their own UI. So it's not like render or a deprecations or things like that. Like in Laravel, like you take the framework and then you build something custom every time. Symfony same way, maybe Symfony like the full CMF, like their full package, maybe. But they do that with like PHP unit bridge. Which is a big thing. So, but no, we're unique.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>I work for an agency and we're trying to figure out how to think about major version upgrades in terms of how we build that to our clients in the future. So we have flat fees for regular quarter, we do it quarterly Drupal updates, and then emergency updates that we do for our clients. We, for Drupal eight to nine, we build that hourly 'cause that wasn't included in it. We're planning on doing that for nine to ten as well, though we expect that to be much smaller. Though for ten to 11, we're like, well, that seems like that's gonna be even smaller. And then 11 to 12, that could be even smaller than that. And it's, we're you know, we don't have any plans right now, but we're kind of just wondering like, you know, it almost doesn't seem fair. Like, you know, could this be something that is, could there be a point where like ten to 11 or 11 to 12 is as small as a routine?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>MATT GLAMAN:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Composer Update.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>MATT GLAMAN:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah. So the question was about being in an agency. And before like eight to nine, it was well normally we do slotted like block hours. But this was we just had hourly time and materials because we don't know.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>MATT GLAMAN:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Nine to ten. That way, but it looks a lot smaller and what we get insignificant. So it's a minor version. I mean that's what Driss says every time and I see them on the Driss and he'll be like It'll be the easiest upgrade ever. Rector is automated. (LAUGHS)</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>It's like, how do we communicate to clients? How do we know what to expect?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>MATT GLAMAN:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah, I know what I would do because it isn't a minor version because there's composer, right? There's info.yaml and composer constraints. So I would still just tell them like. It's not a month. It's almost like if you could say, look, we're gonna take one quarter, but it's not gonna be like a whole quarter of time, but we're gonna do it in Q3. Let's say, and that way we know everything is ready or Q4 because if that's a release. And just say we're gonna take a few hours a week and just kind of check on it. And our model is upgraded. Oh, it's more about finding your red flags of we can't get to Drupal ten because of this module and documenting that which I do have a tool that I didn't put in here because this isn't about like Drupal ten upgrade composer lenient package and it lets you bypass composer constraints.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah, we just started using that.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>MATT GLAMAN:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>OK, great. Which credit to the symphony team. That package that lets you just install any Drupal module regardless of it's constraints. Was built out of talks with, I think his name is Nicholas from Symfony and I think somebody from that type or three. Another one, it was like a little roundtable at DrupalCon. Yeah, so I...</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Still a lot of unknowns.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>MATT GLAMAN:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>A lot of unknowns. But it is getting easier and smaller that's what Driss wants though. He wants it to be like a minor bump and I think we're getting to that. But I would still just try to budget like a window of time because you need a check. You don't wanna check everything in one month because then you're gonna, oh, we got this. But if you can be prepared, you know we've got two months to kind of tap some people on the shoulders and that.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>With regard, I don't know if there's a single right answer here, but I'm curious to your thoughts for contrib maintainers and how they should think about dropping support for unsupported versions of Drupal. So versions before the most recent. You noted that it's great to provide backwards compatibility and workarounds, but how do you think about striking the balance once it crosses out of those latest three, say like it's not worth it anymore or we get more benefit by dropping that support? What are your thoughts?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>MATT GLAMAN:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah, so the question is about when you drop the unsecured versions of, minor versions of Drupal core, I personally think you can just drop them as a patch release because they're insecure. Not like, oh 9.2 just became insecure I'm gonna drop it. It's like 9.1 down like fine, you really shouldn't be on 9.1. You could be nice and do a minor version for that just to help, You know. If you do the minor version, then composer might prevent it from being installed on, well actually, it always prevent it 'cause it does dependency resolution. It comes down to what makes you feel comfortable. But I would do it in a patch release because it's like it's insecure code. It's too past, and I guess I would do it as a patch version because I'm not gonna put bug fixes on that previous minor version no matter how many times people give me patches. So that's what, that's why semantic versioning is kind of a, is it a real thing because you have to stick to it. Like if you make a new major version, that means you're kind of committing to backporting patches to the previous minor.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So I know like at Drupal Commerce, what we did is let's say like 9.3 came out I think we dropped 9.1 and 9.0. We were just like, look, these are old. We'll support 9.2 still because not everybody jumped up. But like Composer update won't download the new version of Drupal Commerce because composer says it doesn't work.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>So what you just said I think is more aggressive than I was even thinking. I don't see a lot of what you're talking about in the interim space. I don't see a lot of people dropping support for previous versions until they're forced to by some kind of deprecation. So you're suggesting not necessarily on day one, but you're saying even if I'm committing a bug fix that is unrelated to 9.1 support, you know, I'm not gonna, you know, I don't wanna support that at this point, it's insecure.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>MATT GLAMAN:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>I guess I'll refine that a little bit.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>I like what you're saying by the way, it's just...</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>MATT GLAMAN:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah, I'm just trying to remember our commerce one. I think it's when we worked with, we were creating like our own like plug-in form system. And then Tim Plunkett was doing Layout Builder and it was like, we needed some Drupal core. And I think in whatever eight dot version plugin forms came out and then after the next minor, we're like look, we don't want these like deprecation layers anymore, so we're gonna drop. We did something of that sort, so it's kind of like, yeah, if you don't need to drop it, don't but if there's that really cool thing because you're one of the bigger modules then make that call. Like, make your life easier as a maintainer, there doesn't need to be a bridge between maintainers making life easier for end users, but then also just making it easy to maintain software. There's a good balance in between and the big takeaway is be nice to the person on the other side of the screen because it's, we're all doing our best and trying hard. So yeah one more.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Keep in mind that it's nice to keep your Drupal project up to date, but you do have people that get a site that hasn't been maintained and so they've got to bring it up to par with all PHP version changes and everything else. The more you have to upgrade each module, if you have a lot of modules, it's a nightmare to keep on stepping through all that you need to do to get to that point. And if you can reduce the number of steps for a module that needs to be upgraded, it's simpler for that as well as the people migrating on new things.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>MATT GLAMAN:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah, and then the statement was keep yourself updated short of it. And I can say that as somebody who had an upgrade at Drupal site from 8.3 to 8.9 on Pantheon with lots of commits and lots of environment switching, and that's not a one-off. Like some people just don't pay for website maintenance until they have to. So there are lots of sites like that and that's where I wanna make life easier for the agency that gets that thrown at them. Sure, they could do time and hours, but as a developer, is that really how you wanna spend your time? No. So that's why I wanna make life happy for everybody. Alright. Well, thanks for coming. And it was great.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>(APPLAUDS)</span></span></span></span></span></span></p></div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-5b6f4eec7acf3dcd609c724db786de7eb2fdf780d740ea5df01ee40b9c33a19e">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/6884">https://mid.camp/6884</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+  <section class="map-banner">
+      <div class="views-element-container block block-views block-views-blockevent-venue-block-1" id="block-hatter-views-block-event-venue-block-1">
+  
+    
+      <div><div class="container view view-event-venue view-id-event_venue view-display-id-block_1 js-view-dom-id-38d0903223c6f46674459d2ba87ea62f255c14055aa8ff55b80540de8e338475">
+  
+    
+      
+      <div class="view-content">
+          <div class="views-row">
+
+
+<div class="map-overlay">
+  <span class="map__label">Location</span>
+  <h2 class="map__title"><span class="field field--name-title field--type-string field--label-hidden">DePaul University - Lincoln Park Student Center</span>
+</h2>
+  
+            <div class="field field--name-field-address field--type-address field--label-hidden field__item"><p class="map__address" translate="no">
+          2250 N Sheffield Ave. <br>
+            Chicago, IL 60614<br>
+  </p>
+</div>
+      
+  <a href="../../about/venue.html" class="cta-link--yellow">Learn more  <span class="cta-arrow"></span></a>
+</div>
+<div id='map' class="map"></div>
+</div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-891671bfb0f5393c92c53882dff7f58591598be5a2ab70f807ab66b42c7149ec">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/evolving-web.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2023-04/evolvingweb%20(3).png" width="1517" height="371" alt="Evolving Web" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/bounteous.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2023-01/BounteousIndigoSmall.png" width="403" height="67" alt="Bounteous logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/debug-academy.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2023-02/Final%20Logo-in-color.png" width="1010" height="864" alt="Debug Academy logo" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#f29b9c949db29f9b9691939f82dc9d8095"><span class="__cf_email__" data-cfemail="3f565159507f52565b5c5e524f11504d58">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/6884","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"ajaxTrustedUrl":{"form_action_p_pvdeGsVG5zNF_XLGPTvYSKCf43t8qZYSwcfZl2uzM":true},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_U1jmi93nTJG2lPAKzexs4tMZWFR2YMMoIoiPckW421U.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJx1yksKgDAMRdENabskSfUZK2kjTfCzeyfiQHB04XBZlQUDVZLL82iRP9At5I4WWTSR9OsLhbakZ3cgzdpKfBogKKgeJjhlsWC043cqMCPGDa0vM_I"></script>
+<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.js"></script>
+<script src="../../sites/default/files/js/js_RAkHj2z9vY4q-6RsYuiXkqPbxgsRWrLsVQRz36mKiGA.js%3Fscope=footer&amp;delta=2&amp;language=en&amp;theme=hatter&amp;include=eJx1yksKgDAMRdENabskSfUZK2kjTfCzeyfiQHB04XBZlQUDVZLL82iRP9At5I4WWTSR9OsLhbakZ3cgzdpKfBogKKgeJjhlsWC043cqMCPGDa0vM_I"></script>
+
+  </body>
+</html>

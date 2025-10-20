@@ -1,0 +1,844 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="In this session, we will examine common Web interactions and explore ways to make them more accessible. We&#039;ll investigate different ways people can experience these barriers. We will then present solutions using JavaScript in simple, creative ways. In this session, we will review accessibility challenges presented by these components:" />
+<link rel="canonical" href="accessible-javascript-action.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Accessible JavaScript In Action | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Accessible JavaScript In Action | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_gt5LiAM1qLGUH5e845uOb7R_lJ9dUwTXmnhGDR2yY20.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OgzAMgy8E7ZFQSg1UShrUdDB2-lX87GUviZ0vkj0ymR0-kKEbLz0l_mmBGc2wx2eNjWlBU0WI0wfdQrWi-Jk1EPej2XMRWoO-OzusQq6ILUXoAAmIw5TA0RfYqtnShv6E7QW7-XM.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_QAC1R0aFoF1mIVQtLAaSE24B2iwnT2ZCa0cZDeZsPV0.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OgzAMgy8E7ZFQSg1UShrUdDB2-lX87GUviZ0vkj0ymR0-kKEbLz0l_mmBGc2wx2eNjWlBU0WI0wfdQrWi-Jk1EPej2XMRWoO-OzusQq6ILUXoAAmIw5TA0RfYqtnShv6E7QW7-XM.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OgzAMgy8E7ZFQSg1UShrUdDB2-lX87GUviZ0vkj0ymR0-kKEbLz0l_mmBGc2wx2eNjWlBU0WI0wfdQrWi-Jk1EPej2XMRWoO-OzusQq6ILUXoAAmIw5TA0RfYqtnShv6E7QW7-XM.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OgzAMgy8E7ZFQSg1UShrUdDB2-lX87GUviZ0vkj0ymR0-kKEbLz0l_mmBGc2wx2eNjWlBU0WI0wfdQrWi-Jk1EPej2XMRWoO-OzusQq6ILUXoAAmIw5TA0RfYqtnShv6E7QW7-XM.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+<link rel="stylesheet" media="all" href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.css" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="accessible-javascript-action.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-midcamp2023navigation-menu" id="block-midcamp2023navigation" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-midcamp2023navigation-menu">MidCamp 2023 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" data-drupal-link-system-path="node/6857">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--by-the-numbers">
+        <a href="../../2020/about/by-the-numbers.html" data-drupal-link-system-path="node/6252">By the Numbers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--venue">
+        <a href="../../about/venue.html" title="Venue" data-drupal-link-system-path="node/7048">Venue</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../speaker-resources.html" data-drupal-link-system-path="node/345">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--health--safety">
+        <a href="../health-safety.html" data-drupal-link-system-path="node/6973">Health &amp; Safety</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../about/lunch-options.html" data-drupal-link-system-path="node/6970">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--volunteer-opportunities">
+        <a href="../article/volunteer-help-midcamp.html" data-drupal-link-system-path="node/6975">Volunteer Opportunities</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" data-drupal-link-system-path="2023/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--travel">
+        <a href="../about/travel.html" data-drupal-link-system-path="node/6865">Travel</a>
+            </li>
+          <li class="primary-nav__sublist-item item--accommodations">
+        <a href="../about/accommodations.html" data-drupal-link-system-path="node/6948">Accommodations</a>
+            </li>
+          <li class="primary-nav__sublist-item item--registration">
+        <a href="../register.html" data-drupal-link-system-path="node/6977">Registration</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" data-drupal-link-system-path="node/6860">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--sponsor">
+        <a href="../sponsor-midcamp.html" data-drupal-link-system-path="node/6858">Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" data-drupal-link-system-path="node/6859">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--hybrid-sessions">
+        <a href="../schedule/hybrid.html" data-drupal-link-system-path="node/7053">Hybrid Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-wed">
+        <a href="../schedule/wednesday.html" data-drupal-link-system-path="2023/schedule/wednesday">Sessions (Wed)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-thu">
+        <a href="../schedule/thursday.html" data-drupal-link-system-path="2023/schedule/thursday">Sessions (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--birds-of-a-feather-bofs">
+        <a href="../schedule/bofs.html" data-drupal-link-system-path="node/7054">Birds of a Feather (BoFs)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--contribution-day-fri">
+        <a href="../schedule/friday.html" data-drupal-link-system-path="2023/schedule/friday">Contribution Day (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--topic-tracks">
+        <a href="../../topic-tracks.html" data-drupal-link-system-path="node/10">Topic Tracks</a>
+            </li>
+          <li class="primary-nav__sublist-item item--all-sessions">
+        <a href="../schedule/sessions.html" data-drupal-link-system-path="2023/schedule/sessions">All Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--session-submission">
+        <a href="../submit-session.html" data-drupal-link-system-path="node/14">Session Submission</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2023/news">News</a>
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../../jobs.html" data-drupal-link-system-path="jobs">Jobs</a>
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2023.html" hreflang="en">MidCamp 2023</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-midcamp2023schedulenav" class="block block-block-content block-block-contente066b47a-a80d-432a-8edd-6c60b28b7c95">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><div class="schedule__nav">
+<p><a href="../schedule/hybrid.html">Hybrid</a>&nbsp;|&nbsp;<a href="../schedule/wednesday.html">Wednesday</a> | <a href="../schedule/thursday.html">Thursday</a> | <a href="../schedule/friday.html">Friday</a></p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Accessible JavaScript In Action</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="6899" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2023-04-27T15:30:00Z" class="datetime">Thursday, 10:30 am CDT</time>
+ - <time datetime="2023-04-27T16:30:00Z" class="datetime">Thursday, 11:30 am CDT</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-83" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-name field--type-string field--label-hidden field__item">Room 324</div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>In this session, we will examine common Web interactions and explore ways to make them more accessible. We'll investigate different ways people can experience these barriers. We will then present solutions using JavaScript in simple, creative ways.</p>
+
+<p>In this session, we will review accessibility challenges presented by these components:</p>
+
+<ol>
+	<li><strong>Modals</strong>. We will examine a modal overlay that attempts to reward users with a 50% off coupon. This type of interruption can create a real barrier for people with disabilities.</li>
+	<li><strong>TypeAhead or Autocomplete</strong>. We will review a site search component that attempts to help users complete their entry accurately and allow them to further refine suggested options. We will review the accessibility feature Drupal.announce and demonstrate how providing feedback to users can help them accomplish simple tasks.</li>
+	<li><strong>Menus</strong>. We will evaluate complex menus that contain multiple levels of links. Navigating a multi-level menu or a mega menu can prove to be challenging for keyboard only users.</li>
+</ol>
+
+<p>This session aims to provide practical tips and solutions that will help all users, regardless of their abilities, have equal access to content and functionality.</p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/YJGNoyPpTAE?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-presenter-slides field--type-file field--label-above">
+    <div class="field__label">Presenter Slides</div>
+              <div class="field__item">
+<span class="file file--mime-application-pdf file--application-pdf"> <a href="../../sites/default/files/2023-04/2023-midcamp-a11y-js-v1.pdf" type="application/pdf">2023-midcamp-a11y-js-v1.pdf</a></span>
+</div>
+          </div>
+
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Andrew Olson</h4>
+
+      Lead Front-End Developer
+
+
+          @
+              <a href="https://www.principal.com/">Principal Financial Group</a>
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p>Andrew enjoys front-end development and the challenge of making the web accessible for everyone on any device. He has designed and developed dozens of sites for companies specializing in sporting goods, health and wellness, restaurant food service, and more. He is also a talented team leader, photographer, musician, and speaker. Andy is on the Drupal team at his current company, Principal Financial Group. At his previous company, Andy helped create an internal accessibility task force that performs accessibility audits for clients and advocates for accessibility initiatives. He is an organizer for A11yTalks, a monthly meet-up featuring conversations around digital accessibility. Andy remains active in open-source as the co-maintainer of the Live Captioning Initiative, an open-source project that helps hearing-impaired individuals participate at events online or in-person. He is an organizer of the Fox Valley Drupal Meet Up and Midwest Drupal Camp (MidCamp). In addition, Andy is Acquia Certified for Front End Development for Drupal 7 and Drupal 8 and is an approved Acquia Site Studio 6 Site Builder. Andy has a BS in Electrical and Computer Engineering from the University of Iowa. A fun fact about Andy is that he sang in a band at Lollapalooza in Chicago.</p>
+</div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2021-02/AndrewOlson-bounteous-2547-square.jpg%3Fitok=KjJl5Lvz" width="204" height="220" alt="Andrew Olson" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Front-End</div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-feedback-form field--type-webform field--label-above">
+    <div class="field__label">Feedback Form</div>
+              <div class="field__item"><form class="webform-submission-form webform-submission-add-form webform-submission-session-feedback-form webform-submission-session-feedback-add-form webform-submission-session-feedback-node-6899-form webform-submission-session-feedback-node-6899-add-form" data-drupal-selector="webform-submission-session-feedback-node-6899-add-form" action="accessible-javascript-action.html" method="post" id="webform-submission-session-feedback-node-6899-add-form" accept-charset="UTF-8">
+  
+    <div data-drupal-selector="edit-0" class="webform-message js-webform-message js-form-wrapper form-wrapper" id="edit-0"><div data-drupal-messages>
+    <div role="contentinfo" aria-label="Status message" class="messages messages--status">
+                  <h2 class="visually-hidden">Status message</h2>
+                    Sorry...This form is closed to new submissions.
+            </div>
+    </div>
+</div>
+<input autocomplete="off" data-drupal-selector="form-aesm-rc-xxxfcbr9ju8lbarxpa7dtfnvdt4mnaybqrg" type="hidden" name="form_build_id" value="form-aEsm_rc_XxxFcBR9jU8LbArXpa7DtfnVDT4mNAyBqrg" />
+<input data-drupal-selector="edit-webform-submission-session-feedback-node-6899-add-form" type="hidden" name="form_id" value="webform_submission_session_feedback_node_6899_add_form" />
+<div class="url-textfield js-form-wrapper form-wrapper" style="display: none !important;"><div class="js-form-item form-item js-form-type-textfield form-type-textfield js-form-item-url form-item-url">
+      <label for="edit-url">Leave this field blank</label>
+        <input autocomplete="off" data-drupal-selector="edit-url" type="text" id="edit-url" name="url" value="" size="20" maxlength="128" class="form-text" />
+
+        </div>
+</div>
+
+
+  
+</form>
+</div>
+          </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Hello, everybody. My name is Andrew Olson. I'm a Frontend software engineer, and you're here to learn about accessible JavaScript in action. I'm really excited to be at MidCamp in person this year. I gave this talk at Florida camp and was able to add a few more slides for it. And also I'll be giving this talk. I'm really excited about it at AccesU, which is an accessibility conference in Austin, Texas. So, a little bit more about myself. I have red hair. I'm wearing dark-rimmed glasses. As if this picture does show like, cover it. So I could use this picture. I have long red hair that comes past my shoulders. I used to have kind of a Viking-esque beard, but when my hair is down, definitely Viking-esque. Frontend developer in Chicago suburbs. I've been working with Drupal since about 2008. The team I was joining and said, "We use Drupal." And I was like, "Oh my gosh, I better figure this out to fit in." And a fun fact about me, I love playing music and I played in a band at Lollapalooza back in 2008 as well, as quite an exciting year.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>You get into Drupal, you play Lollapalooza, good times. I can be found in the Drupal verse as Andrew Ozone. Not really much on Twitter anymore. That's a whole other thing. So, I'm also really excited. I am a proud member of AllyTalks. So, we put on monthly talks about accessibility and digital. We have a YouTube channel. You can go there and watch. We live stream monthly. So, I encourage you to join the live stream. If you have questions, we take them and we also are completely non-profit and funded and we want to do really exciting things like pay our speakers. We sell really cool. I'm wearing actually an AllyCat t-shirt. We sell t-shirts if you join the club, this is fresh off. We're gonna be having these really cool stickers for only the people that support our group. So, please become an AllyCat Club member and we have live captioning during our events. So, it's all live streamed and we have a human captioner that does it. And yeah, we are open for a variety of speakers, so we're very inclusive and it's exciting and I love our content and it's a really great group of people.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So, today we're gonna talk about modals. Modals are also called pop-ups or pop-ins. Next, we're gonna talk about menus, specifically mega menus. And then lastly, we'll talk a little bit about TypeAhead, also called autocomplete, and then we'll wrap up. So before I get started, I have a comic here. And as I was putting this talk together, I was reading the Sunday paper, and I'm a big fan of this comic. It's called Pearls Before Swine. And so, I'm gonna go through and read the panels here. So, Pearls before Swine is, there's a very caustic rat that's very pessimistic about the world. And then there's pig who is very naive. And so, a lot of these comics are just the interaction between the two. So, in the first panel, there's rat and pig, and they're climbing up this hill and there's a sign with an arrow that says Wise Ass On The Hill. So, pig climbs at the top, rat stays at the bottom, and pig says, "At the very top of the hill there is a donkey," hence the Wise Ass. And pig says, "Oh, great Wise Ass, I need help with a problem." And the Wise Ass says, "What is it my son?" And pig says, "I try something new and I fail and I quit.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So, I try something else new and I fail and I quit and try something else new. And fail, and fail, and fail." And then the wise says, "So, you try something only once you naturally fail and you immediately quit and try something new. Don't you think the problem is rather obvious?" And pig in the next panel screams at the top of his lungs. "Trying is the root of all failure."</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>(LAUGHING)</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>And in the very last panel, pig is at the bottom of the hill talking to Rat. And he says, "Then he cried and jumped off the mountain."</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>(LAUGHING)</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>So, I was like, "This is perfect for this talk. This is how I feel about accessibility. This is how I feel about Drupal, in general, is trying and trying and failing." So, that was my inspiration and I hope you enjoyed it. So, what I wanted to do is if you notice in that last panel, pig was nude, right? So, I thought it would be great if we could all pick a nice T-shirt for pig. And what I wanna do is go through an example here. So, after I read that comic, I went online shopping to buy a shirt and I noticed these interactions and it was a really great example. So, I wanna caveat this with threadless.com, I really like threadless.com. I'm not picking on them in any way here. And actually what we'll find is they're doing some really interesting, great stuff. But what I wanna do is I wanna go through the arc of more (UNKNOWN) a marketing campaign. So, we as Drupal, as we as site builders, we as technologists have to work with the marketing team, the analytics team, as well as to develop something and pull this off, right?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So, what I want to do is we're gonna walk through the Threadless site and kind of see these interactions in just like pay attention to that, and then we're going to go through it again and again and really pick it apart. So, to get pick this t-shirt, we go to threadless.com, and about three seconds in, imagine this, this modal pops in. Right? So, this is my first time at the site and I'm like, "Well I just came here and all of a sudden I just get this interruption," right? So, I'm gonna click to dismiss. I want to keep shopping. I don't even know if I like these T-shirts, but I'm just gonna keep going. So, I go through the site on a few things and I notice something in the lower left corner. Does anybody else see like something? I'm like, Something's following me along, and sure enough, there it is. It's spin to win. That was the first pop-in that came in. So, at this point, I thought the T-shirts are pretty cool. So, you got me. I kind of want that discount, right? So, I go ahead and click on the OK, Spin to Win, and bam, it unlocks 20%.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Hey, that's not too bad. And then it's like, "Yay, you have 20%, but you got to give us an email." And I'm like, "Ooh, OK, Sure. That makes sense. I got to get this." But then the modal refreshes actually stays in that same modal. It doesn't pop and go away and come back. They said, "Oh, we actually really need your phone number as well so we can send you this code." And I'm like, "I really want that t-shirt. Sure, let's do this. 20% is pretty good." So, it finally says, "Check your text." OK, and send it to my phone. It beeped in at boot. So, I went to my phone and skimmed and I clicked a link from this random contact. Granted, I had some context because I ordered the shirt and or I ordered the. I wanted that coupon code. So, I just get from 8043 and I just click that link, and then I'm opening up the browser on my telephone and there it is, there's the code. So, I can copy it and do with it what I want. So, then I go back to the site because I'm going to complete shopping and then I don't see Spin to Win anymore.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So, that's great. So, I went through this whole arc as a sighted user that can use my hands. I use a keyboard and mouse and that's how I experienced it. But let's rewind and go through that flow again with somebody that can only use a keyboard. So, what does that look like? So, let's go through this. So, I go to Threadless's first page, about three seconds in, this pops into the page. So, what's really cool about this is they're using a keyboard trap, and if I'm just using my Tab key, that immediately focuses on the ability to close it or I can tab over and do the spin to win. So, just a little bit about that. If you haven't done keyboard navigation, you use the tab key to go to the next actionable element, and ideally or you can shift-tab to go. You go tab to go forward, shift-tab to go backward. And also. So, I can either tab to the X and close or I can hit the escape key and that actually dismisses the modal. So, that's actually a really good interaction for modals is the ability to focus and close and then to stay inside of that because what happens if I tab outside of it, this thing is still in the way, right?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And so, as a keyboard user, I'm now focusing on things behind it and I want it to get out of my way. So, that's a. They're doing a really good thing here with modals. So, I work with this really. I worked at Bounteous prior to this and my friend Steve Woodson made this really cool website that I'm gonna go to right now and it talks about previous focus and it talks about keyboard trap. And so, what he's done is he has a before of what the problem is, and then an after. So, you can actually experience this like on your own using these examples. And then he has the code comparison here. So, you can see the exact code that he has. We'll skip past the styles, but really in the JavaScript, what he'll show you is the good stuff that you can add to your modals to make it more accessible. And what's really cool about this, I won't go completely through this again. Steve's and all the great work with the code examples, but the two things that I wanna point out here is this prior focus. So, what he's doing is he's setting this variable in JavaScript of the prior focus, and what he's done is he's taken the document.active element.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So, that was the thing that opened that modal. And some of you might think, "Hey, sometimes it's a button that opens up that modal." And so, then that prior focus would need after I close it to go back to that button. But in the case of Threadless, it just interrupted me. It just came in at a certain time. So, there is no prior focus. So, at that point, as a developer, you can make a decision to say, "What should I do for that prior focus? Should I just put it on the first actionable item in the body?" Wherever I wanna do that, but what you need to do is just be cognizant that if there was an action to open a modal and you close it, you really should go back to that previous action or have kind of a backup plan for when it closes to just help the person that's experiencing the site to move on from that because you interrupted them. The last part about this, too, that I really like about the code was he's getting all the focus of all items in that modal area. So, he is setting up here, sorry, up here, we'll go through this quick.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>He's saying, "Hey, this modal label is the ID of that modal." And so, what he's doing is saying, "Give me every single thing that can take focus inside of that modal." And it's kind of a laundry list of things. And there's another example, Deque does it a little bit more. There's a Deque example. So, I like Steve's example because it's very explicit. You're saying, "I want a[href], which is a link or a select or, form items. So, you can be pretty explicit in what you want. And then once you get all those things, you put them in an array and then that allows you as you hit the shift, the tab or the shift-tab, it allows you to go through that. So, it's the first stop. So, it's looking at that array and saying, "Go to the first, second and third, fourth, fifth." And then at the very end, the last tab stop is to then go back to the beginning. So, it's a really cool way of putting previous focus back and staying inside of that modal, it's a really good trick. Thanks, Steve. You're awesome.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So, this is the other example that I was saying is Deque University. There's a lot more stuff in this code. What I liked about Steve's is it was very clear as to what changed in there, but Deque, this is a rock solid, simple AlertDialog, so definitely check that out as well. So, you might ask yourself, "Hey, why do we have to use JavaScript for these things? Doesn't HTML have that already?" The answer is, "Yes, but it's not quite ready." There's some really great links in here. Oh, I should have started out. I have all these slides out on my session page on the MidCamp site, so definitely go to that PDF, download it because these links are outstanding. But as you can see here, it's missing a few features for the dialogue. So, someday we'll get to the point where we don't have to write this JavaScript, but until then it's just not quite ready yet. So, that was great as a keyboard user, right? So, what happens for somebody that needs to use a screen reader? So, how do they experience that?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So, what I'd like to do now is kind of pseudo live demo (INAUDIBLE), but I have my volume turned up here and I'm gonna bring up the Threadless site. It's changed since I first built this for the AccessUH conference. So, let me just go to threadless.com because I did visit it today and they've changed their homepage, so it'll be a little bit different. Let me turn on VoiceOver. So, to turn on VoiceOver, a little bit about VoiceOver. VoiceOver is the screen reader. That's default. If you all have a Mac, you have this available to you. There's a shortcut because I have that lovely smart bar, not so smart bar. So, I have to hold the command key down and hit the power three times and that'll turn VoiceOver on. So, a few more things about VoiceOver is it works best with Safari. So, that's why I'm bringing Safari. You get more consistent results with screen reader, VoiceOver, and Safari, but you can use it with Chrome or whatever, but that's why I'm using Safari here. Again, that's in my experience.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>I think I read that somewhere, but I don't have a source to cite. But when I do VoiceOver and I do voiceOver testing, I use Safari. So, let's turn on VoiceOver.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>The VoiceOver on Safari, Start page Window, Toolbar. You are currently on a toolbar to interact with the items on this toolbar, shop graphic (INAUDIBLE) 50% loaded 19%. Sign up via text for offers frame. You are currently on a scroll area inside of web content, to begin it.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>So, I went to the site and it lets me know that this. It was kind of. It kind of went kind of fast. But what I'm gonna do now is that modal opened and I'm gonna hit the tab key and you can't see the focus state but let me hit the tab Key.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Sign up via text for offers. Threadless, web dialog entering Sign up via text (UNKNOWN).</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>So, that's good right? The modal opened. I'm now. This is first time I hit the tab key there.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Spin button. You are currently on a button to.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>So, I'm now hitting the tab key again.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Close button.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>So, great I'm trapped. So, this is pretty cool. So, it read out. It was kind of. It went kind of fast, but as the page loaded, this modal opened up and it read aloud that I had a way to win to get a 20% off discount. So, let's actually spin it.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Spin button. You are currently on a button to click this button (INAUDIBLE). Heading level sign up via text for offers frame. You are currently on a frame, to (INAUDIBLE) sign up via text for off-link (UNKNOWN), heading Level two Sign U, 20% off, your order. Your.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>So, what I'm doing now is I'm not using my tab key. I'm using the arrow keys which actually read out content.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>20% off UNLOCK, 20% YOUR ORDER. Edit a text email field. New line, you are currently on a button. To ignore, thanks, Close button. You are currently.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>So, what I'm doing now is I just hit the tab key. So again, now it's, the modal is changed, but I'm still trapped inside of there. So, if I hit tab.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Email address, required at a text email field with autofill menu. To open it, Continue button. NO THANKS button, you close button, email address required at a text email field with autofill menu.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>So, there's a couple of things that could have been a little bit better about this, right. The page refresh, it didn't really tell me until I started tabbing again. So, there's probably a way. And the cool thing about Drupal is we have Drupal announce. So, that's a way that it's, this feels kind of very (UNKNOWN) where it didn't do a full page refresh. So, there's probably an opportunity where as the context of the page changes, they could announce that and let us know. But overall, they're doing a lot of pretty interesting, great things. I'm not gonna sign up for another coupon code, but I just wanted to point out how easy it is to just kind of turn this on, take some practice. So, I highly suggest playing around with it. There's some really great tutorials. I think I have that on the next slide, so I'm getting a little ahead of myself, but let me turn off VoiceOver.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>VoiceOver off.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>And let's go back to the slides. So, one thing as. So again, trying out Safari and VoiceOver, there's a really good protip that I have here. So, if you go into the Safari advanced features, I like to have the checkbox of Press Tab to highlight each item on a web page. I don't know why that's not default, but there's probably some reason for it. But that allows you to tab. Because when I first did this, I'm like, "The tab key is not working." You have to tell it, "I wanna stop at all the tab-tappable actionable things on the page." And then I like the show develop menu in the menu bar so I can inspect it and take a look at some things. So as we experienced, the Spin to Win was pretty good. You'll notice that they're using an aria-modal and aria-label and that's what read out. So, actually if we were to go back, it would say sign up via text for offers, Threadless. So, that's what's read out. Moving on from that, there are some outstanding code examples from the ARIA Authoring Practices Guide.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So, go to this link. On there It says not for production use, but it's just. It's really good solid code. So, that's another really good place to see examples of good modals. So, we experienced this a few times. On the screen you'll see I have an image here where it looks like a couple standing there and it says, "Passion led us here." And I cross it off and I said, "Marketing led us here."</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>(LAUGHS)</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>So, as we go through this as developers, we have to work together. We have to work with marketing that has their sales needs and their ideas. We have to work with analytics, which tells us who's coming to the site, how are they experiencing the site. And it would be ideal to ask real users to see, are we getting in their way? But I was fortunate enough to work on something like this for a client. Again, I just use Threadless as an example, but we were able to build something like this in Drupal Admin. So, we worked with marketing, we worked with analytics over time to kind of provide these choices as we build this in Drupal. So, the first choice that we gave the marketers was to Select a Time to Pop. So, we set hours for five seconds, as you saw, Threadless headed for three seconds. So, that was really great. If there's some pages where they wanted them to experience it or they're anticipating that they're gonna scroll down and then pop, they can play with that timing, look at analytics and see what's working and what's not.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>The next thing that we did was, you notice that after I did interact with that, I didn't see it anymore. So, you're not just constantly interrupting them. And so, we used cookies for that. But with a GDPR, people, you have to be clear about what cookies. And granted it's tracking cookies, but still people can be funny about cookies. In this way, if we set that cookie, we're actually trying to help you out. So, we're not always interrupting you. But another great way to do that is Browser Local Storage. I'm a big fan of Browser Local Storage, but again, if somebody is incognito browsing the site, that kind of blows away. And unfortunately, that's a part of analytics, is that if we're constantly having these ads on the page, people might be bailing, right? The last. The other things that we did was we just gave them a black box of whatever was in that modal, right? So, in this case it was Salesforce forums. But let's say that you had some other application that was like a random Coupon Generator, whatever.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>We're just like, "This is a modal, it's gonna behave, it's gonna take all the actionable things like whatever you put inside of it." And so, we felt that was pretty robust and gave marketing a lot of powers. We hope they use them wisely. A few other things we did display by URL path. So, in this example, it was a lot of different sports. So, it was like football, basketball, golf. And so, we could say, I want anything. Anytime somebody goes into golf, I want a golf coupon versus that. So, that allowed them each different marketer to have different plans for different content. Special URLs from newsletters. We were able to kind of strip that from the top and then maybe not pop it. So, we did some interesting things there. Another thing too, was being able to set locale. This was a multilingual site. So, they were able to market in their locale, talking dollars, talking pesos, whatever. And the last part was because of analytics, right? There was a high abandonment rate. Like what happened to this page?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Everybody's leaving. They hate this. And they're like, "Oh, maybe we shouldn't pop it on this page, but we'll pop it in this context." So again, work with your analytics team because we can build these powerful tools, if they use them in a bad way, there's a real impact. But again, I'll just say a little joke here. That Spin to Win was only for desktop. And that was another thing too for mobile. We made the decision that we didn't wanna pop or interrupt people on mobile. They already have enough going on. They're pretty focused on what they're doing. So, we made a decision to say, "Don't do this on mobile." But I said or making a joke here from 2001, a Space Odyssey (INAUDIBLE). Maybe they profiled me enough that they knew I was on my phone. They knew that I did this on desktop. But whatever. We live in strange times of tracking. But what are. Do we have to interrupt the user? We talked about we didn't even really cover cognitive load of interrupting somebody that's actually going to shop on your site.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So, can we do this a different way? Does it have to be like this? I found some decent examples on some other sites where in the footer, they're very clear. They say subscribe. They're not tricking me into the phone number and email. They're saying, "Save 10% on your next order." Like, that's pretty clear. It doesn't have to interrupt me, but it's always there in the footer. Another one on the home page, they just tell me right away. They say, "Use code free ship for free shipping." Unfortunately, on this site, they didn't have alt text on this. They use an image. Sad Panda. But hey, they're trying. They're not, that's one option. And then this is another. I think a really great option is we're advertising. We can give them coupon codes in context. So, they're in that shopping experience. We can actually have it in that shopping experience. Do we have to pop or interrupt them during their flow? So, that is Pop-Ins and modals. See how I'm doing on time. Alright. Next up, I'm gonna talk about menus.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And when I talk about menus, again, that mega menu. So, what you see on the screen here is an example of a mega menu. And this is a client that is using a module, Drupal module that I helped co-maintain, and it's called the TB Mega menu module, in a sense for the best mega menu module. So, as you go here. If you hover over so on the screen, you see a logo on the left with a bunch of top-level navigation items. If you hover over new, you will see a tray opens up underneath it and then there's more items inside of that. So, what I'm gonna do now is, yeah, the TB mega menu. And what's really cool about it is we have this where it's keyboard navigable. I said that right. And I'm gonna do a little live demo, but as you tab. So, as you open up the menu, you can tab into it. You can use up, down, left, right arrows to navigate it to. But we have this documented on our lovely module site. So, as I go to the Holly Hunt site, I'm just gonna start keyboard navigating. I'm hitting the tab key, I'm highlighting the logo.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And as soon as I tab focus into new, it immediately opens up and expands the menu. If I hit tab again, I'm just cruising across that top-level. Some menus, you'd have to drop into the menu and then tab all the way through those links before you get to that next item. So, we've done a really cool thing where all top menu items you can just tab across and just kind of way find a little bit easier. If I want to get into that menu, I hit the down arrow and now I'm in that first column. If I keep hitting down or now I could actually hit Tab two because I'm now focused in this area. And so, you can go up, down. If I use the right arrow, I'm gonna go to the next column over if I go back. So again, keyboard navigation, I'm able to kind of cruise in wayfind without being trapped into having to make selections all the way through and have it read out all those things. Just save time. I'm not gonna turn on VoiceOver, but that's kind of how it goes. Is new is the first child in the menu. The second level, sorry, the parent.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>The first level is the parent. And then you have first child, which is the shop by category and under shop by category, we have a third level. For TV mega menu. And I think in general, I think three levels of Nav is probably enough. We don't really support four and five. If you're really doing that, kind of ask yourself some hard questions about what you're doing. But that's kind of how it works. So yeah, if you just kind of, I'm just hitting the right arrow and whenever I want to go in, I can go into it and kind of cruise across it. And then if I want to get out of it too, I hit Escape. And when I escape, I'm focused back to the parent item in there. So, (INAUDIBLE) focus states aren't the best on here, but if I go to the tab to the next. So again, wall covering. If I hit escape I'm on wall covering and if I hit tab again, I will go to rugs. So again, we're pretty proud of this, this module. It's pretty great. And we think that's a good way to keyboard navigate. That was the live demo portion.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>On the screen, you'll see a picture of my cat Mikan, who was trying to be helpful. But yeah, that's just me being silly about the fear of a live demo. And yeah, (UNKNOWN) is a funny, funny, furry man. Menus are really complicated. TV is just one way to do it. Olivero Mike Herschel. Him and a bunch of other really great people in the Drupal community built a really great Olivero menu that's very accessible. Mike wrote this Smashing magazine article, highly suggest reading it and checking it out. It talks a lot about the concepts that I just went through. You can also watch the session because he's a funny gentleman as well and just kind of see the features of what we get by default just by using Drupal and that theme, the Olivero theme. Another great thing. Back to these examples, this website that I'm very fond of is the ARIA Authoring Practices guide. Again, not for production, but they give you some really good examples and they talk through this keyboard navigation like space and enter, right arrow, left arrow.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So, what I wanna point out here is that there's two different examples, right? It's kind of the first example is what we're doing as well, is where you're going in. It's on focus, it's going to open up. But there's kind of a problem with that, right, is if I go to that first focus and go to open it, I can't really go to a new page, right? So, that's kind of the issue with mega menus. And there's another pattern that's out there that's called the Disclosure button. And so, this gives a really good example. So, as I was saying is there isn't really a new page or a rugs page on that Holly Hunt site. But we could if we did this, we're about on the screen? I'm on the Disclosure button page and I have about now highlighted and then if I tab again it's a Disclosure button telling me that there's sub items inside of here and I can open it and close it and make decisions about that. And again, it allows me to cruise across the top. I don't have to go into each item. But once again they explain like how to interact with it and then they give you the code and examples and it's a really good starting point.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>The last thing I'll say about menus is I find them with every team. UX has an idea of what they want. Design has an idea of what they want. Imagine this your stakeholder is gonna say, "That's not how I thought the menu would work." So, you got to have these conversations, having these examples, and get everybody to agree upon it. Otherwise, you're gonna build something and they're gonna say, "I hate this disclosure button. What is this thing?" You have some options and here's some really great code examples as that basic starting point to make those decisions. Moving on from menus is TypeAhead. So, we're on the last part here. So, when I talk about TypeAhead on the screen, what you'll see here is input box that says Country. And as I go to the next screen, I start typing uni. And what that does is it gives me, it fetches and gives me five different countries that start with U and I. And then as I keep typing united, I went down from five, down to three options. And then finally, I was able to find and select United States.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So, that's what I mean by autocomplete, and that's a typical interaction for TypeAhead. There is a great site that has a demo and has code for you, again, as a really great starting point. So it's the GOV.UK Design System has this already for you. So, if you're tasked with building an autocomplete, this is a really great place to go. And check it out. And there's different options too. I'm gonna go to the demo site really quick. So, there's some options here, for example, this will. So, imagine I'm using that screen reader and every time I type it reads it out. Imagine if we give the user feedback that A and then it says, "Here's a list of 100 countries. Let me start reading them off for you." (LAUGHING) And after every single time you type. So, there's ways to say only start getting me results after I type two characters to kind of limit that cognitive load. There's an overlay example auto-select. So, they already have these, there's a default value. So, if you wanted to use localization, say they're probably shopping in the US, we probably shouldn't have to make them scroll all the way to the bottom of a country's list to get that.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So, check out this site. It's really great. A code example is out there, so all these resources are really good starting points for you when you have these interactions and also to share with your stakeholders. So everybody's going, "Yes, we like how this autocomplete is working." We're all here because it's a Drupal conference. Drupal has this really cool thing called Drupal Announce and it's an ARIA live element on the page and it's read aloud by screen reader. So, as that page changes, we can tell people what is happening on there. So again, back to that Threadless example of Spinning to Win, and then the page refreshed. There was an opportunity there where they could give me some feedback. You as Drupal (UNKNOWN) have this at your fingertips, so you just make this aria live region and it'll read it out at the completion of whatever task. And there's a link here for the documentation on it, which is pretty good. I can't say enough about this. I gave this presentation at Florida DrupalCamp and then the next session was by Andy Blum from Lullabot.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Going over a better example of Drupal Announce. So, I kind of took that part out and I'm like, just watch his examples. And I linked to his examples because he did a really great job as 10 most useful libraries in Drupal 10 core. Outstanding session. Check it out. You can check out the slides. There's a really good demo where you can check it out. There's also a really cool article that I found by Jules hong talking about Drupal announce and screen readers. And once again, my buddy Steven Woodson. He's an amazing person and he really does love coffee that much, I will say that.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>(LAUGHING)</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Super passionate about coffee. But he also on his site has a really cool place where it's not just in Drupal. You can just play around with how aria-live regions work. So, what are some concerns, right, when we have an auto-complete? So, we already talked about those number of results return being way verbose, limiting it. So, there might be 100, but maybe we should only limit that to the top five or something and then let them know that there's still much more. One of the things is talk to your users, please, please, please. Because you might be saying, "I can tell them all the things of what's going on in this page." And they really probably don't care. And I might be getting in the way of their tasks that they're trying to accomplish. So, you can be two verbose. You could also just not have enough information on there. So, it's a really tough balance providing context for those results. So, if it's just numbers, it's probably good. If I'm shopping for like a number of flights or dollars, like provide that context.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Don't just say 20 when it reads it back. Give them that context for the results. And then just cognitive load. As I said, it can be pretty overwhelming. And just talk to your users.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>(COUGHS)</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>That is it. And I'm open for some questions. I think I have a little bit of time, but does anybody have any questions? Yes, sir.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>About accessibility (INAUDIBLE).</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah. So, the question was, what level of accessibility? So, there's WCAG criteria and there's level A, which is basic, must have. Double A is, should have, and triple A. I'm gonna get, I'm totally getting this wrong. But basically, you should shoot for double A and that's on the sites that I work for, work on. We aim for double A. Triple A is the nice to have but A is base level must. Double A is really what we should all be aiming for. And then triple A is if you have users and requirements for it. Does that help answer it? So, when we're talking about these components, you absolutely need to test that and go through WCAG criteria. I didn't really scrub these against like the interaction versus WCAG failure just because they're complex here. That would probably be a good add to this, is to say when this happens, you're failing this criteria. Right? But. So, I'm not like addressing it. All the things that I code and all these examples are really aiming towards that double A I would say, interactions.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>(INAUDIBLE)</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>For testing? Yeah.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>(INAUDIBLE)</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Plug in.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Plug plugin. There's some really great there's wave. The cool thing about Chrome is it comes shipped with (UNKNOWN) which is a testing tool. So, those are things that you can run in the browser. But manual testing is always a good way, like just keyboard-tabbing through and making sure. There's some quick check websites too. There's plenty of resources. Actually, if you give me your information, I could share some resources with you, but there's plenty of browser plug-ins to help run it through. But those aren't enough. Like just saying, "Oh, it passes 100%, you're still gonna miss some criteria," but they're a great guideline. I use those and I'm very humbled. Like I still feel very new to accessibility, but using those tools, I'm like, "Oh sure, I forgot some alt text here." I just had a placeholder and it catches me and keeps me honest through it. So using those tools are great and iteratively, whenever you're gonna go ship something, you wanna ship that assessable code. Any other questions?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Yes, sir.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>(INAUDIBLE) examples. I always like, (INAUDIBLE) idea by doing the right. But whenever trying to redesign for site, I just want to try to future-proof it enough that I'm not always doing a library then, "Oh now it's using some old 100 lines code to get out 10." So, it's kind of what is wrong specifically with using the dialogue (INAUDIBLE) keyboard tracking. This was one attribute versus a whole bunch of scripting. So, good to use. (INAUDIBLE) six months a year until first (INAUDIBLE)</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>The question is when should I use, you want to stay on the front of you want to stay ahead of shipping accessible code? Like when is it safe to use what feature? And I have a good answer. Analytics. So, look at your analytics and see what those users are using and use that as a guide post. What I showed on there is that it's not ready yet is due to some of the browser support. So, that would be it. The other thing about accessibility is there's not one solution. Do you notice I didn't just like have a GitHub to say this is how you do modals all the time because really depends on what you're trying to accomplish. So, what I wanted to do is challenge you with I have these really great code examples as I was building things that were really good guideposts, but talking to UX designers, talking to the stakeholders, they might want something that's a little bit different. And then I have to scrub that, make sure I'm passing AA WCAG standards. So, there's always a wrinkle in there. It's never code here.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>This is my modal. It's gonna work right over here. Even the TB mega menu module, it has opinions on it. So, like for a mega menu, we're opinionated on it, but we don't have that disclosure button as an option. So, long answer to it is it's always a moving target. You're gonna read an article and be like, "Oh my gosh, I just did that last week." And they're saying, "You shouldn't do it this way." And you're like, "They're absolutely right. I didn't think about this condition," but hopefully, I broke down kind of some of the basics of like modals, how you're interrupting people, how to dismiss them in a safe way. Same with menus. Oh, I forgot to mention, there was a really good talk yesterday in Accessible Talk by Jan Wilde. She talked about mobile criteria and so some of the things that were on there was like a mega menu covers, covers some things. And if you just left that open, you would never see the content underneath it. So, that she also has some very mobile-specific failures. And it was a really great session.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So, I highly recommend checking out that session. But that's another one. I was in there, I built this presentation. I've been talking about menus for a long time and I'm learning all the time. I am (UNKNOWN). So. Yes.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah, I have a question. So, in your mega manual, how are users being announced by the VoiceOver, for example, there's two columns right in the submenu?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Great question. So the question is, how does VoiceOver, How do you know there's columns and what's in the page? So, I could actually bring that up and do that. But how we do that is unordered list. So, we have. The cool thing about HTML. And a lot of things about accessibility can be solved by just using natural HTML in the right way. So, if you all wanna be accessible right from the start, right? Valid HTML. You're like half the battle is one right there. So, for a menu option, right? All that's on there, if we were to just take out the JavaScript, it's just a bulleted list with parents and children in there. So as I go in, I have that first list and it says, "Oh, there's an unordered list here that has five items." And so, at that second, as I focus on that, it's the parent and it's saying, "Hey, this next thing has five children underneath it. Do you wanna explore it?" No, go to this next column. So, it's. The other thing I'll say about accessibility is it comes down to just setting the expectation.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>If you ever feel lost or you feel like this is just too hard, just try and think about how can I best set the expectation for what's inside of this thing that I'm building. Like a video, right? So, what is the expectation I can give if I'm gonna have a video? Probably tell them that it's 30 minutes long. You're making a commitment, right? Maybe offer it in a different way, like a transcript so I could skim through it. Maybe fast forward to minute 12. Right? So, as you're doing accessibility, as we're building these things, just ask yourself, "What can I do to help that user set those expectations," and menus is a great like all the way back to your question, (UNKNOWN) is like, "I'm opening this thing. Holy crap, it's got 50 things." Next, like allow me to skip past it. That's why carousels, right, are kind of controversial, trapped inside of a carousel. And you have to go through all 50. It's like sitting through your grandparents' slideshow of their trip, right? I want to get out of here.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>(LAUGHS) Like, if I knew I was doing this, maybe I wouldn't stop at Grandma's house. That's a horrible, horrible example, but you get what I'm saying. So, carousels are like a trip to your grandparents' house. So, what I'm trying to say.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>(LAUGHS)</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Any other questions? Alright. Well, thanks, everybody. The presentations is up there. Enjoy those links. Build some really cool, accessible things. I'm excited to see what you build. Thanks, everybody.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>(APPLAUSE)</span></span></span></span></span></span></p></div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-1f28e8968e69321dd0dd0b58499c2903560710dd172bf50cca92a1b86dd3ca01">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/6899">https://mid.camp/6899</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+  <section class="map-banner">
+      <div class="views-element-container block block-views block-views-blockevent-venue-block-1" id="block-hatter-views-block-event-venue-block-1">
+  
+    
+      <div><div class="container view view-event-venue view-id-event_venue view-display-id-block_1 js-view-dom-id-2cc208e4d9fe5e91dc133d27859044805fcff6c6cb9a6aadaad9809572c3fc9a">
+  
+    
+      
+      <div class="view-content">
+          <div class="views-row">
+
+
+<div class="map-overlay">
+  <span class="map__label">Location</span>
+  <h2 class="map__title"><span class="field field--name-title field--type-string field--label-hidden">DePaul University - Lincoln Park Student Center</span>
+</h2>
+  
+            <div class="field field--name-field-address field--type-address field--label-hidden field__item"><p class="map__address" translate="no">
+          2250 N Sheffield Ave. <br>
+            Chicago, IL 60614<br>
+  </p>
+</div>
+      
+  <a href="../../about/venue.html" class="cta-link--yellow">Learn more  <span class="cta-arrow"></span></a>
+</div>
+<div id='map' class="map"></div>
+</div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-ec5c68de5a9810e3db143bd806c8226b526eda22f317a99049274e87b9b9b80c">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/bounteous.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2023-01/BounteousIndigoSmall.png" width="403" height="67" alt="Bounteous logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/evolving-web.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2023-04/evolvingweb%20(3).png" width="1517" height="371" alt="Evolving Web" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/debug-academy.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2023-02/Final%20Logo-in-color.png" width="1010" height="864" alt="Debug Academy logo" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#c7aea9a1a887aaaea3a4a6aab7e9a8b5a0"><span class="__cf_email__" data-cfemail="10797e767f507d797473717d603e7f6277">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/6899","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"ajaxTrustedUrl":{"form_action_p_pvdeGsVG5zNF_XLGPTvYSKCf43t8qZYSwcfZl2uzM":true},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_U1jmi93nTJG2lPAKzexs4tMZWFR2YMMoIoiPckW421U.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJx1yksKgDAMRdENabskSfUZK2kjTfCzeyfiQHB04XBZlQUDVZLL82iRP9At5I4WWTSR9OsLhbakZ3cgzdpKfBogKKgeJjhlsWC043cqMCPGDa0vM_I"></script>
+<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.js"></script>
+<script src="../../sites/default/files/js/js_RAkHj2z9vY4q-6RsYuiXkqPbxgsRWrLsVQRz36mKiGA.js%3Fscope=footer&amp;delta=2&amp;language=en&amp;theme=hatter&amp;include=eJx1yksKgDAMRdENabskSfUZK2kjTfCzeyfiQHB04XBZlQUDVZLL82iRP9At5I4WWTSR9OsLhbakZ3cgzdpKfBogKKgeJjhlsWC043cqMCPGDa0vM_I"></script>
+
+  </body>
+</html>

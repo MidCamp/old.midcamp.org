@@ -1,0 +1,815 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="Stronger integration between Drupal and email marketing systems can benefit many types of organizations looking to streamline processes and lower costs. This session will present a challenge that we believe will be relevant to many organizations and walk attendees step-by-step through a solution that has worked well for us." />
+<link rel="canonical" href="using-twig-and-views-create-friendly-html-e-newsletter-code.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Using Twig and Views to Create Friendly HTML E-newsletter Code | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter_2019/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Using Twig and Views to Create Friendly HTML E-newsletter Code | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_gt5LiAM1qLGUH5e845uOb7R_lJ9dUwTXmnhGDR2yY20.css%3Fdelta=0&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlj90OwiAMhV9oA_XOp1lgHDaSQg3FLfPph_sxGm_a03Oa5mtPRmTR1giaftc-0EdHiJgBcs6JXc04o6ocDYUXmtGUgtzdLte7HoitobYXOe33Ze05lV_na1EWKYg7whQcuEO0cJ.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_UMuvjHSQ9iJFDCuYZXW-ThtEaBNBWxN9AUvYSTjbZi4.css%3Fdelta=1&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlj90OwiAMhV9oA_XOp1lgHDaSQg3FLfPph_sxGm_a03Oa5mtPRmTR1giaftc-0EdHiJgBcs6JXc04o6ocDYUXmtGUgtzdLte7HoitobYXOe33Ze05lV_na1EWKYg7whQcuEO0cJ.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_JumHJ3UqLO9Mdu1kygD5e19MOiNh5iD_a9p0FH6QrHQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlj90OwiAMhV9oA_XOp1lgHDaSQg3FLfPph_sxGm_a03Oa5mtPRmTR1giaftc-0EdHiJgBcs6JXc04o6ocDYUXmtGUgtzdLte7HoitobYXOe33Ze05lV_na1EWKYg7whQcuEO0cJ.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_LovagMoZZFoM80YhT0zgW4b6oNarRMdF8ooxvYiQ9tA.css%3Fdelta=4&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlj90OwiAMhV9oA_XOp1lgHDaSQg3FLfPph_sxGm_a03Oa5mtPRmTR1giaftc-0EdHiJgBcs6JXc04o6ocDYUXmtGUgtzdLte7HoitobYXOe33Ze05lV_na1EWKYg7whQcuEO0cJ.css" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="using-twig-and-views-create-friendly-html-e-newsletter-code.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-2019-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-hatter-2019-midcamp2020navigation-menu" id="block-hatter-2019-midcamp2020navigation" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-2019-midcamp2020navigation-menu">Midcamp 2020 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" data-drupal-link-system-path="node/403">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../news.html" title="News" data-drupal-link-system-path="2020/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" data-drupal-link-system-path="2020/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--virtual-camp">
+        <a href="../article/midcamp-2020-going-digital.html" title="MidCamp is going virtual" data-drupal-link-system-path="node/6689">Virtual Camp</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsor">
+        <a href="../sponsor-midcamp.html" data-drupal-link-system-path="node/6250">Sponsor</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--community-organizations">
+        <a href="../sponsor/community-organization-introduction.html" data-drupal-link-system-path="node/6251">Community Organizations</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sponsors">
+        <a href="../sponsors.html" data-drupal-link-system-path="node/6253">Sponsors</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" data-drupal-link-system-path="node/6258">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--sessions-thu">
+        <a href="../schedule/thursday.html" data-drupal-link-system-path="2020/schedule/thursday">Sessions (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-fri">
+        <a href="../schedule/friday.html" data-drupal-link-system-path="2020/schedule/friday">Sessions (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--contribution-sat">
+        <a href="../contribution-day.html" title="Contribution Day" data-drupal-link-system-path="node/6378">Contribution (Sat)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--accepted-sessions">
+        <a href="../accepted-sessions.html" data-drupal-link-system-path="2020/accepted-sessions">Accepted Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../../2023/speaker-resources.html" data-drupal-link-system-path="node/345">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-terms-and-conditions">
+        <a href="../../speaker-terms-and-conditions.html" data-drupal-link-system-path="node/21">Speaker Terms and Conditions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--topic-tracks">
+        <a href="../../topic-tracks.html" data-drupal-link-system-path="node/10">Topic Tracks</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--donate">
+        <a href="https://tickets.midcamp.org/" title="Register for MidCamp">Donate</a>
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-2019-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2020.html" hreflang="en">MidCamp 2020</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-hatter-2019-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Using Twig and Views to Create Friendly HTML E-newsletter Code</span>
+</h1>
+
+
+  </div>
+<div id="block-hatter-2019-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="6279" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2020-03-20T18:45:00Z" class="datetime">Friday, 1:45 pm CDT</time>
+ - <time datetime="2020-03-20T19:15:00Z" class="datetime">Friday, 2:15 pm CDT</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-80" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-name field--type-string field--label-hidden field__item">Room 312</div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>Stronger integration between Drupal and email marketing systems can benefit many types of organizations looking to streamline processes and lower costs. This session will present a challenge that we believe will be relevant to many organizations and walk attendees step-by-step through a solution that has worked well for us.</p>
+<p><strong>THE PROBLEM</strong><br />
+A communications person with only rudimentary knowledge of HTML needs to turn a Drupal 8, Bootstrap 4-themed webpage into a Constant Contact e-newsletter. The Views-generated page features a long list of article summaries (the content type) that are grouped by headers with icons. The e-newsletter version needs to have the same styles as the website and look identical to the webpage layout.</p>
+<p><strong>THE SOLUTION</strong><br />
+Session attendees will see how we implemented a solution using views and twig templates to auto-generate e-newsletter-friendly code to copy and paste into Constant Contact.</p>
+</div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/bPak6lLDWWA?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-presenter-slides field--type-file field--label-above">
+    <div class="field__label">Presenter Slides</div>
+              <div class="field__item">
+<span class="file file--mime-application-vnd-openxmlformats-officedocument-presentationml-presentation file--x-office-presentation"> <a href="../../sites/default/files/2020-03/MidCamp_Joshua_Yospyn_Friday_145-215_Using_Twig.pptx" type="application/vnd.openxmlformats-officedocument.presentationml.presentation" title="MidCamp_Joshua_Yospyn_Friday_145-215_Using_Twig.pptx">PowerPoint slides on Twig and E-newsletters</a></span>
+</div>
+          </div>
+
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Joshua Yospyn</h4>
+
+      Web Design and Photographer
+
+
+          @
+              <a href="https://www.jsi.com/">John Snow, Inc.</a>
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p>Drupal 8 front-end designer who uses SASS, twig and designs comps in Adobe XD for John Snow, Inc. on a part-time basis. Former photojournalist. Former freelancer for The Washington Post and documentary filmmaker.</p>
+</div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2019-11/sdfdf.jpg%3Fitok=UTua8yTQ" width="220" height="220" alt="Me" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Design</div>
+          <div class="field__item">End users / Content Admin</div>
+          <div class="field__item">Front-End</div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-feedback-form field--type-webform field--label-above">
+    <div class="field__label">Feedback Form</div>
+              <div class="field__item"><form class="webform-submission-form webform-submission-add-form webform-submission-session-feedback-form webform-submission-session-feedback-add-form webform-submission-session-feedback-node-6279-form webform-submission-session-feedback-node-6279-add-form" data-drupal-selector="webform-submission-session-feedback-node-6279-add-form" action="using-twig-and-views-create-friendly-html-e-newsletter-code.html" method="post" id="webform-submission-session-feedback-node-6279-add-form" accept-charset="UTF-8">
+  
+    <div data-drupal-selector="edit-0" class="webform-message js-webform-message js-form-wrapper form-wrapper" id="edit-0"><div data-drupal-messages>
+    <div role="contentinfo" aria-label="Status message" class="messages messages--status">
+                  <h2 class="visually-hidden">Status message</h2>
+                    Sorry...This form is closed to new submissions.
+            </div>
+    </div>
+</div>
+<input autocomplete="off" data-drupal-selector="form-vhzmdd0-feb2aw73umaxpejnb-lytlaqixikue3empy" type="hidden" name="form_build_id" value="form-vhZMDD0_fEB2AW73uMAxPeJNB_LYtlAQiXIKuE3eMPY" />
+<input data-drupal-selector="edit-webform-submission-session-feedback-node-6279-add-form" type="hidden" name="form_id" value="webform_submission_session_feedback_node_6279_add_form" />
+<div class="url-textfield js-form-wrapper form-wrapper" style="display: none !important;"><div class="js-form-item form-item js-form-type-textfield form-type-textfield js-form-item-url form-item-url">
+      <label for="edit-url">Leave this field blank</label>
+        <input autocomplete="off" data-drupal-selector="edit-url" type="text" id="edit-url" name="url" value="" size="20" maxlength="128" class="form-text" />
+
+        </div>
+</div>
+
+
+  
+</form>
+</div>
+          </div>
+
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <h3 class="field__label">Transcript</h3>
+              <div class="field__item" tabindex="0"><p>&gt;&gt; JOSHUA YOSPYN: &nbsp;Thank you. My name is Joshua Yospin, and I am a web designer, have been for 20 years, but I also was a freelance photographer for over 10 years and I've gone back and forth between these two. &nbsp;I'm more of a front end person than a developer, although I do a little bit of both. &nbsp;And I work for a company called JSI, which is very much into public health, everything from post Ebola reconstruction in west Africa to the opioid crisis in the United States. &nbsp;We build a lot of websites, pretty much in Drupal 8, to service these projects. &nbsp;</p>
+
+<p>And my job, I work a lot in Adobe XD, just whipping up the comps to show the clients, and I also use Bootstrap 4, the barobase for that and I do a lot of CSS, a lot of Twig work, and installing Drupal, and customizing themes. &nbsp;</p>
+
+<p>So the goal of this particular presentation, and what I accomplished was, we have a staff member who doesn't know anything about HTML. &nbsp;They don't have any coding ability. &nbsp;Very little. &nbsp;</p>
+
+<p>But they need to create HTML newsletter, automatically, with as little work as possible. &nbsp;</p>
+
+<p>In as little HTML knowledge as possible. &nbsp;</p>
+
+<p>So I put the link in the chat, but this particular website is called USAID, advancing nutrition. &nbsp;</p>
+
+<p>And the website is a global project in many, many countries. &nbsp;Where we're sort of consulting on nutrition in developing countries, and various aspects of it. &nbsp;</p>
+
+<p>So what this web page is that you see is an extremely long roundup of article summaries. &nbsp;So these are little summaries and links out to journal articles, issue briefs, white papers, things like that. &nbsp;</p>
+
+<p>So this is a very long web page, but it's pretty consistent, and I need to turn this into something that can be emailed out. &nbsp;So this particular page you're looking at, this is a view. &nbsp;It's sort of complex. &nbsp;</p>
+
+<p>And the goal was to automatically turn it into code that could be copy and pasted over into Constant Contact. &nbsp;</p>
+
+<p>And unfortunately, some of you may disagree and there may be other ways of doing it, but HTML in newsletter still require inline styles. &nbsp;A lot of them, a lot of programs still require table‑based coding. &nbsp;It's very 1995 versus&nbsp;‑‑ this is 2020. &nbsp;Drupal 884&nbsp;‑‑ Drupal 9 now. &nbsp;Very different worlds. &nbsp;For the e‑newsletter version, we simplified it a little bit. &nbsp;</p>
+
+<p>So when I'm working in Views, the first thing I looked at, can't I just put inline styles in the view when I rewrite a field? &nbsp;</p>
+
+<p>And so I tried. &nbsp;</p>
+
+<p>For the title field, for citation fields, I tried rewriting the field like this. &nbsp;</p>
+
+<p>With inline style tag, and these attributes. &nbsp;And it just doesn't show up. &nbsp;You can type it in here, encode it, but Drupal is just going to delete it. &nbsp;And it won't show up on your web page. &nbsp;</p>
+
+<p>Luckily, I created a template in Constant Contact to kind of simplify this a little bit. &nbsp;So the only pieces of content that need to changes are the things between the headers. &nbsp;</p>
+
+<p>It's the title of the resource and then the citation. &nbsp;And the title is a link out. &nbsp;</p>
+
+<p>That actually goes back to the website version of the e‑newsletter. &nbsp;</p>
+
+<p>So when I've been using a lot of is Twig. &nbsp;And I figure some of you have experience in this. &nbsp;Some of you do not. &nbsp;If you do not, it's a little bit like Dreamweaver DWT. &nbsp;It's like templates that are used for various different things and pages throughout the websites. &nbsp;</p>
+
+<p>So everything from an entire page itself to just one field that shows up in a page. &nbsp;</p>
+
+<p>There are a lot of twigs that are in the theme. &nbsp;</p>
+
+<p>The way that you kind of know what twig you're supposed to be working in is in the sites default folder, there will be a YML file, and you copy it, safe it here as services.yml, and down at the bottom, you're going to turn debug to true, which is in the red circle here. &nbsp;And what that gives you is green stuff. &nbsp;</p>
+
+<p>So when you go into the code inspector, you're going to see this green hints, and it's sort of like a road map for what's going on in your code. &nbsp;</p>
+
+<p>And it shows you what Twig is being used. &nbsp;</p>
+
+<p>And often, it provides suggestions of how you're supposed to rename and customize the twig. &nbsp;</p>
+
+<p>So here, you see in green that we are using a core twig that's located in a module folder for fields. &nbsp;</p>
+
+<p>And all that field is, is the title. &nbsp;In the green stuff, you often see this. &nbsp;</p>
+
+<p>Here we're looking at a block. &nbsp;It's a&nbsp;‑‑ a Bootstrap block region. &nbsp;</p>
+
+<p>And if we wanted to create our own custom twig, we would open up the original and save it in our own custom theme folder. &nbsp;Don't overwrite the existing one. &nbsp;Save it as a new one in your own custom theme folder. &nbsp;You have a couple of file name suggestions here, and I usually go for the most specific one to whatever we're working on. &nbsp;</p>
+
+<p>So sometimes they don't provide suggestions. &nbsp;Sometimes you do not see these file name suggestions. &nbsp;</p>
+
+<p>You got to improvise. &nbsp;</p>
+
+<p>And so for example, I rename views‑view‑field.HTML.twig without any suggestions being provided. &nbsp;First, in blue, that's my custom theme folder. &nbsp;I saved it there and I renamed it. &nbsp;It's using the same stuff that's in gray there, so it's still called views‑view‑field. &nbsp;</p>
+
+<p>But then the next three words are, the machine name of the view. &nbsp;With hyphens instead of underscores. &nbsp;You use hyphens instead. &nbsp;That's the name of the view. &nbsp;</p>
+
+<p>Block one is the display of that view that I'm using. &nbsp;And then title is the machine name of the field. &nbsp;</p>
+
+<p>So this is typically how a twig gets renamed. &nbsp;</p>
+
+<p>And so all this twig is for is for that particular title field. &nbsp;That's all this is for. &nbsp;</p>
+
+<p>And then after you save that new twig, you get a clear cache for you to see it and for it to work. &nbsp;</p>
+
+<p>And so when we look in the twig file, you don't see a whole lot. &nbsp;All you see is this stuff in curly brackets, often&nbsp;‑‑ you see something like that, just says, curly brackets, output, hyphen. &nbsp;And what I had to do was rewrite that entire thing with a P tag with inline styles, and A tag with inline styles, but then I also have a new field I'm grabbing here, curly brackets, row.nid, the node ID. &nbsp;And that's just a number that's unique to every piece of content. &nbsp;And the reason I'm using that here, because it provides a unique anchor link back to the website for every piece of content. &nbsp;</p>
+
+<p>And the row._.entity.label, that's the title but rewritten as text only. &nbsp;And, by the way, this presentation is on the page on the MidCamp website. &nbsp;If you would to look at this, it'll be there. &nbsp;</p>
+
+<p>And notice this special character code at the end of that. Just inside the strong tag. &nbsp;</p>
+
+<p>So another example, the citation field, which needed to be smaller in light gray. &nbsp;I wrapped it in a span. &nbsp;Put the margin in there, defined the color, font size, all this is 20th century but you got to do it for a HTML newsletter. &nbsp;This is the screenshot. &nbsp;And you see the inline styles being output by the twig in the code. &nbsp;</p>
+
+<p>Now, a different example is, the container of all these fields. &nbsp;</p>
+
+<p>The normal twig contains curly brackets title, curl brackets content. &nbsp;Simple stuff. &nbsp;[Cat meows].&nbsp;</p>
+
+<p>By the way, I have a cat. &nbsp;You will hear him. &nbsp;</p>
+
+<p>I surrounded the title and put it in a TD inside of a table. &nbsp;</p>
+
+<p>And then the content, I surrounded into a grouping div. &nbsp;I'm using tables and divs. &nbsp;And this is how looks in the code. &nbsp;And you see the name of that twig, with the red underline. &nbsp;And where I saved it in my custom theme folder. &nbsp;</p>
+
+<p>So this is kind of the top parent twig. &nbsp;</p>
+
+<p>And then I have another twig below that, that is for each row of content. &nbsp;</p>
+
+<p>And again, that's saved to my custom theme folder. &nbsp;And that is also been rewritten to include customs&nbsp;‑‑ inline styles. &nbsp;</p>
+
+<p>So when our e‑news person uses Chrome code inspector to grab it, I just kind of had to tell them what they're supposed to grab and what div. &nbsp;And they right‑click in Inspector and just copy that element. &nbsp;</p>
+
+<p>And in Constant Contact, this is my template I created for them. &nbsp;I put these brackets here to show them where to paste it in. &nbsp;</p>
+
+<p>And so they do this a couple of times for each topic that's in the e‑newsletter. &nbsp;</p>
+
+<p>So it ends up looking like this in Constant Contact, in your email. &nbsp;The only problem here is special characters. &nbsp;</p>
+
+<p>So the end of every one of those titles is supposed to have a right arrow. &nbsp;And then we also have the problem of curly apostrophe created some weirdness for the third title. &nbsp;We have to go into Constant Contact and fix that stuff. &nbsp;I spent a lot of time trying to make Twig or View output the encoding of a special character and it won't. &nbsp;I can't figure it out. &nbsp;If anybody knows and has done that successfully, I would love to hear about it. &nbsp;</p>
+
+<p>In this case, I put the encoding into the Twig, and hopeful to do it output&nbsp;‑‑ in very many different ways but it still just outputs the arrow, and you can't just paste that arrow into Constant Contact and blast it out because when people open up the emails it will look weird. &nbsp;And the special character won't show up. &nbsp;They each have to be fixed. &nbsp;The typical ones are the arrow that I had. &nbsp;Curly apostrophes, and em dashes and en dashes are culprits as well. &nbsp;You got to fix those. &nbsp;I've been doing this for 20 years for every newsletter. &nbsp;It's like nothing's changed. &nbsp;</p>
+
+<p>In the website version of the e‑newsletter, we had to create a destination for those anchor links I created. &nbsp;In the view itself, and if you look in the code here that's circled in red, you'll see that I wrapped the title in the span with an ID. &nbsp;</p>
+
+<p>And so it's resource 446. &nbsp;That 446 is the node ID. &nbsp;And that node ID is unique for every piece of content. &nbsp;We have hundreds and hundreds and hundreds of these summarizes that are part of this e‑newsletter. &nbsp;</p>
+
+<p>And so in the view, in Drupal, this is kind of what that looks like. &nbsp;I'm wrapping it in a P tag, in the style setting, and I rewrite the results by wrapping it in a span, and I include another field that is the node ID. &nbsp;NID. &nbsp;It's the very bottom of your screen. &nbsp;</p>
+
+<p>Another more complicated rewrite that I've done in Views, and this particular one is for the website version of the newsletter. &nbsp;And so this is a taxonomy term that is the header for like the grouping of articles. &nbsp;</p>
+
+<p>And this particular header has commas. &nbsp;It has a slash. &nbsp;And I can't just&nbsp;‑‑ I can't use that as an anchor link. &nbsp;As an ID. &nbsp;It's just too ugly. &nbsp;</p>
+
+<p>So what I had to do in the view was in the curly bracket here, you see in the middle the name of the field is field resource review section. &nbsp;That's the name of the field. &nbsp;</p>
+
+<p>And then in red, you have value, pipe, replace. &nbsp;And what that's doing there in the surrounding parentheses is it is stripping out and replacing empty spaces, commas, and that slash with hyphens. &nbsp;</p>
+
+<p>And so you see in the bottom, in code inspector, the ID comes out nice and clean with hyphens. &nbsp;</p>
+
+<p>That is pretty much it. &nbsp;</p>
+
+<p>I am happy to kind of go into the website itself and I'm going to share that now, actually. &nbsp;And kind of throw it up for questions as well. &nbsp;</p>
+
+<p>Kathryn, I can also&nbsp;‑‑ if people want to unmute themselves, we can do it that way as well. &nbsp;</p>
+
+<p>&gt;&gt; KATHRYN CARRUTHERS: &nbsp;I was going to say, if any of our participants wanted to just unmute yourself and talk to Josh directly, that's fine. &nbsp;</p>
+
+<p>&gt;&gt; JOSHUA YOSPYN: &nbsp;What I'm kind of showing you here is, this is the website version of the e‑newsletter. &nbsp;</p>
+
+<p>And we can bounce to every section. &nbsp;This is the very, very long page. &nbsp;</p>
+
+<p>It's very, very academic. &nbsp;But this thing is actually pretty popular. &nbsp;</p>
+
+<p>Now the e‑&nbsp;... &nbsp;email version of it is protected. &nbsp;You can only see this if you log in. &nbsp;</p>
+
+<p>You might see the title, but that's it. &nbsp;</p>
+
+<p>And I have instructions here in the view header for the person that is going to paste it in Constant Contact. &nbsp;</p>
+
+<p>And then this is what it looks like. &nbsp;</p>
+
+<p>So when they go into code inspector, they're copying this element, and they're going to paste it into Constant Contact. &nbsp;</p>
+
+<p>But again, I&nbsp;‑‑ oh, here. &nbsp;Mark&nbsp;‑‑ Max, sorry. &nbsp;Twig variables. &nbsp;</p>
+
+<p>Row.nid&nbsp;... &nbsp;</p>
+
+<p>Are you talking about, for example, removing commas? &nbsp;[Clears throat].&nbsp;</p>
+
+<p>And&nbsp;... &nbsp;</p>
+
+<p>Let's see here. &nbsp;</p>
+
+<p>Max, I have to warn you that I am not a developer. &nbsp;</p>
+
+<p>&gt;&gt; DANIEL: &nbsp;Josh, this is Daniel. &nbsp;</p>
+
+<p>&gt;&gt; JOSHUA YOSPYN: &nbsp;This is Daniel Cothran. &nbsp;You may have seen his presentation on charts. &nbsp;Daniel and I worked together all the time. &nbsp;Go ahead. &nbsp;</p>
+
+<p>&gt;&gt; DANIEL COTHRAN: &nbsp;So you know in the Twig file there's documentation at the top, and it will say which variable is available to be used in that twig. &nbsp;</p>
+
+<p>&gt;&gt; JOSHUA YOSPYN: &nbsp;Oh, yeah. &nbsp;Okay. &nbsp;</p>
+
+<p>&gt;&gt; DANIEL COTHRAN: &nbsp;Thing that's what he's getting to. &nbsp;</p>
+
+<p>&gt;&gt; JOSHUA YOSPYN: &nbsp;Let me share&nbsp;... &nbsp;[muttering].&nbsp;</p>
+
+<p>You can go into presentation mode&nbsp;... &nbsp;</p>
+
+<p>A little more easy to read. &nbsp;</p>
+
+<p>Okay, Max. &nbsp;You're looking for things like this. &nbsp;</p>
+
+<p>Row.nid. &nbsp;</p>
+
+<p>One thing I did not do in that PowerPoint presentation is link out to the sources of where I found all this stuff. &nbsp;And I can modify the PowerPoint for that. &nbsp;</p>
+
+<p>&gt;&gt; DANIEL COTHRAN: &nbsp;One thing that we've also done, Max, is using the JSON encode filter. &nbsp;And when you do that, in our case, you could see that NID was one of the elements in the&nbsp;‑‑ in the object. &nbsp;</p>
+
+<p>So we could get to it by using the dot, in this case. &nbsp;We also, I think it's in this file. &nbsp;Can you scroll over to the right, Josh? &nbsp;</p>
+
+<p>&gt;&gt; JOSHUA YOSPYN: &nbsp;Yeah. &nbsp;Let me see if I can wrap this. &nbsp;There we go. &nbsp;</p>
+
+<p>&gt;&gt; DANIEL COTHRAN: &nbsp;Yeah, so we have row.entity.label. &nbsp;</p>
+
+<p>So we saw that the row had the entity, but label is not something that was visible there. &nbsp;But we knew just from prior work that if you want to get the title of a node, you can use label on the entity. &nbsp;And so that's how we're able to get the value of the title of that node. &nbsp;</p>
+
+<p>&gt;&gt; JOSHUA YOSPYN: &nbsp;Yeah, I got to be honest. &nbsp;I don't remember of seeing one cheat sheet for the list of all those. &nbsp;Usually it would be, like, an over stack or somewhere else it would show up, because somebody would have a problem, and then somebody would suggest a solution. &nbsp;</p>
+
+<p>Thanks, Daniel. &nbsp;</p>
+
+<p>&gt;&gt; DANIEL COTHRAN: &nbsp;One other thing to mention on that is using something like Twig Tweak, or up&nbsp;‑‑ yeah. &nbsp;[Chuckles].&nbsp;</p>
+
+<p>Someone just pasted. &nbsp;</p>
+
+<p>&gt;&gt; JOSHUA YOSPYN: &nbsp;Yeah&nbsp;... &nbsp;</p>
+
+<p>Thanks. &nbsp;I'm showing this right now. &nbsp;</p>
+
+<p>I definitely don't have this stuff memorized. &nbsp;Yeah, pretty much every site that we work on, Twig Tweak is one of those modules that we put up right away. &nbsp;</p>
+
+<p>&gt;&gt; DANIEL COTHRAN: &nbsp;Josh, can you talk about using the view to grab specific sections, versus trying to program the entire thing? &nbsp;</p>
+
+<p>&gt;&gt; JOSHUA YOSPYN: &nbsp;You mean&nbsp;‑‑&nbsp;</p>
+
+<p>&gt;&gt; DANIEL COTHRAN: &nbsp;They can just copy the entire view and paste that into Constant Contact? &nbsp;</p>
+
+<p>&gt;&gt; JOSHUA YOSPYN: &nbsp;You mean why we did that versus&nbsp;‑‑ or why we don't do that? &nbsp;</p>
+
+<p>&gt;&gt; DANIEL COTHRAN: &nbsp;Why you have them copying from individual sections, versus just using the same&nbsp;‑‑ the entire view content. &nbsp;</p>
+
+<p>&gt;&gt; JOSHUA YOSPYN: &nbsp;Well, in Constant Contact, see if I&nbsp;... &nbsp;</p>
+
+<p>See if I can get in there real quick. &nbsp;One moment. &nbsp;</p>
+
+<p>Just want to log in first before I share this. &nbsp;</p>
+
+<p>I'll go to the template. &nbsp;</p>
+
+<p>There we go. &nbsp;</p>
+
+<p>I want to preview the template. &nbsp;And you can see how substantial this is. &nbsp;</p>
+
+<p>The original form of this, we actually did copy and paste in pretty much the entire guts of it. &nbsp;But there was a request to make each one of these headers an anchor link as well. &nbsp;</p>
+
+<p>And then to customize the introduction every time. &nbsp;</p>
+
+<p>Each one of these icons links back to the website version. &nbsp;</p>
+
+<p>Specifically. &nbsp;</p>
+
+<p>So if I click on "early childhood development" here, it bounces you down to that section on the website. &nbsp;</p>
+
+<p>But&nbsp;‑‑ I mean, you can do that if you want. &nbsp;</p>
+
+<p>To be honest, we went through a couple of iterations with this, and I came to the conclusion that it got too messy if they were going to copy and paste all at once. &nbsp;Too much margin for error. &nbsp;But in smaller e‑newsletters, it's more viable. &nbsp;</p>
+
+<p>&gt;&gt; DANIEL COTHRAN: &nbsp;Thanks. &nbsp;</p>
+
+<p>&gt;&gt; JOSHUA YOSPYN: &nbsp;Thank you. &nbsp;</p>
+
+<p>Okay. &nbsp;Any other questions? &nbsp;</p>
+
+<p>Anybody want to see anything else? &nbsp;</p>
+
+<p>Cool. &nbsp;Thanks, Bo. &nbsp;</p>
+
+<p>Thank you.</p>
+</div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+
+</div>
+  </section>
+
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-36c084819ce68f583fad31c4baf7ec0927763fe6adc533d87b28eada8fcda670">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/pantheon.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2020-02/pantheon-logo-tagline-black.png" width="1200" height="370" alt="Pantheon logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/palantirnet.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2020-02/palantirnet-logo.png" width="1200" height="198" alt="Palantir.net logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/bounteous.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2019-11/Bounteous_indigo_large.png" width="1676" height="279" alt="Bounteous logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/clarity-partners.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2020-02/CFDFAA23-5C59-4C07-9C66-CAFFE0CF3854.png" width="1534" height="387" alt="Clarity Partners logo" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-2019-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#41282f272e012c282522202c316f2e3326"><span class="__cf_email__" data-cfemail="3851565e577855515c5b59554816574a5f">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-2019-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-2019-footer-menu" id="block-hatter-2019-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-2019-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/6279","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"ajaxTrustedUrl":{"form_action_p_pvdeGsVG5zNF_XLGPTvYSKCf43t8qZYSwcfZl2uzM":true},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_sul8js76f3THBVtv8nspP93BoCHSgntyTCisS6lai4M.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter_2019&amp;include=eJx1ykEKgDAMBdELaavuPI2k-o1K2kITFG_vRkQEVwOP4ZxZMFAiOW0d1fMHqoXMUIauaXvPkgNJvT0aSPHSA2HOJfq7DoKIZG6C0SrqlHb8ThGqxLgAGZ04Cw"></script>
+
+  </body>
+</html>

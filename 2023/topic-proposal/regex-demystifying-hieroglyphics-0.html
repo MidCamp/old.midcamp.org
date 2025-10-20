@@ -1,0 +1,768 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="You&#039;re working with some data and find yourself needing to find a specific piece of information, but your searches keep matching things that you don’t want. While basic searches are fine for some things, every once in a while you need something more powerful. " />
+<link rel="canonical" href="regex-demystifying-hieroglyphics-0.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Regex: Demystifying the Hieroglyphics | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Regex: Demystifying the Hieroglyphics | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_gt5LiAM1qLGUH5e845uOb7R_lJ9dUwTXmnhGDR2yY20.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OhDAIhC9U2yMZakdtAmJKV9c9_Tb-PPkCAx8ZZmAyO0IkgxsuLTCjCfbMi6bGtKCpIsT5BzdTrShhYo3E3WD2bITWqF9nh1XIZbvlBO0hEakfMziFAlt1sbyhO2E7wW7hrF40fRh.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_mK2of_t7UFymkfbTHeA-kHdMPWzqc3DZQCYtX-tC0BA.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OhDAIhC9U2yMZakdtAmJKV9c9_Tb-PPkCAx8ZZmAyO0IkgxsuLTCjCfbMi6bGtKCpIsT5BzdTrShhYo3E3WD2bITWqF9nh1XIZbvlBO0hEakfMziFAlt1sbyhO2E7wW7hrF40fRh.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OhDAIhC9U2yMZakdtAmJKV9c9_Tb-PPkCAx8ZZmAyO0IkgxsuLTCjCfbMi6bGtKCpIsT5BzdTrShhYo3E3WD2bITWqF9nh1XIZbvlBO0hEakfMziFAlt1sbyhO2E7wW7hrF40fRh.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OhDAIhC9U2yMZakdtAmJKV9c9_Tb-PPkCAx8ZZmAyO0IkgxsuLTCjCfbMi6bGtKCpIsT5BzdTrShhYo3E3WD2bITWqF9nh1XIZbvlBO0hEakfMziFAlt1sbyhO2E7wW7hrF40fRh.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+<link rel="stylesheet" media="all" href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.css" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="regex-demystifying-hieroglyphics-0.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-midcamp2023navigation-menu" id="block-midcamp2023navigation" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-midcamp2023navigation-menu">MidCamp 2023 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" data-drupal-link-system-path="node/6857">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--by-the-numbers">
+        <a href="../../2020/about/by-the-numbers.html" data-drupal-link-system-path="node/6252">By the Numbers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--venue">
+        <a href="../../about/venue.html" title="Venue" data-drupal-link-system-path="node/7048">Venue</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../speaker-resources.html" data-drupal-link-system-path="node/345">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--health--safety">
+        <a href="../health-safety.html" data-drupal-link-system-path="node/6973">Health &amp; Safety</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../about/lunch-options.html" data-drupal-link-system-path="node/6970">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--volunteer-opportunities">
+        <a href="../article/volunteer-help-midcamp.html" data-drupal-link-system-path="node/6975">Volunteer Opportunities</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" data-drupal-link-system-path="2023/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--travel">
+        <a href="../about/travel.html" data-drupal-link-system-path="node/6865">Travel</a>
+            </li>
+          <li class="primary-nav__sublist-item item--accommodations">
+        <a href="../about/accommodations.html" data-drupal-link-system-path="node/6948">Accommodations</a>
+            </li>
+          <li class="primary-nav__sublist-item item--registration">
+        <a href="../register.html" data-drupal-link-system-path="node/6977">Registration</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" data-drupal-link-system-path="node/6860">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--sponsor">
+        <a href="../sponsor-midcamp.html" data-drupal-link-system-path="node/6858">Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" data-drupal-link-system-path="node/6859">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--hybrid-sessions">
+        <a href="../schedule/hybrid.html" data-drupal-link-system-path="node/7053">Hybrid Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-wed">
+        <a href="../schedule/wednesday.html" data-drupal-link-system-path="2023/schedule/wednesday">Sessions (Wed)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-thu">
+        <a href="../schedule/thursday.html" data-drupal-link-system-path="2023/schedule/thursday">Sessions (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--birds-of-a-feather-bofs">
+        <a href="../schedule/bofs.html" data-drupal-link-system-path="node/7054">Birds of a Feather (BoFs)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--contribution-day-fri">
+        <a href="../schedule/friday.html" data-drupal-link-system-path="2023/schedule/friday">Contribution Day (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--topic-tracks">
+        <a href="../../topic-tracks.html" data-drupal-link-system-path="node/10">Topic Tracks</a>
+            </li>
+          <li class="primary-nav__sublist-item item--all-sessions">
+        <a href="../schedule/sessions.html" data-drupal-link-system-path="2023/schedule/sessions">All Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--session-submission">
+        <a href="../submit-session.html" data-drupal-link-system-path="node/14">Session Submission</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2023/news">News</a>
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../../jobs.html" data-drupal-link-system-path="jobs">Jobs</a>
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2023.html" hreflang="en">MidCamp 2023</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-midcamp2023schedulenav" class="block block-block-content block-block-contente066b47a-a80d-432a-8edd-6c60b28b7c95">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><div class="schedule__nav">
+<p><a href="../schedule/hybrid.html">Hybrid</a>&nbsp;|&nbsp;<a href="../schedule/wednesday.html">Wednesday</a> | <a href="../schedule/thursday.html">Thursday</a> | <a href="../schedule/friday.html">Friday</a></p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Regex: Demystifying the Hieroglyphics</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="6889" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2023-04-26T18:15:00Z" class="datetime">Wednesday, 1:15 pm CDT</time>
+ - <time datetime="2023-04-26T19:15:00Z" class="datetime">Wednesday, 2:15 pm CDT</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-263" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="clearfix text-formatted field field--name-description field--type-text-long field--label-hidden field__item"><p>Speaker presented remotely with presentation projected in Room 325</p></div>
+      
+            <div class="field field--name-field-link field--type-link field--label-hidden field__item"><a href="https://www.youtube.com/@midcamp" target="_blank" class="button--primary">Go to Room 325 (Hybrid Remote)</a></div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Organizer Note</h4>
+    
+            <div class="field field--name-field-eyebrow field--type-string field--label-hidden field__item">This is a Hybrid session where the speaker will present remotely.  The session will be displayed on a projector in the assigned room on-site.  Participants may either join remotely via the linked Zoom or attend in-person.</div>
+      
+  </div>
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p><span><span><span><span><span><span>You're working with some data and find yourself needing to find a specific piece of information, but your searches keep matching things that you don’t want. While basic searches are fine for some things, every once in a while you need something more powerful.&nbsp;</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Enter regular expressions (also referred to as "regex"). BUT WAIT! Before you scroll to the next session description: did you know that this powerful searching capability is available in things like Word and Excel, as well as Google Search Console and Google Analytics? And not only can you use it to search for information, you can also use it to transform information!</span></span></span></span></span></span><br>
+<br>
+<span><span><span><span><span><span>In this session, we'll jump into a </span></span></span></span></span></span><span><span><span><span><em><span>brief</span></em></span></span></span></span><span><span><span><span><span><span> history of regex, discuss pattern matching, and dive into the fundamentals of how we can use regex to surface the data we've been searching for in powerful ways. We'll play some regex-based games to help hone our skills, all while demystifying the idea that regular expressions are dark magic, beyond the capabilities of mere mortals.</span></span></span></span></span></span></p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/JYVqNPi0RCM?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Paul Gilzow</h4>
+
+      Developer Relations Engineer
+
+
+          @
+              <a href="https://platform.sh/">Platform.sh</a>
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p>Developer Relations Engineer at Platform.sh. Former Programmer/Analyst-Principal at the University of Missouri. Web application security and accessibility evangelist. Software instructor. Conference lecturer and presenter. Runs on passion and coffee. Outside of work, you'll find Gilzow mountain biking, snowboarding, enjoying live music with his kids, and dancing wherever the mood strikes.</p>
+</div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2019-02/avatar-2016.jpg%3Fitok=9QY127Nt" width="220" height="220" alt="Paul wearing sunglasses and a giant smile" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Back-End</div>
+          <div class="field__item">DevOps</div>
+          <div class="field__item">Front-End</div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-feedback-form field--type-webform field--label-above">
+    <div class="field__label">Feedback Form</div>
+              <div class="field__item"><form class="webform-submission-form webform-submission-add-form webform-submission-session-feedback-form webform-submission-session-feedback-add-form webform-submission-session-feedback-node-6889-form webform-submission-session-feedback-node-6889-add-form" data-drupal-selector="webform-submission-session-feedback-node-6889-add-form" action="regex-demystifying-hieroglyphics-0.html" method="post" id="webform-submission-session-feedback-node-6889-add-form" accept-charset="UTF-8">
+  
+    <div data-drupal-selector="edit-0" class="webform-message js-webform-message js-form-wrapper form-wrapper" id="edit-0"><div data-drupal-messages>
+    <div role="contentinfo" aria-label="Status message" class="messages messages--status">
+                  <h2 class="visually-hidden">Status message</h2>
+                    Sorry...This form is closed to new submissions.
+            </div>
+    </div>
+</div>
+<input autocomplete="off" data-drupal-selector="form-vno8kbkwob5a9qh9rrfx1edxooyaioqry-fw-eymf6w" type="hidden" name="form_build_id" value="form-vno8KbKwoB5a9QH9rRFX1EdXOoYAIoQry-fW_Eymf6w" />
+<input data-drupal-selector="edit-webform-submission-session-feedback-node-6889-add-form" type="hidden" name="form_id" value="webform_submission_session_feedback_node_6889_add_form" />
+<div class="url-textfield js-form-wrapper form-wrapper" style="display: none !important;"><div class="js-form-item form-item js-form-type-textfield form-type-textfield js-form-item-url form-item-url">
+      <label for="edit-url">Leave this field blank</label>
+        <input autocomplete="off" data-drupal-selector="edit-url" type="text" id="edit-url" name="url" value="" size="20" maxlength="128" class="form-text" />
+
+        </div>
+</div>
+
+
+  
+</form>
+</div>
+          </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p><span><span><span><span><span><span>PAUL GILZOW:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Alright. Hello, everyone. I hope everybody's having a great time at mid camp there in person as well as online. I really, really wanted to be there today with all of you, I just wasn't able to make it work. My name is Paul. I am with platform.sh. We are a secure enterprise-grade platform as a service for building, scaling and deploying applications. We focus on maintaining, managing and most importantly, automating your infrastructure so you can focus on the next, building the next amazing thing. But that's probably not why you're here. You're here to learn about regular expressions. So specifically, what I wanna cover today is I wanna talk about what regular expressions are, a little bit about what they're not, some use cases for when you might use regular expressions, including sometimes that maybe you didn't know you could use regular expressions, and then we're gonna just dive into the hieroglyphics. We're gonna go into all those different symbols and characters, and I'm gonna walk through each of those and show you in real time how using those different characters can change how that regular expression works.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And then we're gonna go play a game together and we're gonna build some regular expressions to solve a puzzle. So, I do encourage you to follow along if you can. I've got a regular expression repository out at my github profile and show you that here real quick. So it should be pinned up here at the top. If you go into there, I've got some different word banks that I'm gonna be using. I'm also gonna be using a tool called regex101.com. So again, if you can follow along, that's great, if not, not a problem. I'm gonna be showing you all of this and stepping through it with you. So, kind of an introduction. Regular expressions originated back in the early 1950s by a mathematician named Stephen Cole Kleene, who was trying to describe regular languages in formal language theory. Essentially what he wanted to do is come up with a mathematical formula to describe languages. And while that's extremely interesting from an academic standpoint, we could probably spend multiple semesters going over regular expressions.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>That's probably not what you think of when you hear the phrase regular expressions. What you probably think of is something more like this. If you happen to be listening in, we've got an animation of Bert from Sesame Street, who's passing out after seeing a fairly long, complex, regular expression. So in terms of this presentation, when I say regular expression, what I'm referring to is a sequence of characters that we use to represent some type of pattern that we're attempting to find inside a larger body of text or string. So just to kind of back up, though, some quick examples of what regular expressions are not. And first is regular expressions are not a programming language. While we do have some basic logic and some branching, it's not a programming language. It's also not unlearnable. It's, I've had, been giving this presentation before, I've had multiple people say something like this. And this is from an actual attendee in the past who said, you know, "there's nothing regular about regular expressions," and they do have a bit of a learning curve.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>They are somewhat complex, and we're gonna get into why some of that complexity is there. But I really do strongly believe that they're a very powerful tool for you to have available in your toolbox. Now, I don't know about you, but often when I get a new tool, especially a powerful one, be it a physical tool or one in programming, I often begin to see that every problem I have could be solved with this tool. So, regular expressions are not the solution to every problem. You've probably seen this XKCD comic before and if you're listening in, we've got two stick figures and one saying, "if you're having Perl problems, I feel bad for you, son. I got 99 problems. So I used regular expressions and now I have 100 problems." And it's true. In some situations, regular expressions are not the answer and can actually make things worse. So we're gonna talk a little bit about that. However, once you kind of get used to them and can begin to understand when they're appropriate to use and how to optimize them, they can kind of make you feel like a superhero.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So, what can we use them for? Well, in their basic use, we use them to find text inside these larger bodies of text or larger strings. You can kind of think of them as control F or command F on steroids. As an example, I'm gonna show this to you live. You know, maybe I've got this document about wolves and I need to find every instance in this document, we'll pretend this is hundreds, thousands of pages long. I need to find every instance of the word wolf or wolves as it pertains to, you know, gray wolves or brown wolves or rare wolves. I wanna find any instance except for those that have to do with red wolves. I don't wanna find red wolves. So I could do control F and I could search for wolves. And, you know, I do find wolves, rare wolves, but I'm also finding red wolves. And I'm not finding wolf, you know, I have to do a separate one for that. And instead I need to find both at the exact same time. So ,I don't know if you knew this, but inside of both, and I have to move my zoom window, there we go, so I can see this.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Inside both word and Google Docs you can use regular expressions. So I could use a regular expression, grab this and move it out of the way. And now notice I'm finding gray wolf, I'm finding rare wolves, brown wolves, but notice, I'm not matching or not finding red wolves. Alright, another example is we can use it to validate texts. So let's say we're receiving some text from an outside source via, you know, maybe an API or it's a form, we can use regular expressions to ensure that the information receiving is not only contains exactly what we're expecting, but also in a specific format. Another use case is string manipulation. We can actually take a string, we can pluck out pieces from it, reformulate it, and put it back. As an example, maybe we've got some phone numbers. Grab this one here real quick and I'll apologize to anyone not watching, that's not in the United States. All of these examples are formulated, excuse me, formulated for United States. So, but let's say I've got phone numbers coming in and you know, some are using dashes, some are using perrins, some are using spaces, some are using dots, all over the place.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And I need these all to be the exact same format. Well, by using a regular expression, might paste this in here, paste, I can pluck out those numbers and then reformulate them so that every single one is the exact same formula. Alright, so then how do we actually use it? How do we begin to use these characters to do some of this? Well, as I mentioned earlier, regular expressions are a sequence of characters that are used to represent patterns, right. So we've got all different types of characters. We've got literal characters, we have special characters, we have something called character classes. As we begin to build larger and larger character classes, they get a little complex. So sometimes we might have access to shorthand character classes, just tons and tons of different characters. So what I wanna do is assume you know nothing and start at the beginning, at the ground floor and then build up through all of these different types of characters showing you along the way how each of these changes what we're finding and what we're matching.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So the first are literal characters. Fo and o is a valid regular expression, that is a collection of literal characters. The literal character f followed by an o, followed by an o. And if I go back over to my tool, I've got this word bank, so you can go back to match, got this word bank of just random words. And if I type in the literal characters f, o and o I do see some matches. I've got foo here at the end of some path to foo, foo, foot, the foo in foot, the foo in foobar, the foo in barfoo etc. Alright, so f, o and o by themselves, literal characters are a valid regular expression. Now I wanna pause real quick and point out a couple of things and hopefully you can see my mouse. I've got this little character here before my regular expression. I've got a character here after the regular expression, that forward slash, that is a delimiter. A delimiter is a character that's used to represent the edges or the boundaries of your regular expression. So when we give this regular expression to a regular expression engine, we're saying, what's contained inside these delimiters is the regular expression that I want you to use in order to find this pattern.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Now, most regular expression engines will allow you to change the character, although that forward slash is the most common. Now, why might we need to change the character? Well, let's say I'm trying to match path to foo. You, know, I need to actually use that forward slash. And notice as I've tried to use that as a pattern, I automatically get this pattern error saying, 'wait, you can't do that,' because you've used the delimiter inside the regular expression and now I don't know what the actual regular expression is supposed to be. So in this particular case, with this tool, I can change my delimiter here before my pattern, I can change it to something else, and now notice I'm matching exactly what I typed out, again, those literal characters. Now, I do wanna pause real fast because I've used the term regular expression engine several times, and I haven't exactly explained what I mean by that. How is an engine different than a regular expression? Well, a regular expression engine is a piece of software that can ingest a regular expression and then use it against that larger body of text or string in order to find those patterns.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Now, they are sometimes referred to as flavors because each one is different. Now, if you're listening in, I've got an animation of a red light flashing to give us an indication of an issue or a warning, and that is that not every engine is the same. If you are old enough to remember the Web browsers, the Internet back in the early 2000, you'll probably remember that most websites had a little thing on it that said Best viewed internet Explorer or best viewed in Netscape Navigator. And that was because back then every browser was introducing proprietary features that didn't necessarily work in another one, and its exact same with regular expression engines. They're free to implement features that not everybody else can use. And part of the problem is that they're, the standards aren't really there. There's really only one true standard for regular expressions, and that's POSIX basic regular expression, and it's very limited and it's pretty old. Now, you might have heard if you use regular expressions before, you might have heard of PCRE or Perl compatible regular expressions, and it's been adopted as a quasi standard, but it's not really, it's an open source library (UNKNOWN) that originated because they were trying to bundle in features that were compatible with what Perl had introduced in its regular expression engine.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Now, interestingly enough, because it is an open source library, it has gone through several versions and several iterations and in fact at one point ERL adopted features from Perl compatible regular expressions to make Perl's instance compatible with Perl compatible (UNKNOWN) kind of see where that's going. Yeah, so just make sure that you're always testing in a regular expression too. And the reason is you wanna make sure that the regular expression that you're building is going to actually work in the specific engine that you're going to use. Now, besides just warnings, I'm gonna try to give you a series of bonuses. So if you're listening in, I've got an animation of Oprah Winfrey pointing out to the audience saying, "you get a bonus and you get a bonus and everybody gets a bonus." And that bonus is use a regular expression builder. There are a ton of available. The three I've got listed here are just examples. Today I'm using regex101, but there's regexr, there's rubular. Again, there's a ton out there that you can use.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>If you prefer a native or an installed option, you've got regexBuddy on windows, which is phenomenal. There's also expressions on macOS, but use these tools because they give you so much information and help. You know, now that earlier it gave us that warning that there was a pattern error. Notice here on the left hand side, in this particular tool, I can choose from those flavors, I can change whether I'm matching or substituting or listing. It gives me information on what's going on with my regular expression pattern, in this case, I've got an error. Or if I were to change it back to f, o and o it says, "hey, this is what you're doing, you're trying to match those literal characters." When it finds a match and list them out, it also gives me a quick reference or a quick access to documentation on regular expressions. So, just make sure that you're using a regular expression tool. OK, so now into the special characters. We have 12 special characters that we're going to go through. If you noticed earlier, when I had that path to foo and it highlighted that I use these, that forward slash, when I hover over it, it says, 'hey, you've got an unescaped delimiter." In most engines or in most languages, you escape that with a backslash.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So that backslash character is our first special character. It is the escape character, it tells the regular expression engine, "hey, the character that is next, don't treat it how you normally would, instead use its alternate meaning." So if I use a backslash, then a forward slash it says don't treat that forward slash as a delimiter, treat it as the literal forward slash character. And we're gonna see this delimiter come up several times as we go through some of these examples. Our next character is part of a subgroup called anchors, and it's the caret symbol. An anchor tells the regular expression engine that the pattern has to appear in a specific location inside the string or in the line. In this case, this anchor character, this caret symbol is saying, "hey, this pattern has to begin or has to show up at the beginning or the start of a string or a line." So I'll come back out here and I type in my little characters foo again. Notice I am matching foo at the end of some path to foo, a matching bar foo a matching foobar.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>If I now use that anchor, notice it's no longer matching those instances of f,o,o where they show up somewhere else. It's only matching the ones where they start at the beginning of a line. Alright, if we have an anchor to the beginning, we probably need an anchor at the end and that's the dollar sign. So the dollar sign is also an anchor, but it tells the regular expression engine, "hey, this pattern has to appear at the end of a string or line." So I come out to my tool and I get rid of the anchor back to foo. So notice again, I'm matching foot, foobar, foobar, etc. If I use the dollar sign to anchor to the end, now I'm only matching some path to foo and foo by itself, barfoo etc. So only those instances where f, o and o show up at the end of a string or a line. Alright, so I got another bonus for you. That is to always anchor, whenever you can you should anchor. And the reason is optimization. As a regular expression is parsing, excuse me, as the regular expression engine is parsing your regular expression, comparing it against those strings and lines, it is walking through that string or line, step by step, by step by step.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>If we can use an anchor, then the regular expression can quickly or more quickly determine whether or not it should continue evaluating that string or line. So if we said, "hey, this pattern has to show up at the beginning," well then as it checks the beginning, if it's not true, it doesn't have to continue down the rest, it can skip and go to the next. Same for the end. If we've said, "hey, this has to be at the end", it can evaluate the end of that string of the line. And if that pattern is not there, it doesn't have to continue evaluating and can move on. So even if your regular expression is matching what you anticipate, you should still go ahead and try to use anchors whenever possible. The next special character we have is the square bracket. The square bracket is, tells the regular expression engine, "hey, we are going to be using what is known as a character class." A character class allows us to define a set of characters that we want to match. So we're gonna tell it, it tells it that we wanna match a single literal character from the list inside the character class.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>It also allows us to define a range of literal characters. One thing I failed to mention earlier is that regular expression engines by default are gonna be case sensitive. So if you wanted to find a word and you didn't care if it was upper or lowercase, inside your character class, you'd have to say a, b, c, d, e, f all lowercase and then capital A through Z, right. Well, instead we can have these character classes define ranges. And we could say, OK, I want you to find a through z lowercase and then A through Z uppercase. So we don't have to type out all the specific literal characters. And then just as a special note, the ending square bracket is not a special character on its own. It's only a special character when used in conjunction with the opening square bracket to create that character class. So let's come back out and take a look at it real quick. So, I could do a character class of, say, maybe foo, well not foo, f, and o, and o. And that's the exact same as we did earlier, right.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>We were looking for f, o and o. But maybe I don't wanna find just foo, maybe I wanna find f or b, o, o. So now notice I'm finding foo, foo, foot, foot, boo, boo, but I'm not matching roobar or coobar or anything else, right. Alright, let's try a range. Maybe I wanna find any single literal character between b and s. And now notice I'm matching foo, but I'm also matching coofar, but not roobar. Or I could say, "hey, you know, I wanna find b, f or r. And now I'm matching foo, boo, but I'm, and roo but not coo. Alright, so character class, we can match any character inside that class, whether it's a range or specific characters. Hopefully everybody still good? OK, cause the next special character, whoops, I almost forgot. Oops, Sorry. So, inside that special, inside that character class, we don't have to escape other special characters. The only exceptions are the ending square bracket cause that creates the character class. The backslash character, the escape character, because that allows us to escape.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Maybe say we need to actually want or we actually want to include the ending square bracket, the caret symbol, which we'll talk about in a second, and that dash, cause that dash is what allows us to create that range. Now, the next special character is the caret. It is the negation character for character classes. If you're listening in, I've got an animation of Michael Scott from The Office who's holding up his hand saying, "wait a second." And this is the first prime example of why regular expressions can be very challenging to learn. That's because these special characters they're, what they stand for, what these represent can change depending on the characters they're next to or where they're used inside of a regular expression. So, when you use the caret inside of the character class, you are negating or inverting the character class. So what I mean by that? If I were to come back out here like I did earlier and say, you know, f, o and o, if I use the caret inside the character class that says find any character that isn't an f.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Now notice I'm matching question mark o, o because that question mark is not anf. Matching coo and boo and roo and boof are matching any character that isn't an f. So inside the character class when you use that caret negates the character class. Outside, and this is where it gets really confusing. I can also use it outside and now notice it's only matching those strings that are some character that isn't o, excuse me, isn't an f followed by two o's where that is at the beginning of the character class. So, just know that if you are seeing some of these characters used in multiple locations, there's a good chance that its representation has changed because of where it's being used. Whew, OK. The next one is, no is our shorthand character class. OK, so we have character classes. We just talked about those, right. And if we wanted to do, you know, capital A through Z and lowercase a through z, etc., we'd have to build those out. And that gets kind of long. If I come back in here and I said, I wanna find A through Z and then a through z and zero through nine, that's a pretty big character class, right?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>They start to get kind of long and hard to read. So shorthand character classes, sometimes referred to as special sequences, are that delimiter character followed by what is normally a literal character, and it represents a larger character class. So some examples. The backslash lowercase d is shorthand for the character class zero through nine. The w is shorthand for capital A through Z, lower through case a through z, zero through nine and the underscore. And there's about 26 or 27 more that you can use. Now you don't have to worry about memorizing these cause remember, we have that quick reference and I can see right away. Here it says, hey, you know, if you want any whitespace character, well, that's the backslash lowercase s. As well as if you see them, if you use it, then remember that that explanation section will tell you, "hey, the backslash lowercase d is the equivalent to the character class zero through nine." So if you're looking at a regular expression and you're trying to understand what it's doing and you see that backslash character and what should normally be a literal character, that's a good indication that's a special character class or the special sequence.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Oh, OK, the next one's a dot. I call it the weird one. The reason I call it the weird one is earlier, you know, the caret and the dollar sign went together for anchoring. And we had the square bracket, it has the ending square bracket to create, it has like a partner. The dot's the weird one cause it doesn't really have anybody else. It doesn't have any other characters that are connected with it. And the dot simply matches any single character, excuse me, except for line breaks. So if I come in here and I recreate my regular expression and I use a dot with two o's, well then it's gonna match any character that's not a new line and an o, o. And I can see there I've matched foo, but I've also matched coo and boo and I've even matched that question mark o, o. So, the dots just simply stands in for any literal character with the exception of line breaks. This one's a fun one. The pipe symbols. The pipe symbol creates a branching structure or similar to like an or in programming. In this case, in my example on the screen, it's saying, I want you to find bar or I want you to find foo.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So I come out, oops, (UNKNOWN) too many screens. Here we go. So if I type in foo or boo, notice it's matching foo, but it's also matching boo. So it says, "hey, I want you to find f, o and o and if you can't find f, o and o, then also you see if you can find b, o and o. Now there is a warning about alternations, and that is that regular expressions are, excuse me, regular expression engines are, what's a good word? Very eager, they're very eager to return a match. They wanna find a match as quickly as possible and then return that match, so it can go on and keep processing. So in the example, there were many cats near the bowl with one cat by the door. If we were to use an alternation of cat or cats, notice that matched the c, a, t in cats and returned even though c, a, t, s would be more complete. It's because we've said find c, a, t, it said, "hey, I found c, a, t. There's an s but (UNKNOWN) I found c, a, t. Here it is." Alright, so just remember, it's not that you shouldn't use alternations or that you can't, it's just you need to remember that the left hand side in an alternation inside a regular expression engine is always gonna get precedence.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>If it can find that there's a match for that one first, it's always gonna return it, even if the second one is more complete or more appropriate. Alright, the next special character we have is part of a subgroup called quantifiers. Quantifiers tell the regular expression engine to repeat the previous token. I'm gonna come back to that word token, the previous token in the regular expression so many times. With the question mark, it's either zero times or one times. What I mean by a token is, in a moment we're gonna talk about sub-patterns and that token (UNKNOWN) stands for or means any complete pattern. So an o, a literal character by itself is a complete pattern. Or if we were to create a sub pattern, that's a complete pattern. So we could repeat that. So in this case it's saying find f and o, then you can either find an o once or none as long as there's a bar. So if I come out here and we recreate that, so if I say f, o, o question bar, notice it matched. It did match foobar cause there's one o but it also matched, so let's go here, fobar because there's not a second o.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So it says find either one instance of it or find zero instances. Now there is another warning. And that is that quantifiers turn on greediness. Greediness means that for these quantifiers, the regular expression engine is going to attempt to find as many instances of that pattern as it can until it no longer can find matches. So, if we take a similar example where we've got it's raining cats and dogs and we do a pattern of c, a, t, s question, meaning the s in cat is optional, well, it's always gonna try to find cats instead of just cat if it can. It's almost like we flipped the alternation and we moved cats from the right hand side to the left hand side. So it's just important to remember that with this greediness, you have to be careful with the quantifiers because you might end up matching things you didn't anticipate. And I'll show you an example of that in just a second. The next quantifier we have or next special character is the asterisks. The asterisk says match that preceding token either zero times or infinity times.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So the question is zero or once, the asterisk is zero to as many times as possible. So if I come back over and change that question to an o, not to an o, excuse me, to an asterisk, excuse me. We are still matching fobar because it says you can match it zero times, but I'm also matching fooooobar because I've said you can match as many o's as you want. The reason this is in that greediness, coming back to that greediness,/ is if I were to use something like a dot star, we'll notice now, not only did I match fobar and fooooobar, I also now matched foobarbar, which isn't an o at all, right. Cause that dot stands for any literal character. The asterisk says match the previous as many times as you want, so it's just matched anything as long as there's a b, a, r at the end of the pattern. So just be aware of that greediness as you're using these quantifiers. Alright, the next one is a plus sign. So, it's another quantifier that says the previous token has to be matched at least once, but then can match as many times as we want or as many times as possible.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So if I change these back to a second o and a plus, well, now I'm matching foobar, but I'm also matching fooooobar. Alright, now sometimes we're gonna need more fine grained control over the number of times that we're repeating things, and that's where the curly brace comes into play. So the beginning or the opening curly brace combined with a closing curly brace allows us to specify a specific minimum number and maximum number of repetitions. So the pattern is min, max where the min is a zero or a positive integer indicating the minimum times we have to match. The max min is equal to or greater than the min, also positive integer indicating the maximum number we can match. If we drop off the max but leave the comma, then max becomes infinity. So if you think back to the other special characters, other quantifier characters, the question mark is really the same as zero, one. As we said, you can find it zero times or once. The plus, excuse me, the asterisks is the same as saying zero comma, nothing or infinity, which means the plus is saying the same thing as one, infinity.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Then if you omit the comma and the max, then we designate a specific number of times. So if we had {2}, that's saying it has to repeat exactly twice. So if I were to come back here and use these curlies, maybe if I said, you know, foo, you have to find between two to three instances of that first (UNKNOWN) matched here. Or I could change that, I'd say something like five and now I've extended that out and matched all five of those. Right, so if you're not seeing how you might use this yet, we're gonna begin. We're gonna go into some other patterns here in a second, and I think you'll begin to see that. And just a note that the ending curly brace by itself is not a special character. It's only a special character when used in conjunction with that beginning curly brace, just like the opening and closing square brackets. So that's ten of 12. Alright, so we got two left. The next special character that we have are the opening and closing parentheses. This allows us to create those sub patterns or group that I mentioned earlier.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And I really like the example of trying to match both the American English and the UK English spelling of theater. So we, in the United States we spell it t-h-e-a-t-e-r, in UK they spell a t-h-e-a-t-r-e. And if we wanted to match both, well, you know, it'd be kind of hard. If I had, you know, I could do e question r and that gets closed, then I put another e and r but that's kind of messy. So instead what I can do is I can say, hey, I need a sub-pattern or a group and I wanna find e, r or use that alternator and find r, e. Now notice I'm matching theater, theatre. Or we could do something like maybe I want to find dish or dishes. And now I could add a quantifier and say, alright, find dish and then find es zero or one time and sure enough, I'm matching dish or dishes. Makes sense? Hopefully so. Sorry, I can't see anybody, so I'm hoping so. Alright, the last set of special characters that we have access to are the open and closing parentheses and these allow us to create capturing groups.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So if you're listening in, I've got an animation of Rudy Huxtable, who is about four or five years old. She's smacking herself in the forehead and saying, "not again". Well it's not quite as bad. All groups by default are capturing groups. And what I mean by a capturing group is when you create a group in these little sub patterns, the regular expression engine is going to hold on to that match in memory, allowing you to access it again later on. Now we access them in the order that they were created. So if we've got group one, group two, group three, then we match, we access them ordinally. So we access group one, group two, group three, etc. This allows us to do things with the group. So if you remember back earlier to my example of the phone numbers. Well, I created groups where I matched on digits and then later access those matches, those captured sub patterns to recreate the string. So if I, went too far, there we go. So if I come back in here, maybe I'm gonna match foo and bar.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Well, if I come in to maybe substitution, I can say, "hey, I want you to replace what, where I matched, I want you to replace it with dash dash dollar one. And depending on the regular expression engine, how you access that group will depend. In this case, it uses the dollar sign plus the ordinal position to access it. And so now I've matched on bar, it captured the bar and now I'm replacing it with dash dash, then the captured piece, dash dash. Hopefully this makes sense. We're gonna use all of these again in just a second. We're gonna use all these special characters to play our game. So here are the 12 special characters. Normally, in a live demonstration of this, I would do a pop quiz and quiz you on these. Instead, I'm gonna go back over them real fast and kind of give you a summary. So the backslashes are, excuse me, is that a (UNKNOWN). It's our escape character. It tells the regular expression engine that the next character that follows to not use its regular meaning, but use its alternate meaning.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>The caret symbol by itself is an anchor that tells the regular expression engine the pattern must be at the beginning of a string or line. The dollar sign is also an anchor, but it says match to the end of a string or a line. Then we have the square bracket, which begins a character class where we're gonna tell the regular expression you wanna match one of the characters inside the character class. The caret symbol used inside the character class negates the character class. The dot then stands for any single literal character except for new lines. The pipe creates an alternation where we're telling the regular expression engine, I want you to find one of two things. The question mark is a quantifier where it says, I want you to match the previous token zero or one time, the asterisks zero to infinity, the plus, one to infinity. Or if we need more fine grained control, we've got the curly brace where we can designate a minimum and maximum number of repetitions (UNKNOWN). And then we've got the opening closing parentheses that allows us to create groups.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And not only can we create sub patterns in those groups, we can re-access that found information from those groups as capture groups. Alright. That's all. (UNKNOWN) I take a big, deep breath, OK. Cause I got one more bonus for you. This bonus is more advanced. The idea here is if you don't understand it, it's totally OK. That is not the purpose. I want you to be exposed to this concept because, one, we're gonna use it in the game. But second, I want you to have it in the back of your mind. For the future if you're using a regular expression and it's not quite matching what you want and then you can think back, oh yeah, there was something that Paul talked about. Concept is called a look around. A look around are sometimes referred to as zero-length assertions. They don't necessarily match something. They don't create a group. It's not a sub pattern. It simply says, is something true or false? So they're kind of similar to the anchor. Does the pattern, is the pattern at the beginning of the line, is it at the end of the line?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So it's similar to that. There are two main types. There's a look ahead and a look behind. So we can say, "hey, from where I am, regular expression engine, I want you to look ahead into the string and see if something is positive or isn't negative there, or I want you to start, from where I am in the pattern. I want you to look behind me from where you've matched and see if something is or isn't there." Now, if you think back to the example I did earlier of the wolves, right. I wanted to find brown wolves and gray wolves or even the word wolf, but not red. That was an example of a negative look behind. So I want you to find the word wolf, and then I want you to look behind and make sure that it did not, it was not preceded by the word red. Now, if it's still a little fuzzy, that's OK. It took me quite a while to kind of grasp this concept. And what finally did it for me was I had a situation where I needed to match the letter q in words where it was not followed by u. Now we have some tools available to us already from what we've just learned, right.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>How do we create something that says don't find this thing? Well we use a character, a negated character class. So I could say, OK, I wanna find a q and then I want you to find something that's not a u. And that gets us close, right. I've got qwerty, there's no u there, qinter, no u, tariqat. But notice it didn't match Iraq because the character has to match, excuse me, the character class has to match one, at least one literal character from the group. And there isn't anything after that q. So it didn't match Iraq. Also notice that it's matching that second letter. And I just wanna match the q in the word, right? So this is where a negative lookahead comes in. I'm saying I want you to find a q and then I want you to stop. And then I want you to tell me, I want you to look ahead and tell Me if the next character is a u or is it not a U. And I only wanna match those that are not a u. We create look arounds using the parentheses. So again, it's that changing of what these things stand for.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>We create a look around then by using the question mark inside and I say creating negative lookahead using the exclamation and then say don't find a u or make sure that u does not follow. And notice now I've got q in qwerty, q in qintars, tariqat, cinqs and Iraq. Alright, hopefully this is making a little bit of sense because we are gonna need it for the game. The game is we're gonna play Wordle. If you've not played Wordle, I explain it in just a second. And it's not to solve the wordle, although we are going to solve the wordle, the goal of what we're going to do is to try to build a regular expression that takes us from 600,000 words in the English dictionary down to a very small collection that would actually solve the puzzle. So we're solving the wordle. Now, normally in a live demonstration, I would have you and you only build the regular expression. I wouldn't touch it at all, you'd have to build it. But in this case, I'm just gonna have to walk you through the steps. Hopefully it's making, its gonna make sense.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So I'm gonna bring up Wordle. I've got it down here somewhere. There it is. Alright, if you have never played Wordle before, we are trying to guess a five letter word in (UNKNOWN) math. So it's all, the case doesn't matter, but it's not gonna be proper nouns. It's all lowercase, five letter words. If we guess the word and I'll apologize, I'm colorblind. So I don't know if this is orange or green. It's, feel free to laugh at me, that's totally OK. But if it's this color, that means the letter is in the right location for the word. If it is blue, that means the letter is used in the word but not in that position. And if it's gray, it means that letter is nowhere in that word. Alright. If you're following along, in my repo, I've got a file called (UNKNOWN). It, excuse me. It contains a collection, a whole bunch of, I think 13,000 something words that we can use to guess inside Wordle. But let's pretend for a moment that we didn't have this list. This was actually 600,000. We already have the tools from what we've seen, available to limit that selection, that 600,000 down to only five letter lowercase words.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So the first thing we always wanna do is we always wanna make sure we have anchors. And in this case, I wanna capture the group so that I can display it down here. And we know that we only want lowercase alpha characters. So I could create a character class of a through z and I know I need exactly five of those. So, you already have all the tools you need to do 600,000 down to, if you'll notice 12,971. So you've already limited it using a regular expression all those words down to a much smaller collection. Alright, so let's start the puzzle. Oops, I went to the wrong one, there we go. In fact, I'm gonna minimize this window temporarily so we can flip back and forth much easier. OK, so I usually start with the word audio. I start with the word audio cause that knocks out a-u-i and o, just leaving me an e just to kind of give me some idea of how I need to adjust the regular expression. So we can see, alright. I don't the letters a, u, d and i are not used in the word at all. The letter o is used in the word and it's the very last character.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So, right off the bat, I can come back to my regular expression. And I know the last character is an o. No matches, alright, cause I didn't tell it how many, all we know we need four characters before it. There we go, we got 389. But we also know that it should not be a, u, d or i. And we use that character class for a, u, d and i, we negate it. And now we've gone from 600,000 to 13,000 to 110 matches in one guess, two regular expressions. This is usually where there's a big round of applause and cheers and everybody like, wow, that's amazing. Alright, so we now need to guess a second word to see how we can limit this even more. So I'm just gonna grab the first one, Bento. So I'm gonna go b,e,n, oops. I think I hit a space t and o, and let's see what happens. OK, so now we know we don't have b or n. So I'm gonna go ahead and add that into the negated character class cause we know we don't have those. And then I know the first, or is that the second one is an e, so I'm gonna say we don't need four them anymore.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>We know the second one is an e then I'll replicate not a, u, d, i, b or n. So we have one, two, three and four and we know the fourth character is not a t, but the t is used. So I'm gonna do (UNKNOWN) three and then I'm gonna say not a, u, d, i, b, n or t. Alright, so we've gone from 600,000 to 13,000 to 110 to 21. But we also know that the t has to be there somewhere. So if you think back to what I just showed you with the look arounds, I could say I want you to look ahead, that's the question input. And I want you to make sure that a t is used in the word somewhere. So this is saying look forward into the pattern and ensure that a t is somewhere in the five letter word. And now we're down to five matches. So we've had two word guesses, we've built three regular expressions, and we've already gone from 600,000 to five. So now we're down to, I've never heard of the word (UNKNOWN). I'm gonna guess tempo, t-e-m-p-o. Oh, OK, so we know we still have a t. We now know the third one. We can't have a p.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>We know the third one can't be an m so I could go add the p to all of them. Although at this point it's pretty clear on what the word is gonna be. And then we said the third one can't be an m. So now we're down to metho, metro or retro. So I'm gonna try metro, m-e-t-r-o. And we solved it. OK, in what? Four guesses. Cool, alright. So, there's applause I hear. (UNKNOWN) perfect. So, hopefully you can see and again, this is a real, doing this wordle is a really good way of forcing yourself to see the information you have and adjust the regular expression to find the matches that you want. So, if I can come back in here real quick, where is, there's mine. SO, if you (UNKNOWN). So if you liked that and I hope you did and you wanna try this on your own, there are multiple wordle clones and I would encourage you to try that. You know, grab this dictionary collection of words, try to build a regular expression that limits that number and go over and over it again. Another great one is, there is this crossword puzzle.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And you'll have access both to this presentation deck so you don't have to copy these down. But this is another great puzzle where you're given regular expressions in a crossword and you have to try to guess the word based on what the regular expression is. So another great way to kind of build up your regular expression skills. Now, I wanna pause for just a moment and acknowledge some resources that are phenomenal and have been extremely beneficial to my own learning, and that is regular expressions info and rexegg, I can never say that, rexegg.com, both phenomenal sources for learning regular expressions as well as Carl Alexander's site and he has an article on beginner's guide to regular expressions. All phenomenal sources, I would not be able to do nearly as much regular expressions as I could without these sources. And I think we have some time for questions. As we're getting those questions up and over to me, I'll put this up here. I'm odd in that I love regular expressions. I really do.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>I think they're fun to do, I see them as a giant puzzle. So feel free to reach out to me at any point, if you have questions, you know. If you have something about the presentation that you're still struggling with or you're trying to write a regular expression, don't hesitate to reach out to me and ask. I'd be happy to help out. So do we have some questions? I'm in the YouTube chat here, let me check. Not in the YouTube chat just yet, but if you are listening in there, feel free to post in that chat and I'll read it off. Anybody in the room here have a question?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>What are some other uses of regular expressions besides solving wordle?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>The question was what are some other uses for regular expressions beyond solving wordle?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>PAUL GILZOW:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah, so a big one that you'll probably run into, especially in the Drupal space, are rewrite and redirect rules inside of either (UNKNOWN). You know, most of our sites are living and they change a lot and we have old URLs that get removed or they get moved somewhere else or you know, redirects have to change. And so you end up having to do quite a bit of regex inside of there. I've used (UNKNOWN) in work docs, excel sheets, databases. I do a ton of pattern matching for forms to make sure the data is the way I need it. I've done a lot of data manipulation, kind of like I showed you with the phone number where I've got data coming in that's not clean and I use regular expressions to clean up that data. So I guess, you don't wanna use it for everything again. But there are a plethora of areas where it can be an extremely beneficial tool to have access to.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Explain the difference between a (UNKNOWN).</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>The question was, could you explain the difference between a capturing group and a non capturing group? And when would you wanna use one versus the other?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>PAUL GILZOW:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>So to do a non capture group, why am I not looking in my screen? Oh, I was as on zoom, OK. So to do a non capture group pattern is question colon and that just tells the regex expression engine don't store this into memory. You would use it when you need to find, you need to have a sub pattern but you don't necessarily need to capture the information. Because when you capture information, it is storing it in memory and regular expressions, especially when you've got, you know, 600,000, a million lines of text is trying to parse through, that's a lot to try to hold into memory if you have a ton of groups as well. So, if you don't need the information later on, it's a good idea to make those groups non capturing just so it's not trying to hold on to that information. In terms of when, you know, back to the (UNKNOWN) access rules, it could be that you're saying, you know, I wanna match, when the request comes in for either dub dub dub or non dub dub dub, you know, maybe the dub dub dub doesn't matter, but you need to have it as a sub pattern.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So you can say this is a non capturing group. I don't, I'm not gonna do anything with it, I just need it as a sub pattern. Hopefully that answered the question.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>(UNKNOWN)</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>PAUL GILZOW:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Good. Good, OK.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>SPEAKER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Anyone else? It looks like that's it for questions in the room here.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>PAUL GILZOW:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Alright. Well, thank you very much. Again, don't hesitate to reach out to me if you've got questions. I've loved talking about this stuff.</span></span></span></span></span></span></p></div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-b0f596049f53e9da48554f7a891da5ca9003fc1eb0eb9e9578d6ed97b9490efa">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/6889">https://mid.camp/6889</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+  <section class="map-banner">
+      <div class="views-element-container block block-views block-views-blockevent-venue-block-1" id="block-hatter-views-block-event-venue-block-1">
+  
+    
+      <div><div class="container view view-event-venue view-id-event_venue view-display-id-block_1 js-view-dom-id-f80a823ff8ea40da9f461e21c5e1a08a8da69f2109b117c2adc5619f13822f56">
+  
+    
+      
+      <div class="view-content">
+          <div class="views-row">
+
+
+<div class="map-overlay">
+  <span class="map__label">Location</span>
+  <h2 class="map__title"><span class="field field--name-title field--type-string field--label-hidden">DePaul University - Lincoln Park Student Center</span>
+</h2>
+  
+            <div class="field field--name-field-address field--type-address field--label-hidden field__item"><p class="map__address" translate="no">
+          2250 N Sheffield Ave. <br>
+            Chicago, IL 60614<br>
+  </p>
+</div>
+      
+  <a href="../../about/venue.html" class="cta-link--yellow">Learn more  <span class="cta-arrow"></span></a>
+</div>
+<div id='map' class="map"></div>
+</div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-d0e1c03acb382dc6aacdd38f6867dfdafaff99f2abb4f76d40149842b2e5da5f">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/bounteous.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2023-01/BounteousIndigoSmall.png" width="403" height="67" alt="Bounteous logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/debug-academy.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2023-02/Final%20Logo-in-color.png" width="1010" height="864" alt="Debug Academy logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/evolving-web.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2023-04/evolvingweb%20(3).png" width="1517" height="371" alt="Evolving Web" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#8fe6e1e9e0cfe2e6ebeceee2ffa1e0fde8"><span class="__cf_email__" data-cfemail="bad3d4dcd5fad7d3ded9dbd7ca94d5c8dd">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/6889","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"ajaxTrustedUrl":{"form_action_p_pvdeGsVG5zNF_XLGPTvYSKCf43t8qZYSwcfZl2uzM":true},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_U1jmi93nTJG2lPAKzexs4tMZWFR2YMMoIoiPckW421U.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJx1yksKgDAMRdENabskSfUZK2kjTfCzeyfiQHB04XBZlQUDVZLL82iRP9At5I4WWTSR9OsLhbakZ3cgzdpKfBogKKgeJjhlsWC043cqMCPGDa0vM_I"></script>
+<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.js"></script>
+<script src="../../sites/default/files/js/js_RAkHj2z9vY4q-6RsYuiXkqPbxgsRWrLsVQRz36mKiGA.js%3Fscope=footer&amp;delta=2&amp;language=en&amp;theme=hatter&amp;include=eJx1yksKgDAMRdENabskSfUZK2kjTfCzeyfiQHB04XBZlQUDVZLL82iRP9At5I4WWTSR9OsLhbakZ3cgzdpKfBogKKgeJjhlsWC043cqMCPGDa0vM_I"></script>
+
+  </body>
+</html>

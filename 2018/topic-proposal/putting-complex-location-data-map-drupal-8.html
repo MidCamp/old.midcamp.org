@@ -1,0 +1,2563 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="Migrating and displaying location data can present many painful issues, and they can emerge during every phase of a project. We will discuss ways to import and process different types of location data from multiple sources, how to geocode and prepare the data for page display, and how to send it to mobile apps via Drupal 8’s RESTful API. This session will cover:" />
+<link rel="canonical" href="putting-complex-location-data-map-drupal-8.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Putting Complex Location Data on the Map in Drupal 8 | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Putting Complex Location Data on the Map in Drupal 8 | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_Qoyy92GHt9RyGOt8N3WS_9HRsJcJBywJ2IhXudzvST4.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJw9jWsOgzAMgy9U1iOhtDWsUkJQ3bGx0w-B2B_r80NyViH3mIQI-eKp6p8NpMzg7RcvR-cNBzUTrV-Ep_SOFmf1JDpk8k5M1uSfwJ0ddl1stcBHWEIZpwotsYGrL6wbhrM8JngznvowLy_.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_QAC1R0aFoF1mIVQtLAaSE24B2iwnT2ZCa0cZDeZsPV0.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJw9jWsOgzAMgy9U1iOhtDWsUkJQ3bGx0w-B2B_r80NyViH3mIQI-eKp6p8NpMzg7RcvR-cNBzUTrV-Ep_SOFmf1JDpk8k5M1uSfwJ0ddl1stcBHWEIZpwotsYGrL6wbhrM8JngznvowLy_.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJw9jWsOgzAMgy9U1iOhtDWsUkJQ3bGx0w-B2B_r80NyViH3mIQI-eKp6p8NpMzg7RcvR-cNBzUTrV-Ep_SOFmf1JDpk8k5M1uSfwJ0ddl1stcBHWEIZpwotsYGrL6wbhrM8JngznvowLy_.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJw9jWsOgzAMgy9U1iOhtDWsUkJQ3bGx0w-B2B_r80NyViH3mIQI-eKp6p8NpMzg7RcvR-cNBzUTrV-Ep_SOFmf1JDpk8k5M1uSfwJ0ddl1stcBHWEIZpwotsYGrL6wbhrM8JngznvowLy_.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+<link rel="stylesheet" media="all" href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.css" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="putting-complex-location-data-map-drupal-8.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-hatter-main-menu-menu" id="block-hatter-main-menu" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-main-menu-menu">Midcamp 2018 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" data-drupal-link-system-path="node/2">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--venue">
+        <a href="../../about/venue.html" title="Venue" data-drupal-link-system-path="node/7048">Venue</a>
+            </li>
+          <li class="primary-nav__sublist-item item--travel">
+        <a href="../travel.html" title="Travel and Accommodations" data-drupal-link-system-path="node/65">Travel</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../lunch.html" title="Lunch Near Campus" data-drupal-link-system-path="node/162">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2018/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" title="Meet the Team!" data-drupal-link-system-path="2018/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../../2023/about/lunch-options.html" data-drupal-link-system-path="node/6970">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--accommodations">
+        <a href="../../2023/about/accommodations.html" data-drupal-link-system-path="node/6948">Accommodations</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" data-drupal-link-system-path="node/9">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--become-a-sponsor">
+        <a href="../become-a-sponsor.html" title="Become a Sponsor" data-drupal-link-system-path="node/7">Become a Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../../jobs.html" title="Jobs" data-drupal-link-system-path="jobs">Jobs</a>
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" data-drupal-link-system-path="node/128">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--training-thu">
+        <a href="../training.html" data-drupal-link-system-path="node/195">Training (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--bofs-fri-sat">
+        <a href="../birds-feather-bofs.html" title="Birds of a Feather (BoFs)" data-drupal-link-system-path="node/167">BoFs (Fri/Sat)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-fri">
+        <a href="../schedule/friday.html" title="Friday Sessions" data-drupal-link-system-path="2018/schedule/friday">Sessions (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-sat">
+        <a href="../schedule/saturday.html" title="Saturday Sessions" data-drupal-link-system-path="2018/schedule/saturday">Sessions (Sat)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sprints-sun">
+        <a href="../../sprints.html" title="Sprints">Sprints (Sun)</a>
+            </li>
+  </ul>
+
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2018.html" hreflang="en">MidCamp 2018</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Putting Complex Location Data on the Map in Drupal 8</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="70" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2018-03-10T16:15:00Z" class="datetime">Saturday, 10:15 am CST</time>
+ - <time datetime="2018-03-10T17:15:00Z" class="datetime">Saturday, 11:15 am CST</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-83" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-name field--type-string field--label-hidden field__item">Room 324</div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>Migrating and displaying location data can present many painful issues, and they can emerge during every phase of a project. We will discuss ways to import and process different types of location data from multiple sources, how to geocode and prepare the data for page display, and how to send it to mobile apps via Drupal 8’s RESTful API.</p>
+
+<p><strong>This session will cover:</strong></p>
+
+<ul>
+	<li>Using Migrate, Migrate Tools, and custom plugins to migrate data from different types of sources.</li>
+	<li>Setting up daily imports using the Migrate and Migrate Tools modules along with custom plugins.</li>
+	<li>Using the Geolocation Field module, Geocoder module, and custom functions to prepare data for page display.</li>
+	<li>Creating a RESTful service to send processed location data to mobile apps.</li>
+</ul>
+
+<p>&nbsp;<br>
+<strong>This session is for:</strong></p>
+
+<ul>
+	<li>Developers on projects that make use of location data and/or complex migrations.</li>
+	<li>Site architects that are interested in complex migrations and/or managing location data.</li>
+	<li>Developers or Site architects that are interested in serving location data to mobile apps.</li>
+</ul></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/h1WFy1S_J-g?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-presenter-slides field--type-file field--label-above">
+    <div class="field__label">Presenter Slides</div>
+              <div class="field__item">
+<span class="file file--mime-application-pdf file--application-pdf"> <a href="../../sites/default/files/2018-03/Complex-Location-Data-MidCamp.pdf" type="application/pdf">Complex-Location-Data-MidCamp.pdf</a></span>
+</div>
+          </div>
+
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Matthew Messmer</h4>
+
+      Drupal Architect
+
+
+          @
+              <a href="https://www.claritypartners.com/">Clarity Partners</a>
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p>I am an Acquia Certified Drupal Grand Master and&nbsp;I make Drupal websites for clients around the world.</p>
+
+<p>I enjoy cooking, baking, and gardening.&nbsp;</p></div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2018-02/BpTtfMDCQAAo0AT.jpg%3Fitok=33uiMqik" width="165" height="220" alt="Matthew Messmer" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+          <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Robert Shell</h4>
+
+      Senior Programmer Analyst
+
+
+          @
+              <a href="http://www.adtalem.com">Adtalem Global Education</a>
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p>I have over twenty years of experience in web development, interface design, digital marketing, and user experience. I enjoy developing exciting and effective solutions for my clients. </p>
+<p>I specialize in Drupal and PHP development, web application design, collaboration software, and interactive communities.</p>
+<p>I look forward to the things that I can learn and invent in each new project.</p>
+</div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2018-01/18157994_10154581147496274_1076046316008694022_n.jpg%3Fitok=5CxZW3Cb" width="220" height="220" alt="Bob" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Back-End</div>
+              </div>
+      </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p>and everyone the locations down there</p>
+
+<p>okay</p>
+
+<p>you're not here for location data and</p>
+
+<p>your plate you're in the wrong place</p>
+
+<p>he's socially awkward right right so</p>
+
+<p>we're gonna talk a little bit about</p>
+
+<p>background and requirements of a project</p>
+
+<p>we did with the Chicago Park District is</p>
+
+<p>this presentation is really going to be</p>
+
+<p>a case study just so we can show some</p>
+
+<p>practical examples we're going to talk</p>
+
+<p>about modules we use for contributed and</p>
+
+<p>custom modules and then we're going to</p>
+
+<p>talk about importing data from different</p>
+
+<p>kinds of sources processing the data and</p>
+
+<p>formatting it for display and this</p>
+
+<p>displays we used and then making the</p>
+
+<p>location data available for other places</p>
+
+<p>to consume and then problem some</p>
+
+<p>questions we will hand out the EM so so</p>
+
+<p>I guess I'm first up yeah</p>
+
+<p>my name's Matthew Mesmer I'm the</p>
+
+<p>director of international business at</p>
+
+<p>General in Tokyo Japan that's a fancy</p>
+
+<p>way to say that I'm like the lead Drupal</p>
+
+<p>developer over there we partnered with</p>
+
+<p>Bob's company clarity on this project</p>
+
+<p>with Chicago Park District</p>
+
+<p>yes named Robert shelf most people call</p>
+
+<p>me Bob I mean touching my cousin's call</p>
+
+<p>me Bobby I've been drilling for over</p>
+
+<p>nine years started out just as the kind</p>
+
+<p>of thing to use that I didn't really</p>
+
+<p>understand and into a hobby and now</p>
+
+<p>that's what I do</p>
+
+<p>yeah so this project that we got into</p>
+
+<p>this location data with is the Chicago</p>
+
+<p>Park District's new website they have</p>
+
+<p><br>
+facility locations within it every</p>
+
+<p>statue fountain Fieldhouse is a location</p>
+
+<p>so we had a lot of data photos ours</p>
+
+<p>everything pertaining to a location the</p>
+
+<p>park district's pretty huge it's the</p>
+
+<p>whole city 26 miles 23 swimming beaches</p>
+
+<p>just so much stuff and they have events</p>
+
+<p>and programs for every season and there</p>
+
+<p>are thousands of those as well and they</p>
+
+<p>all take place at locations so it's not</p>
+
+<p>just this location data is going to be</p>
+
+<p>on a map somewhere out of page it's used</p>
+
+<p>by things like programs and events if</p>
+
+<p>you wanted to check in a South Chicago</p>
+
+<p>Park District comm they have lots of</p>
+
+<p>page views and the popular content aisle</p>
+
+<p>includes location data programs head</p>
+
+<p>locations the practice themselves and</p>
+
+<p>the events ends even schedules like for</p>
+
+<p>pool schedules when you can register for</p>
+
+<p>for swimming they're all at a pool so</p>
+
+<p>it's highly location based the crank</p>
+
+<p>requirements we had</p>
+
+<p>we're to import data from multiple</p>
+
+<p>sources because the program data sources</p>
+
+<p>was an unsupported soap service it's</p>
+
+<p>kind of like an end-of-life and it might</p>
+
+<p>not have even ever been something that</p>
+
+<p>was for the general public so we kind of</p>
+
+<p>had this dead and we had to work with</p>
+
+<p>that we couldn't call up and say can you</p>
+
+<p>change this voice hey there England we</p>
+
+<p>also had to add supplemental information</p>
+
+<p>like the hours and descriptions and</p>
+
+<p>photos from the old website and we used</p>
+
+<p>CSV files that were exported from mobile</p>
+
+<p>websites database to match up with the</p>
+
+<p>basic parts of data that we had an</p>
+
+<p>dependent we also had to do daily</p>
+
+<p>updates for those programs and events</p>
+
+<p>and we kind of turned migrated into a</p>
+
+<p>daily an import we'll have those new</p>
+
+<p>programs and events that's going to</p>
+
+<p>match up with the location data then</p>
+
+<p>after had all that in the integer ball</p>
+
+<p>it just like this is the parts of</p>
+
+<p>facilities so people can find the ones</p>
+
+<p>that are by name or closest to them then</p>
+
+<p>the maps for those lists either side by</p>
+
+<p>side or just maps on the department</p>
+
+<p>cells with all the facilities within the</p>
+
+<p>park and then of course I'm a detail</p>
+
+<p>pages yet</p>
+
+<p>third requirement was they have a mobile</p>
+
+<p>app for events called my shy parks and</p>
+
+<p>you can check-in at parks for points and</p>
+
+<p>find events at the parks with that app</p>
+
+<p>so we had to supply feeds for that app</p>
+
+<p>to consume so we do a lot with this</p>
+
+<p>location data and it was very</p>
+
+<p>challenging fun and interesting and we</p>
+
+<p>might one mention that for various</p>
+
+<p>reasons the app the phone app was unable</p>
+
+<p>to be updated to match any changes in</p>
+
+<p>the RESTful API so the REST API that we</p>
+
+<p>had to create for the new Drupal 8 site</p>
+
+<p>needed to match exactly like character</p>
+
+<p>for character the formatting of the old</p>
+
+<p>API so we had constraints on both ends</p>
+
+<p>[Music]</p>
+
+<p>so modules that we used and turned into</p>
+
+<p>our own geolocation and geo coder</p>
+
+<p>migrated chosen Mike grade class for our</p>
+
+<p>crazy imports and then ultimate crime to</p>
+
+<p>do those daily reports of course they</p>
+
+<p>used the core modules migrate and</p>
+
+<p>restful web services and we made quite a</p>
+
+<p>bit of a number of custom modules one</p>
+
+<p>mainland for the imports have done some</p>
+
+<p>sub modules so we could run a craft for</p>
+
+<p>each and then custom blocks permit</p>
+
+<p>displays we had a couple different</p>
+
+<p>badges plays that were required custom</p>
+
+<p>field for matters we're in a module as</p>
+
+<p>well and the feeds so importing data the</p>
+
+<p>dynamic we have dynamic and Static data</p>
+
+<p>that processing is the next step for</p>
+
+<p>turning that Mary into the proper or</p>
+
+<p>getting it mapped into Drupal formatting</p>
+
+<p>make sure that it's able to put into</p>
+
+<p>that field this gets kind of picky</p>
+
+<p>so dynamic sources we for this project</p>
+
+<p>soap service on the rest services JSON</p>
+
+<p>thieves any other service dynamic</p>
+
+<p>service static service documents usually</p>
+
+<p>anything that you import from a file so</p>
+
+<p>the dynamic sources you often have</p>
+
+<p>little or no control over the data that</p>
+
+<p>you're receiving like we were talking</p>
+
+<p>about sometimes you can get a chance to</p>
+
+<p>you to your needs but it's not often</p>
+
+<p>migrate met drupal migrate module</p>
+
+<p>usually assumes that your mapping ones</p>
+
+<p>are in fields but you may need to</p>
+
+<p>combine five fields from a source into</p>
+
+<p>one address field or the other way</p>
+
+<p>around</p>
+
+<p>so also dynamic sources sometimes they</p>
+
+<p>go down you problems at times depending</p>
+
+<p>on your account status so you have to</p>
+
+<p>make sure that you're paying attention</p>
+
+<p>and everything is always up dad is</p>
+
+<p>always current though if you have a</p>
+
+<p>dynamic source and the processes are</p>
+
+<p>automated so it's awesome but the</p>
+
+<p>challenges are getting the correct data</p>
+
+<p>and getting a properly formatted</p>
+
+<p>so this is an example of the my great</p>
+
+<p>source plugin that we wrote for the soap</p>
+
+<p>call so in the the migrant module</p>
+
+<p>provides a number of source plugins a</p>
+
+<p>lot around about surrounding like</p>
+
+<p>database calls to old Drupal websites or</p>
+
+<p>like importing like CSV files but for</p>
+
+<p>our purpose we needed to extend the one</p>
+
+<p>of the source plugins to make it work</p>
+
+<p>for the Chicago Park District no soap</p>
+
+<p>service we were needing to use so this</p>
+
+<p>makes a call to the soap service and</p>
+
+<p>retrieves the results that we're later</p>
+
+<p>able to parse through to add the data</p>
+
+<p>into Drupal and mark delay back there</p>
+
+<p>was very instrumental in helping us get</p>
+
+<p>this going</p>
+
+<p>thanks a lot just wanted to give him the</p>
+
+<p>proper credit there so static sources</p>
+
+<p>are good because you have complete</p>
+
+<p>control over your data you can preform</p>
+
+<p>at all your addresses and text on amis</p>
+
+<p>and everything to what the duplicates</p>
+
+<p>need and they're all once a month if you</p>
+
+<p>desire they can handle large imports</p>
+
+<p>because you're not using me over the</p>
+
+<p>internet connection we're just having a</p>
+
+<p>challenge of that is you might have to</p>
+
+<p>do an export from your vendor every time</p>
+
+<p>you do a different iteration of your dev</p>
+
+<p>site or like a couple hours before going</p>
+
+<p>away to get that data to be grant so in</p>
+
+<p>in my experience I've found that having</p>
+
+<p>the static sources like a like a CSV</p>
+
+<p>file or an Excel spreadsheet that you're</p>
+
+<p>importing data from this is really good</p>
+
+<p>for like a one-time import where you're</p>
+
+<p>like migrating a site and you just need</p>
+
+<p>to get the old data in once and you're</p>
+
+<p>not going to run it again whereas if you</p>
+
+<p>go to the trouble of setting up the the</p>
+
+<p>soap call or importing a JSON feed</p>
+
+<p>that's really great if you need to run</p>
+
+<p>that on like a daily basis to keep</p>
+
+<p>getting the new information</p>
+
+<p>and that's beautiful yes so this is an</p>
+
+<p>example of just like a CSV or Excel</p>
+
+<p>spreadsheet where you just got all your</p>
+
+<p>your data in there you've got like a key</p>
+
+<p>value on the left and you got your like</p>
+
+<p>address city state and then this just</p>
+
+<p>gets parsed and can be added into Drupal</p>
+
+<p>and the key value is a little weird but</p>
+
+<p>that's because a lot of the park names</p>
+
+<p>of the X of the park name column they</p>
+
+<p>had weird characters and apostrophes and</p>
+
+<p>things that databases don't like so we</p>
+
+<p>actually at one point just substituted</p>
+
+<p>that Park names with one of their ID</p>
+
+<p>from the from the service and preceded</p>
+
+<p>by the money app times that we tied in</p>
+
+<p>for the letters</p>
+
+<p>all right so processing migrate much has</p>
+
+<p>many different methods available for</p>
+
+<p>processing your incoming data you can</p>
+
+<p>use dig for matters there are callbacks</p>
+
+<p>for any PHP function makes it very handy</p>
+
+<p>there's not much documentation on that</p>
+
+<p>though so it takes a lot of reading and</p>
+
+<p>a lot of guessing to get it to work but</p>
+
+<p>then once you get paying on it it is</p>
+
+<p>pretty awesome you can map your fields</p>
+
+<p>to one of our many metadata to one or</p>
+
+<p>many fields like in the ED s as an</p>
+
+<p>example where you might have street</p>
+
+<p>address zip code a bunch of different</p>
+
+<p>fields that need to go into one address</p>
+
+<p>field and you can look up data that</p>
+
+<p>you're importing i'm by using the</p>
+
+<p>migrant make migrate map table from</p>
+
+<p>another important you want to elaborate</p>
+
+<p>on that a little bit sure so just this a</p>
+
+<p>little bit of background here to like</p>
+
+<p>the the migrant module your migrations</p>
+
+<p>we sort of split into two stages you</p>
+
+<p>have the you have the source where you</p>
+
+<p>get the data and then you process the</p>
+
+<p>data so no matter what method you've</p>
+
+<p>used to get the source data whether it's</p>
+
+<p>from a CSV file or from the so call or</p>
+
+<p>XML document once you've gotten that</p>
+
+<p>data split into different rows then you</p>
+
+<p>process the data and add it into Drupal</p>
+
+<p>so when it does that you've got a like a</p>
+
+<p>key value for identifying like a unique</p>
+
+<p>identifier for that object and this</p>
+
+<p>isn't the Drupal an ID or T ID of the</p>
+
+<p>content you're creating but it can be</p>
+
+<p>like a legacy ID or like whatever</p>
+
+<p>whatever you specify in your source</p>
+
+<p>plugin and once you have this set up the</p>
+
+<p>migrate module takes care of creating a</p>
+
+<p>map table of the source ID to the newly</p>
+
+<p>created Drupal ID whether it's an ID or</p>
+
+<p>the</p>
+
+<p>idea or whatever it is of your content</p>
+
+<p>you're creating so this is very nice</p>
+
+<p>because in the migrant module</p>
+
+<p>automatically keeps track for you of all</p>
+
+<p>the content that you've already imported</p>
+
+<p>you don't have to worry about importing</p>
+
+<p>something twice or getting duplicates</p>
+
+<p>because it's already taken care of that</p>
+
+<p>for you and it stores it in a table so</p>
+
+<p>you're able to do a lookup through a</p>
+
+<p>sequel query later on where maybe in</p>
+
+<p>another process or another part of the</p>
+
+<p>website you know the original ID of the</p>
+
+<p>content and you want to get the the new</p>
+
+<p>Drupal ID you can perform a quick look</p>
+
+<p>up on that and get that really easily</p>
+
+<p>yeah as an example we had to do that</p>
+
+<p>with category taxonomy terms in the old</p>
+
+<p>system it had the old system ID and in</p>
+
+<p>Drupal it has its term ID so we had to</p>
+
+<p>match data just on the string of text</p>
+
+<p>for that term so we didn't yeah we</p>
+
+<p>didn't have keys we just could match it</p>
+
+<p>by doing a database query for that and</p>
+
+<p>then properly hit a process also with</p>
+
+<p>taxonomy terms we had a lot of terms due</p>
+
+<p>to some disorganization of the previous</p>
+
+<p>system that were like had - in the</p>
+
+<p>middle they have kind of like a parent</p>
+
+<p>term before the - and then the actual</p>
+
+<p>term afterward and we were able to split</p>
+
+<p>that up into actually using the first</p>
+
+<p>term before the - to associate with a</p>
+
+<p>parent</p>
+
+<p>and then the use the one after the - of</p>
+
+<p>the job - yeah so in in some of the soap</p>
+
+<p>calls the parent and child terms would</p>
+
+<p>be returned in separate fields but in</p>
+
+<p>other so calls they would just be</p>
+
+<p>returned in one field with the two term</p>
+
+<p>names separated by a - they weren't even</p>
+
+<p>using the actual ID value so we had to</p>
+
+<p>do a lot of juggling with the data to</p>
+
+<p>split that up and look up the term ids</p>
+
+<p>based on the name instead of the old</p>
+
+<p>systems unique identifiers so all this</p>
+
+<p>kind of stuff can be done but it</p>
+
+<p>requires coding some like custom plugins</p>
+
+<p>for the migration module so that you you</p>
+
+<p>can get it all set up</p>
+
+<p>so this is an example of llamo file this</p>
+
+<p>is the configuration file for a</p>
+
+<p>migration you specify all the fields</p>
+
+<p>that you want to import from the old</p>
+
+<p>system and you match them up with the</p>
+
+<p>Drupal field names so the the fields and</p>
+
+<p>the old system are what you see on the</p>
+
+<p>left can you point to that blob under</p>
+
+<p>fields if this part here and then</p>
+
+<p>they're matched up with Drupal field</p>
+
+<p>names on the right and in some of these</p>
+
+<p>some of these circumstances it's just a</p>
+
+<p>simple one-to-one like data from the the</p>
+
+<p>so call directly into a Drupal field but</p>
+
+<p>other times like you'll see for field</p>
+
+<p>Chicago community we have to run this</p>
+
+<p>through another migration where the</p>
+
+<p>community terms are being created by a</p>
+
+<p>different migration and get the updated</p>
+
+<p>Drupal term IDs because the the so call</p>
+
+<p>that we're calling in this migration</p>
+
+<p>isn't returning of course the Drupal</p>
+
+<p>term IDs that it returns the old systems</p>
+
+<p>term IDs which then when the Chicago</p>
+
+<p>community terms were created by the</p>
+
+<p>other migration it stores the</p>
+
+<p>association of the original ID to the</p>
+
+<p>Drupal ID in the migrated map table</p>
+
+<p>any other insights here okay</p>
+
+<p>so formatting yeah we're going to kind</p>
+
+<p>of relate this to our modules here and</p>
+
+<p>rest field module I guess I just put</p>
+
+<p>that in modulus but it's it's a basic</p>
+
+<p>but crucial field it stores the basic</p>
+
+<p>location data and that's where each one</p>
+
+<p>of those pieces of the address lives</p>
+
+<p>that we can use to get coordinates and</p>
+
+<p>get things ready to be on a map the geo</p>
+
+<p>coder module calculates coordinates</p>
+
+<p>based on those address fields be a</p>
+
+<p>service like Google Maps or any of their</p>
+
+<p>of those geocoding services it's got</p>
+
+<p>like ten different services you can</p>
+
+<p>specify and then a geolocation module</p>
+
+<p>stores the coordinates in the database</p>
+
+<p>and allows you to actually select a</p>
+
+<p>place on a map there's a match selection</p>
+
+<p>part of the field and that's helpful</p>
+
+<p>especially for example of the Chicago</p>
+
+<p>Park District they're statues are in the</p>
+
+<p>middle of a field sometimes there's not</p>
+
+<p>an address and we don't want it to use</p>
+
+<p>the closest address because like like</p>
+
+<p>Linkin Park's eight miles long and the</p>
+
+<p>address is in the middle second not</p>
+
+<p>going to work so you can just click on</p>
+
+<p>the map and set the coordinates there</p>
+
+<p>and we are in the right place</p>
+
+<p>we also</p>
+
+<p>you want to talk about the tape</p>
+
+<p>customer trades Oh so we we created a</p>
+
+<p>custom module that supplied a trait to</p>
+
+<p>our different classes that gave some</p>
+
+<p>helper methods for calculating the</p>
+
+<p>distance between two points like - June</p>
+
+<p>- geo coordinate points or looking up</p>
+
+<p>taxonomy term parents based on the child</p>
+
+<p>terms things like that we also had</p>
+
+<p>polyline feel that needed just to store</p>
+
+<p>the boundaries of a part for the app so</p>
+
+<p>when people checked in to the part the</p>
+
+<p>half knows that they're in the park or</p>
+
+<p>not actually so they demanded points at</p>
+
+<p>this sitting at home</p>
+
+<p>yes I'm sorry I missed the geolocation</p>
+
+<p>seniors are going about moving</p>
+
+<p>so every time you do any important you</p>
+
+<p>have to like go through all the notes</p>
+
+<p>donut-shaped see the on import if the</p>
+
+<p>park has an address the geo coder module</p>
+
+<p>gets called automatically and generates</p>
+
+<p>GPS coordinates for the address that is</p>
+
+<p>given but well I think it's the next</p>
+
+<p>slide where we show when you're adding a</p>
+
+<p>note manually in Drupal there's an</p>
+
+<p>interface for both looking up the geo</p>
+
+<p>coordinates based on the address or</p>
+
+<p>clicking on the map to set the pin</p>
+
+<p>manually the challenge of all of this</p>
+
+<p>coordinate generation generation that</p>
+
+<p>does amount of data that we had for this</p>
+
+<p>project and any dart project would</p>
+
+<p>require paid geocoding because there's a</p>
+
+<p>lot so we used the Google API annotate</p>
+
+<p>account and it's still there doing some</p>
+
+<p>heavy dead racket</p>
+
+<p>during that time we would be each other</p>
+
+<p>so then you hit the free API call them</p>
+
+<p>it pretty quickly if you're dealing with</p>
+
+<p>a large amount of data yeah when we're</p>
+
+<p>doing our initial imports it</p>
+
+<p>yes you guys to talk more about that</p>
+
+<p>later a little bit yeah if you have any</p>
+
+<p>if we don't answer your question by the</p>
+
+<p>end please let us know</p>
+
+<p>it's just Latin long and then it also</p>
+
+<p>calculates some like sine and cosine</p>
+
+<p>things I don't quite understand that it</p>
+
+<p>uses to more quickly do distance based</p>
+
+<p>lookups does it like pre calculate some</p>
+
+<p>stuff but the polyline thing with the</p>
+
+<p>like the area part of it that's</p>
+
+<p>something where we had to store it in a</p>
+
+<p>text field and that was data that we</p>
+
+<p>imported from an external system in</p>
+
+<p>theory you could handle that and the</p>
+
+<p>custom function right the geolocation</p>
+
+<p>field doesn't support that so this is</p>
+
+<p>the the node edit form where we have the</p>
+
+<p>address field up at the top and then the</p>
+
+<p>map below that is the widget provided by</p>
+
+<p>the geolocation field and then in the</p>
+
+<p>background the geo coder module is you</p>
+
+<p>this forms like a link between the two</p>
+
+<p>fields so that when you type in an</p>
+
+<p>address in the address field and you</p>
+
+<p>click locate address on the map the geo</p>
+
+<p>coder module calls out to Google or</p>
+
+<p>whatever other service you've specified</p>
+
+<p>to get the GPS coordinates of the</p>
+
+<p>address and then enters those GPS</p>
+
+<p>coordinates into the geolocation field</p>
+
+<p>that's all that's all out of the box in</p>
+
+<p>addition to this you can put a pin on to</p>
+
+<p>the map manually like clicking it and</p>
+
+<p>that will store those GPS coordinates</p>
+
+<p>into the geolocation field and you can</p>
+
+<p>do this one of like two different ways</p>
+
+<p>you could manually enter an address and</p>
+
+<p>put the pin somewhere else that's</p>
+
+<p>unrelated to the address if like for</p>
+
+<p>example the park has a official address</p>
+
+<p>but you want the pin to be in the middle</p>
+
+<p>of the park instead of the like roadside</p>
+
+<p>location that the address would be</p>
+
+<p>indicating you can also click to put a</p>
+
+<p>pin and then there on the right there's</p>
+
+<p>the push to address button that will</p>
+
+<p>perform a reverse lookup where based on</p>
+
+<p>the GPS coordinates it tries to find the</p>
+
+<p>geo code or module will try to find the</p>
+
+<p>closest like street address to that pin</p>
+
+<p>this can work this is a little bit</p>
+
+<p>unreliable because if you like click in</p>
+
+<p>the middle of a big park and you try and</p>
+
+<p>look pushed to address it's it's a</p>
+
+<p>little dicey on where it actually finds</p>
+
+<p>the address so in those circumstances I</p>
+
+<p>think it was better usually to manually</p>
+
+<p>type that that wasn't always boss</p>
+
+<p>and then you can see at the bottom this</p>
+
+<p>is a an output from the database of the</p>
+
+<p>field provided by the geolocation module</p>
+
+<p>and you can see that the the geolocation</p>
+
+<p>module is just storing the like GPS</p>
+
+<p>coordinates in it and then these</p>
+
+<p>coordinates we'll be using later on to</p>
+
+<p>show the data in many different ways</p>
+
+<p>maybe or</p>
+
+<p>I don't believe so it just stores that</p>
+
+<p>as latitude and longitude so there are</p>
+
+<p>options with the module but we didn't</p>
+
+<p>really explored all of them since we</p>
+
+<p>didn't have the need but play around</p>
+
+<p>with it it's cool so for the daily</p>
+
+<p>importance that we never required used</p>
+
+<p>some modules for each import so they can</p>
+
+<p>have their own cron job and we were able</p>
+
+<p>to do many different cron jobs because</p>
+
+<p>of ultimate crown module which allows</p>
+
+<p>you to do a lot of settings for your job</p>
+
+<p>so you can run it at different times you</p>
+
+<p>can set them at any any thinkable that</p>
+
+<p>you can set with the regular Drupal</p>
+
+<p>crime so what we did was copy the</p>
+
+<p>the update hook from my great tools for</p>
+
+<p>each one so we could run that separately</p>
+
+<p>for each department and we also have</p>
+
+<p>able to add custom air out but for each</p>
+
+<p>import as well so we know what was</p>
+
+<p>breaking and why okay and then I also go</p>
+
+<p>to the next side just for the sake the</p>
+
+<p>structure of the sub module the module</p>
+
+<p>file where we put the hook in and I also</p>
+
+<p>like to save the the mo config file for</p>
+
+<p>the import in a module just as a backup</p>
+
+<p>because sometimes you can think</p>
+
+<p>directory and your sink director you can</p>
+
+<p>get thanks that we messed up and it's</p>
+
+<p>good to have like a master settings to</p>
+
+<p>go back to</p>
+
+<p>so this is the crown hook that's run to</p>
+
+<p>kick off the mic migration on a daily</p>
+
+<p>basis and it runs the Drupal migration</p>
+
+<p>that we specified a few slides ago and</p>
+
+<p>one of the important things here is</p>
+
+<p>where it says migration get ID map</p>
+
+<p>prepare update this is what allows the</p>
+
+<p>migration to be run in update mode so</p>
+
+<p>instead of just creating new nodes which</p>
+
+<p>is the default it will update any</p>
+
+<p>existing nodes with any data that has</p>
+
+<p>changed in the in the so call so as I</p>
+
+<p>was saying before the migration module</p>
+
+<p>keeps that map table that automatically</p>
+
+<p>tracks the legacy ID with the new Drupal</p>
+
+<p>ID and it uses that to make sure that</p>
+
+<p>instead of creating duplicate content</p>
+
+<p>and Drupal it updates the existing</p>
+
+<p>content</p>
+
+<p>okay so now we're on to display like I</p>
+
+<p>mentioned before we had a need for lists</p>
+
+<p>maps and deeds up pages so we're going</p>
+
+<p>to go through those</p>
+
+<p>this is displaying the location data in</p>
+
+<p>different ways</p>
+
+<p>so for listviews view modes so we were</p>
+
+<p>able to create sidebar list format pages</p>
+
+<p>and put all those format and demos</p>
+
+<p>chunks easily that made a custom field</p>
+
+<p>formatter for the distance from user</p>
+
+<p>moving the same thing then well I'll</p>
+
+<p>talk about that looks like where it</p>
+
+<p>shows it and we also had fill in other</p>
+
+<p>location info or content related to this</p>
+
+<p>like schedules so here's like a pretty</p>
+
+<p>simple display of the location the parks</p>
+
+<p>content in a list and in this case we're</p>
+
+<p>displaying the address and the GPS</p>
+
+<p>coordinates but we're not displaying the</p>
+
+<p>GPS coordinates just as GPS as the</p>
+
+<p>numbers because that wouldn't make any</p>
+
+<p>sense to people so there's a custom</p>
+
+<p>field formatter that I created that</p>
+
+<p>takes the GPS coordinates stored by the</p>
+
+<p>geolocation module and performs a lookup</p>
+
+<p>to comparing the location of the park to</p>
+
+<p>the user's location provided by the</p>
+
+<p>browser and calculates how many miles</p>
+
+<p>away the user is from the park did you</p>
+
+<p>possibly sure that</p>
+
+<p>you use it no that's um it's I think I</p>
+
+<p>put it up on my github to share out but</p>
+
+<p>I haven't pushed it to Ivan created a</p>
+
+<p>patch or anything for the geolocation</p>
+
+<p>yes</p>
+
+<p>it wouldn't show anything so the way</p>
+
+<p>that it works is the field formatter</p>
+
+<p>creates an empty I think it's a div tag</p>
+
+<p>it's it's either a div tag like a span</p>
+
+<p>tag and there's data attributes on that</p>
+
+<p>tag that are though the Latin long</p>
+
+<p>values and then there's a JavaScript</p>
+
+<p>file that gets loaded after page load</p>
+
+<p>and it performs up and then changes the</p>
+
+<p>like value inside the div or the span</p>
+
+<p>tag to show this this markup with the</p>
+
+<p>distance from the user so if if it was</p>
+
+<p>if it didn't have anything it would just</p>
+
+<p>be an empty HTML tag that wasn't</p>
+
+<p>displaying anything</p>
+
+<p>and we have the maps</p>
+
+<p>we also used view modes for the tooltips</p>
+
+<p>so we could get the kind of the same</p>
+
+<p>book modified information on a very</p>
+
+<p>quick before the markers themselves</p>
+
+<p>we showed a standard marker for most</p>
+
+<p>maps but the event map needed custom</p>
+
+<p>markers for holidays and different event</p>
+
+<p>types so we did a little magic using</p>
+
+<p>text how many values and images image</p>
+
+<p>field stored within the taxonomy make</p>
+
+<p>that happen we also had to organize like</p>
+
+<p>facilities to their parks in that map we</p>
+
+<p>had to house the main location of all of</p>
+
+<p>those on the top of the stack so you</p>
+
+<p>weren't seeing like the Statue first you</p>
+
+<p>probably wanted to go to the so here's</p>
+
+<p>an example of one of the maps where</p>
+
+<p>we're showing the GPS coordinates by</p>
+
+<p>showing the markers by loading the</p>
+
+<p>markers onto the map for each location</p>
+
+<p>and as Bob said that in the field house</p>
+
+<p>would always need to be on top is in the</p>
+
+<p>data that we were getting from the parks</p>
+
+<p>district</p>
+
+<p>often the individual facilities in the</p>
+
+<p>park like if the park had a swimming</p>
+
+<p>pool or a statue or whatever it was</p>
+
+<p>playground the the GPS coordinates that</p>
+
+<p>we were getting from their service we're</p>
+
+<p>not really unique to that individual</p>
+
+<p>facility they were all to sort of</p>
+
+<p>stacked on top of each other so one of</p>
+
+<p>the requirements was that we have the</p>
+
+<p>field house on top so I had to do some</p>
+
+<p>fancy sorting in the sequel query to</p>
+
+<p>make sure that that result was always</p>
+
+<p>returned on top</p>
+
+<p>and for a park detail page we had to</p>
+
+<p>show all those child locations from the</p>
+
+<p>main park event that also narrow the</p>
+
+<p>child locations when you type in the</p>
+
+<p>search box and that map and it can</p>
+
+<p>filter spend that you're typing the</p>
+
+<p>location type so that's kind of neat</p>
+
+<p>then because I'm a person accustomed</p>
+
+<p>block you're able to put it in any</p>
+
+<p>position on any page and it makes it</p>
+
+<p>really easy so here's a thing is one of</p>
+
+<p>the park detail pages for Bessemer Park</p>
+
+<p>and here we're displaying the address</p>
+
+<p>field and some of the other fields from</p>
+
+<p>the node in the park description</p>
+
+<p>feeds so the the last part of this are</p>
+
+<p>displaying the park data was to create a</p>
+
+<p>feed like I said and this was consumed</p>
+
+<p>by the Chicago Parks District phone app</p>
+
+<p>and as I mentioned before we were we had</p>
+
+<p>to match the output of the feed from the</p>
+
+<p>original website like character for</p>
+
+<p>character because they were unable to do</p>
+
+<p>any updates to the app that had to just</p>
+
+<p>like work seamlessly when the new site</p>
+
+<p>was launched so um Drupal 8 provides a</p>
+
+<p>really easy way to create um these</p>
+
+<p>restful api is using the feeds using the</p>
+
+<p>views module but you don't have total</p>
+
+<p>control over the output and since we</p>
+
+<p>needed the output to be very specific we</p>
+
+<p>had to create our own rest resource</p>
+
+<p>extending the Drupal core restful Web</p>
+
+<p>Services module and this was actually</p>
+
+<p>pretty easy but you have to write some</p>
+
+<p>code instead of just using views</p>
+
+<p>anything you want to add</p>
+
+<p>so this is a example of the code we use</p>
+
+<p>to create the endpoint in in a module so</p>
+
+<p>it's very simple you heard unlike most</p>
+
+<p>things in Drupal 8 where you have to</p>
+
+<p>have a bunch of gamal files just specify</p>
+
+<p>what you're doing in this case all you</p>
+
+<p>have to do is have this resource plug-in</p>
+
+<p>in the correct folder and up in the</p>
+
+<p>common block here you specify that it's</p>
+
+<p>a rest resource and you give it the URI</p>
+
+<p>path and then it just works and you</p>
+
+<p>extend the resource based class provided</p>
+
+<p>by the restful Web Services module and</p>
+
+<p>you can have a bunch of code that loads</p>
+
+<p>up all your data and you return a</p>
+
+<p>symphony response object and you have a</p>
+
+<p>rest feed it's pretty it's pretty easy</p>
+
+<p>looks easy right so here's where we're</p>
+
+<p>able to like because it's just the PHP</p>
+
+<p>code we can we have complete control</p>
+
+<p>over how we want all the data processed</p>
+
+<p>and displayed in the feed which is as I</p>
+
+<p>said the reason we weren't able to use</p>
+
+<p>views because the views didn't provide</p>
+
+<p>the like really really finite control</p>
+
+<p>that we needed</p>
+
+<p>so problems encountered you talked about</p>
+
+<p>some of them but specifically the</p>
+
+<p>migration sometimes we would have a</p>
+
+<p>field come in that was empty from the</p>
+
+<p>API and maybe the first time we wrote</p>
+
+<p>the processing plugin we didn't scan in</p>
+
+<p>checked her that yeah so if there is a</p>
+
+<p>folks there's a callback you can use in</p>
+
+<p>the gamla file that's called skip rfg to</p>
+
+<p>do that before it gets to the to the</p>
+
+<p>plug-in or the plug-in you can do any</p>
+
+<p>exempt to your and if you don't do this</p>
+
+<p>then it like crashes and you get a lot</p>
+
+<p>of failures in your migration same with</p>
+
+<p>formatting that directly related to</p>
+
+<p>location data but deep fields are huge</p>
+
+<p>with this sometimes the the format will</p>
+
+<p>come over different than you expected</p>
+
+<p>then all the other dates previously and</p>
+
+<p>it'll break so we need to handle that as</p>
+
+<p>well</p>
+
+<p>and a plugin another thing you can</p>
+
+<p>encounter in migration especially with</p>
+
+<p>these daily imports are server api</p>
+
+<p>timeouts if you're trying to get 15,000</p>
+
+<p>records see if there are any changes on</p>
+
+<p>here's servers that have the largest</p>
+
+<p>capacity it can give you a timeout so</p>
+
+<p>you may have to whittle down the service</p>
+
+<p>call to a more specific set of Records</p>
+
+<p>that you're trying to get data from</p>
+
+<p>geocoding problems like I mentioned</p>
+
+<p>before the paid API key for the volume</p>
+
+<p>we had there's a must or else we're</p>
+
+<p>gonna get anywhere for all these markers</p>
+
+<p>I mean no that's probably not all of</p>
+
+<p>them I there yeah also in development</p>
+
+<p>the geocoding didn't work over HTTP this</p>
+
+<p>is the user's location from the browser</p>
+
+<p>if they access the page over HTTP</p>
+
+<p>instead of HTTP the browser where most</p>
+
+<p>modern browsers will deny the location</p>
+
+<p>request you just have to make sure to</p>
+
+<p>make a self-signed certificate for your</p>
+
+<p>machine when you wanted to develop me</p>
+
+<p>globally yeah</p>
+
+<p>make some inconsistencies yeah so like I</p>
+
+<p>think in Google Chrome if you're</p>
+
+<p>presented with the pop up to show to</p>
+
+<p>share your location with the website you</p>
+
+<p>click at once and then it remembers it</p>
+
+<p>by default</p>
+
+<p>whereas in Firefox the if you the</p>
+
+<p>default behavior is just to allow the</p>
+
+<p>request once and then each time the page</p>
+
+<p>is reloaded they'll get asked again</p>
+
+<p>unless they check the little tiny box</p>
+
+<p>that nobody when testing checks that</p>
+
+<p>says remember this decision and then</p>
+
+<p>there's also inconsistencies in the like</p>
+
+<p>fail state of these requests different</p>
+
+<p>browsers would give different responses</p>
+
+<p>when the user denies the request so it</p>
+
+<p>was kind of hard to give useful messages</p>
+
+<p>to the user whether the API whether the</p>
+
+<p>like location request timed out or</p>
+
+<p>whether they were denied it or whether</p>
+
+<p>they just never clicked anything at all</p>
+
+<p>all right question time yes did you ever</p>
+
+<p>get another geocoding services besides</p>
+
+<p>people what was the problem</p>
+
+<p>a question was did we look at any other</p>
+
+<p>services than Google for geocoding and</p>
+
+<p>we did not we just figured that was the</p>
+
+<p>standard for what we needed and we</p>
+
+<p>already had an API key actually from a</p>
+
+<p>different project so that was really the</p>
+
+<p>biggest decision driver there but yeah I</p>
+
+<p>haven't tested any other ones yes</p>
+
+<p>so how are they connected and</p>
+
+<p>if you have a close one</p>
+
+<p>see</p>
+
+<p>so the question was how the address</p>
+
+<p>field and the geolocation field are</p>
+
+<p>connected and what happens if you have</p>
+
+<p>multiple ones and they're connected with</p>
+
+<p>the geo coder module that's the the</p>
+
+<p>module that forms the bridge between the</p>
+
+<p>two of them and I as I recall I'm not</p>
+
+<p><br>
+the configuration for the geolocation</p>
+
+<p>field you have to specify one source</p>
+
+<p>field so you have one address field so I</p>
+
+<p>think if you had multiple if you had</p>
+
+<p>multiple potential values you would need</p>
+
+<p>multiple fields</p>
+
+<p>yes you rub your own polyline basically</p>
+
+<p>use your own taxability of the polyline</p>
+
+<p>is there a reason you didn't use the map</p>
+
+<p>optical there's nothing like that a</p>
+
+<p>question was we stored polyline in a</p>
+
+<p>text field instead of creating our own</p>
+
+<p>and the answer is because it was already</p>
+
+<p>made there's also a polyline module out</p>
+
+<p>there we didn't have we just needed to</p>
+
+<p>pass it through to the app so we didn't</p>
+
+<p>need to do any modification or updates</p>
+
+<p>to it that's why no not in the side at</p>
+
+<p>all just it's just there to be in the</p>
+
+<p>feed in the restful service that the</p>
+
+<p>phone app consumes know how much you</p>
+
+<p>guys can speak to this but the actual</p>
+
+<p>adoption of what you guys build</p>
+
+<p>Wyles are those people using the mobile</p>
+
+<p>app are people actually using the</p>
+
+<p>website in a mobile phone</p>
+
+<p>the question is our users using the</p>
+
+<p>website more or the app and as we</p>
+
+<p>believe the app is not used as much as</p>
+
+<p>the website address Kelly knows about</p>
+
+<p>this</p>
+
+<p>not as rich</p>
+
+<p>and by the way and you know there's a</p>
+
+<p>fake GPS or several pages yes absolute</p>
+
+<p>you can check it in from a location but</p>
+
+<p>I did not I use that on now yeah that's</p>
+
+<p>apart quite so check in to do it over in</p>
+
+<p>the UK - yes</p>
+
+<p>so the the question is how much control</p>
+
+<p>we have over the display of the map and</p>
+
+<p>when using the Google Maps you do have</p>
+
+<p>some options to use things like overlays</p>
+
+<p>or change the colors or things like that</p>
+
+<p>you you can specify whether it's showing</p>
+
+<p>like the satellite by default whether it</p>
+
+<p>shows like the road map view by default</p>
+
+<p>whether those buttons are there to</p>
+
+<p>switch between the different view modes</p>
+
+<p>things like that yes</p>
+
+<p>so the question was what's displaying</p>
+
+<p>the map to the user and in most cases</p>
+
+<p>it's a custom block that we created that</p>
+
+<p>is calling to the functionality provided</p>
+
+<p>by the geolocation module it's the same</p>
+
+<p>thing that if you created a view and use</p>
+
+<p>the geolocation modules display</p>
+
+<p>formatter it would create the map for</p>
+
+<p>you so we're just doing that but we're</p>
+
+<p>using it in a custom module so it's</p>
+
+<p>provided by the geolocation module how</p>
+
+<p>do you determine the location of the</p>
+
+<p>user so the question is how do we</p>
+
+<p>determine the location of the user and</p>
+
+<p>this is a this is functionality that's</p>
+
+<p>built into the browser and we use the</p>
+
+<p>JavaScript to call to the browser to</p>
+
+<p>request the user's location based on</p>
+
+<p>hosting its I think it depends on</p>
+
+<p>whether they're on a like wired up like</p>
+
+<p>a PC or a mobile phone</p>
+
+<p>I believe if they're on a mobile phone</p>
+
+<p>it uses something like location data</p>
+
+<p>from the phone um if they're on the PC I</p>
+
+<p>think it uses the IP address let's look</p>
+
+<p>up which the foam is an activity the GPS</p>
+
+<p>chip but they also use Wi-Fi data around</p>
+
+<p>you because the world knows where the</p>
+
+<p>Wi-Fi hotspots are so if it sees you</p>
+
+<p>within range of different hotspots it'll</p>
+
+<p>it'll wear your question it constantly</p>
+
+<p>asks you if you want to use minor data</p>
+
+<p>and that's what it all kind of wants to</p>
+
+<p>see what hurts yeah like for our</p>
+
+<p>purposes that wasn't we didn't really</p>
+
+<p>need to concern ourselves with how we</p>
+
+<p>got that data we just needed it seems</p>
+
+<p>like hey um if you go to Google Maps and</p>
+
+<p>you you look at the map it'll it'll</p>
+
+<p>still like show the little blue blue dot</p>
+
+<p>to indicate where you are and in my</p>
+
+<p>experience that's it's kind of creepily</p>
+
+<p>accurate it'll it'll show me it'll show</p>
+
+<p>me like inside my house in Tokyo</p>
+
+<p>it's wildly inaccurate belt especially</p>
+
+<p>with a lot of the newer ISPs the you</p>
+
+<p>know in in Tokyo it's really accurate</p>
+
+<p>and it showed me inside my house how do</p>
+
+<p>you have the the child location setup is</p>
+
+<p>that a different content type and how do</p>
+
+<p>you geo code for places that don't have</p>
+
+<p>an address all locations are location</p>
+
+<p>type and there's an entity reference to</p>
+
+<p>the parent location and how we</p>
+
+<p>determined after import what does what</p>
+
+<p>is locations that had a parent location</p>
+
+<p>we're not parks oh yeah there are</p>
+
+<p>facilities so then we generated a</p>
+
+<p>location or entity type part or facility</p>
+
+<p>off of that so we could tell them apart</p>
+
+<p>and the way that we geo coded things</p>
+
+<p>that didn't have an address we're</p>
+
+<p>through the geo corridor module from the</p>
+
+<p>map where you click on</p>
+
+<p>yes so it with geolocation module I'm</p>
+
+<p>not familiar with it can you swap it in</p>
+
+<p>and say so the question is which other</p>
+
+<p>map providers besides Google can you use</p>
+
+<p>with the geolocation module and it</p>
+
+<p>provides a lot including leaflet there</p>
+
+<p>were like OpenStreetMaps leaflet being</p>
+
+<p>like five or six others that I had never</p>
+
+<p>even heard of and I actually looked at</p>
+
+<p>the the modules code and it looks like</p>
+
+<p>it'd be pretty easy to provide your own</p>
+
+<p>custom one by just sort of copying the</p>
+
+<p>code that the module used to create one</p>
+
+<p>of those and then modifying it to work</p>
+
+<p>with whatever new service you needed to</p>
+
+<p>use it with sort of similar to the</p>
+
+<p>previous question which was how did you</p>
+
+<p>find related or child</p>
+
+<p>locations who-who's that was all through</p>
+
+<p>taxonomy there wasn't anything</p>
+
+<p>the question is were there other ways</p>
+
+<p>that we determine parent-child locations</p>
+
+<p>based on proximity no the data that we</p>
+
+<p>were getting is was very really highly</p>
+
+<p>curated so we couldn't guess at anything</p>
+
+<p>or provide suggestions or wanted</p>
+
+<p>everything a certain way and provide us</p>
+
+<p>with that data or something but there</p>
+
+<p>are filter plugins in views and filters</p>
+
+<p>that you can use in sequel queries that</p>
+
+<p>would give you locations by proximity</p>
+
+<p>have done that on other projects</p>
+
+<p>that's the beginning of your</p>
+
+<p>presentation you talked about the</p>
+
+<p>migration process figuring out you have</p>
+
+<p>any suggestions on plating process lots</p>
+
+<p>and lots of files so the question was</p>
+
+<p>any suggestions on how to become an</p>
+
+<p>expert at migrations and I've I've done</p>
+
+<p>quite a few now and I'm still finding</p>
+
+<p>new stuff like we mentioned the the</p>
+
+<p>documentation isn't really complete</p>
+
+<p>there's a lot of powerful stuff that the</p>
+
+<p>migration module can do that isn't</p>
+
+<p>really documented I just found a lot of</p>
+
+<p>stuff by Google searches and looking</p>
+
+<p>through the example code that the</p>
+
+<p>modules provide because it provides some</p>
+
+<p>mighty Salo migrations has a simple and</p>
+
+<p>an advanced example they advanced a</p>
+
+<p>simple example as taxonomy terms the</p>
+
+<p>advanced example is notes about beer</p>
+
+<p>which is kind of weird then you can't</p>
+
+<p>really uninstall it easily so you might</p>
+
+<p>have a new project oh yeah digger config</p>
+
+<p>straight and get them out of there yeah</p>
+
+<p>when you run migrate status you'll still</p>
+
+<p>see the beer node migration sometimes</p>
+
+<p>the example the advanced example is also</p>
+
+<p>incomplete parts of it they're not</p>
+
+<p>finished or documented and the best from</p>
+
+<p>a starting point to get started applying</p>
+
+<p>for the only like comprehensive guide</p>
+
+<p>ever seen is the guide after</p>
+
+<p>and Vic there's been a number of</p>
+
+<p>sessions at various camps and Drupal</p>
+
+<p>cons so you might be able to find some</p>
+
+<p>good information on YouTube but most of</p>
+
+<p>what I've learned I've learned from</p>
+
+<p>reading people's blog posts and then</p>
+
+<p>experience the questions</p>
+
+<p>okay one thing I did not mention at the</p>
+
+<p>beginning I work for clarity Partners we</p>
+
+<p>do mostly government work public sector</p>
+
+<p>stuff so this practised ik project was</p>
+
+<p>an extension of that and the company</p>
+
+<p>that did this well if you have a</p>
+
+<p>government website that you need built</p>
+
+<p>go see clarity partners if you need</p>
+
+<p>[Applause]</p>
+
+<p>thank you</p></div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-6d2e2d92bee47042aa8025b2576abd56f6b163b2fc8e9e47326f6ca68f6a21a3">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/70">https://mid.camp/70</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+  <section class="map-banner">
+      <div class="views-element-container block block-views block-views-blockevent-venue-block-1" id="block-hatter-views-block-event-venue-block-1">
+  
+    
+      <div><div class="container view view-event-venue view-id-event_venue view-display-id-block_1 js-view-dom-id-522d718037c201edf25dd42ddaf50c2e75b1b9afa4581947a2c16c90549e3206">
+  
+    
+      
+      <div class="view-content">
+          <div class="views-row">
+
+
+<div class="map-overlay">
+  <span class="map__label">Location</span>
+  <h2 class="map__title"><span class="field field--name-title field--type-string field--label-hidden">DePaul University - Lincoln Park Student Center</span>
+</h2>
+  
+            <div class="field field--name-field-address field--type-address field--label-hidden field__item"><p class="map__address" translate="no">
+          2250 N Sheffield Ave. <br>
+            Chicago, IL 60614<br>
+  </p>
+</div>
+      
+  <a href="../venue/depaul-university-lincoln-park-student-center.html" class="cta-link--yellow">Learn more  <span class="cta-arrow"></span></a>
+</div>
+<div id='map' class="map"></div>
+</div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-076ed73fc2e49b7b1fc044fa806623a1135ca1098256b583432eb5d8dc1799c8">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/acquia.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-02/Acquia_no_tagline.png" width="450" height="94" alt="Acquia" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/pantheon.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-11/pantheon.png" width="500" height="157" alt="Pantheon" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/platformsh.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-02/platform.png" width="400" height="79" alt="Platform.sh" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#8de4e3ebe2cde0e4e9eeece0fda3e2ffea"><span class="__cf_email__" data-cfemail="d9b0b7bfb699b4b0bdbab8b4a9f7b6abbe">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/70","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_llBcjrkrgAu2wT1DR7VGL_iP6geJyiTnF_8O5ZD57VI.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJxLz89Pz0mNT8xLzKksyUwu1k9HE9DJSCwpSS3ST8_JT0rM0c2CC-QmFiTlVwAAPmAZQA"></script>
+<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.js"></script>
+<script src="../../sites/default/files/js/js_pODGOpSPRR3Y_Zt-7Fy-5B_pNv18oFAWhyhwUPCQZu4.js%3Fscope=footer&amp;delta=2&amp;language=en&amp;theme=hatter&amp;include=eJxLz89Pz0mNT8xLzKksyUwu1k9HE9DJSCwpSS3ST8_JT0rM0c2CC-QmFiTlVwAAPmAZQA"></script>
+
+  </body>
+</html>

@@ -1,0 +1,753 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="There are several different types of tests you can write and many different testing tools you can use during development to make sure your Drupal site does what it’s supposed to do. Writing some actual tests is the important part, and using Cypress for end-to-end testing is a great place to start. By the end of this talk, you’ll know:" />
+<link rel="canonical" href="test-your-drupal-site-easy-way-use-cypress.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Test Your Drupal Site The Easy Way: Use Cypress | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Test Your Drupal Site The Easy Way: Use Cypress | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_gt5LiAM1qLGUH5e845uOb7R_lJ9dUwTXmnhGDR2yY20.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OgzAMgy8E7ZFQSg1UShrUdDB2-lX87GUviZ0vkj0ymR0-kKEbLz0l_mmBGc2wx2eNjWlBU0WI0wfdQrWi-Jk1EPej2XMRWoO-OzusQq6ILUXoAAmIw5TA0RfYqtnShv6E7QW7-XM.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_QAC1R0aFoF1mIVQtLAaSE24B2iwnT2ZCa0cZDeZsPV0.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OgzAMgy8E7ZFQSg1UShrUdDB2-lX87GUviZ0vkj0ymR0-kKEbLz0l_mmBGc2wx2eNjWlBU0WI0wfdQrWi-Jk1EPej2XMRWoO-OzusQq6ILUXoAAmIw5TA0RfYqtnShv6E7QW7-XM.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OgzAMgy8E7ZFQSg1UShrUdDB2-lX87GUviZ0vkj0ymR0-kKEbLz0l_mmBGc2wx2eNjWlBU0WI0wfdQrWi-Jk1EPej2XMRWoO-OzusQq6ILUXoAAmIw5TA0RfYqtnShv6E7QW7-XM.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OgzAMgy8E7ZFQSg1UShrUdDB2-lX87GUviZ0vkj0ymR0-kKEbLz0l_mmBGc2wx2eNjWlBU0WI0wfdQrWi-Jk1EPej2XMRWoO-OzusQq6ILUXoAAmIw5TA0RfYqtnShv6E7QW7-XM.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+<link rel="stylesheet" media="all" href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.css" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="test-your-drupal-site-easy-way-use-cypress.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-midcamp2023navigation-menu" id="block-midcamp2023navigation" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-midcamp2023navigation-menu">MidCamp 2023 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" data-drupal-link-system-path="node/6857">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--by-the-numbers">
+        <a href="../../2020/about/by-the-numbers.html" data-drupal-link-system-path="node/6252">By the Numbers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--venue">
+        <a href="../../about/venue.html" title="Venue" data-drupal-link-system-path="node/7048">Venue</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../speaker-resources.html" data-drupal-link-system-path="node/345">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--health--safety">
+        <a href="../health-safety.html" data-drupal-link-system-path="node/6973">Health &amp; Safety</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../about/lunch-options.html" data-drupal-link-system-path="node/6970">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--volunteer-opportunities">
+        <a href="../article/volunteer-help-midcamp.html" data-drupal-link-system-path="node/6975">Volunteer Opportunities</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" data-drupal-link-system-path="2023/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--travel">
+        <a href="../about/travel.html" data-drupal-link-system-path="node/6865">Travel</a>
+            </li>
+          <li class="primary-nav__sublist-item item--accommodations">
+        <a href="../about/accommodations.html" data-drupal-link-system-path="node/6948">Accommodations</a>
+            </li>
+          <li class="primary-nav__sublist-item item--registration">
+        <a href="../register.html" data-drupal-link-system-path="node/6977">Registration</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" data-drupal-link-system-path="node/6860">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--sponsor">
+        <a href="../sponsor-midcamp.html" data-drupal-link-system-path="node/6858">Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" data-drupal-link-system-path="node/6859">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--hybrid-sessions">
+        <a href="../schedule/hybrid.html" data-drupal-link-system-path="node/7053">Hybrid Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-wed">
+        <a href="../schedule/wednesday.html" data-drupal-link-system-path="2023/schedule/wednesday">Sessions (Wed)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-thu">
+        <a href="../schedule/thursday.html" data-drupal-link-system-path="2023/schedule/thursday">Sessions (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--birds-of-a-feather-bofs">
+        <a href="../schedule/bofs.html" data-drupal-link-system-path="node/7054">Birds of a Feather (BoFs)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--contribution-day-fri">
+        <a href="../schedule/friday.html" data-drupal-link-system-path="2023/schedule/friday">Contribution Day (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--topic-tracks">
+        <a href="../../topic-tracks.html" data-drupal-link-system-path="node/10">Topic Tracks</a>
+            </li>
+          <li class="primary-nav__sublist-item item--all-sessions">
+        <a href="../schedule/sessions.html" data-drupal-link-system-path="2023/schedule/sessions">All Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--session-submission">
+        <a href="../submit-session.html" data-drupal-link-system-path="node/14">Session Submission</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2023/news">News</a>
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../../jobs.html" data-drupal-link-system-path="jobs">Jobs</a>
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2023.html" hreflang="en">MidCamp 2023</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-midcamp2023schedulenav" class="block block-block-content block-block-contente066b47a-a80d-432a-8edd-6c60b28b7c95">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><div class="schedule__nav">
+<p><a href="../schedule/hybrid.html">Hybrid</a>&nbsp;|&nbsp;<a href="../schedule/wednesday.html">Wednesday</a> | <a href="../schedule/thursday.html">Thursday</a> | <a href="../schedule/friday.html">Friday</a></p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Test Your Drupal Site The Easy Way: Use Cypress</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="6942" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2023-04-26T14:45:00Z" class="datetime">Wednesday, 9:45 am CDT</time>
+ - <time datetime="2023-04-26T15:45:00Z" class="datetime">Wednesday, 10:45 am CDT</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-83" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-name field--type-string field--label-hidden field__item">Room 324</div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p><span><span><span><span><span><span>There are several different types of tests you can write and many different testing tools you can use during development to make sure your Drupal site does what it’s supposed to do. Writing some actual tests is the important part, and using Cypress for end-to-end testing is a great place to start.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>By the end of this talk, you’ll know:</span></span></span></span></span></span></p>
+
+<ul>
+	<li><span><span><span><span><span><span>A bit about Drupal CI and how Drupal projects are tested including Functional JS and Nightwatch testing</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>Why you might want to use Cypress for end-to-end testing</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>Where you can learn more about Cypress 101</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>Advanced Cypress tips you can use while testing applications</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>Tips specific to testing Drupal applications with Cypress</span></span></span></span></span></span></li>
+</ul>
+
+<p><span><span><span><span><span><span>Live session:&nbsp;</span></span></span></span></span></span><a href="https://slides.com/d/KDFs1s0/live">https://slides.com/d/KDFs1s0/live</a></p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/cucFZJPJPdE?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-presenter-slides field--type-file field--label-above">
+    <div class="field__label">Presenter Slides</div>
+              <div class="field__item">
+<span class="file file--mime-application-pdf file--application-pdf"> <a href="../../sites/default/files/2023-04/test-your%20(2)_0.pdf" type="application/pdf" title="test-your (2)_0.pdf">Slides in PDF format</a></span>
+</div>
+          </div>
+
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Alex Finnarn</h4>
+
+      Engineer
+
+
+          @
+              <a href="https://civicactions.com/">CivicActions</a>
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p>I currently work for CivicActions helping to improve automated testing throughout various client projects. I've been working on improving automated testing within development teams for the past six years, and I hope to share some of that acquired knowledge with the group. Outside of coding, you can find me mindlessly mindfully playing several instruments and trying to work up the courage to try my hand at Jiu Jitsu.</p>
+</div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2023-03/T14UX8TKN-USDGH5PEG-2a5e6dec18b6-512%20(1).jpeg%3Fitok=Sdle3h2k" width="220" height="220" alt="Alex Finnarn in profile" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Back-End</div>
+          <div class="field__item">DevOps</div>
+          <div class="field__item">Front-End</div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-feedback-form field--type-webform field--label-above">
+    <div class="field__label">Feedback Form</div>
+              <div class="field__item"><form class="webform-submission-form webform-submission-add-form webform-submission-session-feedback-form webform-submission-session-feedback-add-form webform-submission-session-feedback-node-6942-form webform-submission-session-feedback-node-6942-add-form" data-drupal-selector="webform-submission-session-feedback-node-6942-add-form" action="test-your-drupal-site-easy-way-use-cypress.html" method="post" id="webform-submission-session-feedback-node-6942-add-form" accept-charset="UTF-8">
+  
+    <div data-drupal-selector="edit-0" class="webform-message js-webform-message js-form-wrapper form-wrapper" id="edit-0"><div data-drupal-messages>
+    <div role="contentinfo" aria-label="Status message" class="messages messages--status">
+                  <h2 class="visually-hidden">Status message</h2>
+                    Sorry...This form is closed to new submissions.
+            </div>
+    </div>
+</div>
+<input autocomplete="off" data-drupal-selector="form-s3eyqho4ut0a8a-xhhdkkl3u-rkj9hqxsqfopoyzwds" type="hidden" name="form_build_id" value="form-s3EyqHO4uT0a8a_XHHdkKL3U-RKj9hqxsQFOPOYzWDs" />
+<input data-drupal-selector="edit-webform-submission-session-feedback-node-6942-add-form" type="hidden" name="form_id" value="webform_submission_session_feedback_node_6942_add_form" />
+<div class="url-textfield js-form-wrapper form-wrapper" style="display: none !important;"><div class="js-form-item form-item js-form-type-textfield form-type-textfield js-form-item-url form-item-url">
+      <label for="edit-url">Leave this field blank</label>
+        <input autocomplete="off" data-drupal-selector="edit-url" type="text" id="edit-url" name="url" value="" size="20" maxlength="128" class="form-text" />
+
+        </div>
+</div>
+
+
+  
+</form>
+</div>
+          </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Good to go. Alright. Welcome, everybody. This session is about Cypress. If you can't tell, I'm wearing a Cypress shirt there. And a little bit about me. I'm Alex Finnarn, and I kind of like to call myself a whatever and pragmatist because I work on whatever end of the stack and I just like saying that more than full stack. And then I try to be very pragmatic. So I like to keep it simple. And Cypress is a pretty simple solution to use, which I'll go into. That's my Twitter handle. If you wanna follow me on Twitter. And then I currently work at CivicActions and we do work with government clients. A lot of Drupal stuff kind of getting into more front end React stuff as well. And then Contribution Day. So they talked about this and the opening, but it's Friday 10am to 4pm. All are welcome. Yes, good thing to go to. OK. And so now when I was deciding on how to arrange this talk, I thought I would do it in the most brilliant way or you might see laziest way possible, but I'll go with brilliant.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And I just broke it into four different sections. So we'll actually go through building up suspense and excitement before we get to the last part Cypress. And so I started out with a quote, slide, I like quote, slides to introduce things. And so I was gonna come up with my own definition of test, but I thought that was a little pretentious. So I lifted one off of the Internet. This is a site called Wordnik. I never heard of it before. I kind of like the definition I found there determining presence, quality or truth of something. And then I also thought it was fun. At the end, they said a trial to sometimes test writing can be boring, so you can pretend like you're interrogating your test and say things like, Your Honor, this form input data is that order. I do declare. OK, that was a joke. I'll probably not pepper in more tough crowd today. I promise you sometimes I get laughs with that. And so before I get too far into it, I have to show the contractually obligated slide. Anytime you talk about testing, the testing pyramid comes up.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And so this was originally from a book called Seceding with Agile from a guy named Mike Cohen. But I lifted this particular one from Martin Fowler, very smart guy. He wrote an article called The Practical Test Pyramid, which I would encourage you all to read. And basically, the way the testing pyramid works, there's, people sometimes have many more levels, but they usually break it down in unit tests, UI test or I call it indent test and then service test or a bunch of other things in the middle people like to argue about. The main idea is that unit tests are way more isolated and they run faster and then what we'll be talking about indent test, you're testing the full app. They're slower, they're usually brittle, but Cypress has some nice features to make them less brittle and run them faster and parallel and things like that. And so like I said, our example for indent testing, a Cypress unit testing, you can use PHP unit, the PHP unit will do all kinds of testing. And then in the middle there be dragons.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So I'm not gonna go into like all the spy stuffs and mocks all that stuff. I just kind of keep it simple. But people argue for days on that type of stuff. And then here's another version of the testing pyramid. I got this from this course here which was actually it's kind of a departure into software quality assurance, and it's an interesting course you can take. It's like Netflix style subscription, but they've added another level. And I thought it was interesting that they kind of split it out to like who the tests are for. And ideally, you don't wanna like, you know, silo the test, but you're probably not gonna show unit tests to your clients. But the dream is that they're involved in an acceptance testing, kind of like we're gonna get into a little bit later. And then here's another chart from the same course. And oftentimes you can see test bases kind of upside down. And when you think about and the money is there, it'll cost you because it would be hard to maintain. When you think about Drupal, a lot of times you're testing, you're using a lot of contributed code, so you're maybe not at the unit level.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So sometimes this is how my test looked and I thought, Oh yeah, this is great. And then, yeah, and Kool-Aid, man. And so clearly I'm joking here, but you can kind of have a cavalier attitude I did before about why would you need more unit tests than acceptance? But I think you can push them down levels which I'll talk about a little bit later. And then the last slide and test, this is kind of how I got introduced to intent testing behaviour driven development. I took over a test suite, was written in Gherkin. And so you have this concept of giving when then and you also see a range act and assert. So you wanna set up the test with some kind of condition logging in. Then you do actions, usually more than probably one, and then assertions which could be one or many. And so now we'll get into Drupal, which is why we're we're all here and you know, things that you have in your Drupal site. But for a quote slide, I thought I'd just take a trip down memory lane and that's kind of the first quote I remember from Drupal come for the code, stay for the community.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Although when I was looking back on the Drupal.org site it showed up as come for the software safe for the community and then now I see that's on all of their theme again. So it's a very nice slogan. And then I just decided for whatever reason to put on like maybe who that slogan is for. So I think that's kind of, you know, for PHP developers getting in Drupal maybe mid 2000s late, everyone was kind of building their own system and Drupal was just have a nice community for that. That's kind of what I got into Drupal. And then as far as marketing stuff, this was about ten years ago. I found Dree's presentation at Drupal Down Under where you started marketing Drupal more. And this you're saying that it's mid-market wasn't enterprise yet and that's kind of contrasting it with WordPress, a small market and then we get a little more commercial here and five years later DrupalCon Baltimore, Drupal is for ambitious digital experiences. Kind of reminds me of like the Zoolander, like Blue Steel, ambitious digital experiences.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And that was a course for C-level executives, like site core and whatnot. And then now I'm glad that the slogan is back to kind of the roots for ambitious site builders. And I kind of see Drupal as competition more. It's like web flow bubble, things like that and getting more into the project browser. I think you'll see more along the lines of that. That's my quote slide. And then what is your Drupal site have or has users? And so I'll go into a custom command for this. But you know, that's one of the first things you figure out when you're writing a lot of intent test is how to kind of customize that and make it more efficient. You know, you have WYSIWYG and more. So I know ckader5 is not an iframe, I think. So it's a little easier to test than ckader4. And then you have things like autocomplete fields which can kind of be tricky or, you know, for searches and things. You have iframes. So just admittedly Cypress isn't that great for iframes. I've had solutions like there, I'm testing just iframe payment solution.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>You might be familiar with it. Use that on your sites. And that worked well but other times and I'll get into that later. iFrame just really hard to do. Some other solutions have that done better. And then you can even test things like JSON:API, you have a decoupled site or you're exposing your API. Cypress can be used for that, might not be the best tool, but if you want to squeeze in a test there request or something like that, you can do that as well. And then a little bit about the Drupal test. So this is just a screenshot of drush generate command and you can see the five different types of Drupal tests going upwards from unit test to kernel test to browser to webdriver and Nightwatch I think are kind of on the same level. Webdriver uses selenium and then Nightwatch is kind of its own thing. And then a little bit about Drupal CI. I'm not super familiar with that, but I know there is a GitLab acceleration session I think tomorrow. So it's still on drupal.org but it's moving to GitLab CI.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>I'm not sure the stage of that you can find out more probably in that talk. You can run locally what's on drupal.org via that run test shell script which is actually a PHP file and script. And I think Nightwatch is probably the closest comparison to Cypress. Like I said, the Webdriver functional JavaScript test traditionally use selenium and this is a nice add on if you have to do this locally. It came out like last fall, but I almost made an add on as well 'cause it was kind of hard to run the different types of tests locally, but most good Drupal contributor made that and it's a good add on. And then he also made something called Drupal test Trace, which you can use if you have content on your site and you're testing it with a database backup, which a lot of people are what I do. So that's a bit on Drupal site, but a lot on it. And then this quote, I was just kind of searching for easy way or whatever, and the universe sent me a Franz Kafka quote, a bold thing. And he said at one point in the struggle between yourself in the world, second the world.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And so I'm gonna tell you a troubled tale of where I chose the world. And in that case, it was Behat and selenium. And I'm going to contrast that with Cyprus. So this is like I said, I kind of got into doing more Internet testing with Behat and I was using this nice Drupal extension and you know what can go wrong with that nice DrupalCon there? It's one of my favorite DrupalCons. It's a nice trucker hat. And so here's what I had in composer file there. You can see there's several dependencies there to maintain where Cypress, I'm kind of just maintaining one. And then a little bit later, you can see I was cleaning it up. I got rid of the Drupal extension because it's useful, but I kind of was fighting with the step definitions and whatnot. So sort of similar if you're making a component library on the front end, maybe more, you get into it the kind of reduce dependencies like that. So it's a little better with maintaining. And then here's an example of a configuration file and it is cut off.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And that's intentional 'cause it's a sad slide and sad slides can have cut off text. And so just to point out, you know, there's a note there about having to do something or the test will fail because of some issue in that. And so it's just silly that I had to have a lot of this configuration because I was connecting to Source Labs to run the test because just maintaining the Selenium server and browser versions was tough. So I was using that in slide, a lot harder to use in the Cypress test run in my opinion. And then here, maybe this is a little overengineered, but I had gotten to three different Behat YAML files here for different situations and I just wanted to point out the commit message has something about testing the port a different proxies. I don't remember what that was, but it probably took me days trying to debug something on a remote and Sauce labs where you can barely see it and you have to look at weird debugging things. So I've never had a problem with ports or anything like that with Cypress.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>It's been, you know, very easy to run the test. And so here when I was using Behat, you have your step definition. And so I was putting this after like all of the commands and it basically just arbitrarily waits for two seconds or those other conditions. So Cypress has better retryability and I know I haven't used Behat for a while. So it might have gotten a lot better, but that was always an annoying thing was waiting for the dang stuff to appear on the screen and test failing. And here's another step definitions just when you click the element and I was never good with regex so I just was glad I could copy that and work. But I wanna point out locality of behaviour which is a concept. There's an essay there, but the idea is that you're trying to keep your code, you know, all located so you don't have to go around to many different files to look at everything. And so with beheading the step definitions and gherkin, you're always kind of going back because the idea is that you can translate the two and it gets messy which I'll show in a little second.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>But this was harder to keep where the code is. And if something fails, you know how to fix it. Just going around to different locations. And here's kind of the dream of the Behat scenario. It's very legible given when then there's variables there. You can probably know what happens as it runs through. It'll go through the example and use that and you would have more conditions there. Has got a tag at the top so you can run various tests and groups. It looks all nice, right? And then then it turns into this. And so it's another sad slide that has cut off text because slides can have cut off text. AndmI don't know why, but there was a coworker that liked to write in all caps. Maybe they were frustrated with Behat there. And so what you'll get into is you'll get into like, how do you select this element, and I'm not gonna get into page objects, but that is something you can try to use to abstract. You know, having a key for the value of each CSS selector. But Cypress doesn't really recommend doing that.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And then down here, you can see because it's hard to overwrite the step definition, you can do the object oriented, but the regex and whatnot, you can't do that. So it'll just error out because you have the same type of stuff definitions. So you end up having to like prefix steps, which is kind of look stupid. And you know, cypress you can overwrite them better. And so now we finally get to Cypress, so hooray. And for a quote slide, I didn't have to try that hard 'cause Cypress is pretty good at marketing itself. So this comes off of a great page there where they tell you why to use cypress and some things about their best practices and philosophies. And yeah, we're trying to address the key pain points which I just went over retryability, you know, keeping the test runner in line and different things like that. And they're trying to just make it really easy for you to get into testing. They also have like training resources which could do a really good job of. And then this is just what happens when you first open Cypress.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So there's a test runner you can open and there you can see I'm specifying some options to the CLI command to end to end tests and to specify the browser. And then the next part you'll get to is if you don't specify that in a CLI command and you just open it as two different types of testing. So I won't get into component testing, but Cypress is trying to get more into that. So it'll be, you know, React Vue things like that, you would use component testing. Two notes. Someone did create a twig component testing library so you can mount Twig files or are you doing something with twig components and test Cypress that way. I haven't really tried it out, but there's a link for you. But what we'll be doing is end to end testing apart and then it nicely lets you choose a browser. So if you notice there's no safari on there, I have a mac that should show up if there is support, but they're still working on that. So that's kind of if you need Cross-browser support, that's one of the things where selenium is a bit older and has more stable support.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>You can start. Oh yeah, and that's a Docker image. So if you're using CI, it's good because it'll install the tools that are needed to run it in a CI environment which can be kind of tricky if you're trying to set that up yourself. So I encourage you to use that if you're testing Cypress and putting it in your CI pipeline. And then here's what some code looks like. So it's pretty simple and legible, even though it is JavaScript code. So you generally have describe it syntax. So describe, you generally group the test like what types of tests are they? And then it is the individual test there and it's just a function that runs. So here we are using the different Cypress commands, they're all chained off of CI.whatever, and you can see that a lot of them are changeable. So you can have a very kind of fluid syntax. And here we're just logging in using CSS selectors. So you can see that sometimes and I'll go into like what's a good best practice methodology for selecting things. But it can get tricky there.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And then we're visiting and then asserting something. So you can see this is kind of the range active search paradigm split out there. And I believe it's called mocha syntax I think is the describe it, but a lot of different testing frameworks use this now. And then here's a custom command. So there's a lot on this slide I'll break down. But you know, we just logged in in the previous slide, but you don't really wanna do that in all your tests. You just have a lot of them if you're logging in. A lot of Drupal sites have a lot of different users. And so here what we're doing is adding a custom command. So you put this in a support file and it loads this before the test run. So it's available when you're writing the test like down there. So it's called log in and then you can pass in any number of parameters. Here we have two user password. And so that's making a request which is faster than visit because it's not going to load the whole page, posting it and to that form. And then also to note is the session command which I've linked down below the site.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And what this will do is if it hasn't run, it'll look for a key which I'm just using the user there. And if it finds it then it will go ahead and restore that from cache. And you also want to use this option probably called cache across specs because if you don't do that when a test file, like I said, the authentication test, it goes to another test group, it'll raise that and sort of have to log in again. So I usually just cache it and it saves. I mean, it depends on your test run, how many tests, but it'll save you quite a bit of time to do it this way rather than logging in and out. That's a bit on custom commands. It's good to add a few, but you don't want to add like too many. Like I said, locality behavior if you're Cypress has a pretty nice API. So if you're making a bunch of commands for a bunch of things and you get into the kind of tricky things you get into with like, don't repeat yourself and then you do it too soon and then you're adding a bunch of parameters. So login commands, other common things, but I don't have too many custom commands usually.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And here's an example of a test just testing content creation. And so you can see there are some of the commands we had in the previous slides. Here is a select file, so that'll just help you upload the file pretty easy API. You just got to select an element and then point it to the file. Here, we're filling out a body field which you can see the selectors get a little hairy. It's interesting for the different CK editor buttons. The thing I found most semantic was the tooltip text actually, but otherwise, the CSS and the HTML attributes are a little hairy. And then another thing to notice, Cypress has a lot of great plugins, so this is Cypress real events. You have a lot of these like if there's a type command, you have a real type command. And so Cypress will simulate the events. Sometimes that can cause issues. So if you're having that issue, you can use Cypress real events or you can just switch to it all the time so you don't have to go back if you're having a problem. But it will actually, do the event in a native way so it's more reliable.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And then this is just the tag autocomplete field. You can type in and there are some special characters like Enter Tab. So I just type in Foobar and enters and then we have some tags and that's just saving the article. So here a little bit on best practice selecting elements as I saw in the last slide that it can get kind of hairy. So what Cypress recommends, and I do too is to use things like data attributes. So they like to use data PSI. I would use data test ID 'cause maybe you're not gonna use Cypress at some point, but they of course want to you to use data type because probably one more reason not to switch. But you'll see commonly like classes and IDs if you want to refactor something, you know, and that might break. So down here, we have, this is gonna be more brittle, let's say, for whatever reason decide to change SCS test will break. But if you tell the developers like, hey, when you see these data test ID attributes or data PSI, you know, don't don't change these and you can make them as semantic as you want.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So then there's more. There's a lot more to the best practices if you follow that selecting elements link. And then here we have assertions. So this is just asserting the content creation in the last slide. So you have commands like contains which will just look at what you've gathered here and it will just take the text from everything and look, does that have it in there? So some people like to be more specific with what the text is or assertions, but I'll use that if it just makes sense. It's pretty legible. There's asserting the image. Here we have the CK editor output, so I just have the assertion should have HTML. And so these are very readable try assertions and there's a lot of them. So you can have should not have HTML and various things like that. And then here's testing the tags and I'm using this function EQ. Cypress actually will get the elements and a jQuery element. So I believe it's using kind of just the jQuery EQ function, but that would just loop through the array and you know, I'm just making sure the same order and contains the text there.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And then you can flip the assertion. So you can say saiga and then should or you can say expect whatever your value is and you can even do the assertions in that method notation rather than the string notation. But I would just in your dev team, pick a style, you know, write it down and stick to it. You don't wanna have people going back and forth, but that will happen if you don't come to any agreement on what to do for standards. And then aliases. Aliases are are fun. Cypress is JavaScript. It functions in an async nature. And so sometimes it can be hard to get the variable and scope that you want. So one thing you can use is Cyprus aliases. So this just comes from the Cyprus docs. So here in Cyprus has lifecycle hooks, so that's important to know you can do before the whole test runs, before each test runs, before or after the whole suite or after each test runs. And what this is doing here is getting the button text. But then since you were not using an alias there, if you're trying to use it in a test, it doesn't work 'cause it's not in scope.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So this way, we'll get an element. You can use another command to just call any method. I see some people like writing it this way. You could also do it in JavaScript, but it's more the syntax of Cypress and then as keyword or as command will create the alias. So now we have an alias called text and now you can use it down in the test. It's actually just off of the current objects of this. So that will be a property, but you can also use it in this syntax. And what this will do when you get it was will rerun the command. So it's not a stale reference. So that's nice but that's a bit on aliases and then you can use aliases with the intercept command. And this is one of the coolest things about Cyprus and I know other frameworks can do it. But when I learned it, I thought, wow, this is cool beans here. And so this example we have, let's just pretend like we have a coupled application or something like that and we're getting data from an API. One common thing you'll have is, is the stuff there when the test runs, you know, how long do I have to wait for it?</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>That's a common source of errors with JavaScript not running. So what this does is it spies on any request because browser or Cypress is attached to the browser, so it runs. And so to look for any of these requests, turn them into aliases and then we can wait for them any number of aliases before we run our assertion. So that's a lot better than saying, you know, say wait five seconds or something arbitrarily like that, and then you can also attach a fixture. So here I'm just, you know, maybe you have you don't wanna test all of the users, but you wanna supply a test list of users. But here, it lets the API request goes through and just gets back the individual ID or something like that. Another cool thing you can do with intercepts is if you have a production environment with different headers on there and your code reacts that way, you kind of like, well, how do I do that if I'm not in production where you can actually capture the response and before it goes there and add a header. So I had an example where there was a certain header added, I don't remember why, but the code looked for it and made sure that it was multi-lingual feature.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And so I was able to add this and then the code could read it without having to change my application code which is really nice. And then, you know, down here we have the intercept command with CK editor, so or layout Builder. There's a lot of Ajax-y things that you might wanna spy on that stuff so that when you're trying to assert later, you know it's there. And then for people that like to use like a click browser extension, Cypress is working on stuff like that. So that's a screenshot of this extension that runs on the Chrome for some protocol and Chrome. And so it's using that. You can see that there's puppeteer also mentioned in there, but Cyprus added their hat to the ring and so you can use that like if you've used a selenium, sometimes they have a browser extension where you can just click around and then it will capture that and you can put that into a test. It's kind of nice to get started. And now that we have gone through Cypress features, I just wanna go and see some opinions of mine.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So this gets into the opinion part. And so as I say, like, you know, when you write test, now you know how to write them like, but where do you put them and all that type of thing. That can be confusing if you're a new developer on board and where do you put the test? And if you don't have that figured out, people just put them in all sorts of places and then you have to refactor that later. And so I think tests and then tests can kind of come from two places, features and then bugs. And so here's just an example of some way that you could arrange your end to end testing folder and so you could arrange it like this. So you could have at the top level regressions which of course come from bugs. So maybe you wanna isolate these out at first because they're really important. You might even have like a hotfix in your dev environment, but you don't know where the test really goes. And I think like any regression should be put into other tests because it's something user is doing. So it's not really isolated to a bug, it's part of a user story, probably.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Features, you can have user stories related to different roles. Those are different roles on the Drupal site there. And so you could arrange your tests that way and make sure that you're trying to think of the best way to arrange your features, however that's set out. You can also use like a user guide if you have that for your site users and try to map that, might be an easy way to organize it. And then here's what the creator of Cypress, you gave a talk and that's was a screenshot of his directory. So he said to break it up into models and you see it's not kind of doesn't really follow it. But anyway, you can split it up into models or user roles and then you can also put test in and use a skip method and that old Cypress will just skip that test like you would think. So it's a good way to add tests. Maybe you could, QA could stub out the test developer config figure, fill it in later. You can also, as you're writing features, you know, maybe during sprint planning, go through the steps and fill it in as you develop.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And then like I said, I think you wanna take regressions and kind of push them down into features. And then if you are looking at your features and try and refactor those, maybe try to push those down into integration tests because if you're repeating different things, you know, end to end testing can be expensive and integration test would generally run faster. So it's always kind of look how you can push things down. So that's a little methodology for you can think about. And here are some examples of tests that I've pulled from different repos I've worked on. And so this kind of like is this a good test or bad test and kind of musing on it. So here, you'll see this is kind of like a regression test. Oftentimes, I'll put in a specific bug, maybe a link to the testing or JIRA or whatever you have. So it has more information contextually for someone going back to see it. Here are basically just looking for a preview node. But is it good? I don't really think so because like this is probably part of some kind of user story somewhere.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So it's OK to have the test like maybe this was a bug you had where you kind of get the preview and you just wanted to make sure that that was working in your CI. But I would go back and refactor this and look for why is someone previewing a node? There's probably a reason and stick it into that test because this is a Cyprus best practice. Well, I'll get to that in a little bit, but not to split apart test too much. And so here we have a test where it is kind of split apart. You know, you can assert these things in one block because every time you have an IT function, Cypress will blow away the session cookie and all that type of stuff and reset itself. So it adds extra time. And a lot of times unit tests you're breaking up because you wanna know where it failed. But Cypress has very good reporting, so you always know where it failed. Takes videos and screenshots so it's less useful to break them up religiously one test per thing you're asserting. And then this also has a potential bug in it.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>I don't know if anybody can spot it, but one thing to do is to not rely on state from a previous test in the next test. So here we have, I see this a lot and things I worked on. And so here we're asserting this and then visiting another page. So if this fails, then I won't be on the Bell page. And let's say I wanna have this assertion so this will fail. And then if that's relying on being on the about page, that'll fail. And so you wanna set things up maybe before each hook, before the test, and you just don't wanna rely on state like that between tests. So here's this test sort of cleaned up once again, and it's not a very good test because it's just flippantly like someone had to verify CSS and stuff. But this I think is more readable and, you know, it's testing similar things. So I just don't think you have to break it up like the previous slide. And then here's some tests I wrote. So I think they're better because I wrote them. But one common thing that you'll have to do, you can think of tests like, do you have a listing and then a detail with a different like I was saying, models before, this is a content type.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And so you might wanna think a test that way, like collections and then individual items. This is a test. I had a slide there, the iframe payment form. So this test as I wrote, that involves that and it's got several things in it. You know, here are some sort of variables like, you know, there's makes a single so there's a way to make multiple, there's other tests like that, test some form validation. So a little messy. But while you're in there, you know, filling out the form, if you have some validations, I think it's fine to include it rather than make another test just simply for that. And then here we had a feature where the form would be filled out if you went to it so you could share a link and it would fill out things like donation amount and giving frequency. And so I'm only really testing the first part and that, but I think that's OK because we're also testing the donation workflow and this previous test. So you don't have to like go all the way to the end if you have another test that complements it because then you're just duplicating it.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And one of the biggest complaints when you get enough test is it takes too long to run. And then here's another example of a test. So here you can import data and then dynamically create tests which is kind of interesting. And so you can use some of the data here to write the name of the test. Even this just authentication test. But is this a good test to be in Cypress? Probably not, because you're not really testing anything with user interaction. You know, you can probably push this down to a lower level and this is using PHP unit and browser test based. And so you also get things like creating users and other stuff like that. You have to create sort of a bridge if you're using Cypress in the JavaScript. So maybe another reason to use integration test 'cause you get some of those functions for free. And then, like I said, there's tons of plugins. So this is a link to the plugins page. You can go through it. There's like, I don't know how many of I'll just say 100 because it sounds like a good.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>But there's many different categories and I'll go over some of them a little bit later. And then last slide on Cypress. So I'm not just gonna tell you it's all puppies and rainbows. There are some downsides there. I just wanna honest and fair. And so still no iframe support. So that links to an iframe issue. It's been open for a while. There's a lot of comments. People don't have this fixed yet. And so like I said, there's even plugins for it and sometimes it works fine. And I've had it work, many months, years and then other times you test an iframe and you just struggle with it because what Cypress does is it takes a DOM snapshot. And so what I've seen and do is go in there, it'll take an empty snapshot of iframe, iframe loads other things and then you can actually see it in the test runner, the next tick or whatever. It has all this stuff there. And it's frustrating 'cause you can see it, it shows up. But trying to get Cypress to wait for that or get the correct DOM snapshot can be tricky.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And then this comes from a quality assurance Reddit actually. So I kind of stepped into this a little bit outside of my zone. But they go into if you follow that link and a lot more detail. I still don't know what key cloaks are, but Cypress isn't too great with iframes. Multiple tabs. If you have anything with multiple tabs, you probably run into trouble multiple windows, things like selenium server and the Webdriver API just have kind of better support for that. And then this can be a pro or con, it's limited to JavaScript and typescript. And so if you're doing like a couple Drupal, you can actually do things like spy on the functions. So you can have a code coverage report which is kind of nice, but if you're using other languages like PHP and you're kind of trying to one foot in each language can be less useful. But if you're doing the couple Drupal, yeah, that can be a pro. And then Playwright is something I wanna look into more. It's what started a fork of Puppeteer which came up in a previous slide.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And this link will go to a post where someone explains in great detail why they prefer Playwright over Cypress and the reasons so. But they weren't shy in their opinion on that. So I definitely wanna look into Playwright and kind of compare it and then also Nightwatch. Mainly looking to Cypress and it's just been so easy for me to use test runner knock on wood has never failed for me and that's just a blessing. So that's kind of the end of that part. And now I will go show you some, just drag it over. I'm going to storm and show you some actual test and then I'll open it up for QA. So I guess I'll just go into this. This is a plug in here. So what common plug ins might you wanna use? This is actually test a lighthouse. So you can work that in there if you have a kind of performance budget. And what this does is just goes to the home page and then you have an object which you can set different thresholds. And if it goes under any of those thresholds, the test will fail. So that's a good way to keep honest with your performance.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Here's another plug in. It's Cypress X, uses X core. So what this is doing is just going around and it goes to the homepage again, you have to inject X and then you can check to see if it's accessible. And oftentimes, you'll have kind of these are rules that are in X. You can go there and look at that documentation. But sometimes you'll have things that are hard to get accessibility wise, but you have an escape hatch there to include excluded rules. And then I won't really go into this, but this is on the X core plugin page. And you'll wanna do this probably if you use this plug in and I just copied it right from the docs. But what it does is when you're running the test, it'll output a very nice little table of the violations. Otherwise, you have to go into the test runner. So that's a nice addition that they added that plug in. And then I often will with Drupal put things into a module and you can have config and adding pages or users, you can do this many, many different ways. But a lot of times I end up developing a testing module and do creating things when you install it.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Some people use Drush commands. You can kind of pick and choose. And then I'll try to show you the experimental studio which is kind of a click thing, a different thing than the Chrome extension. So I guess they're working on multiple ways of doing it now. But here you can set up configuration and these are just ways that make some of the plugins work. There's the authentication test. Oh, yeah, I'm gonna, that's where I'll try to put the experimental studio output when I try to run that. See if it actually works. And then, OK, yeah this, I was proud of this. So when you put the test up on your CLA pipeline, one of the common CI pipeline, one of the common things I've run into, you'll have a lot of tests. You know, you wanna group the test and maybe you only run one or on certain tests on pull requests and then other tests when you merge everything in. So I was trying to figure out how to do that on GitHub actions and this is what I came up with. So just just break it down. It took me a little while and you know, you can see the PR command is like 50 commits as I'm just trying to go through this.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So what this does is it goes through, it sets a variable just has tags false. So and this is I guess I'm looking for a commit message to something special in the commit message to see then if it has tags and which tags there. This will take the most recent log commit. And it's important to add the no merges because the most recent commit on GitHub actions is actually the merge commit. And so you won't see any message there which threw me for a loop for a while. It's like why is there no message? And you also have to put fetch dev zero so it gets more than the most recent commit. And then it reads it into array. It looks for the hash signal. So this is if you have a git commit message, whatever it says and at the end there's a hash symbol. And so that's what it's breaking it down upon sanity check, just making sure that there's something there. And then at the end, I'm making sure there's an add tag and that is in. Here you can add tags at several different levels, so you can tag the describe block.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Here's content. And then I was also using a smoke tag. So sometimes you just have like, we really wanna know if these tests work. And so that if it finds those things with at symbols, it'll put them into a string and then cause, set these variables. So it's true. And then installing DDEV, you can set this up different with an image or something like that. Setting up a Drupal website. Here I'm installing the testing module I was kind of showing before the install page there, no dependencies. And then here we get down to the actual environment. And so since I've up here put them in the GitHub environment variable, I can access them down here with the same keys. And so I'm doing it running different tests. If you really just wanna speed it up and you're doing stuff with content or whatever, it'll just run those tests with the commit message and then if it doesn't have anything in there, it'll run the smoke test. So that's a decent way to provide some things if you really wanna get the test run done, because sometimes you can get up to like hours depending on how many types you have.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>And another thing that can help is splitting it up. So this is actually a pretty easy way of doing parallelization on GitHub actions. And this is what I would run after it's merged in to running more tests because you're not trying to review anything. So it's a good time to run all the tests, see if anything breaks. And so this is doing is building, is adding containers. And so you can add as many as you want. Here it's just two. And then same a lot of steps here. But then you have the, it's a plugin called Cypress Split. And what this does is help you parallelize it. And so all you have to do is use this GitHub action and use the strategy job total. So that's like the, that relates to the container. And this will go through and then take how many tests you have, divide them. So you have 50 tests, you have two containers of 25 each. And so let's say your original test run was like 40 minutes and there should be 20 each and you can keep going. And that's a nice way to cut down on your test run time because if you had more tests, it would just keep getting longer.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>The last thing over here. Here are just some of the plugins that I have. I don't have a lot of training to make this kind of an example repository on my GitHub profile and keep adding examples. But there you see the X, the lighthouse audit. We had cypress grep is what splits it up into tags which showed real events we talked about that. And then Cypress split runs it in parallel and then Cypress slow down is actually one you can use for examples like I'm going to try to show here, but it'll pop up a test runner and it just slows down so people are better able to see, better able to see it. So now I'll just open the test runner and hopefully this pops up in the same window. Oh, no, it didn't. So just drag that over. And here's the test runner. They updated the UI, so it looks better. But here you have the different specs you can run. And I'll just show content creation here. Click on it. And here I've slowed it down because it would be like super fast. You can see it's creating the session because it hasn't yet.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Otherwise, it would be restored. Here is just going through. You can nicely see what's going on. And once again, this is using the slowdown so slower. Normally would be. But if you're debugging, that can be useful. This is the same test we went over. And then at the end it's still little assertions. And then, yeah, now it's green. And so if it failed, it would be red X. But you can go along and then you see a DOM Snapshot of each of the stages. So if I wanted to see contains article, why isn't there, you have the snapshot and you can go inspect the element. And now when you go over to the console, it has it right there for you. I don't know if I go click again. Here, it even has mouse events and there's the DOM node. But it's really nice there. Where was the... Yeah. And then you can even see before and after. So it's kind of hard to see, but before we don't have it selected. After there, shows up. So a lot of this stuff can be very useful if you're debugging test. And you know, it's just a lot harder for me to do with source labs or remote thing.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So that's that. And then I'll go into authentication. Here is not slowing down, so a lot faster. You can see those are just normal test run. And so let's say I wanted to add a command here. So for fun, I would just add a command to this test. So it reruns it first to go through all the steps and now you see there's additional prompts we have here. And so I can right click on that text. And they're still working on this. So it's it's very rough. But I can then assert that the text is there. And so now it has the steps. And so if I then save the command, it'll run through it again just to make sure it works hooray. And now we have an authentication this stuff. And so this is the last step that ran. And here it just gives you a comment. As you can see, you might have to redo the selectors and whatnot. So I oftentimes will just like go through a test, go through, and then you'll have to kind of like take it and massage it a lot. But if you're new to testing and you just wanna try, Cypress out it's a pretty interesting way to start your test and look at that stuff.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>So that's basically been on the test runner. They do have a CI service. They kind of try to push you in 'cause they got to make money some way. And so this will connect to the cloud and helps you run in parallel and a lot of things. And then I guess you can debug the sessions remotely. That's like one of their newest features. You know, I don't pay for that stuff. And so there is even like somebody made like a Cypress dashboard that's like open source. You can download that and put it up on Heroku or whatever. But yeah, that's about it. So I guess I'll open it up for questions. If anybody has questions. You guys, I can ask you questions.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>STUDENT:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Sure. That's a nice switch.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>LECTURER:</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>Yeah, I guess I will stop the recording then for the people that will watch it later.</span></span></span></span></span></span></p></div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-1cfe6e748152cf6f6c7f3268df671544941ddc79a16c9989ed83796154631e37">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/6942">https://mid.camp/6942</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+  <section class="map-banner">
+      <div class="views-element-container block block-views block-views-blockevent-venue-block-1" id="block-hatter-views-block-event-venue-block-1">
+  
+    
+      <div><div class="container view view-event-venue view-id-event_venue view-display-id-block_1 js-view-dom-id-4588463030ca3a958741660a59d7f6b01734d6cc63b74bf41302ba44f31bc121">
+  
+    
+      
+      <div class="view-content">
+          <div class="views-row">
+
+
+<div class="map-overlay">
+  <span class="map__label">Location</span>
+  <h2 class="map__title"><span class="field field--name-title field--type-string field--label-hidden">DePaul University - Lincoln Park Student Center</span>
+</h2>
+  
+            <div class="field field--name-field-address field--type-address field--label-hidden field__item"><p class="map__address" translate="no">
+          2250 N Sheffield Ave. <br>
+            Chicago, IL 60614<br>
+  </p>
+</div>
+      
+  <a href="../../about/venue.html" class="cta-link--yellow">Learn more  <span class="cta-arrow"></span></a>
+</div>
+<div id='map' class="map"></div>
+</div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-ea0b090ea507cfbe22962121cce85041cd1f6e45d5e46e2ba0ce56d5bfb0b526">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/evolving-web.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2023-04/evolvingweb%20(3).png" width="1517" height="371" alt="Evolving Web" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/bounteous.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2023-01/BounteousIndigoSmall.png" width="403" height="67" alt="Bounteous logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/debug-academy.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2023-02/Final%20Logo-in-color.png" width="1010" height="864" alt="Debug Academy logo" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#345d5a525b74595d50575559441a5b4653"><span class="__cf_email__" data-cfemail="7910171f163914101d1a18140957160b1e">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/6942","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"ajaxTrustedUrl":{"form_action_p_pvdeGsVG5zNF_XLGPTvYSKCf43t8qZYSwcfZl2uzM":true},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_U1jmi93nTJG2lPAKzexs4tMZWFR2YMMoIoiPckW421U.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJx1yksKgDAMRdENabskSfUZK2kjTfCzeyfiQHB04XBZlQUDVZLL82iRP9At5I4WWTSR9OsLhbakZ3cgzdpKfBogKKgeJjhlsWC043cqMCPGDa0vM_I"></script>
+<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.js"></script>
+<script src="../../sites/default/files/js/js_RAkHj2z9vY4q-6RsYuiXkqPbxgsRWrLsVQRz36mKiGA.js%3Fscope=footer&amp;delta=2&amp;language=en&amp;theme=hatter&amp;include=eJx1yksKgDAMRdENabskSfUZK2kjTfCzeyfiQHB04XBZlQUDVZLL82iRP9At5I4WWTSR9OsLhbakZ3cgzdpKfBogKKgeJjhlsWC043cqMCPGDa0vM_I"></script>
+
+  </body>
+</html>

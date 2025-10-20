@@ -1,0 +1,3506 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="Composer is a package manager that alleviates the complexity of dependencies in PHP based projects (such as Drupal 8). This session provides an introduction to the core concepts behind package management and Composer.  No previous knowledge of Composer required. Using practical examples as guidelines attendees will learn the basics of Composer, including: What composer is and the concepts of how it works. How to add composer to a project and packages to a project." />
+<link rel="canonical" href="composer-101.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Composer 101 | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Composer 101 | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_Qoyy92GHt9RyGOt8N3WS_9HRsJcJBywJ2IhXudzvST4.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJw1jFEOgzAMQy9U1iOhtDGsUkqmugOx068C8WM961nOJuQZkxAh31xBygo-fXMdzhsGtSpWfghv6R0truZJbMpk4MmOeh_tReEzaoLOS4FpbODHN5Yd0yXHBAfjla_q-jX8AXwTNZQ.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_mK2of_t7UFymkfbTHeA-kHdMPWzqc3DZQCYtX-tC0BA.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJw1jFEOgzAMQy9U1iOhtDGsUkqmugOx068C8WM961nOJuQZkxAh31xBygo-fXMdzhsGtSpWfghv6R0truZJbMpk4MmOeh_tReEzaoLOS4FpbODHN5Yd0yXHBAfjla_q-jX8AXwTNZQ.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJw1jFEOgzAMQy9U1iOhtDGsUkqmugOx068C8WM961nOJuQZkxAh31xBygo-fXMdzhsGtSpWfghv6R0truZJbMpk4MmOeh_tReEzaoLOS4FpbODHN5Yd0yXHBAfjla_q-jX8AXwTNZQ.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJw1jFEOgzAMQy9U1iOhtDGsUkqmugOx068C8WM961nOJuQZkxAh31xBygo-fXMdzhsGtSpWfghv6R0truZJbMpk4MmOeh_tReEzaoLOS4FpbODHN5Yd0yXHBAfjla_q-jX8AXwTNZQ.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="composer-101.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-hatter-midcamp2019navigation-menu" id="block-hatter-midcamp2019navigation" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-midcamp2019navigation-menu">Midcamp 2019 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" title="About MidCamp" data-drupal-link-system-path="node/191">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--venue">
+        <a href="../about/venue.html" data-drupal-link-system-path="node/192">Venue</a>
+            </li>
+          <li class="primary-nav__sublist-item item--travel">
+        <a href="../about/travel.html" title="Travel and Accommodations" data-drupal-link-system-path="node/188">Travel</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../about/lunch.html" title="Lunch options" data-drupal-link-system-path="node/189">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--volunteer">
+        <a href="../article/volunteer-help-midcamp.html" title="Volunteer!">Volunteer!</a>
+            </li>
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2019/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../../2020/news.html" data-drupal-link-system-path="2020/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--attendees">
+        <a href="../attendees.html" data-drupal-link-system-path="2019/attendees">Attendees</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" data-drupal-link-system-path="2019/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--spread-the-word">
+        <a href="../article/spread-word.html" data-drupal-link-system-path="node/371">Spread the Word</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" title="Sponsors" data-drupal-link-system-path="node/197">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--become-a-sponsor">
+        <a href="../sponsor-midcamp.html" title="Sponsor MidCamp" data-drupal-link-system-path="node/186">Become a Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../../jobs.html" title="Jobs" data-drupal-link-system-path="jobs">Jobs</a>
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" title="Schedule" data-drupal-link-system-path="node/190">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--all-sessions">
+        <a href="../sessions.html" data-drupal-link-system-path="2019/sessions">All Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--summits--training-wed">
+        <a href="../schedule/wednesday.html" title="Summits &amp; Training (Wednesday)" data-drupal-link-system-path="2019/schedule/wednesday">Summits &amp; Training (Wed)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-thu">
+        <a href="../schedule/thursday.html" title="Sessions (Thursday)" data-drupal-link-system-path="2019/schedule/thursday">Sessions (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-fri">
+        <a href="../schedule/friday.html" title="Sessions (Friday)" data-drupal-link-system-path="2019/schedule/friday">Sessions (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--contribution-sat-">
+        <a href="../contribution-day.html" title="Contribution Day" data-drupal-link-system-path="node/332">Contribution (Sat) </a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-terms-and-conditions">
+        <a href="../../speaker-terms-and-conditions.html" title="Speaker Terms and Conditions" data-drupal-link-system-path="node/21">Speaker Terms and Conditions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../../speaker-resources.html" title="Speaker Resources">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--topic-tracks">
+        <a href="../../topic-tracks.html" title="Topic Tracks" data-drupal-link-system-path="node/10">Topic Tracks</a>
+            </li>
+  </ul>
+
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2019.html" hreflang="en">MidCamp 2019</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Composer 101</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="238" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2019-03-21T20:40:00Z" class="datetime">Thursday, 3:40 pm CDT</time>
+ - <time datetime="2019-03-21T21:40:00Z" class="datetime">Thursday, 4:40 pm CDT</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-82" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-field-link field--type-link field--label-hidden field__item"><a href="https://zoom.us/my/midcamp314b" target="_blank" class="button--primary">Go to Room 314B - old</a></div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p dir="ltr">Composer is a package manager that alleviates the complexity of dependencies in PHP based projects (such as Drupal 8). This session provides an introduction to the core concepts behind package management and Composer. &nbsp;No previous knowledge of Composer required.</p>
+
+<p dir="ltr">Using practical examples as guidelines attendees will learn the basics of Composer, including:</p>
+
+<ul>
+	<li dir="ltr">
+	<p dir="ltr">What composer is and the concepts of how it works.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">How to add composer to a project and packages to a project.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">Semantic versioning patterns for packages.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">General Do's and Don'ts when using Composer.</p>
+	</li>
+</ul>
+
+<p dir="ltr">Attendees will leave this session with insights and basic knowledge of Composer. Including knowledge of how it works, the value it provides to projects and how to use it on any (PHP &nbsp;based) project.</p>
+
+<p dir="ltr">&nbsp;</p>
+
+<p dir="ltr">Annotated Slides available at <a href="https://bit.ly/Mid19Composer">https://bit.ly/Mid19Composer&nbsp;</a></p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/cGXmwRbvDgQ?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Michael Miles</h4>
+
+      Director of Web Development
+
+
+          @
+              <a href="https://mitsloan.mit.edu">MIT Sloan</a>
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p dir="ltr"><span>Mike is passionate about development and working with the latest open source technologies. He has been working in web engineering since 2003, utilizing a number of different technologies, languages and frameworks. He has been working with Drupal since 2008 and is a regular contributor to the community and project. From&nbsp; 2015 to 2024 he was the lead organizer of the Boston Drupal Meetup Group. Since 2017 has been one of the organizers of New England Drupal Camp.</span></p><p dir="ltr"><span>In his day-to-day role as Director of Web Development at MIT Sloan, Mike leads the development, maintenance and growth of the digital properties for the school, as well as, the development team that supports them. He is a public speaker and regularly presents at technical conferences around the world. Since 2013 Mike has presented dozens of talks at many different conferences/camps across the globe.</span></p></div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2025-01/Headshot2019_small.jpg%3Fitok=vMZy86xC" width="220" height="147" alt="Michael Miles" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Back-End</div>
+          <div class="field__item">DevOps</div>
+          <div class="field__item">Site Building</div>
+              </div>
+      </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p>welcome everyone think it's coming to</p>
+
+<p>composure 101 happy be it amid camp if</p>
+
+<p>you want to follow along I'd have been</p>
+
+<p>like the slides its mid-nineteen</p>
+
+<p>composure slides on that link are</p>
+
+<p>slightly different they're annotated and</p>
+
+<p>they have screen recordings so if the</p>
+
+<p>commands I'm going to be going through</p>
+
+<p>but you should be able to follow along</p>
+
+<p>so I need to click on my sides there we</p>
+
+<p>go</p>
+
+<p>alright before we get started just a</p>
+
+<p>little bit about myself hello my name is</p>
+
+<p>Mike miles I'm actually from Boston</p>
+
+<p>Massachusetts why are you in Chicago</p>
+
+<p>because I love meet cam I've been</p>
+
+<p>working with Drupal for 10 plus years</p>
+
+<p>now I I've done everything under the Sun</p>
+
+<p>when it comes to Drupal I lead the</p>
+
+<p>Boston Drupal meetup I'm when the</p>
+
+<p>organizers New England Drupal Camp I</p>
+
+<p>which is November so you should come out</p>
+
+<p>to the New England area for that and</p>
+
+<p>it's in Rhode Island this year during</p>
+
+<p>the day I'm the VP of Technology for a</p>
+
+<p>digital marketing agency called genuine</p>
+
+<p>genuine were full service digital</p>
+
+<p>agencies we're not a Drupal shop we</p>
+
+<p>actually our development team is across</p>
+
+<p>many technologies but we do video and UX</p>
+
+<p>and digital strategy and interactive</p>
+
+<p>applications and a lot of great stuff</p>
+
+<p>and we have offices in Boston San</p>
+
+<p>Francisco New York and here in Chicago</p>
+
+<p>it's my second-favorite office to come</p>
+
+<p>to so I love coming to Chicago at night</p>
+
+<p>I run a podcast called developing up</p>
+
+<p>which is focused on the non technical</p>
+
+<p>side of being a developer so anything</p>
+
+<p>that has to do with having a career in</p>
+
+<p>development but not having to do with</p>
+
+<p>writing code so everything else you need</p>
+
+<p>to know that career development</p>
+
+<p>just starting season 3 next month the</p>
+
+<p>new episodes so check us out</p>
+
+<p>you know calm if you're interested</p>
+
+<p>anywhere else you can find me online at</p>
+
+<p>Mike miles 86 on drupal.org on Twitter</p>
+
+<p>on Google+ why it's still around until</p>
+
+<p>April 2nd I believe they're shutting it</p>
+
+<p>down because nobody uses it so that's my</p>
+
+<p>handle pretty much everywhere all right</p>
+
+<p>how many people in here would say</p>
+
+<p>they're developers</p>
+
+<p>raise your hands okay what like 90% how</p>
+
+<p>many people work with developers alright</p>
+
+<p>maybe like 40% in the room which is</p>
+
+<p>weird if you're a developer you you</p>
+
+<p>don't work with yourself no judging all</p>
+
+<p>right I'm a developer at art as well</p>
+
+<p>I've been doing PHP development for a</p>
+
+<p>long time and what I like about</p>
+
+<p>developers is we're cool people and I</p>
+
+<p>say that very unbiased ly but I think</p>
+
+<p>developers what we're really good at is</p>
+
+<p>getting a set of problems a puzzle and</p>
+
+<p>making some sort of solution and</p>
+
+<p>building something cool right that's</p>
+
+<p>what see people nodding their heads</p>
+
+<p>that's what we like a challenge</p>
+
+<p>something that's the problem to solve</p>
+
+<p>and if you're a PHP developer you don't</p>
+
+<p>mind writing code to do this right here</p>
+
+<p>a developer you write some PHP code to</p>
+
+<p>solve the problem you're given you</p>
+
+<p>produce an output you're like look what</p>
+
+<p>I did this is great and you don't mind</p>
+
+<p>writing multiple files but developers</p>
+
+<p>we're not lazy but we're efficient</p>
+
+<p>people and so we don't like to have to</p>
+
+<p>rebuild things a lot and when we can get</p>
+
+<p>over our egos we don't mind using stuff</p>
+
+<p>that other people have written because</p>
+
+<p>they're smarter than us so we don't mind</p>
+
+<p>pulling in third-party code to add to</p>
+
+<p>our own code to solve problems we don't</p>
+
+<p>mind doing this</p>
+
+<p>but things can start to get hairy when</p>
+
+<p>you start building bigger projects in</p>
+
+<p>PHP when you have third-party</p>
+
+<p>dependencies that you want to utilize</p>
+
+<p>but then symbols have dependencies</p>
+
+<p>across dependencies developers don't</p>
+
+<p>really like this part of our job reason</p>
+
+<p>for this is because we're spending a lot</p>
+
+<p>of time managing code and not a lot of</p>
+
+<p>time writing code in solving problems so</p>
+
+<p>it's a it's a big thing we don't like to</p>
+
+<p>do don't get me started on security</p>
+
+<p>updates because then see oh my god you</p>
+
+<p>got to check all the things through all</p>
+
+<p>the levels okay and so developers want</p>
+
+<p>to go on the the green side of writing</p>
+
+<p>custom code and do less of the red side</p>
+
+<p>of maintaining third-party code that is</p>
+
+<p>supposed to save you time now no matter</p>
+
+<p>if you're developer or not if you work</p>
+
+<p>on a company where you build a product</p>
+
+<p>for your company or work for clients</p>
+
+<p>everyone in this room has two things in</p>
+
+<p>common on every project they've ever</p>
+
+<p>worked on that's has a limited time and</p>
+
+<p>a limited budget fleet that project it</p>
+
+<p>could be a nationally large budget or it</p>
+
+<p>could be really small and it doesn't</p>
+
+<p>matter you have limited time and budget</p>
+
+<p>to solve problems so the more time</p>
+
+<p>developers have to spend maintaining</p>
+
+<p>code in third-party code that's supposed</p>
+
+<p>to solve problems for them the less time</p>
+
+<p>they have less budget they have to write</p>
+
+<p>the custom code that delivers some sort</p>
+
+<p>of value to the project this is where</p>
+
+<p>composer comes in composer is a PHP</p>
+
+<p>package manager which manages that those</p>
+
+<p>third-party libraries for you so you</p>
+
+<p>could spend your time writing your code</p>
+
+<p>and focusing on solving the problems you</p>
+
+<p>have in front of you and so what I want</p>
+
+<p>to talk about today is what composer is</p>
+
+<p>I'm missing a slide I'm missing a slide</p>
+
+<p>I want to talk about what composer is</p>
+
+<p>what makes it important in how you set</p>
+
+<p>up a project using a pozer some of the</p>
+
+<p>typical structures you'll see I'm going</p>
+
+<p>to talk about the five commands you need</p>
+
+<p>to know as a developer to use composer</p>
+
+<p>effectively there's a lot of commands</p>
+
+<p>and composer but if you master just the</p>
+
+<p>five I'm going to show you you can do</p>
+
+<p>pretty much anything with composer</p>
+
+<p>whether it's with Drupal or not with</p>
+
+<p>Drupal anytime you're working</p>
+
+<p>and maybe beyond PHP so I'll cover those</p>
+
+<p>and hopefully show you that using</p>
+
+<p>composer on your projects not only is it</p>
+
+<p>relatively easy but it's going to save</p>
+
+<p>you that time to budget so your team or</p>
+
+<p>yourselves can focus on writing custom</p>
+
+<p>code deliver value so a typical</p>
+
+<p>structure and composer what searching my</p>
+
+<p>slides while using I think I'm using the</p>
+
+<p>wrong version I can using the wrong</p>
+
+<p>version give me one second you get to</p>
+
+<p>see all my slide decks</p>
+
+<p>no you don't come a night apologies okay</p>
+
+<p>this is better this is nice too let's</p>
+
+<p>interview okay okay all right</p>
+
+<p>that's like missing slides and stuff</p>
+
+<p>okay let me skip to where I am You Know</p>
+
+<p>Who I am you know what this is about you</p>
+
+<p>know about developers all right typical</p>
+
+<p>composer project what you'll see in this</p>
+
+<p>structure is three what I call three and</p>
+
+<p>a half days and this is a composer bar</p>
+
+<p>file which is an executable style file</p>
+
+<p>that is that the composer file it's PHP</p>
+
+<p>this is I'll get I'll explain in a</p>
+
+<p>moment why this is a half item why you</p>
+
+<p>may or may not have it in your project I</p>
+
+<p>think it's bigger to you'll have a</p>
+
+<p>composer education file which is</p>
+
+<p>metadata about your project and then you</p>
+
+<p>will have a close about lock file which</p>
+
+<p>is the file that composer generates to</p>
+
+<p>keep track of all the third party</p>
+
+<p>packages for you and then a vendor</p>
+
+<p>directory which is where composer keeps</p>
+
+<p>track and keeps all the third party code</p>
+
+<p>that your projects gonna use this is the</p>
+
+<p>typical structure weather no matter what</p>
+
+<p>type of composer project you're working</p>
+
+<p>on it's somewhat like this if you look</p>
+
+<p>at true pallate you're using composer</p>
+
+<p>with Drupal you're gonna see a similar</p>
+
+<p>structure there's just a lot more</p>
+
+<p>everything else involved a more secure</p>
+
+<p>version which you'll see more often is</p>
+
+<p>basically the same but that everything</p>
+
+<p>else is moved into a web root so in</p>
+
+<p>Drupal for example this is typically a</p>
+
+<p>doctorate right so the composer items</p>
+
+<p>sit above that and the reason why this</p>
+
+<p>is more secure is because you're</p>
+
+<p>publicly accessible code is in your web</p>
+
+<p>group and so some clever attackers can't</p>
+
+<p>access your composer now JSON files see</p>
+
+<p>what third-party libraries you're using</p>
+
+<p>hopefully find a vulnerability then</p>
+
+<p>connect</p>
+
+<p>your vendor directory to execute it</p>
+
+<p>because it's unavailable in the web room</p>
+
+<p>so typically you'll see a more secure</p>
+
+<p>structure this way with all the supposed</p>
+
+<p>stuff at the root level of your project</p>
+
+<p>and then your actual project stuff in</p>
+
+<p>some sort of web root below that so with</p>
+
+<p>this typical structure to start using</p>
+
+<p>composer you first need to have it</p>
+
+<p>installed on your system</p>
+
+<p>now the song composer is placing this</p>
+
+<p>composer dot far file on your machine</p>
+
+<p>again this is a PHP executable file</p>
+
+<p>those are just the PHP script there's a</p>
+
+<p>number of ways you can get this it's</p>
+
+<p>available on any system pretty much that</p>
+
+<p>can support PHP so if you're using</p>
+
+<p>Windows machine if you go to get</p>
+
+<p>composer or gosh composer - setup.exe</p>
+
+<p>that's an executable you can download</p>
+
+<p>he'll run you through setting up</p>
+
+<p>composer on your Windows machine and it</p>
+
+<p>will let you know if you need to install</p>
+
+<p>our things on your machine if you're</p>
+
+<p>using Linux UNIX or OSX</p>
+
+<p>get composer network slash download</p>
+
+<p>provide the download information and how</p>
+
+<p>to install composer on your system now</p>
+
+<p>when you're going this route and I think</p>
+
+<p>you can't you can do this one windows</p>
+
+<p>too you have a choice to make</p>
+
+<p>where you and your team out choice to</p>
+
+<p>make do you want to install composer</p>
+
+<p>globally or her project this is why I</p>
+
+<p>think of the dock bar file as a half</p>
+
+<p>item and a composer project because it</p>
+
+<p>could live in the project directory</p>
+
+<p>harder to get repo for example or it</p>
+
+<p>could just live globally on your system</p>
+
+<p>there are pros and cons to either</p>
+
+<p>approach and depends on your team if you</p>
+
+<p>install it globally you only have to</p>
+
+<p>install it once and you can use it</p>
+
+<p>anywhere on your local machine or the</p>
+
+<p>environment the server you have it setup</p>
+
+<p>it doesn't matter what project you have</p>
+
+<p>composer available</p>
+
+<p>but then everyone is responsible for</p>
+
+<p>putting composure on their own machine</p>
+
+<p>alright so you're gonna end up with</p>
+
+<p>people getting different versions</p>
+
+<p>depending when they install it that</p>
+
+<p>could lead to some discrepancies per</p>
+
+<p>project the benefit of this is that when</p>
+
+<p>someone pulls down your code base for</p>
+
+<p>your closer project they have composer</p>
+
+<p>already available</p>
+
+<p>they don't have to install anything</p>
+
+<p>additional in their system they just</p>
+
+<p>have to be able to run PHP and execute</p>
+
+<p>that composer Doubtfire file downside</p>
+
+<p>about this is that you actually have to</p>
+
+<p>type like six extra characters in the</p>
+
+<p>terminal when you're running composer</p>
+
+<p>commands it's not that big of a deal but</p>
+
+<p>if you're an efficient developer you may</p>
+
+<p>not want to do those extra six</p>
+
+<p>characters but let's take a look at</p>
+
+<p>installing composer on your system I'm</p>
+
+<p>going to start with it per project and</p>
+
+<p>then global so I'm just going to go to</p>
+
+<p>that get composer org download link this</p>
+
+<p>might be a little hard to see but</p>
+
+<p>there's a box here with four PHP</p>
+
+<p>commands that you literally just copy</p>
+
+<p>and paste into a terminal window so I'm</p>
+
+<p>going to copy this first one and I'm</p>
+
+<p>going to I have a terminal here I'm in a</p>
+
+<p>directory that's empty for demo purposes</p>
+
+<p>so I'm going to paste this PHP command</p>
+
+<p>this one is download a composer - setup</p>
+
+<p>dot PHP file so let's see it here this</p>
+
+<p>next command here is going to check that</p>
+
+<p>file against the hash so what this is</p>
+
+<p>gonna do is verify that I downloaded a</p>
+
+<p>valid installer so that I didn't get</p>
+
+<p>anything that's corrupt you'll see it it</p>
+
+<p>said installer verified I ran this quick</p>
+
+<p>check where it's check the hash for that</p>
+
+<p>file if it was invalid it would delete</p>
+
+<p>the file and tell me that it was a</p>
+
+<p>corrupt installer and then I would have</p>
+
+<p>to figure out how to start over but the</p>
+
+<p>installer is verified that's great so</p>
+
+<p>now I'm actually gonna ride in the setup</p>
+
+<p>file</p>
+
+<p>look what did I do</p>
+
+<p>- peace - peace Wow alright alright</p>
+
+<p>so the composer side file it's going to</p>
+
+<p>check my system see if I have the</p>
+
+<p>minimum requirements from composer if I</p>
+
+<p>did it in big red text it would tell me</p>
+
+<p>what I'm missing but as a valid</p>
+
+<p>installer so then what it does is it</p>
+
+<p>downloads the compose about fire file</p>
+
+<p>from the poseur web site puts it in my</p>
+
+<p>directory all right so there's composer</p>
+
+<p>that far now the last last task is a</p>
+
+<p>cleanup tasks all it is is deletes that</p>
+
+<p>setup file because I don't need it</p>
+
+<p>I used it what I need it for I</p>
+
+<p>downloaded composer dot far and I'm good</p>
+
+<p>to go</p>
+
+<p>I would recommend when you're using</p>
+
+<p>poser and composer recommends that you</p>
+
+<p>never keep that static file in like a</p>
+
+<p>repo anywhere because as composer</p>
+
+<p>changes you want to get it from composer</p>
+
+<p>and check it against the changing hashes</p>
+
+<p>right that's typical 101 for downloading</p>
+
+<p>code but now my project is ready to go</p>
+
+<p>with the closer on a per project basis</p>
+
+<p>so I could check this in to get and then</p>
+
+<p>anyone pulling down this repo would be</p>
+
+<p>able to use the same version closer I am</p>
+
+<p>the way you would run composer as I type</p>
+
+<p>PHP composer dot far and we're going to</p>
+
+<p>see I get all these great commands like</p>
+
+<p>I said there's a lot of commands here</p>
+
+<p>you're only going to need to know five</p>
+
+<p>will where's my mouse</p>
+
+<p>yes yeah a composer all right whoo damn</p>
+
+<p>I was going great okay so that's per</p>
+
+<p>project if you wanted to then do it</p>
+
+<p>globally follow the same steps the only</p>
+
+<p>other thing you do is you're going to</p>
+
+<p>move that far file into a publicly of a</p>
+
+<p>system-wide accessible location so I'm</p>
+
+<p>Mac for example I would say move those</p>
+
+<p>are far to user local bin I'll call it</p>
+
+<p>composer so I move it there my directory</p>
+
+<p>is now magically empty again but now I</p>
+
+<p>can just type the composer and I hope</p>
+
+<p>all those composer commands in fact I</p>
+
+<p>can see the out of this directory and I</p>
+
+<p>can type composer I can use it there too</p>
+
+<p>so I can now use composer on multiple</p>
+
+<p>projects without having to have that</p>
+
+<p>farm file as part of each of them those</p>
+
+<p>projects so again pros and cons it</p>
+
+<p>depends on what your team wants to do</p>
+
+<p>I'm gonna leave it global for the rest</p>
+
+<p>of this demo great so yeah if composer</p>
+
+<p>installed now you want to start using</p>
+
+<p>you want to start building a composer</p>
+
+<p>project this is where you create your</p>
+
+<p>closed about JSON file this is a</p>
+
+<p>metadata if I'm Jason schema file that</p>
+
+<p>contains the metadata for your project</p>
+
+<p>you can write it yourself or you can use</p>
+
+<p>the first minute I teach you composer in</p>
+
+<p>it this is going to take you through</p>
+
+<p>some helpful prompts to generate that</p>
+
+<p>file just cover what that file has in it</p>
+
+<p>it has information that's helpful to you</p>
+
+<p>and your team and then information</p>
+
+<p>that's helpful to composer so a project</p>
+
+<p>name in the description that's helpful</p>
+
+<p>to your team type for us it just gonna</p>
+
+<p>be tech project you can use composer to</p>
+
+<p>generate composer plug-ins and other</p>
+
+<p>things we're going to take project you</p>
+
+<p>can provide license information composer</p>
+
+<p>doesn't really use that but it's great</p>
+
+<p>if you're saying my project uses the new</p>
+
+<p>public license so people know about it</p>
+
+<p>author information an important thing</p>
+
+<p>that really</p>
+
+<p>who cares about is minimum stability</p>
+
+<p>which I'll talk about in a moment and</p>
+
+<p>then the require array which is going to</p>
+
+<p>list out the third-party packages you</p>
+
+<p>require so let's show let me show you</p>
+
+<p>what composure and it does if you wanted</p>
+
+<p>to start a composer project you would</p>
+
+<p>type composer in it again this is gonna</p>
+
+<p>be helpful prompt to generate that</p>
+
+<p>posted our JSON file so it's going to</p>
+
+<p>ask you for a package name I like to</p>
+
+<p>follow the pattern of client slash</p>
+
+<p>project so here I would say mid camp</p>
+
+<p>slash quotes or 101 to ask for a</p>
+
+<p>description this is my composure on one</p>
+
+<p>demo it's gonna pull an author</p>
+
+<p>information by default it'll use your</p>
+
+<p>the system user that you logged in asks</p>
+
+<p>so I'll just leave that as their minima</p>
+
+<p>stability I recommend you leave this</p>
+
+<p>blank what you can do here is tell</p>
+
+<p>composer what version of packages you're</p>
+
+<p>willing to download if you leave it</p>
+
+<p>blank you'll assume you only want stable</p>
+
+<p>packages which I recommend you do I'll</p>
+
+<p>show you later on how to override that</p>
+
+<p>for specific packages so I'll skip that</p>
+
+<p>it's a type project great I don't care</p>
+
+<p>about any licenses for a demo it's going</p>
+
+<p>to start asking you do you want to start</p>
+
+<p>searching for third-party packages I'm</p>
+
+<p>gonna skip this for now so we're gonna</p>
+
+<p>do in a separate step and it's gonna ask</p>
+
+<p>for dev packages I'll skip this for now</p>
+
+<p>as well but composer allows you to do is</p>
+
+<p>have third-party code that your project</p>
+
+<p>requires to run in third-party code that</p>
+
+<p>your project only requires for your</p>
+
+<p>developers so for example in Drupal this</p>
+
+<p>would be drush or devel or triple</p>
+
+<p>console etc so now it's going to show</p>
+
+<p>you that Jason is going to generate you</p>
+
+<p>can confirm yes that looks great</p>
+
+<p>I'm gonna hit enter</p>
+
+<p>did I not CD back in the c11 D is you</p>
+
+<p>guys supposed to help me out sorry</p>
+
+<p>look at all right let me let me move</p>
+
+<p>this huh move closer to Jason and to c11</p>
+
+<p>D all right all right all right so I</p>
+
+<p>have composed it out JSON file if I open</p>
+
+<p>this and sublime text you're gonna see</p>
+
+<p>it's exactly what it said was going to</p>
+
+<p>generate Nick great so now composer to</p>
+
+<p>initialize you're actually all set to</p>
+
+<p>start using proposer for your project</p>
+
+<p>the next question is though how do you</p>
+
+<p>start finding packages to include and</p>
+
+<p>have this composer know where to find</p>
+
+<p>third-party code for you this is where</p>
+
+<p>repositories come in play so</p>
+
+<p>repositories our locations you can</p>
+
+<p>define and composer adjacent where</p>
+
+<p>composer should look for third-party</p>
+
+<p>packages if you don't define anything</p>
+
+<p>composer is gonna by default gonna look</p>
+
+<p>at packages org this is the official PHP</p>
+
+<p>project package library that composer</p>
+
+<p>uses you can go here right now you can</p>
+
+<p>search for a plate any type of keyword</p>
+
+<p>and find a PHP package that does it for</p>
+
+<p>you it's great this is where all the</p>
+
+<p>symfony components live this is where a</p>
+
+<p>lot of like general PHP libraries like</p>
+
+<p>for mailers and and logging they're all</p>
+
+<p>available here but not everything is</p>
+
+<p>here for example in Drupal modules and</p>
+
+<p>themes are not on packages truble</p>
+
+<p>maintains its own packages repository so</p>
+
+<p>what you can add in your closet are JSON</p>
+
+<p>file is a repositories array where you</p>
+
+<p>tell it additional locations to look</p>
+
+<p>into it's always gonna look at packages</p>
+
+<p>they you can tell it for example I want</p>
+
+<p>to look at packages drupal.org slash</p>
+
+<p>eight for Drupal eight modules and</p>
+
+<p>themes this would be of type composer if</p>
+
+<p>it is a packages type library widgets</p>
+
+<p>that's an open source framework that you</p>
+
+<p>can download and setup your own or that</p>
+
+<p>you can set</p>
+
+<p>Enterprise one you pay for that but you</p>
+
+<p>can also add anything you want as a</p>
+
+<p>repository so if you have a git repo</p>
+
+<p>that you use a lot where you have some</p>
+
+<p>custom libraries that you reuse on your</p>
+
+<p>your projects</p>
+
+<p>so if copying and pasting them to each</p>
+
+<p>project you can connect them as a</p>
+
+<p>repository and then just use composer to</p>
+
+<p>download that that library that you</p>
+
+<p>built that you reuse a lot which is</p>
+
+<p>great so any sort of git repo on get a</p>
+
+<p>get Lab bitbucket</p>
+
+<p>wherever you store it you can you can</p>
+
+<p>attach it to your composer project you</p>
+
+<p>can also get more advanced and have</p>
+
+<p>stuff that's even protected with</p>
+
+<p>passwords and stuff to get compose our</p>
+
+<p>website and get Quizlet org talks more</p>
+
+<p>about how to do that so great you set up</p>
+
+<p>repositories you leave the default one</p>
+
+<p>to use packages now you need to start</p>
+
+<p>telling composer these are this is the</p>
+
+<p>code I'm going to use that I don't want</p>
+
+<p>to write this is a required command so</p>
+
+<p>composer requires it's an update close</p>
+
+<p>it up Jason proposed a lot lock and the</p>
+
+<p>vendor directory so what it's going to</p>
+
+<p>do is composer requires how you tell</p>
+
+<p>composer I want to use this package on</p>
+
+<p>my project and you can one run it one of</p>
+
+<p>three ways you just say composer require</p>
+
+<p>it's going to give you a bunch of</p>
+
+<p>prompts to help find a package if you</p>
+
+<p>know the package name you can pass it</p>
+
+<p>and you'll get the latest version of</p>
+
+<p>that package if you know a specific</p>
+
+<p>version or a range of versions you want</p>
+
+<p>to use you can pass the package name and</p>
+
+<p>this version constraints that you want</p>
+
+<p>and composer will do its best to find</p>
+
+<p>that constraint that type of for that</p>
+
+<p>version of that package so let's take a</p>
+
+<p>look at all three of these so first I'm</p>
+
+<p>just gonna do it with the prompts so I'm</p>
+
+<p>gonna just type composer I'm in the</p>
+
+<p>right directory right</p>
+
+<p>composure require and so it's gonna say</p>
+
+<p>all right give me a keyword to find a</p>
+
+<p>package like every group good PHP</p>
+
+<p>developer I'm gonna make sure I can log</p>
+
+<p>into my system my project so I'm going</p>
+
+<p>to search for the word log it's gonna go</p>
+
+<p>do a search on packages for a keyword</p>
+
+<p>blog and return me an array of 15</p>
+
+<p>possible packages if none of these were</p>
+
+<p>the one I wanted I go and packages find</p>
+
+<p>package name and then I could tell</p>
+
+<p>composer that package name let's say I</p>
+
+<p>want to use monologue which is the</p>
+
+<p>second item in the array very popular</p>
+
+<p>library then is gonna ask me is there a</p>
+
+<p>specific version of this package I want</p>
+
+<p>to use I can leave that blank to get the</p>
+
+<p>latest one or I can specify any sort of</p>
+
+<p>semantic version number so for example</p>
+
+<p>major not minor that patch so I'll say I</p>
+
+<p>want version 1.2 0.0 all right then it's</p>
+
+<p>gonna ask me again you wanna search for</p>
+
+<p>more packages I'm just gonna do one for</p>
+
+<p>now</p>
+
+<p>so what composer is going to do now it's</p>
+
+<p>going to update my composer JSON files</p>
+
+<p>I'll show you in a moment with that</p>
+
+<p>package information it's going to make a</p>
+
+<p>call to packages to get project info and</p>
+
+<p>it's actually going to download that</p>
+
+<p>code</p>
+
+<p>so we will see that right it says these</p>
+
+<p>lines here installing all right so</p>
+
+<p>installed monologue but before that</p>
+
+<p>installed another library PS Sarlacc the</p>
+
+<p>reason it did this is because monologue</p>
+
+<p>has its own dependency on this other</p>
+
+<p>package I as a developer didn't really</p>
+
+<p>know that but I as a developer you see</p>
+
+<p>composer you don't need to know that I</p>
+
+<p>just told composer I want this package</p>
+
+<p>hoses like okay this package means these</p>
+
+<p>other things so I'm going to get them</p>
+
+<p>for you it was great that saves me time</p>
+
+<p>and budget to do from doing that myself</p>
+
+<p>so install these two libraries and now</p>
+
+<p>if we look in my directory I'm gonna see</p>
+
+<p>I have dot lock file that was generated</p>
+
+<p>in a vendor directory if I open up this</p>
+
+<p>lock file actually before I do that if I</p>
+
+<p>show you the composer JSON file you're</p>
+
+<p>gonna see the require array has been</p>
+
+<p>filled in with a with an item monologue</p>
+
+<p>with a version that I specified so now</p>
+
+<p>that's that's listed there I can commit</p>
+
+<p>this to my repo so that my project knows</p>
+
+<p>this is a requirement for this project</p>
+
+<p>if I edit the log for the lock file this</p>
+
+<p>has a lot more information in it now the</p>
+
+<p>lock file you'll see it has monologue</p>
+
+<p>the version I I requested it has the</p>
+
+<p>requirements of PSR log and that's</p>
+
+<p>version this has a lot more information</p>
+
+<p>than night my JSON file the composer</p>
+
+<p>lock file is generated by composer or</p>
+
+<p>composer</p>
+
+<p>it's how composer keeps track of</p>
+
+<p>everything you should not be editing</p>
+
+<p>this actually I'm going to tell you do</p>
+
+<p>not edit your log file if you enter that</p>
+
+<p>you're gonna have bad time but if if you</p>
+
+<p>don't edit it and you keep it there what</p>
+
+<p>it does is no matter how you specify</p>
+
+<p>what version of a project you make</p>
+
+<p>package you may want composers always</p>
+
+<p>going to download a specific version a</p>
+
+<p>major down minor that patch version</p>
+
+<p>so then once you have the lock file you</p>
+
+<p>commit back to your repository and</p>
+
+<p>anyone else who's setting up your</p>
+
+<p>composite project they will get that</p>
+
+<p>exact same version of that package as</p>
+
+<p>you you have if you don't have a lock</p>
+
+<p>file they may get different versions and</p>
+
+<p>I'll show you how that comes to the</p>
+
+<p>plate a little bit the other thing it</p>
+
+<p>generated is a vendor directory which</p>
+
+<p>was looking at you see it has a bunch of</p>
+
+<p>directories in itself like the monolog</p>
+
+<p>PSR so this little third-party code I</p>
+
+<p>don't necessarily know the structure of</p>
+
+<p>this but I don't have two composers</p>
+
+<p>going to keep track of this for me I'll</p>
+
+<p>show you how you lose that use that</p>
+
+<p>later on and the important thing with</p>
+
+<p>the vendor directory though is you don't</p>
+
+<p>commit it if you're using repo you don't</p>
+
+<p>commit it to your repo reason for this</p>
+
+<p>is it's all third-party code it's stuff</p>
+
+<p>that you have no purview into or that</p>
+
+<p>you have any control of and the fact the</p>
+
+<p>reason why you're using composer is</p>
+
+<p>because you don't want to control it you</p>
+
+<p>don't want that burden on yourself if</p>
+
+<p>you could as soon as you commit it in</p>
+
+<p>you're committing a specific version of</p>
+
+<p>code into your repository you're adding</p>
+
+<p>a lot of code to your Pastore when you</p>
+
+<p>can just have composer set up on all</p>
+
+<p>your environments to download that code</p>
+
+<p>read from your lock file for you so you</p>
+
+<p>don't commit vendor and in the drupal</p>
+
+<p>world if you're using you know if you're</p>
+
+<p>a NOC we are a Pantheon you have to have</p>
+
+<p>the vendor directory checked in you can</p>
+
+<p>get around this by having like some CI</p>
+
+<p>tools in place so you can generate</p>
+
+<p>what's known as a build artifact to then</p>
+
+<p>run the composer commands download the</p>
+
+<p>code and push it up to your environments</p>
+
+<p>but I recommend don't committing your</p>
+
+<p>vendor directly into your your general</p>
+
+<p>repo you're just gonna cut down the</p>
+
+<p>amount of code you have to keep track of</p>
+
+<p>all right so that's composer require on</p>
+
+<p>its own</p>
+
+<p>let's search with a package name</p>
+
+<p>we're doing good on time right now all</p>
+
+<p>right so I'm gonna say composure require</p>
+
+<p>let's let's get some unit testing in</p>
+
+<p>here so I'm gonna say PHP unit slash PHP</p>
+
+<p>unit I know this vendor directory</p>
+
+<p>package because I use a lot</p>
+
+<p>so what composure is gonna do it's going</p>
+
+<p>to look on packages for the latest</p>
+
+<p>version of that PHP unit package since I</p>
+
+<p>didn't specify a virgin so it's going to</p>
+
+<p>say using version carrot 8.0 so that's</p>
+
+<p>the latest version it has and you see it</p>
+
+<p>downloaded a whole lot of code because</p>
+
+<p>PHP unit requires a whole lot of other</p>
+
+<p>libraries again I didn't have to know</p>
+
+<p>anything about this composer manages it</p>
+
+<p>for me so this is great so if we look</p>
+
+<p>back at the JSON file</p>
+
+<p>right you're just gonna see phpunit was</p>
+
+<p>added with carrot 8.0 I'll explain the</p>
+
+<p>carrot a moment and then if I look in</p>
+
+<p>the vendor directory right it has a lot</p>
+
+<p>more code in it</p>
+
+<p>again those are downloaded all that for</p>
+
+<p>me I don't have to check it into my repo</p>
+
+<p>I don't have to keep track of it</p>
+
+<p>those are all yes so far in the Ben</p>
+
+<p>directory it's all the third-party</p>
+
+<p>dependencies your project has so phpunit</p>
+
+<p>said I have a lot of dependencies</p>
+
+<p>composer download all these for it for</p>
+
+<p>me</p>
+
+<p>the third way to run supposed to require</p>
+
+<p>is with a Bert with pessimistic version</p>
+
+<p>and you can do a number of things to</p>
+
+<p>tell it what versions you want now you</p>
+
+<p>can be very explicit by saying major dot</p>
+
+<p>minor that patch poser uses semantic</p>
+
+<p>versioning so for example 1.0.1 you can</p>
+
+<p>use any sort of comparison operators</p>
+
+<p>however so you could say for this</p>
+
+<p>package I want greater than or equal to</p>
+
+<p>version 1.0 but less than version 2.0 so</p>
+
+<p>I basically want the latest version of</p>
+
+<p>version 1 of this package I don't want</p>
+
+<p>the next significant release you can use</p>
+
+<p>wildcards so you can say I'm a version</p>
+
+<p><br>
+update composer give me the latest patch</p>
+
+<p>version of this you can use a tilde or a</p>
+
+<p>caret which is the next which marks the</p>
+
+<p>next semantic release the next</p>
+
+<p>significant release it's the same thing</p>
+
+<p>as those comparison operators so this</p>
+
+<p>one here tilde 1.2 says give me at least</p>
+
+<p>version 1.2 but less than version 2 of</p>
+
+<p>this package so you say a minimum</p>
+
+<p>version and less than the next</p>
+
+<p>significant release</p>
+
+<p>and then you can if you need to past</p>
+
+<p>ability flags so this happens a lot in</p>
+
+<p>Drupal 8 where you want to use a module</p>
+
+<p>that only has an alpha release you can</p>
+
+<p>say give me version 2.0 at dev or at</p>
+
+<p>alpha beta for this package this is why</p>
+
+<p>I recommend on your in your JSON file</p>
+
+<p>you don't say minimum stability because</p>
+
+<p>it's gonna use stable code unless you</p>
+
+<p>explicitly say for this one package I</p>
+
+<p>want to override that and use unstable</p>
+
+<p>code find that you have a lot into play</p>
+
+<p>not as much not as much anymore but when</p>
+
+<p>Drupal 8 first came out yet do not walk</p>
+
+<p>so you can say at death so let's take a</p>
+
+<p>look at using a version number with a</p>
+
+<p>require command so I'm gonna say</p>
+
+<p>composer require we already have unit</p>
+
+<p>testing let's get some behavior testing</p>
+
+<p>here at b-hat so I'll say B hat /b hat</p>
+
+<p>in version 3.3.4 sometimes I compose to</p>
+
+<p>hear that I want any I want version</p>
+
+<p><br>
+so I want it less than version 3.4 so</p>
+
+<p>composer is going to go do a check on</p>
+
+<p>packages it's an update my composer</p>
+
+<p>bought my JSON file with that</p>
+
+<p>requirement and then it's going to</p>
+
+<p>download B hat and any of the code it</p>
+
+<p>requires so it downloaded a lot and it</p>
+
+<p>downloaded the last install line you can</p>
+
+<p>see it downloaded version 3.3.4</p>
+
+<p>if I look in the JSON file let's see it</p>
+
+<p>has three doctor you got star the</p>
+
+<p>version strain I said so that's great</p>
+
+<p>okay so</p>
+
+<p>you told composer what packages your</p>
+
+<p>project requires I told you not to</p>
+
+<p>commit your vendor directory which has</p>
+
+<p>all that third-party code how does</p>
+
+<p>everyone else on your team or all your</p>
+
+<p>environments get that code to use your</p>
+
+<p>project this is the install command</p>
+
+<p>composer install is going to read from</p>
+
+<p>your lock file it's going to find all</p>
+
+<p>the dependencies you add and download</p>
+
+<p>all that code into a vendor directory</p>
+
+<p>the vendor directory doesn't exist it's</p>
+
+<p>gonna create it now there's arguments</p>
+
+<p>about having your lock file checked into</p>
+
+<p>your git repo you don't have to have it</p>
+
+<p>there and if you don't have it when you</p>
+
+<p>run composer install it's going to read</p>
+
+<p>from the JSON file but since you can</p>
+
+<p>have a range of constraints for packages</p>
+
+<p>like dot star or you know Tilda's</p>
+
+<p>depending when you run that install</p>
+
+<p>command I may get one version of the</p>
+
+<p>package and three weeks later you could</p>
+
+<p>get a different version and we don't</p>
+
+<p>want that if you have your lock file in</p>
+
+<p>place the lock file always says the</p>
+
+<p>major Dom miner dot patch version it</p>
+
+<p>downloaded when it downloaded that code</p>
+
+<p>so everyone's gonna get the same exact</p>
+
+<p>version so you commit your composer that</p>
+
+<p>lock file to your repo just you should</p>
+
+<p>always do it and it's just gonna save</p>
+
+<p>you a lot of headaches between</p>
+
+<p>differences between your team members</p>
+
+<p>between your environments composer</p>
+
+<p>install you only run it one way with the</p>
+
+<p>words composer install or a PHP composer</p>
+
+<p>that far install to demo this I'm gonna</p>
+
+<p>do a little thing something silly I have</p>
+
+<p>the vendor directory let's remove that</p>
+
+<p>alright so now I just have my DJ spy on</p>
+
+<p>my lock file so it's like I am someone</p>
+
+<p>on the new on the project I just</p>
+
+<p>downloaded this repo I have composer</p>
+
+<p>installed globally in this case I want</p>
+
+<p>all that third-party code so I run</p>
+
+<p>composer install</p>
+
+<p>Siberia and it's gonna read from lock</p>
+
+<p>file and download all those packages I</p>
+
+<p>say my project requires so now if we</p>
+
+<p>look and vendor vendor exists it has all</p>
+
+<p>the code I'm good to go and ready to</p>
+
+<p>start working on this project again that</p>
+
+<p>makes it easy for anyone on your team or</p>
+
+<p>any of your environments to download the</p>
+
+<p>third-party code that your project</p>
+
+<p>requires now since the lock file always</p>
+
+<p>hat contains the major nonminor dot</p>
+
+<p>patch version of a package how do you</p>
+
+<p>update code right there's a security</p>
+
+<p>release for a module for example this is</p>
+
+<p>the proposer update command composer</p>
+
+<p>update it's going to read from your dot</p>
+
+<p>jason file check your stability flags or</p>
+
+<p>the york's your version constraints and</p>
+
+<p>it's going to then try to find the</p>
+
+<p>latest version of the package that</p>
+
+<p>matches that those constraints if it</p>
+
+<p>finds one it's an update the lock file</p>
+
+<p>and it's gonna update your vendor code</p>
+
+<p>it's going to download the latest</p>
+
+<p>version in that code it's gonna remove</p>
+
+<p>any old dependencies or code that's not</p>
+
+<p>needed or add new code that is needed</p>
+
+<p>you can run update one of two ways you</p>
+
+<p>just say composer update yes it does not</p>
+
+<p>take the lock file yes so if it if it</p>
+
+<p>finds a new version updates log file if</p>
+
+<p>you just run composer update it's gonna</p>
+
+<p>try to update everything that you have</p>
+
+<p>in your prior or required ever race you</p>
+
+<p>know for drupal if you have a lot of</p>
+
+<p>modules and themes maybe you don't want</p>
+
+<p>to run that so maybe you just want to</p>
+
+<p>update that one pack that one module</p>
+
+<p>that has security release so you can</p>
+
+<p>pass the specific vendor and package</p>
+
+<p>name along with it and will only update</p>
+
+<p>that one package i recommend running</p>
+
+<p>update if you're running like code</p>
+
+<p>sprints if you're doing agile type stuff</p>
+
+<p>at the very beginning of a new sprint</p>
+
+<p>that gives you your host brick time to</p>
+
+<p>work out any kinks that have come with</p>
+
+<p>updates so you know on my Drupal project</p>
+
+<p>you run security updates using composer</p>
+
+<p>and being in your sprint then you have</p>
+
+<p>you know two weeks three weeks however</p>
+
+<p>long it is to work out those issues and</p>
+
+<p>you also have one person in charge of</p>
+
+<p>running this so this updates the lock</p>
+
+<p>file you only want one person making</p>
+
+<p>those updates and then committee</p>
+
+<p>to the rest of the team so whether you</p>
+
+<p>are rotating that we roll between your</p>
+
+<p>team or you one person designated to do</p>
+
+<p>it I recommend one person does it so</p>
+
+<p>let's see how this how this works I'm</p>
+
+<p>going to do it backwards I'm gonna do</p>
+
+<p>the package specific one first and then</p>
+
+<p>the general one to this I also have to</p>
+
+<p>do something a little silly for demo</p>
+
+<p>purposes so I am going to edit my</p>
+
+<p>composer JSON file let's change our</p>
+
+<p>constraints for behalf so I'm gonna it's</p>
+
+<p>now say tilde 3.3 so this is telling</p>
+
+<p>composer now the my constraints for B</p>
+
+<p>hat is that I want to at least version</p>
+
+<p><br>
+find me whatever latest version matches</p>
+
+<p>that pattern make sure I save this so</p>
+
+<p>now I can just right I can type composer</p>
+
+<p>update B hat yeah</p>
+
+<p>so it's going to read my composure Jason</p>
+
+<p>file for my B hat constraint and then</p>
+
+<p>it's going to find what the latest</p>
+
+<p>version is that matches my country so it</p>
+
+<p>did it found of theirs version 3.5 so it</p>
+
+<p>downloads that great so now my B hat is</p>
+
+<p>updated you'll see my composure that</p>
+
+<p>Jason doesn't change at all because I</p>
+
+<p>have you know of version strengths there</p>
+
+<p>but my lock file would have been updated</p>
+
+<p>in my code would have been updated so</p>
+
+<p>that's that simple</p>
+
+<p>and then let's check out composer update</p>
+
+<p>on its own so to do this again I'm gonna</p>
+
+<p>make another change to the Jason file</p>
+
+<p>let's change monolog to be I'm gonna say</p>
+
+<p>greater than or equal to version 1.2 0</p>
+
+<p>which is the version we already have</p>
+
+<p>installed but less than version 2 that's</p>
+
+<p>up to data so again this is similar to</p>
+
+<p>some strains I put on B hat right I</p>
+
+<p>basically telling composer I want at</p>
+
+<p>least version 1.2 0 but less than</p>
+
+<p>version 2 so if I save this and I write</p>
+
+<p>composer update with no other arguments</p>
+
+<p>it's going to reach its going to go</p>
+
+<p>through the list of each of my</p>
+
+<p>requirements and try to see if there's a</p>
+
+<p>latest version so all that you find is a</p>
+
+<p>latest version of monologue that matches</p>
+
+<p>my requirements you see it download a</p>
+
+<p>bunch of stuff because the new version</p>
+
+<p>of monologue that it downloaded which is</p>
+
+<p>version 1.2 for and the second install</p>
+
+<p>line there it no longer needs symphony</p>
+
+<p>debug so removed that code it updated</p>
+
+<p>other requirements that the new version</p>
+
+<p>requires so it updated all these other</p>
+
+<p>packages for me which is great</p>
+
+<p>all right so that's updating packages</p>
+
+<p>again I recommend doing that beginning</p>
+
+<p>of a sprint or the beginning of a cycle</p>
+
+<p>however you're doing it what if you want</p>
+
+<p>to get rid of code that you no longer</p>
+
+<p>need</p>
+
+<p>I find this happening a lot when I'm</p>
+
+<p>doing my Drupal development I want to</p>
+
+<p>test the module I install the composer</p>
+
+<p>it downloads a whole bunch of things it</p>
+
+<p>doesn't work for my needs how do I get</p>
+
+<p>rid of it this is the composer remove</p>
+
+<p>command v command we're going to talk</p>
+
+<p>about so when you type compose and</p>
+
+<p>remove and there's only one way to run</p>
+
+<p>it which is composed of removed package</p>
+
+<p>name it's going to remove that version</p>
+
+<p>constraint for your JSON file it's going</p>
+
+<p>to route the code from the vendor</p>
+
+<p>directory and it's going to use the lock</p>
+
+<p>file to an update the lock file and</p>
+
+<p>remove it it's also going to find any of</p>
+
+<p>the dependencies that that package has</p>
+
+<p>that become abandoned and get rid of all</p>
+
+<p>of those as well it's like I said you</p>
+
+<p>run it with just composer remove in the</p>
+
+<p>package name so let's say we no longer</p>
+
+<p>need PHP unit I'm gonna say composer</p>
+
+<p>remove PHP unit slash PHP unit so again</p>
+
+<p>what this is doing is reading from my</p>
+
+<p>lock file and it's checking all the</p>
+
+<p>dependencies that PHP unit has and</p>
+
+<p>cross-checking them against all my other</p>
+
+<p>requirements and seeing are these being</p>
+
+<p>used anywhere else if they're not we're</p>
+
+<p>gonna get rid of it is delete deletes a</p>
+
+<p>whole bunch of code because it's not</p>
+
+<p>needed anymore great garbage collection</p>
+
+<p>for me and what we can see now is the</p>
+
+<p>JSON class PHP units no longer listed to</p>
+
+<p>remove it from the JSON file and then by</p>
+
+<p>looking bender directory it has a lot</p>
+
+<p>less code in it because it deleted all</p>
+
+<p>those of the libraries for me</p>
+
+<p>all right so now what composer is setup</p>
+
+<p>composer require is you're telling it</p>
+
+<p>what packages you want you're updating</p>
+
+<p>them you're removing them if you don't</p>
+
+<p>need them you don't really understand</p>
+
+<p>how composer is structuring the vendor</p>
+
+<p>directory so how do you start using that</p>
+
+<p>code if you're not sure where it is in</p>
+
+<p>the structure of it one of the things</p>
+
+<p>proposed a does for you is it generates</p>
+
+<p>an auto load PHP file so I show you the</p>
+
+<p>vendor directory the first thing you see</p>
+
+<p>is auto load PHP this is a psr-4</p>
+
+<p>structured file you can you can specify</p>
+
+<p>it destructure following other</p>
+
+<p>structures but what it will do is it</p>
+
+<p>will allow you so that if you include</p>
+
+<p>this auto load file which is always in</p>
+
+<p>slash event vendor slash it will</p>
+
+<p>dynamically load classes as you stamp</p>
+
+<p>date the objects so for example in my</p>
+
+<p>custom code I can just say I require</p>
+
+<p>that the vendor auto load PHP and now I</p>
+
+<p>have access to any of that third-party</p>
+
+<p>code I want to use so I can say all</p>
+
+<p>right I'm gonna create a monologue</p>
+
+<p>logger class and as soon as I extension</p>
+
+<p>it that when PHP runs the auto load is</p>
+
+<p>going to know that I need to include</p>
+
+<p>those files and they of the required</p>
+
+<p>files for me it's really cool what's</p>
+
+<p>really great about Drupal 8 if you</p>
+
+<p>usually make a Drupal 8 scaffolding</p>
+
+<p>project or I think just couplet in</p>
+
+<p>general it has its own auto load file</p>
+
+<p>which will handle this for you so you</p>
+
+<p>don't have to even do that require man</p>
+
+<p>require line so again you don't even</p>
+
+<p>know the structure of the vendor</p>
+
+<p>directory your second new or final load</p>
+
+<p>of PHP is and then how to instantiate</p>
+
+<p>the objects for the packages you're</p>
+
+<p>using which is dere packages org page to</p>
+
+<p>tell you how to do or their readme files</p>
+
+<p>all right so to recap because I know I</p>
+
+<p>cover a lot closer manages project</p>
+
+<p>dependencies for you in PHP so you don't</p>
+
+<p>have to do it you can spend your time</p>
+
+<p>and budget doing what developers love</p>
+
+<p>solving those custom problems for your</p>
+
+<p>project and delivering real value in</p>
+
+<p>using code to help you do that you</p>
+
+<p>install composer either per project or</p>
+
+<p>globally depending on your your team's</p>
+
+<p>needs but it's for commands plus moving</p>
+
+<p>a file we're using a executable for</p>
+
+<p>Windows again it depends on your team's</p>
+
+<p>preference composer three main parts the</p>
+
+<p>JSON file which has all the project and</p>
+
+<p>dependency information stored in it on</p>
+
+<p>the lock file which is what composer</p>
+
+<p>uses for keeping track of all your</p>
+
+<p>dependencies the vendor directory which</p>
+
+<p>holds all that dependency code and then</p>
+
+<p>the basic commands you need to know you</p>
+
+<p>master these five commands you're gonna</p>
+
+<p>be able to do anything in poser the</p>
+
+<p>Anette command to generate the JSON file</p>
+
+<p>the required command for adding</p>
+
+<p>dependencies the install command for</p>
+
+<p>installing the vendor code the update</p>
+
+<p>command for updating packages based on</p>
+
+<p>your version constraints and the remove</p>
+
+<p>command to get rid of the packages and</p>
+
+<p>their dependencies that you no longer</p>
+
+<p>need then finally you can start using</p>
+
+<p>that vendor code by just including the</p>
+
+<p>auto load up PHP file into your custom</p>
+
+<p>code and you're good to go so with that</p>
+
+<p>I have some resources and links here so</p>
+
+<p>this personally italy slash mid-nineteen</p>
+
+<p>composer is again an annotated version</p>
+
+<p>of these slides with screen caps of</p>
+
+<p>screen recordings of all the commands I</p>
+
+<p>ran and a break down what's going on so</p>
+
+<p>you can check that out get composer door</p>
+
+<p>is closed your website has a lot of</p>
+
+<p>great information a lot of great</p>
+
+<p>documents about how to do more advanced</p>
+
+<p>things</p>
+
+<p>and then packages org is where you can</p>
+
+<p>find pretty much any PHP package that</p>
+
+<p>you might want to use unless it's for</p>
+
+<p>Drupal or WordPress they have their own</p>
+
+<p>packages libraries but I assume everyone</p>
+
+<p>here already knows how to find kupo</p>
+
+<p>modules and themes on Trueblood or so</p>
+
+<p>you should be good to go there I know we</p>
+
+<p>didn't cover anything specific to Drupal</p>
+
+<p>here but this is going to give you a</p>
+
+<p>foundation start using poser in Drupal</p>
+
+<p>projects if you're not already and give</p>
+
+<p>you an understanding if you search for</p>
+
+<p>Drupal can put google composer or the</p>
+
+<p>drupal scaffolding what's going on there</p>
+
+<p>some of the advanced things it's doing</p>
+
+<p>so with that we're gonna have some time</p>
+
+<p>for questions first I'd love to get any</p>
+
+<p>feedback on this presentation so if you</p>
+
+<p>go to mid camp / to 3/8 that's the note</p>
+
+<p>page for this presentation also has a</p>
+
+<p>link to the slides and provide feedback</p>
+
+<p>and the feedback form I appreciate that</p>
+
+<p>Saturday if you're around there's</p>
+
+<p>contribution day now that you know how</p>
+
+<p>to use composer you know what to be a</p>
+
+<p>developer to start helping out with</p>
+
+<p>coding because you can download the code</p>
+
+<p>and work on it using poser sunday 10:00</p>
+
+<p>to 4:00 or Saturday 10:00 to 4:00 and</p>
+
+<p>end of presentation so after applause</p>
+
+<p>questions any question yes</p>
+
+<p>Drupal modules it's got a bunch of you</p>
+
+<p>know Symphony dependencies that may or</p>
+
+<p>may not even understand what it's doing</p>
+
+<p>right and so personally and I know you</p>
+
+<p>would really disturb anyone with but</p>
+
+<p>just from past people experience I</p>
+
+<p>always want to be the person who says</p>
+
+<p>we're gonna be this alternate I never</p>
+
+<p>wanted to be surprised right so so you</p>
+
+<p>know I definitely like make sure when I</p>
+
+<p>get a project like new modules are gonna</p>
+
+<p>lock down so I can they only get updated</p>
+
+<p>advice when I need to I have QA peace</p>
+
+<p>reason to test it but all those other</p>
+
+<p>dependencies that I don't understand you</p>
+
+<p>know almost like</p>
+
+<p>but I'm just gonna like out of fear like</p>
+
+<p>just like not never enough dating that's</p>
+
+<p>right I just never listen everybody was</p>
+
+<p>running great but at some point</p>
+
+<p>obviously so what would you be</p>
+
+<p>recommendation like like you do it</p>
+
+<p>quarterly so just for the recording the</p>
+
+<p>question is if you inherit a project</p>
+
+<p>that has a lot of for Drupal a lot of</p>
+
+<p>coupon modules or symfony components and</p>
+
+<p>you know you want to be very controlled</p>
+
+<p>about when you're updating them how do</p>
+
+<p>you when do you do it and how do you do</p>
+
+<p>it like safely so yeah it depends again</p>
+
+<p>and I always hate answering questions</p>
+
+<p>but it depends uh-huh but on your</p>
+
+<p>organization and your timeline so</p>
+
+<p>quarterly well for Drupal if you if</p>
+
+<p>there's security updates and you should</p>
+
+<p>be subscribed the security newsletter</p>
+
+<p>you won't update those as soon as</p>
+
+<p>possible when you update those modules</p>
+
+<p>they may update some of those</p>
+
+<p>dependencies makes they require it for</p>
+
+<p>any other just general updates you know</p>
+
+<p>you could check it I don't like some of</p>
+
+<p>my projects we don't check in every</p>
+
+<p>sprint we check it like maybe like every</p>
+
+<p>month for or when we've run out of tasks</p>
+
+<p>to do it's like alright someone check</p>
+
+<p>what are some other updates we need to</p>
+
+<p>make switch from like beta to version</p>
+
+<p>one next so that's release so it depends</p>
+
+<p>when like you have the time because</p>
+
+<p>you're going to want to pay it for the</p>
+
+<p>things that are like under the hood the</p>
+
+<p>symphony components you probably a must</p>
+
+<p>you're including those on a custom</p>
+
+<p>module or something you probably never</p>
+
+<p>have to worry about updating those</p>
+
+<p>yourself because they're being used by</p>
+
+<p>code that you are updating whether it's</p>
+
+<p>Drupal core or Drupal modules so you</p>
+
+<p>should only be concerned with updating</p>
+
+<p>the modules in Google core and that's an</p>
+
+<p>update to their own dependencies and you</p>
+
+<p>don't necessarily have to worry about it</p>
+
+<p>that you need to submit</p>
+
+<p>I need to submit the form for review</p>
+
+<p>alright I don't control that someone</p>
+
+<p>will put it up thank you for checking</p>
+
+<p>them alright there's a bunch of</p>
+
+<p>questions you required now it is quite</p>
+
+<p>often ii think about in Hampi on to so</p>
+
+<p>what's you what's the best way or</p>
+
+<p>suggestions on how to convert that site</p>
+
+<p>over to manageable oh that's quite a</p>
+
+<p>question alright so the question with</p>
+
+<p>record is I'm sure let's talk about that</p>
+
+<p>problem um the question was what if you</p>
+
+<p>inherited Jubilee a project that was</p>
+
+<p>built towards beginning poser wasn't</p>
+
+<p>necessarily put into place and you want</p>
+
+<p>to kind of get it in there for best</p>
+
+<p>practices it's going to be a challenge</p>
+
+<p>I would there's number of ways to do it</p>
+
+<p>one thing I would say is you can put</p>
+
+<p>composer you can add composer to your</p>
+
+<p>project start moving modules over one at</p>
+
+<p>a time to composer they give very if you</p>
+
+<p>search composer scaffold with a composer</p>
+
+<p>scaffold a Drupal scaffolding project</p>
+
+<p>which will when you download a module it</p>
+
+<p>puts it back into the modules directory</p>
+
+<p>right so just make an effort of alright</p>
+
+<p>get composer set up it's not gonna do</p>
+
+<p>anything because you just initialized it</p>
+
+<p>and then start moving modules or themes</p>
+
+<p>over one by one so that composers</p>
+
+<p>managing them before you just so I mean</p>
+
+<p>you could try to do it all in one go but</p>
+
+<p>you're probably gonna run into have that</p>
+
+<p>time with that so just like</p>
+
+<p>systematically move it over develop a</p>
+
+<p>timeline of how long you want to do it</p>
+
+<p>do it in batches that's what I would</p>
+
+<p>recommend</p>
+
+<p>so let's say so so the question was what</p>
+
+<p>if you have a Drupal project that has</p>
+
+<p>modules that was not installed composer</p>
+
+<p>you no longer need them how do you</p>
+
+<p>remove those modules one disable them</p>
+
+<p>right if you're not using completely</p>
+
+<p>disabled in the Drupal 8 run the drums</p>
+
+<p>command to disable them I think it's a</p>
+
+<p>p.m. - fun install once they're disabled</p>
+
+<p>on your on your site and your sites not</p>
+
+<p>using them just go in and delete the</p>
+
+<p>code how would you do it you know if</p>
+
+<p>used rush to install the modules you</p>
+
+<p>could still use trusts to remove them if</p>
+
+<p>composers not managing them you don't</p>
+
+<p>have to add that composer add them to</p>
+
+<p>the post to remove them because poseur</p>
+
+<p>knows nothing about them if you're</p>
+
+<p>worried about like third-party code then</p>
+
+<p>that those modules have like libraries</p>
+
+<p>and places you're just gonna have to do</p>
+
+<p>your due diligence and</p>
+
+<p>to therapist there was one yeah so the</p>
+
+<p>good thing about that not a good thing</p>
+
+<p>but you could so you could delete it and</p>
+
+<p>then you could install it with composer</p>
+
+<p>and then use composer remove it and</p>
+
+<p>depending on how the directories were</p>
+
+<p>set up it should remove that abandoned</p>
+
+<p>dependency I would assume but you're</p>
+
+<p>better off that compose it doesn't know</p>
+
+<p>about it just go ahead and yourself they</p>
+
+<p>are yeah so the the question is you know</p>
+
+<p>and with Drupal modules in poser you can</p>
+
+<p>have one module depend on another</p>
+
+<p>version of another module and are they</p>
+
+<p>using it they totally are you're gonna</p>
+
+<p>find some modules and Drupal with either</p>
+
+<p>side the proposers say we require this</p>
+
+<p>minimum version of say kind of the meta</p>
+
+<p>tag module for example we need version 1</p>
+
+<p>and meta tag or greater so when you try</p>
+
+<p>to install that module using poser so</p>
+
+<p>right so it's gonna it's gonna when you</p>
+
+<p>try to install something and you have a</p>
+
+<p>version that doesn't meet the</p>
+
+<p>requirements that is a dependency of</p>
+
+<p>your project either composer gonna try</p>
+
+<p>to update it for you or it's gonna tell</p>
+
+<p>you in big LED red letters that hey you</p>
+
+<p>you can't install this package because</p>
+
+<p>of these reasons so you can't install</p>
+
+<p>this module because it requires a bigger</p>
+
+<p>later version than the one you have</p>
+
+<p>installed already so you have to update</p>
+
+<p>that module first so it's gonna tell you</p>
+
+<p>it's going to be helpful okay</p>
+
+<p>question is kind of related to that as</p>
+
+<p>you can do composer outdated but that</p>
+
+<p>gives you the latest version of every</p>
+
+<p>module every requirement not necessarily</p>
+
+<p>what is going to update to and sometimes</p>
+
+<p>it might be nice to say well if I</p>
+
+<p>updated it would require that they would</p>
+
+<p>update to this level but there's also</p>
+
+<p>old this level economic slavery</p>
+
+<p>colonization and take a look at yep and</p>
+
+<p>then you could just say well why isn't</p>
+
+<p>it going to the latest or whatever</p>
+
+<p>finger they have to navigate yes yeah so</p>
+
+<p>to be able to figure out and see what</p>
+
+<p>it's gonna take to update I don't know</p>
+
+<p>it off the top of my head but I believe</p>
+
+<p>there's a flag you can pass to like</p>
+
+<p>composer update that will say like test</p>
+
+<p>this don't actually do it but tell me</p>
+
+<p>what it's gonna change you should let</p>
+
+<p>that say it's gonna update these these</p>
+
+<p>other dependencies for you so you can</p>
+
+<p>just kind of do like a smoke test and</p>
+
+<p>see what's gonna impact I forgive it the</p>
+
+<p>five is off the top of my head by</p>
+
+<p>believing in them I guess you just</p>
+
+<p>didn't put everything up there that</p>
+
+<p>might say - we're updating these but</p>
+
+<p>then you don't really you don't really</p>
+
+<p>catch the difference between a whole</p>
+
+<p>David and yeah what is going to do</p>
+
+<p>ynette updating with us or something I</p>
+
+<p>know you can do the command to say why</p>
+
+<p>is it updated yeah I'll tell you why</p>
+
+<p>why also I'm in I'm not a very big</p>
+
+<p>expert on composure I know more than</p>
+
+<p>just a little more than these five</p>
+
+<p>commands so some of that stuff is beyond</p>
+
+<p>me I don't know how high would cuz I'm</p>
+
+<p>going to build it</p>
+
+<p>that's me yet thank you I can't believe</p>
+
+<p>that so there but I would not recommend</p>
+
+<p>you doing that I mean well if your</p>
+
+<p>bosses ask your clients asks don't spend</p>
+
+<p>your time doing that spend your time</p>
+
+<p>being more thorough with the custom code</p>
+
+<p>you write the indirect creases face</p>
+
+<p>there probably is you should come to the</p>
+
+<p>boss to Drupal minutes sometimes he</p>
+
+<p>shows up because he's in the Boston area</p>
+
+<p>I didn't know is anyone else too still</p>
+
+<p>playing Drupal 2048 alright I see people</p>
+
+<p>playing 2048 in the Train stuff I can't</p>
+
+<p>believe it when I built that it was such</p>
+
+<p>a time suck I actually wasted like a</p>
+
+<p>week of clients time writing and playing</p>
+
+<p>I make test it make sure it works I can</p>
+
+<p>see why composer certainly makes sense</p>
+
+<p>to update or to keep libraries up today</p>
+
+<p>what's the advantage of using composer</p>
+
+<p>to update Drupal modules but you can</p>
+
+<p>also do it through Drupal update so the</p>
+
+<p>question is what's the value of using</p>
+
+<p>composed of update Drupal modules and</p>
+
+<p>stuff using like Drupal update the value</p>
+
+<p>is if you're using composer to manage</p>
+
+<p>your those modules those modules don't</p>
+
+<p>live in your code base you're using</p>
+
+<p>composer to download the code into it</p>
+
+<p>would go into the modules directory but</p>
+
+<p>using quote Drupal update you have to</p>
+
+<p>have the code as part of your repository</p>
+
+<p>alright so when you run update and you</p>
+
+<p>try to make a commit or a pull request</p>
+
+<p>that's going to show it's updating all</p>
+
+<p>this third-party code that you don't</p>
+
+<p>necessarily care about that you don't</p>
+
+<p>want someone to sift through using</p>
+
+<p>composer you just say composer update</p>
+
+<p>you then you check in your lock file</p>
+
+<p>that's been updated and then on your</p>
+
+<p>environments you just run composer</p>
+
+<p>install and it's going to update the</p>
+
+<p>for you so you get rid of having to</p>
+
+<p>maintain that third party code is that</p>
+
+<p>the address module what about the</p>
+
+<p>address unless you can install yeah</p>
+
+<p>right now there's some yeah there are</p>
+
+<p>modules now moving just to using</p>
+
+<p>composer so that's the other thing is</p>
+
+<p>that they're moving that system I think</p>
+
+<p>it's a great thing to move to because</p>
+
+<p>again the more of other people's code</p>
+
+<p>you can remove from your control but you</p>
+
+<p>can still utilize the better for you</p>
+
+<p>because the less headaches you feel like</p>
+
+<p>there's now that's great for backup but</p>
+
+<p>does he have a smaller stuff you get</p>
+
+<p>commits and only does your stuff and</p>
+
+<p>then you can get push it up it's like</p>
+
+<p>your repos are smaller so they're faster</p>
+
+<p>and you don't have to sit throughout</p>
+
+<p>there's a question in the way back you</p>
+
+<p>can if the question is if there's no</p>
+
+<p>lock file can you run composer install</p>
+
+<p>yes when you run composer install it's</p>
+
+<p>going to read from the dot JSON file</p>
+
+<p>so it'll it will try to match the</p>
+
+<p>version constraints that you specify and</p>
+
+<p>get the latest version that matches that</p>
+
+<p>constraint if you're using all semantic</p>
+
+<p>versioning major down minor that patch</p>
+
+<p>in your JSON file then your that's no</p>
+
+<p>big deal because everyone's gonna get</p>
+
+<p>the same version but if you're using any</p>
+
+<p>sort of wild cards or comparison</p>
+
+<p>operators and you don't have a lock file</p>
+
+<p>when I run composer install and when you</p>
+
+<p>run composer install potentially we're</p>
+
+<p>going to get different versions of the</p>
+
+<p>third-party code and that can cause</p>
+
+<p>discrepancies in issues</p>
+
+<p>so composure require ads the line to</p>
+
+<p>your Jason file saying I require this</p>
+
+<p>package and it runs the install as well</p>
+
+<p>when you run install all it does is read</p>
+
+<p>what you already have listed and it will</p>
+
+<p>download that code so it doesn't have</p>
+
+<p>anything there any other questions yes</p>
+
+<p>in the way back day</p>
+
+<p>okay mark</p>
+
+<p>so the question is of being new to</p>
+
+<p>Drupal and using the pose are there any</p>
+
+<p>pitfalls to watch out for accidentally</p>
+
+<p>running composer update without any</p>
+
+<p>arguments is something watch out for</p>
+
+<p>because it's gonna stay a lot of stuff I</p>
+
+<p>think also for Drupal specifically even</p>
+
+<p>though I showed you what the this basic</p>
+
+<p>setup is if you're trying to set up</p>
+
+<p>Drupal 8 with composer on your own and</p>
+
+<p>not using like the scaffolding project</p>
+
+<p>for example you're gonna have a lot more</p>
+
+<p>advanced composed of things you're gonna</p>
+
+<p>have to learn about how to move code in</p>
+
+<p>different directories instead of the</p>
+
+<p>vendor directory so for drupal and</p>
+
+<p>composer I'd recommend I've said a</p>
+
+<p>number of times let's check out the</p>
+
+<p>drupal composer project or the drupal</p>
+
+<p>closure scaffolding project which even</p>
+
+<p>just clone those and they're gonna have</p>
+
+<p>a very robust composer adjacent file</p>
+
+<p>that will move modules into modules</p>
+
+<p>directory themes in the themes directory</p>
+
+<p>it's not keeping the bedroom they're</p>
+
+<p>gonna handle all the headaches for you</p>
+
+<p>so those would be the two things you</p>
+
+<p>recommend two of you were doing like a</p>
+
+<p>distribution changes</p>
+
+<p>yeah for sure use one or the other</p>
+
+<p>yeah</p>
+
+<p>Drupal SCAF composers Kathleen I think</p>
+
+<p>it might be the same thing I forget the</p>
+
+<p>name of it I oh I google it every time</p>
+
+<p>so so just finish a question yeah if</p>
+
+<p>you're creating distribution you should</p>
+
+<p>find one of those whichever one you want</p>
+
+<p>oh yeah so add composer to it and use</p>
+
+<p>that set up so it'll it'll give you a</p>
+
+<p>nice base it's like using an install</p>
+
+<p>profile almost right for your code base</p>
+
+<p>what about JavaScript libraries is the</p>
+
+<p>question so the great thing about</p>
+
+<p>composer is you can use it beyond just</p>
+
+<p>PHP so if you have let's say you're</p>
+
+<p>using CK editor which is now built in</p>
+
+<p>the Drupal core probably you needed us</p>
+
+<p>another plugin for it you can add that</p>
+
+<p>repository to your closer JSON array</p>
+
+<p>like the github repo to it and then you</p>
+
+<p>can say composer require CK editor slash</p>
+
+<p>whatever the plug-in name is and you</p>
+
+<p>know and you can tell it to move the</p>
+
+<p>code into the libraries directory so you</p>
+
+<p>can use composer to manage JavaScript</p>
+
+<p>plugins to manage if you're using like</p>
+
+<p>third-party or outside CSS and HTML like</p>
+
+<p>design structures you could pull those</p>
+
+<p>in as well for example at my company our</p>
+
+<p>front-end team who focuses on HTML CSS</p>
+
+<p>they work across net and PHP and they</p>
+
+<p>filled in Twigg</p>
+
+<p>so we pull in their repository extend a</p>
+
+<p>set repository in the drupal our drupal</p>
+
+<p>repo and we just pull it in their code</p>
+
+<p>using composer</p>
+
+<p>yeah custom modules you put in a git</p>
+
+<p>repo</p>
+
+<p>better yet custom modules you build it</p>
+
+<p>contribute it focused and you put it on</p>
+
+<p>troubadour and then you pull it in but</p>
+
+<p>yeah you can keep your own libraries and</p>
+
+<p>reap git repositories and add that as a</p>
+
+<p>repository of your poseur Jason and pull</p>
+
+<p>it in that way instead of copying it and</p>
+
+<p>tal your projects so you can totally do</p>
+
+<p>that</p>
+
+<p>I built a brand-new site yesterday at my</p>
+
+<p>development machine and while I was</p>
+
+<p>building it it said it warned me hey</p>
+
+<p>there's a new version of Drupal and that</p>
+
+<p>was the second time that I was warned</p>
+
+<p>that this new version of Drupal that</p>
+
+<p>there was a zip file of a download from</p>
+
+<p>drupal.org but when I tried to update it</p>
+
+<p>from composer it said core isn't</p>
+
+<p>available yet so the comment is set up a</p>
+
+<p>brand new project got the message saying</p>
+
+<p>there's a new version of Drupal core</p>
+
+<p>available saw there is a zip file to</p>
+
+<p>download it on drupal.org tried to run</p>
+
+<p>composer update Drupal slash court</p>
+
+<p>you're doing it an update what's the</p>
+
+<p>delay I don't know what the delay is I</p>
+
+<p>know there's I don't know</p>
+
+<p>there's amount of time whoever talked to</p>
+
+<p>the core maintains about that because it</p>
+
+<p>should be relatively in sync when they</p>
+
+<p>update the zip file they should be</p>
+
+<p>updating Drupal core composers</p>
+
+<p>information hide it up I'm sorry okay</p>
+
+<p>all right got like three more minutes</p>
+
+<p>any other questions these are great</p>
+
+<p>questions</p>
+
+<p>thank you very much means I did a great</p>
+
+<p>job all right I'm around the rest of the</p>
+
+<p>day and I'm around tomorrow and tonight</p>
+
+<p>if you want to talk more about this or</p>
+
+<p>anything else</p></div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-2a984e79df8c7eb80ddce963536d4f84f15299e28be72ed20ea286bbaebb89bf">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/238">https://mid.camp/238</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-93076fb4ac79d5cb5f87da0ca80262dce1bf6eb86c50baf00165cca432ff5732">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/pantheon.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-11/pantheon-logo-color@2x.png" width="960" height="354" alt="Pantheon" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/acquia.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2019-03/Acquia_no_tagline.png" width="450" height="94" alt="Acquia" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/elevated-third.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-11/elevated-third-logo_0.png" width="220" height="220" alt="elevated third logo" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#83eaede5ecc3eeeae7e0e2eef3adecf1e4"><span class="__cf_email__" data-cfemail="aac3c4ccc5eac7c3cec9cbc7da84c5d8cd">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/238","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_llBcjrkrgAu2wT1DR7VGL_iP6geJyiTnF_8O5ZD57VI.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJxLz89Pz0mNT8xLzKksyUwu1k9HE9DJSCwpSS3ST8_JT0rM0c0qBgAByBPW"></script>
+
+  </body>
+</html>

@@ -1,0 +1,2385 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="As a support technical lead, the majority of support offerings are still in Drupal 7. With that said, your development practices do not have to lag behind those who get Drupal 8 OOP projects. I will give some neat tips about using XAutoload and composer for Drupal 7 to make developing Drupal 7 use the same muscles and continue to be fun." />
+<link rel="canonical" href="make-drupal-7-development-fun-and-modern.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Make Drupal 7 Development Fun and Modern | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Make Drupal 7 Development Fun and Modern | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_Qoyy92GHt9RyGOt8N3WS_9HRsJcJBywJ2IhXudzvST4.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJw1jFEOgzAMQy9U1iOhtDGsUkqmugOx068C8WM961nOJuQZkxAh31xBygo-fXMdzhsGtSpWfghv6R0truZJbMpk4MmOeh_tReEzaoLOS4FpbODHN5Yd0yXHBAfjla_q-jX8AXwTNZQ.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_mK2of_t7UFymkfbTHeA-kHdMPWzqc3DZQCYtX-tC0BA.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJw1jFEOgzAMQy9U1iOhtDGsUkqmugOx068C8WM961nOJuQZkxAh31xBygo-fXMdzhsGtSpWfghv6R0truZJbMpk4MmOeh_tReEzaoLOS4FpbODHN5Yd0yXHBAfjla_q-jX8AXwTNZQ.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJw1jFEOgzAMQy9U1iOhtDGsUkqmugOx068C8WM961nOJuQZkxAh31xBygo-fXMdzhsGtSpWfghv6R0truZJbMpk4MmOeh_tReEzaoLOS4FpbODHN5Yd0yXHBAfjla_q-jX8AXwTNZQ.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJw1jFEOgzAMQy9U1iOhtDGsUkqmugOx068C8WM961nOJuQZkxAh31xBygo-fXMdzhsGtSpWfghv6R0truZJbMpk4MmOeh_tReEzaoLOS4FpbODHN5Yd0yXHBAfjla_q-jX8AXwTNZQ.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="make-drupal-7-development-fun-and-modern.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-hatter-midcamp2019navigation-menu" id="block-hatter-midcamp2019navigation" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-midcamp2019navigation-menu">Midcamp 2019 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" title="About MidCamp" data-drupal-link-system-path="node/191">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--venue">
+        <a href="../about/venue.html" data-drupal-link-system-path="node/192">Venue</a>
+            </li>
+          <li class="primary-nav__sublist-item item--travel">
+        <a href="../about/travel.html" title="Travel and Accommodations" data-drupal-link-system-path="node/188">Travel</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../about/lunch.html" title="Lunch options" data-drupal-link-system-path="node/189">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--volunteer">
+        <a href="../article/volunteer-help-midcamp.html" title="Volunteer!">Volunteer!</a>
+            </li>
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2019/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../../2020/news.html" data-drupal-link-system-path="2020/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--attendees">
+        <a href="../attendees.html" data-drupal-link-system-path="2019/attendees">Attendees</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" data-drupal-link-system-path="2019/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--spread-the-word">
+        <a href="../article/spread-word.html" data-drupal-link-system-path="node/371">Spread the Word</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" title="Sponsors" data-drupal-link-system-path="node/197">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--become-a-sponsor">
+        <a href="../sponsor-midcamp.html" title="Sponsor MidCamp" data-drupal-link-system-path="node/186">Become a Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../../jobs.html" title="Jobs" data-drupal-link-system-path="jobs">Jobs</a>
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" title="Schedule" data-drupal-link-system-path="node/190">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--all-sessions">
+        <a href="../sessions.html" data-drupal-link-system-path="2019/sessions">All Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--summits--training-wed">
+        <a href="../schedule/wednesday.html" title="Summits &amp; Training (Wednesday)" data-drupal-link-system-path="2019/schedule/wednesday">Summits &amp; Training (Wed)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-thu">
+        <a href="../schedule/thursday.html" title="Sessions (Thursday)" data-drupal-link-system-path="2019/schedule/thursday">Sessions (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-fri">
+        <a href="../schedule/friday.html" title="Sessions (Friday)" data-drupal-link-system-path="2019/schedule/friday">Sessions (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--contribution-sat-">
+        <a href="../contribution-day.html" title="Contribution Day" data-drupal-link-system-path="node/332">Contribution (Sat) </a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-terms-and-conditions">
+        <a href="../../speaker-terms-and-conditions.html" title="Speaker Terms and Conditions" data-drupal-link-system-path="node/21">Speaker Terms and Conditions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../../speaker-resources.html" title="Speaker Resources">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--topic-tracks">
+        <a href="../../topic-tracks.html" title="Topic Tracks" data-drupal-link-system-path="node/10">Topic Tracks</a>
+            </li>
+  </ul>
+
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2019.html" hreflang="en">MidCamp 2019</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Make Drupal 7 Development Fun and Modern</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="311" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2019-03-22T19:25:00Z" class="datetime">Friday, 2:25 pm CDT</time>
+ - <time datetime="2019-03-22T20:25:00Z" class="datetime">Friday, 3:25 pm CDT</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-82" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-field-link field--type-link field--label-hidden field__item"><a href="https://zoom.us/my/midcamp314b" target="_blank" class="button--primary">Go to Room 314B - old</a></div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>As a support technical lead, the majority of support offerings are still in Drupal 7. With that said, your development practices do not have to lag behind those who get Drupal 8 OOP projects.</p>
+
+<p>I will give some neat tips about using XAutoload and composer for Drupal 7 to make developing Drupal 7 use the same muscles and continue to be fun.</p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/EqC3Vi74E_E?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Allan Chappell</h4>
+
+      Senior Support Lead
+
+
+          @
+              <a href="https://fourkitchens.com">Four Kitchens</a>
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p>Good Ol' Country Boy<br />
+Allan brings solid practical solutions to the table for any level of technical complexity. He has a bachelor’s degree in computer information systems specializing in web development, and is a Zend Certified PHP Engineer and an Acquia Certified Developer. He specializes in DevOps, automated testing, automated code delivery, and continuous integration. Don’t be surprised if one day you catch him on his computer, developing a masterpiece, on the shore of Lake Ray Hubbard.</p>
+</div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2018-12/e6e905d6153109f2e5e9552a5a2ccc37.jpeg%3Fitok=Tr793RKN" width="220" height="220" alt="General Redneck" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Back-End</div>
+              </div>
+      </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p>thank y'all for coming your in mate</p>
+
+<p>Drupal 7 development modern and fun are</p>
+
+<p>fun and modern I don't know I switch the</p>
+
+<p>words up back and forth you know and our</p>
+
+<p>associative so there we go a little bit</p>
+
+<p>about myself if you haven't noticed me</p>
+
+<p>from the mario mario talk last night or</p>
+
+<p>see me on any other camp i go by the</p>
+
+<p>alias general redneck i get up here and</p>
+
+<p>talk technical talks and my overalls</p>
+
+<p>because us Hillbillies and rednecks</p>
+
+<p>don't know much but i'm just a good old</p>
+
+<p>country boy just happen to know a little</p>
+
+<p>bit about computers and i'm also the</p>
+
+<p>seniors senior support technical lead</p>
+
+<p>over at four kitchens it's making it</p>
+
+<p>four kitchens here's what we do we build</p>
+
+<p>websites that depend on large scale</p>
+
+<p>unconventional content and we tried to</p>
+
+<p>help you figure out what you need to be</p>
+
+<p>able to make that work we make content</p>
+
+<p>go specifically in the support</p>
+
+<p>department i help you do that on a day</p>
+
+<p>to day basis your drupal seven site your</p>
+
+<p>Drupal eight site and your WordPress</p>
+
+<p>sites come talk to me if you need some</p>
+
+<p>help doing some support work that's what</p>
+
+<p>I do</p>
+
+<p>so a little bit that's a little bit</p>
+
+<p>about me let's talk about y'all what</p>
+
+<p>y'all doing here no I know that it's</p>
+
+<p>kind of abrupt what brings you to this</p>
+
+<p>place what are you looking to find out</p>
+
+<p>in this talk I mean you have life oh man</p>
+
+<p>I don't know if I can help you there I</p>
+
+<p>can give you my professional opinion on</p>
+
+<p>what the meaning of life is but you</p>
+
+<p>might not like it yes got a majority of</p>
+
+<p>our sites are dual seven states still</p>
+
+<p>most of them were put up without proper</p>
+
+<p>planning without a proper organization</p>
+
+<p>what is the hope of retroactive will be</p>
+
+<p>bringing some organization to bringing</p>
+
+<p>in some composure and things like that</p>
+
+<p>all right so we're looking for hope hope</p>
+
+<p>with bringing in some structure using</p>
+
+<p>composure and some object-oriented</p>
+
+<p>programming so I was kind of half I was</p>
+
+<p>hoping that that was what was going to</p>
+
+<p>bring you here so this is what we're</p>
+
+<p>going to talk about how many of y'all</p>
+
+<p>have used X autoload before or even know</p>
+
+<p>what it is okay that's cool I'll tell</p>
+
+<p>you all about it today exhaustively even</p>
+
+<p>just tell me when to shut up because</p>
+
+<p>it's a fun one I'm really passionate</p>
+
+<p>about it I also want to talk to you</p>
+
+<p>about third party PHP libraries because</p>
+
+<p>in Drupal 7 this is really hard in</p>
+
+<p>almost every instance of it requires</p>
+
+<p>someone to wrap a module around it and</p>
+
+<p>I'm not particularly fond of that idea</p>
+
+<p>and then we'll talk a little bit about</p>
+
+<p>composure how many of y'all use</p>
+
+<p>composure for your day-to-day work is</p>
+
+<p>that all on Drupal 8 sites or PHP in</p>
+
+<p>general</p>
+
+<p>you know I've been using composer for</p>
+
+<p>drupal seven for five years now ever</p>
+
+<p>even before web flow put out the</p>
+
+<p>official Drupal composer Drupal project</p>
+
+<p>out there the reason why I want to talk</p>
+
+<p>about this is on I want us to try and</p>
+
+<p>keep our skills fresh I want to keep</p>
+
+<p>keep on modern and I want to keep them</p>
+
+<p>compatible with the frameworks that are</p>
+
+<p>coming out I say coming out came out</p>
+
+<p>like so the drupal's got that lag behind</p>
+
+<p>a little bit we're starting to get up to</p>
+
+<p>date with object-oriented programming so</p>
+
+<p>it helps you it helps me kind of get our</p>
+
+<p>skills like in line with that and it</p>
+
+<p>helps you if you're looking for another</p>
+
+<p>job in the PHP world helps you</p>
+
+<p>transition over to that as well helps</p>
+
+<p>you make bigger better design choices</p>
+
+<p>also want to make our code more reusable</p>
+
+<p>for more situations who says it has to</p>
+
+<p>be a Drupal module it could be a PHP</p>
+
+<p>library that's put on - I don't know a</p>
+
+<p>laravel site just think about that I</p>
+
+<p>also want to be able to use third-party</p>
+
+<p>libraries in my code it makes my life</p>
+
+<p>easier someone's already built that</p>
+
+<p>wheel and I also want to push the</p>
+
+<p>boundaries of my you know patterns and</p>
+
+<p>designs so that's why I do this I find</p>
+
+<p>that kind of stuff fun I don't know</p>
+
+<p>about y'all let's talk about autoload so</p>
+
+<p>I got kind of ballsy with this one and I</p>
+
+<p>made this entire presentation a live</p>
+
+<p>demo so we'll see how this all goes down</p>
+
+<p>I'm pretty sure that's you'll that you</p>
+
+<p>won't be disappointed so we were talking</p>
+
+<p>about Lando at the last at the session</p>
+
+<p>before this I use it really have lived</p>
+
+<p>for my development</p>
+
+<p>because it makes things easy but let's</p>
+
+<p>talk about ex autoload for a minute ex</p>
+
+<p>autoload is a module that you can go</p>
+
+<p>download from Dido</p>
+
+<p>the whole point of it is and it seems</p>
+
+<p>like really big complex code but it</p>
+
+<p>really does one thing if a while it adds</p>
+
+<p>Auto loading using PSR standards PSR 0</p>
+
+<p>or PSR 4 just like your composer</p>
+
+<p>projects do just like your Blake does</p>
+
+<p>this way you can now build your library</p>
+
+<p>in object-oriented code without having</p>
+
+<p>to go and you know say include this file</p>
+
+<p>include that file or listen out a whole</p>
+
+<p>bunch of files or or jumbling all your</p>
+
+<p>classes up in there</p>
+
+<p>in a single file it lets you use your</p>
+
+<p>normal object-oriented autoloading</p>
+
+<p>capabilities and it does it and it</p>
+
+<p>doesn't independently under using</p>
+
+<p>composer you can put this on your site</p>
+
+<p>right now and it'll just it'll give you</p>
+
+<p>that ability and you can start start</p>
+
+<p>injecting some code into your site that</p>
+
+<p>way let's let's go take a little example</p>
+
+<p>real quick or look at an example real</p>
+
+<p>quick so this is a modular rope you can</p>
+
+<p>hackle me about it if you want to if</p>
+
+<p>there's not a whole lot of functionality</p>
+
+<p>in this module the whole idea is I want</p>
+
+<p>to show you an example in a really easy</p>
+
+<p>way consumable way of how we can use</p>
+
+<p>object-oriented programming within our</p>
+
+<p>modules so this this this module is</p>
+
+<p>pretty standard module stuff I took and</p>
+
+<p>I abstracted out the block</p>
+
+<p>functionalities with you know block info</p>
+
+<p>block view and I made it to where I</p>
+
+<p>could use a class to import the</p>
+
+<p>implement a block now I know like ctools</p>
+
+<p>has something very similar and I just</p>
+
+<p>wanted I wanted to recreate the wheel a</p>
+
+<p>little bit here just to show you that it</p>
+
+<p>could be done and it can be done pretty</p>
+
+<p>easily so it's not the best design</p>
+
+<p>pattern in the world I did it really</p>
+
+<p>what's the word in a way that we in a</p>
+
+<p>way to be really quick prototype that's</p>
+
+<p>the word I was looking for in a</p>
+
+<p>prototype type way so for instance like</p>
+
+<p>whenever I created my my registry here</p>
+
+<p>it's simply just an array it's a ray of</p>
+
+<p>classes that I can use to define my</p>
+
+<p>blocks we could have done this something</p>
+
+<p>done something a little bit more fancy</p>
+
+<p>here to go look for the blocks but this</p>
+
+<p>is all module stuff to support my</p>
+
+<p>object-oriented code which is all over</p>
+
+<p>here in the source directory which you</p>
+
+<p>can see right here and it's just like</p>
+
+<p>your Drupal 8 mod just like your dribble</p>
+
+<p>like code you have a namespace Drupal</p>
+
+<p>module name</p>
+
+<p>you add your classes just like this and</p>
+
+<p>then so in my case I'm using a standard</p>
+
+<p>hierarchical structure of code I created</p>
+
+<p>my base class when my interfaces for XE</p>
+
+<p>Block XE block is really simple all it</p>
+
+<p>does is it it like I said abstracted out</p>
+
+<p>those particular functionalities of the</p>
+
+<p>block get info get machine name get</p>
+
+<p>subject and render for a block and then</p>
+
+<p>I added some base functionality so you</p>
+
+<p>know just like your standard Drupal 8</p>
+
+<p>practices for developing then I added</p>
+
+<p>implementation that so this is example</p>
+
+<p>so now let's go back to my module really</p>
+
+<p>quick and let's take a look see what</p>
+
+<p>this does this registry says this is one</p>
+
+<p>of the blocks that I want to import into</p>
+
+<p>my site</p>
+
+<p>like I want Drupal to be aware that this</p>
+
+<p>block exists so I told it look for this</p>
+
+<p>look for this class now I did in to form</p>
+
+<p>the screen because like I said I</p>
+
+<p>prototype in this thing but we can use</p>
+
+<p>our classes just like you do in your</p>
+
+<p>Drupal 8 site this is PHP we're talking</p>
+
+<p>PHP that's the whole whole point here so</p>
+
+<p>I do that and now the now the fun begins</p>
+
+<p>that all I've got to do now is type a</p>
+
+<p>minute</p>
+
+<p>let me see exude example enable do my</p>
+
+<p>job okay so what happened there is I he</p>
+
+<p>has a dependency on X autoload so X</p>
+
+<p>autoload was was enabled and my X</p>
+
+<p>autoload example module was enabled now</p>
+
+<p>I can go and I know this is the end</p>
+
+<p>result and it's not super super</p>
+
+<p>elaborate it's going to add a dum-dum</p>
+
+<p>block so we'll be able to go up there</p>
+
+<p>and see</p>
+
+<p>and I haven't set up my my URL there see</p>
+
+<p>if I can not you see using this drone</p>
+
+<p>and me momento so I'm gonna go in here</p>
+
+<p>I'm gonna go to my structure go to my</p>
+
+<p>blocks and then I can find my dump ton</p>
+
+<p>block right here and let's put in the</p>
+
+<p>content now like I said this is this was</p>
+
+<p>all for the sake to show you that I can</p>
+
+<p>do object-oriented code so now I've got</p>
+
+<p>my dummy block and it says what it done</p>
+
+<p>done you can see that all over here in</p>
+
+<p>my class of XE block base</p>
+
+<p>so object or any cut any questions so</p>
+
+<p>far okay we're good I'm gonna move I'm</p>
+
+<p>gonna move on a little bit further so we</p>
+
+<p>talked about ex auto loan ex auto loan</p>
+
+<p>comes with some pretty neat features</p>
+
+<p>around libraries who uses libraries</p>
+
+<p>module okay if you haven't gotten into</p>
+
+<p>the compose you know gotten onto the</p>
+
+<p>composer bandwagon for Drupal 7 it's</p>
+
+<p>okay you can still use your drush make</p>
+
+<p>work flowed a whole bit to download your</p>
+
+<p>libraries into your libraries folder and</p>
+
+<p>stuff like that the next thing I want to</p>
+
+<p>talk about in that regard is actually</p>
+
+<p>third-party libraries now I took the</p>
+
+<p>liberty to get a really really simple</p>
+
+<p>library it's called the Laurel epsilen</p>
+
+<p>generator and that's all it does it</p>
+
+<p>generates lorem ipsum test text this is</p>
+
+<p>just to show you an example of i was</p>
+
+<p>able to go out to interwebs grab myself</p>
+
+<p>for the library put it into my site and</p>
+
+<p>then use it in my object or you can see</p>
+
+<p>that over here my libraries folder i</p>
+
+<p>have let me see yeah this is me a second</p>
+
+<p>I gotta</p>
+
+<p>I'm trying to figure out where I'm at</p>
+
+<p>there it is okay so Laura the PHP lorem</p>
+
+<p>ipsum library is right here my sites all</p>
+
+<p>libraries and you see I just downloaded</p>
+
+<p>it verbatim now whenever you use in</p>
+
+<p>exile alone without composer you have to</p>
+
+<p>set up the library's module to figure</p>
+
+<p>out where your code is X on a load then</p>
+
+<p>allows you to use namespaces within that</p>
+
+<p>library without the use of composer so</p>
+
+<p>for instance in my case I wanted to use</p>
+
+<p>the Laura epsilen so I'm going to go</p>
+
+<p>over here to my other module that I</p>
+
+<p>built to demonstrate this which is</p>
+
+<p>called a library example block</p>
+
+<p>so it adds a little parameter to the</p>
+
+<p>library's info hook it's called ex</p>
+
+<p>autoload and I can tell it how to grab</p>
+
+<p>the information to do ex auto loads Auto</p>
+
+<p>loading stuff for lack of better words</p>
+
+<p>English is hard program is easier so in</p>
+
+<p>this case I said hey using your little</p>
+
+<p>adapter function thing you there go look</p>
+
+<p>at the composer file that's inside the</p>
+
+<p>library and use that class information</p>
+
+<p>that way I don't have to go and redefine</p>
+
+<p>it you can also do some other things</p>
+
+<p>like if we go look at ex auto loads API</p>
+
+<p>documentation really quick you can do</p>
+
+<p>all sorts of ways of loading libraries</p>
+
+<p>and I'll show you that here</p>
+
+<p>so free for example you can load it</p>
+
+<p>direct you don't have to use libraries</p>
+
+<p>at all you can use straight up exile the</p>
+
+<p>load if you want to that's what they're</p>
+
+<p>showing here use exile load to load auto</p>
+
+<p>load this this namespace okay you can</p>
+
+<p>tell it to use the compose the compose</p>
+
+<p>or tell it where a composer directory is</p>
+
+<p>but let's go look at the library's</p>
+
+<p>information really quick here's one way</p>
+
+<p>they do it they said hey this ribbon</p>
+
+<p>crowd library is going to is going to be</p>
+
+<p>at this at this at this place which is</p>
+
+<p>the library's Reuben crap folder and</p>
+
+<p>it's gonna load this name space out of</p>
+
+<p>the source directory or you can tell it</p>
+
+<p>to use the composer JSON which is what I</p>
+
+<p>did now let's go take a look at the JSON</p>
+
+<p>file that's within this library time</p>
+
+<p>user which the library's module is</p>
+
+<p>throwing me off because it's also called</p>
+
+<p>libraries nice okay so let's take it so</p>
+
+<p>I'm not using composer I know that's</p>
+
+<p>kind of confusing I'm using the composer</p>
+
+<p>JSON to define auto name spacing right</p>
+
+<p>because in composer JSON they say hey</p>
+
+<p>look over here to auto load this thing</p>
+
+<p>we're gonna use this name space if psr-4</p>
+
+<p>so why do I want to go back and redefine</p>
+
+<p>that when the libraries already giving</p>
+
+<p>me that information you're going to</p>
+
+<p>probably commit this button this anyway</p>
+
+<p>at least in your artifact so it can go</p>
+
+<p>pull it out so we did that okay and all</p>
+
+<p>that to be said I have now set libraries</p>
+
+<p>up so that it can load this library an</p>
+
+<p>ex auto load will do the auto loading</p>
+
+<p>whenever I call that class name does</p>
+
+<p>that make sense everybody</p>
+
+<p>okay cool I get a little long-winded</p>
+
+<p>sometimes you got to tell me and get to</p>
+
+<p>the point so on down here so I did the</p>
+
+<p>exact same things I did an altar here</p>
+
+<p>because I want to add this block into it</p>
+
+<p>into my registry that I prototype tout</p>
+
+<p>for us earlier and I add a little helper</p>
+
+<p>function here now long story short I</p>
+
+<p>created this loading function so that I</p>
+
+<p>can use this use this module if I have</p>
+
+<p>that library loaded via composer or any</p>
+
+<p>other means and if it's not loaded</p>
+
+<p>already let's go ahead and load it using</p>
+
+<p>the libraries module this way depending</p>
+
+<p>on how someone sets up their site they</p>
+
+<p>might not have composer they might I</p>
+
+<p>will be sure to load this class</p>
+
+<p>regardless that's the whole point of</p>
+
+<p>that so let's go over here and let's go</p>
+
+<p>look let's go look and see what this</p>
+
+<p>library example block looks like oh it</p>
+
+<p>does eh you know info gives me Elora met</p>
+
+<p>some block machine name you seen this</p>
+
+<p>before in my in my interface that I</p>
+
+<p>built earlier standard object-oriented</p>
+
+<p>programming then I said new oral aural</p>
+
+<p>epsilen which I used the you statement</p>
+
+<p>up here Auto loading in action and then</p>
+
+<p>I said give me a paragraph so the whole</p>
+
+<p>point of that is now I can go ahead and</p>
+
+<p>do a</p>
+
+<p>[Music]</p>
+
+<p>Nando thrush enabled libraries and let</p>
+
+<p>me see what's this one called library</p>
+
+<p>example</p>
+
+<p>i misspelled something walk thank you</p>
+
+<p>that's a good way to make sure people</p>
+
+<p>are hey look I can't time dyslexic or</p>
+
+<p>something</p>
+
+<p>it's an example example all right cool</p>
+
+<p>so now the the whole point is is now I</p>
+
+<p>can go in here and do this</p>
+
+<p>do the same thing refresh this go to</p>
+
+<p>structure go to blocks go down here to</p>
+
+<p>my blocks and you see the lorem ipsum</p>
+
+<p>block let's go ahead and put it in our</p>
+
+<p>content just so you can see now I know</p>
+
+<p>this is a very lame example because I</p>
+
+<p>just recreated the will of how to build</p>
+
+<p>a block but it's just to show you that</p>
+
+<p>object oriented is possible now and now</p>
+
+<p>I can take this library that I built</p>
+
+<p>here and abstract it out to do other</p>
+
+<p>things like you on other systems</p>
+
+<p>theoretically you could take your Drupal</p>
+
+<p><br>
+Drupal 7 sites</p>
+
+<p>easier now given that there's a lot of a</p>
+
+<p>lot like the plug-in system and stuff</p>
+
+<p>you have to deal with whenever your</p>
+
+<p>important code back however the benefits</p>
+
+<p>of having like structured code between</p>
+
+<p>Drupal 7 Drupal 8 modules is phenomenal</p>
+
+<p>because you can literally copy and paste</p>
+
+<p>or you could potentially do like a</p>
+
+<p>cherry pick out of a commit or something</p>
+
+<p>of that nature</p>
+
+<p>it makes maintenance so much easier and</p>
+
+<p>it lets you do more of the fun stuff</p>
+
+<p>right you've lowered your maintenance</p>
+
+<p>costs so now you can go do more R&amp;D</p>
+
+<p>stuff and you can go through do more</p>
+
+<p>object-oriented code etc so that's to</p>
+
+<p>show you I've done all this without</p>
+
+<p>composer so far now the fun part is</p>
+
+<p>let's add composer to it your full 7</p>
+
+<p>side how many people have actually done</p>
+
+<p>that before</p>
+
+<p>okay so this is a new one probably for</p>
+
+<p>you do do any of y'all use the composer</p>
+
+<p>the composer Drupal project template for</p>
+
+<p>Drupal 8 at all or do y'all download</p>
+
+<p>your Drupal 8 core and then use the</p>
+
+<p>composer file that's within the chord</p>
+
+<p>that you you download like out of the</p>
+
+<p>zip okay yeah yeah I'm just I'm just</p>
+
+<p>trying to try and get a feel of how yeah</p>
+
+<p>what your workflows are so here's here's</p>
+
+<p>the thing</p>
+
+<p>so you can go over here to see composer</p>
+
+<p>I should have had this one hurry up but</p>
+
+<p>you can go to Drupal composer Drupal</p>
+
+<p>project</p>
+
+<p>here's your instructions on how to make</p>
+
+<p>a fully composed composer based project</p>
+
+<p>and what it does for you is it allows</p>
+
+<p>you to pull into the pendants ease</p>
+
+<p>independent of the dependencies that</p>
+
+<p>come with the zip file and your</p>
+
+<p>composure composure JSON there and it</p>
+
+<p>also abstracts everything out side of</p>
+
+<p>the web root because one of the biggest</p>
+
+<p>challenges is in Drupal website is</p>
+
+<p>security if you have all your libraries</p>
+
+<p>and things outside of the Drupal space</p>
+
+<p>outside in a web root it's a lot more</p>
+
+<p>secure you don't have people you won't</p>
+
+<p>have people in there able to to mess</p>
+
+<p>with or look at your code I know</p>
+
+<p>that there's there's things to prevent</p>
+
+<p>that namely your HD access files and so</p>
+
+<p>on so forth but if you don't have in the</p>
+
+<p>web route at all there's nothing that</p>
+
+<p>you need to protect that's my little</p>
+
+<p>spiel for that really quick it also</p>
+
+<p>allows you to create a source and an</p>
+
+<p>artifact build do you all know what I'm</p>
+
+<p>talking about there that's where a</p>
+
+<p>source build is hey I'm a developer I</p>
+
+<p>changed this one requirement and then I</p>
+
+<p>hit commit I put it in a PR and I have</p>
+
+<p>one line of change and it says I include</p>
+
+<p>I created a new I think I installed a</p>
+
+<p>new library as a developer I don't care</p>
+
+<p>what kind of code is in that library I</p>
+
+<p>don't want to commit all that to my</p>
+
+<p>project so as a code reviewer hey good</p>
+
+<p>job you installed or you upgraded that</p>
+
+<p>library that's all the review I've got</p>
+
+<p>to do instead of weeding through how</p>
+
+<p>many of you have had to weed through</p>
+
+<p>views molecule to try to find that one</p>
+
+<p>file someone updated you know they</p>
+
+<p>updated views at the same time that they</p>
+
+<p>created a feature and then you have to</p>
+
+<p>go find that feature code and in amongst</p>
+
+<p>of module upgrades and then github says</p>
+
+<p>oh you have over 3,000 changes I'm not</p>
+
+<p>going to show you what these changes</p>
+
+<p>look like you don't have that with a</p>
+
+<p>source and artifact build is what I'm</p>
+
+<p>getting at</p>
+
+<p>so it literally if I was to go look at</p>
+
+<p>go commit what I have now I would with</p>
+
+<p>the composer project I would only get my</p>
+
+<p>custom modules</p>
+
+<p>and a little bit of structure and the</p>
+
+<p>scaffolding files so scaffolding</p>
+
+<p>scaffolding files are your index dot PHP</p>
+
+<p>your robots.txt those things so that</p>
+
+<p>would be committed to my project but</p>
+
+<p>like core you wouldn't see any of core</p>
+
+<p>you won't see any other contributed</p>
+
+<p>modules and that would be my whole</p>
+
+<p>project it's really easy to do - all you</p>
+
+<p>have to do is come on wait well you</p>
+
+<p>don't know how to set up a Drupal 8 site</p>
+
+<p>so let's go set up a Drupal 7 site all</p>
+
+<p>we got to do is do a composer create and</p>
+
+<p>then we have our site our scaffolding</p>
+
+<p>then from there we go over here to</p>
+
+<p>composure dot JSON I start adding my</p>
+
+<p>requirements</p>
+
+<p>wrong one</p>
+
+<p>all right so most of these composure</p>
+
+<p>requirements come in ahead of time with</p>
+
+<p>the project</p>
+
+<p>I added libraries</p>
+
+<p>I added X autoload and I added my</p>
+
+<p>third-party library which was the Laura</p>
+
+<p>Itzel generator so this is a Drupal 7</p>
+
+<p>site the difference is if you go to the</p>
+
+<p>packages you put seven here instead of</p>
+
+<p>eight you get a couple you go a little</p>
+
+<p>bit more configuration down here which</p>
+
+<p>comes with with the project so you don't</p>
+
+<p>you normally don't have to touch that</p>
+
+<p>and you also there's a there's a little</p>
+
+<p>bit of so one of the biggest challenges</p>
+
+<p>with setting up a Drupal 7 site with</p>
+
+<p>composer is that you have all of the</p>
+
+<p>directories inside of Drupal so like in</p>
+
+<p>Drupal 8 they've mitigated all that by</p>
+
+<p>taking core and setting it in the core</p>
+
+<p>directory right in Drupal 7 Drupal is</p>
+
+<p>spread out across the root so you don't</p>
+
+<p>have like a core so what we have to do</p>
+
+<p>is we have to do some do some we have to</p>
+
+<p>set up our installers and we have to</p>
+
+<p>preserve some paths which is trying to</p>
+
+<p>find that one real quick the path up</p>
+
+<p>there is preserve your sites so we have</p>
+
+<p>to we have to preserve our sites folder</p>
+
+<p>and that's it now at this point once you</p>
+
+<p>did that composer create and you brought</p>
+
+<p>that down I mean like I said it's it's</p>
+
+<p>literally one command then you start</p>
+
+<p>doing your requires then you can start</p>
+
+<p>doing your then you start set up your</p>
+
+<p>lando all that jazz and you get a</p>
+
+<p>project that looks like this over here</p>
+
+<p>it's your standard Drupal site and I can</p>
+
+<p>show it to you and</p>
+
+<p>and a file manager so it may be a little</p>
+
+<p>bit easier to see let's see let's go to</p>
+
+<p>my workspace and let's go down to my mid</p>
+
+<p>camp and see this is this is my project</p>
+
+<p>web this is my gerbil pretty simple</p>
+
+<p>alright so all that long spill to say</p>
+
+<p>okay I've loaded my my library up via</p>
+
+<p>composer there's one little problem</p>
+
+<p>though</p>
+
+<p>composers not autoloading because we got</p>
+
+<p>to say include auto load up PHP ex auto</p>
+
+<p>loop doesn't do that for us remember I</p>
+
+<p>was telling you about how you can use it</p>
+
+<p>independently your composure well</p>
+
+<p>there's a neat little module that comes</p>
+
+<p>with this project called compose their</p>
+
+<p>auto loader it's already built in all</p>
+
+<p>you got to do is enable it so we go over</p>
+
+<p>here and we do come pope we do a brush</p>
+
+<p>and oat rush enable composer auto loader</p>
+
+<p>okay now I'm going to I'm going to</p>
+
+<p>disable libraries because I don't need</p>
+
+<p>it anymore I loaded my library and</p>
+
+<p>composer so why use it so I do Lando</p>
+
+<p>brush</p>
+
+<p>I always forget the shortcut for that</p>
+
+<p>one yes D is okay and so I don't disable</p>
+
+<p>very often so yeah so let we've disabled</p>
+
+<p>it and now in theory I'm gonna go ahead</p>
+
+<p>and do a CC all just</p>
+
+<p>and let's go to the website let's</p>
+
+<p>refresh this page look we still got</p>
+
+<p>lorem ipsum text that's using composer</p>
+
+<p>so all that said there's a bunch of</p>
+
+<p>benefits to using composer um in</p>
+
+<p>particular you get your patches and all</p>
+
+<p>that jazz for free just like you do in</p>
+
+<p>Drupal 8 use the the patches down in</p>
+
+<p>your composer file they're documented it</p>
+
+<p>applies when you do a composer like</p>
+
+<p>composer update etc yeah and you you can</p>
+
+<p>use anyone heard of the composer the</p>
+
+<p>composer merge composer plug-in before</p>
+
+<p>the whole point that that is to take a</p>
+
+<p>Drupal core uses it and it takes another</p>
+
+<p>composer doc JSON and pulls it into your</p>
+
+<p>main one it's like include this composer</p>
+
+<p>about JSON and what you use that for is</p>
+
+<p>your custom modules so you're not</p>
+
+<p>committing your custom modules to their</p>
+
+<p>own projects let's let's commit them to</p>
+
+<p>this project which is our Drupal site</p>
+
+<p>then define all of my requirements for</p>
+
+<p>that module within that module because</p>
+
+<p>why do we want to put it up on the site</p>
+
+<p>level you can if you want to say like</p>
+
+<p>ease of use and not high dome or</p>
+
+<p>whatever but you can also put them with</p>
+
+<p>the module and that way you don't you</p>
+
+<p>can manage all that code within chunks</p>
+
+<p>and so if you remove the module you</p>
+
+<p>remove that dependency and therefore it</p>
+
+<p>cleans up cruft you don't have to go</p>
+
+<p>through all your libraries to figure out</p>
+
+<p>Oh</p>
+
+<p>which ones did this one depend on and</p>
+
+<p>clean it up just just a thought um yeah</p>
+
+<p>so are there any questions about</p>
+
+<p>composer like this did it seem like I</p>
+
+<p>oversimplified it too much do you feel</p>
+
+<p>confident you'd be able to go start your</p>
+
+<p>own Drupal 7 site</p>
+
+<p>yeah and that's the point</p>
+
+<p>yeah I don't want to try it now I looked</p>
+
+<p>into like the like how to do like</p>
+
+<p>patches and stuff like you would do and</p>
+
+<p>rush me and it sounded like there was</p>
+
+<p>some kind of limitations with that</p>
+
+<p>capability compared to dress make that</p>
+
+<p>this was probably about a year ago or so</p>
+
+<p>that I looked into it mm-hm</p>
+
+<p>not as far as I know yeah not as hard to</p>
+
+<p>know that there's I don't know of any</p>
+
+<p>limitations to patching ability as of</p>
+
+<p>now that that composure patches plugins</p>
+
+<p>you know ads of course it does remove</p>
+
+<p>the project every time you do an upgrade</p>
+
+<p>it removes the whole project so say</p>
+
+<p>we're patching the views module it</p>
+
+<p>removes the whole views module because</p>
+
+<p>it's probably patched downloads the new</p>
+
+<p>one or the whichever one that you told</p>
+
+<p>it to and then it patches it so you have</p>
+
+<p>that now what we normally do when we're</p>
+
+<p>using Pantheon we use like built tools</p>
+
+<p>and and they're built out a circle CI</p>
+
+<p>process to do what they call a what I</p>
+
+<p>call a artifact commit they call it in</p>
+
+<p>the in the scripts building assets okay</p>
+
+<p>so we all know that when you're working</p>
+
+<p>on Pantheon or you're working on aqua</p>
+
+<p>you have to commit everything otherwise</p>
+
+<p>it's not there right so like I have to</p>
+
+<p>go and commit all the modules etc the</p>
+
+<p>way built way built total tools workflow</p>
+
+<p>works is you do that like on your CI and</p>
+
+<p>it goes and changes part of your get</p>
+
+<p>ignore so that now you're committing all</p>
+
+<p>your modules of stuff so when I'm</p>
+
+<p>reviewing my code the code is a source</p>
+
+<p>it only has like custom modules my</p>
+
+<p>composer file and so my tool right</p>
+
+<p>whenever we do an artifact commit it</p>
+
+<p>then goes head runs all that composure</p>
+
+<p>install all that jazz and then does a</p>
+
+<p>force commit of with all the modules as</p>
+
+<p>a separate commit so what happens there</p>
+
+<p>is they push that up to the pen T on and</p>
+
+<p>then you have all that you can roll back</p>
+
+<p>to the source commit or whatever and the</p>
+
+<p>orphans a bunch of commits up there but</p>
+
+<p>that's you know it's okay it's a it's a</p>
+
+<p>way to maintain your history so to speak</p>
+
+<p>and I can I could show you something</p>
+
+<p>like that pretty easily let me let me</p>
+
+<p>think what is a good one that I have</p>
+
+<p>that's that way</p>
+
+<p>I like get cracking because it's a</p>
+
+<p>really good visualization under get</p>
+
+<p>history and you'll be able to see that</p>
+
+<p>here let me get a let me get one of our</p>
+
+<p>Drupal 7 sites up</p>
+
+<p>I'm drawing a blank for a quick I want</p>
+
+<p>and that's what happens whenever I do</p>
+
+<p>something on the fly like this so I'm</p>
+
+<p>gonna go into one of our clients really</p>
+
+<p>quick but I mean they they're not</p>
+
+<p>they're okay with with me sharing this</p>
+
+<p>see so this should show you what I'm</p>
+
+<p>talking about as far you see all these</p>
+
+<p>bender Drogba commits right here these</p>
+
+<p>are what I'm talking about</p>
+
+<p>so if you were to look at the commit</p>
+
+<p>it's literally it be something like okay</p>
+
+<p>what's this one this one's not so much</p>
+
+<p>that way because we're using an artifact</p>
+
+<p>field but it would be all the modules</p>
+
+<p>like the whole contributes folder the</p>
+
+<p>vendor folder everything let go in that</p>
+
+<p>commit then it'd be that for every</p>
+
+<p>single one of these now these are multi</p>
+
+<p>dev commits like we push up on each PR</p>
+
+<p>we push up we run the build tools</p>
+
+<p>through our CI which pushes up a branch</p>
+
+<p>to Pantheon which then spins up a multi</p>
+
+<p>dev so that we can test it on the fly</p>
+
+<p>it's really nice because then one of us</p>
+
+<p>don't have to manually do that that's</p>
+
+<p>less work we have to do but using</p>
+
+<p>composer a composer works really well in</p>
+
+<p>conjunction with all this as one get</p>
+
+<p>because you tell you tell your CI to do</p>
+
+<p>a composer install you commit all that</p>
+
+<p>push it up the Pantheon hey you've got a</p>
+
+<p>site that you can test</p>
+
+<p>I know it's a it's a lot to take in so</p>
+
+<p>if you want to talk about it in</p>
+
+<p>particular doll I do DevOps really</p>
+
+<p>heavily I specialize in it in fact and I</p>
+
+<p>find it lots of fun so we can talk about</p>
+
+<p>this offline if we want to and talk a</p>
+
+<p>little bit more about composure if you</p>
+
+<p>want to so where do we go with that at</p>
+
+<p>this point I'm pretty much out of</p>
+
+<p>content we've talked about composure we</p>
+
+<p>talked about adding third-party</p>
+
+<p>libraries to our code and we've talked</p>
+
+<p>about object-oriented object-oriented</p>
+
+<p>coding and Drupal 7 I find out lots of</p>
+
+<p>fun I find that it makes my day the day</p>
+
+<p>more exciting because I get to flex</p>
+
+<p>those muscles that I don't normally get</p>
+
+<p>to do on the triple set aside because</p>
+
+<p>I'm a Support Engineer I hope that this</p>
+
+<p>helped you all in the same capacity as</p>
+
+<p>it does me and I hope that it makes any</p>
+
+<p>sites that you support more of a joy</p>
+
+<p>than going through the old functional</p>
+
+<p>programming do y'all have any other</p>
+
+<p>questions we've got we've still got a</p>
+
+<p>little bit of time</p>
+
+<p>have you converted Drupal seven sites</p>
+
+<p>and added the composer workflow and then</p>
+
+<p>use that for module updates and so so</p>
+
+<p>the question is have I taken an existing</p>
+
+<p>site and converted it to composer yes</p>
+
+<p>now there's a challenge here we have to</p>
+
+<p>talk about and that's how do you get all</p>
+
+<p>these modules that these people have</p>
+
+<p>amassed over the years into a composer</p>
+
+<p>file zing by know that off the top of</p>
+
+<p>their head well I mean that the very</p>
+
+<p>manual way is is go in there and do</p>
+
+<p>uh-oh</p>
+
+<p>come you know droop you know composer</p>
+
+<p>require drupal slash this name that name</p>
+
+<p>going through the modules folder doing</p>
+
+<p>it manually it's that's really annoying</p>
+
+<p>a tool that's really handy for it</p>
+
+<p>there's two of them I can't remember</p>
+
+<p>what the second one's called but the</p>
+
+<p>first one is actually using just make to</p>
+
+<p>do it so just make has a really handy</p>
+
+<p>command and that's you know dress make</p>
+
+<p>but it's also got a flag that you can</p>
+
+<p>specify the format that flag is ein I</p>
+
+<p>file old-school yam will file that's</p>
+
+<p>better and composer file you can get</p>
+
+<p>composer dot JSON straight out dress</p>
+
+<p>made caveat it doesn't make it pretty</p>
+
+<p>and you have to go and edit it what it's</p>
+
+<p>really good for is it takes the bulk of</p>
+
+<p>the work out of what you're doing though</p>
+
+<p>you can go copy and paste all of the</p>
+
+<p>requirements that gave you because it's</p>
+
+<p>it's gonna go in there and make one</p>
+
+<p>that's like Drupal module name and it's</p>
+
+<p>going to assign it the wrong version of</p>
+
+<p>seven dot something dot something</p>
+
+<p>in our pack in the old packages before</p>
+
+<p>you know drew ddoddo took it over</p>
+
+<p>we had one packages it contained Drupal</p>
+
+<p>seven and Drupal eight modules so the</p>
+
+<p>way you specified your module versions</p>
+
+<p>was 7.10 or you know you took you just</p>
+
+<p>took out the - you know dot X - yes so</p>
+
+<p>it was a Drupal 7 module if it was seven</p>
+
+<p>dot something if the Drupal eight module</p>
+
+<p>says eight dot something since they</p>
+
+<p>separated out the two sets of modules</p>
+
+<p>and - two separate packages now you just</p>
+
+<p>type in everything except for the seven</p>
+
+<p>you know like seven X or eight dot X all</p>
+
+<p>right so whenever I want to required</p>
+
+<p>let's say fuse 3.0 I just say fuse 3.0</p>
+
+<p>instead of seven 3.0 but just make was</p>
+
+<p>made on the old workflow so it puts in</p>
+
+<p>those numbers so you have to go through</p>
+
+<p>and do some cleanup another thing it</p>
+
+<p>does is it includes your custom modules</p>
+
+<p>so you have to go take those out after</p>
+
+<p>you do that little bit of work plaster</p>
+
+<p>it into your into the composer project</p>
+
+<p>template go to town it's that simple I</p>
+
+<p>say it's that simple yeah a little bit</p>
+
+<p>bootleg work but it's not me going in</p>
+
+<p>there saying oh let's see where are they</p>
+
+<p>where did they put the views module is</p>
+
+<p>that in sites default oh really</p>
+
+<p>Oh where's they put it over there it's</p>
+
+<p>in the custom folder you know that kind</p>
+
+<p>of thing you know</p>
+
+<p>and then also the freebie you get out of</p>
+
+<p>this so we come with a composer a</p>
+
+<p>composer build and everything's</p>
+
+<p>organized</p>
+
+<p>all your contributed modules go into the</p>
+
+<p>contribs alder all of your custom</p>
+
+<p>modules go wherever you want put on</p>
+
+<p>technically but I put them in the custom</p>
+
+<p>folder really nice</p>
+
+<p>yes the directories from all the</p>
+
+<p>computer models yes so let's let's talk</p>
+
+<p>about that really quick Pantheon has</p>
+
+<p>their very own composer project okay</p>
+
+<p>they've taken the Drupal project version</p>
+
+<p>you know the default one and they've</p>
+
+<p>modified it so we can go over here and</p>
+
+<p>go to Drupal composer handsy on there it</p>
+
+<p>is</p>
+
+<p>get over there so this is yeah one</p>
+
+<p>second</p>
+
+<p>thinking about it this is drop seven</p>
+
+<p>what composer files so this this is what</p>
+
+<p>it's including and the composer but the</p>
+
+<p>Drupal 7 version of it</p>
+
+<p>there it is here you go</p>
+
+<p>same same process you do a composer</p>
+
+<p>create project you get the little bit</p>
+
+<p>specialized composer JSON one of the</p>
+
+<p>biggest things are that's different here</p>
+
+<p>is that instead of including Drupal</p>
+
+<p>Drupal version 7 you're including drops</p>
+
+<p><br>
+it is so there's this guy right here</p>
+
+<p>that's the that's the big difference and</p>
+
+<p>then over here if you look in your</p>
+
+<p>looking our scripts we have our build</p>
+
+<p>assets which is prepare for pantheon and</p>
+
+<p>composer install and all that jazz just</p>
+
+<p>like you're used to</p>
+
+<p>anything else cool well I hope y'all</p>
+
+<p>what's that you know in duple seventh</p>
+
+<p>we're still using a lot of features</p>
+
+<p>uh-huh is that can you play features in</p>
+
+<p>yeah why not</p>
+
+<p>yeah it's your custom code it's just</p>
+
+<p>like just like any other custom module</p>
+
+<p>yeah throw it over there features is</p>
+
+<p>part of your deployed process at that</p>
+
+<p>point yeah and you can do that how many</p>
+
+<p>people there's a plugin Pantheon pretty</p>
+
+<p>hard right now how many people use</p>
+
+<p>Quicksilver you know Quicksilver is</p>
+
+<p>really perfect for deployment processes</p>
+
+<p>so what you can do is you can use their</p>
+
+<p>hook system to say hey when I update</p>
+
+<p>code go around some dress commands like</p>
+
+<p>just CCO and features reverb and DB up</p>
+
+<p>that kind of stuff and so what happens</p>
+
+<p>is you get this for free I update my</p>
+
+<p>code manually through the interface it</p>
+
+<p>runs the deployment process I put</p>
+
+<p>something automated through CDI it runs</p>
+
+<p>the employment process and then I don't</p>
+
+<p>ever have to go worry about telling</p>
+
+<p>Circle CI oh yeah make sure you do the</p>
+
+<p>thing where you dress DC y'all on the</p>
+
+<p>multi dev even terminus and all that</p>
+
+<p>jazz or when I push to production I</p>
+
+<p>don't have to say oh yeah I'm I push</p>
+
+<p>code up now I have to go to my local</p>
+
+<p>machine and say terminus drudge CCO all</p>
+
+<p>that jazz use Quicksilver do yourself a</p>
+
+<p>favor</p>
+
+<p>so if you wouldn't have like a circle CI</p>
+
+<p>process you would just push to your</p>
+
+<p>repository then Quicksilver Quicksilver</p>
+
+<p>would take care push it version to do</p>
+
+<p>all those steps and push it version</p>
+
+<p>Pantheon well it Quicksilver it would</p>
+
+<p>already be on Pantheon at that point and</p>
+
+<p>Quicksilver would just take care of the</p>
+
+<p>rest of the deployment process stuff</p>
+
+<p>like yeah yes sir it's the it's the way</p>
+
+<p>you get your you know little slack</p>
+
+<p>messages whenever you do a deployment</p>
+
+<p>it's the way you can get get your oh I'm</p>
+
+<p>going drawing the blank not testing but</p>
+
+<p>I'm thinking about what's the system we</p>
+
+<p>go into new relic that's it</p>
+
+<p>he that flag your new relic with</p>
+
+<p>releases all that yes they have a whole</p>
+
+<p>library thing now I to go on the other</p>
+
+<p>side of fence aqua has something really</p>
+
+<p>similar it's called cloud hooks use that</p>
+
+<p>for your deployment process as well that</p>
+
+<p>way anytime you do any deployments go</p>
+
+<p>there this is this is advice for free</p>
+
+<p>outside of the talk I'm sorry but you</p>
+
+<p>know that's a yeah that's a it's</p>
+
+<p>something that's a really helpful that</p>
+
+<p>way you don't have to go and and</p>
+
+<p>remember to do that things and it's</p>
+
+<p>repeatable</p>
+
+<p>repository and I'd say another kind of</p>
+
+<p>independent hosting where you'd have</p>
+
+<p>some folks that would do some process</p>
+
+<p>like that I think you'd have to rely on</p>
+
+<p>your continuous integration at that</p>
+
+<p>point the question was is are there any</p>
+
+<p>independent like for independent or</p>
+
+<p>custom hosting is there any services</p>
+
+<p>like Quicksilver hooks or or Quicksilver</p>
+
+<p>or Cloud hooks for aqua and the answer</p>
+
+<p>to that would literally be Jenkins or</p>
+
+<p>Travis or Circle CI at that point</p>
+
+<p>alright guys I know that I probably went</p>
+
+<p>on the Ameren for a little while</p>
+
+<p>I really appreciate y'all you know</p>
+
+<p>coming up here and uh let me yet let me</p>
+
+<p>do that um if you would please provide</p>
+
+<p>feedback for the talk I it doesn't it</p>
+
+<p>helps me a lot</p>
+
+<p>it also helps the camera so get on there</p>
+
+<p>if you want to talk to me further about</p>
+
+<p>continuous integration or a composer</p>
+
+<p>workflow or you wanna be s over a beer</p>
+
+<p>hit me up on Twitter or go over there to</p>
+
+<p>the drupal.org and send me a message</p>
+
+<p>thank y'all very much</p>
+
+<p>[Applause]</p>
+
+<p>Captions made possible by ClarityPartners.com. Chicago area Drupal consultants</p>
+
+<p><a href="../sponsor/clarity-partners.html"><img src="../../sites/default/files/2020-02/CFDFAA23-5C59-4C07-9C66-CAFFE0CF3854.png" style="max-width:300px;"></a></p>
+</div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-62d965a596dc08d71d16836565ae7087c27d475e6708b575168c4a2d3c974261">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/311">https://mid.camp/311</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-f3c4259f12749685db089578bc0af560d1ee1c45e6c8c8ce30c0d9019f56aa40">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/elevated-third.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-11/elevated-third-logo_0.png" width="220" height="220" alt="elevated third logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/acquia.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2019-03/Acquia_no_tagline.png" width="450" height="94" alt="Acquia" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/pantheon.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-11/pantheon-logo-color@2x.png" width="960" height="354" alt="Pantheon" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#84edeae2ebc4e9ede0e7e5e9f4aaebf6e3"><span class="__cf_email__" data-cfemail="e980878f86a984808d8a888499c7869b8e">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/311","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_llBcjrkrgAu2wT1DR7VGL_iP6geJyiTnF_8O5ZD57VI.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJxLz89Pz0mNT8xLzKksyUwu1k9HE9DJSCwpSS3ST8_JT0rM0c0qBgAByBPW"></script>
+
+  </body>
+</html>

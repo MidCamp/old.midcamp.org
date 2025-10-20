@@ -1,0 +1,3892 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="Decoupled Drupal architectures can introduce significant complexity into your process. While Drupal 8 already provides great tools for developers such as web services distributions and SDKs, you also need the proper infrastructure that enables content delivery to all of your digital experiences." />
+<link rel="canonical" href="decoupled-drupal-across-stack.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Decoupled Drupal across the stack | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Decoupled Drupal across the stack | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_Qoyy92GHt9RyGOt8N3WS_9HRsJcJBywJ2IhXudzvST4.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJw1jGsOgzAMgy9U1iOhtPVYpYSgumNjp18F4o_1-SFnFfKISYiQLzaQsoC3X72MzhsGNROtP4SX9I4WF_UkOmXyTky25N_Agx123e61wGdYQpmfFVpiAzdfWXdMZzkm-DCe-jAvb8UfjYM.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_mK2of_t7UFymkfbTHeA-kHdMPWzqc3DZQCYtX-tC0BA.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJw1jGsOgzAMgy9U1iOhtPVYpYSgumNjp18F4o_1-SFnFfKISYiQLzaQsoC3X72MzhsGNROtP4SX9I4WF_UkOmXyTky25N_Agx123e61wGdYQpmfFVpiAzdfWXdMZzkm-DCe-jAvb8UfjYM.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJw1jGsOgzAMgy9U1iOhtPVYpYSgumNjp18F4o_1-SFnFfKISYiQLzaQsoC3X72MzhsGNROtP4SX9I4WF_UkOmXyTky25N_Agx123e61wGdYQpmfFVpiAzdfWXdMZzkm-DCe-jAvb8UfjYM.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJw1jGsOgzAMgy9U1iOhtPVYpYSgumNjp18F4o_1-SFnFfKISYiQLzaQsoC3X72MzhsGNROtP4SX9I4WF_UkOmXyTky25N_Agx123e61wGdYQpmfFVpiAzdfWXdMZzkm-DCe-jAvb8UfjYM.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+<link rel="stylesheet" media="all" href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.css" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="decoupled-drupal-across-stack.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-hatter-main-menu-menu" id="block-hatter-main-menu" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-main-menu-menu">Midcamp 2018 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" data-drupal-link-system-path="node/2">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--venue">
+        <a href="../../about/venue.html" title="Venue" data-drupal-link-system-path="node/7048">Venue</a>
+            </li>
+          <li class="primary-nav__sublist-item item--travel">
+        <a href="../travel.html" title="Travel and Accommodations" data-drupal-link-system-path="node/65">Travel</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../lunch.html" title="Lunch Near Campus" data-drupal-link-system-path="node/162">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2018/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" title="Meet the Team!" data-drupal-link-system-path="2018/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../../2023/about/lunch-options.html" data-drupal-link-system-path="node/6970">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--accommodations">
+        <a href="../../2023/about/accommodations.html" data-drupal-link-system-path="node/6948">Accommodations</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" data-drupal-link-system-path="node/9">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--become-a-sponsor">
+        <a href="../become-a-sponsor.html" title="Become a Sponsor" data-drupal-link-system-path="node/7">Become a Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../../jobs.html" title="Jobs" data-drupal-link-system-path="jobs">Jobs</a>
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" data-drupal-link-system-path="node/128">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--training-thu">
+        <a href="../training.html" data-drupal-link-system-path="node/195">Training (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--bofs-fri-sat">
+        <a href="../birds-feather-bofs.html" title="Birds of a Feather (BoFs)" data-drupal-link-system-path="node/167">BoFs (Fri/Sat)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-fri">
+        <a href="../schedule/friday.html" title="Friday Sessions" data-drupal-link-system-path="2018/schedule/friday">Sessions (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-sat">
+        <a href="../schedule/saturday.html" title="Saturday Sessions" data-drupal-link-system-path="2018/schedule/saturday">Sessions (Sat)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sprints-sun">
+        <a href="../../sprints.html" title="Sprints">Sprints (Sun)</a>
+            </li>
+  </ul>
+
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2018.html" hreflang="en">MidCamp 2018</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Decoupled Drupal across the stack</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="143" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2018-03-09T19:30:00Z" class="datetime">Friday, 1:30 pm CST</time>
+ - <time datetime="2018-03-09T20:30:00Z" class="datetime">Friday, 2:30 pm CST</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-80" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-name field--type-string field--label-hidden field__item">Room 312</div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p dir="ltr">Decoupled Drupal architectures can introduce significant complexity into your process. While Drupal 8 already provides great tools for developers such as web services distributions and SDKs, you also need the proper infrastructure that enables content delivery to all of your digital experiences.</p>
+
+<p dir="ltr">The most mission-critical features for decoupled Drupal revolve around API-first distributions like Contenta, Reservoir, and Headless Lightning, SDKs and helper libraries like those in the Waterwheel ecosystem, and the underlying infrastructure. For instance, Acquia Cloud recently introduced support for Node.js environments to power JavaScript front ends that rely on decoupled Drupal for data.</p>
+
+<p dir="ltr">The ideal infrastructure must provide for both Drupal and Node.js, providing scaling and security for both your Drupal sites and your JavaScript applications. This means that you need a one-stop shop, not disparate platforms tasked with supporting the entirety of your architecture — whether you're building a traditional Drupal website, a single-page JavaScript application with server-side rendering, or other experiences that just need the benefits that Drupal 8's web services provide.</p>
+
+<p dir="ltr">This session covers how to craft the optimal infrastructure for all of your digital experiences, whatever they are, and how you can take advantage of the decoupled Drupal ecosystem in your own projects on Acquia Cloud. Here's what we'll explore:</p>
+
+<ul dir="ltr">
+	<li>A reintroduction to decoupled Drupal</li>
+	<li>Decoupled Drupal for JavaScript and native</li>
+	<li>Build artifacts and Node.js deployments (on Acquia Cloud)</li>
+	<li>API-first distributions: Contenta, Reservoir, and Headless Lightning</li>
+	<li>The Waterwheel ecosystem for JavaScript and Swift</li>
+	<li>Example: Drupal-backed Ember and React</li>
+	<li>Case studies: MTA and Princess Cruises</li>
+	<li>Epilogue: The future of the decoupled Drupal stack</li>
+</ul>
+
+<p dir="ltr">This session is for anyone who is exploring the new paradigm of decoupled Drupal and looking for more information about decoupled Drupal infrastructure. We'll dive into topics that are of interest to developers, technical managers, and business decision-makers.</p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/ghabqS1fSJc?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Preston So</h4>
+
+    
+              
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p dir="ltr"><a href="https://www.drupal.org/u/prestonso">Preston So</a> has been a web developer and designer since 2001, a creative professional since 2004, and a Drupal developer since 2007. As Director of Research and Innovation at Acquia, Preston leads new open-source and research initiatives and helms Acquia Labs, the innovation lab featured in international press.</p>
+
+<p>Previously, Preston managed the Entertainment Weekly website and led its development team at Time Inc. (now Meredith). He also contributed to the Spark initiative in the Drupal project, co-founded the Southern Colorado Drupal User Group (est. 2008), and operated an award-winning freelance web and print design studio. In addition, Preston directed the most recent redesign of The Harvard Crimson's online edition, producing the first student-designed responsive college newspaper website in the Ivy League.</p>
+
+<p dir="ltr">Preston has presented keynotes at conferences on four continents in multiple languages and speaks around the world about diverse topics such as decoupled Drupal, front-end development, user experience, open-source innovation, and emerging technologies. Preston is also lead organizer and co-founder of Decoupled Drupal Days, a yearly conference in New York.</p></div>
+      
+  </div>
+    <div class="l-66-33--2"></div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Sponsored Session</div>
+              </div>
+      </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p>is that reporting yesterday</p>
+
+<p>okay all right okay hi everybody welcome</p>
+
+<p>this is decoupled Drupal across the</p>
+
+<p>stack if you're looking for RFPs or</p>
+
+<p>something else here not in the right</p>
+
+<p>room I'm just going to ask because I</p>
+
+<p>think there will be some stragglers</p>
+
+<p>coming into the room if you have an</p>
+
+<p>empty seat if you're on this side of the</p>
+
+<p>room and we have an empty seat to your</p>
+
+<p>left please scoot over one just so that</p>
+
+<p>we can leave these aisle seats open for</p>
+
+<p>people who are coming in late thank you</p>
+
+<p>very much and this is a great</p>
+
+<p>opportunity to meet your neighbors and</p>
+
+<p>say hi all right so first of all just to</p>
+
+<p>set the stage here I just want to get a</p>
+
+<p>sense of the room and figure out who we</p>
+
+<p>all are I know it's after lunch so we're</p>
+
+<p>not going to be very sleepy but how many</p>
+
+<p>people here are new to Drupal great okay</p>
+
+<p>a couple of us how many people have</p>
+
+<p>never heard the term decoupled Drupal</p>
+
+<p>before in this room Wow</p>
+
+<p>okay all right how many people have</p>
+
+<p>already built a decoupled Drupal build</p>
+
+<p>okay all right I see a few familiar</p>
+
+<p>faces in here so that's good and how</p>
+
+<p>many people are not Drupal developers</p>
+
+<p>site builders evaluators content editors</p>
+
+<p>okay good so my hope is that this</p>
+
+<p>session will have something for</p>
+
+<p>everybody this is the aqueous session of</p>
+
+<p>MIT camp and I'm going to talk a little</p>
+
+<p>bit about what decoupled Drupal is why</p>
+
+<p>it's so important to us what you should</p>
+
+<p>know about it and finally most</p>
+
+<p>importantly how aqueon Able's you to</p>
+
+<p>succeed with decoupled Rubel so how many</p>
+
+<p>people by the way we're at my top two</p>
+
+<p>years ago here at MIT camp where I</p>
+
+<p>discussed decoupled ruling okay few of</p>
+
+<p>you okay</p>
+
+<p>some of that content will be repeated</p>
+
+<p>here but it's actually been updated</p>
+
+<p>quite a bit so you'll see a lot of</p>
+
+<p>changes from that content well welcome</p>
+
+<p>to all of you who am I like here Who am</p>
+
+<p>I</p>
+
+<p>my name is Preston I am the director of</p>
+
+<p>research and innovation at Acquia I work</p>
+
+<p>on the office of CTO which is a team of</p>
+
+<p>people that is</p>
+
+<p>tasked with working on Drupal itself and</p>
+
+<p>also mapping out sort of future roadmap</p>
+
+<p>stuff for Acquia as well so I run our</p>
+
+<p>app via lab steam which is our</p>
+
+<p>innovation department at Acquia and I'm</p>
+
+<p>also the lead subject matter expert and</p>
+
+<p>kind of evangelist for decouple Drupal</p>
+
+<p>at Acquia I've also been a contributor</p>
+
+<p>to Drupal for many years now I built my</p>
+
+<p>first triple site in oh seven went to my</p>
+
+<p>first Drupal camp in Oh 8 and I've been</p>
+
+<p>involved in spark since that point and</p>
+
+<p>also spoken a lot about these kinds of</p>
+
+<p>topics so there's a hashtag here if you</p>
+
+<p>want to use it there's my email there's</p>
+
+<p>my Twitter and we'll go ahead and get</p>
+
+<p>started but first just to give you a</p>
+
+<p>little bit of an idea of what it is that</p>
+
+<p>I do and my other half of my job I also</p>
+
+<p>manage our FBI labs team which is our</p>
+
+<p>elite team of engineers that works on</p>
+
+<p>innovative projects that push the</p>
+
+<p>envelope so if you're looking at</p>
+
+<p>futuristic ideas and you're looking for</p>
+
+<p>that expertise that's deep expertise in</p>
+
+<p>Drupal and emerging technologies and you</p>
+
+<p>don't have that it's that sort of</p>
+
+<p>expertise in-house please come and talk</p>
+
+<p>to me labs would love to talk and see if</p>
+
+<p>we can figure out a way to help here's</p>
+
+<p>were going to cover today unfortunately</p>
+
+<p>I am going to be very forthright and say</p>
+
+<p>that I work to my local this morning so</p>
+
+<p>I do not have demos of Ember and react</p>
+
+<p>to show you today I was hoping to do</p>
+
+<p>that but during lunch I wasn't able to</p>
+
+<p>actually get that to work so I will be</p>
+
+<p>showing you however some videos as well</p>
+
+<p>as one or two small demos so I do</p>
+
+<p>apologize that a lifetime the will not</p>
+
+<p>happen in the way that I was hoping to</p>
+
+<p>we're going to start off with what</p>
+
+<p>decoupled Drupal is for those of you who</p>
+
+<p>know what the couple Drupal is this is</p>
+
+<p>probably going to be old hat for you I</p>
+
+<p>want to talk very quickly though after</p>
+
+<p>that point about the decoupled Drupal</p>
+
+<p>ecosystem what it is in the Drupal</p>
+
+<p>community that we've built what it is</p>
+
+<p>that's really powerful in Drupal in</p>
+
+<p>terms of our tools and all the things</p>
+
+<p>that we've done in terms of API firsts</p>
+
+<p>and in terms of all of the projects that</p>
+
+<p>many people have contributed to in the</p>
+
+<p>community how do those help out with our</p>
+
+<p>decoupled Drupal build so I'm going to</p>
+
+<p>talk briefly about our ecosystem in</p>
+
+<p>athmeeya known as water</p>
+
+<p>which is our sort of SDK ecosystem for</p>
+
+<p>Drupal and then I'm going to jump right</p>
+
+<p>into topics that are a little bit more</p>
+
+<p>advanced which relate more to what you</p>
+
+<p>actually want to be using when you</p>
+
+<p>decide to start building a decoupled</p>
+
+<p>tuple project namely web services</p>
+
+<p>distributions otherwise known as API</p>
+
+<p>first distributions if you don't know</p>
+
+<p>what a Drupal distribution is I'll talk</p>
+
+<p>about that and then I also want to talk</p>
+
+<p>about how if you're building in nodejs</p>
+
+<p>stack and you have your JavaScript</p>
+
+<p>application that's using universal</p>
+
+<p>JavaScript you know angular ember react</p>
+
+<p>how might you bring that on to an</p>
+
+<p>infrastructure that works for you namely</p>
+
+<p>aqua cloud and I'll just illustrate some</p>
+
+<p>of those things using our a cloud</p>
+
+<p>platform finally I want to delve into</p>
+
+<p>just a couple of really interesting case</p>
+
+<p>studies that you may or may not have</p>
+
+<p>heard of which are very compelling</p>
+
+<p>examples of the couple Drupal that we've</p>
+
+<p>built in akka yet and then finally I'll</p>
+
+<p>just kind of talk briefly about the</p>
+
+<p>future of the decoupled Drupal stack and</p>
+
+<p>what that looks like there's a couple of</p>
+
+<p>seats here please feel free you know one</p>
+
+<p>of the things I hate the most when I</p>
+
+<p>give a talk is seeing people standing or</p>
+
+<p>sitting on the ground because oh man</p>
+
+<p>it's just because I've been that</p>
+
+<p>position before too so please don't be</p>
+
+<p>shy if you want to yell out anything or</p>
+
+<p>ask me a question at any point just stop</p>
+
+<p>me and raise your hand this is meant to</p>
+
+<p>be a little bit more free and I don't</p>
+
+<p>want this to be just you know a sort of</p>
+
+<p>one way thing so let's go ahead and dive</p>
+
+<p>right back into decoupled rupal and I</p>
+
+<p>want to just kind of give a really kind</p>
+
+<p>of basic conceptual introduction again a</p>
+
+<p>lot of these topics you've probably</p>
+
+<p>already seen before but simply put this</p>
+
+<p>is the way that the couple Drupal works</p>
+
+<p>right</p>
+
+<p>generally speaking you have what's</p>
+
+<p>called a consumer application some kind</p>
+
+<p>of other clients or some kind of an</p>
+
+<p>other architecture that is consuming</p>
+
+<p>excuse me that is consuming content from</p>
+
+<p>your Drupal site now generally speaking</p>
+
+<p>there's two kinds of flavors of Drupal</p>
+
+<p>that can be used in a decoupled setting</p>
+
+<p>like this and I'll talk about both but</p>
+
+<p>first is a traditional website chances</p>
+
+<p>are that you've got an existing Drupal</p>
+
+<p>website you're very happy with it you've</p>
+
+<p>built stuff on PHP template or on twig</p>
+
+<p>if you're on da and you've got a site</p>
+
+<p>already ready but you want to take that</p>
+
+<p>to the next level you want</p>
+
+<p>that site so that it sends content out</p>
+
+<p>to other applications and act</p>
+
+<p>simultaneously as a website and as a</p>
+
+<p>repository that's one use case for using</p>
+
+<p>Drupal as a decoupled back-end but the</p>
+
+<p>other one is you might just want to use</p>
+
+<p>it as a repository you might just want</p>
+
+<p>to use it as a very slim content</p>
+
+<p>management solution for your users for</p>
+
+<p>your customers that you're building web</p>
+
+<p>sites for and if you're building a web</p>
+
+<p>application for example or a mobile app</p>
+
+<p>that's going to consume your content</p>
+
+<p>from Drupal you want to be able to give</p>
+
+<p>them the opportunity to do that with a</p>
+
+<p>CMS that they can control the content in</p>
+
+<p>so this probably is a lot of stuff on</p>
+
+<p>here that you already know about but the</p>
+
+<p>most fundamental pieces on this are that</p>
+
+<p>there's a REST API otherwise known as a</p>
+
+<p>web service and that basically serves as</p>
+
+<p>that exposure of content that allows for</p>
+
+<p>other applications to retrieve that</p>
+
+<p>content and also manipulate it you can</p>
+
+<p>also think of it as kind of an interface</p>
+
+<p>right which allows for anyone to</p>
+
+<p>communicate with Drupal regardless of</p>
+
+<p>what language it's written in or what</p>
+
+<p>technology it's built in on the other</p>
+
+<p>side on the consumer side you have an</p>
+
+<p>HTTP client which basically accepts</p>
+
+<p>those responses from the server so if</p>
+
+<p>you think about it one way to think</p>
+
+<p>about this is that you have a server</p>
+
+<p>client divided right here on this side</p>
+
+<p>you have a server on this side you have</p>
+
+<p>the client and of course you have HTTP</p>
+
+<p>requests and responses going back and</p>
+
+<p>forth for those of you who've seen my</p>
+
+<p>other talks I've used a metaphor from</p>
+
+<p>the Martian to describe this and if</p>
+
+<p>you're interested in looking at that</p>
+
+<p>metaphor it's a talk that I've given</p>
+
+<p>called introduction to decouple true</p>
+
+<p>block but simply put decouple Drupal is</p>
+
+<p>the use of Drupal as a content service</p>
+
+<p>for consumption and manipulation by</p>
+
+<p>other applications simply put we're</p>
+
+<p>trying to expose Drupal content so that</p>
+
+<p>it can be used and changed by other</p>
+
+<p>systems that's really the kind of</p>
+
+<p>simplest definition of decouples rupal</p>
+
+<p>and it can be used to back things that</p>
+
+<p>you know run the gamut from your mobile</p>
+
+<p>application your Android app to your</p>
+
+<p>angular application and JavaScript to</p>
+
+<p>even things like a VR interface or even</p>
+
+<p>things</p>
+
+<p>Digital Signage or you can even serve it</p>
+
+<p>to a Raspberry Pi and those things do</p>
+
+<p>happen quite a bit but the thing that</p>
+
+<p>really allows for Drupal to expose that</p>
+
+<p>content and to provide the means for</p>
+
+<p>other people to consume that content our</p>
+
+<p>web services you can use the core REST</p>
+
+<p>API you can use JSON API which is</p>
+
+<p>another REST API that's available as</p>
+
+<p>part of the Drupal contribute ecosystem</p>
+
+<p>where you can use graph QL which is not</p>
+
+<p>a traditional REST API what is a web</p>
+
+<p>service that allows for Drupal consumers</p>
+
+<p>to consume content if you're a little</p>
+
+<p>overwhelmed by these terms here I'm</p>
+
+<p>gonna explain them very shortly everyone</p>
+
+<p>with me so far</p>
+
+<p>good to go okay so we all know what</p>
+
+<p>monolithic Drupal here looks like it's</p>
+
+<p>just you know Drupal as an intent system</p>
+
+<p>it's not decoupled because you have your</p>
+
+<p>Drupal front-end that's part and parcel</p>
+
+<p>of your Drupal architecture which means</p>
+
+<p>that when you're building your Twigg</p>
+
+<p>templates and you're building your</p>
+
+<p>Drupal front-end that is something that</p>
+
+<p>you can't actually separate easily let's</p>
+
+<p>say from the rest of the Drupal</p>
+
+<p>architecture itself the Drupal monolith</p>
+
+<p>that exists so what is the difference</p>
+
+<p>between monolithic and decoupled wroclaw</p>
+
+<p>from an architectural standpoint well as</p>
+
+<p>you can see here in a decoupled setting</p>
+
+<p>you have a decoupled application or a</p>
+
+<p>consumer application that is being</p>
+
+<p>written in a different language or a</p>
+
+<p>different technology potentially that</p>
+
+<p>has to accept this content using a REST</p>
+
+<p>API that mediates the relationship</p>
+
+<p>between Drupal and the consumer</p>
+
+<p>application so me as a consumer</p>
+
+<p>application I'm going to ingest this</p>
+
+<p>data put it into templates and render it</p>
+
+<p>in my own way rather than having Drupal</p>
+
+<p>go through the entire rendering process</p>
+
+<p>on its own and doing that by itself</p>
+
+<p>so just to illustrate this very quickly</p>
+
+<p>there's a lot of different things that</p>
+
+<p>you can build with the couple drupal is</p>
+
+<p>the backend you can build a single page</p>
+
+<p>application in Universal JavaScript</p>
+
+<p>meaning you have shared rendering code</p>
+
+<p>between client and server you can also</p>
+
+<p>build a native Android application if</p>
+
+<p>you want to which allows you to write a</p>
+
+<p>native mobile app but the quintessential</p>
+
+<p>reason why people like to use the couple</p>
+
+<p>Drupal as a unified back-end is because</p>
+
+<p>you can use one single Drupal instance</p>
+
+<p>to serve content to all of your</p>
+
+<p>applications so if you have an</p>
+
+<p>application ecosystem that has three</p>
+
+<p>JavaScript applications and two mobile</p>
+
+<p>apps and you've got a roku application</p>
+
+<p>thrown in there as well you've also got</p>
+
+<p>a Samsung TV application in there that</p>
+
+<p>also has to consume that content</p>
+
+<p>you only need one single Drupal back-end</p>
+
+<p>and that single REST API that lies on</p>
+
+<p>top of your Drupal back-end can serve</p>
+
+<p>content to all those consumers a quick</p>
+
+<p>aside here now a lot of you have</p>
+
+<p>probably encountered all three of these</p>
+
+<p>terms before decoupled headless API</p>
+
+<p>first and there's a lot of different</p>
+
+<p>names that come into the mix here when</p>
+
+<p>you think about the couple Drupal so why</p>
+
+<p>is it that people refer to this as</p>
+
+<p>headless Drupal or decoupled Drupal or</p>
+
+<p>API first rupal there's a whole lot of</p>
+
+<p>churn right now happening in terms of</p>
+
+<p>terminology the reason I prefer the term</p>
+
+<p>decoupled and why I know that</p>
+
+<p>Driss prefers the terms and coupled is</p>
+
+<p>because headless has a very different</p>
+
+<p>definition in a very different</p>
+
+<p>connotation from decouple simply put if</p>
+
+<p>you look at the definition of headless</p>
+
+<p>software it's basically software that</p>
+
+<p>does not have a graphical user interface</p>
+
+<p>or traditional visual means of</p>
+
+<p>interacting with that software as a user</p>
+
+<p>that can mean many different things one</p>
+
+<p>example actually of a headless Drupal</p>
+
+<p>interface is thrush or Drupal console</p>
+
+<p>which are command line interfaces that</p>
+
+<p>don't have visual elements that you can</p>
+
+<p>use a mouse to click on but do provide</p>
+
+<p>headless functionality that allows you</p>
+
+<p>to manipulate Drupal using a non visual</p>
+
+<p>interface so this is the reason why we</p>
+
+<p>prefer the term Z couple because</p>
+
+<p>headless is a very loaded term it has a</p>
+
+<p>lot of different connotations and it's a</p>
+
+<p>little negative as well actually as a</p>
+
+<p>quick note one of the most interesting</p>
+
+<p>stories I've heard</p>
+
+<p>we about somebody who was pitching</p>
+
+<p>decoupled rupal bill to a client was a</p>
+
+<p>client that had recently also worked</p>
+
+<p>with a family that was had suffered a</p>
+
+<p>kidnapping in the Middle East and so</p>
+
+<p>this is the reason why we want to avoid</p>
+
+<p>any connotations that might relate to</p>
+
+<p>the term headless however a lot of</p>
+
+<p>people do use headless as a term and</p>
+
+<p>that is a very common thing yes I would</p>
+
+<p>think in many cases I mean it's also</p>
+
+<p>because you're actually maintaining</p>
+
+<p>panic the administrator interface</p>
+
+<p>browser I mean exactly yeah had this</p>
+
+<p>would mean that you know it's kind of</p>
+
+<p>like I had this browser right I mean you</p>
+
+<p>know there's no way to interact with</p>
+
+<p>Heather's Chrome for example whereas</p>
+
+<p>which have this drupal you do have a way</p>
+
+<p>to interact with the you know</p>
+
+<p>administrator front-end it's just not</p>
+
+<p>it's just not married to that front yes</p>
+
+<p>even talking about group while basically</p>
+
+<p>living the data or content repository or</p>
+
+<p>some other fun then but first ripple</p>
+
+<p>also can consume external services and</p>
+
+<p>effectively act as a front-end for</p>
+
+<p>exactly for other things you know</p>
+
+<p>let's testing that today well it's a</p>
+
+<p>very good point and I do actually you</p>
+
+<p>know what I'll talk about that briefly</p>
+
+<p>so Drupal</p>
+
+<p>yes decouple Drupal can also mean the</p>
+
+<p>drupal acting as the front end and not</p>
+
+<p>the back end right so for example let's</p>
+
+<p>say that you have a commerce system</p>
+
+<p>you're building something in Hybris or</p>
+
+<p>in Magento and you're doing it or</p>
+
+<p>Salesforce even right Salesforce has an</p>
+
+<p>API right and you want to expose that</p>
+
+<p>data to Drupal so that Drupal can then</p>
+
+<p>ingest that Salesforce data ingest that</p>
+
+<p>Hybris data and you know basically</p>
+
+<p>forward that on to consumers and this is</p>
+
+<p>a very common use case for large</p>
+
+<p>e-commerce shops that really want to be</p>
+
+<p>able to get content from a central</p>
+
+<p>commerce system but marry that with a</p>
+
+<p>very good content system as well that</p>
+
+<p>allows for both of those things to be</p>
+
+<p>harnessed with equal power if someone</p>
+
+<p>had a question over here yes it's not</p>
+
+<p>really in here</p>
+
+<p>a couple loophole that it doesn't have</p>
+
+<p>any front end he's just the way it's</p>
+
+<p>used not repeat the question for the</p>
+
+<p>recording so there were so the question</p>
+
+<p>was it's not inherent or intrinsic to</p>
+
+<p>the definition of the couple Drupal that</p>
+
+<p>it serves as the front end I would say</p>
+
+<p>that 95 percent or maybe eighty percent</p>
+
+<p>of cases that do use the term decouple</p>
+
+<p>Drupal are going to be decoupled front</p>
+
+<p>end with a Drupal back-end however there</p>
+
+<p>are cases where people have referred to</p>
+
+<p>decouple Drupal in the sense of Drupal</p>
+
+<p>as the front-end commerce back-end as</p>
+
+<p>the backend or some other data back end</p>
+
+<p>being used yes absolutely you can have a</p>
+
+<p>back-end further back and also a front</p>
+
+<p>end in front of rupal as well that's</p>
+
+<p>something we see a lot of distribution</p>
+
+<p>because the module composition might be</p>
+
+<p>different but it's the same of course</p>
+
+<p>the same yes it can be yes if you want</p>
+
+<p>to build it that way yes again we wanted</p>
+
+<p>this thing to say okay so I'm really</p>
+
+<p>interested in this because if you set</p>
+
+<p>the back end with an e-commerce site if</p>
+
+<p>Drupal is that then fine between the</p>
+
+<p>back end of an ERP and then maybe a</p>
+
+<p>front end piece and elsewhere like</p>
+
+<p>Google version changes so just because</p>
+
+<p>it's the couple doesn't mean is consumed</p>
+
+<p>by a JavaScript application it is</p>
+
+<p>consumed by Amazon Walmart comm</p>
+
+<p>marketplace guru merchant services that</p>
+
+<p>Drupal that consume speed from your SAP</p>
+
+<p>interface and then maybe here pay Mike</p>
+
+<p>McKenney oh so that's you know Drupal is</p>
+
+<p>the middleman</p>
+
+<p>I mean turrets reduce it to like the</p>
+
+<p>very you know what sort of pure</p>
+
+<p>definition of what you know like yeah</p>
+
+<p>you keep you could for example argue</p>
+
+<p>that an RSS feed is you know IG couple</p>
+
+<p>funding for Drupal right if you were</p>
+
+<p>rendering an RSS feed into some kind of</p>
+
+<p>parses feed you or you know there's a</p>
+
+<p>lot of flexibility here and these terms</p>
+
+<p>are still being formalized and kind of</p>
+
+<p>solidified so in the interest of time</p>
+
+<p>I'm gonna skip ahead here to just talk a</p>
+
+<p>little bit about why it is that people</p>
+
+<p>are so interested in this from the web</p>
+
+<p>development standpoint we've talked</p>
+
+<p>about why people aren't arresting this</p>
+
+<p>from the commerce standpoint from the</p>
+
+<p>mobile application standpoint from</p>
+
+<p>set-top box applications but what about</p>
+
+<p>JavaScript right because that's really</p>
+
+<p>why a lot of</p>
+
+<p>people are looking at decoupled rupal</p>
+
+<p>oftentimes developers who are really</p>
+
+<p>well-versed in JavaScript have a little</p>
+
+<p>bit of a hard time understanding why</p>
+
+<p>twig has so many Drupal isms in Drupal</p>
+
+<p>because you know we are you know we have</p>
+
+<p>built a unique implementation of twig</p>
+
+<p>that is that is a little bit distant</p>
+
+<p>from Symphony's twig and as a result you</p>
+
+<p>know the Drupal front of developer</p>
+
+<p>experience can be very challenging and</p>
+
+<p>for a lot of development shops where you</p>
+
+<p>have a large population of JavaScript</p>
+
+<p>developers or people who are j/s experts</p>
+
+<p>it can make a lot more sense to decouple</p>
+
+<p>Drupal because you have that fund</p>
+
+<p>expertise on this side</p>
+
+<p>that's knowledgeable about react or</p>
+
+<p>ember or angular for view for example so</p>
+
+<p>the JavaScript Renaissance was something</p>
+
+<p>that began with really I would say the</p>
+
+<p>sort of instantly a sort of inaugural</p>
+
+<p>date of the Renaissance of JavaScript</p>
+
+<p>really begins with the release of</p>
+
+<p>node.js which unleashed this era of</p>
+
+<p>innovation in JavaScript which allow for</p>
+
+<p>JavaScript to be executed server-side</p>
+
+<p>now remember that JavaScript back in the</p>
+
+<p>day used to be kind of poo-pooed as this</p>
+
+<p>you know play language that nobody</p>
+
+<p>really nobody no serious developer</p>
+
+<p>really actually wrote in so like PHP</p>
+
+<p>exactly HP exactly or Ruby talk about</p>
+
+<p>that but as a result you know a lot of</p>
+
+<p>these best practices and JavaScript have</p>
+
+<p>really changed and for those of you who</p>
+
+<p>are more in the PHP around these days or</p>
+
+<p>writing other technologies and who are</p>
+
+<p>looking at where to expand next you</p>
+
+<p>might want to consider looking at</p>
+
+<p>JavaScript today because there is a very</p>
+
+<p>robust set of best practices robust</p>
+
+<p>standards very robust documentation</p>
+
+<p>actually as well around es6 which is the</p>
+
+<p>modern version of javascript available</p>
+
+<p>today widely supported by many browsers</p>
+
+<p>and also is the underpinning are the</p>
+
+<p>underpinnings is informs the</p>
+
+<p>underpinnings of this kind of phenomenon</p>
+
+<p>so as a result of this new you know this</p>
+
+<p>new paradigm of using javascript on the</p>
+
+<p>server side we are now able to write</p>
+
+<p>servers entirely in JavaScript now your</p>
+
+<p>under yourself what does that have to do</p>
+
+<p>with PHP and Drupal right well there's a</p>
+
+<p>key thing here which is that you take a</p>
+
+<p>look starting in 2011 when angular was</p>
+
+<p>released 2012 when ember really came</p>
+
+<p>into the fore 2013 when react really</p>
+
+<p>first became very popular and you start</p>
+
+<p>to notice that a lot of these</p>
+
+<p>client-side frameworks that were</p>
+
+<p>originally only on the client-side are</p>
+
+<p>able to share their rendering code</p>
+
+<p>across the client server boundary such</p>
+
+<p>that they can also be rendered on the</p>
+
+<p>server side now I'm going to restate</p>
+
+<p>that because it's a very formative and</p>
+
+<p>very important sort of statement if I</p>
+
+<p>have a react application on a client</p>
+
+<p>side which gives me all of this</p>
+
+<p>interactivity and all this flexibility</p>
+
+<p>and all of these nice user experience</p>
+
+<p>features and the problem is that I have</p>
+
+<p>to wait five seconds on my browser for</p>
+
+<p>all of the code to initialize for the</p>
+
+<p>job should parser to go through and you</p>
+
+<p>know that takes a long time but if I can</p>
+
+<p>transfer a little bit of that rendering</p>
+
+<p>or all of that rendering over to the</p>
+
+<p>server side and flush to the browser an</p>
+
+<p>initial state of that application that</p>
+
+<p>already gives me markup and all I have</p>
+
+<p>to do is perform bindings against that</p>
+
+<p>markup and rejuvenate that markup</p>
+
+<p>rehydrate as it were that markup that's</p>
+
+<p>a really compelling idea because there's</p>
+
+<p>a seat over here by the way if you want</p>
+
+<p>to okay that's a really compelling idea</p>
+
+<p>because that gets rid of all of the</p>
+
+<p>performance drawbacks of using</p>
+
+<p>JavaScript on the client side so</p>
+
+<p>Universal JavaScript which is this idea</p>
+
+<p>it's also called isomorphic JavaScript</p>
+
+<p>which is this idea of having the ability</p>
+
+<p>to repeat code or share code across</p>
+
+<p>client-server was a very important</p>
+
+<p>phenomenon that occurred and</p>
+
+<p>unfortunately the very same phenomenon</p>
+
+<p>has not yet happened with PHP there is</p>
+
+<p>no client-side PHP there is no browser</p>
+
+<p>PHP that's in common use I know that</p>
+
+<p>there are some prototype implementations</p>
+
+<p>out there</p>
+
+<p>so what does this look like from the</p>
+
+<p>architectural standpoint well the</p>
+
+<p>fundamental thing is that rather than</p>
+
+<p>having the JavaScript framework rendered</p>
+
+<p>into the Drupal page right and having</p>
+
+<p>Drupal serve out that initial state and</p>
+
+<p>then having Java should take that over</p>
+
+<p>instead we're actually executing in this</p>
+
+<p>case a JavaScript framework on the</p>
+
+<p>server side through nodejs and Drupal</p>
+
+<p>will serve data to this nodejs</p>
+
+<p>server and then that is what flushes out</p>
+
+<p>to the browser is that fully rendered</p>
+
+<p>initial state of that JavaScript</p>
+
+<p>application so as a result of that we</p>
+
+<p>get really rich user interactions really</p>
+
+<p>rich interactivity on a page we get</p>
+
+<p>dynamic rendering that occurs within a</p>
+
+<p>second and it's not just those</p>
+
+<p>small-scale Ajax interactions those</p>
+
+<p>small-scale asynchronous updates on the</p>
+
+<p>page like a spinner or like a small</p>
+
+<p>message that peers if we're talking</p>
+
+<p>about entire sections of the page or the</p>
+
+<p>entirety of the page itself that is re</p>
+
+<p>render on the fly dynamically in</p>
+
+<p>JavaScript it's a really huge shift in</p>
+
+<p>our mentality this is how it looks from</p>
+
+<p>a very bird's-eye view nodejs</p>
+
+<p>is going to execute a JavaScript</p>
+
+<p>framework and in this case no js' houses</p>
+
+<p>the data as well right this is just</p>
+
+<p>illustrating the pure version of this</p>
+
+<p>but framework on the server side is</p>
+
+<p>going to render that HTML that's then</p>
+
+<p>flushed out to the browser and now in</p>
+
+<p>chrome I have my chrome my site in</p>
+
+<p>chrome now the HTML is loaded the script</p>
+
+<p>tags are loaded and all of the</p>
+
+<p>JavaScript framework is initialized</p>
+
+<p>again and all of the bindings are</p>
+
+<p>performed and now I have a fully fledged</p>
+
+<p>application in my client-side in my</p>
+
+<p>browser whenever it needs a new data</p>
+
+<p>update whenever something goes out of</p>
+
+<p>date and it needs to fetch that new data</p>
+
+<p>the framework will call back all the way</p>
+
+<p>to no js' for that new information</p>
+
+<p>now how does Drupal fit into this</p>
+
+<p>picture well it's very simple</p>
+
+<p>rather than having no js' and say</p>
+
+<p>MongoDB inside there's no GS serve out</p>
+
+<p>that data instead I'm gonna have the</p>
+
+<p>JavaScript framework perform requests</p>
+
+<p>out to Drupal and Drupal will respond</p>
+
+<p>with that data give it back to the</p>
+
+<p>framework and I still have my</p>
+
+<p>server-side favor of execution that</p>
+
+<p>renders out the HTML once again flushes</p>
+
+<p>out to HTML but the thing is that would</p>
+
+<p>actually reacts acute my jobs for framer</p>
+
+<p>here and I have some asynchronous</p>
+
+<p>requests that have to go back up to the</p>
+
+<p>server for updated data that's gonna go</p>
+
+<p>to Drupal instead right that's typically</p>
+
+<p>how a lot of these Drupal Plus nodejs</p>
+
+<p>builds work okay so this is an example</p>
+
+<p>of fully decoupled rupal this is an</p>
+
+<p>example of Drupal not having any</p>
+
+<p>interaction or sorry not having any</p>
+
+<p>involvement in the front-end whatsoever</p>
+
+<p>Drupal is completely out of the picture</p>
+
+<p>when it comes to the front instead</p>
+
+<p>nodejs</p>
+
+<p>is going to be fronting Drupal and then</p>
+
+<p>JavaScript will be on the front in the</p>
+
+<p>client side there is by the way I should</p>
+
+<p>mention another paradigm as well known</p>
+
+<p>as progressive decoupling which is</p>
+
+<p>something that Driss brought about three</p>
+
+<p>years ago which involves basically the</p>
+
+<p>interpolation of a framework into the</p>
+
+<p>Drupal front-end so let's say that</p>
+
+<p>you're not ready to buy into this whole</p>
+
+<p>paradigm yet no js' is something that's</p>
+
+<p>still completely crazy you can still</p>
+
+<p>have access to some of these interactive</p>
+
+<p>features as long as you are able to</p>
+
+<p>place that framework inside the Drupal</p>
+
+<p>front-end inside the native triple front</p>
+
+<p>in itself and for some people that is</p>
+
+<p>sufficient to enrich those user</p>
+
+<p>interactions or give that feel of the</p>
+
+<p>application enough there's a lot of</p>
+
+<p>speaking I've done about progressive</p>
+
+<p>decoupling if you'd like I can send you</p>
+
+<p>some resources on that</p>
+
+<p>so Greece recently had a blog post about</p>
+
+<p>three months ago that is about how you</p>
+
+<p>should look at decoupling Drupal in 2018</p>
+
+<p>I know this is very small but there's a</p>
+
+<p>couple of things that you really have to</p>
+
+<p>ask yourself when it comes to deciding</p>
+
+<p>whether or not it's a good idea to go</p>
+
+<p>this route and to take Drupal way down</p>
+
+<p>this path which is what do you intend to</p>
+
+<p>build with Drupal are you building just</p>
+
+<p>one experience or are you building</p>
+
+<p>multiple are you building just a website</p>
+
+<p>or are you building a website plus a</p>
+
+<p>mobile app plus an IOT app plus a</p>
+
+<p>Raspberry Pi plus an Apple TV app right</p>
+
+<p>if the answer to that is gonna be</p>
+
+<p>multiple you have to ask yourself first</p>
+
+<p>of all as one of them a website because</p>
+
+<p>if it is then you might want to use</p>
+
+<p>Drupal as that sort of simultaneous</p>
+
+<p>usage as I mentioned before both as the</p>
+
+<p>site and also as that exposure of data</p>
+
+<p>to other consumers if not and it's not</p>
+
+<p>going to be a website you're only</p>
+
+<p>serving content to a bunch of</p>
+
+<p>applications that don't really need the</p>
+
+<p>Drupal fun at all then you might want to</p>
+
+<p>use Drupal just as a repository only so</p>
+
+<p>same thing on this side as well if you</p>
+
+<p>know that that one experience that you</p>
+
+<p>want to build is a web application or a</p>
+
+<p>website then you want to make sure that</p>
+
+<p>you are using Drupal for that so the</p>
+
+<p>next thing that you want to ask yourself</p>
+
+<p>is what are the things you can't live</p>
+
+<p>without and this really ties into some</p>
+
+<p>of the risks and rewards and some of the</p>
+
+<p>pros and cons of decoupling Drupal</p>
+
+<p>there's both sides of this are worth</p>
+
+<p>considering not only the site builder</p>
+
+<p>and content editor experience but also</p>
+
+<p>the developer experience because</p>
+
+<p>oftentimes a lot of people I talked to</p>
+
+<p>who are exploring or building the couple</p>
+
+<p>Drupal implementations are saying our</p>
+
+<p>developers really outweigh the editors</p>
+
+<p>needs and so you have to really balance</p>
+
+<p>and force that kind of equilibrium</p>
+
+<p>between the two okay finally um you know</p>
+
+<p>this right here gives you an idea of</p>
+
+<p>well I know that most of my needs are</p>
+
+<p>developers right my J s team really</p>
+
+<p>needs this or I've got a lot of</p>
+
+<p>developers but I don't really have much</p>
+
+<p>use for content editing features like</p>
+
+<p>layout builders or in-place editing</p>
+
+<p>or those kinds of things in that case</p>
+
+<p>you can go ahead and fully be couple</p>
+
+<p>that makes perfect sense</p>
+
+<p>but if you do have those needs you might</p>
+
+<p>want to consider whether it's a good</p>
+
+<p>idea to be couple of Drupal Driss has a</p>
+
+<p>very good blog post on this by the way</p>
+
+<p>if you look for how to the couple Drupal</p>
+
+<p>in 2018 it's a really kind of</p>
+
+<p>comprehensive decision-making flow for</p>
+
+<p>you already</p>
+
+<p>so the decouple Drupal ecosystem what is</p>
+
+<p>it that's available to you now that</p>
+
+<p>you've decided that you want to go this</p>
+
+<p>path and you want to build a couple</p>
+
+<p>Drupal architectures what is available</p>
+
+<p>to you as developer well there's both</p>
+
+<p>core web services as I mentioned that</p>
+
+<p>provide a REST API and there's also web</p>
+
+<p>services modules in general and can trim</p>
+
+<p>that give you some of those features as</p>
+
+<p>well and I'm gonna just show this</p>
+
+<p>diagram just to give you an idea of the</p>
+
+<p>fact that there's a big difference</p>
+
+<p>between what's called a REST API that</p>
+
+<p>follows what are known as the fielding</p>
+
+<p>constraints which really rely on this</p>
+
+<p>idea of rest serving as this application</p>
+
+<p>state machine yada yada yada it's a lot</p>
+
+<p>of academic stuff graph QL doesn't fit</p>
+
+<p>in that paradigm right graph QL is non</p>
+
+<p>restful does not follow those</p>
+
+<p>constraints graph QL is a web service</p>
+
+<p>because it does yield data and it does</p>
+
+<p>provide that sort of intermediation</p>
+
+<p>between the consumer and the server but</p>
+
+<p>it is not a REST API itself</p>
+
+<p>the core rest modules are really great</p>
+
+<p>because they allow you to basically</p>
+
+<p>expose any content editor that's in</p>
+
+<p>Drupal and content entities in Drupal</p>
+
+<p>include things like notes users taxonomy</p>
+
+<p>terms and comments and they allow for</p>
+
+<p>Low's continuities to be exposed as</p>
+
+<p>jason and you can either choose sort of</p>
+
+<p>the you know raw data structure jason</p>
+
+<p>that's available or you can choose</p>
+
+<p>what's known as how jason which is the</p>
+
+<p>hal normalization of jason</p>
+
+<p>how is what's called hypertext</p>
+
+<p>application language which is</p>
+
+<p>essentially a specification that adds on</p>
+
+<p>to the base layer of jason so if you</p>
+
+<p>want to do things like link data have</p>
+
+<p>references to other documents or others</p>
+
+<p>write other resources that you want the</p>
+
+<p>client to be aware of that's where you</p>
+
+<p>might want to use how so for those of</p>
+
+<p>you who are favored we're familiar with</p>
+
+<p>like json-ld as well that's related to</p>
+
+<p>this views also by the way has what's</p>
+
+<p>called a rest export as a native display</p>
+
+<p>type so if you're building a view out</p>
+
+<p>and you want to create a view that</p>
+
+<p>allows for any consumer application to</p>
+
+<p>take that view and just to turn it into</p>
+
+<p>data that it can use in its own</p>
+
+<p>templates that's what you can do with</p>
+
+<p>chorused just to illustrate very quickly</p>
+
+<p>what this looks like</p>
+
+<p>just so you see what this actually is</p>
+
+<p>doing what's happening here is that when</p>
+
+<p>you perform a request to Drupal and some</p>
+
+<p>of these examples by the way might be a</p>
+
+<p>little bit out of date I just realized</p>
+
+<p>that didn't go through an update these a</p>
+
+<p>hundred percent so these might be a</p>
+
+<p>little bit out of date these routes</p>
+
+<p>might be wrong I will correct these for</p>
+
+<p>the slides that do go out within a PDF</p>
+
+<p>but essentially you know that's not the</p>
+
+<p>important part what's important is that</p>
+
+<p>when you perform a request against the</p>
+
+<p>core REST API you're getting data back</p>
+
+<p>in return now why am i showing you this</p>
+
+<p>because I want to illustrate the</p>
+
+<p>differences between core rest and some</p>
+
+<p>of the other flavors of web services</p>
+
+<p>that are available in Drupal such as</p>
+
+<p>JSON API for those of you who don't know</p>
+
+<p>this JSON API is a specification that</p>
+
+<p>has been adopted by several large</p>
+
+<p>communities such as ember Jas Ruby on</p>
+
+<p>Rails to power their API sort of power</p>
+
+<p>they're sort of in</p>
+
+<p>of data Jason API is a spec written</p>
+
+<p>actually co-authored by a good friend of</p>
+
+<p>mine in New York but the interesting</p>
+
+<p>thing about Jason API is that it</p>
+
+<p>provides a standard for relationships as</p>
+
+<p>well so when you have references to</p>
+
+<p>other resources other entities in your</p>
+
+<p>existing content entities those are</p>
+
+<p>captured by jason api jason api codifies</p>
+
+<p>the ability for you to be able to</p>
+
+<p>retrieve those additional relationships</p>
+
+<p>as well those related entities that are</p>
+
+<p>attached as well so just to give you an</p>
+
+<p>example of what that looks like by the</p>
+
+<p>way it also includes things like filter</p>
+
+<p>or sort pagination all sorts of things</p>
+
+<p>that you want to be able to do when</p>
+
+<p>you're manipulating data and so one of</p>
+
+<p>the interesting things about the Drupal</p>
+
+<p>Jason API implementation is that we do</p>
+
+<p>have full pagination support for example</p>
+
+<p>so you can request only ten articles for</p>
+
+<p>instance out of all the articles that</p>
+
+<p>you have so what does this look like</p>
+
+<p>well what this looks like is that when I</p>
+
+<p>go here and I want to include an</p>
+
+<p>additional field because the author</p>
+
+<p>field in this case is a reference entity</p>
+
+<p>it's an enemy reference field that is</p>
+
+<p>referring to an author node and this</p>
+
+<p>author is right here right it's going to</p>
+
+<p>serve me all the information about that</p>
+
+<p>author which is not housed in this</p>
+
+<p>entity it's actually housed in this</p>
+
+<p>include which is a related entity but</p>
+
+<p>not part of the initial payload so what</p>
+
+<p>that means is that if you were trying to</p>
+
+<p>do this in core rest you would have to</p>
+
+<p>make two requests right and that's what</p>
+
+<p>that previous example showed is that for</p>
+
+<p>me to get the name Joe and also the body</p>
+
+<p>of this article I would have had to make</p>
+
+<p>two requests Jason API obviates that</p>
+
+<p>necessity</p>
+
+<p>all right now there's also graph QL I've</p>
+
+<p>given several talks about graph QL in</p>
+
+<p>the past graph QL is a really</p>
+
+<p>interesting web service because it</p>
+
+<p>allows you to perform fewer queries and</p>
+
+<p>actually define what you want on the</p>
+
+<p>client side from the server side if</p>
+
+<p>that's confusing let me just illustrate</p>
+
+<p>this with an example</p>
+
+<p>when I perform a request against an</p>
+
+<p>article and I say I want this article</p>
+
+<p>but I only want the title of that</p>
+
+<p>article if I perform a request against</p>
+
+<p>the core REST API or JSON API I'm gonna</p>
+
+<p>get to the title of the article plus</p>
+
+<p>everything else but what if I only want</p>
+
+<p>to tie it what if I'm building an</p>
+
+<p>application on Raspberry Pi or some</p>
+
+<p>low-level hardware that can only ingest</p>
+
+<p>a certain amount of data before it</p>
+
+<p>crashes out in that case I might want to</p>
+
+<p>actually define more narrowly what my</p>
+
+<p>data that I want to retrieve should be</p>
+
+<p>so in graph QL what happens is that the</p>
+
+<p>responsibility to serve the correct</p>
+
+<p>response or to provide the correct</p>
+
+<p>structure for a response is coming</p>
+
+<p>directly from the client not from the</p>
+
+<p>server the server is not the one that</p>
+
+<p>dictates what it is that gets sent to</p>
+
+<p>the client the server publishes what's</p>
+
+<p>possible what the client is going to</p>
+
+<p>publish it's requirements what does it</p>
+
+<p>need from the server in the structure</p>
+
+<p>that it wants but this looks like is</p>
+
+<p>that if I only want the title of the</p>
+
+<p>article and a title of the author who's</p>
+
+<p>the name of the author and by the way</p>
+
+<p>this is just illustrative this is not</p>
+
+<p>how graph QL works today and I'm gonna</p>
+
+<p>update this as well but if you see this</p>
+
+<p>this is an example a very pure simple</p>
+
+<p>example of how this works which is that</p>
+
+<p>I don't get things like the note ID I</p>
+
+<p>don't get things like the body of the</p>
+
+<p>article or the user ID of the author all</p>
+
+<p>right</p>
+
+<p>so I want to talk about water wheel</p>
+
+<p>because water wheel is an interesting</p>
+
+<p>ecosystem that aqua has been working on</p>
+
+<p>and we're just beginning to ramp up more</p>
+
+<p>efforts in this area but water wheel is</p>
+
+<p>our response to a lot of the other</p>
+
+<p>headless CMS's or decoupled CMS's that</p>
+
+<p>are out there how many people have heard</p>
+
+<p>of contentful</p>
+
+<p>or prism ik or</p>
+
+<p>content stack okay so those providers</p>
+
+<p>have already taken over this market to a</p>
+
+<p>great degree</p>
+
+<p>they've already known that this</p>
+
+<p>decoupled CMS paradigm is very important</p>
+
+<p>and these competitors of Drupal and</p>
+
+<p>WordPress as well offer a series of SDKs</p>
+
+<p>for any developer of any application</p>
+
+<p>system or any kind of technology to be</p>
+
+<p>able to consume data from those</p>
+
+<p>respective backends and so for example</p>
+
+<p>me as a Python developer I can use the</p>
+
+<p>Python SDK that's been provided by</p>
+
+<p>contentful to consume data from</p>
+
+<p>contentful writing my native python or</p>
+
+<p>if i'm an objective-c programmer god</p>
+
+<p>bless that I can write Objective C</p>
+
+<p>consume the data from those places and</p>
+
+<p>get I need as well so just to give you</p>
+
+<p>an idea of what this looks like what</p>
+
+<p>we're really talking about here is two</p>
+
+<p>different things which is that we want</p>
+
+<p>to be able to provide the best developer</p>
+
+<p>experience on both sides of that server</p>
+
+<p>client boundary the way that we do that</p>
+
+<p>is by providing number one on the</p>
+
+<p>client-side SDKs reference</p>
+
+<p>implementations starter kits that allow</p>
+
+<p>people to get started very quickly</p>
+
+<p>there's also API first distributions and</p>
+
+<p>web services distributions which I'll</p>
+
+<p>talk about a little bit later but these</p>
+
+<p>kinds of things really improve that</p>
+
+<p>Drupal developer experience from the</p>
+
+<p>consumer standpoint right we're not</p>
+
+<p>talking about triple developers we're</p>
+
+<p>writing PHP we're talking about</p>
+
+<p>developers who only want to use Drupal</p>
+
+<p>because they're writing a JSF occation</p>
+
+<p>that needs some content so a good</p>
+
+<p>developer experience in this regard must</p>
+
+<p>mean that it's easy for those consumers</p>
+
+<p>those people who are writing those</p>
+
+<p>applications to work with those api's</p>
+
+<p>that Drupal has provisioned as I</p>
+
+<p>mentioned just previously so SDKs can</p>
+
+<p>really make it good to help developers</p>
+
+<p>out and also started kids these</p>
+
+<p>reference implementations where you can</p>
+
+<p>just take what's there and build on top</p>
+
+<p>of it is a really great way to get</p>
+
+<p>started with Drupal and there's a couple</p>
+
+<p>of projects that really do this very</p>
+
+<p>well they're actually part of what's we</p>
+
+<p>call the waterwheel ecosystem there's by</p>
+
+<p>the way another ecosystem that's very</p>
+
+<p>similar for this that I'll talk about in</p>
+
+<p>a little bit as well but waterwheel is</p>
+
+<p>aqueous own kind of sdk ecosystem so</p>
+
+<p>we currently have SDK is available for</p>
+
+<p>JavaScript and for Swift which means</p>
+
+<p>that if you're building a react</p>
+
+<p>application or an iOS application or a</p>
+
+<p>plural watch OS Tbls application you can</p>
+
+<p>use the waterwheel swift SDK if you're</p>
+
+<p>building react react application or</p>
+
+<p>let's say a view application you might</p>
+
+<p>want to use waterwheel Jas</p>
+
+<p>so waterwheel is really meant to be a</p>
+
+<p>translator for developers in those</p>
+
+<p>technologies right waterwheel helps</p>
+
+<p>those nan Drupal developers who don't</p>
+
+<p>know anything about Drupal and only want</p>
+
+<p>to get that content out of Drupal and</p>
+
+<p>give their clients something that they</p>
+
+<p>can use to edit that content those non</p>
+
+<p>drupal lists can now speak to they can</p>
+
+<p>communicate with drupal in a very easy</p>
+
+<p>way so waterwheel GS for example is a</p>
+
+<p>really cool sdk that i built the first</p>
+
+<p>version of and has now been sort of has</p>
+
+<p>undergone several releases that allows</p>
+
+<p>for these developers to consume and work</p>
+
+<p>with this content without ever having to</p>
+
+<p>learn Drupal learn PHP learn how the</p>
+
+<p>rest API works how does that work no</p>
+
+<p>first of all if you want to set up</p>
+
+<p>Marvel GS it's very simple you go to the</p>
+
+<p>git repo clone it</p>
+
+<p>you've got your installation and PMI</p>
+
+<p>you've got your tests you can run your</p>
+
+<p>tests to make sure things are working</p>
+
+<p>properly and then finally to go ahead</p>
+
+<p>and create the client bundle now to use</p>
+
+<p>this in nodejs and this is really</p>
+
+<p>interesting while real Jas is unique not</p>
+
+<p>unique it's not unique it's it's it's</p>
+
+<p>great because it allows for you to use</p>
+
+<p>it either on your node.js server on the</p>
+
+<p>server side or in your application on</p>
+
+<p>the client side in react right if you</p>
+
+<p>want to do this in nodejs</p>
+
+<p>all you have to do is go ahead and</p>
+
+<p>create sorry instantiate a new</p>
+
+<p>waterwheel create a new instance of</p>
+
+<p>waterwheel and give it all of the sort</p>
+
+<p>of oo authentication and I'm afraid I'm</p>
+
+<p>not going to be covering authentication</p>
+
+<p>today but at some point by the way just</p>
+
+<p>the pic aside one thing I've been</p>
+
+<p>working on over the last couple of weeks</p>
+
+<p>has been a new column at dev Wacom it's</p>
+
+<p>called experience Express</p>
+
+<p>if you're interested in anything related</p>
+
+<p>to Korah rest how to work with decoupled</p>
+
+<p>rupal how to use Drupal how to build</p>
+
+<p>react applications based on Drupal</p>
+
+<p>please follow that column on dev da da</p>
+
+<p>Wacom I will be posting every single</p>
+
+<p>week actually in a couple of weeks I'm</p>
+
+<p>going to be talking about authentication</p>
+
+<p>so you can go ahead and bookmark that</p>
+
+<p>and I'll make sure to let you know when</p>
+
+<p>that's out next week I'll be talking a</p>
+
+<p>little bit about the core rest module</p>
+
+<p>and the serialization API so anyways so</p>
+
+<p>what you want to do is you want to give</p>
+
+<p>it the base URL your Roth information</p>
+
+<p>your auth potentials and so on so forth</p>
+
+<p>in a browser however it becomes very</p>
+
+<p>different of course in this case we have</p>
+
+<p>a browser that supports cs6 this Const</p>
+
+<p>keyword by the way is an es6 feature the</p>
+
+<p>s6 being the new version of javascript</p>
+
+<p>that is now widely supported in heavier</p>
+
+<p>green browsers um now this is where to</p>
+
+<p>get to the good stuff so if you're a Jas</p>
+
+<p>developer this is really awesome because</p>
+
+<p>I have a promise that it's gonna give me</p>
+
+<p>a promise yes I have the promise that's</p>
+
+<p>gonna give me the Drupal data response</p>
+
+<p>and guess what I don't have to look at a</p>
+
+<p>single line of PHP I don't have to look</p>
+
+<p>at a single URL to a bowl</p>
+
+<p>I don't have to look at anything related</p>
+
+<p>to Drupal at all all I have to do is</p>
+
+<p>perform a get request within my native</p>
+
+<p>JavaScript that's pretty cool number one</p>
+
+<p>there yeah that in in that case that is</p>
+
+<p>the user ID so this is fetching sorry I</p>
+
+<p>should have made that clear this is</p>
+
+<p>fetching the user with the user ID of</p>
+
+<p>one so the first user I offended like a</p>
+
+<p>node give yes there is a node get yeah</p>
+
+<p>actually if you go to this page right</p>
+
+<p>here this first link it'll give you all</p>
+
+<p>of the documentation all of the methods</p>
+
+<p>that you can invoke to get whatever you</p>
+
+<p>need out of the waterwheel API there's</p>
+
+<p>also a bunch of other stuff as I</p>
+
+<p>mentioned there's water wheel swift</p>
+
+<p>which is written by Kyle Browning who's</p>
+
+<p>probably the the biggest booster of iOS</p>
+
+<p>and Apple OS stuff and Drupal we also</p>
+
+<p>used to have and I should have deleted</p>
+
+<p>this actually a deprecated module called</p>
+
+<p>waterwheel this is actually deprecated</p>
+
+<p>so this is now actually part of the open</p>
+
+<p>API module</p>
+
+<p>and then we also have some reference</p>
+
+<p>builds for you this is Edward ripple</p>
+
+<p>waterwheel is an ember CLI I don't</p>
+
+<p>so if you're an ember or developer and</p>
+
+<p>you want to use your native ember CLI to</p>
+
+<p>do some data request to Drupal you can</p>
+
+<p>do that here then there's our site to</p>
+
+<p>web scaffold a Drupal application for</p>
+
+<p>example scaffold the adapter that you</p>
+
+<p>want also there's two references that</p>
+
+<p>we've built one for ember and one for</p>
+
+<p>react and so those are both really good</p>
+
+<p>starting points if you want to look at</p>
+
+<p>how you can go ahead and work on a</p>
+
+<p>foundation of art exists to build these</p>
+
+<p>things okay I want to I'm running out of</p>
+
+<p>time here so I want to talk a little bit</p>
+
+<p>about Web Services distributions or API</p>
+
+<p>first distributions so by the way a</p>
+
+<p>distribution in Drupal is basically a</p>
+
+<p>different flavor of Drupal simply put</p>
+
+<p>instead of having the core installation</p>
+
+<p>of Drupal which gives you a certain set</p>
+
+<p>of modules that you're just stuck with</p>
+
+<p>distributions will give you a different</p>
+
+<p>set of modules of different set of</p>
+
+<p>configurations that allow you to have a</p>
+
+<p>bit more flexibility a very good example</p>
+
+<p>of a distribution that's very popular is</p>
+
+<p>for example open Y which is what YMCAs</p>
+
+<p>use there's lots of other ones right</p>
+
+<p>there's there's the conference</p>
+
+<p>distribution I mean I you know I can go</p>
+
+<p>for hours about this but distributions</p>
+
+<p>are important because we want to enable</p>
+
+<p>developers who solely want to use Drupal</p>
+
+<p>as that data repository nothing else</p>
+
+<p>right you don't want to we're not</p>
+
+<p>worried about the site we're not worried</p>
+
+<p>about twig or PHP template we just want</p>
+
+<p>to get those API is in that content out</p>
+
+<p>in that case a good developer experience</p>
+
+<p>must mean that we have to be able to</p>
+
+<p>give them tools that allow them to use</p>
+
+<p>Drupal easily to get their content out</p>
+
+<p>so what's an example of this well these</p>
+
+<p>Web Services distributions have become</p>
+
+<p>very common in recent months in the</p>
+
+<p>Drupal community and have very active in</p>
+
+<p>very large communities behind them</p>
+
+<p>mainly Contenta actually has a very very</p>
+
+<p>active community behind it and these</p>
+
+<p>distributions are intended for</p>
+
+<p>developers to be able to consume Drupal</p>
+
+<p>and consume that data in a very easy way</p>
+
+<p>by provisioning those api's and by</p>
+
+<p>setting up Drupal in a way that it can</p>
+
+<p>provide that data so these three are</p>
+
+<p>reservoir content</p>
+
+<p>and have less lightning now I don't have</p>
+
+<p>time to go through all three of them but</p>
+
+<p>I do want to talk about each of them</p>
+
+<p>briefly because they are really</p>
+
+<p>interesting to take a look at especially</p>
+
+<p>from the standpoint of anyone who's</p>
+
+<p>interested in looking at how Drupal can</p>
+
+<p>be customized to serve very different</p>
+
+<p>use cases in the case of content context</p>
+
+<p>as a content API and CMS back-end it's</p>
+
+<p>really focused on the JSON API use case</p>
+
+<p>if you're building something based on</p>
+
+<p>JSON API content is the way to go</p>
+
+<p>because it has a great amount of</p>
+
+<p>features it includes the JSON API extras</p>
+
+<p>module for example which extends the</p>
+
+<p>JSON API availability the sort of</p>
+
+<p>available features they're really really</p>
+
+<p>great to use if you're only using Drupal</p>
+
+<p>as a content repository this is not for</p>
+
+<p>building websites let me just make that</p>
+
+<p>clear these are not for building</p>
+
+<p>websites these are for building content</p>
+
+<p>repositories right reservoir meanwhile</p>
+
+<p>is a back-end for your front-end it's</p>
+
+<p>really meant to be an austere flavor of</p>
+
+<p>Drupal it's meant to be something that</p>
+
+<p>is much more simple and actually one of</p>
+
+<p>the biggest complaints that we often get</p>
+
+<p>is there is no view support that's by</p>
+
+<p>design because when it comes to a</p>
+
+<p>developer when they encounter the views</p>
+
+<p>you wide if you're if you're if you're</p>
+
+<p>an apple OS developer or you're a job</p>
+
+<p>developer and you look at the views you</p>
+
+<p>are like what what the heck is this like</p>
+
+<p>what is this stuff right we want to</p>
+
+<p>avoid that we want to give them the most</p>
+
+<p>simple and just down-to-earth easy to</p>
+
+<p>use thing possible so what does that</p>
+
+<p>look like well I'll show you right now</p>
+
+<p>so this is a screencast by the way I</p>
+
+<p>just realized this morning I try to</p>
+
+<p>install reservoir there is something</p>
+
+<p>worked so I think there's some</p>
+
+<p>dependency issues in terms of versioning</p>
+
+<p>if you try to install reservoir right</p>
+
+<p>now you can't get it to work that's</p>
+
+<p>probably above that we're already aware</p>
+
+<p>of so but I'm just gonna go through this</p>
+
+<p>right here and I'm gonna talk against</p>
+
+<p>this I hope all right Wi-Fi come on this</p>
+
+<p>is the co-author by the way of the</p>
+
+<p>distribution when Lear's talking about</p>
+
+<p>some of the features but I'm gonna just</p>
+
+<p>kind of talk through this myself</p>
+
+<p>so right now what woman's doing is he's</p>
+
+<p>going ahead and acquiring and using</p>
+
+<p>composer to install a new reservoir on</p>
+
+<p>his computer right so this is gonna get</p>
+
+<p>all the dependencies I'm gonna go ahead</p>
+
+<p>and just kind of</p>
+
+<p>fast forward here a little bit now what</p>
+
+<p>happens is when you are you know I hold</p>
+
+<p>stuff to play because this is really</p>
+
+<p>good now when you go into your reservoir</p>
+
+<p>local you would get the familiar Drupal</p>
+
+<p>installation it's very easy right and it</p>
+
+<p>sets up here you can set up a database</p>
+
+<p>that's back it's just like the normal</p>
+
+<p>Drupal installation process so your</p>
+
+<p>thinking your stuff what's big</p>
+
+<p>difference here what is so different</p>
+
+<p>about reservoir versus Drupal and by the</p>
+
+<p>way this is the same kind of way that</p>
+
+<p>content and had this lighting both work</p>
+
+<p>right and so right now he's just</p>
+
+<p>throwing all this information doing all</p>
+
+<p>this stuff now when you actually get to</p>
+
+<p>this point you get a welcome to work</p>
+
+<p>which is one of the biggest things that</p>
+
+<p>can be of a huge help to developers you</p>
+
+<p>get an idea of what it is that this can</p>
+
+<p>do and as you can see the toolbar has</p>
+
+<p>completely changed over there is no more</p>
+
+<p>appearance tab there is no more extend</p>
+
+<p>tab we're not giving people the ability</p>
+
+<p>to create a website we're giving them</p>
+
+<p>the bare essentials of what they need to</p>
+
+<p>create a content service so you've got</p>
+
+<p>your content modeling interface you've</p>
+
+<p>got your API provisioning you've got</p>
+
+<p>your content itself that you want to</p>
+
+<p>have your editors build but</p>
+
+<p>fundamentally what's happening here is</p>
+
+<p>that we're giving this as a tool for</p>
+
+<p>editors and developers but not for</p>
+
+<p>people who are building websites as you</p>
+
+<p>can see here on the right side we have a</p>
+
+<p>preview of what this will look like</p>
+
+<p>ultimately when you consume it via JSON</p>
+
+<p>API and as you can see there's the raw</p>
+
+<p>version there now this is really cool</p>
+
+<p>because you can see side by side a</p>
+
+<p>preview of the sort of Teck of the LIA</p>
+
+<p>content as well as the JSON API preview</p>
+
+<p>and that by the way is something that's</p>
+
+<p>now present in Contenta as well and with</p>
+
+<p>these documentation with the generated</p>
+
+<p>documentation that's available through</p>
+
+<p>open API in reservoir and also non</p>
+
+<p>Contenta I believe you can actually go</p>
+
+<p>through and browse and look at these</p>
+
+<p>methods and actually very clearly have</p>
+
+<p>an understanding of what the data</p>
+
+<p>structure looks like on the front end</p>
+
+<p>and what as a developer you need to know</p>
+
+<p>about right so I know for example that</p>
+
+<p>when I perform a gap I have to look at</p>
+
+<p>for example this key and this value to</p>
+
+<p>get what I need</p>
+
+<p>right and then you also got</p>
+
+<p>authentication as well and you can this</p>
+
+<p>is how you get to the point where you</p>
+
+<p>can get an OAuth token by the way I'm</p>
+
+<p>sorry I can't cover authentication today</p>
+
+<p>it is a very important issue I encourage</p>
+
+<p>you to once again follow that column so</p>
+
+<p>I can share all of the information that</p>
+
+<p>you need on authentication with you we</p>
+
+<p>also have users in permissioning you</p>
+
+<p>know all the stuff that is already in</p>
+
+<p>Drupal anyways I'm going to stop here</p>
+
+<p>because we are a little bit short on</p>
+
+<p>time and jump right back in here</p>
+
+<p>so next headless lightning is a flavor</p>
+
+<p>of lightning if you're familiar with</p>
+
+<p>akio lightning which is a distribution</p>
+
+<p>for Drupal websites that we build an</p>
+
+<p>aqueous headless lightning is kind of</p>
+
+<p>the headless flavor of that so there's</p>
+
+<p>two options if you want to use aqueon</p>
+
+<p>tools to get your decoupled fruitful</p>
+
+<p>builds going the Community Supported one</p>
+
+<p>and the one that really has a lot of</p>
+
+<p>energy behind it is Contenta is is</p>
+
+<p>Contenta and they also by the way have</p>
+
+<p>their own library of SDKs as well</p>
+
+<p>that you can use so we've heard from a</p>
+
+<p>lot of people about issues around a</p>
+
+<p>couple drupal in the form of what sorts</p>
+
+<p>of things people want to build right we</p>
+
+<p>heard this at aqueous and we said you</p>
+
+<p>know what we really do need to provide</p>
+
+<p>people the ability to not only build</p>
+
+<p>really compelling decoupled drupal</p>
+
+<p>architectures but also decoupled drupal</p>
+
+<p>infrastructures we learned from talking</p>
+
+<p>to a lot of our customers is that people</p>
+
+<p>really want those application life</p>
+
+<p>experiences that really only occur in</p>
+
+<p>JavaScript these days and we also wanted</p>
+
+<p>to make sure that you have a permission</p>
+
+<p>to back end you have a Content back-end</p>
+
+<p>the data back-end that really gives you</p>
+
+<p>and your editors the peace of mind that</p>
+
+<p>you want but most of all what people</p>
+
+<p>really want these days is a single</p>
+
+<p>manageable codebase or a single</p>
+
+<p>manageable repository or a single</p>
+
+<p>manageable set of code that is easy to</p>
+
+<p>manage and gives you everything that you</p>
+
+<p>need right there</p>
+
+<p>both the server side and</p>
+
+<p>client-side aqueous has a solution to</p>
+
+<p>this which is our platform for decoupled</p>
+
+<p>ruble regardless of whatever it is that</p>
+
+<p>you're building we have the solution for</p>
+
+<p>you namely if you're building a Drupal</p>
+
+<p>site we got you I mean this is what our</p>
+
+<p>bread and butter is obviously and of</p>
+
+<p>course the other sponsors here as well</p>
+
+<p>you know Cathy on thoughtfulness age</p>
+
+<p>they we all specialize in Drupal and we</p>
+
+<p>all specialize in awesome websites if</p>
+
+<p>you're building a native application you</p>
+
+<p>can still use what's available in the</p>
+
+<p>Yaak be a platform by using things like</p>
+
+<p>our web services that are available and</p>
+
+<p>we don't have that posting available to</p>
+
+<p>you but you can use something like</p>
+
+<p>Heroku for example to host those</p>
+
+<p>applications not if you're building a</p>
+
+<p>JavaScript application that's built on</p>
+
+<p>no GS that's got it back in that's</p>
+
+<p>written in server-side JavaScript and</p>
+
+<p>you want to be able to host that with</p>
+
+<p>Acquia we have just in the last six</p>
+
+<p>months released our new product which is</p>
+
+<p>Acquia cloud nodejs hosting and now if</p>
+
+<p>you want to build a Drupal site and also</p>
+
+<p>have a node.js application in front of</p>
+
+<p>that plus you're sort of your whole</p>
+
+<p>architecture that is built on decoupled</p>
+
+<p>Drupal and JavaScript you can host all</p>
+
+<p>of that on one single vendor yeah how</p>
+
+<p>many people are aqua customers in their</p>
+
+<p>own by the way ok so a lot of you have</p>
+
+<p>seen this before which is our FBA cloud</p>
+
+<p>user interface which allows you to</p>
+
+<p>basically move across elements and take</p>
+
+<p>code and deploy it and really kind of do</p>
+
+<p>a lot of different things that you might</p>
+
+<p>want to do with your git repository the</p>
+
+<p>most interesting thing that is on this</p>
+
+<p>screen however is the fact that you've</p>
+
+<p>got all of these environments and you've</p>
+
+<p>got your ability to deploy a particular</p>
+
+<p>commit of code with nodejs that's a</p>
+
+<p>little bit different because first of</p>
+
+<p>all you have the ability to set</p>
+
+<p>environment variables nodejs is a little</p>
+
+<p>bit different in that it's not part of</p>
+
+<p>that same kind of dev stage prod</p>
+
+<p>paradigm but you can actually provide</p>
+
+<p>environment variables and you can also</p>
+
+<p>deploy nodejs by using build artifacts</p>
+
+<p>those artifacts are really kind of those</p>
+
+<p>the elements that you would deploy</p>
+
+<p>they're not like you know for this</p>
+
+<p>commits but they are essentially</p>
+
+<p>versioned forms of your nodejs</p>
+
+<p>application that you can deploy to your</p>
+
+<p>nodejs environments now what's</p>
+
+<p>interesting here is that I can select</p>
+
+<p>any build artifact in the same way that</p>
+
+<p>you can select a git commit from your</p>
+
+<p>history and you can go ahead and deploy</p>
+
+<p>that to whatever environment you want to</p>
+
+<p>with our nodejs platform and of course</p>
+
+<p>one of the most important things of any</p>
+
+<p>platform cloud platform is that you must</p>
+
+<p>have an ability to manage your team's</p>
+
+<p>management permissions manage whoever is</p>
+
+<p>going to be able to touch those</p>
+
+<p>applications and impact your</p>
+
+<p>infrastructure so why would you want to</p>
+
+<p>look it up with cloud for hosting your</p>
+
+<p>entire decoupled oopall architecture in</p>
+
+<p>your whole stack well the reason why is</p>
+
+<p>because you know Acquia is really the</p>
+
+<p>only provider that allows you to take</p>
+
+<p>one platform one contract one SLA one</p>
+
+<p>vendor a one-stop shop for both no js'</p>
+
+<p>and drupal so if you're building any</p>
+
+<p>sort of JavaScript application that</p>
+
+<p>relies on data coming from the Drupal</p>
+
+<p>website hosts both of those things are</p>
+
+<p>not going flat we've got great support</p>
+
+<p>for both we've got you know high</p>
+
+<p>availability security and performance at</p>
+
+<p>the same level that we provided for</p>
+
+<p>Drupal and also we've got things like</p>
+
+<p>copy of pipelines which allow you to do</p>
+
+<p>things really richly in terms of the</p>
+
+<p>DevOps perspective when it comes to both</p>
+
+<p>no js' and Drupal so all things said</p>
+
+<p>lockley cloud really is the best place</p>
+
+<p>to host your decoupled Drupal stack so</p>
+
+<p>what I want to do is I want to show you</p>
+
+<p>very quickly in a tour of the UI and of</p>
+
+<p>course I've been logged out which is of</p>
+
+<p>course the thing that always happens now</p>
+
+<p>if I really hope that this doesn't ask</p>
+
+<p>me for a good ok good no two-factor ok</p>
+
+<p>so as you can see here this is a normal</p>
+
+<p>Drupal site you know there's def stage</p>
+
+<p>prod obviously Drupal sorry happy cloud</p>
+
+<p>has on-demand environments so you can</p>
+
+<p>have an arbitrary number of environments</p>
+
+<p>here if you want but the most important</p>
+
+<p>thing here that I think is important to</p>
+
+<p>look at is that you've got your ability</p>
+
+<p>to choose the branch that you want to or</p>
+
+<p>you know or your commit hash that you</p>
+
+<p>want to provide to your deployment so</p>
+
+<p>that a particular thing goes out into</p>
+
+<p>your prod or your step environment or</p>
+
+<p>stage environment right so yeah this is</p>
+
+<p>kind of interesting because when you</p>
+
+<p>actually take a look at this one of the</p>
+
+<p>new things is that we actually now flag</p>
+
+<p>all of our applications with either</p>
+
+<p>Drupal or nodejs</p>
+
+<p>so one actually switch over to my nodejs</p>
+
+<p>application here but you'll see is now</p>
+
+<p>I've got my node.js environments and I</p>
+
+<p>can also switch the code here and deploy</p>
+
+<p>I'm not going to do because this is a</p>
+
+<p>demo application that other people</p>
+
+<p>pretty you think so I don't want to</p>
+
+<p>deploy anything but as you can see I can</p>
+
+<p>find any artifact that I want to here</p>
+
+<p>and deploy that to my environments and</p>
+
+<p>as you can see this kind of parallelized</p>
+
+<p>approach as part of this unified whole</p>
+
+<p>is really powerful because now you only</p>
+
+<p>have one place that you have to go for</p>
+
+<p>both your nodejs hosting and your Drupal</p>
+
+<p>hosting so that's really cool and that's</p>
+
+<p>the sponsor portion of this talk by the</p>
+
+<p>way in case you were wondering and not</p>
+
+<p>really sure what was going on okay so</p>
+
+<p>finally what I want to do and I'm sorry</p>
+
+<p>I have to skip that session because I</p>
+
+<p>got stuck a couple of case studies</p>
+
+<p>really quickly first of all who's heard</p>
+
+<p>of the New York City subway you've</p>
+
+<p>probably heard a lot of bad things about</p>
+
+<p>it well if you've ever been to the New</p>
+
+<p>York City subway in the last month or</p>
+
+<p>two you've probably seen a lot of these</p>
+
+<p>new countdown clocks appear and you know</p>
+
+<p>you've probably heard about them being</p>
+
+<p>pretty buggy well you know the the truth</p>
+
+<p>is that the state government agencies</p>
+
+<p>can be very bureaucratic</p>
+
+<p>as we've learned but we actually a</p>
+
+<p>taqueria builds a very compelling</p>
+
+<p>implementation for the MTA that uses</p>
+
+<p>Drupal as that manager that's</p>
+
+<p>responsible for serving content and</p>
+
+<p>information to every single countdown</p>
+
+<p>clock in the New York City subway system</p>
+
+<p>this is a system that has over 400</p>
+
+<p>stations and every single one of those</p>
+
+<p>is going to have a countdown clock that</p>
+
+<p>is talking to Drupal via angular it's</p>
+
+<p>really really cool you don't see any</p>
+
+<p>news tickers here but the news ticker</p>
+
+<p>for example is taken from Drupal content</p>
+
+<p>that MTA editors actually input into the</p>
+
+<p>system and it's an incredible interface</p>
+
+<p>on the backend I mean you have access to</p>
+
+<p>every single station you can see what's</p>
+
+<p>going on there and this is all coming</p>
+
+<p>from that kind of live real-time feed</p>
+
+<p>that MTA provides so really cool stuff</p>
+
+<p>and we can talk about that more</p>
+
+<p>afterwards and then Princess Cruises if</p>
+
+<p>you've ever taken a cruise before and</p>
+
+<p>you've always been wondering how is it</p>
+
+<p>that a lot of these cruise liners have</p>
+
+<p>the ability you know have the ability to</p>
+
+<p>kind of show me content everywhere and</p>
+
+<p>show me the things that are personalized</p>
+
+<p>for me everywhere</p>
+
+<p>Princess Cruises has a very rich array</p>
+
+<p>of channels that it uses to reach its</p>
+
+<p>customers on bore its cruise liners for</p>
+
+<p>example there's a mobile app there's a</p>
+
+<p>digital signage there's a tablet</p>
+
+<p>application as well all of which are</p>
+
+<p>served content from Drupal and serve</p>
+
+<p>data front Drupal but it's $120 signs a</p>
+
+<p>whole lot of stuff in there there's a</p>
+
+<p>lot of interesting information about</p>
+
+<p>Princess Cruises on the Yaqui website if</p>
+
+<p>you're interested and we can talk more</p>
+
+<p>about that as well so I want to finish</p>
+
+<p>up here I know that we're out of time</p>
+
+<p>but one of the things things I want to</p>
+
+<p>have everyone take away is yes aqua is</p>
+
+<p>great up the cloud is awesome</p>
+
+<p>but that's not the only value you're</p>
+
+<p>gonna get from this session I want to</p>
+
+<p>also instill in this group that we are</p>
+
+<p>encountering right now and in the midst</p>
+
+<p>of a very fundamental shift in the way</p>
+
+<p>that we think about software</p>
+
+<p>architecture and this is true everywhere</p>
+
+<p>you look if you look at things like the</p>
+
+<p>blockchain and Bitcoin if you look at</p>
+
+<p>things like Drupal and micro services if</p>
+
+<p>you look at all</p>
+
+<p>elements of software there is a</p>
+
+<p>wholesale move away from centralized</p>
+
+<p>monolithic architectures not just</p>
+
+<p>because it's more convenient for</p>
+
+<p>developer teams and more manageable it's</p>
+
+<p>because the idea of actually decoupling</p>
+
+<p>exposes a lot less surface area for</p>
+
+<p>things like security risks it exposes</p>
+
+<p>more developers to more of their tools</p>
+
+<p>that they can use that they want to use</p>
+
+<p>and of course it is really the way that</p>
+
+<p>a lot of our omni-channel world is going</p>
+
+<p>to be in the future you know we're no</p>
+
+<p>longer gonna have that kind of an idea</p>
+
+<p>of a single monolith but once again</p>
+
+<p>decoupled architectures do mean these</p>
+
+<p>kinds of platforms challenges</p>
+
+<p>infrastructural challenges so how do we</p>
+
+<p>face those well number one pop and cloud</p>
+
+<p>is that one-stop solution for a</p>
+
+<p>decoupled Drupal from end to end</p>
+
+<p>meaning decoupled rupal plus nodejs host</p>
+
+<p>it all and off with cloud and you're</p>
+
+<p>good to go</p>
+
+<p>but as architecture has become more and</p>
+
+<p>more decentralized in the sense of</p>
+
+<p>there's no longer that monolith that</p>
+
+<p>really rely that really is that one</p>
+
+<p>single place where everything is housed</p>
+
+<p>we're seeing a little bit more</p>
+
+<p>centralization infrastructure and that's</p>
+
+<p>really what halfway cloud is doing we're</p>
+
+<p>trying to provide the means for you to</p>
+
+<p>be able to host everything that you have</p>
+
+<p>on one place because frankly managing</p>
+
+<p>multiple vendors paying to people out of</p>
+
+<p>two separate pockets is not something</p>
+
+<p>that any of us want to be doing in a</p>
+
+<p>long run with that thank you very much</p>
+
+<p>and some final notes first Sprint's on</p>
+
+<p>Sunday</p>
+
+<p>please join I will not be here</p>
+
+<p>unfortunately but I do want to encourage</p>
+
+<p>all of you to come it's always a good</p>
+
+<p>time and finally please let me know how</p>
+
+<p>you like this session and if you want to</p>
+
+<p>send me an email or find me on Twitter</p>
+
+<p>I'm interested to hear about your</p>
+
+<p>feedback what was missing obviously</p>
+
+<p>demos we're missing I already know that</p>
+
+<p>but if you want to email me with any</p>
+
+<p>feedback about the content how this</p>
+
+<p>could be more helpful any questions you</p>
+
+<p>might have</p>
+
+<p>I'm very happy to answer those thank you</p>
+
+<p>very much</p>
+
+<p>I'll take maybe two questions or three</p>
+
+<p>questions I think I might be eating into</p>
+
+<p>the time of the next presenter so yes</p>
+
+<p>you can run on basic Drupal so actually</p>
+
+<p>a lot of people that I've seen use</p>
+
+<p>waterwheel j/s on their Drupal sites to</p>
+
+<p>enrich their sort of user interfaces so</p>
+
+<p>one use case I didn't talk about is yeah</p>
+
+<p>you might want to use it in nodejs you</p>
+
+<p>might want to use it and react but you</p>
+
+<p>might also will just want to use it in</p>
+
+<p>Drupal in your jQuery to help kind of</p>
+
+<p>drive a lot of those dynamic updates of</p>
+
+<p>content that you might have for your</p>
+
+<p>Google back-end so customer yeah so</p>
+
+<p>waterwheel has the ability to so there's</p>
+
+<p>a populate resources and get resources</p>
+
+<p>method available in waterwheel that</p>
+
+<p>allows you to define what those</p>
+
+<p>resources are and this is actually</p>
+
+<p>really helpful for things like</p>
+
+<p>client-side validation but the but the</p>
+
+<p>really custom entities is something that</p>
+
+<p>I'm actually not sure that I've actually</p>
+
+<p>played with in waterwheel but I'll let</p>
+
+<p>you know okay let me see what I can dig</p>
+
+<p>up there it was like I think that's like</p>
+
+<p>a progressively decoupled app and I want</p>
+
+<p>to move into making a Chrome extension</p>
+
+<p>okay that's the work offline so you can</p>
+
+<p>go to Drupal that works in issue click</p>
+
+<p>subscribe and I have no boards I'll see</p>
+
+<p>you naturally could make a collection of</p>
+
+<p>issues e-track and then possibly like a</p>
+
+<p>little sprinter is like event right</p>
+
+<p>the tablet here's our sprit forth and I</p>
+
+<p>want to try to make it work native</p>
+
+<p>things with a good thermal back so you</p>
+
+<p>claim to build that in react or its</p>
+
+<p>react right now okay yes yes I want to</p>
+
+<p>figure out how I can make before</p>
+
+<p>extension or anything else and I'm you</p>
+
+<p>can yeah exactly</p>
+
+<p>well so so what are the GS fits react</p>
+
+<p>with the glove um however custom</p>
+
+<p>entities that's something I'll have to</p>
+
+<p>look into Herrera I think I just want to</p>
+
+<p>work I know this sounds like any other</p>
+
+<p>great point yeah yeah I you know what</p>
+
+<p>let me look that up right now because</p>
+
+<p>that's I may just look it's been a while</p>
+
+<p>since I touched water bill so I mean</p>
+
+<p>assuming that because I was what I'd</p>
+
+<p>like is it as simple as in the array</p>
+
+<p>like can you just say plug in</p>
+
+<p>I got pattern and it translates it to</p>
+
+<p>what REST API we expect it should so</p>
+
+<p>here's the thing there's this alright</p>
+
+<p>okay right so this gets this so there's</p>
+
+<p>a new endpoint in open API now which</p>
+
+<p>allows you to get every single available</p>
+
+<p>anytime okay with the bundle as well so</p>
+
+<p>this might be your answer</p>
+
+<p>riots I'll try out if it doesn't work</p>
+
+<p>let me know and all the kit support</p>
+
+<p>yeah we actually need to bring this up</p>
+
+<p>but yeah so because the really cool</p>
+
+<p>thing about this though is that with</p>
+
+<p>that resource request you get all the</p>
+
+<p>list event of the possible resources</p>
+
+<p>that are available which should include</p>
+
+<p>custom entities it definitely includes</p>
+
+<p>configuration of these I'm pretty sure</p>
+
+<p>and then you know to basically do</p>
+
+<p>anything you want to as long as you are</p>
+
+<p>aware of senators</p></div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-603a843fd41ddd0ce152d26a12c25297c4fbdce44beed5ced8a5baa92782699a">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/143">https://mid.camp/143</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+  <section class="map-banner">
+      <div class="views-element-container block block-views block-views-blockevent-venue-block-1" id="block-hatter-views-block-event-venue-block-1">
+  
+    
+      <div><div class="container view view-event-venue view-id-event_venue view-display-id-block_1 js-view-dom-id-bd628a66ff5e4fe718d90ea05bfa5915270166c58a24c8b708a4b94d3260a1c3">
+  
+    
+      
+      <div class="view-content">
+          <div class="views-row">
+
+
+<div class="map-overlay">
+  <span class="map__label">Location</span>
+  <h2 class="map__title"><span class="field field--name-title field--type-string field--label-hidden">DePaul University - Lincoln Park Student Center</span>
+</h2>
+  
+            <div class="field field--name-field-address field--type-address field--label-hidden field__item"><p class="map__address" translate="no">
+          2250 N Sheffield Ave. <br>
+            Chicago, IL 60614<br>
+  </p>
+</div>
+      
+  <a href="../venue/depaul-university-lincoln-park-student-center.html" class="cta-link--yellow">Learn more  <span class="cta-arrow"></span></a>
+</div>
+<div id='map' class="map"></div>
+</div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-2f440c459bc3393672153443e973d4ec42d53cd4071a9891dc805571c8e04eb9">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/acquia.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-02/Acquia_no_tagline.png" width="450" height="94" alt="Acquia" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/platformsh.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-02/platform.png" width="400" height="79" alt="Platform.sh" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/pantheon.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-11/pantheon.png" width="500" height="157" alt="Pantheon" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#b9d0d7dfd6f9d4d0dddad8d4c997d6cbde"><span class="__cf_email__" data-cfemail="5930373f361934303d3a38342977362b3e">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/143","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_llBcjrkrgAu2wT1DR7VGL_iP6geJyiTnF_8O5ZD57VI.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJxLz89Pz0mNT8xLzKksyUwu1k9HE9DJSCwpSS3ST8_JT0rM0c2CC-QmFiTlVwAAPmAZQA"></script>
+<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.js"></script>
+<script src="../../sites/default/files/js/js_pODGOpSPRR3Y_Zt-7Fy-5B_pNv18oFAWhyhwUPCQZu4.js%3Fscope=footer&amp;delta=2&amp;language=en&amp;theme=hatter&amp;include=eJxLz89Pz0mNT8xLzKksyUwu1k9HE9DJSCwpSS3ST8_JT0rM0c2CC-QmFiTlVwAAPmAZQA"></script>
+
+  </body>
+</html>

@@ -1,0 +1,751 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="CSS is global by nature. This is a powerful feature of CSS that can allow you to create consistent styling throughout your site with small amounts of code. But increasingly there are cases where front-end developers want to instead scope their styles to a specific component and ensure that component styles don’t impact other areas of the site. This session will provide an overview of the various approaches to scoping CSS, both when using CSS alone, and when using CSS combined with JavaScript. Starting from the perspective of CSS only approaches we’ll look at:" />
+<link rel="canonical" href="scope-css-and-without-javascript.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Scope in CSS with and without JavaScript | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter_2019/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Scope in CSS with and without JavaScript | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_gt5LiAM1qLGUH5e845uOb7R_lJ9dUwTXmnhGDR2yY20.css%3Fdelta=0&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlj90OwiAMhV9oA_XOp1lgHDaSQg3FLfPph_sxGm_a03Oa5mtPRmTR1giaftc-0EdHiJgBcs6JXc04o6ocDYUXmtGUgtzdLte7HoitobYXOe33Ze05lV_na1EWKYg7whQcuEO0cJ.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_UMuvjHSQ9iJFDCuYZXW-ThtEaBNBWxN9AUvYSTjbZi4.css%3Fdelta=1&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlj90OwiAMhV9oA_XOp1lgHDaSQg3FLfPph_sxGm_a03Oa5mtPRmTR1giaftc-0EdHiJgBcs6JXc04o6ocDYUXmtGUgtzdLte7HoitobYXOe33Ze05lV_na1EWKYg7whQcuEO0cJ.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_JumHJ3UqLO9Mdu1kygD5e19MOiNh5iD_a9p0FH6QrHQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlj90OwiAMhV9oA_XOp1lgHDaSQg3FLfPph_sxGm_a03Oa5mtPRmTR1giaftc-0EdHiJgBcs6JXc04o6ocDYUXmtGUgtzdLte7HoitobYXOe33Ze05lV_na1EWKYg7whQcuEO0cJ.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_LovagMoZZFoM80YhT0zgW4b6oNarRMdF8ooxvYiQ9tA.css%3Fdelta=4&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlj90OwiAMhV9oA_XOp1lgHDaSQg3FLfPph_sxGm_a03Oa5mtPRmTR1giaftc-0EdHiJgBcs6JXc04o6ocDYUXmtGUgtzdLte7HoitobYXOe33Ze05lV_na1EWKYg7whQcuEO0cJ.css" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="scope-css-and-without-javascript.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-2019-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-hatter-2019-midcamp2020navigation-menu" id="block-hatter-2019-midcamp2020navigation" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-2019-midcamp2020navigation-menu">Midcamp 2020 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" data-drupal-link-system-path="node/403">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../news.html" title="News" data-drupal-link-system-path="2020/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" data-drupal-link-system-path="2020/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--virtual-camp">
+        <a href="../article/midcamp-2020-going-digital.html" title="MidCamp is going virtual" data-drupal-link-system-path="node/6689">Virtual Camp</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsor">
+        <a href="../sponsor-midcamp.html" data-drupal-link-system-path="node/6250">Sponsor</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--community-organizations">
+        <a href="../sponsor/community-organization-introduction.html" data-drupal-link-system-path="node/6251">Community Organizations</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sponsors">
+        <a href="../sponsors.html" data-drupal-link-system-path="node/6253">Sponsors</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" data-drupal-link-system-path="node/6258">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--sessions-thu">
+        <a href="../schedule/thursday.html" data-drupal-link-system-path="2020/schedule/thursday">Sessions (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-fri">
+        <a href="../schedule/friday.html" data-drupal-link-system-path="2020/schedule/friday">Sessions (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--contribution-sat">
+        <a href="../contribution-day.html" title="Contribution Day" data-drupal-link-system-path="node/6378">Contribution (Sat)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--accepted-sessions">
+        <a href="../accepted-sessions.html" data-drupal-link-system-path="2020/accepted-sessions">Accepted Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../../2023/speaker-resources.html" data-drupal-link-system-path="node/345">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-terms-and-conditions">
+        <a href="../../speaker-terms-and-conditions.html" data-drupal-link-system-path="node/21">Speaker Terms and Conditions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--topic-tracks">
+        <a href="../../topic-tracks.html" data-drupal-link-system-path="node/10">Topic Tracks</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--donate">
+        <a href="https://tickets.midcamp.org/" title="Register for MidCamp">Donate</a>
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-2019-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2020.html" hreflang="en">MidCamp 2020</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-hatter-2019-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Scope in CSS with and without JavaScript</span>
+</h1>
+
+
+  </div>
+<div id="block-hatter-2019-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="6317" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2020-03-19T16:00:00Z" class="datetime">Thursday, 11:00 am CDT</time>
+ - <time datetime="2020-03-19T17:00:00Z" class="datetime">Thursday, 12:00 pm CDT</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-82" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-field-link field--type-link field--label-hidden field__item"><a href="https://zoom.us/my/midcamp314b" target="_blank" class="button--primary">Go to Room 314B - old</a></div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>CSS is global by nature. This is a powerful feature of CSS that can allow you to create consistent styling throughout your site with small amounts of code. But increasingly there are cases where front-end developers want to instead scope their styles to a specific component and ensure that component styles don’t impact other areas of the site.</p>
+
+<p>This session will provide an overview of the various approaches to scoping CSS, both when using CSS alone, and when using CSS combined with JavaScript.</p>
+
+<p>Starting from the perspective of CSS only approaches we’ll look at:</p>
+
+<ul>
+	<li>
+	<p>A brief review of CSS Inheritance, specificity and the Cascade</p>
+	</li>
+	<li>
+	<p>Scoping with BEM and other CSS methodologies</p>
+	</li>
+	<li>
+	<p>Atomic or Functional CSS</p>
+	</li>
+</ul>
+
+<p>Next we’ll examine the various scoping approaches when using CSS in JavaScript, including:</p>
+
+<ul>
+	<li>
+	<p>Potential advantages and disadvantages to CSS-in-JS</p>
+	</li>
+	<li>
+	<p>React CSS-in-JS libraries including Styled Components</p>
+	</li>
+	<li>
+	<p>Component styling using single file components in Vue</p>
+	</li>
+	<li>
+	<p>Scoped styles using CSS Modules</p>
+	</li>
+</ul>
+
+<p>Finally, we’ll wrap up by looking at a few ways that global and scoped CSS can be used together effectively.</p>
+
+<ul>
+	<li>
+	<p>Approaches to using both global and scoped CSS when using CSS-in-JS</p>
+	</li>
+	<li>
+	<p>Ways to share styles between ’traditional’ styling and CSS-in-JS approaches</p>
+	</li>
+	<li>
+	<p>Web Components and the future of CSS scope</p>
+	</li>
+</ul>
+
+<p>Slides and Additional Resources:&nbsp;<a href="https://noti.st/brianperry/KDnuEe/scope-in-css-with-and-without-javascript">https://noti.st/brianperry/KDnuEe/scope-in-css-with-and-without-javascript</a></p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/GWQs-lO5S4Q?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-presenter-slides field--type-file field--label-above">
+    <div class="field__label">Presenter Slides</div>
+              <div class="field__item">
+<span class="file file--mime-application-pdf file--application-pdf"> <a href="../../sites/default/files/2020-03/scoping_css_midcamp.pdf" type="application/pdf">scoping_css_midcamp.pdf</a></span>
+</div>
+          </div>
+
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Brian Perry</h4>
+
+      Founding Engineer
+
+
+          @
+              <a href="https://www.actual.ai/">Actual AI</a>
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p>Brian is a versatile developer with experience building complex, interactive web applications in support of large-scale localized sites. Recently he has focused his efforts on evolving Drupal front-end development practices, decoupled Drupal, and style guide development techniques and has spoken on the topic at various Drupal events. Brian is a Drupal 7 and Drupal 8 Acquia Certified Grand Master and loves all things Nintendo.</p>
+</div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2018-12/profile_crop.jpg%3Fitok=oEUbNaMX" width="220" height="220" alt="Brian Perry" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Front-End</div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-feedback-form field--type-webform field--label-above">
+    <div class="field__label">Feedback Form</div>
+              <div class="field__item"><form class="webform-submission-form webform-submission-add-form webform-submission-session-feedback-form webform-submission-session-feedback-add-form webform-submission-session-feedback-node-6317-form webform-submission-session-feedback-node-6317-add-form" data-drupal-selector="webform-submission-session-feedback-node-6317-add-form" action="scope-css-and-without-javascript.html" method="post" id="webform-submission-session-feedback-node-6317-add-form" accept-charset="UTF-8">
+  
+    <div data-drupal-selector="edit-0" class="webform-message js-webform-message js-form-wrapper form-wrapper" id="edit-0"><div data-drupal-messages>
+    <div role="contentinfo" aria-label="Status message" class="messages messages--status">
+                  <h2 class="visually-hidden">Status message</h2>
+                    Sorry...This form is closed to new submissions.
+            </div>
+    </div>
+</div>
+<input autocomplete="off" data-drupal-selector="form-m6sylsmozkvbsydpo31lsangapumxcybtlt-2gzfv68" type="hidden" name="form_build_id" value="form-m6SYlsmOzKVbSYDpO31LsAnGAPumXcybTlT-2GZFv68" />
+<input data-drupal-selector="edit-webform-submission-session-feedback-node-6317-add-form" type="hidden" name="form_id" value="webform_submission_session_feedback_node_6317_add_form" />
+<div class="url-textfield js-form-wrapper form-wrapper" style="display: none !important;"><div class="js-form-item form-item js-form-type-textfield form-type-textfield js-form-item-url form-item-url">
+      <label for="edit-url">Leave this field blank</label>
+        <input autocomplete="off" data-drupal-selector="edit-url" type="text" id="edit-url" name="url" value="" size="20" maxlength="128" class="form-text" />
+
+        </div>
+</div>
+
+
+  
+</form>
+</div>
+          </div>
+
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <h3 class="field__label">Transcript</h3>
+              <div class="field__item" tabindex="0"><p>&gt;&gt;HOST: I'm proud to introduce Brian Perry that we will see on the screen, scope and CSS with and without JavaScript. &nbsp;Hello! &nbsp;</p>
+
+<p>&gt;&gt;BRIAN PERRY: Thank you, happy to present this at my local camp that is now in my home office.</p>
+
+<p>&gt;&gt; There's the bit.ly there that has a link to slides and resources, and a session node and PDF. &nbsp;If you are a follow along person or you want to check it out, it is there for you.</p>
+
+<p>Let's see here.</p>
+
+<p>Okay.</p>
+
+<p>Probably the first thing&nbsp;‑‑ how is everybody doing in the last weeks, year, or who knows. &nbsp;In general, I'm excited to take this virtual and get together and share ideas and, you know, it just makes me really happy to be part of a community like this during such a crazy time. &nbsp;And also, you know, a big hat tip to all the other organizers that have done incredible things to make this happen this week. &nbsp;And I'm Brian Perry, a lead front end developer, I live in the Chicago suburbs, and I'm a lover of all things component‑driven, so building with the components in Druple, design systems, pattern lab, story book, and increasingly building with component‑based JavaScript frameworks, like React. &nbsp;A lover of Nintendo, so happy to chat in Slack about the cool things you are playing on Twitch. &nbsp;I'm very excited for the new aninal crossing game that comes out tomorrow. &nbsp;And I'm on the internet in a variety of places, I would love to internet with you. &nbsp;So hopefully there are time for questions, if you want to track me down on Slack or Twitter to continue the conversation, I would love it.</p>
+
+<p>So as I mentioned, I work for a company called Bounteous, we are throughout the Chicago and North America area, but all at home right now. &nbsp;And Druple is a handful of things that wedo and I work with a great team of folks and learn so much from them on a day‑to‑day basis. &nbsp;We are often hiring, I'm not sure if we are right now, but get in touch in the future if you like to do great Druple work and if you like to have great Druple work done, get in touch as well. &nbsp;We will dive into what we are here to talk about. &nbsp;CSS has global scope. &nbsp;So the CSS that you write is in a global name space, those rules apply by default globally, a really great thing if you want those to apply globally. &nbsp;If you have a small amount of code that applies to the application, it is great. &nbsp;But it is not so great when that isn't what you want, I will let people catch up and read this. &nbsp;And anybody who has read any meaningful CSS has experienced this, a change they make has an unintended consequence and part of that is related to the fact that CSS by nature is global. &nbsp;And, at the same time, there are new approaches using&nbsp;‑‑ of writing CSS within JavaScript and a lot of those solutions offer something called Component Scope, so that's the idea that the CSS you write is only going to apply to that component and won't leak elsewhere and affect other things on your page. &nbsp;And as you imagine, there are differences in opinion on that particular approach, and people argue about it on the internet because of course they do. &nbsp;And my take is that each approach has different advantages, it would be great to use them together. &nbsp;So I think we should have both, just like the meme says.</p>
+
+<p>So that is my talk. &nbsp;I don't know, how are we doing on time? Are we&nbsp;‑‑ I feel like that might have been a little short.</p>
+
+<p>&gt;&gt; Um, might be a little short.&nbsp;</p>
+
+<p>&gt;&gt; Okay, all right. &nbsp;Maybe it is the virtual part of this. &nbsp;I guess I can maybe just, like, start from the beginning and dive in a little bit deeper. &nbsp;Let's do that. &nbsp;So this is Scope in CSS with and without JavaScript.</p>
+
+<p>And CSS has global scope! &nbsp;So let's look at what that actually means. &nbsp;This is a code pen that looks at inheritance in CSS. &nbsp;So I will jump over here, and I'm assuming that everybody sees my browser window? If not, somebody yell. &nbsp;And the simple code pen has inherited properties in CSS, we have an H1 and paragraph tag here, we are creating a rule on the html element that sets the font family to the One True Font, Comic Sans. &nbsp;And the font family rule in this case is inherited by children, that allows comic sans to be applied to H1 and the paragraph. &nbsp;That is great if we want the rules to apply globally. &nbsp;If that wasn't the case, we would have a situation where we would have to write&nbsp;‑‑ that works.</p>
+
+<p>You know, we write individual rules, we have to target the paragraph, we have the paragraph within H1, sorry, with the Comic Sans and we have the H1 to apply in both cases. &nbsp;And it would be cumbersome, we have to write complex selectors, but a lot of duplicate code to be able to achieve the same effect if inheritance wasn't a thing. &nbsp;So that is potentially one of the super powers of CSS in this case.</p>
+
+<p>And we can talk about how different CSS rules are combined and apply, there's the cascade, in CSS, part of this is the idea that style sheets have difficult origins, author, user, and system and how they are applied is the cascade. &nbsp;So this image is the definitive guide to CSS styling order, which is easy and simple to consume and always remember. &nbsp;And being sarcastic there, this is from a CSS tricks post, this image, and a lot of good information there, but it definitely does get at the fact that it can be complicated to understand how your CSS will be inherited, how it will apply, how the cascade is going to be combined. &nbsp;So the best thing that I have found as a way to explain the cascade is the W3C spec, still. &nbsp;So going through that at a high level. &nbsp;So you will find all declarations that apply to the element and property for the particular media type. &nbsp;And they are listed according to importance and origin, there's the declaration, user normal, author normal, and important. &nbsp;If you stick an important on it, it will win on top of that, and user declarations will come out on top of that. &nbsp;Anything with the same origin and importance will be sorted by user and specificity, and on top of that, it is the rules that are specified. &nbsp;And that is powerful and having multiple origins gives interesting control. &nbsp;We can write in the CSS that we think a page should look like this and it is represented like this, and at the end of the day, the user says I appreciate you want it to look like this, but to consume this, the font needs to be bigger and we can dictate that needs to be the case, which is great.</p>
+
+<p>And then specificity. &nbsp;So a fun way I found to look at specificity is from Star Wars, so CSS specificity wars in this case. &nbsp;And so for the Storm Trooper, that's the element specific, and class attribute or pseudo class is slightly more specific than that. &nbsp;And the ID selector is more specific and then on top of that, the in line style will win out. &nbsp;And the universal selector or things that are inherited have no specificity.</p>
+
+<p>So there is a lot more to specificity, and then we will go into right now. &nbsp;But there's a lot of different ways that&nbsp;‑‑ different selectors can be combined together, you can give them point values to figure out what the specificity will be. &nbsp;Again, this CSS specificity wars is a great way to explore that.</p>
+
+<p>And also, you can use the Death Star of important at the end of the day if you need to.</p>
+
+<p>Those are the ways that they can be combined together. &nbsp;And CSS in JS can provide component scope and other advantages. &nbsp;So we are talking about why somebody would write within their JavaScript. &nbsp;We talked about the idea of component scope, so that's the idea that the styles you are writing are going to aplay to the component and will not leak out and affect other things. &nbsp;And then there is also the idea that you are co‑locating your styles with components, everything is packaged up together. &nbsp;It can be nice from a developer experience potentially to have the CSS right there with your logic, and it is potentially an advantage for components that are distributed or otherwise composeable, because you know that everything that you need to render that thing is all in one place.</p>
+
+<p>And then using bundlers, like Webpack, there are potential advantages there, because it can do static analysis on your code and determine what CSS is going to be used and what CSS will never be used, and can actually eliminate that stuff from the bundle. &nbsp;And then, because the styles are going to leak out, it will take the pressure off from a naming convention perspective, you don't have to use class naming to control specificity as much, or control the cascade.</p>
+
+<p>And then there's the idea that using some of the approaches, you can have the props passed into a component. &nbsp;So something that&nbsp;‑‑ the component knows about itself to affect styling, rather than having to juggle class names and update things in the DOM like you might have to do with a jQuery approach.</p>
+
+<p>And then also there are definitely some cases where it might be fear and lack of knowledge in CSS that is leading people to this approach, too. &nbsp;But not all cases.</p>
+
+<p>So why wouldn't one use CSS and JS? We have to know how CSS works, even stuff that is hard. &nbsp;It comes with, in many cases, I believe not all, there are new approaches there. &nbsp;But it comes with a bundled size or performance cost, there's a runtime that ends up part of the bundle to allow you to do this. &nbsp;And there is a barrier of entry, so somebody who is really comfortable writing CSS may not be comfortable writing JavaScript and this gets in the way of being able to make their awesome CSS. &nbsp;It is, at the end of the day, an additional layer of abstractions. &nbsp;So some of the approaches here use a JavaScript object‑like syntax, rather than writing regular CSS. &nbsp;That can pose problems with syntax highlighting, though there are solutions around that. &nbsp;And in general, knowing that everything is scoped within this component can potentially get you in the mindset where you focus on too much the individual component and introduce potential for inconsistency or opportunities for reuse.</p>
+
+<p>So the question is, which approach is right?</p>
+
+<p>And, you know, again, with our mean friend here from the taco commercial, why can't we have both? Why can't we have that level of control over global rules and component scope rules? I think that would be amazing if CSS allowed that.</p>
+
+<p>But that is my talk. &nbsp;Looking at my watch, though, I think we are still pretty short. &nbsp;I did not know how much this virtual approach was going to affect my ability to proceed. &nbsp;Maybe it is just the past week, I don't understand how to perceive time anymore.</p>
+
+<p>Okay, so I guess we will just start from the beginning again and dive a little bit deeper.</p>
+
+<p>So this is scope in CSS with and without JavaScript. &nbsp;And CSS has global scope. &nbsp;So we talked about the cascade, we talked about specificity and inheritance. &nbsp;And, while that is powerful, it can be tricky in some cases and understanding how everything comes together. &nbsp;We should get our act together. &nbsp;And in comes CSS methodologies is a way to help with this.</p>
+
+<p>So this is the idea of a particular approach to organizing or naming your CSS.</p>
+
+<p>So popular methodologies are object‑oriented CSS, very popular in the Druple community is BEN, Block Element Modifier, slack, scaler architecture for CSS, used in core, I believe, as far as the file structure. &nbsp;This can give you something that feels like component scope at the end of the day. &nbsp;Like a CSS by its nature is global, it is not really bad.</p>
+
+<p>So I wouldn't be surprised if a handful of people that are watching are already familiar with BEM. &nbsp;To look at it at a high level for those of you not familiar with it, I found a post, BEM for everyone else that uses the concept of an emoji to describe what BEM is and how it works, and I created a code pen to illustrate that. &nbsp;We will take a quick look over there.</p>
+
+<p>Make sure there are no crazy comments in the chat. &nbsp;Just laughs and goofs. &nbsp;So here is the code pen, we have a div here, with a class of face. &nbsp;So that's the block, the parent‑level container here.</p>
+
+<p>And it gives a yellow circle, the face itself. &nbsp;If you wanted to add elements, we can create a div, give it a class, and the convention here for BEM is it is the block face and two underscores and the name of the element, so the element is like a sub component inside of the face. &nbsp;And then at that point, we have eyes. And then we will give the emoji a mouth. &nbsp;We can do face, underscore underscore mouth, and yep.</p>
+
+<p>We have a mouth. &nbsp;And now there's the M in BEM, the concept of a modifier, we have a face with eye and a mouth, they are in the default state. &nbsp;So a modifier lets us change the presentation for those things. &nbsp;So the convention for that, you will still have your default class of face eyes in this case, and if we wanted to open our eyes, we also go face, eyes, and then it is two dashes and then the name of the modifier.</p>
+
+<p>So open, face, eyes, open, will open our emoji's eyes and then face, eyes, face, mouth, open, will open our emoji's mouth so he is nice and shocked. &nbsp;There's a number of ways these can be combined together. &nbsp;At the block level, we have a modifier so we can do face and we have a red emoji with this open eyes and mouth.</p>
+
+<p>And that's the basic idea and the basic structure.</p>
+
+<p>So I think BEM is great and I know a number of others in the Druple community also agree, or use it and stay silent about their opinions about it.</p>
+
+<p>But I love that it gives a nice, understandable structure in our mark‑up and our files and it makes it really easy to scaffold out a component so you can, based on the BEM structure of that thing, you can write out some markup containing dives and then we can have the same classes in SaaS partial and color it from there. &nbsp;And it gives nice component‑focused classes that are less likely to conflict with other things, due to naming conventions. &nbsp;It feels like component scope, at the end of the day, it actually isn't.</p>
+
+<p>But as I mentioned, it is not scoped to the component, it is not enforced at the tooling level, like the CSS and JS options would be. &nbsp;If you are Linting the SaaS, you can force naming conventions. &nbsp;And it requires discipline across the team and everybody needs to agree they are writing using BEM, everybody needs to do it, nobody can cheat, and naming can be challenging. &nbsp;There's a general framework of how you will name the classes, when things start to nest and components get complicated, there have been times when I thought a lot about the right way to name something using BEM conventions. &nbsp;CSS and JS can provide component scope. &nbsp;Let's look at what that means. &nbsp;So first, we will look at the CSS and JS playground. &nbsp;If you don't know the options, this is a great place to start. &nbsp;We will look at this example here, the styled components, a library used with React and also you can pick from a whole bunch of other options if you want to try other libraries, syntaxes, stuff like that. &nbsp;We will look at the form here. &nbsp;So it is a little squished on my screen. &nbsp;And so first in our component for the form, we are importing style from styled components. &nbsp;And if you click on the button, that allows us to click a constant for the button component, it is a style.button, the button element. &nbsp;And there's the back tick here, and what that is, it is a tag template literal in JavaScript and that allows us to write the CSS code and the tag template literal allows us to use things like JavaScript variables within that string, which you will see an example of in a second. &nbsp;You are creating a constant, with styles, you have SaaS‑like nesting and that gives the submit button that looks like this, or the default button state. &nbsp;And then I talked about previously the idea of with this approach being able to respond to the props they are passing to a component. &nbsp;So this is a simple example of that here. &nbsp;For our submit button, we are looking at the disabled prop. &nbsp;If a button is disabled, it is going to use one background color. &nbsp;If it is not, it uses a different background color so you don't have to change anything in the DOM, or give it a class name for that. &nbsp;It knows something about itself and can adjust its style. &nbsp;So, for example, if I fill out this form and put what is a phone number in there, you can see the submit button changes to that blueish color, which is pretty cool. &nbsp;If we inspect here, to give you a little bit of an idea of how the component scope actually happens, I mentioned there's a runtime for the CSS and JS solutions. &nbsp;What is happening, if you look at the mark‑up, it is giving these gobbledy gook unique class names for each of the instances of the styled components and that's what prevents anything from colliding, unless you are doing something crazy, there is no way you are going to use that same combination of class names somewhere else..</p>
+
+<p>&nbsp; So that is an example with styled components. &nbsp;We will look at another area of the JavaScript ecosystem, a similar example in the JavaScript framework, view.</p>
+
+<p>And view does some interesting stuff as well. &nbsp;View as a concept of single file components, there's other ways to manage styles in view, and one of the things that Makes view cool is the single file approach. &nbsp;You can see the component, we have the template, and then the JavaScript, and our styles, all in one place in this view file. &nbsp;And on the right hand side here, the app is a code sandbox with the default, view hello world here. &nbsp;And I added three instances of H3s. &nbsp;So the first is just an H3, unadorned, the default element. &nbsp;And then we have the global component, so it is an H3 and the heading prop that is passed in is rendered out and then there's the scoped heading we will see in a second. &nbsp;We are looking at the global one and we have the styles for that. &nbsp;Color is green, setting a border, and because this is treated as global, it is applying to the traditional H3 on the page. &nbsp;You will see it is green and has the border. If we look at the scope heading component, it is the same component with one difference. &nbsp;In the style section, we are saying style scoped. &nbsp;If you click the attribute, make the view styles scoped to the component. &nbsp;So we are changing them, making the border red, blue, different font sizes. &nbsp;And as you can guess with specificity in the cascade, we will predict what happens if we removed scope from the component. &nbsp;It takes a second to catch up. &nbsp;And now because of specificity here and the things we talked about, the rule now that it is global is applying to the previous H3s on the page, this is what is coming last in the mock‑up.</p>
+
+<p>But it is pretty school to be able to have that level of control over how your CSS applied, when it is global versus when it is scoped to the component.</p>
+
+<p>We have a decent idea of what slide's coming up next. &nbsp;Why can't we have both of those things, and that level of control over CSS, with the way I approach building components, it would be great.</p>
+
+<p>So thanks again, and that's definitely the end of my talk, looking at the chat, I can tell that no one is on to the fact that this is just a giant bit. &nbsp;But we still have more time. &nbsp;So let's dive in one last time, and just dive in a little bit more. &nbsp;This is scope within and without CSS, CSS has global scope, cascade, specificity, inheritance, methodologies like BEM, but a question that I asked myself and you may be asking yourself, can regular CSS have component scope? Not really, because CSS is by it's nature global, there's a few other interesting things to talk about. &nbsp;One is atomic or functional CSS, and I saw this abbreviated as AMU&nbsp;CSS. &nbsp;And functional CSS is using single classes based on what they do, the visual function. &nbsp;It is immutable. &nbsp;So the CSS is not going to change, the classes are not going to change. &nbsp;This shifts the control of styling and the visual control into mark up from the CSS. &nbsp;So there's a couple of approaches in the atomic world, one is static, so basically you have a preexisting set of utulty classes, you have a little bit of control over some variables, color, the grid system. &nbsp;And for the most part, you have a bunch of utility classes in the mark up as you see fit. &nbsp;And in the mark up approach, in the mark up, CSS is generated based on what you are asking for in your mark up, kind of wild. &nbsp;And tail wind is a popular lubeerary here. &nbsp;So this gif from their home page illustrates that pretty well. &nbsp;You have the utility classes, you can write in the mark up text large, 500, W6&nbsp;‑‑ it is going to change the style, based on what you provide as the mark up. &nbsp;It is a utility‑based framework. &nbsp;So from my perspective, it is not for me. &nbsp;It is not how I want to write CSS, it takes a lot of my workflow, I can stop that for a second.</p>
+
+<p>And I have heard more and more people using tail wind, liking it, and there are folks who love it. &nbsp;And the interesting thing for this conversation is the fact this is another approach out there that seems to be gaining some steam where developers are trying to bend or override the default behavior of CSS and some of it's global nature. &nbsp;It doesn't necessarily make&nbsp;‑‑ you have component scope but it gives you so much more control within the mark up. &nbsp;So the fact that people are doing this and are interested in approaches like this are noteworthy, given the CSS landscape. &nbsp;And as we mentioned numerous times, CSS and JS can provide component scope. &nbsp;But the counter point that we looked at, can CSS and JS be more like regular CSS, as in could it be done with less JavaScript and can it handle things globally? Thinking about the global aspect of that, another approach is CSS modules and it is a little bit different from something like styled components we looked at, and it is not really a package, it is handled by a bundler and build process, Webpack, and it scopes your styles locally by default, as we see in a second, can handle things globally as well. &nbsp;And it plays nicely with SaaS, or Webpack SaaS in this case and other things that are part of the build process. &nbsp;And it also ships now with create React app in Gatsby, you can experiment with this and try it out. &nbsp;This is the first time that I was hands on with this approach and it has a super snarky logo with modules overflowing its container, haha. &nbsp;And just to look a little bit at how CSS modules works, we will look at a side project I did a while back, static site, about static sites in Gatsby. &nbsp;We will look at the card components, with nothing complicated going on. &nbsp;And this is a SaaS partial project card.module.CSS and in Gatsby, that extension lets Webpack know it should be treated as a CSS module. &nbsp;The styles are not super important, but the general structure is what we need to look at. &nbsp;So there's the parent class, the block of BEM, project card, inside there are elements with pretty generic class name, title, language, and description. &nbsp;So if you look at our React component, projectcard.JS, we can import projectcard.CSS and see styles, a styles object we can use in the JSX when we are rendering things. &nbsp;If you get to the div here, there's the class name prop and you can use styles.project card for the project card class and styles.language and so on.</p>
+
+<p>And this component is similar to styled components and it gives the class name, handled by the runtime. &nbsp;It is more readable and somewhat configurable as well. &nbsp;But we have the component name and module and then our unique string appended to it as well.</p>
+
+<p>And that is what scopes it locally and prevents it from leaking out.</p>
+
+<p>So a friend is saying, why don't we have both, and jumping the gun in this case a little bit.</p>
+
+<p>CSS modules can also handle global CSS, or not, I guess in this case.</p>
+
+<p>So it is possible with the same component here, if we just have a projectcard.CSS SaaS partial, we can import that in the component and if we import like this, it is global. &nbsp;All of them are applied globally and in the render method, we can pass in the string of the class name and the end result is going to look the same and all of the styles are globally and no longer scoped to the component.</p>
+
+<p>And this opens up interesting possibilities, cases where you have styles that want to be shared across templating engines. &nbsp;This is based on an ongoing project. &nbsp;I will talk about it at a high level. &nbsp;It is a progressively decoupled Druple project I'm working on, and we did find the situation where there's essentially an&nbsp;authenticated user portal and other sites traditionally Druple and there are global styles to apply in both cases, typography, space and scale, stuff like that. &nbsp;And so we are looking for a way that we could easily share that stuff and use it in both developer contexts. &nbsp;So Druple uses Twig and has its own styles and components, React has JSX and we are looking to handle the overlap. &nbsp;What we ended up doing is essentially having&nbsp;‑‑ using CSS modules allowed us to let each of the pieces of the stack to use the SaaS partials. &nbsp;We are umporting everything in JavaScript, it is a mix of global and component scope. &nbsp;The global things are imported globally and other things at the component level and there is project‑specific CSS. &nbsp;And both build processes are using the SaaS partials, on the Druple side, we can do a traditional SaaS build. &nbsp;We are creating a file with the shared design system and also things that are specific to Druple, and we need to list out the SaaS partials we want to import from the main SaaS file.</p>
+
+<p>So we can have our peanut butter and chocolate in this case and it is working well in the project so far. &nbsp;For people that have come up in a certain age, they might have the concept of the separation of concerns drilled into their head, I know it was mine, and JavaScript and CSS and html are separate things to isolate, and at the end of the day to work together. &nbsp;And taking a component approach, the separation of concerns changes a little bit, it is a different view. &nbsp;This is a different image I created, and at the component level there, if you look at the button, or the date picker or something, it is encapsulating the CSS, JavaScript, and html you need for that thing and to render that component. &nbsp;And it is still a separation, but it is a different view on that. &nbsp;And both can be valid, but the way that I have been building front‑end components, it is component level. &nbsp;This got the idea&nbsp;‑‑.</p>
+
+<p>&nbsp; And preprocessors are in CSS, custom properties is a big one, something that SaaS variables can do. &nbsp;And nesting is working its way into CSS as a whole. &nbsp;And in the Druple world, there's popular config projects, into core, JSON an example of that, the panels ecosystem, and even the new core admin and default themes are also starting out in contrib and working their way into core. &nbsp;The best example of that is in JavaScript itself. &nbsp;So writing ES6 or any flavor of modern JavaScript, we are using a transpiler like Babel so we can write using the new JavaScript methods and things like that, but it will still be transpiled in a way that it can be used on a particular target set of browsers.</p>
+
+<p>In general, over time more of the things that you have to be transfiled are becoming supported until the browser, and what Babel can do evolves, keeping up with the newer things in JavaScript and over time, a lot of that stuff trickles down to native JavaScript as well. &nbsp;So could the same thing happen for scope in CSS?</p>
+
+<p>So there actually was an attempt at this a while back, the html scope attribute was within the spec. &nbsp;As you can see from the screenshot, it was not widely adopted, very briefly in a time period of Firefox's life. &nbsp;And interestingly enough, it is the scoped attribute that view has adopted as their way to dictate the way CSS is in a book. &nbsp;And as people continue this approach and want this level of control, something like this can be revived in CSS at large.</p>
+
+<p>And can something like web components, or the shadow DOM, be a solution for this? So the web component for things using shadow DOM, scoped by default, and there are ways to handle things globally as well. &nbsp;But it is still requires writing a decent amount of JavaScript to create the web component. &nbsp;So I don't know if that necessarily allows you to have the control of scope with less JavaScript, as they increase the adoption, this becomes the way that people find this component scope for CSS in the native language.</p>
+
+<p>I can predict the future here, only Yoda knows the future of CSS. &nbsp;Again, I would love to be able to have that level of control with CSS all of the time, and dictate when things should be global and have certain things that are only within the scope of a component.</p>
+
+<p>So pretty much wrapping up here, and also definitely want to plug the contribution day, the virtual contribution day on Saturday. &nbsp;So I will definitely be around if you want to chat about this stuff on Slack or the internet or whatever, but trying to work on issues with the (indiscernible) thing, exciting and coming along.</p>
+
+<p>So definitely stay where you are, and join for the contribution day.</p>
+
+<p>Thanks to everybody, and thanks to our friend, supporting me all the way along. &nbsp;I think we probably have a couple of minutes for questions, if you have questions, or we can continue the conversation virtually, too. &nbsp;</p>
+
+<p>&gt;&gt; Um, so we have 15 more minutes in this room scheduled for questions, Brian. &nbsp;And we did have one early on, I have been monitoring it, I didn't want to interrupt your restarts for your talk. &nbsp;It was from Genille, how do you avoid redundant CSS code in the view approach, are there views for general approach CSS files?&nbsp;</p>
+
+<p>&gt;&gt; Yeah, I don't use view much myself. &nbsp;So I don't know what the typical convention is there within view. &nbsp;Because you can have that control over scope, you can certainly have, it might be a component, or the app root component that imports CSS that is global. &nbsp;So I will look this up, because you have control over scope, it is definitely possible.</p>
+
+<p>&gt;&gt; Awesome. &nbsp;Anyone else have a question, feel free to use the chat to communicate to us, or raise your hand. &nbsp;Or if someone wants to be brave and unmute themselves, yeah, the hand‑raising function. &nbsp;That is&nbsp;‑‑ you are on the air, John.&nbsp;</p>
+
+<p>&gt;&gt; Long time listener, first time caller.&nbsp;</p>
+
+<p>&gt;&gt; Hey, John.&nbsp;</p>
+
+<p>&gt;&gt; Ha, the one method you talked about with the funky CSS names, is that a trend that you see coming up more that the names are unique?&nbsp;</p>
+
+<p>&gt;&gt; Yes, and it is pretty common within CSS and JS components. &nbsp;So motion and everything that takes that approach, and it varies a little bit. &nbsp;And so CSS modules, it is more readable and has the string that makes it unique.</p>
+
+<p>So as CSS and JS gains adoption, that will become more of a thing, which I'm guessing can be problematic, maybe from an analytics perspective.&nbsp;</p>
+
+<p>&gt;&gt; And personalization has lots of downstream effects. &nbsp;Are they consistently garbage, every time you compile, do they shake it out?&nbsp;</p>
+
+<p>&gt;&gt; Yeah, that's a good question.&nbsp;</p>
+
+<p>&gt;&gt; Sorry to put you on the spot.&nbsp;</p>
+
+<p>&gt;&gt; Because it is a runtime bundled with the JavaScript, they are not consistently garbage. &nbsp;The one thing I would say, trying to think of ways around that, I believe it would be possible to provide your own class names, though they might not&nbsp;‑‑ either a class name, or a prop in a component. &nbsp;So if you need something where you are trying to trigger based on mark up or logic, maybe it does not control styling. &nbsp;Kind of funky, but seems impossible.</p>
+
+<p>I see another question&nbsp;‑‑ (speaker far from mic)&nbsp;‑‑ special considerations for how you author the partials? Not really. &nbsp;I cannot really think of too many cases, so the only thing I can think of that I have seen, there are cool things you can do with Webpack as far as exposing variables in your SaaS to JavaScript. &nbsp;So we have done that with break points, and you can make the break points from SaaS partials, things that are automatically JavaScript variables. &nbsp;So in another part of the build process, if you are not using Webpack, that's the only thing you can think of. &nbsp;In most cases, it is traditional SaaS or CSS.</p>
+
+<p>&gt;&gt; All right. &nbsp;Anybody else have a question? Don't by shy. &nbsp;This is a chance to pick Brian's brain on the spot.</p>
+
+<p>&gt;&gt; I am definitely around if questions come up, or FEMA want to chat and definitely thanks to everybody for being part of this virtual camp, it is super exciting.&nbsp;</p>
+
+<p>&gt;&gt; It is, a lot of thank yous coming in. &nbsp;Feel free to unmute yourself and give applause here. &nbsp;We will take a second to do that.</p>
+
+<p>[ Applause ].</p>
+</div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+
+</div>
+  </section>
+
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-e0689ef7c46e46d27846b152b6d313955fca09b71c1b16ba4f9604e6894322e5">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/pantheon.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2020-02/pantheon-logo-tagline-black.png" width="1200" height="370" alt="Pantheon logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/bounteous.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2019-11/Bounteous_indigo_large.png" width="1676" height="279" alt="Bounteous logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/clarity-partners.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2020-02/CFDFAA23-5C59-4C07-9C66-CAFFE0CF3854.png" width="1534" height="387" alt="Clarity Partners logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/palantirnet.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2020-02/palantirnet-logo.png" width="1200" height="198" alt="Palantir.net logo" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-2019-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#eb82858d84ab86828f888a869bc584998c"><span class="__cf_email__" data-cfemail="d4bdbab2bb94b9bdb0b7b5b9a4fabba6b3">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-2019-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-2019-footer-menu" id="block-hatter-2019-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-2019-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/6317","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"ajaxTrustedUrl":{"form_action_p_pvdeGsVG5zNF_XLGPTvYSKCf43t8qZYSwcfZl2uzM":true},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_sul8js76f3THBVtv8nspP93BoCHSgntyTCisS6lai4M.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter_2019&amp;include=eJx1ykEKgDAMBdELaavuPI2k-o1K2kITFG_vRkQEVwOP4ZxZMFAiOW0d1fMHqoXMUIauaXvPkgNJvT0aSPHSA2HOJfq7DoKIZG6C0SrqlHb8ThGqxLgAGZ04Cw"></script>
+
+  </body>
+</html>

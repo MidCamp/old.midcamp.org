@@ -1,0 +1,844 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="In the 80s and early 90s, I played a lot of text-based games - single-player like Zork and Colossal Caves, and multi-player online games on BBSs like Kyandia and Infinity Complex. I created an engine for using Drupal to author and play these games, using Slack as the player interface. Applying these behaviors in your own applications doesn&#039;t need to be for something quite so nerdy as re-living those days. You&#039;ll learn how to:" />
+<link rel="canonical" href="muddying-waters-creating-text-based-adventure-games-using-drupal-and-slack.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="MUDdying the waters: Creating text-based adventure games using Drupal and Slack | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter_2019/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>MUDdying the waters: Creating text-based adventure games using Drupal and Slack | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_gt5LiAM1qLGUH5e845uOb7R_lJ9dUwTXmnhGDR2yY20.css%3Fdelta=0&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlj90OwiAMhV9oA_XOp1lgHDaSQg3FLfPph_sxGm_a03Oa5mtPRmTR1giaftc-0EdHiJgBcs6JXc04o6ocDYUXmtGUgtzdLte7HoitobYXOe33Ze05lV_na1EWKYg7whQcuEO0cJ.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_UMuvjHSQ9iJFDCuYZXW-ThtEaBNBWxN9AUvYSTjbZi4.css%3Fdelta=1&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlj90OwiAMhV9oA_XOp1lgHDaSQg3FLfPph_sxGm_a03Oa5mtPRmTR1giaftc-0EdHiJgBcs6JXc04o6ocDYUXmtGUgtzdLte7HoitobYXOe33Ze05lV_na1EWKYg7whQcuEO0cJ.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_JumHJ3UqLO9Mdu1kygD5e19MOiNh5iD_a9p0FH6QrHQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlj90OwiAMhV9oA_XOp1lgHDaSQg3FLfPph_sxGm_a03Oa5mtPRmTR1giaftc-0EdHiJgBcs6JXc04o6ocDYUXmtGUgtzdLte7HoitobYXOe33Ze05lV_na1EWKYg7whQcuEO0cJ.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_LovagMoZZFoM80YhT0zgW4b6oNarRMdF8ooxvYiQ9tA.css%3Fdelta=4&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlj90OwiAMhV9oA_XOp1lgHDaSQg3FLfPph_sxGm_a03Oa5mtPRmTR1giaftc-0EdHiJgBcs6JXc04o6ocDYUXmtGUgtzdLte7HoitobYXOe33Ze05lV_na1EWKYg7whQcuEO0cJ.css" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="muddying-waters-creating-text-based-adventure-games-using-drupal-and-slack.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-2019-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-hatter-2019-midcamp2020navigation-menu" id="block-hatter-2019-midcamp2020navigation" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-2019-midcamp2020navigation-menu">Midcamp 2020 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" data-drupal-link-system-path="node/403">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../news.html" title="News" data-drupal-link-system-path="2020/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" data-drupal-link-system-path="2020/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--virtual-camp">
+        <a href="../article/midcamp-2020-going-digital.html" title="MidCamp is going virtual" data-drupal-link-system-path="node/6689">Virtual Camp</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsor">
+        <a href="../sponsor-midcamp.html" data-drupal-link-system-path="node/6250">Sponsor</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--community-organizations">
+        <a href="../sponsor/community-organization-introduction.html" data-drupal-link-system-path="node/6251">Community Organizations</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sponsors">
+        <a href="../sponsors.html" data-drupal-link-system-path="node/6253">Sponsors</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" data-drupal-link-system-path="node/6258">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--sessions-thu">
+        <a href="../schedule/thursday.html" data-drupal-link-system-path="2020/schedule/thursday">Sessions (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-fri">
+        <a href="../schedule/friday.html" data-drupal-link-system-path="2020/schedule/friday">Sessions (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--contribution-sat">
+        <a href="../contribution-day.html" title="Contribution Day" data-drupal-link-system-path="node/6378">Contribution (Sat)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--accepted-sessions">
+        <a href="../accepted-sessions.html" data-drupal-link-system-path="2020/accepted-sessions">Accepted Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../../2023/speaker-resources.html" data-drupal-link-system-path="node/345">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-terms-and-conditions">
+        <a href="../../speaker-terms-and-conditions.html" data-drupal-link-system-path="node/21">Speaker Terms and Conditions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--topic-tracks">
+        <a href="../../topic-tracks.html" data-drupal-link-system-path="node/10">Topic Tracks</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--donate">
+        <a href="https://tickets.midcamp.org/" title="Register for MidCamp">Donate</a>
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-2019-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2020.html" hreflang="en">MidCamp 2020</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-hatter-2019-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">MUDdying the waters: Creating text-based adventure games using Drupal and Slack</span>
+</h1>
+
+
+  </div>
+<div id="block-hatter-2019-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="6280" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2020-03-19T16:00:00Z" class="datetime">Thursday, 11:00 am CDT</time>
+ - <time datetime="2020-03-19T17:00:00Z" class="datetime">Thursday, 12:00 pm CDT</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-81" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-name field--type-string field--label-hidden field__item">Room 314A</div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>In the 80s and early 90s, I played a lot of text-based games - single-player like Zork and Colossal Caves, and multi-player online games on BBSs like Kyandia and Infinity Complex. I created an engine for using Drupal to author and play these games, using Slack as the player interface.</p>
+
+<p>Applying these behaviors in your own applications doesn't need to be for something quite so nerdy as re-living those days. You'll learn how to:</p>
+
+<ul>
+	<li>Create a custom plugin manager and support custom plugins and annotations</li>
+	<li>Dynamically load and execute plugins based on user input</li>
+	<li>Create and subscribe to custom events</li>
+	<li>Use migrate to import data into the site in multiple stages</li>
+	<li>Create a custom migrate source to handle loading data from ancient source files, such as Galaticomm MSG files and ZIL (Zork Implementation Language) files.</li>
+	<li>Create a Slack application and point it at your site</li>
+	<li>Respond to incoming Slack slash commands, incoming webhooks, and events</li>
+	<li>Send messages to channels or users in Slack</li>
+</ul>
+
+<p>This talk is for people who are interested in Drupal module development and Slack integration, but don't know where to start, people who find it helpful to learn from functional projects, or people who have struggled with the intricacies of creating complex Drupal-based infrastructures with an eye towards re-use and extensability.</p>
+
+<p>...Or, people who just want to play a mostly-functional multi-player Zork game (jade key not included).<br>
+&nbsp;</p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/iX4ueK4O3k4?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-presenter-slides field--type-file field--label-above">
+    <div class="field__label">Presenter Slides</div>
+              <div class="field__item">
+<span class="file file--mime-application-pdf file--application-pdf"> <a href="../../sites/default/files/2020-03/Midcamp%202020%20D8%20Slack%20MUD.pdf" type="application/pdf">Midcamp 2020 D8 Slack MUD.pdf</a></span>
+</div>
+          </div>
+
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Jonathan (Jack) Franks</h4>
+
+      Principal Software Engingeer
+
+
+          @
+              <a href="https://www.breaktech.com">Breakthrough Technologies</a>
+        
+  </div>
+    <div class="l-66-33--2"></div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Back-End</div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-feedback-form field--type-webform field--label-above">
+    <div class="field__label">Feedback Form</div>
+              <div class="field__item"><form class="webform-submission-form webform-submission-add-form webform-submission-session-feedback-form webform-submission-session-feedback-add-form webform-submission-session-feedback-node-6280-form webform-submission-session-feedback-node-6280-add-form" data-drupal-selector="webform-submission-session-feedback-node-6280-add-form" action="muddying-waters-creating-text-based-adventure-games-using-drupal-and-slack.html" method="post" id="webform-submission-session-feedback-node-6280-add-form" accept-charset="UTF-8">
+  
+    <div data-drupal-selector="edit-0" class="webform-message js-webform-message js-form-wrapper form-wrapper" id="edit-0"><div data-drupal-messages>
+    <div role="contentinfo" aria-label="Status message" class="messages messages--status">
+                  <h2 class="visually-hidden">Status message</h2>
+                    Sorry...This form is closed to new submissions.
+            </div>
+    </div>
+</div>
+<input autocomplete="off" data-drupal-selector="form-ywu9bg0za3aw6h6f-ego1z7jlipbjuc8typloirjmco" type="hidden" name="form_build_id" value="form-YWU9Bg0za3AW6h6F-EgO1Z7JLIPbjUc8TYPlOiRJmco" />
+<input data-drupal-selector="edit-webform-submission-session-feedback-node-6280-add-form" type="hidden" name="form_id" value="webform_submission_session_feedback_node_6280_add_form" />
+<div class="url-textfield js-form-wrapper form-wrapper" style="display: none !important;"><div class="js-form-item form-item js-form-type-textfield form-type-textfield js-form-item-url form-item-url">
+      <label for="edit-url">Leave this field blank</label>
+        <input autocomplete="off" data-drupal-selector="edit-url" type="text" id="edit-url" name="url" value="" size="20" maxlength="128" class="form-text" />
+
+        </div>
+</div>
+
+
+  
+</form>
+</div>
+          </div>
+
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <h3 class="field__label">Transcript</h3>
+              <div class="field__item" tabindex="0"><p>&gt;&gt; JACK FRANKS: &nbsp;Good morning. &nbsp;This is Drupal 8 integration with Slack. &nbsp;We'll be going over a Slack based text adventure game. &nbsp;I am Jack Franks. &nbsp;I've been doing this now this year for 30 years. &nbsp;Wow. &nbsp;I've been working with Drupal since 2013, and I work for Breakthrough Technologies. &nbsp;I'm going to kind of rush through the who I am and who I do because this is a pretty long and dense presentation. &nbsp;There's a lot to go over. &nbsp;</p>
+
+<p>Mostly, I stay in Drupal because I love working with all of you, being in this community is one of my favorite things that I've done in my career. &nbsp;Like I said, I've been doing there for 30 years now. &nbsp;</p>
+
+<p>I consider myself mostly a back end developer. &nbsp;That's what I enjoy the most. &nbsp;I can theme stuff, but I don't take any joy from it. &nbsp;Working with Slack was fun because most of it's done on an API level and I enjoy that. &nbsp;</p>
+
+<p>As a youth, for a long time, I was a BBSer. &nbsp;</p>
+
+<p>I built my first modem when I was a little kid, learned how to solder on it and used it to dial everywhere. &nbsp;Galaticomm was my favorite. &nbsp;I actually ran one for a long time. &nbsp;This was the first system that I had been on that allowed massive amount of other users at the same time. &nbsp;So, there were these text based multi user adventure games like &nbsp; &nbsp;you know, like Zork, but 32 players could all play it at once and interact and solve puzzles together. &nbsp;And, you know, as a kid, I had &nbsp; &nbsp;I just had so much fun with it. &nbsp;</p>
+
+<p>As I was browsing around the Internet one day, I found the source code for it and that took me back in a pleasant way, so I decided to port it, see if I could implement it in Drupal. &nbsp;I started out doing it with a web socket based front end, and then figured out that I could actually integrate it with Slack and a whole bunch of people could all play it together. &nbsp;</p>
+
+<p>So the game I imported is called Kyrandia. &nbsp;This world &nbsp; &nbsp;the author went on to make a graphical computer game based on this world. &nbsp;The original was called Kyrandia and it was available strictly for this major BBS system. &nbsp;Dvorak's guide to PC telecommunications writes in 1990 that Kyrandia is the most advanced multi user text adventure game created to date. &nbsp;And now I have ported it into PHP and Drupal. &nbsp;</p>
+
+<p>So, let's look at a quick demo. &nbsp;We're going to see what the app looks like, how the interactions work, the kind of data that Drupal serves up through Slack and what it looks like in Slack, how users can interact with each other, and then what the app actually looks like. &nbsp;</p>
+
+<p>So we have a couple of Slack windows up here. &nbsp;One player in a dark theme, one player in a light theme. &nbsp;We can say something over here, and we see it over here. &nbsp;I can move off to the north. &nbsp;Here it says that I left. &nbsp;And then there's &nbsp; &nbsp;you know, here's the description of the room that we're now in. &nbsp;You can see what I'm carrying, which would be nothing. &nbsp;Pick something up. &nbsp;Something's broken. &nbsp;That's all right. &nbsp;I can come back into the room, and it notifies me that I'm here. &nbsp;</p>
+
+<p>Gaining levels in this game is all puzzle based. &nbsp;It's not experience point based or killing monsters or anything. &nbsp;You have to solve these particular puzzles. &nbsp;So to get from level one to two, in this room, you have to type kneel, and then here it gives me a description, says I'm level two. &nbsp;Here you can see that this player suddenly grows in strength and knowledge. &nbsp;We get a spell in our spell book. &nbsp;</p>
+
+<p>So, this is how we interact with it. &nbsp;Sort of like in the old days with your modem, you sign on to your bulletin board, you join the game and start typing in commands, and then you get to interact with the system, and then it displays to the other players what it is that you're doing. &nbsp;</p>
+
+<p>Usually, I'm hosting this app on a free tier Pantheon dead site. &nbsp;Today, I'm using ngrok so I can use it locally and make changes on the fly. &nbsp;We can see how some of this stuff works. &nbsp;There was some issues with some of that because in order to get the interactive components working when you receive the message from Slack, you have to pass back an authentication token that allows the user to interact with the components and it has to be all done within three seconds and with the &nbsp; &nbsp;with the strain on the network, with everybody working from home nowadays, and I'm presenting and recording and running it again with ngrok here locally. &nbsp;Most of the time, these messages do not go back and forth fast enough, so I can slow you some interactive components, but some are not working because my connection is too slow right now. &nbsp;</p>
+
+<p>In normal life it doesn't really matter because it's pretty fast, but again today, it might not work. &nbsp;</p>
+
+<p>The actual Slack app is a normal Slack app. &nbsp;The URLs are set to that Dev pantheon site. &nbsp;There's one called word_grammar, slack_incoming. &nbsp;Those are broadly useful at Slack.org. &nbsp;I have the Kyrandia engine, which has commands in handling this particular game, because you can have multiple games running on the same engine. &nbsp;</p>
+
+<p>And then the migration module, which handles all of the data. &nbsp;</p>
+
+<p>So going over word grammar, this is a text based game. &nbsp;So I needed to generate indefinite articles for all of the nouns, to build these text descriptions that I'm displaying everywhere. &nbsp;In order to do that, I needed to build out a little library to do it. &nbsp;</p>
+
+<p>So here's the example of how it works. &nbsp;This is just random. &nbsp;It's just a service. &nbsp;You pass in a word, and it gives you the indefinite article. &nbsp;So if I have apple, it gives me an. &nbsp;But if I put in hour, it also knows to give me an. &nbsp;If I go horse, it gives me a, and unique, even though it starts with a vowel, it knows a. &nbsp;So it handles all the indefinite articles. &nbsp;</p>
+
+<p>I also needed an array of word list based on the words that I passed in. &nbsp;And you have the option to build an oxford comma at the end, but as we know that should always be true, because we should always embrace the oxford comma. &nbsp;</p>
+
+<p>So if I get the word list with horse, dog, chicken, cat, and elephant, it &nbsp; &nbsp;sorry, I think that I was moving my house and it clicked. &nbsp;</p>
+
+<p>So it gives us horse, comma, space, dog, comma, space, and so on and it's smart enough to know that if there's only two items, it doesn't commaize them. &nbsp;And if there's one, it doesn't use the and. &nbsp;</p>
+
+<p>The pieces of the old game that we're trying to bring in are the data and the code. &nbsp;In order to bring in the data, a lot of this is &nbsp; &nbsp;it's old format, you know, old C code, old message files, and it's pretty strangely formatted text for the way that we're normally passing around data nowadays. &nbsp;There's a bunch of things that we need to bring in, so I needed text for all of the different locations and the items and the spells that you can cast, the descriptions for when things happen, the message texts that when you do something, it tells you something and then it also tells other people in the room something, the descriptions and progression for every one of the levels in the system. &nbsp;</p>
+
+<p>And then there's all the C code, which are all of the command routines for everything that you can type. &nbsp;So, you know, I did an inventory, I picked something up, you can drop something, you can say something. &nbsp;Everything that you do to interact with the system has its own little command routine, and I imported all of that from the old C code into PHP. &nbsp;</p>
+
+<p>Each of the locations has special handling. &nbsp;So, for instance, there's a couple of places in the game where you can dig for gold or treasure or whatever. &nbsp;But if you're in a place that doesn't allow you to dig for those, it handles it separately, and the two places where you can dig also handle it separately. &nbsp;So, the locations need their own routines to handle it. &nbsp;</p>
+
+<p>Then there's the system interaction routines like displaying messages to certain people. &nbsp;If you walk into a room, it needs to display it to the people in the room that you're leaving that you left, and then into the room that you're arriving into that you've arrived. &nbsp;</p>
+
+<p>So, there was all kinds of interaction stuff that determined who gets what messages. &nbsp;</p>
+
+<p>So we're going to talk about import all of this old data first. &nbsp;On the left, you can see what one of these command routines looks like. &nbsp;This is reading something. &nbsp;You can see it's just old C code. &nbsp;Pretty good C code, but it is old and there's a lot of pointer stuff and it handle static differently. &nbsp;There was some work to bring it over. &nbsp;</p>
+
+<p>On the right here, you can see what one of the text messages looks like. &nbsp;So there's these big message text files just full of this stuff. &nbsp;We start out with this little identifier, this HLPMSG with an open brace, and a whole bunch of code, and some of them actually have, you know, kind of sophisticated ASCII art in them, which doesn't translate very well to a variably spaced font like we get in Slack. &nbsp;</p>
+
+<p>And we can see that a few rows down, we get the closing brace, and then a T to indicate that there's a title here, which is a Kyrandia description. &nbsp;And here is another one. &nbsp;This is HLPCOM, and it starts with this. &nbsp;</p>
+
+<p>We look at another one. &nbsp;Here's an actual level description record. &nbsp;It's a female description for level 4. &nbsp;Here it is. &nbsp;We have some S print def tokens. &nbsp;I needed a custom migration source that can parse all of that data. &nbsp;And that looks, well, kind of something like this. &nbsp;</p>
+
+<p>So we grab the content from what our path is specified, which is the path to the beta file. &nbsp;Then we start splitting out all of the line feeds, break those into actual line breaks, and then we have a little reg x that splits that out. &nbsp;And then it walks through each of the rows, looks for the open brace, and then finds the next closed brace. &nbsp;And I know that I could do this with another regular expression, but these are the ones that take a little bit of time and this only has to run once for every file for every game, so it wasn't super important to really optimize it. &nbsp;We can see that it looks for the open brace and walks through each of the following lines until it finds the closing brace, breaks that down with the T there, so that we pull out this as our name and this as our type, and this is our description. &nbsp;So here's name, description, and type. &nbsp;</p>
+
+<p>Then we add that into the row, add that into the row's array, and then we returned an iterator based on that row's array. &nbsp;</p>
+
+<p>Now, this is something that I've been saying since I started doing Drupal 8 migration presentations that you have to remember here to return an array iterator. &nbsp;If you return an array here, your source won't work, and it will always return you zeros. &nbsp;</p>
+
+<p>The documentation actually just recently has been updated to reflect that, but if you start writing a custom migration source and your iterator always seems to return nothing, just make sure that you're returning an array iterator instead of just an array. &nbsp;</p>
+
+<p>Now, writing up that migration, it looks like this. &nbsp;This is Kyrandia messages. &nbsp;We're using the message plugin that we just went over. &nbsp;Specify the path to the file that we're importing. &nbsp;And then we're building out here a term, and it's just a Kyrandia message term, which is name, description, and user ID, they're all just going to admin, and the name &nbsp; &nbsp;pulling out the name, and then we're setting it to basic HTML because it's all ASCII, there's not really any HTML in it, and then we pull out the description. &nbsp;</p>
+
+<p>And then again, these are listed out here. &nbsp;It tells you what we get and what field in the source that that actually comes from. &nbsp;</p>
+
+<p>And now, that's all imported in. &nbsp;We've got a whole bunch of nodes and a whole bunch of terms. &nbsp;We've got all of this kind of stuff, locations, items, messages, spells, levels. &nbsp;We're going to have a quick look at what that looks like. &nbsp;Here are a bunch of locations. &nbsp;So if we come in and edit one of these locations, I've got all my field UI turned off... great. &nbsp;</p>
+
+<p>Here we have level 1 with an apprentice description. &nbsp;Level 12 is a red wizard. &nbsp;We can look at messages. Al and then here are all of these kind of things that we saw before, like the help messages. &nbsp;So if we come into whatever EHINT7 is and load that up. &nbsp;So this is something that an elf. &nbsp;Gives you a little hint, and whatever the message, the event fires in the system that specifies this particular message, this is the text that it pulls out to give to you. &nbsp;</p>
+
+<p>Now this still says CRON, and it is CRON, but it's not Drupal CRON. &nbsp;In the original code for the BBS, every eight seconds, it runs a system cycle, and the cycles do all kinds of things within the game. &nbsp;Within the scope of the entire bulletin board. &nbsp;But in the game if particular, it either increments or decrements particular effects. &nbsp;It will repopulate, move monsters around, that kind of stuff. &nbsp;I don't know if you've ever tried to run Drupal cron every eight seconds, but it is unhappy when you do that. &nbsp;</p>
+
+<p>So rather than try to run it through Drupal cron, I set up a free service at this cron job.org, which lets me run every minute, which still slows it down. &nbsp;But since we don't have macros in Slack the way we used to do, like in pro cron plus or anything, this is fine enough to get you copying and pasting and typing some of the speedy things that you need to do. &nbsp;I now have a route that runs the cleanup routines and the game timers. &nbsp;</p>
+
+<p>So, to play the game, you type in text commands and that's how you move around and look at things and talk to people, pick up objects, cast spells, gain levels. &nbsp;That's how you play the game. &nbsp;So you can check your inventory, you can move around. &nbsp;You know, if there's a diamond on the floor, you can get it, have something in your inventory. &nbsp;You can drop it. &nbsp;If there's a monster, you can beat it up. &nbsp;In order to make all of that happen and get this in a nice reusable format, we're using plug ins to handle each of these commands. &nbsp;We have an event handler, that handler then determines what kind of lug in it needs, grabs an instance of that plugin and then performs the action. &nbsp;</p>
+
+<p>So, let's talk about events first. &nbsp;We'll get to plug ins in a moment. &nbsp;To fire an event in Drupal, symphony, it looks like this. &nbsp;You need a custom event class that has some properties and things on it. &nbsp;The package I'm sending in there is the data package that we're getting from the Slack listener. &nbsp;Then we take our Slack event and give it to the event dispatcher with the type of event that we're looking for, and this is a constant declared in that Slack event class. &nbsp;</p>
+
+<p>The event dispatcher then fires that off and you have all the listeners that you set up that respond to that particular Slack event. &nbsp;</p>
+
+<p>And then each of the Slack events does things to that Slack event object. &nbsp;So it adds responses that interacts with the properties, you know, variables on that particular slack event class. &nbsp;And then when they're all done, the dispatcher sends that slack event back to the caller here. &nbsp;And we can pull the response out of this. &nbsp;In this particular case, what we're looking for is something like maybe 200 or something to send back to Slack. &nbsp;So there's a couple of messages that it does here like when you set up your Slack application and put the end point in, the first thick it does is send a verification message with a challenge token, and then you have to immediately return that challenge token. &nbsp;</p>
+
+<p>So it handles that differently than just receiving a message. &nbsp;If you type in hi to your bot, all it needs is a 200 there. &nbsp;It doesn't need a challenge token. &nbsp;So that's why it can set each one of these responses differently. &nbsp;And if it doesn't get one, there's more code down here that just gives it generic 200. &nbsp;If you have something special that your event needs to do, it will return. &nbsp;</p>
+
+<p>So here's what our event class looks like. &nbsp;This is that Slack event class. &nbsp;This is what your event listeners will look for when they're subscribing to the actual event. &nbsp;We have the response. &nbsp;That's this that we can return if we get one. &nbsp;We have on there the results, which contain text strings that are keyed by the player ID, so that our Slack API class can send them out to the appropriate players. &nbsp;All of that goes into this Slack event class. &nbsp;</p>
+
+<p>To set up a subscriber, you need to go into your module services.info.yml file. &nbsp;Passing in the Slack &nbsp; &nbsp;incoming Slack service. &nbsp;And when we name it with an event subscriber, that's how symphony knows to pass events into this. &nbsp;So that it knows what to listen for. &nbsp;</p>
+
+<p>When you set up your event subscriber class, you have to have this get subscribed events, and we can tell it that we're listening for this Slack event, and we have a function defined called onSlackEvent, and it receives the slack event class as an argument. &nbsp;We can go and specify these in a certain priority, and it means descend. &nbsp;It so will run in numeric order. &nbsp;</p>
+
+<p>So the listener &nbsp; &nbsp;I hope this isn't too small to see. &nbsp;This is our getSubscribedEvent function. &nbsp;We get the event as a parameter and now we can see what we're doing with it. &nbsp;So we have the Slack package. &nbsp;This is the JSON request that comes in from Slack. &nbsp;And we're doing a couple of things on this. &nbsp;</p>
+
+<p>So here's that URL verification. &nbsp;The first time Slack interacts with your end point, it sends you this challenge parameter, which you then immediately have to return. &nbsp;That has to be returned within three seconds or it's invalid, it will try to hit that again. &nbsp;</p>
+
+<p>We also have here a listener for the app home opened event, which we can see there's some sort of Slack building blocks in here, which can return markdown text or interactive components. &nbsp;There's a whole bunch of different stuff that it can do here. &nbsp;</p>
+
+<p>And this is handled here. &nbsp;So if we come to the home tab, we can see this is generated off of that. &nbsp;</p>
+
+<p>So we modify this in this app home opened event. &nbsp;We come back to our home tab. &nbsp;There's our next text. &nbsp;</p>
+
+<p>So, home has a whole bunch of stuff that you can do with it. &nbsp;Any sort of interactive Slack component you can put on here. &nbsp;We don't have &nbsp; &nbsp;you know, just playing games and we don't have a real pressing need to put anything on here. &nbsp;But you can put on here whatever you like. &nbsp;</p>
+
+<p>Now let's start talking about these plug ins. &nbsp;This is kind of where the magic happens here, as far as interacting with the game. &nbsp;So, let's talk about how to create custom plug ins. &nbsp;In order to create a plugin, we need a plugin class which defines annotations. &nbsp;You need a plugin manager class and a base class that tells all of your &nbsp; &nbsp;you know, all the plugins that you defined how to work. &nbsp;Here's one of the ones we have. &nbsp;We have this mud command plugin and we're defining look. &nbsp;Here we have an ID, and what module it goes to, and that's pretty much it for what we're doing here. &nbsp;</p>
+
+<p>In order to define these annotations, you're defining each of the properties in your plugin class. &nbsp;So here we have our ID. &nbsp;Here we have our name. &nbsp;And then synonyms. &nbsp;Synonyms aren't working yet, but this is so that if you &nbsp; &nbsp;maybe a synonym to look is examine, and then it would know to run the look plugin if you typed in examine instead of look. &nbsp;That's not working yet. &nbsp;</p>
+
+<p>In your module/SRC/annotation, that's where your actual plugin class lives. &nbsp;</p>
+
+<p>Now you need a plugin manager. &nbsp;This is mostly boilerplate, once you've written one of these, you're just going to kind of copy and paste this around. &nbsp;It doesn't do a whole lot. &nbsp;But what it does is pretty important. &nbsp;You have to tell it what your name spaces are, so here we're doing mud commands. &nbsp;</p>
+
+<p>And then you have to tell it the interface for what those plugins look like. &nbsp;The annotation, that plugin class that determines how you're declaring one of those plugins. &nbsp;You're setting up your alter info so you can, you know, use Drupal's alter system to change any of the information here. &nbsp;And then you're setting any special caching. &nbsp;And this game, in particular, doesn't have any, but you can get super creative on how you're doing caching on each of these plugins. &nbsp;</p>
+
+<p>So this goes on the SRC directory on your module, it just kind of lives out there, and this is what runs your plugins. &nbsp;</p>
+
+<p>So now we have our plugin interface. &nbsp;This is what each of the plugins &nbsp; &nbsp;the plugin classes is going to use to actually execute. &nbsp;So we only have one method, and that's perform, and it takes command text, which is the text to execute, whatever the player typed in. &nbsp;We have a node reference to whoever actually did the command, and then we have this results array, which is passed in by reference that everything that interacts with each of these perform methods adds stuff, too. &nbsp;</p>
+
+<p>All of this is keyed by player. &nbsp;So here, player 1735 will get these two messages sent back to them. &nbsp;This player gets this message sent back to them. &nbsp;And the command can add as many results to this array as it wants for as many players as it wants. &nbsp;If I execute a command where I leave one room and enter a new room, it has to alert everyone in the old room that I'm leaving, everyone in the new room that I'm arriving. &nbsp;So it has all of those players identified by their player ID, and then each of the results that they are going to receive. &nbsp;I think I'm skipping ahead. &nbsp;All right. &nbsp;</p>
+
+<p>Then we have a base class, which has some dependency injection and constructing stuff in here. &nbsp;Really, it's just to make everyone's life easier whenever you implement one of these plugin classes. &nbsp;So, let's look at one. &nbsp;Here we have our Kyrandia plugin, but since this is for this particular game, it needs a bunch of extra stuff. &nbsp;So we look at some of the dependency injection that we have. &nbsp;I don't know if this is big enough when we go into presentation mode. &nbsp;That one might be too big. &nbsp;</p>
+
+<p>So we need an entity &nbsp; &nbsp;entity type manager. &nbsp;Some of these events can responds to other events. &nbsp;We have our word grammar service. &nbsp;Kyrandia has a game handler, which lets us pull out a use profile user, and then it has the plugin manager for the MUD commands themselves so that one command could chain multiple commands. &nbsp;</p>
+
+<p>For instance, again, using the example of leaving the room, if you leave a room and enter another room, it needs to return you the description of the new room so it's effectively giving you a look command after you move, so it needs to be able to bring up another plugin and get the results for that. &nbsp;</p>
+
+<p>So here are some of the things that it does, like these are some of the ported message handler routines, like here's giving a result &nbsp; &nbsp;you know, a message back to you. &nbsp;And then the game handler has the rue tone to get the message. &nbsp;A special perform message, which it sends another &nbsp; &nbsp;a different thing to the acting player, so it takes some arguments. &nbsp;</p>
+
+<p>Here you can send messages to multiple parties. &nbsp;So now every time I have a Kyrandia plugin, it can now use all of these methods, and that makes things pretty easy. &nbsp;</p>
+
+<p>Okay. &nbsp;Now, this is the part that is really exciting. &nbsp;How do we integrate with Slack? &nbsp;I have a module called Slack incoming. &nbsp;This is available up on Drupal.org right now. &nbsp;I went through all of the other Slack modules that were on Drupal.org already and didn't find that all of them could do anything that I needed to do. &nbsp;What I really needed was, I needed to accept messages, I needed to handle slack commands and fire off all the events and I also needed them to authenticate. &nbsp;Slack has a token based signing secret authentication method. &nbsp;We'll talk about that next. &nbsp;</p>
+
+<p>And then we also needed a Slack API to send out requests, like doing a chat.post message, which is what your bot sends out text, and every time we see something like this, if I type look, what it comes back with here, this is all the chat.postmessage. &nbsp;Views.publish, it will &nbsp; &nbsp;this is any time you have an interactive surface, like when we're using the home tab, it sends out views.publish API call. &nbsp;So I needed something that would both take in my messages, handle all of the events for those, and then send things back out. &nbsp;So it's actually slack incoming outgoing, but that was kind of long. &nbsp;</p>
+
+<p>Here's the URL where you can find this. &nbsp;This is up and live now. &nbsp;So now let's talk about this authentication. &nbsp;We want to make sure that someone malicious or just random isn't sending weird stuff to your app pretending to be Slack. &nbsp;</p>
+
+<p>So since it has a signing secret, we have a form where we save that in config, and then we have an authentication provider to check that message, make sure that it signs out correctly, validates that it actually comes from Slack, and that it's been approved, and then it will allow it to go to the controller. &nbsp;</p>
+
+<p>So that's set up as a service, and it's the Slack incoming signing secret, and if you assign this Slack incoming signing secret to any route that's, you know, for slash commands or additional API handlers, the API handlers for the most part won't need, because this event end point handles all of the event interactions that Slack will send you. &nbsp;But, for things like slash commands, like &nbsp; &nbsp;like here, we can type slash games, and then it will return me the list of games that we have. &nbsp;Those need to be authenticated as well. &nbsp;So for any one of those routes, you can put this Slack incoming signing secret on here, and then it will know to check each one of these &nbsp; &nbsp;any time it gets an incoming request, if it doesn't match with that signing secret, it won't go. &nbsp;</p>
+
+<p>So, message behavior works more or less like this. &nbsp;So the user sends the bot a message. &nbsp;Then Slack sends our action end point a message. &nbsp;That authentication provider authenticates that it's real, and then the controller decodes that message, fires one of those Slack events, and then we have the event listeners, which process the message, generate the responses, and it has to generate a 200 response within three seconds, or it resends messages. &nbsp;So if you have debugging turned on and you're doing this through ngrok, maybe on a slow network, you can be debugging some sort of message that you're getting from Slack, and then it will send it multiple times in a row until it gets back a response, so that could be a little frustrating. &nbsp;</p>
+
+<p>And our Slack events listeners use our Slack API service to call some of the Slack API messages and this is what we use to send a message back to the user. &nbsp;</p>
+
+<p>There's a comment in here about using the key module instead of saving the Slack token in config. &nbsp;That is true. &nbsp;By the time there gets to some sort of production site, it is not just my sort of messing around with it on my own. &nbsp;That's a good secure way to go. &nbsp;For the moment, it saves it into config, and then GitHub yells at me every time I push it and then Slack makes me change the key because it's in a repository. &nbsp;There are a bunch of improvements that I would like to do to this, but, you know, this is all done in my off time and it's a big system. &nbsp;</p>
+
+<p>So, slash commands. &nbsp;This is like that slash games that we just saw. &nbsp;You define that in your Slack application, and then that has to have a specific end point. &nbsp;So that needs a route and a controller method, and we need to authenticate it. &nbsp;The user &nbsp; &nbsp;I typed in slash games. &nbsp;Slack sends that message to that particular end point, and then we authenticate it, and then the controller method reads that, does whatever it needs to do, and returns the response, and then Slack displays that response to the user. &nbsp;</p>
+
+<p>So this is a little bit different in that when we're receiving a message like the player runs a command and then looks around, it is giving back a 200 for that, and then sending additional chat messages to display the text to the user. &nbsp;For a slash command, it has to return the payload in the response. &nbsp;So the slash commands are handled a little bit differently. &nbsp;</p>
+
+<p>So to get this going on your own, create a Slack work space, we go to Slack.com/create. &nbsp;You sign up, confirm, describe your team, you enter all this stuff in, and then by the time you're done with that, you get this nice little Slack work space. &nbsp;</p>
+
+<p>Then you can go to API.slack.com, register or log in, and when you click your apps, you can create this new application. &nbsp;So we created one application, picked what work space it was going to, and when you continue, you enter in your information and press create app. &nbsp;</p>
+
+<p>And it gives you a whole bunch of important stuff. &nbsp;</p>
+
+<p>So now we go to the Drupal site, and we look at something that the Slack incoming module gives us. &nbsp;So we go to configuration, web services, Slack. &nbsp;And now we enter in our signing secrets, the Oauth access token, and don't worry, these are about to be replaced. &nbsp;So if you're trying to spoof the site, you can only do that for about another hour. &nbsp;And then you can specify the base Slack API URL. &nbsp;There's no particular reason for this to change. &nbsp;But just in case it needs to, there is a place to change it. &nbsp;And you can save that. &nbsp;And that all comes from here. &nbsp;</p>
+
+<p>So here's our Slack app. &nbsp;Here's the credentials that it gives us. &nbsp;This signing secret is the important one. &nbsp;And in OAuth, this bot token is also important. &nbsp;Those are the only two things you really need to get this integrated. &nbsp;</p>
+
+<p>Now, we need to enable events and set our end point URL. &nbsp;So, there's an event subscription link in the features section, and you have to turn that on. &nbsp;You type in the URL to your end point. &nbsp;So, it defaults to slack action/end point and I didn't see any reason to deviate that. &nbsp;So slack incoming event handler is slack/action endpoint, and here we have an ngrok URL, which points to this. &nbsp;</p>
+
+<p>Now, as soon as you enter this in, now it tries to give you that URL verification event where you have to return the challenge URL. &nbsp;As soon as you do, it comes back and says verified, and now you can use that for every event interaction that you have with the site. &nbsp;</p>
+
+<p>So we have a whole bunch of events that we can subscribe to. &nbsp;We're only going to cover the ones that this app needs and that's the app home opened, which is what gives us the home tab, and then we have message.im, and this is what handles the bot's direct messages, and this is how the users all interact with the game. &nbsp;Everything they do is by interacting with the bot, which then figures out what it needs to send to other users. &nbsp;So there's not like a main channel that it monitors, everything is just done with direct messages with the bot. &nbsp;</p>
+
+<p>So once you've selected your permissions, or your events, rather, press save changes. &nbsp;And now we're going to generate some slash commands. &nbsp;So we have games and joingame. &nbsp;Games doesn't require a parameter. &nbsp;Joingame does. &nbsp;So we can create a new command. &nbsp;We have to set these up in our slack MUD controller. &nbsp;And then we enter them into the Slack app configuration here. &nbsp;</p>
+
+<p>Here's what our routes look like. &nbsp;So we have slash command slash games. &nbsp;These are specific to this particular application. &nbsp;It's a post, and then we have our sliding secret. &nbsp;We have join game. &nbsp;Here's its controller method. &nbsp;And then it also needs to be signed. &nbsp;</p>
+
+<p>So, when we declare this, or define this, we're telling it slash games. &nbsp;Here's the request URL, which again, just points back to this. &nbsp;So it goes back to /command/games. &nbsp;We have a description on it and it gives you a preview of what the autocomplete will look like when the users are using it. &nbsp;</p>
+
+<p>And then same basic thing for joingame. &nbsp;It has a little usage hint on here that we didn't define before because /games doesn't need a parameter. &nbsp;And here's our little preview here. &nbsp;</p>
+
+<p>There are some settings that we need to set, and the scopes. &nbsp;The scopes are pretty important. &nbsp;We need to add a scope that allows our module to message users. &nbsp;So we have to go to the OAuth in permissions and go down to scopes. &nbsp;Here we have to add a scope to allow us to do a chat:write. &nbsp;Now, this is important. &nbsp;I have forgotten to do this on a handful of occasions when I've created apps and I'm debugging and I'm looking. &nbsp;I'm getting my process. &nbsp;I have a log, you know, watchdog in here saying I got the message. &nbsp;Why isn't it writing out to the user? &nbsp;It's probably because you didn't specifically enable this chat:write scope. &nbsp;Make sure that you check this. &nbsp;If you are trying to send messages through Slack and they aren't appearing, first check your OAuth key, and that will probably be correct. &nbsp;And check that you have enabled this scope and it should probably end up sending after that. &nbsp;</p>
+
+<p>We have another couple of ones that we don't actually need, like I don't need an IM history or the, you know, direct message history. &nbsp;But, yeah, they all come with whatever they were doing here. &nbsp;The commands and the chat:write are the important ones. &nbsp;</p>
+
+<p>So, we need to make sure we add that bot OAuth token, and you have to copy that into your Slack incoming settings and click save. &nbsp;And then, you know, if you try to be secure, use the key module. &nbsp;</p>
+
+<p>If you're just being lazy like I was, save it to config, and then you can install it to your work spaces. &nbsp;So it's going to verify that you want to allow it to do all these things. &nbsp;You want to say yes. &nbsp;</p>
+
+<p>And now, when we go back to our work space, here we can see that it's in here, we can test the commands, and they all work. &nbsp;</p>
+
+<p>So, this game was pretty complicated. &nbsp;You know, it's got dozens and dozens. &nbsp;I don't know if it has hundreds or not of commands that the user can take and different interactions. &nbsp;And again, it has different processes if you do something in one location versus a different location. &nbsp;So it needed a lot of testing. &nbsp;And I decided to do that with Behat. &nbsp;Kernel test would have been something different, but there's so much mocking and we're testing actual data output. &nbsp;To make sure that all of our S print def tokens are in the right spot and have the things they needed, so we really needed some behavior testing and it was so much faster to write this out with Behat once the app was set up and make that all work. &nbsp;</p>
+
+<p>And that looks something like this. &nbsp;I'll just let this run for a bit. &nbsp;There's a couple of thousand steps. &nbsp;And then there's a bunch of manual testing in Slack. &nbsp;Slack also has an API tester tool called steno, which I'm not super familiar with. &nbsp;But it might be able to help things like debugging those interactive components when their tokens are in danger of expiring. &nbsp;But I haven't really gotten into it. &nbsp;</p>
+
+<p>So everything that I showed you here is in GitHub. &nbsp;You can find that at tiny.cc/slackmud. &nbsp;The slides are up. &nbsp;The presentation at mid.camp/6280. &nbsp;You can leave feedback there as well. &nbsp;The Slack incoming module is on Drupal.org. &nbsp;So is Word Grammar. &nbsp;Slack Mud and Kyrandia are not. &nbsp;I don't actually own the source code that I've ported, so I don't know the licensing around all of that stuff. &nbsp;</p>
+
+<p>So maybe it will end up there. &nbsp;Maybe not. &nbsp;But you can get it all in GitHub. &nbsp;</p>
+
+<p>So, I can take questions now. &nbsp;</p>
+
+<p>&gt;&gt; ANDREW OLSON: &nbsp;You can raise your hand and I can unmute you, or we can start in the chat channel. &nbsp;However you want to let us know. &nbsp;</p>
+
+<p>&gt;&gt; JACK FRANKS: &nbsp;I saw Benji raise a hand. &nbsp;</p>
+
+<p>&gt;&gt; ANDREW OLSON: &nbsp;All right. &nbsp;I'm trying to find you to unmute you, Benji. &nbsp;There you go. &nbsp;You should be able to talk, Benji. &nbsp;</p>
+
+<p>&gt;&gt; JACK FRANKS: &nbsp;This is nice, we won't have to repeat questions now for the recording. &nbsp;I can't hear you, though. &nbsp;</p>
+
+<p>&gt;&gt; Can you hear me now? &nbsp;</p>
+
+<p>&gt;&gt; JACK FRANKS: &nbsp;Yes. &nbsp;</p>
+
+<p>&gt;&gt; With all that C code you had to port, I wonder were you able to automate some of that, or did you have to just do it manually one function at a time? &nbsp;</p>
+
+<p>&gt;&gt; JACK FRANKS: &nbsp;Yeah, I pretty much had to do it manually one function at a time. &nbsp;Some of the mistakes we often make in porting, I tried to do some optimization and apply some better principles to some of that code, and realized just how long that was taking, and then how much translation it took from the old code to the new code, which is why I ended up implementing some of those handling messages, like the perf message, because that's what the old code used so I sort of reverted back to its paradigm in order to speed up that porting. &nbsp;But, yeah, it was by hand for every one of those. &nbsp;</p>
+
+<p>&gt;&gt; Wow. &nbsp;[Chuckling]&nbsp;</p>
+
+<p>&gt;&gt; JACK FRANKS: &nbsp;But, you know, it's a labor of love. &nbsp;Like, I spent so much time playing this game, again, 30 years ago, that seeing how it all comes together and how it's all done, I didn't realize how some of the stuff worked. &nbsp;</p>
+
+<p>You know, some of those &nbsp; &nbsp;some of the text that it would display. &nbsp;You know, those are long paragraphs and they're very, you know, descriptive and fantasy ish, and, you know, there's a lot in them. &nbsp;And I didn't realize when I was playing the game that they all had the same token setup. &nbsp;So it was &nbsp; &nbsp;the first string in there was always the character name. &nbsp;The second string in there was always your possessive, so his or her. &nbsp;And then there was an optional third one, which was a him or her. &nbsp;And when you go through the messages, importing them and touching them by hand, you can see that they all do follow that pattern, but when you're playing the game and they're all different messages, it was &nbsp; &nbsp;you couldn't really see that that's the way it was. &nbsp;It was cool to see how it all went together. &nbsp;</p>
+
+<p>For 1990, this was pretty good solid code. &nbsp;</p>
+
+<p>&gt;&gt; And for the migration, was all of that text in one file, or did you have to import a whole bunch of different files? &nbsp;</p>
+
+<p>&gt;&gt; JACK FRANKS: &nbsp;Yeah, there were a handful of files. &nbsp;</p>
+
+<p>&gt;&gt; Like one for locations and one for actions or something like that. &nbsp;</p>
+
+<p>&gt;&gt; JACK FRANKS: &nbsp;Yeah. &nbsp;It needed each of these. &nbsp;So there are a bunch of game level &nbsp; &nbsp;oh, that was my actual game. &nbsp;There's a &nbsp; &nbsp;I have an error in here where it's not determine one of the dependencies. &nbsp;So you could have the Slack MUD games in here so they have a game record, so I have to import this first. &nbsp;I haven't gone in to check why. &nbsp;</p>
+
+<p>Once that's done, you can check items. &nbsp;Items have multiple files in them just on their own. &nbsp;So here we have their item ID, their name, and the description. &nbsp;They could potentially have a description for what happens if you try to interact with them and you can't. &nbsp;And then if it's visible or if you can pick it up, and then the &nbsp; &nbsp;yeah, in some of these files, that's where the actual item description text goes. &nbsp;So, you know, they're declared in different ways. &nbsp;And these are location texts and they have IDs that get keyed off of these. &nbsp;</p>
+
+<p>So, yeah, it was a complex migration. &nbsp;</p>
+
+<p>&gt;&gt; Are all of these text files open source? &nbsp;</p>
+
+<p>&gt;&gt; JACK FRANKS: &nbsp;They're in GitHub. &nbsp;</p>
+
+<p>&gt;&gt; Okay. &nbsp;</p>
+
+<p>&gt;&gt; JACK FRANKS: &nbsp;Again, it's 30 year old code. &nbsp;I don't know what the actual licensing for it is. &nbsp;But all of this is available in that GitHub repository that I put the link up for. &nbsp;</p>
+
+<p>&gt;&gt; I guess &nbsp; &nbsp;I wonder if it would make sense to do the one time conversion from those custom text formats into XML or JSON or something, and instead of writing custom migration source, just use something standard. &nbsp;</p>
+
+<p>&gt;&gt; JACK FRANKS: &nbsp;Yeah, I did look at doing it that way. &nbsp;But, you know, I wanted to also do it as a mostly Drupal solution and show how you can do complex migrations to get all this stuff in. &nbsp;Because I was looking at importing some other games, like having a ZIL interpreter that could play things like Zork or any of those games. &nbsp;And their format is yet different. &nbsp;</p>
+
+<p>So, you know, if there's &nbsp; &nbsp;if I have to translate it just to import it and I would have to have multiple translations just to import them, I may as well just import them. &nbsp;</p>
+
+<p>&gt;&gt; Cool. &nbsp;</p>
+
+<p>&gt;&gt; JACK FRANKS: &nbsp;Any more questions? &nbsp;All right. &nbsp;Well, I really did expect more. &nbsp;When we're in person, there's usually a lot more interaction, a lot more questions than this. &nbsp;</p>
+
+<p>Talk about migration. &nbsp;What do you want to know more specifically? &nbsp;Just something that came in through chat, so I'm just reading this out. &nbsp;</p>
+
+<p>&gt;&gt; ANDREW OLSON: &nbsp;I can unmute, if interested. &nbsp;</p>
+
+<p>&gt;&gt; JACK FRANKS: &nbsp;Yeah, please. &nbsp;Irina, you are now unmuted. &nbsp;</p>
+
+<p>&gt;&gt; Hi, everyone. &nbsp;It's very interesting to do camp completely online, first time. &nbsp;I wanted to ask about the comments like &nbsp; &nbsp;it seems like you had to do a lot of migrations from very old files. &nbsp;</p>
+
+<p>&gt;&gt; JACK FRANKS: &nbsp;Oh, yeah. &nbsp;</p>
+
+<p>&gt;&gt; So I'd be &nbsp; &nbsp;I would love to hear what tools made it easier, what would be easier for you if you would kind of &nbsp; &nbsp;if you would do it again, what tools would you like to have? &nbsp;</p>
+
+<p>&gt;&gt; JACK FRANKS: &nbsp;I am pretty happy with the way that I did it. &nbsp;So if I were to do it again, I would just have a slightly optimized version of what it is that I did here. &nbsp;</p>
+
+<p>We can see that we've got a couple of groups, we've got some migrations in here. &nbsp;We look at locations. &nbsp;There's a couple of things here I'm doing that are &nbsp; &nbsp;locations get saved as a node, not as a term. &nbsp;So our fields are a little bit different than the one that I showed before. &nbsp;</p>
+
+<p>If we store things like &nbsp; &nbsp;here, default items. &nbsp;So, like the game &nbsp; &nbsp;so in this particular location, it should always start out with these items in it. &nbsp;So, you know, these have a dependency on the actual items, and then they have to look those up. &nbsp;I did end up doing two sources to handle this LCS versus an MSG. &nbsp;I would probably standardize this, because they're very similar formats. &nbsp;</p>
+
+<p>But really, it was just writing these couple of sources, and a handful of processes, which some of them just do very slightly, more complex functions than is easy to do in the migration configuration. &nbsp;You know, some of them are more complex. &nbsp;You know, this is pulling a description out of a different file based on a record in the source file. &nbsp;Here we're checking on something if it's different. &nbsp;Like, I think Migrate Plus comes to check if something is the same, but it doesn't really give you a flow to do something if it's different. &nbsp;Just a couple of things. &nbsp;Here's something else to pull out. &nbsp;This was an early iteration of it pulling a description out from a different file. &nbsp;</p>
+
+<p>I could refactor this and make them all use the same mechanism now, but I didn't have a &nbsp; &nbsp;I didn't make a whole lot of time to go back and do that because it was all working. &nbsp;</p>
+
+<p>&gt;&gt; Uh huh. &nbsp;Cool. &nbsp;Very cool. &nbsp;This is a very interesting use of Drupal for fun things. &nbsp;So this is very exciting to see how highly technical things end up in very fun results. &nbsp;</p>
+
+<p>&gt;&gt; JACK FRANKS: &nbsp;Thanks, yeah. &nbsp;And speaking of Drupal for fun, make sure you talk to Irina later on if you want to contribute to Feed Migrate, which is putting all of this Drupal 8 migrate stuff into a feed context, and scheduling around it. &nbsp;It's a very cool project that I haven't been able to contribute a lot to. &nbsp;It's worth doing. &nbsp;</p>
+
+<p>&gt;&gt; Jack, thank you so much for all your kind words. &nbsp;I hope that you will have some time on Saturday to join sprint at least for a little bit, just to say hello. &nbsp;</p>
+
+<p>&gt;&gt; JACK FRANKS: &nbsp;Okay. &nbsp;Okay. &nbsp;We only have a few minutes left. &nbsp;Any other questions about this? &nbsp;Going to look at the Zoom chat for another few seconds just in case somebody is typing. &nbsp;Okay. &nbsp;I don't see anything. &nbsp;</p>
+
+<p>So, you can get me on the MidCamp Slack or on Drupal Slack. &nbsp;My Drupal user name is franksj. &nbsp;I'd be more than happy to go through all of this with you. &nbsp;The project has a little read me on how to get it going if you're going to pull it down here. &nbsp;And like I said, let me know if you have any questions or want to talk about Slack integration any more. &nbsp;We can get word grammar and Slack incoming on Drupal.org right now. &nbsp;So, create some Slack apps, do some cool stuff, and then show it to me. &nbsp;All right. &nbsp;Thanks, everybody. &nbsp;I appreciate it. &nbsp;</p>
+</div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+
+</div>
+  </section>
+
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-2c1b5f2ee5fd2e360af04c8beefdc7494c1a661b095e4bf1a38a9e4bc0e8f432">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/bounteous.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2019-11/Bounteous_indigo_large.png" width="1676" height="279" alt="Bounteous logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/pantheon.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2020-02/pantheon-logo-tagline-black.png" width="1200" height="370" alt="Pantheon logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/clarity-partners.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2020-02/CFDFAA23-5C59-4C07-9C66-CAFFE0CF3854.png" width="1534" height="387" alt="Clarity Partners logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/palantirnet.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2020-02/palantirnet-logo.png" width="1200" height="198" alt="Palantir.net logo" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-2019-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#462f282029062b2f2225272b3668293421"><span class="__cf_email__" data-cfemail="b2dbdcd4ddf2dfdbd6d1d3dfc29cddc0d5">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-2019-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-2019-footer-menu" id="block-hatter-2019-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-2019-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/6280","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"ajaxTrustedUrl":{"form_action_p_pvdeGsVG5zNF_XLGPTvYSKCf43t8qZYSwcfZl2uzM":true},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_sul8js76f3THBVtv8nspP93BoCHSgntyTCisS6lai4M.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter_2019&amp;include=eJx1ykEKgDAMBdELaavuPI2k-o1K2kITFG_vRkQEVwOP4ZxZMFAiOW0d1fMHqoXMUIauaXvPkgNJvT0aSPHSA2HOJfq7DoKIZG6C0SrqlHb8ThGqxLgAGZ04Cw"></script>
+
+  </body>
+</html>

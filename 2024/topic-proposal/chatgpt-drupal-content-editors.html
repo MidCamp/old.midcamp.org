@@ -1,0 +1,727 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="In this session, I propose an integration of Drupal and ChatGPT to enable new possibilities. I will demonstrate how to use the GPT model to generate text and complete tasks such as answering questions, summarising content, or generating new content. The integration could be done using the OpenAI API, which allows developers to access the GPT model and make API calls from within a Drupal module or theme." />
+<link rel="canonical" href="chatgpt-drupal-content-editors.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="ChatGPT for Drupal content editors | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>ChatGPT for Drupal content editors | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_gt5LiAM1qLGUH5e845uOb7R_lJ9dUwTXmnhGDR2yY20.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OhDAIhC9U2yMZakdtAmJKV9c9_Tb-PPkCAx8ZZmAyO0IkgxsuLTCjCfbMi6bGtKCpIsT5BzdTrShhYo3E3WD2bITWqF9nh1XIZbvlBO0hEakfMziFAlt1sbyhO2E7wW7hrF40fRh.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_mK2of_t7UFymkfbTHeA-kHdMPWzqc3DZQCYtX-tC0BA.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OhDAIhC9U2yMZakdtAmJKV9c9_Tb-PPkCAx8ZZmAyO0IkgxsuLTCjCfbMi6bGtKCpIsT5BzdTrShhYo3E3WD2bITWqF9nh1XIZbvlBO0hEakfMziFAlt1sbyhO2E7wW7hrF40fRh.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OhDAIhC9U2yMZakdtAmJKV9c9_Tb-PPkCAx8ZZmAyO0IkgxsuLTCjCfbMi6bGtKCpIsT5BzdTrShhYo3E3WD2bITWqF9nh1XIZbvlBO0hEakfMziFAlt1sbyhO2E7wW7hrF40fRh.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJxljl0OhDAIhC9U2yMZakdtAmJKV9c9_Tb-PPkCAx8ZZmAyO0IkgxsuLTCjCfbMi6bGtKCpIsT5BzdTrShhYo3E3WD2bITWqF9nh1XIZbvlBO0hEakfMziFAlt1sbyhO2E7wW7hrF40fRh.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+<link rel="stylesheet" media="all" href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.css" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="chatgpt-drupal-content-editors.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-midcamp2024navigation-menu" id="block-midcamp2024navigation" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-midcamp2024navigation-menu">MidCamp 2024 navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" data-drupal-link-system-path="node/8477">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--by-the-numbers">
+        <a href="../../2020/about/by-the-numbers.html" data-drupal-link-system-path="node/6252">By the Numbers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--venue">
+        <a href="../venue/depaul-university-lincoln-park-student-center.html" data-drupal-link-system-path="node/8482">Venue</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../speaker-resources.html" data-drupal-link-system-path="node/8485">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--volunteer-opportunities">
+        <a href="../article/midcamp-needs-you.html" data-drupal-link-system-path="node/8593">Volunteer Opportunities</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../../2025/organizers.html" data-drupal-link-system-path="2025/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--travel">
+        <a href="../travel.html" data-drupal-link-system-path="node/8564">Travel</a>
+            </li>
+          <li class="primary-nav__sublist-item item--accommodations">
+        <a href="../accommodations.html" data-drupal-link-system-path="node/8562">Accommodations</a>
+            </li>
+          <li class="primary-nav__sublist-item item--tickets">
+        <a href="../tickets.html" data-drupal-link-system-path="node/8563">Tickets</a>
+            </li>
+          <li class="primary-nav__sublist-item item--health--safety">
+        <a href="../health-safety.html" data-drupal-link-system-path="node/8640">Health &amp; Safety</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" data-drupal-link-system-path="node/8478">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--sessions-wed">
+        <a href="../schedule/wednesday.html" data-drupal-link-system-path="node/8576">Sessions (Wed)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-thu">
+        <a href="../schedule/thursday.html" data-drupal-link-system-path="node/8577">Sessions (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--training-fri">
+        <a href="../training.html" data-drupal-link-system-path="node/8574">Training (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--contribution-day-fri">
+        <a href="../schedule/friday.html" data-drupal-link-system-path="node/8578">Contribution Day (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--unconference">
+        <a href="../unconference.html" data-drupal-link-system-path="node/8592">Unconference</a>
+            </li>
+          <li class="primary-nav__sublist-item item--topic-tracks">
+        <a href="../../topic-tracks.html" data-drupal-link-system-path="node/10">Topic Tracks</a>
+            </li>
+          <li class="primary-nav__sublist-item item--all-sessions">
+        <a href="../schedule/sessions.html" data-drupal-link-system-path="node/8579">All Sessions</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" data-drupal-link-system-path="node/8480">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--sponsor">
+        <a href="../sponsor-midcamp.html" data-drupal-link-system-path="node/8479">Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2024/news">News</a>
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../jobs.html" data-drupal-link-system-path="node/8594">Jobs</a>
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2024.html" hreflang="en">MidCamp 2024</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-midcamp2024schedulenav-2" class="block block-block-content block-block-contentf2becf96-513a-4419-8c1d-1c7e0b008859">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p><a href="../schedule/hybrid.html">Hybrid</a> | <a href="../schedule/wednesday.html">Sessions (Wed)</a> | <a href="../schedule/thursday.html">Sessions (Thu)</a> | <a href="../training.html">Training (Fri)</a> | <a href="../schedule/friday.html">Contribution Day (Fri)</a></p></div>
+      
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">ChatGPT for Drupal content editors</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="8490" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2024-03-20T15:00:00Z" class="datetime">Wednesday, 10:00 am CDT</time>
+ - <time datetime="2024-03-20T16:00:00Z" class="datetime">Wednesday, 11:00 am CDT</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-538" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-field-link field--type-link field--label-hidden field__item"><a href="https://youtube.com/live/qr2Y3lICErk" target="_blank" class="button--primary">Go to Room 324 (Hybrid Block 1)</a></div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Organizer Note</h4>
+    
+            <div class="field field--name-field-eyebrow field--type-string field--label-hidden field__item">This is a Hybrid session where the speaker will present remotely.  The session will be displayed on a projector in the assigned room on-site.  Participants may either join remotely via the linked YouTube stream or attend in-person.</div>
+      
+  </div>
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p><span><span><span><span><span><span>In this session, I propose an integration of Drupal and ChatGPT to enable new possibilities. I will demonstrate how to use the GPT model to generate text and complete tasks such as answering questions, summarising content, or generating new content. The integration could be done using the OpenAI API, which allows developers to access the GPT model and make API calls from within a Drupal module or theme.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Additionally, I will show how this generated text can be used in Drupal by displaying it on a custom page or block or by using it to generate meta tags or product descriptions.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>This integration of Drupal and ChatGPT has the potential to revolutionise the way we interact with websites and web applications by providing a more natural and intuitive experience for users.</span></span></span></span></span></span></p>
+
+<p>&nbsp;</p>
+
+<p><span><span><span><strong><span><span>Learning Outcomes</span></span></strong></span></span></span></p>
+
+<ul>
+	<li><span><span><span><span><span><span>Understanding how ChatGPT works</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>Integrate ChatGPT into Drupal</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>Generate content and Meta tags</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>Learn ChatGPT Prompt engineering</span></span></span></span></span></span></li>
+</ul>
+
+<p>&nbsp;</p>
+
+<p><span><span><span><strong><span><span>Prerequisites</span></span></strong></span></span></span></p>
+
+<p><span><span><span><span><span><span>Basic understanding of Drupal module development and Content Editing.</span></span></span></span></span></span></p>
+
+<p>&nbsp;</p>
+
+<p><span><span><span><strong><span><span>Synopsis</span></span></strong></span></span></span></p>
+
+<p><span><span><span><span><span><span>In this session, I will show how to integrate a Drupal Application with ChatGPT to help content editors improve their content creation workflow.</span></span></span></span></span></span></p>
+
+<p>&nbsp;</p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/qr2Y3lICErk?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Vincenzo Gambino</h4>
+
+      Software Engineer
+
+
+              
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p>I am a Senior PHP and Javascript Software Developer from London, UK, with experience building Web Applications for medium and big-sized businesses. I have spoken at several DrupalCamps and co-authored the book Jumpstart Jamstack Development.</p>
+<p>- Co-Speaker at DrupalCamp London 2016: Using SAML as a single sign-on for Drupal 7<br />
+- DrupalCamp Munich 2016 : SSO WITH SIMPLESAMLPHP FOR DRUPAL 8<br />
+- Speaker at DrupalCamp London 2017: Drupal server configuration with Ansible and Drupal VM<br />
+- DrupalCampPoland 2018: Interact with Drupal via voice commands<br />
+- Drupal Mountain Camp Switzerland 2022: Decoupled Drupal with ReactJS and Alexa<br />
+- Drupaljam 2023: Drupal and OpenAI for Content Editors<br />
+- Drupal London Meetup 2023: ​​Organisor and Speaker<br />
+- Orlando PHP June Meetup: OpenAI and PHP for Content Editors<br />
+- Drupal Dev Days Vienna 2023: Build a fully decoupled application with Drupal and NextJS</p>
+</div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2024-02/image3-small.jpeg%3Fitok=PZ6GaRvd" width="165" height="220" alt="vincenzogambino" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Back-End</div>
+          <div class="field__item">End users / Content Admin</div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-feedback-form field--type-webform field--label-above">
+    <div class="field__label">Feedback Form</div>
+              <div class="field__item"><form class="webform-submission-form webform-submission-add-form webform-submission-session-feedback-form webform-submission-session-feedback-add-form webform-submission-session-feedback-node-8490-form webform-submission-session-feedback-node-8490-add-form" data-drupal-selector="webform-submission-session-feedback-node-8490-add-form" action="chatgpt-drupal-content-editors.html" method="post" id="webform-submission-session-feedback-node-8490-add-form" accept-charset="UTF-8">
+  
+    <div data-drupal-selector="edit-0" class="webform-message js-webform-message js-form-wrapper form-wrapper" id="edit-0"><div data-drupal-messages>
+    <div role="contentinfo" aria-label="Status message" class="messages messages--status">
+                  <h2 class="visually-hidden">Status message</h2>
+                    Sorry...This form is closed to new submissions.
+            </div>
+    </div>
+</div>
+<input autocomplete="off" data-drupal-selector="form-fegabluhvduyqlmxtvfkgmfpgspjaaz0-ilaoc3umk" type="hidden" name="form_build_id" value="form--fEGabLUHvDuyQlMXtvFkGMFpgSpjAAZ0-ILAOC3umk" />
+<input data-drupal-selector="edit-webform-submission-session-feedback-node-8490-add-form" type="hidden" name="form_id" value="webform_submission_session_feedback_node_8490_add_form" />
+<div class="url-textfield js-form-wrapper form-wrapper" style="display: none !important;"><div class="js-form-item form-item js-form-type-textfield form-type-textfield js-form-item-url form-item-url">
+      <label for="edit-url">Leave this field blank</label>
+        <input autocomplete="off" data-drupal-selector="edit-url" type="text" id="edit-url" name="url" value="" size="20" maxlength="128" class="form-text" />
+
+        </div>
+</div>
+
+
+  
+</form>
+</div>
+          </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p>For content editors. My name is Vincenzo Gambino. I'm a Drupal developer from London, UK, and I've been working with Drupal for 14 years now. I've been a speaker at several Drupal camps around Europe and the US, and I'm the co-author of the book Jumpstart Jumpstart development, while explaining how to build application using Gatsby and Netlify. And of course, it is also a chapter regarding Gatsby and Um and Drupal. So, uh, it's been almost one half year that we've been, uh, meeting OpenAI and ChatGPT. So November 2000, 2022, it was available to for everyone. Everyone started testing it, uh, playing with it, see what they can do. And the same thing, uh, did the companies. So companies saw potential on this tool, they start investing on it. They start creating tools, products and many other things. So tools like, you know, uh, generating report based on prompts, so on company information, based on your information and these, uh, raise some questions regarding data usage and privacy that end up with the EU AI act.</p>
+
+<p>So basically they want to know what, um, what companies are doing with the data that you are inputting. So how they are using it, if they're using to retrain uh, their LLM or um, use it for something else. So we saw all this potential, we used it. So and we had we asked developers and many other um, uh, many other positions. We saw fierce and then Confirmation fierce because we thought that it was going to do our jobs, uh, easily and uh, and then confirmation that, uh, it means that we, um, the, the AI is not, uh, yet capable of taking our jobs. We need a superhuman supervision. So all these applications that the company were doing, they were just, like I said, doing application and drawing, uh, the market, actually, there is a theory that is basically the draw, uh, spaghetti at the wall theory, which means that basically they were just, uh, doing application, um, and drawing, like in the market. This comes from a, a way I call it a cooking technique that, uh, as Italian, I didn't want to investigate.</p>
+
+<p>Furthermore. So basically, when you cook your spaghetti, uh, you to see if they are ready or not, you take one, you draw it to the wall. If it sticks, then it's fine, is ready. If not, uh, then, um, if it doesn't stick, then it's not ready. And this was the technique that we're using. So just building application fee is the work. So at the end uh, I will use it. Now. We use it for basically our daily job to, to help us to speed up the process of what we are doing. And, uh, and this is what is what we are going to see now. So today we're going to see what this OpenAI just to go through the terminologies. We're going to have a look at all the Drupal modules that are available at the moment on for Drupal. Uh, we see how we can use for our own content. Then at the end, we're going to have a demo and then the Q&amp;A. So, uh, we have all these models that we can use for OpenAI. So we have the Dall-E model, which is a model that can generate and that the images we have whispers and tdes, which is a model that can convert audio into text and vice versa.</p>
+
+<p>Also, we have the embeddings, which is a set of models that can convert text into a numerical form. So this is something we're going to see later. And then we have moderation, which is a model that can detect if a text may be sensitive or unsafe for example. And then we have the GPT model, which is the model that can understand and generate natural language. And this one that we use usually on ChatGPT, for example. The GPT is a language model developed by OpenAI. Uh stands for Generative Pretrained Transformers, and it is designed to for generating text, um, human like text in a conversational settings. We use it for chatbot or virtual assistants, for example. We use it for generating article blogs, blogs, or writing. Then we use it for translation. We use it for interactive gaming experience in dynamic storytelling, and we use it for personalized recommendation based on user preferences. How we can interact with GPT. We can interact through the chat, OpenAI or through the API. Before we dive in into the into the API we want.</p>
+
+<p>I want to talk about some some of the key concepts. So we have the prompts which are essentially how you program the module, the module. So how you send some instruction, then you have the tokens that are unit of text that the language models reads and process. And then we have the model that we saw before. The API prerequisite means that we need a OpenAI account, a OpenAI key, and a payment method. These are some of the API endpoints. Example for getting information from OpenAI. So to get to use the models from OpenAI. So we have the completion module, the embedding, the image generation and text to speech. We do a Post request to one of those, uh, those modules. And then we get the information back. This is an example call. So we have the the header with the authorization with the API key. Then we have the model uh the prompt uh which is here and then the token and then the temperature, the temperature, um, in uh stats, the prediction, the productivity, the, the the how predictive will be the the the response.</p>
+
+<p>So if you set, for example, a temperature of zero and you ask, um, uh, the sky is to OpenAI, it will return with the temperature of zero. The sky is blue. If you put the temperature higher, the more unpredictable will be the answer. So you can come back saying that the sky is, uh, this remote controller, for example. This with the high temperature, for example two. This is the response. So we have the, uh, the model, the date, um, the choices where we have the answer. So we have the text and then we have the usage. So we have the tokens that we send in the prompts, the token for completion. So for the answer and then the total token used. Now let's see what modules are available for Drupal at the moment. So we have the OpenAI ChatGPT integration, that which is a suite of modules that uh, that basically can, uh, can can connect to OpenAI and use some of their models. So what we're going to see today is the OpenAI SDK editor integration, the content editing tools, the ChatGPT explorer, and then the OpenAI Dall-E, uh, model as well module as well.</p>
+
+<p>How we solve it. We solve it as usual using Composer and then we run Drush to install it. We then go to OpenAI to create a new a new secret key. So in this case already created. But if you create, if you click on create new secret key. You will see these windows here. So you give a name and then you click on Create Secret key. You copy the key and then you go into. You also need the organization ID or this is always from the OpenAI account. Then under Drupal in the OpenAI settings, you need to add the European key. Uh, and then the, the organization ID and now you're ready to go. You can start installing all the other modules which, which will connect then to all the models in OpenAI. So we start with the editor submodule. So we run Drush to install it. And basically this will basically add a button available for the editor. So we go into the basic HTML text format for example in the settings. And we add this button under the available buttons. Then in the same page we configure the the module, the temperature and the max token to be used between the the the prompt and the answer.</p>
+
+<p>And this is what is going to look like. So the, the, the, the functionality will give us the option to do the x completion, the adjust the tone and voice to summarize the text we wrote and to translate it, and also to reformat and connect the correct HTML. If we have done something with the with the HTML in the body. So we click on text completion and we open with the the windows with the prompt. So we add for example in this case tell me the history of Drupal. And then the system starts writing on on the body directly of the of the node. Then we can change the tone. For example, I can ask them to change it as to tell me as a five years old. Then of course you can summarize it. This will not show any prompt. It will just summarize text you have selected in the in the body. You can also translate it. And this translation is not related to any language that you have installed into Drupal into your Drupal, uh, into your Drupal settings. So, uh, sorry. Yes, into double translation. So this is not a language that we've installed, is any language that you want.</p>
+
+<p>Then we can test the OpenAI content tools submodules. So we install it. And this provides on the right hand side of the of the node edit mode, edit node. And then in the add node form a uh, the changing tone functionality to summarize and also suggests taxonomy, which we'll see later in the demo. So these are the options that are giving us so nice text tools. Changing tone. Summarize. Suggest. Taxonomy. Content. Title. This is how this Ajax taxonomy works. So we choose the body field that we want and we click on subject taxonomy. At the moment this is a basic functionality is just reading the body of the node and giving some form of the keyword. If we want to give, if we want to receive, um, the taxonomy based on our vocabularies, for example, in the prompts we can send also the array with all our our terms. And we can ask him to find the most appropriate keyword matching our our terms. So those are the moments, just the basic functionality. This is how we can extend the the OpenAI module.</p>
+
+<p>So it's using the OpenAI PHP client package. And basically we need to use the class OpenAI. We create the client and then we use the completion method to, for example, create a to do what we've done. We've seen before so we can pass the module and the prompt. So this is the basic functionality of the OpenAI PHP client. And then in our Drupal module we can use the same thing. But in this case we pass again the module the prompt the temperature and the max token that we have been we set on our settings on the Drupal side. And then the response will be under choice, uh, the first item and then text. Another model that I want to talk about is, um, uh, is ChatGPT content assistant module with this module. Uh, this module is a lightweight, uh, version of the other module. You can create content, you can translate content and also create images. So you install it as usual, you require it from Composer and you install with Drush. And then in the settings we need to set the modules the model, the endpoint, the endpoint for creating images, the OpenAI access token or OpenAI key, the max token, the temperature, and then the content types where we want to enable this functionality.</p>
+
+<p>So in this case, instead of having, um, in the WYSIWYG in the editor, here we have it as as a link here once you click the button. You'll see a pop up with the ChatGPT content generator. You can ask him any question and then it will start generating the content which will stay in the pop up. Then, if you're happy with the content, you can click use this content and it will be pasted directly into the body of your of your node. A for translation. This is related to the to the language that have been installed into Drupal. So you have, for example, installed Dutch. And then you can you can go and in the translation tab and you can click on translate using ChatGPT. And it will translate all the text field that you have in that node. How you can extend the ChatGPT content assistant so you can. Uh ChatGPT content assistant uses its own class and is doing its own call, is not using any package. So you need to need to use the GPT API and then the get GPT response text. This will do the same thing that we're doing on the other module using the PHP client, the OpenAI PHP client.</p>
+
+<p>So now that we see that we can integrate OpenAI into our system, we can create many other types of functionality for the content editor. So they can add create content, they can map taxonomy to the content that they wrote. They can choose keywords. They can generate the titles. They can do many things, but not also for this or many other things. They can create an image, they can create images. For example, we're going to see in the demo. So now that I have created content, what we can do, we can basically index those content. We can improve the search experience. We can train GPT with our own data. So for example we have an FAQ. We can we can teach GPT in a with with with our FAQ so it knows our services. And we will use them bindings and rug that will go through now. So Rag is a retrieval augmented generation. So it combines the strengths of pre-training languages with retrieval system. And it's done in two. Part one is the retrievers which is the queries to the vector database. And then the generator that produce more informed and contextually relevant relevant response.</p>
+
+<p>Basically in a human language. In this case it will be GPT. How we do the embeddings. The embeddings is a vector of floating points. So basically, just like a coordinate of what the semantic meaning of a word over sentence is. So for example, we can use it in search. We can use it for recommendation and for classification. So the embeddings can be represented in this way. Three. So this is an example. For example, we have the the word cat which gets the coordinate of two and three. Then we have a another word dog which gets the coordinate two and four. And then we have the point C which have the coordinate seven and one. So when he is doing a semantic, when OpenAI is doing a semantic, semantic search is checking the distance between the coordinates between the two words. So in this case cat and dog, they are similar because they are both animals. For example, while car is more distant from the two because not an animal, for example. Where we can store those coordinates. We can store it.</p>
+
+<p>In this case, my example will be done in pinecone, which is a managed database vector, and you can use the API to, uh, to the queries to the to pinecone. So how we can integrate it. So we need uh, two modules actually three. So the first one is search API of course. Then we have search API and search API attach. So search API attachment. So the first one says API I will will add the functionality for searching in your within your content on the vector database and search API attachment will let you add attachment to the search API. So first we we, uh, we select the search API attachment settings. So we select in this case the PDF to text extractor. Because we're going to upload some PDF. The system is going to read the PDF and send it to the vector database for storing it. And after that, in the embedding setting. In the search OpenAI, we set up the model to use and which vector plugin we're going to use. And then in the API index we are going to add the field attachment, which is the first one here under general.</p>
+
+<p>So this adds the search attachment. We had the type of binding. I also added the attachment here and here in the body. And here the body here has a binding embeddings. Then we add the block or search API so we can see a pop up where we can chat with OpenAI and make a question to our, uh, our documents. And this is an example. So I've uploaded a document regarding AI and in healthcare. So I'm asking uh GPT form to tell me about the AI and healthcare. And if return the content, the node that is that talks about AI and healthcare, and also the white paper that has been added into it here. So ready for the demo? Not yet. The. I want to talk about the the tokens. So tokens, as I said, is a piece of text that has been, uh, parsed out for further processing. So the machine doesn't understand human language, they understand numbers. So what we do, everything that we pass to to the LM is going to be translated into numbers. So first we get the words and we translate it into numbers. And then for the meaning for the semantic meaning of the word of the sentence, we again we translate it into numbers, in this case coordinate for example a token.</p>
+
+<p>So we have this. This is the uh this is an example. So we have these poems, uh, these points. And uh, we have the token. So token usually is about four character. And in this case we can see it. So we have this sentence with 292 characters and there are 76 tokens. And then they're going to be translated into tokens tokens ID. Here. So this is what's going to be sent to the, uh, to the OpenAI. So to the LM to make you understand what we are saying. And, uh, now there is a restriction on tokens so you can send up to 4000 tokens. So when you have a document which is, for example, 400 pages long, you can use a technique where you can basically chunk this piece of content and send it to the embeddings and send and then send it to the vector database. So in this way. So you have the original text. Then you have the text splitter that does into chunks, and then it sends it to the embeddings model that will return uh coordinates coordinates for the meaning of that specific uh sentence or word.</p>
+
+<p>And then this the bigger picture. So you have for example, a PDF or a piece of content. It will be separated into chunks. Each chunks will be sent to OpenAI for embeddings. It will return the coordinates. The coordinates then will be stored in a vector database which are ready to be used. Then from a Drupal application, someone had a prompt. Then the question will be embedded or forgetting the semantic meaning. Then it will do the query for the vector database. The vector will have a database, returns the results, and then the LM will will generate a more human response and they will send it back to Drupal. Okay, now we have the demo time. Yeah. We have our my application. So let's go back here. So for example here and we can again ask uh. And now is performing the search into the vector database. Taking a bit second. Okay, so now it turns return the, uh, the response, mainly based on the PDF that I uploaded, because my content is just this part here, nothing more. And most of the content is on the PDF, so it's returning PDF, uh, information based on the PDF.</p>
+
+<p>So that means that we can upload many white papers, many PDF and let them index. And then the end user can go into our application and start questioning those, uh, PDFs before even reading it. That's really useful when we are doing some research and you want to go through a 200 pages PDF to see if it's relevant to you, but you can chunk it, you can store it in a vector database and then is ready to be used for the for the end user, for questioning and for information. So, um, it is as a good case on, on the legal field, on the healthcare as well. And um, if you're not using PDF, well, just the FAQ is good for the customer service where you put all your contact information and how to solve a problem into, into, uh, vector database. And then the user can use it through the AI. So let's see how we can configure it. So we go to configuration. And we have the OpenAI. His module here right. So here we have the settings. The available module that we can use. Then we have here the. Search API attachment that I showed before.</p>
+
+<p>So here I've selected the PDF structure. I have here the binary to my to the PDF structure in my server. And then in the embedding settings. This is still from OpenAI. I have selected the content. And the model to use, and which vector plugin I'm going to use. You can choose between Milvus and Pinecone. I choose pinecone for this information, for this, for this demo. And then here you can add your pinecone information like um API key. Once it is set up, you can create your search. Such server, so it will be with pinecone. When the backend is automatically taken from the bindings. And then in my search. Index. I have added content and files. And then if so, set the server back on. In my fields. I've selected the SSA field attachment. Those fields are automatically appears automatically for each um, for each file field that you have in your application. Then as a professor, I have the file attachments processor. And excluding these files. And this. These four search. But then for the editor.</p>
+
+<p>Let me go to the text format. Sector five here basic HTML. And the configuration. I have it here in the Act toolbar, the OpenAI. And here in the OpenAI tools is enabled, I choose the default model, the temperature and the max token. That can be used. And then here I'm ready to be used in a content so I can start creating some content. And here I can choose the text completion. But sample I wanted to press enter. It starts typing for me. And here I can see that it's receiving the response. And is done now. For example, I can select it. And they can, uh, for example, translate it. I. Now has been translated into Italian automatically. The same text that was there. Then from the from the. GPT added, uh, content tool we have here, so let's do it back in English. Translate it back. Okay. Now we can use one of these. For example, we can analyze the text. To see if there is any privacy violation. We can. We don't need to select because we choose the body field. We can analyze it. And this does not relate any content policy.</p>
+
+<p>We can, for example, adjust the tone and this does not append it directly into the body. It will show it here. So let's write. Example. And showing it here. We can also summarize it. So if this. So we can copy and paste it in our summary we can suggest content title for example. He served Chicago in this case. And also we can suggest taxonomy. So. History. Chicago. Then the other module that I show is this one. So we can click here generate using chat GPT. And again. Now you will not write it here, but directly in the pop up. This takes a bit because it's not writing directly here. Okay. There is a timeout error. See this is the the risk of the of the live demo. Let's try it again. I think he's going to. There is some issue on their side, I guess. But anyway, let's do something more funny. So, uh, let me see a second. Let me go to configuration and we can do the dolly image generation. So we use the three. We can set this size. Here we get the URL response. And we can, uh, do something.</p>
+
+<p>Let's see. So we are in Chicago so we can do Terminator, for example, playing for Chicago Bulls. Let's see what's what's happening now. Submit. Okay. Let's see. Are you ready? Okay. So this is the image that has been generated by GPT now with the prompt that we said. Okay. Uh, prompt wise, uh, we can test, of course. Um, as you want to do in our application. Uh, from here, for example, we we have the ChatGPT explorer. So this, uh, in this way, you can you can test ChatGPT, you can ask any question, you get the response. The response is based on this prompt here. So this is the profile settings. This is the the first uh information that they were going to give. So we are saying that we are Drupal uh Drupal website. So everything that we will ask will be returned related to Drupal. So in this case. So, for example, if I ask, uh, how to build a controller. And we submit. I will get the response based on this. So to build a controller in Drupal you typically create a module, blah blah. So here there are all the information for Drupal.</p>
+
+<p>But for example we refresh to clear the cache. So. So for example, if I say instead of saying that hey, I'm a Drupal website, um, I am a Laravel developer, for example, and now I ask, uh, how to build. Controller. We submit. Now it's giving the response based on this profile on the Laravel developer profile. So how we can use this one? Again, we can use it for um, for example, for customer service where we can provide many information to to the prompt before the users ask any question. So this can be set as a profile for any, um, things that you're, that you're building. Okay. Now look at the slide. So in this session we saw, um, what's the status of the modules in the open AI modules in Drupal. We saw how we can connect the API and extend the current functionality. And also we say we saw how we can train the LM with our own data using using Rag. So now that, um, that we know how to do both things, we can we can just start developing and we can we can create we can talk to our, uh, to our editors, see what they need.</p>
+
+<p>We can do custom, uh, application for our clients. We can extend our, our our our current website. We can we can do many things, uh, many things we want. But I'm just telling you is that you can also draw your spaghetti into the wall and, uh, that's it. So thank you.</p>
+
+<p>&gt;&gt;:<br>
+Thanks. And if anyone has any questions, you can, uh, come up to the laptop up here and ask.</p>
+
+<p>&gt;&gt;:<br>
+Um, have you had any problems with rate limits with organizations? Um, you know, a. Pardon. Sorry. Yeah. Any problems with rate limits like organizations hitting rate limits on search, things like that. Uh sorry. Having. Sorry organization. I'm not sure. Can you hear me? Uh, yes. No. Yes. Okay, okay. Have you had any problems with organisations hitting GPT rate limits? Um, rate limits, in which case in terms of, uh, of expenses or on the token one on the token limit, or. Aren't there API calls or. I'm not sure if tokens or API calls are different, but have you with sort of like you, you reach the top of your plan as far as either calls or tokens in a. Uh, so basically for that, um, you can just give me a second. And I think I have it in here. So this is the usage, right? Uh, so one of the limits that you can set is, uh, is this so. Right. So you can when you reach the limit, you can, uh, you can send a notification. So this in terms of, uh, API calls, uh, tokens are just the number of like, um, uh, just like words that you can send in in one single, um, uh, in one single request.</p>
+
+<p>So when you do an API request, you have a limit on the number of words, uh, in this case, tokens you can send. Uh, but to avoid that one, you can, uh, chunk the, uh, the request in many in you can change the text in many more, uh, requests. But as, as far as I know, there is no limit apart from this one that you set on your own. And, um, that's it. So there are not limit uh, you can do in terms of numbers. But there is a per call cost, right? Yes, yes. So for example, today, uh, if you see during this demo I use the image module. I don't know if you can see my screen, but I use the image model, I use the embedding module models, the one call with GPT turbo and uh, couple of calls with GPT four. So everything is done on the node side was was GPT four and it was $0.15. And all the others were were less than $0.01. And the image model to generate uh, this image was $0.08. Okay, so it's a lot more expensive to generate than to call. Uh, yes. The more, yeah, the more coal you generate. Yes, the more expensive it becomes.</p>
+
+<p>Yes. So. Okay. Thank you. Okay. Welcome. Okay if there are no other questions. Uh, thank you very much. Vincenzo. That was. That was great. Yeah. Thanks. Thank you very much for. Yeah. Coming out virtually. Yeah. Thanks. So here the resources and then there's contribution day on on Friday.</p>
+
+<p>&gt;&gt;:<br>
+Yeah.</p></div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-65948095e749c135cd53da68faaaf70609ac6e933ab5b987bf60674a4e23e6b8">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/8490">https://mid.camp/8490</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+  <section class="map-banner">
+      <div class="views-element-container block block-views block-views-blockevent-venue-block-1" id="block-hatter-views-block-event-venue-block-1">
+  
+    
+      <div><div class="container view view-event-venue view-id-event_venue view-display-id-block_1 js-view-dom-id-885d44d1f108ad29ef7a4e9b60fe2dd427819c36a44a2c5276356cf228ed8210">
+  
+    
+      
+      <div class="view-content">
+          <div class="views-row">
+
+
+<div class="map-overlay">
+  <span class="map__label">Location</span>
+  <h2 class="map__title"><span class="field field--name-title field--type-string field--label-hidden">DePaul University - Lincoln Park Student Center</span>
+</h2>
+  
+            <div class="field field--name-field-address field--type-address field--label-hidden field__item"><p class="map__address" translate="no">
+          2250 N Sheffield Ave. <br>
+            Chicago, IL 60614<br>
+  </p>
+</div>
+      
+  <a href="../venue/depaul-university-lincoln-park-student-center.html" class="cta-link--yellow">Learn more  <span class="cta-arrow"></span></a>
+</div>
+<div id='map' class="map"></div>
+</div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-fd7fb24cd96b10afc7fa40783359c38706d7a515950f39d89e880020a1603d60">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/acquia.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2024-02/Acquia%20Droplet%20Blue.png" width="2000" height="2000" alt="The Acquia logo" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#87eee9e1e8c7eaeee3e4e6eaf7a9e8f5e0"><span class="__cf_email__" data-cfemail="5f363139301f32363b3c3e322f71302d38">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/8490","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"ajaxTrustedUrl":{"form_action_p_pvdeGsVG5zNF_XLGPTvYSKCf43t8qZYSwcfZl2uzM":true},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_U1jmi93nTJG2lPAKzexs4tMZWFR2YMMoIoiPckW421U.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJx1yksKgDAMRdENabskSfUZK2kjTfCzeyfiQHB04XBZlQUDVZLL82iRP9At5I4WWTSR9OsLhbakZ3cgzdpKfBogKKgeJjhlsWC043cqMCPGDa0vM_I"></script>
+<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.js"></script>
+<script src="../../sites/default/files/js/js_RAkHj2z9vY4q-6RsYuiXkqPbxgsRWrLsVQRz36mKiGA.js%3Fscope=footer&amp;delta=2&amp;language=en&amp;theme=hatter&amp;include=eJx1yksKgDAMRdENabskSfUZK2kjTfCzeyfiQHB04XBZlQUDVZLL82iRP9At5I4WWTSR9OsLhbakZ3cgzdpKfBogKKgeJjhlsWC043cqMCPGDa0vM_I"></script>
+
+  </body>
+</html>

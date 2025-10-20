@@ -1,0 +1,2058 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="Feeds and Migrate were two primary contrib modules used for data import since early versions of Drupal.  Quick comparison of two modules: Feeds module has great friendly UI that allows site builders configure and import data, Migrate is built for developers with power to perform complex backend data processing but UI for this module was less than ideal." />
+<link rel="canonical" href="feeds-ui-migrate-engine-dream-migrations-and-imports.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Feeds UI + Migrate Engine = Dream Migrations and Imports | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Feeds UI + Migrate Engine = Dream Migrations and Imports | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_Qoyy92GHt9RyGOt8N3WS_9HRsJcJBywJ2IhXudzvST4.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJw9jFEKwzAMQy-ULkcqTqx2AaceUdbRnX6hpfsRTzyhbEIeMQkR8sVLsT9XkLKCd99ch_OGQa2KlS_CU3pHi6t5EpsyGXiwo16ne1H4jJqg81JgGhv48o1lx3TKMcGH8cxHdX0bfg1uOh4.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_QAC1R0aFoF1mIVQtLAaSE24B2iwnT2ZCa0cZDeZsPV0.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJw9jFEKwzAMQy-ULkcqTqx2AaceUdbRnX6hpfsRTzyhbEIeMQkR8sVLsT9XkLKCd99ch_OGQa2KlS_CU3pHi6t5EpsyGXiwo16ne1H4jJqg81JgGhv48o1lx3TKMcGH8cxHdX0bfg1uOh4.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJw9jFEKwzAMQy-ULkcqTqx2AaceUdbRnX6hpfsRTzyhbEIeMQkR8sVLsT9XkLKCd99ch_OGQa2KlS_CU3pHi6t5EpsyGXiwo16ne1H4jJqg81JgGhv48o1lx3TKMcGH8cxHdX0bfg1uOh4.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJw9jFEKwzAMQy-ULkcqTqx2AaceUdbRnX6hpfsRTzyhbEIeMQkR8sVLsT9XkLKCd99ch_OGQa2KlS_CU3pHi6t5EpsyGXiwo16ne1H4jJqg81JgGhv48o1lx3TKMcGH8cxHdX0bfg1uOh4.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="feeds-ui-migrate-engine-dream-migrations-and-imports.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-hatter-midcamp2019navigation-menu" id="block-hatter-midcamp2019navigation" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-midcamp2019navigation-menu">Midcamp 2019 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" title="About MidCamp" data-drupal-link-system-path="node/191">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--venue">
+        <a href="../about/venue.html" data-drupal-link-system-path="node/192">Venue</a>
+            </li>
+          <li class="primary-nav__sublist-item item--travel">
+        <a href="../about/travel.html" title="Travel and Accommodations" data-drupal-link-system-path="node/188">Travel</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../about/lunch.html" title="Lunch options" data-drupal-link-system-path="node/189">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--volunteer">
+        <a href="../article/volunteer-help-midcamp.html" title="Volunteer!">Volunteer!</a>
+            </li>
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2019/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../../2020/news.html" data-drupal-link-system-path="2020/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--attendees">
+        <a href="../attendees.html" data-drupal-link-system-path="2019/attendees">Attendees</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" data-drupal-link-system-path="2019/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--spread-the-word">
+        <a href="../article/spread-word.html" data-drupal-link-system-path="node/371">Spread the Word</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" title="Sponsors" data-drupal-link-system-path="node/197">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--become-a-sponsor">
+        <a href="../sponsor-midcamp.html" title="Sponsor MidCamp" data-drupal-link-system-path="node/186">Become a Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../../jobs.html" title="Jobs" data-drupal-link-system-path="jobs">Jobs</a>
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" title="Schedule" data-drupal-link-system-path="node/190">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--all-sessions">
+        <a href="../sessions.html" data-drupal-link-system-path="2019/sessions">All Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--summits--training-wed">
+        <a href="../schedule/wednesday.html" title="Summits &amp; Training (Wednesday)" data-drupal-link-system-path="2019/schedule/wednesday">Summits &amp; Training (Wed)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-thu">
+        <a href="../schedule/thursday.html" title="Sessions (Thursday)" data-drupal-link-system-path="2019/schedule/thursday">Sessions (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-fri">
+        <a href="../schedule/friday.html" title="Sessions (Friday)" data-drupal-link-system-path="2019/schedule/friday">Sessions (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--contribution-sat-">
+        <a href="../contribution-day.html" title="Contribution Day" data-drupal-link-system-path="node/332">Contribution (Sat) </a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-terms-and-conditions">
+        <a href="../../speaker-terms-and-conditions.html" title="Speaker Terms and Conditions" data-drupal-link-system-path="node/21">Speaker Terms and Conditions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../../speaker-resources.html" title="Speaker Resources">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--topic-tracks">
+        <a href="../../topic-tracks.html" title="Topic Tracks" data-drupal-link-system-path="node/10">Topic Tracks</a>
+            </li>
+  </ul>
+
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2019.html" hreflang="en">MidCamp 2019</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Feeds UI + Migrate Engine = Dream Migrations and Imports</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="219" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2019-03-21T18:30:00Z" class="datetime">Thursday, 1:30 pm CDT</time>
+ - <time datetime="2019-03-21T19:30:00Z" class="datetime">Thursday, 2:30 pm CDT</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-82" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-field-link field--type-link field--label-hidden field__item"><a href="https://zoom.us/my/midcamp314b" target="_blank" class="button--primary">Go to Room 314B - old</a></div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>Feeds and Migrate were two primary contrib modules used for data import since early versions of Drupal. &nbsp;Quick comparison of two modules: Feeds module has great friendly UI that allows site builders configure and import data, Migrate is built for developers with power to perform complex backend data processing but UI for this module was less than ideal.</p>
+
+<p>Starting&nbsp;D8 migrate module is in core to support one-click upgrades from earlier Drupal versions – great news. In the hallway of Baltimore&nbsp;DrupalCon two years ago maintainers of Feeds and Migrate started conversation about using migrate engine to power Feeds UI – seems to be a win-win solution for everyone – developers, site builders, content managers, end users.&nbsp; Today we will demo what has been completed, and what still needs to be done, and how everyone in Drupal&nbsp;community&nbsp;benefits from this effort.&nbsp;</p>
+
+<p><strong>Session Takeaway:&nbsp;</strong>Comparison of current status of Feeds and Migrate in Drupal 8 and discussion about work that has been completed and work that still needs to be done on Feeds_Migrate module&nbsp;<a href="https://www.drupal.org/project/feeds_migrate">https://www.drupal.org/project/feeds_migrate</a>.&nbsp;</p>
+
+<p><strong>Expected Attendees:&nbsp;</strong>This session is designed for back end developers, site builders, content managers and strategists who are planning overall site development.</p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/XLIffbaz07c?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-presenter-slides field--type-file field--label-above">
+    <div class="field__label">Presenter Slides</div>
+              <div class="field__item">
+<span class="file file--mime-application-pdf file--application-pdf"> <a href="../../sites/default/files/2018-11/Feeds+Migrate-DrupalCon2019.pdf" type="application/pdf">Feeds+Migrate-DrupalCon2019.pdf</a></span>
+</div>
+          </div>
+
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Irina Zaks</h4>
+
+      Web Developer and Co-Founder
+
+
+          @
+              <a href="http://fibonacciwebstudio.com/">Fibonacci Web Studio</a>
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p dir="ltr">Fibonacci Web Studio is a group of experts that develop cutting edge web tools for research and academia. We work with a wide variety of passionate people doing fascinating and fulfilling work: researchers, academics, doctors, law professors, lawyers, judges, administrators, and advocates. Our goal is to help them do and share that work more efficiently, thoughtfully, and beautifully.</p>
+
+<p dir="ltr">Irina Zaks is the founder of Fibonacci Web Studio.&nbsp; She is a web developer, a technology teacher, and an open-source software evangelist with Stanford Open Source Lab.&nbsp; &nbsp;</p></div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2019-02/20180411_drupalconprofile.jpeg%3Fitok=7Zfp5rGe" width="175" height="220" alt="drupalista" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Back-End</div>
+          <div class="field__item">Community</div>
+          <div class="field__item">End users / Content Admin</div>
+              </div>
+      </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p>hello hi everyone and welcome to our</p>
+
+<p>first afternoon session press the red</p>
+
+<p>button so hopefully according the topic</p>
+
+<p>of my presentation is how to do</p>
+
+<p>migrations with ease we just had a</p>
+
+<p>wonderful wonderful presentation about</p>
+
+<p>how to write migrations and as great as</p>
+
+<p>it is it seems a little bit very high</p>
+
+<p>entry barriers so before I can learn</p>
+
+<p>this migration it's gonna take a long</p>
+
+<p>time and maybe by that time people will</p>
+
+<p>be out of business altogether so today</p>
+
+<p>I'm gonna talk about the way how to</p>
+
+<p>makes things easier and one of the big</p>
+
+<p>goals is to increase Drupal adoption and</p>
+
+<p>hopefully the conversation would lead to</p>
+
+<p>having the module that allows content</p>
+
+<p>managers work with migrations in a more</p>
+
+<p>efficient way and wider Drupal adoption</p>
+
+<p>I with developer and open source</p>
+
+<p>evangelist today I'm gonna talk about</p>
+
+<p>what content tools are available for</p>
+
+<p>Drupal 8 I'm gonna concentrate on</p>
+
+<p>comparing what a seaman was different in</p>
+
+<p>the feeds module which is one of the top</p>
+
+<p><br>
+which is now in core which is a huge</p>
+
+<p>change and gives a lot of new directions</p>
+
+<p>for development and then I would like to</p>
+
+<p>present a new module that were working</p>
+
+<p>on and invite everyone to use it try to</p>
+
+<p>contribute it evaluated give us the</p>
+
+<p>feedback and the hope is that at bat</p>
+
+<p>camp who will be able to present</p>
+
+<p>actually working module and first</p>
+
+<p>migrations done with feed migrate we're</p>
+
+<p>using dev tools things will break be</p>
+
+<p>aware so before I dive into migrations I</p>
+
+<p>know that everyone had been working with</p>
+
+<p>the websites but I like to put text</p>
+
+<p>things in context</p>
+
+<p>websites don't exist forever and they</p>
+
+<p>change as change organizations that they</p>
+
+<p>support and that is again this is our</p>
+
+<p>angle our end users we don't want to</p>
+
+<p>forget about it when we're very busy</p>
+
+<p>coding this excellent wonderful</p>
+
+<p>migration except that nobody can use</p>
+
+<p>except for us and we've done that what</p>
+
+<p>we're moving the round couple of</p>
+
+<p>definitions we're moving structured data</p>
+
+<p>from files from a other websites and we</p>
+
+<p>have different goals sometimes when we</p>
+
+<p>bring in something from the old</p>
+
+<p>scientists at one time paying some</p>
+
+<p>things to want to pull in on the regular</p>
+
+<p>basis like news changes profile stuff</p>
+
+<p>like this and you want to be able to</p>
+
+<p>have easy ways to monitor what's going</p>
+
+<p>on and of course now so what tools do we</p>
+
+<p>have to reach our goals I'm gonna</p>
+
+<p>concentrate on three main things that we</p>
+
+<p>have right now and what we would like to</p>
+
+<p>have all these three things I'm going to</p>
+
+<p>be demoing and when I am jamming we keep</p>
+
+<p>in mind different scenarios sometimes</p>
+
+<p>we'll start with a data source we have a</p>
+
+<p>website it has structure data we know</p>
+
+<p>what people are going to be bringing in</p>
+
+<p>so this is one scenario to have data</p>
+
+<p>reformat and then put it into</p>
+
+<p>destination container that would build</p>
+
+<p>based on what we already have this works</p>
+
+<p>great like when you have an old site or</p>
+
+<p>removing it today new site some types of</p>
+
+<p>work in Reverse we have existing website</p>
+
+<p>where we want to aggregate different</p>
+
+<p>news or different information or you</p>
+
+<p>know new products or whatever we do this</p>
+
+<p>is when we have preset destination</p>
+
+<p>container and we want in we can tell</p>
+
+<p>people format your data this is how you</p>
+
+<p>need to format and then we will bring it</p>
+
+<p>in with one-click this works well for</p>
+
+<p>imports and ongoing everyday</p>
+
+<p>so if we're ready we're gonna start</p>
+
+<p>looking at all this tools I'm gonna do</p>
+
+<p>this demos reasonably quickly without</p>
+
+<p>much details because they have been</p>
+
+<p>described in tonight in many places many</p>
+
+<p>times but if that's the context for the</p>
+
+<p>conversation so this is our this is</p>
+
+<p>scenario when we have existing website</p>
+
+<p>this is our website we have director of</p>
+
+<p>different doctors in different units</p>
+
+<p>with different roles we're hosting our</p>
+
+<p>site on Pantheon Pantheon thank you very</p>
+
+<p>much for ongoing support and like it's</p>
+
+<p>been great always and we know our login</p>
+
+<p>credentials so I'm gonna simply run</p>
+
+<p>where did I put it here I guess so I'm</p>
+
+<p>gonna read the manual because things are</p>
+
+<p>gonna be exactly the way it says in the</p>
+
+<p>manual I'm gonna log into my existing</p>
+
+<p>database shit that I'm I have correct</p>
+
+<p>password and forge 23 to 76</p>
+
+<p>and see all the rights words and</p>
+
+<p>hopefully things will work as expected</p>
+
+<p>we'll see in a minute</p>
+
+<p>sorry it is live damn but this you know</p>
+
+<p>do we have to prove the point we have to</p>
+
+<p>eat our own duck foot if we can't run</p>
+
+<p>the damn leg what is this worth so while</p>
+
+<p>Drupal is thinking we have time to you</p>
+
+<p>know talk walk have coffee have</p>
+
+<p>discussions and talk about what is great</p>
+
+<p>about this upgrade because in the</p>
+
+<p>pattern we're doing six to seven we had</p>
+
+<p>to set up all the content types</p>
+
+<p>we had to create data expert data import</p>
+
+<p>this upgrade button saves me three</p>
+
+<p>operations and he would convert it to</p>
+
+<p>dollars it's going to be quite a large</p>
+
+<p>amount as we said reading manual is very</p>
+
+<p>important and of course things don't</p>
+
+<p>connect so we're gonna use gonna give it</p>
+
+<p>another try</p>
+
+<p>Pantheon Pantheon database password</p>
+
+<p>maybe I didn't put the right password</p>
+
+<p>let's double shift to three two seven</p>
+
+<p>six but if it doesn't work</p>
+
+<p>two three two seven six</p>
+
+<p>then we will use our imagination and</p>
+
+<p>blame it on the network and to move on</p>
+
+<p>to the site where we only did run this</p>
+
+<p>migration</p>
+
+<p>so while migration is happening what is</p>
+
+<p>happening in the back is the drupal is</p>
+
+<p>setting your migration and keeps</p>
+
+<p>reporting whatever it is doing in the</p>
+
+<p>Condor riding screen if it works and if</p>
+
+<p>it doesn't work then it writes it in the</p>
+
+<p>log and it is installing your modules</p>
+
+<p>and then it starts configuring that</p>
+
+<p>migration that we heard about in the</p>
+
+<p>previous presentation it's setting all</p>
+
+<p>the yellowed files it's setting all the</p>
+
+<p>connections and then it starts up</p>
+
+<p>greeting menu items image Styles</p>
+
+<p>taxonomy is everything has been abraded</p>
+
+<p>behind the scenes and when you're done</p>
+
+<p>you have all your content moved very</p>
+
+<p>nicely from this Drupal 7 directory into</p>
+
+<p>into this Drupal 8 installation</p>
+
+<p>everything has been preserved except for</p>
+
+<p>some you know special things that we can</p>
+
+<p>talk about at a different time epsilon</p>
+
+<p>is our set yields are set the only</p>
+
+<p>challenge is that if I made something</p>
+
+<p>make changes in my original site I don't</p>
+
+<p>have a way to bring them in again</p>
+
+<p>that is a one-time thing okay so this is</p>
+
+<p>not a really ideal tool for me when I'm</p>
+
+<p>working through ongoing changes stuff so</p>
+
+<p>I'm looking so this is one-time thing</p>
+
+<p>and then you have to be very particular</p>
+
+<p>about different setups so my next line</p>
+
+<p>of defense is configuring input with</p>
+
+<p>feeds which is similar to what we're</p>
+
+<p>doing six to seven but how many people</p>
+
+<p>are familiar with feeds okay so we don't</p>
+
+<p>need to dive into the detail discussion</p>
+
+<p>is no that is exactly what you don't</p>
+
+<p>need to do so what you need to have you</p>
+
+<p>need to have modules that you're going</p>
+
+<p>to be using no because this is the power</p>
+
+<p>of this migrated core that already have</p>
+
+<p>in six and seven there was feeds module</p>
+
+<p>and there was migrated module this were</p>
+
+<p>two full stacks of everything to do my</p>
+
+<p>to move things around and on average</p>
+
+<p>people besides it has more site building</p>
+
+<p>and content people they would use feeds</p>
+
+<p>and people who use more developers would</p>
+
+<p>do migrate that's how it work because</p>
+
+<p>Interpol ate my grade is a poor it makes</p>
+
+<p>the case of for using feeds as a you</p>
+
+<p>more of as a UI and not building all</p>
+
+<p>this huge engine and parsing and</p>
+
+<p>processors that were sitting in the</p>
+
+<p>feeds in Drupal 7 and that's what we're</p>
+
+<p>gonna talk about so</p>
+
+<p>for for the feeds part is there somebody</p>
+
+<p>who does not know how to it's world so</p>
+
+<p>the important thing about feeds I'm</p>
+
+<p>gonna leave more time for discussion and</p>
+
+<p>skip through things that everyone knows</p>
+
+<p>the important part about feeds is your</p>
+
+<p>first configure feed type you have UI to</p>
+
+<p>put in all this information and then you</p>
+
+<p>can do mapping and then you can do</p>
+
+<p>tampering this is how you configure</p>
+
+<p>migration so if we're now talking</p>
+
+<p>migrate language we're setting migration</p>
+
+<p>where the data source is now you cannot</p>
+
+<p>do it with mikrotik normally don't don't</p>
+
+<p>do it with migrate module okay so in</p>
+
+<p>migrate module you know what's your data</p>
+
+<p>source you build migration and then you</p>
+
+<p>have the destination in feed opposed the</p>
+
+<p>other direction we built the container</p>
+
+<p>with predefined data structure and then</p>
+
+<p>we say now I can start importing all</p>
+
+<p>kind of reuse like for example this news</p>
+
+<p>I am going to import from this file if I</p>
+
+<p>wanted to say let's say this our news</p>
+
+<p>from and why you and why you write then</p>
+
+<p>I'm going to be this is going to be</p>
+
+<p>something that</p>
+
+<p>but time to news aggregation from</p>
+
+<p>different university I will say okay</p>
+
+<p>this our news from Stanford right I can</p>
+
+<p>upload another file or provide different</p>
+
+<p>HTTP and they all come in in the same</p>
+
+<p>place I don't need a developer things</p>
+
+<p>happen real quickly and it is a very</p>
+
+<p>efficient module and so our empty users</p>
+
+<p>and again I'm representing end users and</p>
+
+<p>then the next you know there's an end</p>
+
+<p>user there's content managers and I'm a</p>
+
+<p>site builder so in this food chain</p>
+
+<p>developers are the next ones was like I</p>
+
+<p>need from this is what I need from you</p>
+
+<p>developers so we can serve our end users</p>
+
+<p>and Drupal will be as popular as</p>
+
+<p>WordPress this is you know there's this</p>
+
+<p>chase that keeps going on so the migrate</p>
+
+<p>module also gives you some UI options</p>
+
+<p>there's more and more options coming in</p>
+
+<p>but then we're not really designed to</p>
+
+<p>serve this population of site builders</p>
+
+<p>and content editors so this is an</p>
+
+<p>example of how you can run Josh define</p>
+
+<p>death in bring in your configuration</p>
+
+<p>then you can do execute however it</p>
+
+<p>doesn't work for that users and this is</p>
+
+<p>why we came with this idea that feeds</p>
+
+<p>and migrate can work together and we're</p>
+
+<p>going to take the best of both worlds</p>
+
+<p>and hopefully it will work for everyone</p>
+
+<p>and everyone will live happily ever</p>
+
+<p>after</p>
+
+<p>so this is like nice stories almost</p>
+
+<p>Alice in Wonderland and this is what the</p>
+
+<p>things that we're trying to bring in we</p>
+
+<p>already talked about how they they go</p>
+
+<p>the opposite direction and thank you</p>
+
+<p>very much to people on slack if you can</p>
+
+<p>hear me from the</p>
+
+<p>and for everyone who contributed their</p>
+
+<p>their time to early version so I did</p>
+
+<p>this presentation like four times now</p>
+
+<p>and every presentation brings in a</p>
+
+<p>little bit more a little bit more a</p>
+
+<p>little bit more so at Drupal pawn a year</p>
+
+<p>ago Mike Decker fold it first Emma so I</p>
+
+<p>was able to show it to Lucas and to you</p>
+
+<p>live on Kapil they got together said</p>
+
+<p>this is a good development path change</p>
+
+<p>Dixon I joined us and now we have this</p>
+
+<p>huge channel which is happening right</p>
+
+<p>now very conveniently scheduled where we</p>
+
+<p>have weekly meeting approximable at the</p>
+
+<p>same time where people can ask questions</p>
+
+<p>about feeds talk to whatever is</p>
+
+<p>happening and there's something</p>
+
+<p>happening right now and I don't know if</p>
+
+<p>mike is around but hopefully he is so at</p>
+
+<p>bath camp with it powerpoints release</p>
+
+<p>and then their people from marching from</p>
+
+<p>tableau also joined the team and today</p>
+
+<p>I'm gonna hopefully demo this new</p>
+
+<p>project let's welcome this new baby</p>
+
+<p>project is on drupal.org by the most</p>
+
+<p>recent code is on github or go back and</p>
+
+<p>forth there is slack channel their skin</p>
+
+<p>we even have like this all the HR</p>
+
+<p>managed project management tools here so</p>
+
+<p>well this said I am going to</p>
+
+<p>hopefully define new migration so first</p>
+
+<p>I enabled module feed migrate and</p>
+
+<p>Fitzhugh I fit my great UI so I'm going</p>
+
+<p>into my normal migrations tab I defined</p>
+
+<p>migration group for whatever and this is</p>
+
+<p>how I am adding migration let's say I</p>
+
+<p>already have news defined for let's look</p>
+
+<p>at the people I can't really execute</p>
+
+<p>migration from here we will have to make</p>
+
+<p>a lot of changes to this UI because some</p>
+
+<p>of these things belong actually to</p>
+
+<p>migrate but they will not work with this</p>
+
+<p>configuration because migrations are not</p>
+
+<p>executed in this part but you can edit</p>
+
+<p>this Mike migration and for those who</p>
+
+<p>use migration on the daily basis this is</p>
+
+<p>the part that is UI that generates your</p>
+
+<p>llamo files but sir I can define here</p>
+
+<p>basic settings and this is big new tab</p>
+
+<p>that did not exist before and here I can</p>
+
+<p>say I want to map</p>
+
+<p>body and the source will be say in the</p>
+
+<p>in my CF CSV or whatever I'm using</p>
+
+<p>gladsome how it will be by a tab things</p>
+
+<p>that we are need a lot of warp on would</p>
+
+<p>be setting process plugins that are not</p>
+
+<p>there yet and because they're not there</p>
+
+<p>yet</p>
+
+<p>I can do actually import today but I</p>
+
+<p>hope that with all the enthusiasm and</p>
+
+<p>contributions that I have seen and</p>
+
+<p>hopefully maybe there will be a buffer</p>
+
+<p>spring tomorrow maybe things will get</p>
+
+<p>moving quicker and once I defined my</p>
+
+<p>migration this entity doesn't really</p>
+
+<p>have a full name yet I can come here and</p>
+
+<p>I can say I would like to import I will</p>
+
+<p>be imported directors and surgeons I can</p>
+
+<p>edit it I can say you know what I want</p>
+
+<p>to replace existing content instead of</p>
+
+<p>editing these are things that are done</p>
+
+<p>on different basis for each feed</p>
+
+<p>importer because this is Visser dis</p>
+
+<p>decisions that are made by content</p>
+
+<p>people not by developers and then I can</p>
+
+<p>say okay I've got the new source</p>
+
+<p>hopefully I will find it where it's</p>
+
+<p>supposed to be XML and I'm gonna save</p>
+
+<p>and import</p>
+
+<p>and mm that input field and I already</p>
+
+<p>know that and one of the reasons when</p>
+
+<p>I'm doing this presentation inviting</p>
+
+<p>everyone is contribute because we need</p>
+
+<p>more people to make this connection um</p>
+
+<p>so this is kind of in the presentation</p>
+
+<p>you can take home and see at the screens</p>
+
+<p>that are supposed to say what it how it</p>
+
+<p>actually should work there's couple of</p>
+
+<p>items that are clear to define as they</p>
+
+<p>either work in progress or things that</p>
+
+<p>we do want on the UI but they're not</p>
+
+<p>there and yes it is compatible with</p>
+
+<p>current migration so you have migration</p>
+
+<p>set up on on your system it will show up</p>
+
+<p>to today in the UI and you can pick you</p>
+
+<p>can create new importer from the old</p>
+
+<p>migration the only problem is like</p>
+
+<p>usually in the old migration you will</p>
+
+<p>have source predefined and we don't have</p>
+
+<p>right now mechanism they want to</p>
+
+<p>override it they will want to replace it</p>
+
+<p>do it what just not show migrations that</p>
+
+<p>have hard code hard coded source these</p>
+
+<p>are all things for to do to brainstorm</p>
+
+<p>to be an architect and to do all these</p>
+
+<p>great things so this is so this is one</p>
+
+<p>of the things that are like our prime</p>
+
+<p>target and then this is another wishlist</p>
+
+<p>item</p>
+
+<p>in the similar way like if you have data</p>
+
+<p>source that you already know that</p>
+
+<p>already shows your data structure and</p>
+
+<p>you want to build up all the all the</p>
+
+<p>mapping in the similar way to migration</p>
+
+<p>it would be great if it could be done</p>
+
+<p>eventually when and how we don't know</p>
+
+<p>yet plugins tampers work in progress it</p>
+
+<p>would be great to have one screen where</p>
+
+<p>all you can go through all the plugins</p>
+
+<p>and check them out instead of going down</p>
+
+<p>one by one in a field and we hope that</p>
+
+<p>eventually we might have it be the</p>
+
+<p>processor is done in the way similar to</p>
+
+<p>the way web form does it when you have</p>
+
+<p>this beautiful flyout hx4 and just like</p>
+
+<p>everything is on the same screen very</p>
+
+<p>cool so this are things that are very</p>
+
+<p>specific to feeds but are not I don't</p>
+
+<p>know are they defined in migrate like</p>
+
+<p>how often do you want to run migrations</p>
+
+<p>do you usually define it well so this is</p>
+
+<p>why I like with are things that you can</p>
+
+<p>make different decisions on different</p>
+
+<p>content units but for example we want to</p>
+
+<p>pull data from Yahoo every day and we</p>
+
+<p>want to pull from dipole news once a</p>
+
+<p>week because we know they're not updated</p>
+
+<p>we care about some other things and then</p>
+
+<p>of course we want to be able to very</p>
+
+<p>carefully roll back delete or stop</p>
+
+<p>migrations</p>
+
+<p>so this is what we're doing but if there</p>
+
+<p>are developers who would like to</p>
+
+<p>participate we'll cordially invite them</p>
+
+<p>if there are companies that are</p>
+
+<p>interested in being first users trying</p>
+
+<p>saying all this will work better for us</p>
+
+<p>this is where we can do things this is</p>
+
+<p>what is this presentation about to bring</p>
+
+<p>people together and to make things</p>
+
+<p>happen and where I can spend more time</p>
+
+<p>in the details but I would rather he</p>
+
+<p>like in the question/answer mo manages</p>
+
+<p>demo mode</p>
+
+<p>questions anyone</p>
+
+<p>so the selectors</p>
+
+<p>you can select the options is that just</p>
+
+<p>pulling in whatever is available for</p>
+
+<p>that current site did you created a new</p>
+
+<p>process plug-in or something would it</p>
+
+<p>show up as an option yes it would</p>
+
+<p>this is like this is very similar to the</p>
+
+<p>feeds when you are adding they feed let</p>
+
+<p>me real quickly add the feed because</p>
+
+<p>this is all about the process and this</p>
+
+<p>whole thing is about the details so if</p>
+
+<p>we are adding I have 15 sites open this</p>
+
+<p>one so this is the feed right so if</p>
+
+<p>we're adding feed structures feed struck</p>
+
+<p>fit type we can we can add different</p>
+
+<p>tempers is it are you asking more about</p>
+
+<p>tempers or more about something so bone</p>
+
+<p>mapping happens from data source to</p>
+
+<p>content type to the field of the content</p>
+
+<p>type one of the big challenges is how do</p>
+
+<p>we import paragraph in how would you or</p>
+
+<p>migrating field collections because</p>
+
+<p>there is no field collection of great</p>
+
+<p>automatic upgrade paths and this is a</p>
+
+<p>huge problem so all the field</p>
+
+<p>collections now has to be migrated one</p>
+
+<p>way or another anyone using field</p>
+
+<p>collections in Drupal 8</p>
+
+<p>anyone using paragraphs in Drupal 8 so</p>
+
+<p>more or less path is from field</p>
+
+<p>collection to paragraphs paragraphs as I</p>
+
+<p>learned have have slightly different</p>
+
+<p>structure than field collections they</p>
+
+<p>have more connections to parent parent</p>
+
+<p>node and that makes my effort just plain</p>
+
+<p>import a little bit more complicated</p>
+
+<p>because you can Newport paragraph but</p>
+
+<p>they also need to be correctly</p>
+
+<p>identified in the parent node and it's</p>
+
+<p>not happening right now so these are big</p>
+
+<p>challenges that we're facing and we</p>
+
+<p>don't have answers today so to answer</p>
+
+<p>your question in defeats we have source</p>
+
+<p>and then we have destination this is</p>
+
+<p>very similar to to migrate but say we</p>
+
+<p>want let's say we're getting time time</p>
+
+<p>that note was created from Drupal 7 in</p>
+
+<p>not so Drupal 8 is is so time Drupal 7</p>
+
+<p>is not so there it has to be a converter</p>
+
+<p>that will put letter T in the middle so</p>
+
+<p>Drupal 8 can correctly pick up the date</p>
+
+<p>this is where either you have to write</p>
+
+<p>my great plugin which we have to do a</p>
+
+<p>year ago and it took a lot of time and a</p>
+
+<p>lot of money from our user which we</p>
+
+<p>don't want to do or we could potentially</p>
+
+<p>have here plug in then would say convert</p>
+
+<p>something to something and here it is so</p>
+
+<p>this is country to ISO code which is not</p>
+
+<p>what we need to do it will come convert</p>
+
+<p>strings to you next time step right so</p>
+
+<p>here you can write a limited number of</p>
+
+<p>plugins if you have very custom JJJ 30 I</p>
+
+<p>store all this structure in this</p>
+
+<p>elemental weather except similar Jason</p>
+
+<p>and this is my very unique processor</p>
+
+<p>this is where you will plot it</p>
+
+<p>through the you are so that gives great</p>
+
+<p>opportunities both for developers to do</p>
+
+<p>what they need to do in code within my</p>
+
+<p>grade and for end-user to say this is</p>
+
+<p>what I want this is con process does it</p>
+
+<p>answer the question</p>
+
+<p>so you can see that here we have very</p>
+
+<p>limited amount of processors available</p>
+
+<p>for feeds now because coding every nest</p>
+
+<p>processor takes time and there's not</p>
+
+<p>that much time in every day and there's</p>
+
+<p>not that many people who know how to do</p>
+
+<p>that in migrate will already have it so</p>
+
+<p>if we can have this structure so right</p>
+
+<p>now we're putting it in one of</p>
+
+<p>migrations group migrate so here we are</p>
+
+<p>putting it into migration speed</p>
+
+<p>migrations there would be nice if we had</p>
+
+<p>direct like drop-down to come in here</p>
+
+<p>but here when we're editing this so this</p>
+
+<p>is slightly different interface we have</p>
+
+<p>option to add process plugins on every</p>
+
+<p>it gives more room the hope eventually</p>
+
+<p>to compress it into a more like what</p>
+
+<p>form type thing where you have a jobs</p>
+
+<p>fly outages okay we have configuring</p>
+
+<p>everything on the same basis there's</p>
+
+<p>less clicks but for now we need to have</p>
+
+<p>at least this thing working and so this</p>
+
+<p>is where your plugins will come in and</p>
+
+<p>we have fearless leaders that will tell</p>
+
+<p>us how to do batch and that's not me</p>
+
+<p>look as I am looking at you</p>
+
+<p>so we hope that you will we can have</p>
+
+<p>like if there is enough developers who</p>
+
+<p>are interested in doing it we could</p>
+
+<p>probably have another workshop organized</p>
+
+<p>we did it last time remotely about a</p>
+
+<p>Europe like it was after Nashville it</p>
+
+<p>was in June so we did the workshop where</p>
+
+<p>Lucas showed whoever was available at</p>
+
+<p>that time how to write these plugins and</p>
+
+<p>the bed wasn't what is it was something</p>
+
+<p>else</p>
+
+<p>but that gave it start to developers who</p>
+
+<p>needed some training or to save the time</p>
+
+<p>and we'll be happy to sponsor this</p>
+
+<p>workshop there's enough interest</p>
+
+<p>because fear we would really like to see</p>
+
+<p>this happen</p>
+
+<p>this means they were over overly</p>
+
+<p>disciplined</p>
+
+<p>we're not you ask people when I do I</p>
+
+<p>people there's a reason why I've been</p>
+
+<p>doing drugs for so long because they</p>
+
+<p>like to cover so we really want to see</p>
+
+<p>the community pull together and build a</p>
+
+<p>really good user experience for</p>
+
+<p>importing data that's my plea</p>
+
+<p>we make the changes given contract and</p>
+
+<p>if we can't convince our alter egos in</p>
+
+<p>core if we need to to make those changes</p>
+
+<p>to support things like this yes thank</p>
+
+<p>you</p>
+
+<p>thank you very much because we already</p>
+
+<p>have this been happening last year I</p>
+
+<p>remember then so maintain our feeds</p>
+
+<p>yerevan cotton and James Dixon and</p>
+
+<p>marching from top law this is a running</p>
+
+<p>conversation on the feed channel this is</p>
+
+<p>where conversations are happening</p>
+
+<p>everyone is welcome to join and login</p>
+
+<p>it's on the main Drupal and it's on the</p>
+
+<p>feeds channel I remember that last year</p>
+
+<p>there was something not working</p>
+
+<p>correctly we needed some change in the</p>
+
+<p>migrate code so Lucas will know better</p>
+
+<p>than I what has been changed but it</p>
+
+<p>happened and we didn't have to wait for</p>
+
+<p>three years</p>
+
+<p>it just happens like this and I think</p>
+
+<p>this is one of the great things that I</p>
+
+<p>want to think what does that all the</p>
+
+<p>migrate people who are supporting and</p>
+
+<p>making this happen</p>
+
+<p>because from the UI perspective we have</p>
+
+<p>very very very clear understanding of</p>
+
+<p>what we want to see and we can keep</p>
+
+<p>putting up this screen this once anytime</p>
+
+<p>you're not sure how to code and where to</p>
+
+<p>place an email me 24 about seven I'll be</p>
+
+<p>happy to tell you that this like this a</p>
+
+<p>search does not exist this is just a</p>
+
+<p>Photoshop then we said it would be</p>
+
+<p>really great if I can do search from my</p>
+
+<p><br>
+this content type they never fit on the</p>
+
+<p>same page and in one pontoon type I have</p>
+
+<p><br>
+have there and every time I need to do a</p>
+
+<p>temper and I miss it by one I have to</p>
+
+<p>redo it again the search would be great</p>
+
+<p>but it's not there yet so we're looking</p>
+
+<p>at people who write to code who I'd rush</p>
+
+<p>for white command wire to join us and</p>
+
+<p>then everyone will be happy</p>
+
+<p>yes</p>
+
+<p>it sounds like there's a few different</p>
+
+<p>pieces that are kind of like you can use</p>
+
+<p>some of them you mentioned like you</p>
+
+<p>could write my greatness and then this</p>
+
+<p>could be a way of just schedule them or</p>
+
+<p>paint the way that the source works on</p>
+
+<p>fly</p>
+
+<p>it sounds like some of this is evolving</p>
+
+<p>but it's never like what is the primary</p>
+
+<p>use case for like are you intending</p>
+
+<p>excuse all of them present incentive to</p>
+
+<p>just like pick pieces that maybe you</p>
+
+<p>would use the UI to build the migration</p>
+
+<p>inscription shouldn't used to do like</p>
+
+<p>run it all the time like is there a</p>
+
+<p>singular like main juice came for this</p>
+
+<p>or is</p>
+
+<p>so the original driver was to not</p>
+
+<p>reproduce all the code for XML and Jason</p>
+
+<p>that we already have it for CSV is not</p>
+
+<p>on core so feeds that are working with</p>
+
+<p>CSV is very important piece for people</p>
+
+<p>who are working with important Excel</p>
+
+<p>files this is a huge audience</p>
+
+<p>but right now feeds do not work with XML</p>
+
+<p>or JSON and so people who are doing that</p>
+
+<p>rotation of content they have to you</p>
+
+<p>know work around it there are ways to do</p>
+
+<p>it</p>
+
+<p>and that's okay so we're looking at</p>
+
+<p>feeds more nodes in Haven even more so</p>
+
+<p>there is feeds extensible parser which</p>
+
+<p>at this point is basically reproducing</p>
+
+<p>things that are already sitting in court</p>
+
+<p>so that was original intent to reuse</p>
+
+<p>what's in there the use cases for</p>
+
+<p>migrate versus feeds can but there's</p>
+
+<p>like huge variety so it's not like it's</p>
+
+<p>all designed for our ongoing efforts or</p>
+
+<p>it's only designed for one-time thing I</p>
+
+<p>think we advantage of having this UI it</p>
+
+<p>has all the flexibility to build</p>
+
+<p>slightly different your eyes without</p>
+
+<p>investing tonne of development time</p>
+
+<p>every time there is an interesting</p>
+
+<p>module that was recently developed by</p>
+
+<p>Adam group called import source import</p>
+
+<p>we didn't I didn't test it thoroughly</p>
+
+<p>yet but that is another piece that also</p>
+
+<p>allows you to build migrations via yo I</p>
+
+<p>somewhat but that was kind of more</p>
+
+<p>limited to CSV and is not covering all</p>
+
+<p>the cases did it answer your question do</p>
+
+<p>you want to see some examples</p>
+
+<p>I think it make sense yeah it sounds</p>
+
+<p>like the</p>
+
+<p>and the UI even</p>
+
+<p>yeah we would like to I strongly believe</p>
+
+<p>that if we can get this first</p>
+
+<p>you know after release then everyone</p>
+
+<p>will have an opportunity to take it and</p>
+
+<p>actually use it then lots of companies</p>
+
+<p>large companies will say oh okay great</p>
+
+<p>that's exactly what we needed we need to</p>
+
+<p>tweak a little bit here tweaked a little</p>
+
+<p>bit there so this is like pioneers and</p>
+
+<p>avant-garde developers please join with</p>
+
+<p>you know go out there Wild West</p>
+
+<p>so if a developer wants to jump in and</p>
+
+<p>work on an issue do you have some issues</p>
+
+<p>ready to be worked on yes this is the</p>
+
+<p>best thing I could have hurt dear</p>
+
+<p>developers let me introduce you to our</p>
+
+<p>very project manager management type</p>
+
+<p>words Board of issues that he can work</p>
+
+<p>on however if you want to go to more</p>
+
+<p>familiar more familiar route you can go</p>
+
+<p>here and we have reasonably long list of</p>
+
+<p>issues the goal is to have them more or</p>
+
+<p>less well-defined because if you it's</p>
+
+<p>very difficult to go to chew them all</p>
+
+<p>all together so if I will find where we</p>
+
+<p>have all issues then I'm happy to talk</p>
+
+<p>about them one by one if you have</p>
+
+<p>questions</p>
+
+<p>[Music]</p>
+
+<p>so like this is a very simple request</p>
+
+<p>that will eliminate need to do two</p>
+
+<p>clicks right now I need to go to</p>
+
+<p>migrations that I need to add migration</p>
+
+<p>group and then list migrations if we can</p>
+
+<p>have this feed important migration group</p>
+
+<p>preset in the module and have URL this</p>
+
+<p>URL pointing there that would be great</p>
+
+<p>it's a reasonably small task for a</p>
+
+<p>developer you know and it can be done in</p>
+
+<p>limited amount of time without full</p>
+
+<p>understanding of every migrate API some</p>
+
+<p>other issues require much more detailed</p>
+
+<p>conversation if you have questions again</p>
+
+<p>feel free to email me I don't have the</p>
+
+<p>answers but I connect you to can connect</p>
+
+<p>you to the person in this room who knows</p>
+
+<p>the answer a person on squad channel who</p>
+
+<p>knows the answer work make sure that you</p>
+
+<p>get your answers</p>
+
+<p>and the goal is to release kids migrate</p>
+
+<p>and Vicki there will be both on</p>
+
+<p>DrupalCon so this is the schedule</p>
+
+<p>so this is kind of a schedule for next</p>
+
+<p>couple of months anyone going to</p>
+
+<p>DrupalCon</p>
+
+<p>this year so James Dixon will be there</p>
+
+<p>and they're scheduled off and I would</p>
+
+<p>like to invite everyone to come visit us</p>
+
+<p>at Stanford</p>
+
+<p>we're gonna have Stanford Drupal camp</p>
+
+<p>this year and me it would be great to</p>
+
+<p>see you later and then they're going to</p>
+
+<p>be some stuff happening in Seattle</p>
+
+<p>but yeah this are the issues that have</p>
+
+<p>been identified and described in his</p>
+
+<p>holders</p>
+
+<p>I can talk about different use cases or</p>
+
+<p>whatever it might be of interest to</p>
+
+<p>people in this room is generic</p>
+
+<p>well it should work for the idea is it</p>
+
+<p>should work for any eight and higher and</p>
+
+<p>we will make sure that in nine it also</p>
+
+<p>works because some people are at this</p>
+
+<p>point are not migrating to eight waiting</p>
+
+<p>for a night so they will go seven</p>
+
+<p>tonight</p>
+
+<p>so yeah the plan has to work with all</p>
+
+<p>Drupal 8 and higher versions that's the</p>
+
+<p>goal it's a different presentation I</p>
+
+<p>don't know it partially depends whether</p>
+
+<p>this module will be ready or not because</p>
+
+<p>for us migration right now we can't run</p>
+
+<p>migrations to Drupal 8 because we don't</p>
+
+<p>have enough tools to move content</p>
+
+<p>efficiently and so for me</p>
+
+<p>this model was part of for a Drupal 8</p>
+
+<p>adoption story</p>
+
+<p>this was my blocker to move like half of</p>
+
+<p>myself the sites that we maintain like I</p>
+
+<p>can't move like it we're still building</p>
+
+<p>new sites in seven because there are</p>
+
+<p>like we can't import efficiently</p>
+
+<p>paragraphs into Drupal 8 and so we're</p>
+
+<p>saying ok we're going to build in seven</p>
+
+<p>and then wait until night unless we have</p>
+
+<p>this module ready before we need to</p>
+
+<p>launch the site and then we can do it so</p>
+
+<p>it's like challenging question</p>
+
+<p>okay any more questions</p>
+
+<p>[Applause]</p></div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-654e5c50f5ad39b27d3b8a596f4591f2ccb639a3a600e814c00f69e0bcbabf34">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/219">https://mid.camp/219</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-ad05576fca27917899fe2fc228a77b6280b86b75640743b1d3e02c5768d3fe71">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/elevated-third.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-11/elevated-third-logo_0.png" width="220" height="220" alt="elevated third logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/acquia.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2019-03/Acquia_no_tagline.png" width="450" height="94" alt="Acquia" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/pantheon.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-11/pantheon-logo-color@2x.png" width="960" height="354" alt="Pantheon" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#076e696168476a6e6364666a7729687560"><span class="__cf_email__" data-cfemail="90f9fef6ffd0fdf9f4f3f1fde0beffe2f7">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/219","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_llBcjrkrgAu2wT1DR7VGL_iP6geJyiTnF_8O5ZD57VI.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJxLz89Pz0mNT8xLzKksyUwu1k9HE9DJSCwpSS3ST8_JT0rM0c0qBgAByBPW"></script>
+
+  </body>
+</html>

@@ -1,0 +1,3740 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="Sometimes canned hosting solutions like Acquia and Pantheon aren&#039;t enough. Maybe you need a specific version of an external service (like a version of Solr that isn&#039;t so ancient!). Maybe your project has major seasonable scalability issues. Maybe your organization hosts all of its other applications on AWS and DevOps isn&#039;t comfortable with adding another external cloud host. There are lots of reasons why hosting on AWS is a good idea." />
+<link rel="canonical" href="hosting-drupal-aws.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Hosting Drupal on AWS | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Hosting Drupal on AWS | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_Qoyy92GHt9RyGOt8N3WS_9HRsJcJBywJ2IhXudzvST4.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJw9jFEKwzAMQy-ULkcqTqx2AaceUdbRnX6hpfsRTzyhbEIeMQkR8sVLsT9XkLKCd99ch_OGQa2KlS_CU3pHi6t5EpsyGXiwo16ne1H4jJqg81JgGhv48o1lx3TKMcGH8cxHdX0bfg1uOh4.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_QAC1R0aFoF1mIVQtLAaSE24B2iwnT2ZCa0cZDeZsPV0.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJw9jFEKwzAMQy-ULkcqTqx2AaceUdbRnX6hpfsRTzyhbEIeMQkR8sVLsT9XkLKCd99ch_OGQa2KlS_CU3pHi6t5EpsyGXiwo16ne1H4jJqg81JgGhv48o1lx3TKMcGH8cxHdX0bfg1uOh4.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJw9jFEKwzAMQy-ULkcqTqx2AaceUdbRnX6hpfsRTzyhbEIeMQkR8sVLsT9XkLKCd99ch_OGQa2KlS_CU3pHi6t5EpsyGXiwo16ne1H4jJqg81JgGhv48o1lx3TKMcGH8cxHdX0bfg1uOh4.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJw9jFEKwzAMQy-ULkcqTqx2AaceUdbRnX6hpfsRTzyhbEIeMQkR8sVLsT9XkLKCd99ch_OGQa2KlS_CU3pHi6t5EpsyGXiwo16ne1H4jJqg81JgGhv48o1lx3TKMcGH8cxHdX0bfg1uOh4.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="hosting-drupal-aws.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-hatter-midcamp2019navigation-menu" id="block-hatter-midcamp2019navigation" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-midcamp2019navigation-menu">Midcamp 2019 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" title="About MidCamp" data-drupal-link-system-path="node/191">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--venue">
+        <a href="../about/venue.html" data-drupal-link-system-path="node/192">Venue</a>
+            </li>
+          <li class="primary-nav__sublist-item item--travel">
+        <a href="../about/travel.html" title="Travel and Accommodations" data-drupal-link-system-path="node/188">Travel</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../about/lunch.html" title="Lunch options" data-drupal-link-system-path="node/189">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--volunteer">
+        <a href="../article/volunteer-help-midcamp.html" title="Volunteer!">Volunteer!</a>
+            </li>
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2019/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../../2020/news.html" data-drupal-link-system-path="2020/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--attendees">
+        <a href="../attendees.html" data-drupal-link-system-path="2019/attendees">Attendees</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" data-drupal-link-system-path="2019/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--spread-the-word">
+        <a href="../article/spread-word.html" data-drupal-link-system-path="node/371">Spread the Word</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" title="Sponsors" data-drupal-link-system-path="node/197">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--become-a-sponsor">
+        <a href="../sponsor-midcamp.html" title="Sponsor MidCamp" data-drupal-link-system-path="node/186">Become a Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../../jobs.html" title="Jobs" data-drupal-link-system-path="jobs">Jobs</a>
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" title="Schedule" data-drupal-link-system-path="node/190">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--all-sessions">
+        <a href="../sessions.html" data-drupal-link-system-path="2019/sessions">All Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--summits--training-wed">
+        <a href="../schedule/wednesday.html" title="Summits &amp; Training (Wednesday)" data-drupal-link-system-path="2019/schedule/wednesday">Summits &amp; Training (Wed)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-thu">
+        <a href="../schedule/thursday.html" title="Sessions (Thursday)" data-drupal-link-system-path="2019/schedule/thursday">Sessions (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-fri">
+        <a href="../schedule/friday.html" title="Sessions (Friday)" data-drupal-link-system-path="2019/schedule/friday">Sessions (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--contribution-sat-">
+        <a href="../contribution-day.html" title="Contribution Day" data-drupal-link-system-path="node/332">Contribution (Sat) </a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-terms-and-conditions">
+        <a href="../../speaker-terms-and-conditions.html" title="Speaker Terms and Conditions" data-drupal-link-system-path="node/21">Speaker Terms and Conditions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../../speaker-resources.html" title="Speaker Resources">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--topic-tracks">
+        <a href="../../topic-tracks.html" title="Topic Tracks" data-drupal-link-system-path="node/10">Topic Tracks</a>
+            </li>
+  </ul>
+
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2019.html" hreflang="en">MidCamp 2019</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Hosting Drupal on AWS</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="266" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2019-03-22T15:20:00Z" class="datetime">Friday, 10:20 am CDT</time>
+ - <time datetime="2019-03-22T16:20:00Z" class="datetime">Friday, 11:20 am CDT</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-83" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-name field--type-string field--label-hidden field__item">Room 324</div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>Sometimes canned hosting solutions like Acquia and Pantheon aren't enough. Maybe you need a specific version of an external service (like a version of&nbsp;Solr that isn't so ancient!).&nbsp;Maybe your project has major seasonable scalability issues. Maybe your organization hosts all of its other applications on AWS and DevOps isn't comfortable with adding another external cloud host. There are lots of reasons why hosting on AWS is a good idea.</p>
+
+<p>It can be hard to find&nbsp;good documentation on most of the services AWS provides. The landscape changes frequently and some of the concepts aren't very accessible. There aren't a lot of examples or walk-throughs out there, so we'll show you how Breakthrough manages our AWS Drupal instances.</p>
+
+<p>We'll demonstrate our complete project pipeline from creating a fresh Drupal project; managing settings, content,&nbsp;and CMI for multiple environments; AWS EC2 and RDS setup; AWS features such as high available servers and managed services; through production deployment and scaling on demand.</p>
+
+<p>Having a familiarity with composer-based workflow and basic DevOps knowledge will be helpful but we'll try to make it understandable and accessible for newcomers and helpful and enlightening for experienced attendees. Hopefully, you'll learn some new tips and approaches to get your AWS Drupal instance running smoothly.</p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/9uFH5f88eDw?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-presenter-slides field--type-file field--label-above">
+    <div class="field__label">Presenter Slides</div>
+              <div class="field__item">
+<span class="file file--mime-application-vnd-openxmlformats-officedocument-presentationml-presentation file--x-office-presentation"> <a href="../../sites/default/files/2019-03/Hosting%20Drupal%208%20on%20AWS%20Presentation.pptx" type="application/vnd.openxmlformats-officedocument.presentationml.presentation">Hosting Drupal 8 on AWS Presentation.pptx</a></span>
+</div>
+          </div>
+
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Jonathan (Jack) Franks</h4>
+
+      Principal Software Engingeer
+
+
+          @
+              <a href="https://www.breaktech.com">Breakthrough Technologies</a>
+        
+  </div>
+    <div class="l-66-33--2"></div>
+  </div>
+
+                                                                      </div>
+          <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Mike Wagner</h4>
+
+      Sr DevOps Engineer
+
+
+          @
+              <a href="https://www.breaktech.com">Breakthrough Technologies</a>
+        
+  </div>
+    <div class="l-66-33--2"></div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Back-End</div>
+          <div class="field__item">DevOps</div>
+              </div>
+      </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p>today talking about hosting Drupal on</p>
+
+<p>AWS so that's me I think you know</p>
+
+<p>everybody knows me right okay okay so</p>
+
+<p>I've been a software developer for a</p>
+
+<p>very long time I've only been a Drupal</p>
+
+<p>dev since about 2013 Mike and I work for</p>
+
+<p>breakthrough technologies we were an</p>
+
+<p>agency we specialized in Drupal and Tao</p>
+
+<p>development for k-12 and professional</p>
+
+<p>certification assessments I was a</p>
+
+<p>Microsoft stack developer for a very</p>
+
+<p>long time probably the first 20 years of</p>
+
+<p>my career and what is you know kept me</p>
+
+<p>in this is all of you is this community</p>
+
+<p>being involved in things being able to</p>
+
+<p>be important you can't really contribute</p>
+
+<p>to that net unless you work for</p>
+
+<p>Microsoft and that is not the case here</p>
+
+<p>I I love you know building out this</p>
+
+<p>community building out parts of it with</p>
+
+<p>you guys and that this is why I do this</p>
+
+<p>I'm primarily a back-end developer and I</p>
+
+<p>mean I'll think something if I need to</p>
+
+<p>but I don't take joy from writing CSS so</p>
+
+<p>I like there there are people who do and</p>
+
+<p>they can do it</p>
+
+<p>I do everything on the command line and</p>
+
+<p>I'm happy so mostly back in developer</p>
+
+<p>yeah I got some certifications I do some</p>
+
+<p>contributions and I used to be a</p>
+
+<p>motorcycle rider</p>
+
+<p>yeah this is Mike he also works for</p>
+
+<p>breakthrough is currently a motorcycle</p>
+
+<p>rider I was let you say just a word or</p>
+
+<p>two about yourself here now</p>
+
+<p>yeah these things yeah these are the</p>
+
+<p>person that talks to computers when</p>
+
+<p>people self I stammer through some of</p>
+
+<p>this have been working with a variety of</p>
+
+<p>UNIX and various flavors of the star Nix</p>
+
+<p>for quite a while I start working in AWS</p>
+
+<p>about six years ago maybe seven almost</p>
+
+<p>and that's mostly what I do now and in</p>
+
+<p>my career breakthrough</p>
+
+<p>I do ride motorcycles now and very into</p>
+
+<p>home automation I did it</p>
+
+<p>am i I'm in the home automation my home</p>
+
+<p>is only automated except for my blinds</p>
+
+<p>which we were just talking about</p>
+
+<p>all right and today we're going to be</p>
+
+<p>talking about hosting Drupal on AWS</p>
+
+<p>kind of why we do it that this is I'll</p>
+
+<p>get to that a minute we were talking</p>
+
+<p>about how we set up the environments a</p>
+
+<p>brief overview of our dev workflow just</p>
+
+<p>so that our deployment processes make a</p>
+
+<p>little more sense how we do those</p>
+
+<p>deployments and then what else we need</p>
+
+<p>and how we set those things up what we</p>
+
+<p>will not be covering is selling you on</p>
+
+<p>AWS I don't care how you host it</p>
+
+<p>whatever like this this is what we had</p>
+
+<p>to do for some particular requirements</p>
+
+<p>and a couple of projects and how we more</p>
+
+<p>or less standardized on this for some of</p>
+
+<p>our larger projects that need any sort</p>
+
+<p>of scalability so this is not a AWS vs.</p>
+
+<p>aqua AWS vs. Pantheon vs versus self</p>
+
+<p>hosting none of that this is just how</p>
+
+<p>and why we do this so yeah all the the</p>
+
+<p>platform hosts are amazing for regular</p>
+
+<p>websites most of what we're talking</p>
+
+<p>about here not just websites a lot of</p>
+
+<p>what we do is custom web apps so like</p>
+
+<p>we're gonna talk a little bit about</p>
+
+<p>varnish and things like that I don't</p>
+
+<p>ever use martes because the only</p>
+
+<p>unauthenticated page you'll ever see is</p>
+
+<p>the login page everything is all you</p>
+
+<p>know authenticated</p>
+
+<p>so why did we have to go to AWS well we</p>
+
+<p>knew that we would lose some of the the</p>
+
+<p>great features that some of these</p>
+
+<p>platforms have like deploying on Acquia</p>
+
+<p>from environment to environment is so</p>
+
+<p>easy it's a drag and drop maybe a couple</p>
+
+<p>dress commands snip snap it's done</p>
+
+<p>Pantheon is the same way ours are not</p>
+
+<p>quite that easy but we've got this down</p>
+
+<p>to a science and it's it approaches it</p>
+
+<p>but again you're going to need a</p>
+
+<p>terminal to do it we have a bunch of our</p>
+
+<p>platforms use apps that aren't just</p>
+
+<p>Drupal so again for a lot of our test</p>
+
+<p>taking stuff we integrate with Tao which</p>
+
+<p>is probably the premier of open source</p>
+
+<p>test taking and test authoring engine</p>
+
+<p>it's a PHP app that is very particular</p>
+
+<p>in what version of PHP it wants what</p>
+
+<p>version of Redis it wants what version</p>
+
+<p>of MySQL it wants we can't just throw a</p>
+
+<p>server at it it has to be set up in a</p>
+
+<p>very specific way so with you know with</p>
+
+<p>that in mind that we're not just running</p>
+
+<p>a Drupal app here we needed a good</p>
+
+<p>consistent manageable way to to deal</p>
+
+<p>with all of our platforms so that this</p>
+
+<p>this gave us that we wanted to make sure</p>
+
+<p>that we could manage our own config and</p>
+
+<p>infrastructure and and do that through</p>
+
+<p>code have commit history and you know</p>
+
+<p>manage that just like anything else any</p>
+
+<p>of our other code so we've got</p>
+
+<p>you know config an infrastructure in</p>
+
+<p>code chef and terraform and we we have</p>
+
+<p>needs every so often for custom stuff</p>
+
+<p>that isn't available on some of the big</p>
+
+<p>hosts for a while we were talking about</p>
+
+<p>a no SQL document store solution and we</p>
+
+<p>were debating between mago and caps base</p>
+
+<p>and like so now Mongo has managed RDS</p>
+
+<p>service with AWS you can just spin it up</p>
+
+<p>at this amazing couch base on the other</p>
+
+<p>hand needs like it doesn't have just a</p>
+
+<p>nice composer installable PHP driver</p>
+
+<p>there's a custom PHP extension you have</p>
+
+<p>to turn on and there's some builds that</p>
+
+<p>you have to do it's it's really a pain</p>
+
+<p>and you know we can't just do that on be</p>
+
+<p>empty on we also have a need for my</p>
+
+<p>modern versions but you know the nice</p>
+
+<p>way to say that is our preferred</p>
+
+<p>versions of things like solar I'm sure</p>
+
+<p>that a lot of us in here have stumbled</p>
+
+<p>against these old bespoke versions of</p>
+
+<p>solar that the platform's give us and</p>
+
+<p>it's not ideal we have our own dev</p>
+
+<p>workflow it's get flow related again</p>
+
+<p>we'll get to that later but you know</p>
+
+<p>there's no there's no pull requests and</p>
+
+<p>any of the the remote get repos for any</p>
+
+<p>of the</p>
+
+<p>the platform hosts this is a big part of</p>
+
+<p>our workflow we've got a team lead a def</p>
+
+<p>lead that you know manages pull requests</p>
+
+<p>and does merges based on the other team</p>
+
+<p>members you know work and what we would</p>
+
+<p>have to do is we would have to have our</p>
+
+<p>own remote our own hosted private</p>
+
+<p>repository and then maintain another</p>
+
+<p>remote and push all those things up to</p>
+
+<p>Aqua air Pantheon or whatever and you</p>
+
+<p>know that's that's a pain but some of</p>
+
+<p>one of the most important things is the</p>
+
+<p>tuning our setup for heavy use like one</p>
+
+<p>of my projects right now is a</p>
+
+<p>professional certification board exams</p>
+
+<p>practice exams so you know I mean that</p>
+
+<p>this is one of our smaller test taking</p>
+
+<p>platforms we might have to deal with</p>
+
+<p>eight or nine hundred concurrent users</p>
+
+<p>and you know launching tests and</p>
+
+<p>thousands of tests a day and you know we</p>
+
+<p>just we can't get that sort of you</p>
+
+<p>spaced scalability you know on these</p>
+
+<p>other platforms we also have a like a</p>
+
+<p>State Board of Education you know a full</p>
+
+<p>statewide standardized testing system</p>
+
+<p>and so I haven't checked since I was in</p>
+
+<p>the office so that was a couple of days</p>
+
+<p>ago so even through mid-march our month</p>
+
+<p>to date is so far 70,000 some tests so</p>
+
+<p>like we can't get that sort of custom</p>
+
+<p>scalability that we need in order to run</p>
+
+<p>one of those questions oh you were so</p>
+
+<p>nobody on two issues is that a problem</p>
+
+<p>with the test software that's very heavy</p>
+
+<p>on resources or it is it is Tao is not</p>
+
+<p>that is good as Drupal is</p>
+
+<p>resource-intensive it's it's not optimal</p>
+
+<p>in any way to use of its databases</p>
+
+<p>really for in some ways it's as it</p>
+
+<p>accumulates data over time it gets</p>
+
+<p>progressively worse</p>
+
+<p>you have to adjuster that</p>
+
+<p>and another part of that is for this we</p>
+
+<p>only need that level of of hardware for</p>
+
+<p>very particular times so you know</p>
+
+<p>customizing your your tiers of usage</p>
+
+<p>isn't just it's not nice and rule-based</p>
+
+<p>like like we have there's no I get what</p>
+
+<p>we'll get to that so we do a lot of cool</p>
+
+<p>stuff with you know Amazon storage and</p>
+
+<p>backup solutions we do some amazing</p>
+
+<p>things with logs and alarms and log</p>
+
+<p>metrics we'll get some of that too</p>
+
+<p>that's that's really cool and we can</p>
+
+<p>really control to a real fine level our</p>
+
+<p>firewall and network security which is</p>
+
+<p>something important to us because you</p>
+
+<p>know we like to lock these things down</p>
+
+<p>so we're gonna briefly talk about cost</p>
+
+<p>control again this is not really the</p>
+
+<p>focus of what we're talking about here</p>
+
+<p>but it was a benefit for us anything</p>
+
+<p>that we need for these couple of apps</p>
+
+<p>these are all in that most expensive</p>
+
+<p>tier on our big few platforms and you</p>
+
+<p>know yeah that didn't it didn't give us</p>
+
+<p>a lot of fine control and it's been for</p>
+
+<p>Tao especially like you know we can't</p>
+
+<p>just run that on you know one of these</p>
+
+<p>platforms we needed to host</p>
+
+<p>now in the centralized building this is</p>
+
+<p>not something I deal with but apparently</p>
+
+<p>it's very important I know that we do</p>
+
+<p>occasionally build these things and then</p>
+
+<p>when we're done with a project we're</p>
+
+<p>handing it off to the client we also</p>
+
+<p>hand off the Amazon account that goes</p>
+
+<p>with it so they get to control their own</p>
+
+<p>billing like I know that just a couple</p>
+
+<p>weeks ago we were working on you know if</p>
+
+<p>an Theon project and the the we've</p>
+
+<p>finished and now the client wants to</p>
+
+<p>take it over and getting that</p>
+
+<p>transferred over to them was not just</p>
+
+<p>that he is not as easy as I hoped it</p>
+
+<p>would be and it's not it's super simple</p>
+
+<p>Oh neat have you guys seen ever we have</p>
+
+<p>process for that now smoothly</p>
+
+<p>first towards backups we have our full</p>
+
+<p>daily backups and we can do</p>
+
+<p>point-in-time recoveries which was super</p>
+
+<p>cool I don't know if you've ever started</p>
+
+<p>to deploy and realized as your your TV</p>
+
+<p>is failing that you forgot to back up</p>
+
+<p>the database mm-hmm</p>
+
+<p>so we can manage all of that and restore</p>
+
+<p>it to just before the the deployment</p>
+
+<p>went and and it's great so we've you</p>
+
+<p>know we've had our practice data</p>
+
+<p>recoveries and then an actual data</p>
+
+<p>recovery which again totally my own</p>
+
+<p>fault but we still needed it and and it</p>
+
+<p>just it works it worked exactly the way</p>
+
+<p>we wanted it to and we've got a lot of</p>
+
+<p>security there so we do we do these</p>
+
+<p>snapshots of the DV servers of the disks</p>
+
+<p>and and our cloud storage so for the</p>
+
+<p>most part we're using EFS but it's true</p>
+
+<p>for s3 as well yeah and Tao the custom</p>
+
+<p>backup solutions we need to do outside</p>
+
+<p>of the Drupal realm like the tile backup</p>
+
+<p>is it's really cranky about what it</p>
+
+<p>wants to once its database its file</p>
+
+<p>system and it's Redis backed up it's a</p>
+
+<p>moment in time</p>
+
+<p>so we had to create a custom solution</p>
+
+<p>for that right so we have to we actually</p>
+
+<p>have to you know disable Tao we have to</p>
+
+<p>put Tao into maintenance mode before we</p>
+
+<p>can do all these backups because you</p>
+
+<p>can't restore anything in Tao that is</p>
+
+<p>that was in use for Drupal that's not</p>
+
+<p>such a big deal our our backups here are</p>
+
+<p>real simple we didn't really gain</p>
+
+<p>anything for our Drupal backups here</p>
+
+<p>yeah</p>
+
+<p>I'm just gonna ask are you gonna cover</p>
+
+<p>how you setup your databases briefly to</p>
+
+<p>use the RDS so yeah we will talk about</p>
+
+<p>that yeah yeah one of the more exciting</p>
+
+<p>things I think the log aggregation stuff</p>
+
+<p>is really cool we can set up all kinds</p>
+
+<p>of custom alerts and reports and alarms</p>
+
+<p>and things for you know for anything</p>
+
+<p>that gets recorded in a log which which</p>
+
+<p>is real neat well we'll talk about that</p>
+
+<p>we have examples of that later we grow</p>
+
+<p>that all the time if someone comes up</p>
+
+<p>and says hey I'd like to know when this</p>
+
+<p>happens</p>
+
+<p>we use a series of terraform scripts and</p>
+
+<p>create those symmetrical arms and then</p>
+
+<p>start issuing them to whoever asked for</p>
+
+<p>that information</p>
+
+<p>and the cool thing is since it's all</p>
+
+<p>scripted it's antara form if we need</p>
+
+<p>that for another project or another</p>
+
+<p>platform yes these with stays in our</p>
+
+<p>toolbox and it just propagates itself as</p>
+
+<p>we spin up new projects so we've got you</p>
+
+<p>know we've got distribution lists for</p>
+
+<p>different types of alarms you know like</p>
+
+<p>you know usage and 500 errors whatever</p>
+
+<p>you know there are different groups of</p>
+
+<p>people that get all those and these are</p>
+
+<p>just some of the things we check you</p>
+
+<p>know we check our CPU usage we check for</p>
+
+<p>errors and warnings although some</p>
+
+<p>projects we turn the warnings off</p>
+
+<p>because there's a lot of them but the</p>
+
+<p>errors we always want to know about all</p>
+
+<p>of our disk and memory utilization you</p>
+
+<p>know different service statuses and so</p>
+
+<p>on</p>
+
+<p>for the network security you're able to</p>
+
+<p>really tweak this you can fine-tune this</p>
+
+<p>kind of however you want you want to</p>
+
+<p>talk a little bit about a security group</p>
+
+<p>in a way the security roots of AWS were</p>
+
+<p>kind of like their initial idea of</p>
+
+<p>firewall providing functionality of what</p>
+
+<p>is allowed between the internet and a</p>
+
+<p>load balancer or load balancer and</p>
+
+<p>server one server to another server is</p>
+
+<p>able live control there you can define</p>
+
+<p>different rules for in and out protocol</p>
+
+<p>supports and then more recently they</p>
+
+<p>added a service called Web Application</p>
+
+<p>Firewall</p>
+
+<p>which tax before the traffic hits your</p>
+
+<p>your system so we had a situation where</p>
+
+<p>we were being we had a denial service</p>
+
+<p>attack on this testing platform and so</p>
+
+<p>we wanted to come up with a way to</p>
+
+<p>prevent that before it actually hit our</p>
+
+<p>load balancer to start impacting our</p>
+
+<p>servers in our therefore cost because</p>
+
+<p>the servers have to accommodate it so</p>
+
+<p>many more servers and longs to withstand</p>
+
+<p>that attack the Web Application Firewall</p>
+
+<p>to be able to stop it before it got into</p>
+
+<p>the servers so on AWS takes the brunt of</p>
+
+<p>it and</p>
+
+<p>are actually built</p>
+
+<p>that we've had you know a couple</p>
+
+<p>challenges here and there with with</p>
+
+<p>tightening things down like this the AWS</p>
+
+<p>SDK is amazing but it's not super well</p>
+
+<p>documented especially for PHP so we have</p>
+
+<p>things like you know two internal</p>
+
+<p>applications and one is hitting web</p>
+
+<p>services on another and we can get that</p>
+
+<p>all locked down so we it only accepts</p>
+
+<p>traffic from you know or other whatever</p>
+
+<p>we set up our other AWS account so you</p>
+
+<p>know like we have to generate a</p>
+
+<p>certificate sign their requests generate</p>
+
+<p>the requests and then make it and we can</p>
+
+<p>do all that through the SDK it's again</p>
+
+<p>it's it's wonderful but you gotta figure</p>
+
+<p>out a little bit how to do it we're</p>
+
+<p>gonna have a series of blog posts that</p>
+
+<p>are gonna go into that because they're</p>
+
+<p>just there aren't that really yeah</p>
+
+<p>another reason we had we ended up going</p>
+
+<p>with AWS in terms of meeting those</p>
+
+<p>Google and tau</p>
+
+<p>they talked one another on the back end</p>
+
+<p>having them running in the same place</p>
+
+<p>allows us to restrict their</p>
+
+<p>communication</p>
+
+<p>to a private network that only they use</p>
+
+<p>so it's much less late but it also</p>
+
+<p>doesn't traverse the internet it's all</p>
+
+<p>encased in that secure networks</p>
+
+<p>our configuration management we talked a</p>
+
+<p>little bit about this it's really</p>
+
+<p>wonderful to be able to store all of</p>
+
+<p>your config as code in a repository and</p>
+
+<p>you know you get commit history anytime</p>
+
+<p>you you update or change an environment</p>
+
+<p>setting you always have something to</p>
+
+<p>roll back to you always have a map of</p>
+
+<p>what it is that you've done so we use</p>
+
+<p>both terraform and chef for this we have</p>
+
+<p>a chef server that that manages</p>
+
+<p>environmental specific stuff so installs</p>
+
+<p>config settings all that kind of stuff</p>
+
+<p>we start out with you know a basic</p>
+
+<p>template and then add stuff in as we</p>
+
+<p>need it this gives us you know our base</p>
+
+<p>image Apache you know people have asked</p>
+
+<p>us what about nginx we can do that too</p>
+
+<p>we use Apache and again this is mostly</p>
+
+<p>because of some of the other apps that</p>
+
+<p>we're supporting really or finicky about</p>
+
+<p>where they run so to keep them all nice</p>
+
+<p>and level and all the same we're still</p>
+
+<p>on Apache and then we load up cookbooks</p>
+
+<p>and modules from our own repository turn</p>
+
+<p>on the features that we want exclude the</p>
+
+<p>ones that we don't and and then spin it</p>
+
+<p>up and the cool thing about this is that</p>
+
+<p>if devs do have something that they need</p>
+
+<p>again this is going to you know</p>
+
+<p>something like we need to use Couchbase</p>
+
+<p>for this for this project we you know</p>
+
+<p>we've got some some config code that we</p>
+
+<p>can do or if we don't have it a dev or a</p>
+
+<p>dev ops person can write it that gets</p>
+
+<p>submitted we can you know make a pull</p>
+
+<p>request then that ops mostly Mike</p>
+
+<p>and review and tweak and then it gets</p>
+
+<p>committed and then for the next build or</p>
+
+<p>you know whatever we want to do it it'll</p>
+
+<p>spin up yeah</p>
+
+<p>and it can do some things that's complex</p>
+
+<p>or simple it's you need or like that's</p>
+
+<p>one example of it could be either you</p>
+
+<p>just need to adjust an apache directive</p>
+
+<p>so you know jack and tweak that in the</p>
+
+<p>chef cookbook and i can then pull that</p>
+
+<p>change or merge it and put it on the</p>
+
+<p>ship's server and then like the six</p>
+
+<p>drupal servers well then pull it to</p>
+
+<p>themselves and recover themselves and</p>
+
+<p>restart apache to imply the change we</p>
+
+<p>also use this for some custom drupal</p>
+
+<p>settings now we use config split to you</p>
+
+<p>know to better manage these but you know</p>
+
+<p>there are things like you know any</p>
+
+<p>custom config 'that has secrets in it</p>
+
+<p>you know our smtp convicting stuff like</p>
+
+<p>that that we don't want just out in a</p>
+
+<p>git repo and our git repos are private</p>
+
+<p>for the most part but you know we do do</p>
+
+<p>open source stuff like you know any we</p>
+
+<p>had done the teacher system the portal</p>
+
+<p>for the park if you remember that</p>
+
+<p>standard test thing week that failed a</p>
+
+<p>few years ago so you know that's an open</p>
+
+<p>source repository for the platform</p>
+
+<p>itself but we have specific things you</p>
+
+<p>know we need to set up and and we manage</p>
+
+<p>those extra configs thru we have get lab</p>
+
+<p>for that we don't have a</p>
+
+<p>private get repo or github repo for it</p>
+
+<p>and then chef pulls in the files that we</p>
+
+<p>have configured for that project sets</p>
+
+<p>them up where they're supposed to be</p>
+
+<p>does it import if it needs to and and</p>
+
+<p>then you know again it just it sets</p>
+
+<p>itself up now yeah we chose to run a git</p>
+
+<p>lap server in the house they have</p>
+
+<p>Community Edition that's free and we</p>
+
+<p>keep things that are private that we</p>
+
+<p>don't want exposed anywhere even a</p>
+
+<p>possibility of such in that git</p>
+
+<p>repository as opposed to get up you know</p>
+
+<p>even though those repositories we using</p>
+
+<p>get our private you know they're still</p>
+
+<p>out there so this keeps it on our</p>
+
+<p>network it also makes it easier to</p>
+
+<p>handoff let a client fork you know their</p>
+
+<p>their codebase if they want to and then</p>
+
+<p>we maintain our own set of secrets so</p>
+
+<p>they can maintain their own set of</p>
+
+<p>secrets however they everything</p>
+
+<p>and this gives us a real good handle on</p>
+
+<p>drift control nothing really gets out of</p>
+
+<p>hand because anytime something looks</p>
+
+<p>like it gets out of hand you can pull</p>
+
+<p>down an unhealthy server spin and do one</p>
+
+<p>up and it's it's transparent yeah and</p>
+
+<p>chefwell new periodically of all the</p>
+
+<p>things in his purview of Jack happens to</p>
+
+<p>change something temporarily to tests of</p>
+
+<p>had to change our PHP change shuffle</p>
+
+<p>we've heard</p>
+
+<p>and I'm sure he is this happened not</p>
+
+<p>long ago yeah it's I mean I like the</p>
+
+<p>effect some people don't like that</p>
+
+<p>them without their fixed plate</p>
+
+<p>inspecting at the head</p>
+
+<p>so to set up Tripoli on AWS I know we've</p>
+
+<p>been talking a lot about town but again</p>
+
+<p>it's just sort of the setting of</p>
+
+<p>expectations is that this was a big</p>
+
+<p>driver for us we just wanted everything</p>
+
+<p>to be the same but we're really going to</p>
+
+<p>focus on Drupal now so what do we need</p>
+
+<p>for Drupal well we need an ec2 server</p>
+
+<p>ec2 is the webserver part it's the app</p>
+
+<p>server so you know it's the the Linux</p>
+
+<p>box it's got the web server on it is</p>
+
+<p>what runs PHP that sort of thing we run</p>
+
+<p>our ec2 on an Amazon Linux one am i so</p>
+
+<p>we've got a couple of challenges there</p>
+
+<p>you see in our dev workflow we do a lot</p>
+
+<p>of Orlando and docker stuff and the only</p>
+
+<p>place to get Amazon Linux one is on</p>
+
+<p>Amazon so there's no docker images for</p>
+
+<p>it it is locked down it is proprietary</p>
+
+<p>we're looking at moving to the newer</p>
+
+<p>Linux two which does have docker image</p>
+
+<p>support but we actually we don't have</p>
+
+<p>any production apps on this yet so we</p>
+
+<p>haven't had a lot of issues with not</p>
+
+<p>having our dev OS and our ec2 OS be</p>
+
+<p>exactly the same yeah we've got that</p>
+
+<p>stuff pretty well sorted probably again</p>
+
+<p>this is something we will we will be</p>
+
+<p>changing to what you're using the sense</p>
+
+<p>basically so we've got our web server</p>
+
+<p>now we need a shared file system now</p>
+
+<p>again we'll talk about this a bit later</p>
+
+<p>for Amazon you have two main choices</p>
+
+<p>which is s3 and EFS s3 is powerful and</p>
+
+<p>cool but boy is it a pain if you're you</p>
+
+<p>need a module to hit it on Drupal and if</p>
+
+<p>something gets slightly out of</p>
+
+<p>configuration with the module versus the</p>
+
+<p>actual s3 service it'll take down your</p>
+
+<p>whole site ik Drupal can't serve up any</p>
+
+<p>files without it and then getting in</p>
+
+<p>there to disable it like that's a pain</p>
+
+<p>it got to be painful enough for the</p>
+
+<p>little game that we got from using it</p>
+
+<p>that we switched over to Amazon's EFS</p>
+
+<p>which is really just a normal file</p>
+
+<p>system you mounted up like a file system</p>
+
+<p>the whole the whole server doesn't even</p>
+
+<p>know the difference yes that's wonderful</p>
+
+<p>you need RDS which is where we have all</p>
+
+<p>of our database set up again we'll get</p>
+
+<p>into that in a little bit we use the AWS</p>
+
+<p>certificate manager which again we'll go</p>
+
+<p>into more detail on and it's wonderful</p>
+
+<p>to have everything nicely consolidated</p>
+
+<p>and</p>
+
+<p>we can do things like manage free HTTPS</p>
+
+<p>certificates on you know not in</p>
+
+<p>permanent boxes which is wonderful and</p>
+
+<p>then we need to set up whatever else we</p>
+
+<p>need you know solar Harnish whatever</p>
+
+<p>SMTP</p>
+
+<p>that kind of stuff so we use a soloist</p>
+
+<p>Bluegreen style deployment for for our</p>
+
+<p>environments and so a soloist is</p>
+
+<p>basically one master image that you</p>
+
+<p>build up you get it all set up and then</p>
+
+<p>it's what's used to clone into the other</p>
+
+<p>images that we use to deploy out to the</p>
+
+<p>you know to the various environments so</p>
+
+<p>it's a it's a Bluegreen deployment</p>
+
+<p>meaning we build up the master image the</p>
+
+<p>new image for whatever we're trying to</p>
+
+<p>deploy we convert that into an ami from</p>
+
+<p>the Amazons actual image and then when</p>
+
+<p>we start the deployment it does what's</p>
+
+<p>called the Bluegreen deployment so it</p>
+
+<p>leaves the the old servers up for as</p>
+
+<p>long as it can sets up the new ones in</p>
+
+<p>parallel and then once new servers are</p>
+
+<p>green you know they're they're healthy</p>
+
+<p>they're good they're they're taking</p>
+
+<p>traffic it will start pulling down to</p>
+
+<p>old servers until all of the servers are</p>
+
+<p>green</p>
+
+<p>goes that</p>
+
+<p>yeah I do actually so and part of this</p>
+
+<p>this set up and you know our custom you</p>
+
+<p>know chef secrets management is that</p>
+
+<p>that we can pull secrets management out</p>
+
+<p>of the repository for its master view we</p>
+
+<p>have standardized on one password in our</p>
+
+<p>organization so every cats where it gets</p>
+
+<p>its own or every project gets its own</p>
+
+<p>vault and then you know API keys the</p>
+
+<p>database passwords you know a user one</p>
+
+<p>password that kind of stuff those things</p>
+
+<p>go in there and are secured so that</p>
+
+<p>certain people can or can't get to them</p>
+
+<p>and it's all again it's all secure yeah</p>
+
+<p>it used to be that it's been up with new</p>
+
+<p>project we had</p>
+
+<p>instead of Drupal in that with usually</p>
+
+<p>want to counter for example and I would</p>
+
+<p>set the password initially and then we</p>
+
+<p>had various methods over the years to</p>
+
+<p>securely trance translate or get it to</p>
+
+<p>needed it now we just have in one</p>
+
+<p>password a project specific fall we had</p>
+
+<p>the devs on that team or two involved</p>
+
+<p>when they know that they can go to that</p>
+
+<p>vault in one password to get all the</p>
+
+<p>Secret Service credentials that they</p>
+
+<p>might need it's great we don't need to</p>
+
+<p>worry about sending or emailing or</p>
+
+<p>texting or post-it notes with passwords</p>
+
+<p>on them everything is done in a nice</p>
+
+<p>controlled manner so you know nothing</p>
+
+<p>gets lost or propagated the way</p>
+
+<p>so ec2 again this is our webserver for</p>
+
+<p>Drupal 8 we usually have two medium</p>
+
+<p>sized servers which will dial up or down</p>
+
+<p>depending on the load the project is</p>
+
+<p>going to see they're all high</p>
+
+<p>availability which means we always have</p>
+
+<p>at least two servers running in</p>
+
+<p>different fail ability zones which in</p>
+
+<p>Amazon or AWS speak is kind of data</p>
+
+<p>centers so they have multiple regions to</p>
+
+<p>the country and around the world but in</p>
+
+<p>each reason region they have</p>
+
+<p>availability zones which roughly</p>
+
+<p>correlated to data centers so they're</p>
+
+<p>physically separated from one another so</p>
+
+<p>one datacenter as an issue network issue</p>
+
+<p>or fire or whatever the other data</p>
+
+<p>center continues to serve our</p>
+
+<p>application</p>
+
+<p>right so if that Northern Virginia</p>
+
+<p>volcano erupts we can still reserved up</p>
+
+<p>tests out of the southern Virginia at</p>
+
+<p>the Unity Center and then we can do a</p>
+
+<p>lot of host based routing trickery to</p>
+
+<p>make sure the traffic gets to the right</p>
+
+<p>place we haven't had to really take</p>
+
+<p>advantage of some of the power we have</p>
+
+<p>here but we could and it could do some</p>
+
+<p>really cool stuff but in the way we have</p>
+
+<p>our RFS our file stores shared we can</p>
+
+<p>hop back and forth between servers you</p>
+
+<p>know and the load balancer all the time</p>
+
+<p>and everything's fine we just manage</p>
+
+<p>everything yeah one one thing that alb</p>
+
+<p>the application load balancer in an AWS</p>
+
+<p>has let us do that before this was</p>
+
+<p>around they just had the classic TLB and</p>
+
+<p>we would run one of those for say an EOP</p>
+
+<p>bouncer for Groupon one for Tao now we</p>
+
+<p>can collapse those into a single of</p>
+
+<p>bouncer and requests with a header that</p>
+
+<p>the person making the request wants to</p>
+
+<p>talk to Drew boy herships of traffic to</p>
+
+<p>that set of servers or vice versa so</p>
+
+<p>when I have to run one little bouncer</p>
+
+<p>now instead of two or three year weapons</p>
+
+<p>so all of our except for the M all of</p>
+
+<p>our lack stuff goes on to the EC - this</p>
+
+<p>is where we have our operating system</p>
+
+<p>Apache PHP PHP FBM any of our extensions</p>
+
+<p>or middleware that we need this all goes</p>
+
+<p>on the ec2 bucks and we use again we use</p>
+
+<p>terraform to spin that up and then chef</p>
+
+<p>to actually manage the config of it so</p>
+
+<p>if we need custom time outs custom</p>
+
+<p>memory limits all of that is managed on</p>
+
+<p>the ec2 box through these these chef</p>
+
+<p>scripts the shared file system again has</p>
+
+<p>three or EFS if you need s3 go for s3</p>
+
+<p>but it's it has challenges if you just</p>
+
+<p>need a file system to go across your</p>
+
+<p>your web farm go EFS it is absolutely</p>
+
+<p>transparent and very easy to setup and</p>
+
+<p>if you have more than one Drupal server</p>
+
+<p>you do have to have something like this</p>
+
+<p>so that they can access reading reading</p>
+
+<p>and writing to common places so if</p>
+
+<p>someone uploads a file</p>
+
+<p>one sir it has and the request is made</p>
+
+<p>and it ends up on another server it has</p>
+
+<p>to be able to get that information</p>
+
+<p>somehow</p>
+
+<p>PFS seems to be the most smooth way to</p>
+
+<p>do that at AWS yeah and we serve on a</p>
+
+<p>public private and temp all through the</p>
+
+<p>FS</p>
+
+<p>so again if your session hops through</p>
+
+<p>one node to another they all pull up the</p>
+
+<p>same thing for RDS this is where we set</p>
+
+<p>up the database and this is also high</p>
+
+<p>availability so it's a minimum of two</p>
+
+<p>instances in different geographical</p>
+
+<p>areas we've got a nightly backup</p>
+
+<p>schedule an additional point in time</p>
+
+<p>recovery and we get to pick the database</p>
+
+<p>engine that we're using for any</p>
+
+<p>particular RDS instance so a lot of</p>
+
+<p>viruses</p>
+
+<p>you know MySQL in the i-5 so it's a five</p>
+
+<p>six or whatever it is we can do Maria we</p>
+
+<p>can do Aurora</p>
+
+<p>again there's RDS stuff now MongoDB</p>
+
+<p>hasn't managed RDS instance you can set</p>
+
+<p>up you know anything database related in</p>
+
+<p>one of these and the cool thing is that</p>
+
+<p>it's just managed and and a lot of it</p>
+
+<p>really just works it used to be you know</p>
+
+<p>especially going back through my</p>
+
+<p>background you know for</p>
+
+<p>we had a Microsoft sequel server and we</p>
+
+<p>had Oracle and the people who maintained</p>
+
+<p>each of those didn't do them the same</p>
+
+<p>way and they often wouldn't talk which</p>
+
+<p>put us the devs right in the middle of</p>
+
+<p>that I need a backup of this and I need</p>
+
+<p>a backup of that and they weren't in</p>
+
+<p>sync you know setting this stuff up</p>
+
+<p>setting failover up on Oracle I mean I</p>
+
+<p>suppose it's easier now but will teams</p>
+
+<p>with people dedicated to yeah</p>
+
+<p>the certificate manager is pretty cool</p>
+
+<p>this gives us free SSL certs and again</p>
+
+<p>now we can we can spin up a new queue a</p>
+
+<p>box let's say we want to test some new</p>
+
+<p>you know load balancing rules on QA you</p>
+
+<p>can spin up a new instance the automatic</p>
+
+<p>mediately automatically get a new</p>
+
+<p>circuit for it and not have to worry</p>
+
+<p>about QA going through and not having</p>
+
+<p>the same you know HTTP behavior on QA</p>
+
+<p>versus prod whatever the certificates</p>
+
+<p>are all basically managed the same way</p>
+
+<p>so these are Auto approved and the</p>
+
+<p>renewals all happen based on the DNS</p>
+
+<p>talked about that yeah so mmm you ask</p>
+
+<p>you have the option of</p>
+
+<p>but you request SSL Certificates they're</p>
+
+<p>free as long as you use them at AWS you</p>
+
+<p>can't really get out to use them</p>
+
+<p>somewhere else right but in order to</p>
+
+<p>prove them that a domain owner has just</p>
+
+<p>read those so you can either do it the</p>
+
+<p>traditional way to be an email where you</p>
+
+<p>quit yes I approve this certificate its</p>
+
+<p>creation at use I have an important you</p>
+
+<p>that or you can do with DNF DNS where</p>
+
+<p>the certificate manager will give you a</p>
+
+<p>list of injuries to create in your DNS</p>
+
+<p>system and their certificate system will</p>
+
+<p>check your DNS server look up these</p>
+
+<p>requests and if those records exist then</p>
+
+<p>it will assume that you the owner of the</p>
+
+<p>DNS domain has put those in there and it</p>
+
+<p>creates a certificate</p>
+
+<p>end of that certificates life if those</p>
+
+<p>renewable credentials are in DNS it will</p>
+
+<p>automatically generate new certificates</p>
+
+<p>and install them in the load balancer</p>
+
+<p>for you so there's no more</p>
+
+<p>surprises when certificates expire and</p>
+
+<p>requests are coming in for broken</p>
+
+<p>websites yeah it's nice when you</p>
+
+<p>suddenly realize that you haven't had to</p>
+
+<p>deal with those in a long time yet is it</p>
+
+<p>using let's encrypt we had it seems I</p>
+
+<p>don't know is it using let's encrypt</p>
+
+<p>behind this the scenes try to get it for</p>
+
+<p>the mic I think I don't think so I</p>
+
+<p>remember when they started happening I</p>
+
+<p>think they started providing the service</p>
+
+<p>before let's encrypt actually came out</p>
+
+<p>of whatever you know</p>
+
+<p>people started using it and I remember</p>
+
+<p>you know AWS became its own certificate</p>
+
+<p>authority so that's yeah no they don't</p>
+
+<p>no no I remember that</p>
+
+<p>and this last point is is again</p>
+
+<p>important for testing is that these are</p>
+
+<p>externally signed and authenticated</p>
+
+<p>certificates they're they're not self</p>
+
+<p>signed anymore that's something that</p>
+
+<p>we've had to deal with a lot one of the</p>
+
+<p>things we do for some of our exam</p>
+
+<p>projects we have a an in-house built</p>
+
+<p>secure exam browser so we like to be</p>
+
+<p>able to replicate this full user</p>
+
+<p>experience of setting up the secure</p>
+
+<p>example hauser getting into the test</p>
+
+<p>rostering using it and not having to</p>
+
+<p>acknowledge self-signed cert every time</p>
+
+<p>again for QA and for showing this to the</p>
+
+<p>business stakeholders means we can we</p>
+
+<p>can duplicate this workflow in every one</p>
+
+<p>of the environments we don't have to</p>
+
+<p>have well this is QA you won't have to</p>
+
+<p>do this in Pride and I have to do any of</p>
+
+<p>it it will do they'll be exactly the</p>
+
+<p>same</p>
+
+<p>so DNS management you know this is more</p>
+
+<p>this is more Mike's area than mine but</p>
+
+<p>before we used external registry</p>
+
+<p>services we used network solutions</p>
+
+<p>GoDaddy stuff like that but we do many</p>
+
+<p>of them I don't know why you know that</p>
+
+<p>so we wanted to manage DNS for</p>
+
+<p>particular project you may have to go to</p>
+
+<p>several</p>
+
+<p>but now everything is all nicely</p>
+
+<p>consolidated on AWS using rap 53 that</p>
+
+<p>does the registry providing and the</p>
+
+<p>actual DNS providing and we get to</p>
+
+<p>manage all of this through terraform so</p>
+
+<p>again we get to manage all of our DNS</p>
+
+<p>stuff and our registry management</p>
+
+<p>through trackable code so there's no</p>
+
+<p>more of this figuring out well on you</p>
+
+<p>know well we have this on GoDaddy we</p>
+
+<p>need to change something so here's the</p>
+
+<p>flow through that and of course that</p>
+
+<p>whatever we document isn't necessarily</p>
+
+<p>right the next time</p>
+
+<p>but the other provider you have to do it</p>
+
+<p>this way and same thing so you know our</p>
+
+<p>documentation got out of sync real easy</p>
+
+<p>and in every different place we did this</p>
+
+<p>we had to maintain differently yeah I</p>
+
+<p>mean having the history is great too if</p>
+
+<p>I were someone else</p>
+
+<p>and this terraform template that</p>
+
+<p>provides the establishes needs the</p>
+
+<p>message</p>
+
+<p>brothers domain we can see when that</p>
+
+<p>happened</p>
+
+<p>these are tough to get we can see if we</p>
+
+<p>did it</p>
+
+<p>and we've heard it maybe I also have</p>
+
+<p>found this to be really useful when</p>
+
+<p>I see all the injuries might see names</p>
+
+<p>for a particular domain or a project I</p>
+
+<p>just pull up these files we're gonna</p>
+
+<p>quick rap on them where I had to do</p>
+
+<p>something like that and go</p>
+
+<p>I'll be strolling including</p>
+
+<p>it makes a lot more convenient</p>
+
+<p>is that checked in her project then we</p>
+
+<p>actually way we do it we have a master</p>
+
+<p>County WS and we run our Oliver route 53</p>
+
+<p>service through that so we might have a</p>
+
+<p>different account for her project some</p>
+
+<p>of them</p>
+
+<p>some of them are in the project</p>
+
+<p>themselves if we expect that everything</p>
+
+<p>with it to the client</p>
+
+<p>that but a lot of it we do in one place</p>
+
+<p>yeah I like all of our internal DNS or</p>
+
+<p>non project things we do have like</p>
+
+<p>sure so you're using 53 if for political</p>
+
+<p>reasons and an organization or for</p>
+
+<p>whatever reason you want to use the DNS</p>
+
+<p>management features of say network</p>
+
+<p>solutions or whatever whoever your</p>
+
+<p>registrar is is there a problem in doing</p>
+
+<p>that are there any significant</p>
+
+<p>disadvantages of P Tony's provision no</p>
+
+<p>in fact there's probably some there's</p>
+
+<p>definitely some advantages like</p>
+
+<p>propagation is a lot faster here if your</p>
+
+<p>DNS change is made server and AWS your</p>
+
+<p>load balancer native us I'm going to get</p>
+
+<p>it in</p>
+
+<p>maybe haunted somewhere else I mean it's</p>
+
+<p>stuff like that is a consideration</p>
+
+<p>but no we used to run them everywhere</p>
+
+<p>and we didn't really have any issues and</p>
+
+<p>turned to the posting the application</p>
+
+<p>was more like a</p>
+
+<p>I'm always trying to remember where this</p>
+
+<p>domain was mansion</p>
+
+<p>now terraform does it's not strictly</p>
+
+<p>it'll work on different platforms either</p>
+
+<p>different cloud providers under the name</p>
+
+<p>of us so the same terraform code</p>
+
+<p>these plug install providers terrible</p>
+
+<p>top and different services and I think</p>
+
+<p>it even has providers for safer GoDaddy</p>
+
+<p>or network solutions so the same coach</p>
+
+<p>is a point AWS</p>
+
+<p>creating this record or wanted to go</p>
+
+<p>Danny</p>
+
+<p>and I don't have two slides up on the</p>
+
+<p>presentation page yet so we will so you</p>
+
+<p>can see everything that you know we have</p>
+
+<p>up here and look at the code samples</p>
+
+<p>that kind of stuff</p>
+
+<p>so we have additional services we use</p>
+
+<p>like ElastiCache Revis you know varnish</p>
+
+<p>solar we use this SES simple email</p>
+
+<p>service to run our SMTP services and</p>
+
+<p>then there's cloud watch which does our</p>
+
+<p>our logs and then the SNS for delivering</p>
+
+<p>alarms on those logs and then and then</p>
+
+<p>guard duty which is really cool and a</p>
+
+<p>little bit annoying sometimes it it it</p>
+
+<p>monitors all of the traffic and that's</p>
+
+<p>both for the actual you know app traffic</p>
+
+<p>as well as configuration and management</p>
+
+<p>traffic so anytime you know if I'm here</p>
+
+<p>at the at the camp and I need to sign in</p>
+
+<p>to the AWS dashboard to you know fix</p>
+
+<p>something check a log make a change</p>
+
+<p>whatever you know Mike and my whole team</p>
+
+<p>knows that I access this somewhere else</p>
+
+<p>but then after I've been here a couple</p>
+
+<p>times and I keep doing it decides that</p>
+
+<p>that's okay and and then doesn't let</p>
+
+<p>anybody know anymore</p>
+
+<p>or you think oh it's going to say that</p>
+
+<p>we'll get an email that says the</p>
+
+<p>principal jack login is accessing or</p>
+
+<p>making suspicious requests from</p>
+
+<p>or something like that</p>
+
+<p>it also it's a it's also firing several</p>
+
+<p>times but if we haven't added it to new</p>
+
+<p>for an older Drupal project the first</p>
+
+<p>time you request detector updates no say</p>
+
+<p>hey the server's talking to a new target</p>
+
+<p>should check it out</p>
+
+<p>yeah the funny thing is I always think</p>
+
+<p>something is a mess when I'm you know</p>
+
+<p>out at the track and there's a 500 error</p>
+
+<p>on that same time so to set up our</p>
+
+<p>environments so again we've talked a lot</p>
+
+<p>about terraform all of our</p>
+
+<p>infrastructure is code we use this to</p>
+
+<p>set up our you know our clouds our</p>
+
+<p>subnets the security groups all the load</p>
+
+<p>balancers the web servers the database</p>
+
+<p>servers we use this to spin up</p>
+
+<p>everything and we have a commit for</p>
+
+<p>every change so everything is nice and</p>
+
+<p>reproducible it's all consistent and if</p>
+
+<p>we need to you know troubleshoot</p>
+
+<p>something we have other projects as</p>
+
+<p>baselines you know there's no drift so</p>
+
+<p>everything that's done on one of the</p>
+
+<p>servers is set up through these files so</p>
+
+<p>nothing should come as a surprise if</p>
+
+<p>something isn't working on some</p>
+
+<p>particular server it's because we built</p>
+
+<p>it wrong it's not because something got</p>
+
+<p>a little bit out of our control</p>
+
+<p>this this graphic is just an example of</p>
+
+<p>this our</p>
+
+<p>repository is one projects</p>
+
+<p>section or we control these PWS services</p>
+
+<p>and</p>
+
+<p>Parise attention</p>
+
+<p>General Services in there like s3</p>
+
+<p>we have</p>
+
+<p>database service configuration</p>
+
+<p>these are the application servers the</p>
+
+<p>general section</p>
+
+<p>change the server pieces class</p>
+
+<p>more power or less powerful system or</p>
+
+<p>whatever we can see the history of what</p>
+
+<p>we've changed that server to that</p>
+
+<p>used to take us three or four or five or</p>
+
+<p>days or a couple of weeks to set up some</p>
+
+<p>and then we also counseled with this</p>
+
+<p>system we just run a series of terraform</p>
+
+<p>commands and it takes like a totally raw</p>
+
+<p>pls account reads everything</p>
+
+<p>a tried-and-true way reproducible way so</p>
+
+<p>that's helped us a lot reduce time and</p>
+
+<p>errors and on reducing errors like we</p>
+
+<p>were talking about making a config</p>
+
+<p>change to some environment we get to</p>
+
+<p>reduce that oh right yeah I made that</p>
+
+<p>change and we're doing a new deploy and</p>
+
+<p>now the change is gone because I just I</p>
+
+<p>forgot to put it in to terraform</p>
+
+<p>whatever there's none of that now we</p>
+
+<p>make the change right in terraform spin</p>
+
+<p>up the new server we can test it right</p>
+
+<p>there we don't have to worry about</p>
+
+<p>making a change remembering to</p>
+
+<p>persistent and then remembering to bring</p>
+
+<p>that over to our new build you know we</p>
+
+<p>don't have to worry about deploying a</p>
+
+<p>build on top of an out-of-date server it</p>
+
+<p>just spins up a new image every time</p>
+
+<p>does that a hand up then I see</p>
+
+<p>so here's what some terraform looks like</p>
+
+<p>this spins up our drupal soloist so</p>
+
+<p>again that's the the master image and</p>
+
+<p>creates an alarm for cpu utilization so</p>
+
+<p>we can see in here there's you know</p>
+
+<p>there's there's tokens in here so it</p>
+
+<p>sits nicely parameter driven and we have</p>
+
+<p>custom modules that we can reuse from</p>
+
+<p>project to project so we don't have to</p>
+
+<p>reinvent a you know a CPU utilization</p>
+
+<p>metric alarm every time we just tokenize</p>
+
+<p>whatever we're recording on and and we</p>
+
+<p>add this in to whatever our terraform is</p>
+
+<p>do you want to walk through this real</p>
+
+<p>quick guys well yeah do you want a line</p>
+
+<p>but you do you want to know what this</p>
+
+<p>does they have nobody cares we'll just</p>
+
+<p>have it it's basically just spending up</p>
+
+<p>one server that acts as our master</p>
+
+<p>servers</p>
+
+<p>puts it at a particular something that</p>
+
+<p>as this server class or like a powerful</p>
+
+<p>server is gives it a security group so</p>
+
+<p>it's like a network very here firewall</p>
+
+<p>and then this is one example of many</p>
+
+<p>this system would have this is CPU</p>
+
+<p>utilization</p>
+
+<p>subjects for this period of seconds and</p>
+
+<p>during that period the average CPU</p>
+
+<p>utilization is over Haiti then it'll</p>
+
+<p>send an alarm to this SMS topic which</p>
+
+<p>generates a mental to the project team</p>
+
+<p>all right so setting up the actual ec2</p>
+
+<p>server we set up a patchy and PHP and</p>
+
+<p>PHP fbm with with chef so again our sort</p>
+
+<p>of our determination about you know like</p>
+
+<p>terraform versus chef terraform is our</p>
+
+<p>infrastructure management chef is our</p>
+
+<p>config management so to set PHP</p>
+
+<p>variables or you know the PHP</p>
+
+<p>configuration that goes into our chef</p>
+
+<p>cookbooks and each project has its own</p>
+
+<p>set some of them are exactly the same</p>
+
+<p>because they're based on our sort of</p>
+
+<p>core template for it but we customized</p>
+
+<p>it per project based on where we and</p>
+
+<p>we'd already talked about the secrets</p>
+
+<p>management all of the secrets we need to</p>
+
+<p>track they all go into one password so</p>
+
+<p>that devs and ops and whoever needs it</p>
+
+<p>can can pull API keys passwords whatever</p>
+
+<p>out of a vault and we never have to send</p>
+
+<p>them unsecured</p>
+
+<p>so here's what some of the chef's looks</p>
+
+<p>like the one on the left here is setting</p>
+
+<p>up PHP the one on the right is setting</p>
+
+<p>some config for it yeah so when a new</p>
+
+<p>server spins up based on that so Louis</p>
+
+<p>am I the first thing it does is reach</p>
+
+<p>out to the chef server and register</p>
+
+<p>itself in roll itself and as a chef</p>
+
+<p>client and it'll pull it down in a</p>
+
+<p>series of cookbooks that start applying</p>
+
+<p>them some of these things are baked into</p>
+
+<p>the ami so it checks</p>
+
+<p>do I need to install HP or @pm if it's</p>
+
+<p>already there it doesn't do it does</p>
+
+<p>happen to do it then it will start</p>
+
+<p>restart apache and</p>
+
+<p>over here these are just some of the</p>
+
+<p>things</p>
+
+<p>here's the settings that look will be a</p>
+
+<p>keeper Drupal</p>
+
+<p>these files are in</p>
+
+<p>project</p>
+
+<p>the pilots into the book and where it</p>
+
+<p>needs to go where it needs to go on the</p>
+
+<p>server itself and it creates it</p>
+
+<p>propositions were set for pigs</p>
+
+<p>we serve actually the</p>
+
+<p>so it's kind of like these servers come</p>
+
+<p>instantiate I had nothing and then they</p>
+
+<p>pulled all the software they need and a</p>
+
+<p>configuration for Drupal that they need</p>
+
+<p>automatically and fun booting they're</p>
+
+<p>running the application</p>
+
+<p>so to do our actual server updates you</p>
+
+<p>know any of our you know gum updates you</p>
+
+<p>know whatever we we do those manually on</p>
+
+<p>some projects for others we use the AWS</p>
+
+<p>systems manager and you know when we</p>
+
+<p>have a security update and you know some</p>
+
+<p>sort of server component update the next</p>
+
+<p>time we deploy those will just get you</p>
+
+<p>know pushed out whether there's a you</p>
+
+<p>know an actual happen or not it's part</p>
+
+<p>of the image and it will you know</p>
+
+<p>come on line that way for Drupal updates</p>
+
+<p>this is part of our dev workflow we</p>
+
+<p>don't do this automatically it's got to</p>
+
+<p>go through QA and for some of our you</p>
+
+<p>know our real high availability systems</p>
+
+<p>where if there's a five-minute outage we</p>
+
+<p>still have to schedule that you know all</p>
+
+<p>of this is done through composer you</p>
+
+<p>know our composer block gets updated</p>
+
+<p>we've pushed that out to our composer</p>
+
+<p>install and our TVs and whatever this we</p>
+
+<p>need to do and then you know that's done</p>
+
+<p>again through a normal deployment</p>
+
+<p>process</p>
+
+<p>for RTS guess what we use terraform spin</p>
+
+<p>this up we create our users and grants</p>
+
+<p>and commissions and things manually with</p>
+
+<p>some scripts there's just not a lot of</p>
+
+<p>there's not a lot of bang for your buck</p>
+
+<p>spending a lot of time automating that</p>
+
+<p>because it's so repeatable it's so easy</p>
+
+<p>again all of these secrets get stored in</p>
+
+<p>the project's vault in one password and</p>
+
+<p>here's our little terraform script on</p>
+
+<p>here you see it looks much like the</p>
+
+<p>other one sets up some you know some</p>
+
+<p>some settings defines when our engines</p>
+
+<p>are like yeah I was similar like you</p>
+
+<p>said it's it's basically saying web</p>
+
+<p>version well the database engine my</p>
+
+<p>sequel</p>
+
+<p>their class or the size of the server</p>
+
+<p>that's running my Sikh world</p>
+
+<p>he's on so yeah the EJ aspect going</p>
+
+<p>that's true you can spin up from an</p>
+
+<p>initial snapshot if you</p>
+
+<p>at 1:00</p>
+
+<p>new project or rebuilding a project</p>
+
+<p>at rest or in transit</p>
+
+<p>the security here just gets placed into</p>
+
+<p>parameter groups are the</p>
+
+<p>like my secret</p>
+
+<p>the backup window you define how many</p>
+
+<p>days back</p>
+
+<p>like me you survived</p>
+
+<p>and the maintenance window where desert</p>
+
+<p>is able to attach itself like minor</p>
+
+<p>releases and stuff like that late night</p>
+
+<p>on sand</p>
+
+<p>see we</p>
+
+<p>all right EFS again we already mostly</p>
+
+<p>talked about once again we use terraform</p>
+
+<p>to set this up and then the each of the</p>
+
+<p>soloists knows where to mount this and</p>
+
+<p>then that gets pushed out to the to the</p>
+
+<p>host during deployment for cron we use</p>
+
+<p>an external quark tokenized cron request</p>
+
+<p>we have an AWS lambda function that does</p>
+
+<p>this so it's all internal it doesn't</p>
+
+<p>need to go out into the public space so</p>
+
+<p>it's all it's all secure it's all nice</p>
+
+<p>and private</p>
+
+<p>our development workflow I'm gonna</p>
+
+<p>breeze through this because we're almost</p>
+
+<p>at a time it's a slight a slightly light</p>
+
+<p>get flow workflow this is from</p>
+
+<p>drupal.org here really it's you know</p>
+
+<p>most of our docker based you know dev</p>
+
+<p>environments we have our own River our</p>
+
+<p>own private code repositories we use a</p>
+
+<p>feature branch structure for hot fixes</p>
+
+<p>and security fixes that are going off of</p>
+
+<p>other releases those are branched off</p>
+
+<p>the actual release tags instead of from</p>
+
+<p>masters so that we can maintain each of</p>
+
+<p>those separately technically it approves</p>
+
+<p>the pull requests we do a lot of very</p>
+
+<p>frequent QA deployments and then we test</p>
+
+<p>those once that's all done we pushed to</p>
+
+<p>our staging environment which is really</p>
+
+<p>like a one version ago well a void</p>
+
+<p>version of had rather of prod this is</p>
+
+<p>where we validate all of our deployment</p>
+
+<p>instructions and all that kind of stuff</p>
+
+<p>so project setup it's we just do a</p>
+
+<p>create project all of its managed</p>
+
+<p>through composer we initialize a lando</p>
+
+<p>container customize some stuff put in</p>
+
+<p>what we need you know like in this case</p>
+
+<p>here's a bunch of tooling to setup</p>
+
+<p>webdriver on here so we can do</p>
+
+<p>functional testing and this way every</p>
+
+<p>dev is using the same image I haven't</p>
+
+<p>really heard a an environment based</p>
+
+<p>works on my machine in a little while</p>
+
+<p>now and that's really refreshing now for</p>
+
+<p>the actual deployment it's super easy</p>
+
+<p>not that most Drupal deployments should</p>
+
+<p>be very difficult but it really is just</p>
+
+<p>this easy it's so Louis base that we run</p>
+
+<p>this one time and then push everything</p>
+
+<p>out it's just pulling the remote code</p>
+
+<p>down checking out whatever release we're</p>
+
+<p>doing updating all of our composer</p>
+
+<p>dependencies doing a you know a database</p>
+
+<p>update which you don't always need to do</p>
+
+<p>doing an edit a schema update which you</p>
+
+<p>don't always need to do a config import</p>
+
+<p>which we almost always need to do and</p>
+
+<p>then a catch me sign</p>
+
+<p>okay now we're into the meat of the</p>
+
+<p>deployment so I think this speaks for</p>
+
+<p>itself we don't have to spend any time</p>
+
+<p>on this right</p>
+
+<p>we've got a few cloud environments here</p>
+
+<p>so we can see we have a pride in a stage</p>
+
+<p>we have that the top guy with the arrow</p>
+
+<p>that's our soloist so you know come</p>
+
+<p>deployment day but I can spin this up</p>
+
+<p>for me I'll go in do the deploy you know</p>
+
+<p>the pole deploy and get it all set up</p>
+
+<p>and then as soon as I'm done the image</p>
+
+<p>Isis that and that's on the next slide</p>
+
+<p>so okay well this shows then we're the</p>
+
+<p>soloist and the actual ec2 boxes set and</p>
+
+<p>how the load balancer sits between them</p>
+
+<p>we've got an availability zone on the</p>
+
+<p>top and on the bottom the availability</p>
+
+<p>zone different data centers where these</p>
+
+<p>Google services okay we have a question</p>
+
+<p>are your slides available yeah I haven't</p>
+
+<p>I haven't attached these in you know my</p>
+
+<p>talk yesterday I didn't follow my own</p>
+
+<p>advice of half these thing you know</p>
+
+<p>don't make changes the day of and we did</p>
+
+<p>and so will happen these will have these</p>
+
+<p>up today so here's how the actual</p>
+
+<p>deployment works</p>
+
+<p>there we go</p>
+
+<p>so we spin out soloist deploy the code</p>
+
+<p>if there's any config changes that need</p>
+
+<p>to be made we update those in chef</p>
+
+<p>we snapshot it you know make an image of</p>
+
+<p>it and then the terraform scripts need</p>
+
+<p>to be updated with the ID of that new</p>
+
+<p>image we don't I mean this can be a</p>
+
+<p>little more automated but it's not like</p>
+
+<p>it adds a whole lot of time again</p>
+
+<p>there's not a lot of bang for your buck</p>
+
+<p>in there because most of our things are</p>
+
+<p>not a continuous deployment kind of a</p>
+
+<p>thing there are real high stakes any</p>
+
+<p>sort of service change or especially an</p>
+
+<p>outage these have to be scheduled in</p>
+
+<p>advance the running at terraform apply</p>
+
+<p>kicks off all this stuff and sets itself</p>
+
+<p>up so it does this Bluegreen deployment</p>
+
+<p>it starts bringing up the new servers</p>
+
+<p>with all of our new code all of our new</p>
+
+<p>config and then as each one comes up it</p>
+
+<p>will start tearing down the blue ones so</p>
+
+<p>that eventually it's all the new servers</p>
+
+<p>that that are</p>
+
+<p>[Music]</p>
+
+<p>so most of the time this actually makes</p>
+
+<p>our downtime due to deployments zero but</p>
+
+<p>again some of these are really high</p>
+
+<p>stakes so even if it is 60 seconds that</p>
+
+<p>is a big deal but most of the time we</p>
+
+<p>can set this up and it's totally</p>
+
+<p>transparent nobody even knows and it's</p>
+
+<p>all automated so it reduces a lot of our</p>
+
+<p>error like I remember the last one of</p>
+
+<p>these that we had a problem with was</p>
+
+<p>even probably over a year ago and it was</p>
+
+<p>we had accidentally left a blue server</p>
+
+<p>up in wait we the team accidentally left</p>
+
+<p>a blue server up in the load balancer so</p>
+
+<p>that's for some reason every fourth</p>
+
+<p>request got weird failures and it's</p>
+
+<p>because as it was bouncing through one</p>
+
+<p>of the servers was still running old</p>
+
+<p>code and you know something that was in</p>
+
+<p>the APC I couldn't find the class that</p>
+
+<p>was in the APC because it still an old</p>
+
+<p>code I so that doesn't happen anymore it</p>
+
+<p>tears itself down automatically and you</p>
+
+<p>know we could use Jenkins to automate</p>
+
+<p>this again we just we don't have a lot</p>
+
+<p>of call right now for a CD kind of</p>
+
+<p>solution this is something that you know</p>
+
+<p>Mike and I have both been trying to push</p>
+
+<p>a little bit because even if we need you</p>
+
+<p>know permission to do this we still want</p>
+
+<p>to not have to do anything more than</p>
+
+<p>just tell it to go but we haven't we</p>
+
+<p>haven't finalized this yet</p>
+
+<p>oh boy we still have a long way to go at</p>
+
+<p>only two minutes all right we're gonna</p>
+
+<p>have to do father here so we don't use</p>
+
+<p>auto-scaling for everything but it's</p>
+
+<p>really cool when we do and for the</p>
+
+<p>smaller projects the auto-scaling</p>
+
+<p>that gives it some self-healing so if a</p>
+
+<p>server starts to misbehave it will</p>
+
+<p>automatically turn itself down and and</p>
+
+<p>build up a new one and again it uses the</p>
+
+<p>same soloist images that we use for</p>
+
+<p>regular based on the AWS code or your</p>
+
+<p>own code</p>
+
+<p>well AWS on is stealing their feature</p>
+
+<p>yeah so it's their software that yes</p>
+
+<p>watches your server if something's you</p>
+
+<p>have stored up then it says you're dead</p>
+
+<p>you're gone and we have you new really</p>
+
+<p>sophisticated complaint stuff with their</p>
+
+<p>auto scaling buttons</p>
+
+<p>spaces we use are in real simple way we</p>
+
+<p>say we want to servers running at all</p>
+
+<p>times of one doesn't respond in a</p>
+
+<p>certain amount of time</p>
+
+<p>okay so again different auto-scaling</p>
+
+<p>needs 7000 concurrent users is different</p>
+
+<p>than the 600 concurrent users but our</p>
+
+<p>auto-scaling rules are pretty cool we</p>
+
+<p>have multiple tiers of these so if CPU</p>
+
+<p>utilization starts to get too high it'll</p>
+
+<p>add a couple instances when it passes</p>
+
+<p>that threshold and goes a little bit</p>
+
+<p>more it'll add four instances at the</p>
+
+<p>time until it gets to a threshold of 16</p>
+
+<p>servers and then it'll go to this busy</p>
+
+<p>step which adds four at a time and then</p>
+
+<p>eight at a time until it maxes out at 40</p>
+
+<p>so we can customize all of this stuff I</p>
+
+<p>we've got I think lunch is next do we</p>
+
+<p>mind if we go an extra couple of minutes</p>
+
+<p>we can stop on time if we want okay yeah</p>
+
+<p>we're almost done so again I am so</p>
+
+<p>excited about all the log and alert</p>
+
+<p>stuff this is this is so cool we can we</p>
+
+<p>can set we can store all of these logs</p>
+
+<p>up in cloud watch you know in the cloud</p>
+
+<p>because we're bringing up and tearing</p>
+
+<p>down servers all the time if we</p>
+
+<p>persisted these logs locally every time</p>
+
+<p>a server goes away those logs disappear</p>
+
+<p>we don't have to worry about that now</p>
+
+<p>everything goes into a nice central</p>
+
+<p>repository and we can keep it for as</p>
+
+<p>long as we want which right now is</p>
+
+<p>forever because we haven't run out of</p>
+
+<p>space on logs so we can log all kinds of</p>
+
+<p>stuff load balancer requests you know</p>
+
+<p>any of these alarms that we set up if we</p>
+
+<p>have we have actual you know requests</p>
+
+<p>going into the log so we can do alerts</p>
+
+<p>based on</p>
+
+<p>the actual details in a request so</p>
+
+<p>anytime some URL gets hit for instance</p>
+
+<p>or some URL gets hit with some parameter</p>
+
+<p>or some URL gets hit with some parameter</p>
+
+<p>from some domain we can send out an</p>
+
+<p>alert based on man so PHP fatal shows up</p>
+
+<p>we send on L arm that doesn't you know</p>
+
+<p>that never happens and then you know</p>
+
+<p>some of these go to well I think they</p>
+
+<p>all go to DevOps most of them come to</p>
+
+<p>dev and but again we can set those</p>
+
+<p>custom and we can we can set who gets</p>
+
+<p>notified for what particular type of</p>
+
+<p>alarm I think we only have two of these</p>
+
+<p>left so here's a sample of some of the</p>
+
+<p>Diagnostics we've got blue for tau and</p>
+
+<p>green for Drupal although we should have</p>
+
+<p>done that backwards blue for triple so</p>
+
+<p>we can see and again this demonstrates</p>
+
+<p>part of our problem you know this is the</p>
+
+<p>same user load the you know they're</p>
+
+<p>doing operations in both systems we can</p>
+
+<p>see how much more resource intensive tau</p>
+
+<p>is being able to you know standardize</p>
+
+<p>this and handle both systems more or</p>
+
+<p>less the same and it's just saved us a</p>
+
+<p>ton of time and money so we set all of</p>
+
+<p>these Diagnostics up out of our cloud</p>
+
+<p>watch locks and we can get real-time</p>
+
+<p>information on any of these</p>
+
+<p>now this is really cool this is the the</p>
+
+<p>new cloud watch insights so you can have</p>
+
+<p>these report queries based on your log</p>
+
+<p>entries so this is for a professional</p>
+
+<p>certification practice exam system so if</p>
+
+<p>students buy you know the textbook for</p>
+
+<p>whatever the exam is it will</p>
+
+<p>automatically go and send them an access</p>
+
+<p>code to activate the you know the the</p>
+
+<p>tests for that book in the portal system</p>
+
+<p>so here we can see you know how many</p>
+
+<p>products get purchased we can break</p>
+
+<p>these down by hour by day we can group</p>
+
+<p>lease however we want we track here how</p>
+
+<p>many tests get launched a new and how</p>
+
+<p>many resume test launches there are so</p>
+
+<p>this tracks the difference between you</p>
+
+<p>know who's starting up tests for the</p>
+
+<p>first time versus who has paused them</p>
+
+<p>and starts going into them again and</p>
+
+<p>again all of this is done right through</p>
+
+<p>god watch we have an example of that</p>
+
+<p>query so we tell it what you know what</p>
+
+<p>log server we want to to come from we</p>
+
+<p>make sure to ignore our own internal</p>
+
+<p>testing because you know come release</p>
+
+<p>day all of a sudden we have two or three</p>
+
+<p>IP addresses which will have forty tests</p>
+
+<p>in one hour and that's not real so we</p>
+
+<p>want to make sure that stuff gets</p>
+
+<p>filtered out and we can do these filters</p>
+
+<p>and groupings if the bride right on here</p>
+
+<p>any it's not you know answer your sequel</p>
+
+<p>but it's you know not hard to pick up</p>
+
+<p>and this this is the result of of that</p>
+
+<p>query and I think that finishes us up so</p>
+
+<p>thank you any any question does</p>
+
+<p>terraform invoke Shepard as part of the</p>
+
+<p>image builder EWS</p>
+
+<p>yeah they don't talk to one another we</p>
+
+<p>use tariffs on most of these or</p>
+
+<p>infrastructure and pretend when the</p>
+
+<p>structures becomes like that it</p>
+
+<p>registers itself which they have</p>
+
+<p>disclosed all this figure we use an S</p>
+
+<p>with everything like I used to shop and</p>
+
+<p>like I need a cemetery I was like all</p>
+
+<p>right what the hell likes me too</p>
+
+<p>that's always a problem that's why we</p>
+
+<p>get stuck on some things like you like</p>
+
+<p>this that you based here this is an AWS</p>
+
+<p>on load that towel was putting on their</p>
+
+<p>normal triple install where would you</p>
+
+<p>put that decision to the point on a fuse</p>
+
+<p>per day or per month or titanius users I</p>
+
+<p>mean that where would you go with that</p>
+
+<p>so the question is what's our metric for</p>
+
+<p>moving off of like a host I got a</p>
+
+<p>platform host onto an AWS host it's</p>
+
+<p>actually it's it's less CPU utilization</p>
+
+<p>or concurrent users it's really page</p>
+
+<p>throughput so once it starts getting to</p>
+
+<p>the point where it's slowing down and we</p>
+
+<p>can't scale up to catch it up we know</p>
+
+<p>that we're you know it's it's we need to</p>
+
+<p>move it</p>
+
+<p>so I mean sometimes it's concurrent user</p>
+
+<p>base sometimes it's utilization based</p>
+
+<p>you know every every one of these apps</p>
+
+<p>that we do it was a little bit different</p>
+
+<p>they take traffic a little bit</p>
+
+<p>differently again for just a regular</p>
+
+<p>website that's harder to tell because</p>
+
+<p>you've got my partner sitting in front</p>
+
+<p>of it or whatever</p>
+
+<p>right you know again we'd like I just</p>
+
+<p>like don't have anonymous traffic I</p>
+
+<p>don't have to worry about any of that</p>
+
+<p>stuff so you know and every one of those</p>
+
+<p>metrics is gonna be a little bit</p>
+
+<p>different again we look for latency and</p>
+
+<p>and site wide performance on what we can</p>
+
+<p>skim we were considering AWS for our</p>
+
+<p>site because it's give a lot of users a</p>
+
+<p>particular time of the day or the week</p>
+
+<p>or whatever right and so what I'm what</p>
+
+<p>I've seen looking at me in terms of your</p>
+
+<p>deployment we have you know contributors</p>
+
+<p>working on the site all day long is this</p>
+
+<p>something where they have to basically</p>
+
+<p>publish at one time during the day and</p>
+
+<p>then we deploy the data or can you</p>
+
+<p>actually work live money to us sure you</p>
+
+<p>can work live like I said a lot of time</p>
+
+<p>our our deploys are transparent so you</p>
+
+<p>know it you switch over from servers say</p>
+
+<p>the thing I guess it hasn't happened in</p>
+
+<p>a long time but the couple of systems</p>
+
+<p>I'm working on right now are not super</p>
+
+<p>content heavy but you know even having</p>
+
+<p>like your form ID is expired when you</p>
+
+<p>switch over servers during a deployment</p>
+
+<p>even that doesn't doesn't happen a whole</p>
+
+<p>lot so yeah for the most part we can do</p>
+
+<p>our deploys while users are in the</p>
+
+<p>system but so again I know I've said</p>
+
+<p>this a few times but some of these</p>
+
+<p>systems like those testing systems can</p>
+
+<p>be very high stakes right so we can't</p>
+
+<p>risk having someone's session be</p>
+
+<p>interrupted right so those have to be</p>
+
+<p>scheduled in advance and downtime has to</p>
+
+<p>be scheduled and whatever so you know</p>
+
+<p>for a content contributor like that like</p>
+
+<p>you know for just content you know</p>
+
+<p>that's just normal system usage for most</p>
+
+<p>deployments it shouldn't even affect</p>
+
+<p>them so you would be logged in one</p>
+
+<p>target server and then that would then</p>
+
+<p>ripple through the system and update all</p>
+
+<p>the other servers when they you know</p>
+
+<p>save the file or save the article or</p>
+
+<p>something yeah well it saves it out to</p>
+
+<p>RDS and there's no it's a shared</p>
+
+<p>database everything hits that you know</p>
+
+<p>shared it same thing with the file</p>
+
+<p>system if they are working on a note and</p>
+
+<p>they have to upload a file that goes</p>
+
+<p>into shared file storage and then</p>
+
+<p>everywhere that hits it it's the same</p>
+
+<p>flat story yeah I think you're talking</p>
+
+<p>about that content escapes like</p>
+
+<p>someone's working within people right</p>
+
+<p>update something yeah that gets you know</p>
+
+<p>all the servers are talking to the same</p>
+
+<p>database in the same file system so of</p>
+
+<p>anything like that here and they all get</p>
+
+<p>it in our varnish there's the lag time</p>
+
+<p>between content being live unless we</p>
+
+<p>refresh the cache so it's like three to</p>
+
+<p>four hours like what would that be like</p>
+
+<p>in native you wants to be the same thing</p>
+
+<p>or there's a way to do it but I think</p>
+
+<p>said I don't do a lot of varnish so I</p>
+
+<p>can't just tell you there's a there</p>
+
+<p>there's a way to trigger it and I don't</p>
+
+<p>know what it is okay</p>
+
+<p>first module</p>
+
+<p>was</p>
+
+<p>go get other questions I understanding</p>
+
+<p>right are you deploying your Drupal</p>
+
+<p>updates by going on to the servers and</p>
+
+<p>AWS doing I'm get to fetch not exactly</p>
+
+<p>so the question is are we doing our</p>
+
+<p>deployment by logging into AWS servers</p>
+
+<p>and doing a git fetch we spin up this</p>
+
+<p>soloist image which is again that master</p>
+
+<p>image and we do that one time on there</p>
+
+<p>get the soloist up-to-date and then that</p>
+
+<p>gets automatically propagated that image</p>
+
+<p>gets pushed out to you know through the</p>
+
+<p>load balancer and sets up so we don't</p>
+
+<p>have to do this on multiple servers we</p>
+
+<p>do it one time and it just it just puts</p>
+
+<p>it so much so we take an image of that</p>
+
+<p>so listed as the new quote on it update</p>
+
+<p>that parameter and in terrified and then</p>
+
+<p>issue that terrible reply command it'll</p>
+
+<p>go out the AWS and enumerate everything</p>
+
+<p>there and say oh this server is not</p>
+
+<p>running office correct am I</p>
+
+<p>and then it will say would you like you</p>
+
+<p>have to</p>
+
+<p>you know say it wants to spin up two new</p>
+
+<p>servers based on this am i that we just</p>
+
+<p>updated the code up and has it does that</p>
+
+<p>when those two new servers come into</p>
+
+<p>service and I ran through requests</p>
+
+<p>correctly</p>
+
+<p>then it'll take the old servers out of</p>
+
+<p>service will do one more question that's</p>
+
+<p>on you</p>
+
+<p>when you are comparing the EFS versus s3</p>
+
+<p>you're talking just strictly for user</p>
+
+<p>content not for PHP script which</p>
+
+<p>wouldn't run that's me yeah right right</p>
+
+<p>this is again it's a really private</p>
+
+<p>public and temp really is what it gets</p>
+
+<p>us for okay Wow you said you need a 3-1</p>
+
+<p>with the meat for ice tweeting what do</p>
+
+<p>you package it depends on it depends on</p>
+
+<p>the content so the question is why as</p>
+
+<p>three versus yeah that's like what so if</p>
+
+<p>we're doing things like video streaming</p>
+
+<p>you know large files that you know that</p>
+
+<p>are just requested and how three is a</p>
+
+<p>lot better at serving some of that stuff</p>
+
+<p>up it really it depends on the usage of</p>
+
+<p>the particular content but even then the</p>
+
+<p>penalty like that there's it's not that</p>
+
+<p>much faster than the FS in any of these</p>
+
+<p>cases I just don't think it's worth a</p>
+
+<p>headache you know cheaper oh yeah s3 is</p>
+
+<p>cheaper there was a time when the</p>
+
+<p>invested exists so we did have to use s3</p>
+
+<p>that was like</p>
+
+<p>Multi Drupal server shared storage can</p>
+
+<p>use secure s3 with the AWS know or you</p>
+
+<p>can if you put a like a CDN and cloud</p>
+
+<p>watch Club front distribution in front</p>
+
+<p>of</p>
+
+<p>you can use the application so I just</p>
+
+<p>used avada infection policies yeah I</p>
+
+<p>mean at a flow at that level we just let</p>
+
+<p>the Drupal servers talk to a particular</p>
+
+<p>place in s3 for their shared storage and</p>
+
+<p>the other apps can get in there</p>
+
+<p>alright alright thanks for letting us go</p>
+
+<p>over thank you for coming</p></div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-f1d051b97c24878390dcd1a1534533e7ddcfba50953ef3c7874d585d06bfba4e">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/266">https://mid.camp/266</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-b259e38f6ad9a13b3eddbe1044ab7e9073e58e1827fe2efc6d3164382493726a">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/elevated-third.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-11/elevated-third-logo_0.png" width="220" height="220" alt="elevated third logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/pantheon.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-11/pantheon-logo-color@2x.png" width="960" height="354" alt="Pantheon" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/acquia.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2019-03/Acquia_no_tagline.png" width="450" height="94" alt="Acquia" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#056c6b636a45686c61666468752b6a7762"><span class="__cf_email__" data-cfemail="1f767179705f72767b7c7e726f31706d78">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/266","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_llBcjrkrgAu2wT1DR7VGL_iP6geJyiTnF_8O5ZD57VI.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJxLz89Pz0mNT8xLzKksyUwu1k9HE9DJSCwpSS3ST8_JT0rM0c0qBgAByBPW"></script>
+
+  </body>
+</html>

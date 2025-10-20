@@ -1,0 +1,674 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="Get the slides at davidneedham.me/midcamp2020. You just finished building a feature that has taken months to get right. Your work in the development environment is approved and you&#039;re ready to take it to production." />
+<link rel="canonical" href="configuration-management-drupal-8-beginners.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Configuration management in Drupal 8 for beginners | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter_2019/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Configuration management in Drupal 8 for beginners | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_gt5LiAM1qLGUH5e845uOb7R_lJ9dUwTXmnhGDR2yY20.css%3Fdelta=0&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlT9EOwiAM_KEN1De_hsC4bSSFGopb5teLY0s0vrTXu0t7HciKbNpZQTc0HCFiJ8g5J_ZV44yKcrQUXuhmWwqyuV2udz0RO0v9IHLSn2165FR-mS-jbFIQ29kleLBBdPBmDCCvM-.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_q7cxd-C3noAE-s-u3xDxrLWFMO_wjpGZ5xcFfomX0n4.css%3Fdelta=1&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlT9EOwiAM_KEN1De_hsC4bSSFGopb5teLY0s0vrTXu0t7HciKbNpZQTc0HCFiJ8g5J_ZV44yKcrQUXuhmWwqyuV2udz0RO0v9IHLSn2165FR-mS-jbFIQ29kleLBBdPBmDCCvM-.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_JumHJ3UqLO9Mdu1kygD5e19MOiNh5iD_a9p0FH6QrHQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlT9EOwiAM_KEN1De_hsC4bSSFGopb5teLY0s0vrTXu0t7HciKbNpZQTc0HCFiJ8g5J_ZV44yKcrQUXuhmWwqyuV2udz0RO0v9IHLSn2165FR-mS-jbFIQ29kleLBBdPBmDCCvM-.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_LovagMoZZFoM80YhT0zgW4b6oNarRMdF8ooxvYiQ9tA.css%3Fdelta=4&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlT9EOwiAM_KEN1De_hsC4bSSFGopb5teLY0s0vrTXu0t7HciKbNpZQTc0HCFiJ8g5J_ZV44yKcrQUXuhmWwqyuV2udz0RO0v9IHLSn2165FR-mS-jbFIQ29kleLBBdPBmDCCvM-.css" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="configuration-management-drupal-8-beginners.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-2019-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-hatter-2019-midcamp2020navigation-menu" id="block-hatter-2019-midcamp2020navigation" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-2019-midcamp2020navigation-menu">Midcamp 2020 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" data-drupal-link-system-path="node/403">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../news.html" title="News" data-drupal-link-system-path="2020/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" data-drupal-link-system-path="2020/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--virtual-camp">
+        <a href="../article/midcamp-2020-going-digital.html" title="MidCamp is going virtual" data-drupal-link-system-path="node/6689">Virtual Camp</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsor">
+        <a href="../sponsor-midcamp.html" data-drupal-link-system-path="node/6250">Sponsor</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--community-organizations">
+        <a href="../sponsor/community-organization-introduction.html" data-drupal-link-system-path="node/6251">Community Organizations</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sponsors">
+        <a href="../sponsors.html" data-drupal-link-system-path="node/6253">Sponsors</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" data-drupal-link-system-path="node/6258">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--sessions-thu">
+        <a href="../schedule/thursday.html" data-drupal-link-system-path="2020/schedule/thursday">Sessions (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-fri">
+        <a href="../schedule/friday.html" data-drupal-link-system-path="2020/schedule/friday">Sessions (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--contribution-sat">
+        <a href="../contribution-day.html" title="Contribution Day" data-drupal-link-system-path="node/6378">Contribution (Sat)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--accepted-sessions">
+        <a href="../accepted-sessions.html" data-drupal-link-system-path="2020/accepted-sessions">Accepted Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../../2023/speaker-resources.html" data-drupal-link-system-path="node/345">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-terms-and-conditions">
+        <a href="../../speaker-terms-and-conditions.html" data-drupal-link-system-path="node/21">Speaker Terms and Conditions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--topic-tracks">
+        <a href="../../topic-tracks.html" data-drupal-link-system-path="node/10">Topic Tracks</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--donate">
+        <a href="https://tickets.midcamp.org/" title="Register for MidCamp">Donate</a>
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-2019-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2020.html" hreflang="en">MidCamp 2020</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-hatter-2019-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Configuration management in Drupal 8 for beginners</span>
+</h1>
+
+
+  </div>
+<div id="block-hatter-2019-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="6329" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2020-03-20T19:30:00Z" class="datetime">Friday, 2:30 pm CDT</time>
+ - <time datetime="2020-03-20T20:30:00Z" class="datetime">Friday, 3:30 pm CDT</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-82" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-field-link field--type-link field--label-hidden field__item"><a href="https://zoom.us/my/midcamp314b" target="_blank" class="button--primary">Go to Room 314B - old</a></div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p dir="ltr"><strong>Get the slides at&nbsp;<a href="http://davidneedham.me/midcamp2020">davidneedham.me/midcamp2020</a>.</strong></p>
+
+<p dir="ltr">You just finished building a feature that has taken months to get right. Your work in the development environment is approved and you're ready to take it to production.</p>
+
+<p dir="ltr">Moving the code is easy since you’re using Git, but what will you do about all of that configuration saved in the database? You added content types, fields, and even views. Do you really want to recreate your work again in the Live environment? And are you confident that you won't make a mistake along the way?</p>
+
+<p dir="ltr">In this session, we’re going to be learning the basics of Configuration Management and make the business case for getting started right away. Before we go, we'll highlight techniques for managing this workflow from the command line using Drush and demonstrate how to completely automate deployment with Continuous Integration.</p>
+
+<p dir="ltr"><strong>Learning Objectives</strong></p>
+
+<p dir="ltr">At the end of this session, attendees will be able to:</p>
+
+<ul>
+	<li dir="ltr">
+	<p dir="ltr">Apply comprehensive workflows to your everyday site building process.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">Pull configuration out of the database and into version control.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">Deploy configuration to Live in the UI and from the command line.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">Automate configuration imports in each of your environments.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">Bring it all together and improve your team development workflow.</p>
+	</li>
+</ul>
+
+<p dir="ltr"><strong>Target Audience</strong></p>
+
+<p dir="ltr">This session is for:</p>
+
+<ul>
+	<li dir="ltr">
+	<p dir="ltr">Customers who have no tolerance for mistakes.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">Sitebuilders who want to deploy to a Live environment in minutes.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">Sitebuilders, developers, or project managers who want to version control configuration, add accountability, and track changes over time.</p>
+	</li>
+</ul>
+
+<p dir="ltr"><strong>Prerequisites</strong></p>
+
+<p dir="ltr">Attendees will get the most out of this session by being familiar with basic sitebuilding techniques and Drupal best practices. Prior experience with version control, configuration management, or command lines are not required but may provide additional context.</p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/kyVy5egKPVE?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>David Needham</h4>
+
+      Developer Advocate
+
+
+          @
+              <a href="https://pantheon.io">Pantheon</a>
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p>David Needham is a Developer Advocate at Pantheon where he focuses on developer education and training. When he's not blogging about productivity at davidneedham.me or speaking at conferences, you can probably find him with his bicycle-loving family playing board games in Champaign, IL.</p>
+</div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2018-01/David%20Needham%20-%20Pantheon%20-%20cropped.jpg%3Fitok=uWxg4dea" width="220" height="220" alt="David Needham, Developer Advocate at Pantheon" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Back-End</div>
+          <div class="field__item">Site Building</div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-feedback-form field--type-webform field--label-above">
+    <div class="field__label">Feedback Form</div>
+              <div class="field__item"><form class="webform-submission-form webform-submission-add-form webform-submission-session-feedback-form webform-submission-session-feedback-add-form webform-submission-session-feedback-node-6329-form webform-submission-session-feedback-node-6329-add-form" data-drupal-selector="webform-submission-session-feedback-node-6329-add-form" action="configuration-management-drupal-8-beginners.html" method="post" id="webform-submission-session-feedback-node-6329-add-form" accept-charset="UTF-8">
+  
+    <div data-drupal-selector="edit-0" class="webform-message js-webform-message js-form-wrapper form-wrapper" id="edit-0"><div data-drupal-messages>
+    <div role="contentinfo" aria-label="Status message" class="messages messages--status">
+                  <h2 class="visually-hidden">Status message</h2>
+                    Sorry...This form is closed to new submissions.
+            </div>
+    </div>
+</div>
+<input autocomplete="off" data-drupal-selector="form-ivo5dojgz2dqm7moqqxnz61s53tv9t1rxsaqcwl9nbm" type="hidden" name="form_build_id" value="form-iVO5DOjGZ2dQm7moqQXnZ61S53tV9T1RxSaqcWl9nBM" />
+<input data-drupal-selector="edit-webform-submission-session-feedback-node-6329-add-form" type="hidden" name="form_id" value="webform_submission_session_feedback_node_6329_add_form" />
+<div class="url-textfield js-form-wrapper form-wrapper" style="display: none !important;"><div class="js-form-item form-item js-form-type-textfield form-type-textfield js-form-item-url form-item-url">
+      <label for="edit-url">Leave this field blank</label>
+        <input autocomplete="off" data-drupal-selector="edit-url" type="text" id="edit-url" name="url" value="" size="20" maxlength="128" class="form-text" />
+
+        </div>
+</div>
+
+
+  
+</form>
+</div>
+          </div>
+
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <h3 class="field__label">Transcript</h3>
+              <div class="field__item" tabindex="0"><p>&gt;&gt; SPEAKER: &nbsp;All right. &nbsp;Thank you, Bob. &nbsp;I'm very happy to be here today to talk a little bit about configuration management in Drupal&nbsp;8 for beginners. &nbsp;Now, this is a topic that's particularly relevant and, um, personal to me, because, um, the problem that configuration management solves is something that makes the difference between a development process that is kind of making you want to pull your hair out and a development work flow that is professional, that is sort of web ops, which is a Pantheon, um, attribute that we've been trying to put out there, and speaking of Pantheon, my name's David Needham, I'm a developer advocate at Pantheon, I go to a lot of conferences historically, we'll see how that continues throughout the rest of this year, but, um, I spend a lot of time out in the community, um, volunteering for organizations, kind of like, um, MidCamp and Work Camp U.S. and a bunch of other organizations, and then I take everything that I learn being out in the community back to Pantheon, so that our developers are actively creating functionality and features and things like that that are useful and relevant to our customers. &nbsp;</p>
+
+<p>Now, I am going to be using, um, Pantheon during the live demo of the portion today, just because it gives us a nice visual interface for work flow. &nbsp;The things that we talk about are relevant for any, um, other sort of service provider that you might be using, and, so, that's not really an issue, it's just purely for, um, ease of use and for you to be able to see what we're going through, but before we get to that, it helps to have a little bit of a setup. &nbsp;So, for today, um, let me start just by talking a little bit about the anatomy of a CMS. &nbsp;Now, this means not just Drupal, but also Word Press or YAML or just about any CMS that's out there. &nbsp;It's really made‑up of three different parts. &nbsp;The first one is code. &nbsp;Now, code in Drupal is the Drupal Core, also the modules and the themes and all of the code that you write to make your website do what it needs to do. &nbsp;</p>
+
+<p>Another piece is configuration. &nbsp;Now, configuration are the content types, the fields, the dynamic lists or views, all of the things that really gives your website personality, things that make it different from the other websites that are out there on the Internet, and then we also have content, and this could be made‑up of blog posts, products, um, your customers, even, sometimes, your users, um, the people who are logging into your website are all considered content, and when you go to think about using, um, the development work flow, you know, you probably are not just working directly on the live environment, you probably have at least a development, you know, a staging site, um, or, maybe, you're working locally, um, as you think about moving this site from one place to the other, you typically have three things that are being exported, these, um, the anatomy of your CMS gets broken down into three distinct parts. &nbsp;The first one is code. &nbsp;The second one is the database. &nbsp;And the third one is files, and in this case, files are referring to those content files, those things that you upload when you create content, like your images, your PDFs, all of those things that got tied to your content. &nbsp;Um, so, how do these tie to each other? &nbsp;I mean, the first one is fairly self‑explanatory, the code is code, it goes over to Git, typically, you're writing PHP, that is your code, it gets exported as code. &nbsp;Your configuration gets exported as part of the database. &nbsp;It's, um, you know, you end up with configuration in the database, because that's where Drupal is actively reading your configuration from, and when you go to export your site, you're exporting it as part of your database. &nbsp;</p>
+
+<p>Now, your content is both the database and your files. &nbsp;You have those files you're uploading, your images, and then you have references to those in the database related to your content, and those pieces are tied together. &nbsp;So, with this sort of anatomy, this sort of baseline understanding, um, sort of out of the way, let's take a look at a developer work flow. &nbsp;So, a development work flow, um, really should consist of at least three different environments, and this was considered, I think, um, way back in the day, Jen Lanton shared this with me, another, um, sort of Drupal friend and mentor, this was a work flow that is, like, the best practice, even long before Pantheon was a thing, long before, you know, even Drupal was really big, like, for any web application, for any web project, you need at least three environments, a dev environment, a test environment, and a live environment. &nbsp;Now, the live environment is pretty self‑explanatory, that's where people are actively visiting your website, you might have content creators and content editors jumping in and creating content, you might have people buying things from your store. &nbsp;Now, we also have our test environment, which is basically a copy of your live environment, and it's a safe space to experiment, to, um, see what's all happening on the site, and then we also have the dev environment. &nbsp;The dev environment is where you're actively developing new functionality on your website, it's where you are, um, applying all of those security updates that get released for Drupal Core and all those modules and themes and all those fun things, and, so, all of that work is actively happening in dev, and when that work is done, you don't deploy it to live, that's pretty risky, you could be, you know, potentially breaking something by deploying straight to live, no, you deploy it to the test environment, and because the test environment is an exact copy of live, you are able to sus out any sort of surprises. &nbsp;You can, um, review the test environment with your project manager, designer, you can run a suite of automated tests to make sure that everything is going to work the way you expect it to, so that there are absolutely no surprises, and you deploy your code up to live. &nbsp;</p>
+
+<p>Once this sort of life cycle is completed and everything is stable and live is up‑to‑date and ready to go, you can then sync your database and files back down to dev, starting the development sort of life cycle over again, and this is how it's been for years, for many, many years, more than ten years, um, but there's a problem, and the problem is what about all that configuration? &nbsp;Well, if people are adding content and buying things from the store and leaving comments and things in the live environment, we never want to be in a situation where we might accidentally overwrite the database in the live environment. &nbsp;So, as a result, if you look at this work flow, the database and the files always go down, they're always going from live down to somewhere else, and the code only goes up, it's risky to change code directly on live or even test, but we move our code from dev up to test and then up to live, but configuration is both, configuration is part of the database, so how do we actually get that up to live? &nbsp;Like, that's the problem, right? &nbsp;Well, historically, the solution to this has been you do it again. &nbsp;You built something in dev, and then you build that same thing in test, and then you build that same thing again in live, hoping that you did it exactly the same way that you did the first time. &nbsp;Um, that whole process is super demoralizing, like if you've ever lost your work and had to do it again, like, anytime you have to do something more than once, it just feels like you're wasting your time, it's super depressing. &nbsp;</p>
+
+<p>Also, it puts you in a position where you're very, very liable to make mistakes. &nbsp;Also, it makes you, all the extra work makes you a little bit lazy, like you start to question the need for a test environment at all, if it takes so much work and effort to have to redo your work over and over again, and, yes, you absolutely could, um, write scripts, you could, like, manually write scripts to take your configuration and re‑create it over, um, but that's also not great, I could never do that myself, and there were modules, you know, back Drupal&nbsp;7, you know, features module that can do a little bit of this that's, like, configuration management light, but this is all built within Drupal Core now, this is a game‑changing, um, sort of new functionality. &nbsp;So, what this does with configuration management is that instead of exporting our configuration to the database, we're now exporting our configuration to code, and what this allows us to do is we actually make some sort of a change in the dev environment or local environment or wherever it might be, we export that configuration, so that, you know, Drupal's reading the database, but we export that, all those changes we've made into code, into YAML files that are very readable and, you know, easy to parse and understand what's going on, and then we move our code from one environment to the other, we go from local to dev or we go from dev to test or test to live or whatever it might be, we deploy our code up, and then Drupal is still reading the database, but now we import our configuration, we do a comparison, and we say overwrite the configuration that exists in the database right now with what I have in my code, with what I've exported in a different environment, and this moves our configuration using code from dev to test to live, so that our work flow is much, much faster. &nbsp;So, if we take a look at our work flow again, we still have dev test live. &nbsp;</p>
+
+<p>That part there hasn't changed, but as we're going through the development cycle, we are actively developing code, and we are exporting it, we are exporting all the configuration that's associated with those features from the database into code, and then when it comes time to actually deploy, we do that, we deploy our code, but then we import the configuration in this new environment, and then once we've tested it and ensured everything is working, we then do the same thing again, and then we can start the live cycle all over again. &nbsp;Okay, this work flow, this change in how you're doing things has amazing benefits. &nbsp;Some of them are listed here. &nbsp;First of all, you can move your configuration with your code, with your modules. &nbsp;Basically, whenever you add some new piece of functionality, you're probably adding a module or two to do whatever that functionality is, by enabling you to export your configuration, you're able to move that along with the code that's changing for adding that functionality, and this can be pretty cool, it can be great as you're doing a deployment, for everything to be self‑contained in one space. &nbsp;You don't have to go looking at the database here and the code there, and it's all just contained in code. &nbsp;It also means that you can version control your configuration, since we're using Git to manage our code and to deploy and move our code from one place to the other, we can actually see who changed configuration along the way. &nbsp;We can even revert changes, if something wasn't supposed to change, um, how often have you fixed something on a site, only to have it be broken again. &nbsp;</p>
+
+<p>Well, if you're using configuration management, it's easy to see exactly who made the change, because someone had to commit that, someone had to, um, export the configuration, you know, get it up to live that way, and then this also enables you to work in a way that's a lot more agile, because you can actually rebuild your environment wherever you want, you don't have to wait for the entire life cycle to be completed, you don't have to wait for everything to get up to live before you refresh dev or local, you can rebuild dev at any point, because you are regularly exporting your configuration into code. &nbsp;This would mean that, like, hey, if I'm, um, actively working on something and I know that, oh, there's this brand new content on the website, I want to get that local to make sure my code doesn't break anything, I just have to export my configuration, sync the database and files down, overwriting my local environment, and then I re‑import the configuration, and I'm right back to where I was, but with all of the new content too. &nbsp;Um, this allows you to work in a way that's much, much better than just having to wait and hope that it works with all the new content or wait till it gets up to test when you can actually work against a new copy of live. &nbsp;Also, you can automate things with Drush. &nbsp;The Drupal shell allows you to have command line access to your Drupal site. &nbsp;By using configuration management, you're able to use Drush commands to import and export your configuration along the way, and we can actually automate that. &nbsp;You can write scripts that will, um, be associated with your deployments and say, you know, every time I deploy to test, automatically import my configuration. &nbsp;I don't want to have to manually do that, I don't want to have to go through the UI to do that, I just want that to happen automatically, and it does, and that is wonderful. &nbsp;That is yet another step that we'll be talking about in a few minutes that makes your whole entire work flow even better. &nbsp;</p>
+
+<p>All right, but there are some gotchas, there are some issues that are just worth noting, that are worth getting out there and making sure everyone on your team is talking about. &nbsp;The first one is that config only works to and from the same site, and this was intentional. &nbsp;If you check out my slides, which I will put another link into the chat window, since we, um, have had a few more people join, um, if you check out the slides, you can click the link, that'll take you to a talk from the team that made configuration management in Drupal Core, um, and this is a talk from them way back at, um, Drupal Con Austin, and they said this was an intentional choice. &nbsp;When configuration is exported, it's tied to the UUID for a specific Drupal site, and, so, it's really only intended to be used for going from, you know, dev to test to live, from staging to live, you know, from local to working with the same website. &nbsp;Now, if you wanted it to go, if you wanted to change features and export them and, you know, move them from one site to another, the features module is still around, it still works in Drupal&nbsp;8, and that's what that module is actually intended for. &nbsp;There are actually other modules, like config split, that can help to, um, you know, split configuration and have different rules and things that could help with some of that, if you're trying to do that, but the really cool thing here is that it works for everything, like you can use configuration for all of your modules, um, whether they're from Drupal Core or a third‑party module, and it all works, but it is just tied to that one site. &nbsp;It is also really important along the way to communicate with your team. &nbsp;</p>
+
+<p>As you are importing and exporting in configuration, you are overwrite thing database with this configuration. &nbsp;If you don't talk to your team about when these things are happening or that you're switching to this new work flow, it is very likely that you're going to overwrite changes that people are making in configuration. &nbsp;Um, this could be true in a dev environment, if you're actively working together. &nbsp;It could also be true on live, if you have people, um, like, maybe a customer of yours is empowered to make changes directly on the website, and, all of a sudden, you start using configuration management, and when you move your configuration up to live, you import it into live, they just lost all the changes and configuration that they had made, and that can be a problem. &nbsp;That's something that's worth talking about. &nbsp;You know, maybe, it's time to enforce configuration‑level changes happening through this development work flow also, which is another benefit, but it's just really important to make sure everyone's on the same page about when these things happen and that this is something that you're trying to implement. &nbsp;All right, another gotcha is that Drupal's a little tricky in some areas. &nbsp;There are some, um, some parts of Drupal that areilatal ambiguous about if they are content or are they configuration. &nbsp;You know, you might have a block on your website that welcomes people to your website and invites them to sign‑up for an account, that sort of feels like configuration, like on par with the name of your website or the slogan or, you know, something like that, but you could also have a block that is, um, clearly content, something that you just add that changes, you know, from one environment to the other or something, so that's one thing. &nbsp;Taxonomy is also the same sort of scenario, where you could have categorization on your website, like free tagging is something that a content creator could add themselves to any piece of content and actually create new terms on the fly, um, that's clearly content, but you could also setup taxonomy in advance to define, I don't know, like, the difference between types of articles, is this a news article, is this a press release, is this a blog post. &nbsp;Um, that is clearly configuration, people aren't actively adding to that all the time. &nbsp;</p>
+
+<p>Um, and there are some modules to help, um, sort of as you're exporting configuration to divvy these up as well, but that is a gotcha, it is a little tricky, to export some of those things sometimes, unless you have a plan. &nbsp;So, speaking of some extra modules that we want to look at today, um, well, some of these, we'll be looking at today, the first one is config direct save. &nbsp;So, by default, when you export configuration from one site, it downloads a G zipped tar file to your computer, which isn't the most helpful. &nbsp;I much prefer the, um, configuration when I click export, I want that to go into my code, I want it to go, like, straight into my code, whereas the default behavior of the configuration management system is I have to download the G zipped tar file and then immediately upload that back to the website for it to actually show up in the code, or I could manually, like, unzip it and put it in place and stuff, but that's frustrating and annoying. &nbsp;This module, config direct save, will give us a button in the interface to one‑click sync up our, um, code with what's in the database, so it will export the database configuration into code directly without having to actually download that ourselves. &nbsp;This is a pretty good module. &nbsp;I use this on any site, um, any Drupal&nbsp;8 site nowadays where I'm using configuration management, which is most of them now. &nbsp;</p>
+
+<p>Another one is configuration read‑only mode. &nbsp;This is really helpful for that situation where you have customers or you have people who are potentially changing configuration in the live environment, where you don't want them to make changes that could potentially be overwritten, so you can use the configuration read‑only mode to lockdown configuration changes that will become overwritten in the future, and there are ways to customize that as well. &nbsp;There is also, um, config ignore, and config ignore is a great module for ignoring certain aspects of your configuration that you do not want to go from one environment to the other. &nbsp;For example, you might, um, have the develop module or the views UI that you have in dev that you don't necessarily want to be enabled on live, so you could use the config ignore module to say, you know, ignore enabling those two modules or some other aspect of configuration that is specific to my development, and then it won't accidentally end up on the live site. &nbsp;Then we do also have config split, which, I admit, I do not have a whole lot of experience with. &nbsp;It seems rather complicated, but it will allow you to do a lot more with, um, controlling exactly how multiple, um, scenarios work with using configuration. &nbsp;All right, so with all of that out of the way, um, I have held some time today to go through a quick live demo. &nbsp;We're going to do a little bit of role‑playing for the demo today, so I'm going to, um, switch into a different persona and present the role‑playing aspect of the live demo, because, you know, I didn't get to do any D &amp; D this week, like I was planning, so I'm going to throw in some role‑playing and see if this works. &nbsp;</p>
+
+<p>All right, so, we have our website, so, one moment. &nbsp;Hello, everyone. &nbsp;I am the editor of Umami Magazine, and today, I am live‑streaming to publish a product to the website. &nbsp;We thought it would be good to have more transparency, so we are going to show you how I create an article on our website so that you could see how you could create an article on your own website. &nbsp;Let's begin. &nbsp;So, first of all, I'm on the Umami Food Magazine website, and I need to log‑in, so I go into the log‑in screen. &nbsp;Now that I'm logged into my website, many of my responsibilities include adding new articles and promoting them so that our readers are able to get what they're looking for and can make, um, great, delicious recipes and our, um, magazine is able to sell more copies and things like that, so to do this, I just need to go over to the content page, I'm going to, um, go and take a look at all the content we have in our website and then, um, this looks pretty good, I'm going to click on the add content button to create a new piece of content on here, and I would like to create an article. &nbsp;The article is going to let us write a new blog post for our article section, so that it shows up there, and, you know, I really love oatmeal, so I'm going to create a new blog post all about oatmeal. &nbsp;So, you should definitely eat some hearty oatmeal, because it's good for you. &nbsp;All right, and then for the body, um, this is where I would, um, send it out to our content creators, we'd come up with a whole, um, slew of tips and tricks and some of the hottest new recipes and the best organic grains to use for creating your oatmeal, but for now, um, I'm going to put in just some placeholder information. &nbsp;It helps that the, um, oatmeal company is one of our, um, great sponsors, so we're promoting them at the same time. &nbsp;I'm going to go in now and add a new image to our website. &nbsp;</p>
+
+<p>We happen to have a great image of our oatmeal that's been added right here, so I'm going to click on that, and, um, one second. &nbsp;I'm going to click on the new oatmeal. &nbsp;That all looks good, and, you know, since I'm the editor, I have the ability to promote this or to make it go live right away. &nbsp;Um, I'm going to go ahead and do that. &nbsp;I'm going to say published, and I'm going to click save. &nbsp;All right, I am definitely ready to eat some delicious oatmeal. &nbsp;So, um, now that this is done, it automatically gets promoted to our article section of our website. &nbsp;So, if I go over to the article section, I can see, hmm, well, I can definitely see the article that I created, but there's supposed to be more articles there. &nbsp;Um, hmm, live demos, right? &nbsp;So, let me go back over to the content page. &nbsp;I can see that, yeah, there are definitely lots of articles here. &nbsp;Oh, don't touch my face. &nbsp;So, there are lots of articles here. &nbsp;Yeah, it should definitely be showing up there. &nbsp;All right, well, I'm not sure. &nbsp;Well, thanks, everyone. &nbsp;I'm going to go ahead and end the live‑stream at this point, and I'm going to, maybe, contact the developer, to see if they can tell me exactly why the website's not working anymore. &nbsp;So, yeah, um, we'll see you next time, and then please wait while I switch into the, um, developer persona. &nbsp;Hello, everyone, and welcome to the live‑stream. &nbsp;I am the developer for the Umami Food Magazine, and today, our editor contacted us to say that there is some sort of a problem with the articles page, and so I went to the articles page on our live website, and, yeah, it sure looks like there's just one piece of content there. &nbsp;Maybe, they deleted the content again. &nbsp;Let's go check that out. &nbsp;Let's go to the content section of the website, and, yeah, no, there's definitely lots of content there. &nbsp;</p>
+
+<p>Okay, well, um, I think this is going to call for some development of some sort, so let's actually, um, let me switch to my website and, um, I'm using Pantheon in this case, but let me just take a look at my dev site. &nbsp;I'm going to go ahead and click on here to log into my dev site and just see if I can re‑create the problem on my own system. &nbsp;So, here, we have a, um, website, if I go to articles and, yeah, sure enough, there is, um, just one article there. &nbsp;Okay, well, let me log‑in as my account as a developer, maybe we can get to the bottom of this. &nbsp;So, I definitely created this site with some help from the rest of the development team, but, you know, maybe it's a views thing. &nbsp;Views is our system that we're using within Drupal Core for creating a list of content automatically, and it should be showing&nbsp;6 here, but, um, let's go ahead and take a look. &nbsp;I'll go in here, I'm going to click the button, click on edit view, and we're going to take a look and see what the problem could be. &nbsp;All right, so, I see the problem already. &nbsp;So, it says right here, um, for this page, use a specified number of items, one item. &nbsp;Hmm, I wonder how that happened. &nbsp;Okay, well, let's change this, we can fix it pretty quickly, if I go in here, I'm going to say paged output full pager, and I'm going to click apply, and items per page, we're supposed to be showing six, not one, so let me change that. &nbsp;</p>
+
+<p>All right, I'm going to click apply, and that looks good so far, and go ahead and click save, and we'll take a look at it on the development side, and I can see it's the development side, because it starts with dev, and I'm sure I'm not on the live site right now, and there we go. &nbsp;Okay, this looks great. &nbsp;So, we can see it all working how we expect it to. &nbsp;Okay, well then, the next thing I need to do, I want to get this configuration change up to our test environment, I'd like our editor to review the work there, maybe we can run some automated tests and make sure we're not breaking something else in the process, so let's go ahead and get that going. &nbsp;We'll just jump over to our website, actually, we got to go back in here, we're going to go through the Drupal UI for this, we're going to go down to configuration, and we'll find the configuration synchronization section, that's where we're going to go to get that all synced up. &nbsp;It takes just a minute for it to load up. &nbsp;All right, so we can definitely see that there's a change here now. &nbsp;What we do not want to do is click this import all button. &nbsp;If we click import all, it's going to overwrite our changes in code, I'm sorry, it's going to overwrite our changes in the database with what already exist in code, because we've exported configuration in the past, this is not the first time we've done this, but what we can do from here is actually view the difference. &nbsp;We can see exactly what changed and make sure this is the change that we're expecting. &nbsp;Um, yeah, so, this is actually, being familiar with views, this is already pretty similar to what I was expecting. &nbsp;You see here, we went from some to full, and we went from showing one to showing six, so that looks good. &nbsp;</p>
+
+<p>Now, again, I get pretty frustrated sometimes with the Drupal interface. &nbsp;If I go in here to export, if I want to take my configuration out of the database and into code, I have to click this button to export, and you see here, it says it's going to download it. &nbsp;Whew, that's terrible. &nbsp;I added the config direct save module, and it gives me this interface up here for choosing update, and if I choose update configuration, it's actually just going to save it to my code directly, I don't have to download and upload that directly, I can just do it directly from here, which is exactly what I want. &nbsp;Um, so, now that I've made that change, I think this environment's ready to go. &nbsp;If I jump back to my dashboard, I should be able to see a code change get fired off in here, and it should show me a dif, which is pretty helpful, so if I see here, it says one file is ready to commit, and I can see basically what I saw before, I'm changing this configuration file that's stored within sites default config, and it's created one specifically for this view that I created, so there's lots and lots of YAML files that get created every time that you export your code, there could be dozens or even hundreds of configuration files for all the different things you're working with, and I can see here, I updated it from some to full, and I updated it from one to six, with a whole bunch of additional configuration related to that pager that was added. &nbsp;So, yeah, this looks like what I expect. &nbsp;I'm going to go ahead and commit this. &nbsp;Always good to write a good commit message. &nbsp;</p>
+
+<p>Now it's worth noting, if you don't have a Pantheon account, that's okay, you're probably still using your version control, your code, um, you could still write a commit that way, that's still the same, we're really just using it here today to visualize the process as you go through from one environment to the other. &nbsp;This is not a Pantheon‑specific thing that we're talking about. &nbsp;All right, so that is completed. &nbsp;Now, I can jump over to my test. &nbsp;I'm going to deploy my code up here, and I'm going to be sure to sync up my live database in the process. &nbsp;This just takes a moment to finish, and then we'll be able to actually see all of the configuration changes that we made alongside all of the new content that our fine editor had created earlier. &nbsp;So, let's go ahead and take a look at this as soon as it completes. &nbsp;Just takes a moment. &nbsp;I'm going to see if I can jump on it and see it. &nbsp;Nobody likes to wait, especially when we're doing a live‑stream. &nbsp;That's not what we like to see though. &nbsp;Let me go to the articles page. &nbsp;Yes, we only see the one article, but that's okay, we actually, um, that's okay, because we, um, haven't actually imported the configuration yet, so that's just fine. &nbsp;Now, if I go in and log into this test environment, that's not good, let me go back. &nbsp;It hasn't actually completed yet. &nbsp;I was jumping the gun, I should have waited for it to finish. &nbsp;Let me just wait for a moment for this to be completed, and then we can continue. &nbsp;There we go. &nbsp;It just finished, so let me jump back in again. &nbsp;I'm going to visit the test environment, and let's go back to the articles page, and there we go. &nbsp;Yes, we see the eat some hearty oatmeal that our fine editor created earlier. &nbsp;Brand new content in this new environment, because this is a copy of our live environment, and if I go into my log‑in, oh, no, I don't need to go to the install, I need to go to the user log‑in, there's probably a caching thing happening here at the moment, let me go back and clear the cache. &nbsp;Of course, live demos, right? &nbsp;There we go. &nbsp;</p>
+
+<p>Now, let's go back. &nbsp;Okay, and, um, looks like we're logged in, it looks like it worked, but it shouldn't have. &nbsp;No, I'm still in the dev environment, that's why. &nbsp;Okay, well, let me go back here, let me click on my test environment again, and let's go take a look at this. &nbsp;Okay, so now let's go to log‑in again. &nbsp;Hey, there we go. &nbsp;Okay, so now, I'm going to log‑in as my developer account, and now we can actually take a look at this website from my perspective with all the new content and all of the existing configuration that we built in dev. &nbsp;So, if I go back to my article section, I should see that eat some hearty oatmeal article that our editor created, that looks good. &nbsp;Now, I could certainly just edit the view directly, it's a pretty simple change that Imade, to be honest, but that's not the way we do things. &nbsp;We go through configuration management to do it this way, and the reason is is because, yeah, this is a pretty simple example, a pretty simple, um, demonstration that we're going through today, but if you were building out a content type with fields and views and all those different things, you're not going to want to do that again in each environment, you want to do it once in dev and export the configuration and have it move through your work flow. &nbsp;So, let's actually import this configuration, and we should be able to get our team to review it. &nbsp;So, we'll go over to configuration, we'll go down to configuration synchronization, and this is the case now where we actually do want to click this button here to import all. &nbsp;</p>
+
+<p>This is going to look at the code that we have in our configuration that we've already exported and compare it to our database, and we want to import those changes into our database, so that it actually overwrites the things that we had changed in the previous environment. &nbsp;So, I could click the dif, if I want to see the dif, but I've already seen that twice, we don't need to look at that again, I'm just going to click the import all button, and that should get us all synced up and ready to go. &nbsp;Takes just a moment. &nbsp;I can tell that our manager is getting a little antsy here, so we need to hurry up and give him something he can look at. &nbsp;Hey, already. &nbsp;Wow, okay. &nbsp;So, we can see here, we have the eat some hearty oatmeal article that was just created on live, we have all six articles, all of our configurations, so now, everything is working in test. &nbsp;That's wonderful. &nbsp;So, what we can do now is give this URL, I'm actually going to Slack over to the editor right now, he's going to take a look at that and let me know if it's good to go, and while he's doing that, I actually have some test results that ran, um, just to make sure that it's all working the way we expect it to and that there isn't any other sort of, like, performance issues. &nbsp;That's actually something we started somewhat recently, otherwise, we would have caught this error before, but, hey, oh, just got a message from the editor. &nbsp;Yeah, so, he is excited, he said that looks good. &nbsp;A little curious why it happened in the first place, but, hey, let's ignore that and just continue on. &nbsp;So, okay, he says it's good to go, so now we can continue and go back to our live environment now, and we're going to deploy. &nbsp;</p>
+
+<p>We're going to put in our message here, and we're going to deploy our code from test to live, and you know what? &nbsp;This is actually kind of the boring part now. &nbsp;We have already went through the process of importing and testing in the test environment, we know that we're not going to have any surprises in the live environment, because we've already went through all of that process once, we don't have to think about it anymore, it's just going to work this time. &nbsp;So, once this is in, it's just going to take a moment to actually import into this environment, and we'll be done. &nbsp;Now, I could certainly go in through the dashboard, but, you know, I could do this directly with Drush too, I don't necessarily have to log into my account, I don't have to log into, um, the live website, I could do it directly from the command line with Drush, and that would also work pretty well. &nbsp;Um, you know, let's give it a try. &nbsp;Let's try to do this directly with Drush and see what happens. &nbsp;So, let's go ahead and get this going. &nbsp;Um, wait until we're done with all the import, we don't want to have a mistake like we had earlier. &nbsp;So, we are still deploying code to live, twiddling our thumbs a little bit and waiting for this to happen. &nbsp;How about that game night last night, right? &nbsp;That was fun. &nbsp;Got to watch some people play some Red&nbsp;7, got to catch some Pokemons. &nbsp;Love me some Pokemons. &nbsp;All right, so we're done. &nbsp;So now, um, let's go to our, um, our command line interface. &nbsp;So, um, this is one aspect that's a little bit more Pantheon, just because we're using, um, Pantheons tool to use Drush directly on the server, but if you're using Drush alias files and things like that, it's going to be exactly the same. &nbsp;The only difference in this case is that I'm using a terminus Drush command, which is Pantheon's thing, but the Drush thing is going to be exactly the same, and then I need to say what site this is. &nbsp;So, let me go out and just make sure I'm grabbing the right site, and then I'm going to choose a, um, configuration import, and that's summarized CIM. &nbsp;If you just do a Drush CIM, this is going to do a configuration import, and, in this case, since we said it's in a live environment, it should import the configuration for us directly on the live environment, and that should take care of it for us without us having to actually log‑in. &nbsp;Yes, I would like to import that file, synchronous configuration, looks good. &nbsp;Success. &nbsp;Excellent. &nbsp;</p>
+
+<p>Okay, let's go back and check it. &nbsp;So, um, we have, um, our live environment, I'm going to go ahead and open up an incognito window, just to show that it's completely locked out and nothing fancy going on. &nbsp;Go back to the articles page. &nbsp;Yay, we fixed it. &nbsp;All right, well, I think this concludes the live‑stream of the developer of Umami Magazine. &nbsp;Thank you very much for joining us today, and I hope you have a good rest of your day, and we'll see you around. &nbsp;Definitely consider attending MidCamp. &nbsp;It's a great camp.</p>
+
+<p>&gt;&gt; SPEAKER: &nbsp;And I'm back. &nbsp;Okay, thank you all for, um, allowing me to have a little bit of fun with the presentation today. &nbsp;Like I said, I was bummed I didn't get to do any of the, um, D&amp;D and all that stuff, so thank you very much for humoring me as I stepped through and tried something a little bit new. &nbsp;So, that was the live demo. &nbsp;That is what a typical development process could look like using configuration management. &nbsp;It's much, much better than having to do it yourself over and over again, that's just a pain, so let's actually continue on with the presentation. &nbsp;We are almost done, and I'd like to leave time for questions, but there is still one question that you might still be asking yourself, and that is who broke the page? &nbsp;Who caused that particular issue to come up? &nbsp;Well, I mentioned earlier that since we're using configuration management and that's in version control, we can tell who made that change. &nbsp;It's actually not a very big mystery, because I made this demo, so the answer is going to be me, clearly, but, however, you can do this great command here, if you go to the directory where the configuration is saved, you can do a git log‑P and then define the specific file that you want to do, and it will, um, tell you exactly when that specific file has been changed and who did it and what commit and all that stuff. &nbsp;So, let's give it a try. &nbsp;I have my command line here again, let me do a quick clear. &nbsp;I'm currently in the code folder for the Umami CFM. &nbsp;If I just go into, um, sites default config, um, from here, if I want to do a git log‑P and then, um, something articles, um, which one is it? &nbsp;Let me see. &nbsp;There it is. &nbsp;All right, and if I click enter, I can see that I did it back in February, debugging a problem with the articles page. &nbsp;Um, so, this was something that I staged way back in February, I didn't change my git history or anything like that to cause this to be architected this way, um, I've actually given this presentation a few times, so this was one of the last times that I gave this presentation, I did this problem, I broke it, debugging a problem on the articles page, and that caused this to change from showing nine items per page to one and from many to some, and another solution that our fine Umami developer could have done would have been to do this command, to basically see exactly when this changed, like, he didn't have to fix it and then re, kind of overwrite it, he could have went back and seen, like, oh, this changed, let me go back and see when that file changed, went here and been like, yep, that shouldn't have happened, revert this commit or go back and revert the specific file even, undo the changes, and then you're right back to where you started, you don't have to, um, guess who did what, why, it's all documented here, which is pretty cool. &nbsp;</p>
+
+<p>All right, so, we know that mystery is now solved, we're good to go. &nbsp;Now, about the CLI, the command line interface and automation, I was able to demo some of this just now using the config import, and I didn't do the config export. &nbsp;Um, this is also sort of a game‑changer in its own way, because it does mean that you can cut one entire step out of your work flow, because the previous work flow with configuration management is, you know, you make a change on dev, you export configuration, you then deploy to test, you then import configuration, you deploy to live and then import configuration there, so that's actually two steps. &nbsp;We could setup a script that would just run Drush import, um, Drush config import automatically after a deployment, just as part of our deployment script, and then it would just do it for us automatically, which, um, is pretty cool, once you have it setup, but, remember, this is one opportunity where you could overwrite changes that people have made in those environments, so you definitely want to talk to your team, your customer, people that could be changing things, just to make sure that, um, you're not going to be overwriting any of their changes. &nbsp;So, with this new work flow, it would look a little bit something like this. &nbsp;Development work flow with configuration management automated with Drush, you still have dev, test, live, of course. &nbsp;You also still export your configuration, but now, as a single step, you both sync up your files in database and deploy and import your configuration. &nbsp;So, once the test environment's stood up, you deploy and import at the same time, and then you don't have to think about if it's going to work, all of the things should just be done there and ready for review, which is great, because this is a required step, if you want to do automated testing, if you want fully automated testing to happen every time that you deploy, then automating the configuration import is sort of a prerequisite. &nbsp;Otherwise, you're not actually testing the changes you put in there. &nbsp;</p>
+
+<p>So, for example, if you wanted to do a visual regression test to compare screen‑shots of live and test and make sure that they're working or that they're different, because you changed something, um, you would want to automate this step, and then it's also handy then, the last step here is to deploy our code and import config into the live environment, and then, of course, sync everything back down. &nbsp;So, um, that really brings us to the end of the presentation today. &nbsp;There are some more resources you can get into, if you want to learn more about this, this is really just scratching the surface and showing you what's possible, but, um, within, um, the Drupal.org, you can find the CFM guide directly, and if you, um, go to, um, my website and you grab my slides, you can click these links yourself so that you don't have to actually, um, wonder what this page is, you can just click the link in the slide directly there. &nbsp;So, Drupal.org, the CFM guide is pretty solid, has a lot of great information, possibly outdated in a couple of spaces, because it's documentation, definitely consider fixing it, if you find something that's out‑of‑date, go back and improve it, if you can, make it better for everyone else. &nbsp;There is also Drupalize.me has a great CFM series on their website, so it's a great video learning series for Drupal, you can subscribe and check out their CFM series, it's also very good, and then there's articles from the folks in chromatic who are in, um, Chicago area, and with the configuration management thing, you know, they actually added this great article that does a really fine job of defining the problem and then also, um, kind of fitting configuration management into the solution and figuring out, you know, how to use configuration management in a team, you know, sort of agency work flow. &nbsp;So, that's a really great article to dig in deeper, and then also, the Pantheon docs, we have a great page created by, um, one of my colleagues, Dwayne McDaniel, who has the, um, the Pantheon docs configuration work flow for Drupal&nbsp;8 site. &nbsp;It's a really great resource also for digging deeper and learning more about configuration management. &nbsp;All right, and with that, um, hey Bob, I see you're trying to get me off the stage already. &nbsp;I see you having the, um‑‑</p>
+
+<p>&gt;&gt; SPEAKER: &nbsp;No.</p>
+
+<p>(Laughing.)&nbsp;</p>
+
+<p>&gt;&gt; SPEAKER: &nbsp;There is also a contribution day, don't forget, tomorrow, 10:00&nbsp;a.m. to 4:00&nbsp;p.m. &nbsp;I would highly recommend, if you're here, you should be there. &nbsp;It is a really great place to contribute back to Drupal, but also, if you would like to learn how to contribute back, um, there will be a couple really great classes, first one with Amy June, second one with, um, Randy Fay, I think. &nbsp;The first one with Amy June is meant for folks who don't really know anything about contributing back to the community, you don't have to know code, you don't have to, um, be technical in any way whatsoever to get something out of that and to be able to give back. &nbsp;With Randy Fay's talk, I think he's going to walk through installing D dev or one of the, I think it's D dev, but it's one of the local development tools that can get you up and running and, um, get that, if you do want to contribute back in a code sort of way. &nbsp;So, definitely, check that out. &nbsp;Should be lots of fun, lots of great opportunities, and with that, I will thank you very much for, um, the MidCamp organizers for inviting me to speak today and for, um, to Bob for hosting the room today and encouraging me to leave the stage in a timely fashion.</p>
+
+<p>(Laughing.)</p>
+
+<p>&gt;&gt; SPEAKER: &nbsp;And if anyone has any questions, um, I'd be happy to jump in and take them now.&nbsp;</p>
+
+<p>&gt;&gt; SPEAKER: &nbsp;David, I have a question. &nbsp;Using Drush config dash export, that does not do the config direct save type of stuff, does it?</p>
+
+<p>&gt;&gt; SPEAKER: &nbsp;I think it does, um, because since you're running it from the command line, I think config direct save saves it directly from your database to your code. &nbsp;Yeah.</p>
+
+<p>&gt;&gt; SPEAKER: &nbsp;Excellent.</p>
+
+<p>&gt;&gt; SPEAKER: &nbsp;All right, well, I don't see anyone else asking any questions, so I will, um, I'm already in the hash tag MidCamp 314B Slack within the MidCamp Slack, so feel free to throw stuff over there, if you, um, if you have any questions, I can handle it there. &nbsp;Otherwise, hit me up on Twitter or e‑mail or whatever works best for you, and I definitely hope to see you all around the Drupal community.</p>
+
+<p>&gt;&gt; SPEAKER: &nbsp;I think at this point, can everybody hear me?</p>
+
+<p>&gt;&gt; SPEAKER: &nbsp;Yeah.</p>
+
+<p>&gt;&gt; SPEAKER: &nbsp;Okay, good. &nbsp;I think at this point, everybody should un‑mute themselves and give David a great round of applause. &nbsp;Thank you very much, David.</p>
+
+<p>(Applause.)&nbsp;</p>
+
+<p>&gt;&gt; SPEAKER: &nbsp;Very good. &nbsp;Very good.</p>
+
+<p>&gt;&gt; SPEAKER: &nbsp;Thank you.</p>
+</div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+
+</div>
+  </section>
+
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-786717f6d077d736437aa6c4480216d6178f9fd393df4db83037a7cc0c2b6c5c">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/palantirnet.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2020-02/palantirnet-logo.png" width="1200" height="198" alt="Palantir.net logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/bounteous.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2019-11/Bounteous_indigo_large.png" width="1676" height="279" alt="Bounteous logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/clarity-partners.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2020-02/CFDFAA23-5C59-4C07-9C66-CAFFE0CF3854.png" width="1534" height="387" alt="Clarity Partners logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/pantheon.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2020-02/pantheon-logo-tagline-black.png" width="1200" height="370" alt="Pantheon logo" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-2019-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#244d4a424b64494d40474549540a4b5643"><span class="__cf_email__" data-cfemail="5930373f361934303d3a38342977362b3e">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-2019-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-2019-footer-menu" id="block-hatter-2019-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-2019-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/6329","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"ajaxTrustedUrl":{"form_action_p_pvdeGsVG5zNF_XLGPTvYSKCf43t8qZYSwcfZl2uzM":true},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_sul8js76f3THBVtv8nspP93BoCHSgntyTCisS6lai4M.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter_2019&amp;include=eJx1ykEKgDAMBdELaavuPI2k-o1K2kITFG_vRkQEVwOP4ZxZMFAiOW0d1fMHqoXMUIauaXvPkgNJvT0aSPHSA2HOJfq7DoKIZG6C0SrqlHb8ThGqxLgAGZ04Cw"></script>
+
+  </body>
+</html>

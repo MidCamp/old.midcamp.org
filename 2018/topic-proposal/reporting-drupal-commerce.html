@@ -1,0 +1,2206 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="Reporting is essential to e-commerce. Store owners want to know what products are selling, if a marketing campaign is turning into a realized investment, how much sales tax to remit, and more. However, reporting is not without its challenges related to creating certain types of reports and working with the data. For Drupal Commerce, there is the Commerce Reports module, which uses raw data in your site’s database to present information and statistics. Commerce Reports provides out of the box reports that are directly integrated into your site." />
+<link rel="canonical" href="reporting-drupal-commerce.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Reporting in Drupal Commerce | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Reporting in Drupal Commerce | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_Qoyy92GHt9RyGOt8N3WS_9HRsJcJBywJ2IhXudzvST4.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJw1jGsOgzAMgy9U1iOhtPVYpYSgumNjp18F4o_1-SFnFfKISYiQLzaQsoC3X72MzhsGNROtP4SX9I4WF_UkOmXyTky25N_Agx123e61wGdYQpmfFVpiAzdfWXdMZzkm-DCe-jAvb8UfjYM.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_mK2of_t7UFymkfbTHeA-kHdMPWzqc3DZQCYtX-tC0BA.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJw1jGsOgzAMgy9U1iOhtPVYpYSgumNjp18F4o_1-SFnFfKISYiQLzaQsoC3X72MzhsGNROtP4SX9I4WF_UkOmXyTky25N_Agx123e61wGdYQpmfFVpiAzdfWXdMZzkm-DCe-jAvb8UfjYM.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJw1jGsOgzAMgy9U1iOhtPVYpYSgumNjp18F4o_1-SFnFfKISYiQLzaQsoC3X72MzhsGNROtP4SX9I4WF_UkOmXyTky25N_Agx123e61wGdYQpmfFVpiAzdfWXdMZzkm-DCe-jAvb8UfjYM.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJw1jGsOgzAMgy9U1iOhtPVYpYSgumNjp18F4o_1-SFnFfKISYiQLzaQsoC3X72MzhsGNROtP4SX9I4WF_UkOmXyTky25N_Agx123e61wGdYQpmfFVpiAzdfWXdMZzkm-DCe-jAvb8UfjYM.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+<link rel="stylesheet" media="all" href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.css" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="reporting-drupal-commerce.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-hatter-main-menu-menu" id="block-hatter-main-menu" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-main-menu-menu">Midcamp 2018 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" data-drupal-link-system-path="node/2">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--venue">
+        <a href="../../about/venue.html" title="Venue" data-drupal-link-system-path="node/7048">Venue</a>
+            </li>
+          <li class="primary-nav__sublist-item item--travel">
+        <a href="../travel.html" title="Travel and Accommodations" data-drupal-link-system-path="node/65">Travel</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../lunch.html" title="Lunch Near Campus" data-drupal-link-system-path="node/162">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2018/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" title="Meet the Team!" data-drupal-link-system-path="2018/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../../2023/about/lunch-options.html" data-drupal-link-system-path="node/6970">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--accommodations">
+        <a href="../../2023/about/accommodations.html" data-drupal-link-system-path="node/6948">Accommodations</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" data-drupal-link-system-path="node/9">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--become-a-sponsor">
+        <a href="../become-a-sponsor.html" title="Become a Sponsor" data-drupal-link-system-path="node/7">Become a Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../../jobs.html" title="Jobs" data-drupal-link-system-path="jobs">Jobs</a>
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" data-drupal-link-system-path="node/128">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--training-thu">
+        <a href="../training.html" data-drupal-link-system-path="node/195">Training (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--bofs-fri-sat">
+        <a href="../birds-feather-bofs.html" title="Birds of a Feather (BoFs)" data-drupal-link-system-path="node/167">BoFs (Fri/Sat)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-fri">
+        <a href="../schedule/friday.html" title="Friday Sessions" data-drupal-link-system-path="2018/schedule/friday">Sessions (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-sat">
+        <a href="../schedule/saturday.html" title="Saturday Sessions" data-drupal-link-system-path="2018/schedule/saturday">Sessions (Sat)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sprints-sun">
+        <a href="../../sprints.html" title="Sprints">Sprints (Sun)</a>
+            </li>
+  </ul>
+
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2018.html" hreflang="en">MidCamp 2018</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Reporting in Drupal Commerce</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="50" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2018-03-10T17:30:00Z" class="datetime">Saturday, 11:30 am CST</time>
+ - <time datetime="2018-03-10T18:00:00Z" class="datetime">Saturday, 12:00 pm CST</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-81" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-name field--type-string field--label-hidden field__item">Room 314A</div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>Reporting is essential to e-commerce. Store owners want to know what products are selling, if a marketing campaign is turning into a realized investment, how much sales tax to remit, and more. However, reporting is not without its challenges related to creating certain types of reports and working with the data.</p>
+
+<p>For Drupal Commerce, there is the <strong>Commerce Reports</strong> module, which uses raw data in your site’s database to present information and statistics. Commerce Reports provides out of the box reports that are directly integrated into your site.</p>
+
+<p>Additionally, you can use the <strong>Commerce Google Analytics</strong> module to push data and order information into Google Analytics. This allows you to put a revenue value on sessions and create other reports within Google Analytics using this data.</p>
+
+<p>Finally, Commerce Guys has created a new sales dashboard and analytics tool for Drupal Commerce users called <strong>Lean Commerce Reports</strong>. It provides denormalized storage in a highly available, easily scalable third party database. The dashboard it provides visualize sales and conversion data and link to reports that can further influence your marketing decisions. Whereas Commerce Reports exposes you to direct statistics without insight and Google Analytics allows you to derive limited insights with special knowledge about how to build those reports, Lean Commerce Reports is a tightly integrated SaaS solution that bridges the gap between the two with a plug and play sales dashboard.</p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/Lco0gtyjHXA?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Matt Glaman</h4>
+
+      Principal Software Engineer
+
+
+          @
+              <a href="https://www.acquia.com/">Acquia</a>
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p>Matt Glaman is an experienced software engineer and a prominent member of the Drupal community. With over a decade of experience in web development, he has gained a wealth of knowledge and expertise in the field. He is the author of several books, including "Drupal 8 Development Cookbook" and "Drupal 10 Development Cookbook," which provide a comprehensive guide to building and customizing Drupal sites.</p>
+
+<p>As an active member of the Drupal community, Matt is dedicated to sharing his knowledge and expertise with others. He regularly contributes to Drupal projects and is passionate about helping others develop their skills and become more proficient in Drupal development.</p></div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2019-12/3LRfmYzD_400x400.jpg%3Fitok=w2Gli5PW" width="220" height="220" alt="avatar" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">End users / Content Admin</div>
+          <div class="field__item">Site Building</div>
+              </div>
+      </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p>thank you for coming to reporting in</p>
+
+<p>Drupal commerce hi I'm Matt claman so my</p>
+
+<p>name is Mack lawmen I am a senior Drupal</p>
+
+<p>consultant at commerce guys and it reset</p>
+
+<p>them theater so I can't even look at my</p>
+
+<p>computer I am a Drupal commerce Co</p>
+
+<p>maintainer of the to dot x branch and I</p>
+
+<p>guess what IX technically I'm the author</p>
+
+<p>of the Drupal 8 development cookbook</p>
+
+<p>which had the second edition released in</p>
+
+<p>Vienna time I'm also the author of</p>
+
+<p>contraband calm which takes people dot</p>
+
+<p>org issue queues and turns in the Kanban</p>
+
+<p>Boris you can action to rock what issues</p>
+
+<p>are working on and the creator of the</p>
+
+<p>PHP start plug-in that lets you run the</p>
+
+<p>run test scripts inside phpstorm because</p>
+
+<p>everybody should be running tests and</p>
+
+<p>helping run tests when they contribute</p>
+
+<p>to to the court so this this</p>
+
+<p>presentation is on reporting a vehicle</p>
+
+<p>commerce and why like we know about</p>
+
+<p>reporting and data but why is reporting</p>
+
+<p>important well the main thing is a</p>
+
+<p>merchants want to know what their</p>
+
+<p>merchants want to know what what</p>
+
+<p>products are selling right the whole</p>
+
+<p>point of signing online is the selfing</p>
+
+<p>to make money you want to know it's</p>
+
+<p>actually selling so you can deprecated</p>
+
+<p>both products and brand new ones</p>
+
+<p>merchants want to know who they are</p>
+
+<p>selling to right who is buying your</p>
+
+<p>products where the demographics and what</p>
+
+<p>if you bring a new product online will</p>
+
+<p>imagine that you're selling to merchants</p>
+
+<p>I also want to know what marketing</p>
+
+<p>campaigns are performing people don't</p>
+
+<p>just like buy stuff does they stumbled</p>
+
+<p>upon it we live in capitalism you make</p>
+
+<p>people want things they didn't know they</p>
+
+<p>needed so you market that you need to</p>
+
+<p>make sure your marketing campaigns are</p>
+
+<p>doing otherwise you waste money and you</p>
+
+<p>don't survive and your business goes out</p>
+
+<p>of business so that's why reports pretty</p>
+
+<p>important it's also important is they</p>
+
+<p>need to make data-driven business</p>
+
+<p>decisions right we have these products</p>
+
+<p>what if one's not selling we need to</p>
+
+<p>take that product out of the line bring</p>
+
+<p>a new product what that new product</p>
+
+<p>isn't something like we think what if it</p>
+
+<p>were just</p>
+
+<p>demographics what if our markets wrong</p>
+
+<p>what if we're doing an ad campaign it is</p>
+
+<p>performing long you don't know these</p>
+
+<p>things unless you have some kind of</p>
+
+<p>reporting in place to make these</p>
+
+<p>decisions so that way your business</p>
+
+<p>excel is so in line with this that comes</p>
+
+<p>in the whole like insights and</p>
+
+<p>intelligence merchants need raw data</p>
+
+<p>that tells them how their site is</p>
+
+<p>performing know just what is my base</p>
+
+<p>revenue one of my page views things like</p>
+
+<p>that</p>
+
+<p>this helps them draw insights to make</p>
+
+<p>business decisions and there's reporting</p>
+
+<p>tools that give you that raw data and</p>
+
+<p>then turn that into insights and help</p>
+
+<p>you make decisions based off of it right</p>
+
+<p>as you can see like my blog had this</p>
+
+<p>main page views with do you know if that</p>
+
+<p>blog view cause somebody to go to a</p>
+
+<p>product that caused a conversion rate or</p>
+
+<p>that you had traffic coming from</p>
+
+<p>Facebook but did they buy a products</p>
+
+<p>just raw days and give you that and</p>
+
+<p>there's tools that help to collect that</p>
+
+<p>raw data then turn it into something</p>
+
+<p>insightful so you can make more money</p>
+
+<p>that's the end goal with selling online</p>
+
+<p>so I'm gonna talk about reporting</p>
+
+<p>specifically in duple Congress is kind</p>
+
+<p>of pre allude to likewise important and</p>
+
+<p>now that troupe of Commerce - has been</p>
+
+<p>yeah we just we're gonna release 2.5</p>
+
+<p>either today or tomorrow the ecosystem</p>
+
+<p>has really matured snow you can work</p>
+
+<p>focus on things that help you want</p>
+
+<p>deliver stronger ecommerce systems to</p>
+
+<p>your clients or if you are a store owner</p>
+
+<p>have a better system that so we have</p>
+
+<p>three options available commerce reports</p>
+
+<p>it's my little baby that was my</p>
+
+<p>introduction to the triple community</p>
+
+<p>there's google analytics and then</p>
+
+<p>there's a new option that power CS is</p>
+
+<p>presenting called e-commerce this course</p>
+
+<p>and step through each of these the good</p>
+
+<p>the bad and the why there is no hugly</p>
+
+<p>here so commerce reports so cart reports</p>
+
+<p>is a native reporting tool built in</p>
+
+<p>drupal and drupal commerce it kind of</p>
+
+<p>follows that drupal way install module</p>
+
+<p>and it just does the things with your</p>
+
+<p>own data and it's right there</p>
+
+<p>it uses raw values and crucian the</p>
+
+<p>database give you tables and charts it's</p>
+
+<p>currently</p>
+
+<p>status it's near beta I was printed on</p>
+
+<p>it in February when I was at Florida</p>
+
+<p>duplicate to get it into an alpha issue</p>
+
+<p>status they spent some time on the beta</p>
+
+<p>that's if you like basic record entries</p>
+
+<p>it has no user interface right now</p>
+
+<p>because there's just big problems a</p>
+
+<p>handle of data so I'm the maintainer and</p>
+
+<p>I also have a shout out of here to Chris</p>
+
+<p>Rock well it was not here I don't mean</p>
+
+<p>he's in the West Coast I had an</p>
+
+<p>architecture plan he wanted attacted</p>
+
+<p>this for a client and I spin up</p>
+
+<p>randomness and Drupal slack and he</p>
+
+<p>turned that into patches that unblocked</p>
+
+<p>the project so I know contribution is</p>
+
+<p>always great like that and that's why we</p>
+
+<p>don't haven't hate that expression so</p>
+
+<p>what's the plus side of current reports</p>
+
+<p>it's free on-site reporting that uses</p>
+
+<p>your existing database there's no extra</p>
+
+<p>cost</p>
+
+<p>technically you don't need to pay for a</p>
+
+<p>third-party service you don't need to</p>
+
+<p>pay for module you'll need a paper</p>
+
+<p>eyebrows but you kind of pay it and the</p>
+
+<p>unknowns so it's going to impact your</p>
+
+<p>database storage which means that we're</p>
+
+<p>adding more records to your database</p>
+
+<p>that should be used for your products</p>
+
+<p>and your orders</p>
+
+<p>so you might have to buy more database</p>
+
+<p>storage because your data warehouse</p>
+
+<p>smell and also it affects your impact</p>
+
+<p>your performance you've got that store</p>
+
+<p>manager that's like I want to see my</p>
+
+<p>revenue reports every hour to refresh</p>
+
+<p>the net page in that same database</p>
+
+<p>that's reading orders it's supposed to</p>
+
+<p>be serving your clients to take their</p>
+
+<p>money well a slow database means slower</p>
+
+<p>checkout which means a higher</p>
+
+<p>abandonment of checkout so there's some</p>
+
+<p>trade-offs there that can be mitigated</p>
+
+<p>and worked on but that is one of the</p>
+
+<p>gotchas that could incur</p>
+
+<p>we need if they're doing that you might</p>
+
+<p>need a bigger database server big</p>
+
+<p>improvement with Commerce reports and</p>
+
+<p>this is in a TEDx specifically this is</p>
+
+<p>kind of like a learning lesson after I</p>
+
+<p>became maintainer of the for 10x branch</p>
+
+<p>if it stores information and</p>
+
+<p>denormalized fashion so if people that</p>
+
+<p>not that don't know about like normalize</p>
+
+<p>and denormalized data drupal's all a</p>
+
+<p>date model</p>
+
+<p>and normalize data things like each</p>
+
+<p>thing has its own table and</p>
+
+<p>relationships that's why we have multi</p>
+
+<p>value fields so easily that's great but</p>
+
+<p>we have to query this like send it to an</p>
+
+<p>ERP nut back-end or an ERP needs to</p>
+
+<p>actually scrape your database or you</p>
+
+<p>need to do reports or somebody trying to</p>
+
+<p>work with views in this you need to make</p>
+
+<p>like five different relationships and</p>
+
+<p>then tell them how to configure it is</p>
+
+<p>not easy so the new architecture is it</p>
+
+<p>takes an order once it's been placed and</p>
+
+<p>puts into a more understandable format</p>
+
+<p>which makes it easier for reporting also</p>
+
+<p>sending off to another back-end system</p>
+
+<p>that might do things with that data you</p>
+
+<p>can query of course using familiar api's</p>
+
+<p>so reports are saved as a content entity</p>
+
+<p>so if you're a developer you need to</p>
+
+<p>write a custom report you can use</p>
+
+<p>something familiar that you would use to</p>
+
+<p>like load notes to load something else</p>
+
+<p>you just use the aggregate query that</p>
+
+<p>the core entity API provides it also</p>
+
+<p>provides concrete financial reporting so</p>
+
+<p>a lot of people use Commerce reports for</p>
+
+<p>tax reporting at the end of the year</p>
+
+<p>they query their orders they fear how</p>
+
+<p>much tax remittances there is and then</p>
+
+<p>they use that for their financial</p>
+
+<p>reporting and it's great because it's</p>
+
+<p>off your raw data you can query your raw</p>
+
+<p>data generated report have something</p>
+
+<p>there so that's one good part about it</p>
+
+<p>and then there's a quick view of the UI</p>
+
+<p>at the moment it's just tables you know</p>
+
+<p>there's no fancy dashboard and it's just</p>
+
+<p>like water tools it's not like product</p>
+
+<p>based ones yet it has a pluggable</p>
+
+<p>architecture so those things will be</p>
+
+<p>coming down the pipe some negatives it's</p>
+
+<p>like I said use the same database as</p>
+
+<p>your store I mean I guess you could</p>
+
+<p>configure it not to to have his own</p>
+
+<p>database a traceless entities to that's</p>
+
+<p>above my knowledge that I love doing to</p>
+
+<p>created a report requires a developer</p>
+
+<p>and code which was kind of the actual</p>
+
+<p>truth back in Drupal 7 but people had</p>
+
+<p>views and you could do it without code</p>
+
+<p>and views but you still needed to be a</p>
+
+<p>developer to write reports so Drupal 8 I</p>
+
+<p>don't plan</p>
+
+<p>by supporting views it will work but</p>
+
+<p>really you should be writing code</p>
+
+<p>through a lot of these things user</p>
+
+<p>interfaces are hard so instead of</p>
+
+<p>focusing on user interface which they</p>
+
+<p>provide the data model and figure how to</p>
+
+<p>represent it especially we come up with</p>
+
+<p>a better decoupled system like if we act</p>
+
+<p>or react admin comes in the core we can</p>
+
+<p>like build a really cool dashboard using</p>
+
+<p>javascript instead of two personal</p>
+
+<p>drupal's render system you can do over</p>
+
+<p>better value that way to be of use</p>
+
+<p>wizard after my support request like how</p>
+
+<p>do I put this relationship and make an</p>
+
+<p>aggregate query which last time I used</p>
+
+<p>views which was like 8.2 I have voided</p>
+
+<p>views in the rupal and that's because</p>
+
+<p>aggregate queries didn't work and the</p>
+
+<p>query API was fine so this is the source</p>
+
+<p>that kind of adapted my knowledge but</p>
+
+<p>I'll do my best to support that with</p>
+
+<p>counterpoise and one of big issues and</p>
+
+<p>this is highlighted about who you're</p>
+
+<p>selling to you and what they're doing</p>
+
+<p>it's server side only so you don't know</p>
+
+<p>anything about the customer except for</p>
+
+<p>what they tell you uncheck out so if</p>
+
+<p>they come and they add to the product in</p>
+
+<p>the current you don't know who they are</p>
+
+<p>until they enter check out and then they</p>
+
+<p>they say I want to tell you more about</p>
+
+<p>it so if they don't get there you know</p>
+
+<p>you have abandoned her you don't know</p>
+
+<p>where it came from why anything about</p>
+
+<p>their story that brought them to the</p>
+
+<p>site and may have caused them to leave</p>
+
+<p>you can't make business decisions off</p>
+
+<p>that you can see what products are</p>
+
+<p>selling but you don't know why they are</p>
+
+<p>you just know the fact that they exist</p>
+
+<p>and they are being sold at this volume</p>
+
+<p>so that's the transition at Google</p>
+
+<p>Analytics which kind of touches on that</p>
+
+<p>server side or you know the mitigation</p>
+
+<p>the server side issue who here uses</p>
+
+<p>Google Analytics on their website</p>
+
+<p>returning yeah this is what everybody</p>
+
+<p>does their power like 90% of the web</p>
+
+<p>analytics out there and they have an</p>
+
+<p>e-commerce plugin</p>
+
+<p>make sense so commerce Google Analytics</p>
+
+<p>as the econ according to the Google</p>
+
+<p>edits module basically when events</p>
+
+<p>happen if bubbles up information into</p>
+
+<p>the page and has JavaScript send it up</p>
+
+<p>it's as simple as that so you have the</p>
+
+<p>Google Analytics module installed it</p>
+
+<p>just sends extra data that should be out</p>
+
+<p>there</p>
+
+<p>since in that sense yes its advances in</p>
+
+<p>client you have the basic dashboard in</p>
+
+<p>here</p>
+
+<p>give me some revenue recording various</p>
+
+<p>things the current status that's in the</p>
+
+<p>dev status like somebody got maintainer</p>
+
+<p>access to the basic port and it sends</p>
+
+<p>raw very minimal data its transaction</p>
+
+<p>only it doesn't give you information</p>
+
+<p>about Carter checkouts all those things</p>
+
+<p>are supported it's just not there yet</p>
+
+<p>there's no one plan last night checks</p>
+
+<p>where you're seeking the game like</p>
+
+<p>maintenance of it so we can start</p>
+
+<p>flushing it up there's even though it</p>
+
+<p>may not be like in our bike tour pocket</p>
+
+<p>of things that we want to be flushed out</p>
+
+<p>but we don't want somebody to need this</p>
+
+<p>and then turn away from the platform</p>
+
+<p>because it doesn't exist so we are going</p>
+
+<p>to try to just get it to a workable</p>
+
+<p>version it may not be like a full</p>
+
+<p>feature implementation but you should be</p>
+
+<p>able install it and get those basics</p>
+
+<p>there because we want you to use Drupal</p>
+
+<p>commerce and succeed and that's our job</p>
+
+<p>is maintain errs whether it's not</p>
+
+<p>whether it's in contribute or so the</p>
+
+<p>plus size again free ish on google nexus</p>
+
+<p>free that's probably why most if you</p>
+
+<p>have it on your slates right you go to</p>
+
+<p>google analytics to sign up and boom</p>
+
+<p>they give you track and code plug it in</p>
+
+<p>you start seeing who's on your site in</p>
+
+<p>the real time data which is really cool</p>
+
+<p>except you're giving all your data to</p>
+
+<p>Google which they know they have privacy</p>
+
+<p>policies and all that know why they want</p>
+
+<p>to have their stuff everywhere in the</p>
+
+<p>web is then they can track global</p>
+
+<p>behavior some people like that some</p>
+
+<p>people you know that's part of the</p>
+
+<p>contract an Android phone I give all</p>
+
+<p>myself to Google is a really cool free</p>
+
+<p>stuff but that's one thing a lot of</p>
+
+<p>people want to consider you also might</p>
+
+<p>have to pay for enterprise which is the</p>
+
+<p>Google Analytics 360 suite and I'll</p>
+
+<p>cover on why you may need to pay for</p>
+
+<p>that in a little bit another good part</p>
+
+<p>is it allows clients like tracking</p>
+
+<p>behavior and if you know how they got to</p>
+
+<p>your site what they clicked on you know</p>
+
+<p>their user story and their journey to</p>
+
+<p>cart abandonment to just browsing the</p>
+
+<p>site to converting that lets you build a</p>
+
+<p>better buying experience because let's</p>
+
+<p>say you find up your drop-off is at the</p>
+
+<p>the review page like hi like people go</p>
+
+<p>through the problem of giving you their</p>
+
+<p>billing information or shipping</p>
+
+<p>information they get to the review page</p>
+
+<p>and then they drop like well what oh</p>
+
+<p>well maybe because we don't have Ajax</p>
+
+<p>showing the shipping method that are</p>
+
+<p>they just shipping payment information</p>
+
+<p>they only find that when they get to the</p>
+
+<p>review process now Congress doesn't do</p>
+
+<p>that out of the box the best I think</p>
+
+<p>that's an example also they get to the</p>
+
+<p>review process they see taxes or</p>
+
+<p>shipping like finally calculated and</p>
+
+<p>their sticker shock so they cancel</p>
+
+<p>that's where client-side information is</p>
+
+<p>key as you know where people stop in the</p>
+
+<p>process of giving you money you can</p>
+
+<p>configure your checkout steps so you can</p>
+
+<p>give up a different labels and when it's</p>
+
+<p>integrated it pushes the event so it's</p>
+
+<p>like I'm on this checkout page here's</p>
+
+<p>the label so it gives you that that</p>
+
+<p>content flow just like if you're</p>
+
+<p>browsing how they get to different</p>
+
+<p>content on your site like I said it's</p>
+
+<p>not implemented yet so that's why these</p>
+
+<p>charts are really sad and boring but</p>
+
+<p>hopefully a little bit we'll get this</p>
+
+<p>fixed I can update the slides but yeah I</p>
+
+<p>didn't just give in your cart behavior</p>
+
+<p>you need to figure out why people aren't</p>
+
+<p>give you money that's the whole point of</p>
+
+<p>selling online is do you see it loading</p>
+
+<p>it can let you do social and marketing</p>
+
+<p>campaign conversion tracking so if you</p>
+
+<p>hook in your UTM parameters which is a</p>
+
+<p>virgin tracking mode marketing Honolulu</p>
+
+<p>stands for it lets you know different</p>
+
+<p>metadata about how they might have got</p>
+
+<p>to the site you know if you have run an</p>
+
+<p>ad campaign if I say CP CPC Google ba or</p>
+
+<p>they might come from big pay-per-click</p>
+
+<p>whatever the terms might properly be and</p>
+
+<p>this lets you know where like I said</p>
+
+<p>where people are dropping off where</p>
+
+<p>they're coming from now for the</p>
+
+<p>negatives it's like I said you're doing</p>
+
+<p>your data to Google Google doesn't let</p>
+
+<p>you get the raw data once you send that</p>
+
+<p>there isn't a vault it's locked off all</p>
+
+<p>you can do is view it is their dashboard</p>
+
+<p>and maybe their API thank you might be</p>
+
+<p>able to consume via the API and do</p>
+
+<p>things with it to their rules unless you</p>
+
+<p>pay for the Google Analytics 360 suite</p>
+
+<p>which I heard you</p>
+
+<p>he knows one is more expensive that</p>
+
+<p>enterprise sales force because when you</p>
+
+<p>have the Google Analytics 360 you can</p>
+
+<p>actually get the raw data and do cool</p>
+
+<p>things with it but you know I don't</p>
+
+<p>think anybody here including myself has</p>
+
+<p>a client that would be willing to pay</p>
+
+<p>for something like that and if they do</p>
+
+<p>well they have their source teams to</p>
+
+<p>work with Google Analytics pretty well</p>
+
+<p>here's the downside with client-side</p>
+
+<p>tracking a lot of people don't like</p>
+
+<p>Google Analytics some people don't like</p>
+
+<p>JavaScript you know when you have people</p>
+
+<p>that are very privacy oriented you know</p>
+
+<p>marketers want to know information about</p>
+
+<p>you some people don't like the scope</p>
+
+<p>creep on that so they block tracking</p>
+
+<p>that means you don't know anything about</p>
+
+<p>those people</p>
+
+<p>there's no analytics which means your</p>
+
+<p>revenue is wrong right so if I have no</p>
+
+<p>script enables I have 12 Google's like</p>
+
+<p>Google's analytic blocker for Chrome</p>
+
+<p>also my border data isn't being sucked</p>
+
+<p>at Google Analytics well what now you've</p>
+
+<p>got an incomplete sales dashboard what</p>
+
+<p>good does that do you besides knowing</p>
+
+<p>that maybe you have a reconciliation</p>
+
+<p>process and you know that half of your</p>
+
+<p>customers don't like the attracting</p>
+
+<p>Google Analytics so it provides no</p>
+
+<p>guarantee of conversions and Google</p>
+
+<p>Analytics itself has no SLA service</p>
+
+<p>level agreement on events being entered</p>
+
+<p>into Google Analytics itself mate I</p>
+
+<p>think there might be like a server-side</p>
+
+<p>way to push data into Google Analytics</p>
+
+<p>and that could be a way to mitigate it</p>
+
+<p>but in the most common way that works</p>
+
+<p>that doesn't exist so if you can get</p>
+
+<p>little black holes in your data this is</p>
+
+<p>no fun and I tried to do this myself I</p>
+
+<p>have no idea to write custom reports in</p>
+
+<p>Google Analytics so you still need that</p>
+
+<p>expertise challenge</p>
+
+<p>wait Congress reports right someone</p>
+
+<p>needs to know the code you need to know</p>
+
+<p>views to do something Google Analytics</p>
+
+<p>you need a same thing I try to make some</p>
+
+<p>customers pause by the noid a deployment</p>
+
+<p>and I know there's people that make lots</p>
+
+<p>of money consulting for Google Analytics</p>
+
+<p>you do really cool things I was on a</p>
+
+<p>project for a ski company they took the</p>
+
+<p>sales data in Google Analytics weather</p>
+
+<p>and found out that actually when it gets</p>
+
+<p>ski season the highest selling places</p>
+
+<p>were the southeast Southwest where it</p>
+
+<p>was hot not when it got cold because</p>
+
+<p>everybody were top needed to buy</p>
+
+<p>supplies to go skiing in Colorado that's</p>
+
+<p>where the insights and intelligence</p>
+
+<p>comes into play and that's how Google</p>
+
+<p>Linux helped them but they also paid</p>
+
+<p>consultant to build that crazy graph so</p>
+
+<p>there's always a catch when you get in</p>
+
+<p>them you're gonna have to do some kind</p>
+
+<p>of language possibly and then this isn't</p>
+
+<p>only affect us here in the States but a</p>
+
+<p>lot of our users are in here and they</p>
+
+<p>came up the gdpr which I've done some</p>
+
+<p>reading up on and I heard of them saying</p>
+
+<p>basically it says you can call it</p>
+
+<p>company play my name is Mack lawmen can</p>
+
+<p>you query me and if they say yes they</p>
+
+<p>have to purge your data or you can</p>
+
+<p>request them to UM which is fun and this</p>
+
+<p>is a problem that transcends Drupal</p>
+
+<p>commerce itself not just Google</p>
+
+<p>Analytics we have people working on this</p>
+
+<p>who want to say people I'm in the</p>
+
+<p>community luckily it has made a Drupal 7</p>
+
+<p>fixed and there's a Drupal 8 one in the</p>
+
+<p>works so Google Analytics requests</p>
+
+<p>specific language in your privacy policy</p>
+
+<p>who has done that who is update who has</p>
+
+<p>been a privacy policy on their site said</p>
+
+<p>that they're using Google Analytics and</p>
+
+<p>copy the boilerplate text one I have it</p>
+
+<p>on my site I don't do it I'm a bad</p>
+
+<p>person I should update it in good faith</p>
+
+<p>of people that visit my blog so that</p>
+
+<p>they are aware of it but they're right</p>
+
+<p>there one person out of the room</p>
+
+<p>well that's we could say a second 5% of</p>
+
+<p>the sample space here I told my vision</p>
+
+<p>yeah so you know that's one thing and</p>
+
+<p>that's where it comes into the great</p>
+
+<p>area with Google Analytics and just the</p>
+
+<p>modern age of data privacy right this is</p>
+
+<p>a new this is becoming we're becoming</p>
+
+<p>more conscious of this so with the GDP</p>
+
+<p>our data privacy requirements are</p>
+
+<p>changing I doubt it will happen here in</p>
+
+<p>the states because marketers are</p>
+
+<p>first-class citizen and regular citizens</p>
+
+<p>aren't you</p>
+
+<p>data makes money a year they're a little</p>
+
+<p>bit different than what Google Analytics</p>
+
+<p>has made they say that they're going to</p>
+
+<p>respect this I don't know how it's going</p>
+
+<p>to work that's right if you can't delete</p>
+
+<p>data you in Google Analytics does that</p>
+
+<p>mean the customers gonna call you and</p>
+
+<p>then you have to go to Google Analytics</p>
+
+<p>see if the data's there then tell Google</p>
+
+<p>to delete it or what this is an unknown</p>
+
+<p>right this is like it's kind of like the</p>
+
+<p>D text but like we don't know what's</p>
+
+<p>gonna happen in so the first big</p>
+
+<p>explosion happens someone wants to fix</p>
+
+<p>it so that's just one thing to keep in</p>
+
+<p>mind</p>
+
+<p>and another gotcha with the whole like</p>
+
+<p>data privacy consciousness as I'm</p>
+
+<p>calling it so those are the two</p>
+
+<p>contributed module solutions and I've</p>
+
+<p>tried to do my best to make sure they're</p>
+
+<p>so the pros and cons both how the Box</p>
+
+<p>can deliver a solution for you that need</p>
+
+<p>customizations I know as I sit on the</p>
+
+<p>support can I try to do my best to help</p>
+
+<p>people succeed and when identified this</p>
+
+<p>is kind of like a bottleneck where I say</p>
+
+<p>we I mean the maintainer Brian Bowan and</p>
+
+<p>I that reporting is one of those key</p>
+
+<p>things that people need to have a</p>
+
+<p>successful people commerce installation</p>
+
+<p>and delivery to a client so there's a</p>
+
+<p>product of you rolled up Kylene commerce</p>
+
+<p>reports and that's the next step we're</p>
+
+<p>going to talk about so we found this gap</p>
+
+<p>where you always pace way to customize</p>
+
+<p>something customize commerce your puts</p>
+
+<p>customers Google Analytics this is great</p>
+
+<p>if you have something that has a budget</p>
+
+<p>because we know people that have used</p>
+
+<p>commerce intercourse didn't build like a</p>
+
+<p>hotel tracking system and I grabbed me</p>
+
+<p>for hotel all this kind of stuff like I</p>
+
+<p>said Google Analytics with temperatures</p>
+
+<p>and regions but what if you have a</p>
+
+<p>client that news reports and they're</p>
+
+<p>gonna pick Shopify instead and pay more</p>
+
+<p>a month for Shopify then maybe a</p>
+
+<p>solution that gives them reports we have</p>
+
+<p>this happen shop twice cheap</p>
+
+<p>I don't blame until you start doing</p>
+
+<p>high-volume and they hold you hopeful</p>
+
+<p>Michael the knife to your back as they</p>
+
+<p>pay us more money in a loser store so</p>
+
+<p>I'm gonna talk about e-commerce reports</p>
+
+<p>which is a new product that we're</p>
+
+<p>releasing right now some private beta</p>
+
+<p>that's the sample dashboard and what it</p>
+
+<p>tends to do is be a plug</p>
+
+<p>sales dashboard so you sign up you plug</p>
+
+<p>in an API key say here you go</p>
+
+<p>BAM and you know it's built by the</p>
+
+<p>maintainers of Drupal commerce so it's</p>
+
+<p>gonna tackle a lot of those edge cases</p>
+
+<p>so that way it's you don't have we don't</p>
+
+<p>want you to have to think about hard</p>
+
+<p>problems in e-commerce specifically</p>
+
+<p>Drupal commerce that's supposed to be</p>
+
+<p>hard job so this is one way we're trying</p>
+
+<p>to tackle this problem space besides</p>
+
+<p>just giving you a module to install that</p>
+
+<p>you might have to configure so a lot of</p>
+
+<p>benefits this client side and server</p>
+
+<p>side we identified that problem right</p>
+
+<p>otherwise you have to have couch reports</p>
+
+<p>and Google Analytics and reconcile them</p>
+
+<p>on your own</p>
+
+<p>we're trying to do that for you all</p>
+
+<p>events are sent on the back end and</p>
+
+<p>enriched with front and analytics like</p>
+
+<p>page tracking so you can see the number</p>
+
+<p>of conversions how many unique sessions</p>
+
+<p>visited my site how many new sessions</p>
+
+<p>converted you know so that way you don't</p>
+
+<p>do that math some other things people</p>
+
+<p>like AOL revenue per day for seven days</p>
+
+<p>three months other box reporting with no</p>
+
+<p>configuration of code secured exactly</p>
+
+<p>how much time you stay within a bike so</p>
+
+<p>with top products your conversion funnel</p>
+
+<p>you know like I said the drop off effect</p>
+
+<p>that I think we have that as book back</p>
+
+<p>and in front of or sending the events</p>
+
+<p>you know in fact my channel and the</p>
+
+<p>example is here I'm a contract by</p>
+
+<p>channel and I forgot to mention with</p>
+
+<p>Google Analytics because that's a key</p>
+
+<p>one that helps with this the Pinterest</p>
+
+<p>versus Facebook paradigm Pinterest is</p>
+
+<p>shown to be an excellent ecommerce</p>
+
+<p>channel people buy stuff from Pinterest</p>
+
+<p>Facebook people use for advertising</p>
+
+<p>well are you spending 300 bucks a month</p>
+
+<p>on Facebook to advertise products and</p>
+
+<p>getting no conversions you're losing</p>
+
+<p>money but Pinterest you just like hey I</p>
+
+<p>guess the way that pins something and</p>
+
+<p>you're making money off of it you're</p>
+
+<p>losing money on Facebook by paying more</p>
+
+<p>for the wrong marketing campaign</p>
+
+<p>you can decide Facebook should be brand</p>
+
+<p>awareness Pinterest I can advertise on</p>
+
+<p>increase my conversions and Pinterest</p>
+
+<p>give me how you make money with</p>
+
+<p>advertising Facebook could be brand</p>
+
+<p>awareness and it's cheaper to do brand</p>
+
+<p>awareness marquee and on Facebook so</p>
+
+<p>that's where the whole client-side</p>
+
+<p>analytics is big and that's where we try</p>
+
+<p>to help you out of the box how about you</p>
+
+<p>porting again you know the table all you</p>
+
+<p>can filter it stuff you come to expect</p>
+
+<p>check out the funnel analysis eventually</p>
+
+<p>this will be split up where you can see</p>
+
+<p>what specific step of check out the</p>
+
+<p>thumbs up right now it's kind of bundled</p>
+
+<p>especially since double commerce two</p>
+
+<p>other boxes two pages only</p>
+
+<p>Drupal commerce 7 does have like billion</p>
+
+<p>it has like four but most people can see</p>
+
+<p>to so we just avoided it because it's</p>
+
+<p>private beta so don't have like that big</p>
+
+<p>yet but that is something we'll add the</p>
+
+<p>traffic town reporting know the effects</p>
+
+<p>the effectiveness of advertising</p>
+
+<p>campaigns you know what if you decide to</p>
+
+<p>give Twitter a try and have vert eyes on</p>
+
+<p>Twitter and what if it works you know</p>
+
+<p>this way it lets you know where they</p>
+
+<p>came from revenue reports by a story so</p>
+
+<p>this is really cool to eat this is our</p>
+
+<p>our private beta customer has 72</p>
+
+<p>franchises and Drupal commerce to has</p>
+
+<p>store support like multi-market places</p>
+
+<p>in different story</p>
+
+<p>but in this example I went for you I</p>
+
+<p>have a united states store Canada UK and</p>
+
+<p>Mexico and I want to see their revenue</p>
+
+<p>there you can actually filter our</p>
+
+<p>reports by your store so you can see an</p>
+
+<p>overall view of your company if you</p>
+
+<p>drill down to a specific storage house</p>
+
+<p>the us performing house Canada</p>
+
+<p>performing the different revenue you</p>
+
+<p>know here in the states you wouldn't</p>
+
+<p>have a store per state really I think</p>
+
+<p>you might but it may not happen this</p>
+
+<p>edge case is great like in the European</p>
+
+<p>market show they Hollis Frank's house UK</p>
+
+<p>house Jeremy house it did markets and</p>
+
+<p>work are identifiable there but that is</p>
+
+<p>one thing you know as the maintainer to</p>
+
+<p>Drupal commerce we make this aware I'm</p>
+
+<p>Drupal commerce seven it would be one</p>
+
+<p>store we're trying to figure out how you</p>
+
+<p>could possibly say mine three Drupal</p>
+
+<p>commerce seven installs or Drupal</p>
+
+<p>commerce one installs should be in the</p>
+
+<p>same account so you could see like a</p>
+
+<p>filter store view there but we just</p>
+
+<p>haven't had anybody request at and</p>
+
+<p>stepping back to that request that point</p>
+
+<p>yet since it is a software as a service</p>
+
+<p>platform you get iterate you pay that</p>
+
+<p>flat month is yet me we're doing like an</p>
+
+<p>intro about ten bucks a month and get</p>
+
+<p>those improvements over tonight versus</p>
+
+<p>right and I quote yourself I've all been</p>
+
+<p>five footer I am on here so the first</p>
+
+<p>one shows tax reporting I change the</p>
+
+<p>names from the actual data but they like</p>
+
+<p>the other client has different tax</p>
+
+<p>reports so this this isn't like</p>
+
+<p>counterfeit or you go back and career</p>
+
+<p>the raw data as weathers return what if</p>
+
+<p>there's a can adjustment this is like a</p>
+
+<p>snapshot of data but you could you know</p>
+
+<p>I had a quitter analysis when you just</p>
+
+<p>have to do at the ballpark pea look at</p>
+
+<p>this say alright I pay this much money</p>
+
+<p>okay write that check to the government</p>
+
+<p>will do the full reconciliation at the</p>
+
+<p>end of the year so for other those of us</p>
+
+<p>have you have to do quarterly tax</p>
+
+<p>payments or power it would be nice to</p>
+
+<p>just quickly know yeah we got to write</p>
+
+<p>this check into the year we paid more or</p>
+
+<p>we get on a slight refund and then</p>
+
+<p>promotional promotions you know tracking</p>
+
+<p>coupon codes this is something that</p>
+
+<p>could be promoted that can be provided</p>
+
+<p>to buy promoted by a tour group of</p>
+
+<p>Thomas itself effusive stomps or common</p>
+
+<p>reports but by having this data we can</p>
+
+<p>help do insights we can help merge it in</p>
+
+<p>and help you see the bigger picture</p>
+
+<p>[Music]</p>
+
+<p>yeah there's a regional value zero so</p>
+
+<p>that table it's populated by the tax</p>
+
+<p>rate reported where it is whatever you</p>
+
+<p>have so it's like in our case they have</p>
+
+<p>food tax no food tax something else yeah</p>
+
+<p>so it would show those different records</p>
+
+<p>and this is one we're collecting this</p>
+
+<p>data right now but we don't have it</p>
+
+<p>exposed in like the UI so we are trying</p>
+
+<p>to be proactive like we have we know all</p>
+
+<p>these things we need to collect but</p>
+
+<p>they're not necessary in the UI that</p>
+
+<p>this is so it's a point of a dashboard</p>
+
+<p>for Drupal commerce sites and it is</p>
+
+<p>pitched as a software-as-a-service so</p>
+
+<p>that way you don't have to turn a client</p>
+
+<p>away from duple commerce because they're</p>
+
+<p>missing a feature you know there's</p>
+
+<p>plenty of clients that have like forty</p>
+
+<p>thousand dollars to throw out a</p>
+
+<p>reporting solution there are some people</p>
+
+<p>that want that they want it to be</p>
+
+<p>bespoke</p>
+
+<p>then there's clients that do they just</p>
+
+<p>want it to work or there's an agency</p>
+
+<p>that just wants to offer it and then see</p>
+
+<p>if the client later wants to do an order</p>
+
+<p>robust reporting solution and as</p>
+
+<p>Congress guys as the maintainer Drupal</p>
+
+<p>commerce we want you to succeed as</p>
+
+<p>agencies and this is a new product that</p>
+
+<p>we want to offer alongside people</p>
+
+<p>commerce that helps you do that no I</p>
+
+<p>think like the starter ones like ten</p>
+
+<p>bucks a month and then there will be</p>
+
+<p>like incremental value or like</p>
+
+<p>incremental changes to get more that</p>
+
+<p>insights and data but it helps with the</p>
+
+<p>awkwardest storage no it's not served in</p>
+
+<p>your database which is a good thing we</p>
+
+<p>actually had a big loss issue and I was</p>
+
+<p>able to go into our bucket of data</p>
+
+<p>download it pans to the Clinton they're</p>
+
+<p>able to reconstruct it last 24 hours of</p>
+
+<p>data that they had lost so like we might</p>
+
+<p>even be twin-twin around with is it also</p>
+
+<p>a data recovery solution because you're</p>
+
+<p>offloading your date here your</p>
+
+<p>information somewhere so if you do have</p>
+
+<p>that lit of six hours and like shoot we</p>
+
+<p>have to read we have to fulfill these</p>
+
+<p>orders of that so that's</p>
+
+<p>oh and you don't have to login to a</p>
+
+<p>different site either you install our</p>
+
+<p>module that sends data we actually add a</p>
+
+<p>dashboard that has an iframe and it has</p>
+
+<p>its own permission so you can give the</p>
+
+<p>store manager like your client or your</p>
+
+<p>store managers access they can clean it</p>
+
+<p>and they get the dashboard rendered</p>
+
+<p>inside Drupal will be an iframe no extra</p>
+
+<p>login somewhere the login ups we're a</p>
+
+<p>hope you like manage billing later</p>
+
+<p>and all that but this week no one has to</p>
+
+<p>leave your site your store open if you</p>
+
+<p>have multiple stores you can then see a</p>
+
+<p>drop-down that you change the store we</p>
+
+<p>have a setup where like in the</p>
+
+<p>franchisee example let's say one person</p>
+
+<p>who owns three stores they get a drop</p>
+
+<p>down the shows there are three stores if</p>
+
+<p>you're an admin you see all the stores</p>
+
+<p>right they own one store they don't see</p>
+
+<p>the drop down at all there to see their</p>
+
+<p>dashboard and there's a waiting like</p>
+
+<p>aggregate your three stores in the one</p>
+
+<p>view or individual you want to solve</p>
+
+<p>that commerce as we try to solve the</p>
+
+<p>hardest problems of selling online and</p>
+
+<p>this is one of our ways to try to do</p>
+
+<p>that for you so oh yeah a minute this is</p>
+
+<p>a 30 minute um for questions so we're</p>
+
+<p>gonna do a minute actually it's lunch so</p>
+
+<p>I guess we could sit and ask a few</p>
+
+<p>questions but if you're hungry don't and</p>
+
+<p>just wait I will be here today and</p>
+
+<p>tomorrow for the sprints so if you do</p>
+
+<p>have general Google commerce such Drupal</p>
+
+<p>commerce questions I'll be at the</p>
+
+<p>Springs tomorrow and ten running sprints</p>
+
+<p>mentorian answering questions or just</p>
+
+<p>hug me down today and I love to talk</p>
+
+<p>about this stuff so questions Wow</p>
+
+<p>[Music]</p>
+
+<p>so I went in it as fast as I could</p>
+
+<p>because I didn't want to go over and</p>
+
+<p>[Music]</p></div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-45625adae30fa38ccb23931b2ea96ef807e6a91ecf23dd0f7ddb8f51bb558646">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/50">https://mid.camp/50</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+  <section class="map-banner">
+      <div class="views-element-container block block-views block-views-blockevent-venue-block-1" id="block-hatter-views-block-event-venue-block-1">
+  
+    
+      <div><div class="container view view-event-venue view-id-event_venue view-display-id-block_1 js-view-dom-id-9539fb9879aef954495b283efd564605e5686eac73cb71266e1e528d188e1f39">
+  
+    
+      
+      <div class="view-content">
+          <div class="views-row">
+
+
+<div class="map-overlay">
+  <span class="map__label">Location</span>
+  <h2 class="map__title"><span class="field field--name-title field--type-string field--label-hidden">DePaul University - Lincoln Park Student Center</span>
+</h2>
+  
+            <div class="field field--name-field-address field--type-address field--label-hidden field__item"><p class="map__address" translate="no">
+          2250 N Sheffield Ave. <br>
+            Chicago, IL 60614<br>
+  </p>
+</div>
+      
+  <a href="../venue/depaul-university-lincoln-park-student-center.html" class="cta-link--yellow">Learn more  <span class="cta-arrow"></span></a>
+</div>
+<div id='map' class="map"></div>
+</div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-45b7c43c46956c0d35aed4544617eaa5051fa6596e84b9d00e9116124e764e77">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/acquia.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-02/Acquia_no_tagline.png" width="450" height="94" alt="Acquia" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/platformsh.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-02/platform.png" width="400" height="79" alt="Platform.sh" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/pantheon.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-11/pantheon.png" width="500" height="157" alt="Pantheon" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#dab3b4bcb59ab7b3beb9bbb7aaf4b5a8bd"><span class="__cf_email__" data-cfemail="c2abaca4ad82afaba6a1a3afb2ecadb0a5">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/50","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_llBcjrkrgAu2wT1DR7VGL_iP6geJyiTnF_8O5ZD57VI.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJxLz89Pz0mNT8xLzKksyUwu1k9HE9DJSCwpSS3ST8_JT0rM0c2CC-QmFiTlVwAAPmAZQA"></script>
+<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.js"></script>
+<script src="../../sites/default/files/js/js_pODGOpSPRR3Y_Zt-7Fy-5B_pNv18oFAWhyhwUPCQZu4.js%3Fscope=footer&amp;delta=2&amp;language=en&amp;theme=hatter&amp;include=eJxLz89Pz0mNT8xLzKksyUwu1k9HE9DJSCwpSS3ST8_JT0rM0c2CC-QmFiTlVwAAPmAZQA"></script>
+
+  </body>
+</html>

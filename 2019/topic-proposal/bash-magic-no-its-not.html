@@ -1,0 +1,3649 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="When leveling up as a developer, one of the most intimidating aspects often is using the command line interface, or CLI. In fact, it might seem downright terrifying. The reality is: If you can type, you can use the command line.   Every senior level developer will remember a time when they got overwhelmed by opening the terminal. Those same people will tell you this is one of the most important capabilities they acquired.  " />
+<link rel="canonical" href="bash-magic-no-its-not.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Bash is magic # No it&#039;s not | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Bash is magic # No it&#039;s not | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_Qoyy92GHt9RyGOt8N3WS_9HRsJcJBywJ2IhXudzvST4.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJw1jFEOgzAMQy9U1iOhtDGsUkqmugOx068C8WM961nOJuQZkxAh31xBygo-fXMdzhsGtSpWfghv6R0truZJbMpk4MmOeh_tReEzaoLOS4FpbODHN5Yd0yXHBAfjla_q-jX8AXwTNZQ.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_mK2of_t7UFymkfbTHeA-kHdMPWzqc3DZQCYtX-tC0BA.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJw1jFEOgzAMQy9U1iOhtDGsUkqmugOx068C8WM961nOJuQZkxAh31xBygo-fXMdzhsGtSpWfghv6R0truZJbMpk4MmOeh_tReEzaoLOS4FpbODHN5Yd0yXHBAfjla_q-jX8AXwTNZQ.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJw1jFEOgzAMQy9U1iOhtDGsUkqmugOx068C8WM961nOJuQZkxAh31xBygo-fXMdzhsGtSpWfghv6R0truZJbMpk4MmOeh_tReEzaoLOS4FpbODHN5Yd0yXHBAfjla_q-jX8AXwTNZQ.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJw1jFEOgzAMQy9U1iOhtDGsUkqmugOx068C8WM961nOJuQZkxAh31xBygo-fXMdzhsGtSpWfghv6R0truZJbMpk4MmOeh_tReEzaoLOS4FpbODHN5Yd0yXHBAfjla_q-jX8AXwTNZQ.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="bash-magic-no-its-not.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-hatter-midcamp2019navigation-menu" id="block-hatter-midcamp2019navigation" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-midcamp2019navigation-menu">Midcamp 2019 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" title="About MidCamp" data-drupal-link-system-path="node/191">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--venue">
+        <a href="../about/venue.html" data-drupal-link-system-path="node/192">Venue</a>
+            </li>
+          <li class="primary-nav__sublist-item item--travel">
+        <a href="../about/travel.html" title="Travel and Accommodations" data-drupal-link-system-path="node/188">Travel</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../about/lunch.html" title="Lunch options" data-drupal-link-system-path="node/189">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--volunteer">
+        <a href="../article/volunteer-help-midcamp.html" title="Volunteer!">Volunteer!</a>
+            </li>
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2019/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../../2020/news.html" data-drupal-link-system-path="2020/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--attendees">
+        <a href="../attendees.html" data-drupal-link-system-path="2019/attendees">Attendees</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" data-drupal-link-system-path="2019/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--spread-the-word">
+        <a href="../article/spread-word.html" data-drupal-link-system-path="node/371">Spread the Word</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" title="Sponsors" data-drupal-link-system-path="node/197">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--become-a-sponsor">
+        <a href="../sponsor-midcamp.html" title="Sponsor MidCamp" data-drupal-link-system-path="node/186">Become a Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../../jobs.html" title="Jobs" data-drupal-link-system-path="jobs">Jobs</a>
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" title="Schedule" data-drupal-link-system-path="node/190">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--all-sessions">
+        <a href="../sessions.html" data-drupal-link-system-path="2019/sessions">All Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--summits--training-wed">
+        <a href="../schedule/wednesday.html" title="Summits &amp; Training (Wednesday)" data-drupal-link-system-path="2019/schedule/wednesday">Summits &amp; Training (Wed)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-thu">
+        <a href="../schedule/thursday.html" title="Sessions (Thursday)" data-drupal-link-system-path="2019/schedule/thursday">Sessions (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-fri">
+        <a href="../schedule/friday.html" title="Sessions (Friday)" data-drupal-link-system-path="2019/schedule/friday">Sessions (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--contribution-sat-">
+        <a href="../contribution-day.html" title="Contribution Day" data-drupal-link-system-path="node/332">Contribution (Sat) </a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-terms-and-conditions">
+        <a href="../../speaker-terms-and-conditions.html" title="Speaker Terms and Conditions" data-drupal-link-system-path="node/21">Speaker Terms and Conditions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../../speaker-resources.html" title="Speaker Resources">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--topic-tracks">
+        <a href="../../topic-tracks.html" title="Topic Tracks" data-drupal-link-system-path="node/10">Topic Tracks</a>
+            </li>
+  </ul>
+
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2019.html" hreflang="en">MidCamp 2019</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Bash is magic # No it&#039;s not</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="225" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2019-03-22T19:25:00Z" class="datetime">Friday, 2:25 pm CDT</time>
+ - <time datetime="2019-03-22T20:25:00Z" class="datetime">Friday, 3:25 pm CDT</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-84" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-name field--type-string field--label-hidden field__item">Room 325</div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>When leveling up as a developer, one of the most intimidating aspects often is using the command line interface, or CLI. In fact, it might seem downright terrifying. The reality is: If you can type, you can use the command line.</p>
+
+<p>&nbsp;</p>
+
+<p>Every senior level developer will remember a time when they got overwhelmed by opening the terminal. Those same people will tell you this is one of the most important capabilities they acquired.</p>
+
+<p>&nbsp;</p>
+
+<p>For Mac and Linux users your command line interface is Bash. Windows users can also use this tooling, so Bash can unlock the true potential of any machine. Besides gaining more control of your device, Bash lets you leverage hundreds of power tools like WP-CLI, Drush, npm, composer, and Behat, to name a few.</p>
+
+<p>&nbsp;</p>
+
+<p>Leave this session understanding</p>
+
+<p>- A brief history of the command line</p>
+
+<p>- The basic commands for manipulating your files and folders</p>
+
+<p>- An overview of tools that are only available through the command line</p>
+
+<p>- The basics of Bash scripting, the secret to automating anything</p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/ZsDVsa6IQM4?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Dwayne McDaniel</h4>
+
+    
+              
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p>Dwayne has been working in tech and open source sales since 2005.<br />
+He knew as soon as he started working with Java middleware developers he never wanted to work outside of open source ever again. Dwayne first started building in Drupal and WordPress for the San Francisco Improv teams and projects.  He fell in the love the community as he worked for one of the larger hosting providers as a Developer Advocate. He has had the privilege of presenting at dozens of community events from Paris to Iceland to MIT and Stanford.<br />
+Outside of tech he loves producing and performing improv theater, reading webcomics and singing karaoke!<br />
+Reach out at <a href="https://mcdwayne.com">https://mcdwayne.com</a> or on twitter @mcdwayne</p>
+</div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2018-01/DwayneMcDaniel.jpeg%3Fitok=-hqKPekM" width="220" height="220" alt="Dwayne" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Back-End</div>
+          <div class="field__item">DevOps</div>
+          <div class="field__item">Front-End</div>
+          <div class="field__item">Site Building</div>
+              </div>
+      </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p>um welcome to bashes magic no it's not</p>
+
+<p>you get this joke probably not the right</p>
+
+<p>talk for you you saw it time to go no</p>
+
+<p>there another rooms you don't have no</p>
+
+<p>idea what this means you are definitely</p>
+
+<p>the right place so quickly I'm Dwayne&nbsp;</p>
+
+<p>&nbsp;Pantheon I'll get back to</p>
+
+<p>that in a minute</p>
+
+<p>I have been the last year fall in love</p>
+
+<p>with crochet it's like the really fun</p>
+
+<p>Amy to do so if you're talked about</p>
+
+<p>crochet please let's talk about it I</p>
+
+<p>make scarves and hats and whatnot in</p>
+
+<p>octopus's I love love comics as we'll</p>
+
+<p>talk about those and karaoke we karaoke</p>
+
+<p>last night why not tonight</p>
+
+<p>every night's karaoke night all my</p>
+
+<p>slides for this talk and everything I'll</p>
+
+<p>ever give in my life is probably over</p>
+
+<p>our website MC Dwayne&nbsp;comm that's</p>
+
+<p>actually where you should go right now</p>
+
+<p>get these slides up if you go to my</p>
+
+<p>websites the very top link will take you</p>
+
+<p>to the description and there's a link to</p>
+
+<p>the slides in there the slides are</p>
+
+<p>actually open for comment from anyone so</p>
+
+<p>I would love your feedback this is the</p>
+
+<p>second time I've given this talk and I</p>
+
+<p>desperately need feedback to make it</p>
+
+<p>better for the future before I move on</p>
+
+<p>quick talk about Pantheon um who here is</p>
+
+<p>familiar with Pantheon that's pretty</p>
+
+<p>much the whole room but for those of you</p>
+
+<p>who might not be there wasn't on Drupal</p>
+
+<p>TV or YouTube later Pantheon is a</p>
+
+<p>website operations platform that helps</p>
+
+<p>people that are operating a web site</p>
+
+<p>meaning the developers the designers the</p>
+
+<p>project managers the stakeholders you</p>
+
+<p>had better communication strategies I</p>
+
+<p>always like to quote Kelly Albright</p>
+
+<p>DevOps is not about tools it's about</p>
+
+<p>communication and we really do help with</p>
+
+<p>that problem and we'd love to talk to</p>
+
+<p>you about automation and that's really</p>
+
+<p>one of the reasons I'm doing this but</p>
+
+<p>before I go on and talk about why this</p>
+
+<p>is automation ultimately I just want to</p>
+
+<p>quit a quick poll of people in the room</p>
+
+<p>all right everybody's your hand if you</p>
+
+<p>came into this room because you saw the</p>
+
+<p>talk description and said I want to see</p>
+
+<p>that talk that's everybody good we're a</p>
+
+<p>hundred percent almost hundred percent</p>
+
+<p>he doesn't raise their hand now here is</p>
+
+<p>a developer full-time that's all they do</p>
+
+<p>is develop who here is a designer who</p>
+
+<p>here is a content a content creator</p>
+
+<p>writer editor yeah believer and I think</p>
+
+<p>you're gonna get a lot out of this talk</p>
+
+<p>is there any business people in here</p>
+
+<p>sales folks otherwise</p>
+
+<p>good good actually this is super helpful</p>
+
+<p>for folks like you as well it's helpful</p>
+
+<p>for everybody who here this is like the</p>
+
+<p>ultimate who here owns a computer it's</p>
+
+<p>still the person on the computer that</p>
+
+<p>same person for those of you at home not</p>
+
+<p>gonna call any names I have a hundred</p>
+
+<p>and fourteen slides ish no we're not</p>
+
+<p>gonna go through every single one on</p>
+
+<p>today and then explain them all in</p>
+
+<p>detail and I'm definitely not gonna read</p>
+
+<p>them to you but if you are a novice and</p>
+
+<p>you have no idea what bashes just sit</p>
+
+<p>there take some notes I highly encourage</p>
+
+<p>you to take notes it's the best way to</p>
+
+<p>acquire new skills I think is to take</p>
+
+<p>notes first if you know a little bit</p>
+
+<p>about Bosch open up your terminal let's</p>
+
+<p>fly along at home about halfway through</p>
+
+<p>it's gonna kick in where you can just</p>
+
+<p>start playing along at home and you</p>
+
+<p>might pick up a few things and if you</p>
+
+<p>are an advanced user and you know what</p>
+
+<p>that says just do that if you don't know</p>
+
+<p>what that says cut yourself in the one</p>
+
+<p>would love categories slide 106 and</p>
+
+<p>below is for you and we should have some</p>
+
+<p>fun with this so bash we're here to talk</p>
+
+<p>about the magic that is bash and we</p>
+
+<p>think of magic we think of well fun like</p>
+
+<p>card tricks and kids birthday parties</p>
+
+<p>and wonderful stuff or we think of</p>
+
+<p>terrifying things that are really</p>
+
+<p>complex that if you know what you're</p>
+
+<p>doing with it this is a really cool card</p>
+
+<p>you can win a game with this card it's</p>
+
+<p>actually legal in current turn</p>
+
+<p>tournament play but if you don't know</p>
+
+<p>what this is it's just an evil looking</p>
+
+<p>thing that's kind of scary it's a little</p>
+
+<p>bit overwhelming amount of text like</p>
+
+<p>what on earth do I do with this I don't</p>
+
+<p>know what most of that means looks cool</p>
+
+<p>but it's also looks scary</p>
+
+<p>when husbands talk together for business</p>
+
+<p>users in their room actually we bounced</p>
+
+<p>a bunch of ideas off of one of my</p>
+
+<p>colleagues heads and Ben who was in</p>
+
+<p>sales he said you know what this thing</p>
+
+<p>you're describing kind of sounds like</p>
+
+<p>the whole point open source to me like</p>
+
+<p>smart people leveraging smart tools and</p>
+
+<p>intelligent way they're signing together</p>
+
+<p>and it was like this epiphany moment for</p>
+
+<p>me is like if I can make everyone get</p>
+
+<p>that then man I can totally win this so</p>
+
+<p>that's where I kind of based the rest of</p>
+
+<p>this off of because we are terrified of</p>
+
+<p>things we don't understand it is human</p>
+
+<p>nature if we don't understand a thing no</p>
+
+<p>matter how benign it is no matter how</p>
+
+<p>ultimately you're cute it is we're gonna</p>
+
+<p>be like this kid and we're gonna freak</p>
+
+<p>the heck out especially when you hear</p>
+
+<p>stories like this now this isn't a true</p>
+
+<p>story turns out this was a giant hoax so</p>
+
+<p>don't worry this didn't actually happen</p>
+
+<p>but I have seen in production enough of</p>
+
+<p>my life people take down entire racks of</p>
+
+<p>things my accident people accidentally</p>
+
+<p>wipe out their entire project and I have</p>
+
+<p>to start over from the last time they</p>
+
+<p>saved there's a lot of horrible stories</p>
+
+<p>where you hear it's like oh my goodness</p>
+
+<p>bash is terrifying bash is scary it is</p>
+
+<p>the most intimidating user experience in</p>
+
+<p>the world there's just a cursor and you</p>
+
+<p>have to know what to do with we're all</p>
+
+<p>terrified of breaking our machines we're</p>
+
+<p>all and we all set up our machines to do</p>
+
+<p>exactly what we want them to do and</p>
+
+<p>sometimes it takes us weeks months then</p>
+
+<p>we've been using the same machine for</p>
+
+<p>years for a reason not because it's the</p>
+
+<p>best machine on the market but because</p>
+
+<p>it's set up the exact way we want it</p>
+
+<p>we're terrified of changing that because</p>
+
+<p>we know the time investment it took and</p>
+
+<p>who knows how to go through those GUI</p>
+
+<p>screens again who here's our setup ma'am</p>
+
+<p>all isn't that fun to make it agree with</p>
+
+<p>your PHP and my sequel version no no</p>
+
+<p>that's the terrified so I use lando but</p>
+
+<p>every single developer I've ever talked</p>
+
+<p>to that uses bash says yeah there's a</p>
+
+<p>legitimate underlying fear there sure</p>
+
+<p>it's powerful but don't be afraid of it</p>
+
+<p>just embrace the thing</p>
+
+<p>and it's easy to say this it is so easy</p>
+
+<p>to say to someone that doesn't know what</p>
+
+<p>they're doing this scares like just</p>
+
+<p>don't be afraid but how many times does</p>
+
+<p>that ever work for you when you're</p>
+
+<p>terrified if someone says just don't be</p>
+
+<p>afraid don't worry about the giant</p>
+
+<p>spinning blades they're they're fine but</p>
+
+<p>here's the amazing part you have at your</p>
+
+<p>disposal a more RAW processing power</p>
+
+<p>than we had when we put astronauts on</p>
+
+<p>the moon by like a 10,000 factor an</p>
+
+<p>iPhone 5 has 13 hundred percent more</p>
+
+<p>processing power than all of the Apollo</p>
+
+<p>missions had put together you're talking</p>
+
+<p>about Bosch which is close to 40 years</p>
+
+<p>old and like the technology it's doing</p>
+
+<p>how could have you gotten on like Mac OS</p>
+
+<p>R on the iOS just in the last decade how</p>
+
+<p>much better did this tool get over that</p>
+
+<p>last same period of time how many things</p>
+
+<p>can your computer do that you currently</p>
+
+<p>can't access turns out it's almost</p>
+
+<p>infinite because once you understand</p>
+
+<p>like what this does your machines yours</p>
+
+<p>and this that's not the true sense in</p>
+
+<p>nature of open source that I have the</p>
+
+<p>right to look at the code and manipulate</p>
+
+<p>the code but if I don't understand the</p>
+
+<p>machine that it's running on I'd only</p>
+
+<p>get you so far so you can unlock all of</p>
+
+<p>the potential of your machine through</p>
+
+<p>this wonderful wonderful little thing</p>
+
+<p>called bash but why would I know in this</p>
+
+<p>room actually care to do bash sure</p>
+
+<p>that's great that's a wonderful speech</p>
+
+<p>like it's powerful wonderful I want to</p>
+
+<p>empower everyone in the world and I</p>
+
+<p>really do but I work with a lot of</p>
+
+<p>developers in the world I train a lot of</p>
+
+<p>people at Pantheon on Pantheon and I</p>
+
+<p>watch people go through GUI screens to</p>
+
+<p>do everything and it's just slow and I'm</p>
+
+<p>like disabled of your life this is how</p>
+
+<p>you do all these things and there's</p>
+
+<p>nothing wrong with the GUI I will never</p>
+
+<p>ever talk down about a GUI in general</p>
+
+<p>but that GUI was built by a developer</p>
+
+<p>and the developer has a specific goal</p>
+
+<p>with it GUI in mind not to let you do</p>
+
+<p>everything that tool could possibly do</p>
+
+<p>that would be a giant laundry list of</p>
+
+<p>click boxes and buttons and whatnot</p>
+
+<p>their goal is to make the interface</p>
+
+<p>intuitive and</p>
+
+<p>easy to do the things that you probably</p>
+
+<p>wanted to do and that's awesome but it</p>
+
+<p>can do so much more and it's also really</p>
+
+<p>slow to go in and click buttons who here</p>
+
+<p>really likes the CMI click button</p>
+
+<p>interface and how fast it is that's</p>
+
+<p>single hand drush is so much faster to</p>
+
+<p>get your config imported it's just</p>
+
+<p>ridiculously much faster it's like I</p>
+
+<p>don't even know why we have a GUI</p>
+
+<p>honestly it's just that much faster but</p>
+
+<p>it's not just that it's one individual</p>
+
+<p>button click it's exactly to do the same</p>
+
+<p>button clicks over and over and over and</p>
+
+<p>over and over again real life story I do</p>
+
+<p>a weekly demo of Pantheon about half the</p>
+
+<p>weeks of the year and I have to open 8</p>
+
+<p>tabs for it and at the end of it I have</p>
+
+<p>to do a like 6 cleanup steps to put</p>
+
+<p>myself back to a proper state so I can</p>
+
+<p>do that demo again and I got sick of</p>
+
+<p>doing it so I have to batch scripts what</p>
+
+<p>opens one closes the clothes because</p>
+
+<p>there's only cleanup work for me so</p>
+
+<p>instead of 8 tabs I need to manually</p>
+
+<p>open our own run script instead of all</p>
+
+<p>these sip cleanup steps I have to do</p>
+
+<p>which include get pushes I just run</p>
+
+<p>script and it just does it so you can</p>
+
+<p>speed up everything immensely and</p>
+
+<p>eventually you're gonna run into a tool</p>
+
+<p>with anything you do in computer science</p>
+
+<p>not just web dev anything where</p>
+
+<p>someone's gonna say something like this</p>
+
+<p>I got a tool for that it's in the repo</p>
+
+<p>just go grab it and if you don't know</p>
+
+<p>what that means they might as well be</p>
+
+<p>speaking some weird foreign language</p>
+
+<p>that like makes no sense cuz they</p>
+
+<p>literally are they are speaking the</p>
+
+<p>language of bash which is we'll talk</p>
+
+<p>about later this beautiful common</p>
+
+<p>language that we all share even though</p>
+
+<p>no one's quite as fluent in and it is</p>
+
+<p>anyone else thinks they are we'll get to</p>
+
+<p>that</p>
+
+<p>and the real power here is that we know</p>
+
+<p>that fundamentally that advanced</p>
+
+<p>developers can take these things called</p>
+
+<p>scripts and literally do amazing things</p>
+
+<p>with it if in the end the speaker notes</p>
+
+<p>for these slides if you have full access</p>
+
+<p>to as links to all this stuff</p>
+
+<p>this is telnet blinking like tile that</p>
+
+<p>blinking like that and Al you can watch</p>
+
+<p>all the Star Wars and ASCII</p>
+
+<p>this is just bash people you can do</p>
+
+<p>anything with it but that's why that's</p>
+
+<p>why is because you can do things faster</p>
+
+<p>you can automate all the things and if</p>
+
+<p>you can animate one thing you can</p>
+
+<p>automate literally anything so if I can</p>
+
+<p>automate Chrome opening eight tabs or</p>
+
+<p>Firefox opening eight tabs I can</p>
+
+<p>automate calling the third-party tool to</p>
+
+<p>do a visual regression test there's no</p>
+
+<p>difference batch doesn't care what the</p>
+
+<p>file does it just is doing the exact</p>
+
+<p>same thing but what what did I just say</p>
+
+<p>bash is doing something so what are we</p>
+
+<p>talking about here that's why I came in</p>
+
+<p>this room we were talking about the</p>
+
+<p>blowing in shell this is the official</p>
+
+<p>logo for bash</p>
+
+<p>that's in the repo it's beautiful so why</p>
+
+<p>is it born again shell because there was</p>
+
+<p>a guy named Steven born and he worked</p>
+
+<p>for a company called Bell Labs and they</p>
+
+<p>wrote this thing called Unix and there's</p>
+
+<p>Berkeley UNIX and there was Bell Labs</p>
+
+<p>UNIX and there was early day UNIX and he</p>
+
+<p>realized that there's this fundamental</p>
+
+<p>problem that they had to solve and what</p>
+
+<p>he's trying to solve was inside of this</p>
+
+<p>beautiful file system that his UNIX how</p>
+
+<p>do we move things around and how do we</p>
+
+<p>read those things to know what to do</p>
+
+<p>with them that's literally what shell is</p>
+
+<p>it's a shell access he's not the first</p>
+
+<p>person to write a shell it wasn't the</p>
+
+<p>last we'll talk about why this was</p>
+
+<p>actually super valuable but that's good</p>
+
+<p>there later so what does bash actually</p>
+
+<p>do for those of you who in the room that</p>
+
+<p>have ever looked at the Wikipedia</p>
+
+<p>article like I did you'll see this</p>
+
+<p>I love this definition and I think it's</p>
+
+<p>way too long at the same time tech</p>
+
+<p>commands cause actions that is a</p>
+
+<p>fundamental thing you do with Bosch now</p>
+
+<p>for those of you who don't use Bosch</p>
+
+<p>does that sound fundamentally scary you</p>
+
+<p>can type a command and it will do a</p>
+
+<p>thing anybody all right no hands went up</p>
+
+<p>and I don't if you're just shy if you</p>
+
+<p>are that's fine but is this scary a</p>
+
+<p>telegraph a little bit because of</p>
+
+<p>electricity I think those wires by the</p>
+
+<p>way those Steve persia's actual</p>
+
+<p>grandfather is Telegraph machine that</p>
+
+<p>human telegraphy and but you have to</p>
+
+<p>learn how to take yes you learn after</p>
+
+<p>you have to learn how to type something</p>
+
+<p>so it's a little intimidating that you</p>
+
+<p>have to know how to type on it but the</p>
+
+<p>fundamental idea of a telegraph is very</p>
+
+<p>simple I'm gonna send a signal from here</p>
+
+<p>to there that fundamental concept in and</p>
+
+<p>of itself isn't shown too scary that's</p>
+
+<p>what I'm doing right now I'm sending a</p>
+
+<p>message from here to you broadcasting it</p>
+
+<p>mildly with my voice this is just doing</p>
+
+<p>electronically from point A to point B</p>
+
+<p>guess what that is all the terminal does</p>
+
+<p>it points in the message or point A to</p>
+
+<p>point B I guess what that's actually all</p>
+
+<p>Alexa does if you look at Alexa's actual</p>
+
+<p>documentation this is my favorite I dug</p>
+
+<p>through a bunch of their Docs it's my</p>
+
+<p>favorite like one that actually comes up</p>
+
+<p>quickly on Google again the links in the</p>
+
+<p>in the speaker notes what Alexa</p>
+
+<p>basically does this is this is super</p>
+
+<p>simplified version but it uses natural</p>
+
+<p>language processing to write down a text</p>
+
+<p>message of what you said so I say hey</p>
+
+<p>Alexa what's the weather it's gonna</p>
+
+<p>write that down and it's gonna send it</p>
+
+<p>off to a third-party service somewhere</p>
+
+<p>else in space lambda whatever send it</p>
+
+<p>back and that's just service makes</p>
+
+<p>another text message to send back and</p>
+
+<p>Alexa just read you that text message</p>
+
+<p>that's all X's is a fancy text messaging</p>
+
+<p>machine that hooked up to cool back-end</p>
+
+<p>services they can do a lot of really</p>
+
+<p>cool stuff and then Alexa itself can</p>
+
+<p>also do interesting things bass</p>
+
+<p>text message they can see what the cards</p>
+
+<p>and other interesting things he can do</p>
+
+<p>but that's it we're communicating with</p>
+
+<p>our machines Bosch is a way for you to</p>
+
+<p>write little short messages directly to</p>
+
+<p>your operating system all it really does</p>
+
+<p>with those messages is move files around</p>
+
+<p>and in UNIX all files are folder all</p>
+
+<p>folders or files so even there it's just</p>
+
+<p>moving files around but it's movie files</p>
+
+<p>folders</p>
+
+<p>who here is a contaminated by moving a</p>
+
+<p>file to a folder like no like that with</p>
+
+<p>a GUI we never would be that's a silly</p>
+
+<p>question obviously on the surface that's</p>
+
+<p>really all bash and its heart is doing</p>
+
+<p>is saying I want this file to move over</p>
+
+<p>here or I want to read that file and</p>
+
+<p>figure out what the heck to do with it</p>
+
+<p>we'll get to what those headers mean and</p>
+
+<p>why headers are important a little bit</p>
+
+<p>later we'll talk scripting but that's</p>
+
+<p>all really doing then we're gonna move</p>
+
+<p>it around and then read the file figure</p>
+
+<p>out what the heck to do with it it's</p>
+
+<p>ubiquitous so I use this computer</p>
+
+<p>because it's like well it computes for</p>
+
+<p>you it does the thing that the file says</p>
+
+<p>to do but even windows got on board with</p>
+
+<p>this with the Linux Windows 10 developer</p>
+
+<p>edition with a Linux subsystem because</p>
+
+<p>they're like yeah you're right this is</p>
+
+<p>the most ubiquitous system that ever</p>
+
+<p>gotten written in the history of the</p>
+
+<p>world and if you can use it in one place</p>
+
+<p>you can use it everywhere on every</p>
+
+<p>machine you ever touch the entire rest</p>
+
+<p>of your life thanks to - or ball</p>
+
+<p>but if not just machines that you're</p>
+
+<p>actively logging into as assistant men</p>
+
+<p>and typing on who here uses a build</p>
+
+<p>system of any sort all right who here</p>
+
+<p>doesn't really know what those things</p>
+
+<p>are and it's fine if you don't awesome</p>
+
+<p>in the dumbest simplest terms I can put</p>
+
+<p>it into not dumb in the simplest terms I</p>
+
+<p>put it into which for me is like yeah</p>
+
+<p>sorry it is a bash script running on a</p>
+
+<p>machine you don't own that is pretty</p>
+
+<p>much all circle CIS there's</p>
+
+<p>configuration for it sure there's knobs</p>
+
+<p>and whistles and bells but how do you</p>
+
+<p>make a script run on one of these though</p>
+
+<p>you give it a script to run and then put</p>
+
+<p>a little things around it to say oh I</p>
+
+<p>may even authenticate as me and you can</p>
+
+<p>cut you can get into this github repo</p>
+
+<p>and you can have access to push to here</p>
+
+<p>fundamentally it's just bash with again</p>
+
+<p>wow knobs and whistles around it but if</p>
+
+<p>you understand what those files are and</p>
+
+<p>how to read them then human readable</p>
+
+<p>versions of them then you're doing the</p>
+
+<p>same thing bash can do you can do it</p>
+
+<p>bash can do it and you can automate it</p>
+
+<p>that gets me very excited overall so</p>
+
+<p>from here on out is a tutorial on the</p>
+
+<p>basics of bash and again if you are bash</p>
+
+<p>user everyday let's skip slide 106 and</p>
+
+<p>just start reading and I guarantee you</p>
+
+<p>will probably get something very</p>
+
+<p>important out of that for the rest of</p>
+
+<p>your life everyone else though again if</p>
+
+<p>you're brand new to this know that you</p>
+
+<p>can do these things if you're on a</p>
+
+<p>wonder Mac or Linux machine just open it</p>
+
+<p>up it's the terminal it's beautiful</p>
+
+<p>there's a billion different kind of</p>
+
+<p>terminals I will say bash it was one of</p>
+
+<p>the solutions I forgot to say why it's</p>
+
+<p>called bash cuz we talked about the born</p>
+
+<p>again she'll start about that so Steven</p>
+
+<p>born Ruth the shell for Bell Labs 1988 a</p>
+
+<p>guy named Richard Stallman was working</p>
+
+<p>with his team and said you know what</p>
+
+<p>shells a really good idea we should</p>
+
+<p>rewrite this and make it open source</p>
+
+<p>so they wrote a new open source one and</p>
+
+<p>said what should we call it well the</p>
+
+<p>born again shell bash that's why I've</p>
+
+<p>been bash is literally on every machine</p>
+
+<p>you'll probably ever touch somewhere on</p>
+
+<p>that machine it literally comes from the</p>
+
+<p>heart of open source from the new</p>
+
+<p>movement we have the right to tear this</p>
+
+<p>thing apart and rebuild in our whatever</p>
+
+<p>purpose we want to to look at the code</p>
+
+<p>to manipulate it that lab said we</p>
+
+<p>couldn't they just wanted us to use it</p>
+
+<p>we got to extend this guy's work and it</p>
+
+<p>was written by people like us by</p>
+
+<p>open-source nerds I was just at nerd</p>
+
+<p>summit that joke played better there</p>
+
+<p>there's something up in Amherst</p>
+
+<p>but bash is everywhere so just open up a</p>
+
+<p>bash terminal if you're on Windows</p>
+
+<p>you're gonna have to either install the</p>
+
+<p>Linux subsystem or get bash just</p>
+
+<p>download kit and you get a beautiful</p>
+
+<p>bash client there is it full-featured no</p>
+
+<p>does it work yeah can you do everything</p>
+
+<p>with it yeah you're running the issues</p>
+
+<p>around composer actually but we'll get</p>
+
+<p>there so how the rest of this entire</p>
+
+<p>deck is laid out are these four general</p>
+
+<p>ideas that I'm gonna walk through and</p>
+
+<p>then there's a bunch of best practices</p>
+
+<p>and then I'm gonna tell you a little bit</p>
+
+<p>at the end of how you can do this very</p>
+
+<p>very safely without any fear of messing</p>
+
+<p>up anything on your computer at all and</p>
+
+<p>just how to have fun with it</p>
+
+<p>because once you embrace it it's</p>
+
+<p>actually super fun to make your machine</p>
+
+<p>do anything you want</p>
+
+<p>now if you have no idea what this is</p>
+
+<p>intimidating as heck this is like</p>
+
+<p>literally a terrifying screen if you</p>
+
+<p>know what this is this is a beautiful</p>
+
+<p>display of the access rights who owns my</p>
+
+<p>code like a lot of metadata around it</p>
+
+<p>and it's just a beautiful view of the</p>
+
+<p>world but again if you don't know what</p>
+
+<p>this is it is intimidating as heck so</p>
+
+<p>let's start from the very very beginning</p>
+
+<p>the first thing you see on here at the</p>
+
+<p>top or at the bottom is well where you</p>
+
+<p>type at on most machines it is just</p>
+
+<p>default configured to tell you in this</p>
+
+<p>order computer name current directory</p>
+
+<p>user and then you get the dollar sign</p>
+
+<p>you type after the dollar sign so a lot</p>
+
+<p>of scripts you look up in your life will</p>
+
+<p>start with a dollar sign don't copy the</p>
+
+<p>dollar sign they'll mess things up that</p>
+
+<p>tilde is a shortcut it just says that's</p>
+
+<p>your home directory so and you look at</p>
+
+<p>your file system it just shows you where</p>
+
+<p>home is for you it's probably your name</p>
+
+<p>this for me standard commands so again</p>
+
+<p>we're talking about moving around a UNIX</p>
+
+<p>file system so one of the first commands</p>
+
+<p>anybody ever learns is PWD present</p>
+
+<p>working directory I've kind of rewritten</p>
+
+<p>what Manuel told me as if I was talking</p>
+
+<p>to alexa because again that's all i'm</p>
+
+<p>doing i'm sending short messages to my</p>
+
+<p>computer so hey bash jo around that's</p>
+
+<p>all PWD does hey bash what's in this</p>
+
+<p>folder tell us like show me what's in</p>
+
+<p>here you know I meant show me everything</p>
+
+<p>in this folder and then we get to these</p>
+
+<p>wonderful things that's good</p>
+
+<p>dot by itself is a hidden directory</p>
+
+<p>which means present directory so you can</p>
+
+<p>actually invoke tools to say do this in</p>
+
+<p>the directory you're in without having</p>
+
+<p>to type out where directory are in you</p>
+
+<p>can just say hey I'm referencing myself</p>
+
+<p>I have to explain recursion before I</p>
+
+<p>could explain that but</p>
+
+<p>that's all that is two dots means the</p>
+
+<p>level up dot file name means hide it</p>
+
+<p>from me so if I say show me everything</p>
+
+<p>here</p>
+
+<p>great show me everything here there it</p>
+
+<p>is</p>
+
+<p>hidden folders are really nice because</p>
+
+<p>they're like get you don't really want</p>
+
+<p>to see your get folder all the time but</p>
+
+<p>it's really important it's there so you</p>
+
+<p>need to check on it time time who likes</p>
+
+<p>reading manuals awesome I want everyone</p>
+
+<p>to love manuals manuals work on planes</p>
+
+<p>if you're ever like I don't have</p>
+
+<p>anything to read on this plane I got</p>
+
+<p>fifteen minutes to kill tech manual our</p>
+
+<p>type man and any command any command in</p>
+
+<p>the world and probably it's already in</p>
+
+<p>there well written even manual itself</p>
+
+<p>you can man man that's what I did to Bob</p>
+
+<p>and tells you like very plainly Riz so</p>
+
+<p>up here I did an LS a saying hey show me</p>
+
+<p>everything and this is where most people</p>
+
+<p>start getting a little lost</p>
+
+<p>honestly like okay how do I remember</p>
+
+<p>these flags what does these flags even</p>
+
+<p>do there's a zillion variations of this</p>
+
+<p>command it feels like there's a zillion</p>
+
+<p>there's not there's like 40 or something</p>
+
+<p>how do I find them all oh yeah it will</p>
+
+<p>literally tell you just man LS and it</p>
+
+<p>will tell you what every possible flag</p>
+
+<p>is and in your spare time again render</p>
+
+<p>airplanes like your Wi-Fi goes out on</p>
+
+<p>you well time learner else does click in</p>
+
+<p>I've crawled through a lot of manuals</p>
+
+<p>it's actually really fun after a while</p>
+
+<p>yeah we'll get to that we'll actually</p>
+
+<p>get to that good point good point good</p>
+
+<p>point we haven't got to that so far all</p>
+
+<p>we're doing is reading all we're doing</p>
+
+<p>is saying hey tell me where I am tell me</p>
+
+<p>what's in here</p>
+
+<p>tell me everything in here and then code</p>
+
+<p>tell me what the manual says for this</p>
+
+<p>command that was actually do stuff hey I</p>
+
+<p>want to move around moving in a</p>
+
+<p>different directory moving in one level</p>
+
+<p>up one I just recently learned is a CD -</p>
+
+<p>we'll get to that later on but it's</p>
+
+<p>actually super cool but now we're just</p>
+
+<p>moving around again we're not affecting</p>
+
+<p>anything we're just jumping around to</p>
+
+<p>where we're looking now we start doing</p>
+
+<p>stuff hey let's make a directory make</p>
+
+<p>directory make a new folder put a rest</p>
+
+<p>copy something put it from here and</p>
+
+<p>there move it moves actually super</p>
+
+<p>powerful because move just doesn't say</p>
+
+<p>move it from here to here you can move</p>
+
+<p>something from where it is to where it</p>
+
+<p>is with a new name so you can rename a</p>
+
+<p>lot of things very very fast just by</p>
+
+<p>moving them all again there's a thousand</p>
+
+<p>flags to this you can do very very</p>
+
+<p>specific things you can rename entire</p>
+
+<p>sets of directories with one flag it's</p>
+
+<p>pretty cool you can remove things and</p>
+
+<p>this is where all those horror stories</p>
+
+<p>you've ever heard in your life came from</p>
+
+<p>not from this command this is eventually</p>
+
+<p>pretty safe command you'll remove the</p>
+
+<p>thing at a time and you can't remove</p>
+
+<p>entire directories so if you're running</p>
+
+<p>RM on a file you're gonna remove that</p>
+
+<p>file just know that if you're on this</p>
+
+<p>which a lot of things you'll see online</p>
+
+<p>will tell you is RM minus RF this is</p>
+
+<p>literally the only thing I think you</p>
+
+<p>should be wary and scared of and the</p>
+
+<p>entire talk is this this command forget</p>
+
+<p>this folder and you're shouting this by</p>
+
+<p>the way because that's the bf means</p>
+
+<p>force R means recursive everything below</p>
+
+<p>here too so if you change to your root</p>
+
+<p>directory and ran this you're done</p>
+
+<p>you're you've just erased your machine</p>
+
+<p>you probably get it back somehow the</p>
+
+<p>backup time machine but you have just</p>
+
+<p>moved all your files don't run this</p>
+
+<p>unless you specifically know what you're</p>
+
+<p>doing if someone's told you to run it if</p>
+
+<p>you're working with other people wait</p>
+
+<p>for someone to tell you to do this or</p>
+
+<p>you do it but this is the only real</p>
+
+<p>danger this is the big red flag because</p>
+
+<p>you're removing things you can add</p>
+
+<p>things all day and move them around and</p>
+
+<p>copy them and make your X reason no</p>
+
+<p>one's really</p>
+
+<p>because he moved to directory so move it</p>
+
+<p>back just moved it that's all you did</p>
+
+<p>but don't don't force things they feel</p>
+
+<p>like what did I just do</p>
+
+<p>history is there for you in fact how I</p>
+
+<p>made these slides as I were in a history</p>
+
+<p>and look back over two week period in my</p>
+
+<p>life and in an analysis which is also in</p>
+
+<p>the speaker notes from Becca and how</p>
+
+<p>this deck works of how I use bash like</p>
+
+<p>just from a two-week snapshot of like</p>
+
+<p>this is are the commands I actually run</p>
+
+<p>in my day of daily life clearing the</p>
+
+<p>screen I use constantly so much that a</p>
+
+<p>alias did I'll get to that in a second</p>
+
+<p>that's what C is down there that means</p>
+
+<p>clear so short credit it open</p>
+
+<p>this is fun open things you can interact</p>
+
+<p>with the whole rest your machine from</p>
+
+<p>from bash like I could I could I could</p>
+
+<p>jump to my spotlight view and type in</p>
+
+<p>Firefox or get in FF and be right back</p>
+
+<p>in Firefox and I can throw other things</p>
+
+<p>the end of this like let's admit HTTP</p>
+
+<p>[Music]</p>
+
+<p>can't work</p>
+
+<p>and I misspelled it but that's the live</p>
+
+<p>demo well they're not here sitting tight</p>
+
+<p>anyway the point is it does it um so you</p>
+
+<p>can start experimenting with like can I</p>
+
+<p>open this app to the state probably you</p>
+
+<p>can if there's a way you can manipulate</p>
+
+<p>it manually to get to her through the</p>
+
+<p>GUI there's probably a way to open it on</p>
+
+<p>that state is it that useful I use it</p>
+
+<p>every day of my life so I think so but</p>
+
+<p>that's the basics these are the basics</p>
+
+<p>things Bosch does if you have mastered</p>
+
+<p>these like eight things nine things</p>
+
+<p>Wow you're on a really good path the</p>
+
+<p>nine things it's not that hard to</p>
+
+<p>remember</p>
+
+<p>and especially sensors things you</p>
+
+<p>already are doing anyway with the GUI</p>
+
+<p>there's no new concepts of any of this</p>
+
+<p>stuff RM minus RF maybe but that's like</p>
+
+<p>move to trash and delete the trash</p>
+
+<p>folder itself like don't do that</p>
+
+<p>applications and tools again this comes</p>
+
+<p>out of the new world the new world is</p>
+
+<p>all about sharing your tools let's make</p>
+
+<p>tools together to make everything better</p>
+
+<p>for ourselves and some of these are</p>
+
+<p>built-in grep who use grep on the</p>
+
+<p>regular oh yeah for the rest you don't</p>
+
+<p>learn it and once you learn in grep it's</p>
+
+<p>the best search tool that ever got made</p>
+
+<p>by humans it sounds amazing now it only</p>
+
+<p>works on files they can see but you can</p>
+
+<p>easily run a grep the the term and again</p>
+
+<p>there are a zillion ways to use this</p>
+
+<p>there I actually have a I run grep are</p>
+
+<p>and I don't remember all the flag but</p>
+
+<p>there's like five flags and it tells me</p>
+
+<p>exactly the view I want with a count</p>
+
+<p>included but I don't remember those five</p>
+
+<p>things out of time ahead but we'll get</p>
+
+<p>to why I don't remember those things a</p>
+
+<p>little bit later curl one of those</p>
+
+<p>useful tools on earth just pull it</p>
+
+<p>across the internet and display it but</p>
+
+<p>don't just curl and display everything</p>
+
+<p>that's kind of madness curl mines</p>
+
+<p>capital I I use literally on every</p>
+
+<p>website I touch to see if the headers</p>
+
+<p>are right and to see if the varnish is</p>
+
+<p>working on Pantheon sites that's how you</p>
+
+<p>test furnish to see the age of varnish</p>
+
+<p>it's just in the header it just tells</p>
+
+<p>you and it's super fast I need a clue</p>
+
+<p>here for that eventually you'll hit need</p>
+
+<p>to edit a file on the system that's why</p>
+
+<p>we built them our VI or whatever you</p>
+
+<p>pronounce it this actually if you man VI</p>
+
+<p>on a Mac it will tell you it's them I</p>
+
+<p>don't know why I didn't know if that's</p>
+
+<p>an error or what but that's what it says</p>
+
+<p>and I get I get it if you've never</p>
+
+<p>touched VI before it is intimidating</p>
+
+<p>because this is literally how you go</p>
+
+<p>through it I don't stir it escape to go</p>
+
+<p>to command mode</p>
+
+<p>come on WQ to write quitter just queued</p>
+
+<p>yeah so it's like a bunch of hotkeys to</p>
+
+<p>learn but it's worth learning I am here</p>
+
+<p>to tell you is save me a numeral amount</p>
+
+<p>of hours since I started trying to use</p>
+
+<p>it because I don't have to go to another</p>
+
+<p>tool I just like all right I want edit</p>
+
+<p>this thing VI that could that thing jump</p>
+
+<p>to exactly where I want to go because I</p>
+
+<p>remember the hotkeys of how to jump</p>
+
+<p>around and edit it save it I am back to</p>
+
+<p>my terminal back to whatever I was doing</p>
+
+<p>it's super super powerful</p>
+
+<p>there's also Nano if you have no idea</p>
+
+<p>what VI is and you don't want to learn a</p>
+
+<p>bunch of hotkeys nano is just well it</p>
+
+<p>works it just works it's just there it's</p>
+
+<p>another editor literally that's why it's</p>
+
+<p>called now and there are thousands maybe</p>
+
+<p>millions of other command the tools you</p>
+
+<p>can add like if you're a it looks</p>
+
+<p>terrible doesn't brew brew is awesome I</p>
+
+<p>well if anybody tells me about a new</p>
+
+<p>tool the first thing I do is brew</p>
+
+<p>install that tool name and see if it</p>
+
+<p>works sometimes it does and then I just</p>
+
+<p>have a new tool that's awesome</p>
+
+<p>well then other that have to go to the</p>
+
+<p>github I got to figure out how to stall</p>
+
+<p>it and blah blah blah blah blah Linux</p>
+
+<p>it's apt again are not active act mapped</p>
+
+<p>install I guess you should update that</p>
+
+<p>to great in this late at night</p>
+
+<p>brew install you just tell it to install</p>
+
+<p>the package and it will things I've</p>
+
+<p>installed but I think you're super</p>
+
+<p>useful is calculator calc calc is an</p>
+
+<p>amazingly powerful calculator that's I</p>
+
+<p>think easier to use than figuring out</p>
+
+<p>how to type the buttons because who has</p>
+
+<p>like who has a keypad anymore with the</p>
+
+<p>numeric keypad yeah so a few people sure</p>
+
+<p>but this is my entire office a MacBook</p>
+
+<p>Air I'm not joking everything I do I do</p>
+
+<p>on this machine I thought it my home</p>
+
+<p>machine that's true get who you just get</p>
+
+<p>for everything good everybody should use</p>
+
+<p>get for everything get is the best we've</p>
+
+<p>ever figured out version control and for</p>
+
+<p>all humanity especially for sharing I</p>
+
+<p>firmly believe that not one probably</p>
+
+<p>everyone</p>
+
+<p>DuckDuckGo has a command-line interface</p>
+
+<p>which is just amazing so our C mid camp</p>
+
+<p>and this is useful for like okay that's</p>
+
+<p>kind of great that I can hit one and</p>
+
+<p>then like open the mid camp site sure</p>
+
+<p>that's this useful but where I use this</p>
+
+<p>all the time is a get you base previous</p>
+
+<p>probably rollin I get a terrific traffic</p>
+
+<p>I don't know how a cherry picker works</p>
+
+<p>all the time so oh yeah I'm still</p>
+
+<p>looking for documentation really fast in</p>
+
+<p>fact a lot of get documentation</p>
+
+<p>DuckDuckGo we'll just put as the first</p>
+
+<p>thing it sees but all right</p>
+
+<p>I was nerd not about tools I like at</p>
+
+<p>this point I'm a speed up what it's not</p>
+
+<p>links no she's not links not links but</p>
+
+<p>the duct it goes off my standard so it's</p>
+
+<p>standardized in my browser and in my</p>
+
+<p>terminal drush I don't think I have to</p>
+
+<p>say much about rush if you used rush and</p>
+
+<p>you're not tapping into the rest of what</p>
+
+<p>bash can do you are missing out oh man</p>
+
+<p>don't be CLI same same exact comment but</p>
+
+<p>for WordPress users Composer it's not a</p>
+
+<p>require or it's not an option anymore</p>
+
+<p>this is something you can just need to</p>
+
+<p>know and again if you are like using</p>
+
+<p>composer</p>
+
+<p>without understanding bash it's</p>
+
+<p>confusing the terrifying</p>
+
+<p>once you understand oh I'm just reading</p>
+
+<p>a file and pulling things off a shelf</p>
+
+<p>based on what's in that file</p>
+
+<p>that's not scary at all I mean that's a</p>
+
+<p>really simplified version with closure</p>
+
+<p>is but that's basically what composer is</p>
+
+<p>I'm gonna read a file and pull things</p>
+
+<p>off a shelf based on what's in that file</p>
+
+<p>and that shelf just happens to be the</p>
+
+<p>internet for any of those to the</p>
+
+<p>composer drudge you typically composer</p>
+
+<p>help brush help yeah it gives you all</p>
+
+<p>the commands</p>
+
+<p>that's an awesome point this stuff was</p>
+
+<p>all written by us B hat same thing for</p>
+
+<p>behavioral driven testing backstop for</p>
+
+<p>pixel to pixel differences they were all</p>
+
+<p>written by people who embrace the</p>
+
+<p>open-source ethos and they use tools</p>
+
+<p>that literally taught them how to use</p>
+
+<p>the tool from within the tool</p>
+
+<p>the manual was there so they wrote a</p>
+
+<p>manual and helped Docs within the tool</p>
+
+<p>so excellent point man and it's not just</p>
+
+<p>what I showed there are thousands maybe</p>
+
+<p>millions more github is literally built</p>
+
+<p>off the back of this github for all's</p>
+
+<p>bells and whistles and wonderfulness is</p>
+
+<p>an online implementation of a shareable</p>
+
+<p>git repo that's what it's heart is and</p>
+
+<p>what's the point of a git repo to share</p>
+
+<p>and collaborate with code all of these</p>
+
+<p>tools are somewhere on github somewhere</p>
+
+<p>all right but that's a lot of typing</p>
+
+<p>that's an awful lot of typing and that's</p>
+
+<p>where Eli's has come in Alice's work out</p>
+
+<p>of this idea that I can set up a profile</p>
+
+<p>for myself as a user</p>
+
+<p>so these globally true things and if I</p>
+
+<p>type out the full address of open</p>
+
+<p>applications /firefox a PP it will open</p>
+
+<p>up Firefox for me or I can just type FF</p>
+
+<p>and it will do the same thing because I</p>
+
+<p>can write an alias for myself I can also</p>
+
+<p>tell bash where stuff is located like</p>
+
+<p>I've installed a new tool great bash</p>
+
+<p>does not know what's there I set a path</p>
+
+<p>for it and it sure does</p>
+
+<p>so aliases aliases can do a lot of cool</p>
+
+<p>things but it's basically when I type</p>
+
+<p>does do this instead it can be a very</p>
+
+<p>short string it can be a very very very</p>
+
+<p>very very very long string there's</p>
+
+<p>literally no limit how long your bash</p>
+
+<p>aliases can be I've seen ridiculous ones</p>
+
+<p>that take up full pages but they do</p>
+
+<p>amazing things yeah does it score it got</p>
+
+<p>well you would have both cover our type</p>
+
+<p>of us with aliases yeah exactly exactly</p>
+
+<p>I type SL probably about CL so I a</p>
+
+<p>latest CL to see which is clear</p>
+
+<p>I get Porsche origin/master I hate</p>
+
+<p>tagging that haul-out GP om every time</p>
+
+<p>it works and now I have to type o like</p>
+
+<p>we W e that's how I check the weather</p>
+
+<p>that just gets me that element to</p>
+
+<p>underground across river so I can just</p>
+
+<p>type in where I am and it tells me where</p>
+
+<p>I am</p>
+
+<p>paths I'm not gonna go into paths but</p>
+
+<p>this is just again tell bash where that</p>
+
+<p>tool is so when you say open it do that</p>
+
+<p>thing</p>
+
+<p>but aliases actually is a very short</p>
+
+<p>section hey Isis enter the other world</p>
+
+<p>of like well what's the real real power</p>
+
+<p>here because sure this is great these</p>
+
+<p>are all shortcuts basically everything</p>
+
+<p>I've shown you can get you to doing the</p>
+
+<p>problem of the aliases to some extent is</p>
+
+<p>like when you try to use someone else's</p>
+
+<p>computer unicameral is it there's the</p>
+
+<p>actual command there's that problem and</p>
+
+<p>that's simply what I'm talking about</p>
+
+<p>bash and not seashell are one of the</p>
+
+<p>other amazing shells in the world</p>
+
+<p>because this is just an implementation</p>
+
+<p>of an idea there are a lot of other</p>
+
+<p>open-source implementations of this idea</p>
+
+<p>that rarely happens but it is amazing</p>
+
+<p>when it happens like LS should anyway la</p>
+
+<p>should always be La oh that's that's my</p>
+
+<p>point umm I'm not gonna talk about this</p>
+
+<p>but this is how you invoke it if you're</p>
+
+<p>doing since a tutorial later on your own</p>
+
+<p>that'll be useful but now we get into</p>
+
+<p>like the real power and I said earlier</p>
+
+<p>like we're gonna talk about why bash</p>
+
+<p>took off and why shell won and why we</p>
+
+<p>use and what we think of as a shell</p>
+
+<p>isn't sea shell c shell still exists the</p>
+
+<p>k shell doesn't it still exists but we</p>
+
+<p>don't use it the christian there are a</p>
+
+<p>thousand other shells that people have</p>
+
+<p>written but none of them took off even</p>
+
+<p>born himself said sea shell is a more</p>
+
+<p>elegant solution except for if i want to</p>
+
+<p>script things because what he did is he</p>
+
+<p>figured out the problem i forget in the</p>
+
+<p>turn off stop my head the problem of i</p>
+
+<p>want to feed output from one command as</p>
+
+<p>the input of another command typing yeah</p>
+
+<p>what you said piping piping if you got</p>
+
+<p>the piping problem and it's impairing to</p>
+
+<p>the way he wrote shell and why we wrote</p>
+
+<p>bash that way to a show so that's</p>
+
+<p>getting a little advanced but there's a</p>
+
+<p>this is a shell script and its simplest</p>
+
+<p>terms what am i pointing to things I got</p>
+
+<p>got screenshots for this we started with</p>
+
+<p>well there's a hashtag which means</p>
+
+<p>there's a comment I'm gonna ignore this</p>
+
+<p>thing except for the very first line on</p>
+
+<p>the very first line I got his out order</p>
+
+<p>again I'm sorry I keep trying to improve</p>
+
+<p>the order of this and I keep messing it</p>
+
+<p>up on myself the very first line says</p>
+
+<p>hashtag bang also known as shebang I</p>
+
+<p>don't think that's where we get the</p>
+
+<p>whole shebang but that's literally</p>
+
+<p>what's called shebang everything after</p>
+
+<p>this shebang is gonna tell you how to</p>
+
+<p>run this program bash and if it says Ben</p>
+
+<p>bash it knows okay I'm gonna run this as</p>
+
+<p>a bash cuz that's where bash is stored</p>
+
+<p>it's been bashing okay I got that I got</p>
+
+<p>I know what I'm doing that if it's just</p>
+
+<p>a single hashtag by itself</p>
+
+<p>I'm gonna ignore it after that so when I</p>
+
+<p>said this is bashas magic comment no</p>
+
+<p>it's not that's what that joke is and</p>
+
+<p>for those of you who didn't get that</p>
+
+<p>when you walked in you're just gonna</p>
+
+<p>name a file Sh</p>
+
+<p>doesn't matter what's in it just as long</p>
+
+<p>as it starts with that uh chin again the</p>
+
+<p>shebang at the top it's gonna know what</p>
+
+<p>to do with it as long as you give the</p>
+
+<p>permission to do that and this is where</p>
+
+<p>a lot of people like start getting lost</p>
+
+<p>like oh man she my it's hard and it is</p>
+
+<p>the first time you encounter changed my</p>
+
+<p>change access mode change access control</p>
+
+<p>lists change file modes that's what it's</p>
+
+<p>changed power modes</p>
+
+<p>it's confusing it's like what on earth</p>
+
+<p>am i doing there are like a billion ways</p>
+
+<p>I could do this for those of you who are</p>
+
+<p>brand-new there's no like I'm never in a</p>
+
+<p>basket before and I don't know where to</p>
+
+<p>start with this literally if you were on</p>
+
+<p>strim on 775 and the name of your</p>
+
+<p>scripts it just works</p>
+
+<p>that says I owner and maker of this</p>
+
+<p>thing have full edit access and I can do</p>
+
+<p>anything those file ID there and well</p>
+
+<p>choose everything else they can see this</p>
+
+<p>file could read it this is a very safe</p>
+
+<p>way to run files if you don't know what</p>
+
+<p>you're doing this is pretty safe mode</p>
+
+<p>standard safe mode there are safer ways</p>
+
+<p>to do it you never want to pit like all</p>
+
+<p>zeros you kind of lose access to that</p>
+
+<p>file altogether seven seven seven says</p>
+
+<p>anyone can rewrite this file and that's</p>
+
+<p>dangerous as heck too but again this is</p>
+
+<p>getting in the weeds if you're going</p>
+
+<p>through this by yourself this gets gets</p>
+
+<p>interesting we're starting around time</p>
+
+<p>and I wanted to get to some Q&amp;A then we</p>
+
+<p>run this stuff it's really easy just dot</p>
+
+<p>slash name the file and his runs</p>
+
+<p>you can also create your own user Ben so</p>
+
+<p>that tilde slash Ben start stuffing your</p>
+
+<p>own commands in there that will work</p>
+
+<p>globally so when I type them as through</p>
+
+<p>this type listless lists</p>
+
+<p>then I fix this I hope I fixed it</p>
+
+<p>thank you you know what I'm like don't</p>
+
+<p>stop you can also kill out anything</p>
+
+<p>about control Z and you'll jump out of</p>
+
+<p>it I'm gonna do this list this is</p>
+
+<p>another app I wrote a little thing I</p>
+
+<p>wrote what listless does is it goes and</p>
+
+<p>looks at my live website and make sure</p>
+
+<p>that I'm up to date and make sure that</p>
+
+<p>my auto updater ran and it did so I'm up</p>
+
+<p>to date I didn't have to do anything no</p>
+
+<p>updates present WordPress yeah it's a</p>
+
+<p>WordPress in my blog you can or thank</p>
+
+<p>you ignore that but that's that's all it</p>
+
+<p>is it's like that little file called</p>
+
+<p>this list I don't need the SH in there</p>
+
+<p>anymore because it's written been folder</p>
+
+<p>knows what to do with it again don't</p>
+
+<p>need to absorb all that today just know</p>
+
+<p>that's possible so what can you do with</p>
+
+<p>scripts everything basically again let's</p>
+
+<p>go back to what we just were talking</p>
+
+<p>about bash move files around to read</p>
+
+<p>files it can open things</p>
+
+<p>so Bosch go over to all of these</p>
+
+<p>websites actually we grew up this is not</p>
+
+<p>us trying to run earlier with listless</p>
+
+<p>list however II wrote this I think it is</p>
+
+<p>a bug in it right now</p>
+
+<p>but it's something just doesn't in the</p>
+
+<p>comments have comments the experience</p>
+
+<p>got this list of sites that I maintain</p>
+
+<p>and then run through one or timing do</p>
+
+<p>the tech same thing I just showed give</p>
+
+<p>me a list of all the plugins and themes</p>
+
+<p>to make sure they're all updated and</p>
+
+<p>that all it's as administrator I don't</p>
+
+<p>want to spend any of my time going in</p>
+
+<p>and clicking buttons but I do need a way</p>
+
+<p>to very quickly see if it worked</p>
+
+<p>so once a week I do this on Friday</p>
+
+<p>afternoon just say hey whistles list</p>
+
+<p>okay we're up to date good I don't do</p>
+
+<p>anything and that's my entire update</p>
+
+<p>process for all of my website rest</p>
+
+<p>websites open all these no no it's</p>
+
+<p>checks is your yeah but that is but for</p>
+
+<p>my point of view that is my update</p>
+
+<p>process week to week</p>
+
+<p>like I don't worry about it I know the</p>
+
+<p>Machine did it because the output the</p>
+
+<p>test result will all I had to look at so</p>
+
+<p>that was my update process look at the</p>
+
+<p>test result opens websites and Firefox</p>
+
+<p>trivial sure but this is literally how</p>
+
+<p>we run the weekly demo on Wednesdays at</p>
+
+<p><br>
+things you want to see the weekly demo</p>
+
+<p>here it is this is just open source well</p>
+
+<p>again the links are down in the bottom</p>
+
+<p>uh website on Pantheon</p>
+
+<p>I built the tool for you'd build as many</p>
+
+<p>as you want to build for off of a CSV</p>
+
+<p>cuz I had to do eating sites in a day</p>
+
+<p>once for a class and this does all the</p>
+
+<p>handoff as well to organizations and</p>
+
+<p>individual users and some pretty complex</p>
+
+<p>stuff that going around clicking the</p>
+
+<p>dashboard each site will taking about</p>
+
+<p>four and a half minutes to do it by</p>
+
+<p>myself going through the dashboard at</p>
+
+<p>time did this script run takes two and a</p>
+
+<p>half minutes per site but I like to run</p>
+
+<p>the script once and it does that times</p>
+
+<p>as many sites as I have in CSV post</p>
+
+<p>content and test it with B hat backstop</p>
+
+<p>before I push it production a little</p>
+
+<p>weird</p>
+
+<p>I'll MIT so when I write my blog posts</p>
+
+<p>are random all in markdown storm and</p>
+
+<p>github and I tell my machine hey go grab</p>
+
+<p>them from github</p>
+
+<p>go throw them up on a dubs environment</p>
+
+<p>may</p>
+
+<p>sure that everything worked with b-hat</p>
+
+<p>because I make tons of typos obviously</p>
+
+<p>and if that all worked pushed to test</p>
+
+<p>and then let's go make sure pixel to</p>
+
+<p>pixel it's the same things and my config</p>
+
+<p>break anywhere in that cycle and if that</p>
+
+<p>all work let's go ahead and push it</p>
+
+<p>alive I do that for content every time</p>
+
+<p>and that's for my blog</p>
+
+<p>like I have no readers I don't care but</p>
+
+<p>this was fun to build</p>
+
+<p>and also this saves me hours of my life</p>
+
+<p>because I don't want typos on my blogs I</p>
+
+<p>the only user of my blog that I care</p>
+
+<p>about is me in the future so I can go</p>
+
+<p>back and say where did it go sing</p>
+
+<p>karaoke last year when I was in town</p>
+
+<p>where did I eat last time I was here</p>
+
+<p>what sessions were cool</p>
+
+<p>hey I heard about this idea in a session</p>
+
+<p>but I don't remember oh I don't remember</p>
+
+<p>who said it or exactly how they phrased</p>
+
+<p>it I know I'll jump to the directory</p>
+
+<p>that I store all of these files and</p>
+
+<p>locally and grep them for keywords and</p>
+
+<p>see what comes up and I can search all</p>
+
+<p>of my notes like that every time without</p>
+
+<p>thinking about it</p>
+
+<p>ultimately I want to update sites and</p>
+
+<p>visual regression testing to make sure</p>
+
+<p>they didn't break it maybe throw in some</p>
+
+<p>white house tests or some B hat tests or</p>
+
+<p>selenium or throw a test name out there</p>
+
+<p>sometimes I want to do that</p>
+
+<p>automatically every single time there's</p>
+
+<p>an update available the scripts really</p>
+
+<p>available for panthéon you're more</p>
+
+<p>welcome to tear it apart and do anything</p>
+
+<p>you want with it and it will do all of</p>
+
+<p>these amazing things all right we're</p>
+
+<p>getting to the homestretch here last 15</p>
+
+<p>minutes 10 minutes one of the coolest</p>
+
+<p>things about bash is that this is a</p>
+
+<p>universal language everyone here</p>
+
+<p>probably knows a little bash they're</p>
+
+<p>probably people that don't but for I</p>
+
+<p>really came in this room like I know a</p>
+
+<p>little bash you might not have got</p>
+
+<p>anything out of so far I asked this</p>
+
+<p>question literally on February 2nd and</p>
+
+<p>was overwhelmed with responses like 30</p>
+
+<p>people immediately Gaiman replies turned</p>
+
+<p>out</p>
+
+<p>Bailey's already talked about um you</p>
+
+<p>didn't the up key to do the last thing</p>
+
+<p>he just did</p>
+
+<p>yeah I hate typing so here's everything</p>
+
+<p>I've just ran all day I guess I was in</p>
+
+<p>that folder for a long time testing this</p>
+
+<p>little script to funds from game already</p>
+
+<p>and autocomplete so so clear as multiple</p>
+
+<p>things clearing it with a better one</p>
+
+<p>something really long-term insurance I</p>
+
+<p>love that sound I really do but it will</p>
+
+<p>autocomplete for you if it something</p>
+
+<p>like very long string</p>
+
+<p>I don't remember I'm at right now very</p>
+
+<p>my WD I'm just in the home directory</p>
+
+<p>um you know us change directory Calla</p>
+
+<p>yeah Donna type was K clear change</p>
+
+<p>directory k and then tab and it</p>
+
+<p>auto-completed for me you have to take</p>
+
+<p>whole things trollee control a oh this</p>
+
+<p>saves me so much time because you'd like</p>
+
+<p>take forever long you want to like oh I</p>
+
+<p>could get back to the beginning line</p>
+
+<p>control a I'm back to the beginning they</p>
+
+<p>can change it although on well I want to</p>
+
+<p>get the eggs trollee and if you know</p>
+
+<p>Emacs you probably spell need this</p>
+
+<p>lesson because that's how he networks</p>
+
+<p>worst man search not gonna explain that</p>
+
+<p>today you'll find out what irony or if</p>
+
+<p>you don't know it that will change your</p>
+
+<p>life</p>
+
+<p>bastards Astrix the wild-card character</p>
+
+<p>this is how that guy supposedly deleted</p>
+
+<p>everything on his servers the RM minus</p>
+
+<p>RF asterisks from a root directory and</p>
+
+<p>it says everything turns out was a scam</p>
+
+<p>but you shouldn't ever do that um but at</p>
+
+<p>the same time I'm gonna do this live</p>
+
+<p>script</p>
+
+<p>[Music]</p>
+
+<p>so change directory to my desktop Shh</p>
+
+<p>desktop and LS oh man I got tongue</p>
+
+<p>screenshot so I'm gonna RM minus RF s</p>
+
+<p>screen and then huh and uh Ellis and I</p>
+
+<p>got no screenshots yeah not me</p>
+
+<p>screenshots IR use them for something</p>
+
+<p>that's why I named it to something</p>
+
+<p>useful or I don't need anymore that's</p>
+
+<p>the power of it</p>
+
+<p>tap pipe arrow keys pipe is how you pipe</p>
+
+<p>something from one to the other so I</p>
+
+<p>could do an LS like I did there I could</p>
+
+<p>do an LS input master clear LS and pipe</p>
+
+<p>it out to a file called a dear list dot</p>
+
+<p>txt and now on my desktop there is</p>
+
+<p>something called its cat</p>
+
+<p>dear list there's I mean that's a</p>
+
+<p>trivial example but instead of copy</p>
+
+<p>pasting I just said hey put it directly</p>
+
+<p>there it's like one extra step I can cut</p>
+
+<p>out over process because I can just say</p>
+
+<p>just put it there but I can also say do</p>
+
+<p>this and that or run this and then put</p>
+
+<p>the output from that in here there's a</p>
+
+<p>zillion ways to think about this stuff</p>
+
+<p>but type stuff's all helpful if you're</p>
+
+<p>like I would like to a really awesome</p>
+
+<p>bash profile that saves me a lot of pain</p>
+
+<p>in trouble but I don't write it myself</p>
+
+<p>guess what there's a lot of examples</p>
+
+<p>isn't my favorite one that anyone's</p>
+
+<p>pointed out if you even have a bash</p>
+
+<p>profile right now they're like I could</p>
+
+<p>use some updates on that go dig out</p>
+
+<p>ideas my favorite one that anyone told</p>
+
+<p>me and I had never heard of this before</p>
+
+<p>CD - which is basically last channel</p>
+
+<p>button it's the last thing you did so if</p>
+
+<p>I am clear change directory to something</p>
+
+<p>like</p>
+
+<p>to receive private I can't I can't I</p>
+
+<p>can't this anyway it's private</p>
+
+<p>oh that's why this man come yeah there</p>
+
+<p>we go slash gross so I'm at my scripts</p>
+
+<p>folder oh I can see the - that's cool I</p>
+
+<p>can get up there but I can also come</p>
+
+<p>right back to there so I can start</p>
+
+<p>jumping around directories with last</p>
+
+<p>channel without having to type it saves</p>
+
+<p>me let's not receive me like a paragraph</p>
+
+<p>we're at the type in the last month and</p>
+
+<p>then there's this this applied 106 that</p>
+
+<p>I can't mention it for advanced people I</p>
+
+<p>ask people inside a Pantheon like hey</p>
+
+<p>what's the super advanced pro tips I</p>
+
+<p>should know that I could share with</p>
+
+<p>people they're like yeah Bosch strict</p>
+
+<p>mode and I said best strict mode what's</p>
+
+<p>that and then I went looked it up and if</p>
+
+<p>you are new don't do this because this</p>
+
+<p>will very common things that you're</p>
+
+<p>learning when you learn Bosch won't work</p>
+
+<p>with us this is the strictest mode this</p>
+
+<p>will fail at any conceivable fail point</p>
+
+<p>but you want that if your script is</p>
+
+<p>running the kubernetes cluster that</p>
+
+<p>keeps up with house and run websites</p>
+
+<p>this is literally forced thing you can't</p>
+
+<p>have a script inside of Pantheon that</p>
+
+<p>doesn't have this at the top there's</p>
+
+<p>also other things but I'll talk about</p>
+
+<p>those resources but ultimately this</p>
+
+<p>stuff's everywhere once you learn the</p>
+
+<p>basics of bash you can drop into any</p>
+
+<p>machine in the world and learn bat and</p>
+
+<p>like just go for it don't be afraid of</p>
+
+<p>it it's just it's there and literally</p>
+
+<p>for everything else in the world</p>
+
+<p>just search just search there's probably</p>
+
+<p>somebody's written a fully detailed</p>
+
+<p>step-by-step tutorial for anything you</p>
+
+<p>could conceivably want to do with bash</p>
+
+<p>there exist on the internet just ask the</p>
+
+<p>internet I didn't reach the skin I use</p>
+
+<p>the same gift when I teach bat get but</p>
+
+<p>it's same principle I want to learn how</p>
+
+<p>to do this thing through the command</p>
+
+<p>line oh just tell me how to do it</p>
+
+<p>there's I was talking about with the it</p>
+
+<p>just tells you the docks up front</p>
+
+<p>but here's the fun part of course this</p>
+
+<p>all sounds overwhelming there's probably</p>
+
+<p>a lot of applications for your work but</p>
+
+<p>honestly the command-line is fun</p>
+
+<p>people have been thrown out of</p>
+
+<p>universities for wasting all of their</p>
+
+<p>time all night on command-line games</p>
+
+<p>that true stories like go look up</p>
+
+<p>history Berkeley it's amazing</p>
+
+<p>the game that they were playing called</p>
+
+<p>zerk there's other names for it there's</p>
+
+<p>other games like it there's a lot other</p>
+
+<p>games like it the first computer games</p>
+
+<p>ever played in my entire life for</p>
+
+<p>text-based games</p>
+
+<p>hack</p>
+
+<p>you can command line Nutella hack if</p>
+
+<p>it's up and running this is the other</p>
+
+<p>thing with tell hack it's on a weird</p>
+
+<p>port and it is uh not always great but</p>
+
+<p>you can just go there from your from</p>
+
+<p>your browser tab it's a lack tell ah</p>
+
+<p>yeah so here it is if you do this</p>
+
+<p>through the browser like here this is</p>
+
+<p>not your machine there is nothing to</p>
+
+<p>blow up here you can do any command you</p>
+
+<p>can dream up you could try to RM RF</p>
+
+<p>right here I wouldn't work it's not</p>
+
+<p>built it's not built for that but I got</p>
+
+<p>to say it's work okay and now I'm</p>
+
+<p>playing the game called Zurich and</p>
+
+<p>that's figure out what I'm doing and if</p>
+
+<p>you like me missed or remember that game</p>
+
+<p>I'm dating myself there yeah yeah I want</p>
+
+<p>to quit yes yes</p>
+
+<p>and again if you mess up it will just</p>
+
+<p>tell you what you're doing wrong I'm</p>
+
+<p>just gonna force to quit second close</p>
+
+<p>there we go because I'm not on my</p>
+
+<p>terminal cuz I always used the green</p>
+
+<p>screen on the terminal anyway it's a</p>
+
+<p>really fun thing and you can just run</p>
+
+<p>through these commands and be like wow I</p>
+
+<p>didn't know my computer to give you that</p>
+
+<p>I know my computer do that I know my</p>
+
+<p>computer could do that</p>
+
+<p>tell hack is fun as heck you can plays</p>
+
+<p>org which is a really fun game for free</p>
+
+<p>you'll want Prime's they'll print prime</p>
+
+<p>for ever you want to write type things</p>
+
+<p>and very large awesome blocky characters</p>
+
+<p>in the command line it's called piglet</p>
+
+<p>it's awesome you want cow say here it</p>
+
+<p>came from Star Wars like that will play</p>
+
+<p>the Star Wars that I was talking about</p>
+
+<p>earlier and thousands of other articles</p>
+
+<p>three pillars of good bash so I said</p>
+
+<p>bash strictmode</p>
+
+<p>those are the other two things that we</p>
+
+<p>use internally Pantheon shelf the Shelf</p>
+
+<p>style guide Google shell style guide and</p>
+
+<p>shell check which not going to get into</p>
+
+<p>today if you're an advanced user just go</p>
+
+<p>dig into those and it will literally</p>
+
+<p>change the way your bash scripts look</p>
+
+<p>and feel I don't use them for my</p>
+
+<p>personal examples so if you look at the</p>
+
+<p>batch examples they're not there but</p>
+
+<p>again if you're learning this stuff it</p>
+
+<p>actually gets in your way a little bit</p>
+
+<p>and that's really all I had to say and I</p>
+
+<p>took me like an hour to say it so</p>
+
+<p>there's a partner suppose clap along</p>
+
+<p>with these guys again I'm Dwayne I</p>
+
+<p>didn't update this slide apparently 2k</p>
+
+<p>the right feedback something's gonna</p>
+
+<p>release this live scribble do live sure</p>
+
+<p>about that everybody if I thought I'd</p>
+
+<p>updated that and that's it</p>
+
+<p>so for the rest of it I got Q&amp;A but man</p>
+
+<p>there's no way I'm an expert at bash</p>
+
+<p>it's it's I'm not I know what I know and</p>
+
+<p>I know it's shared if to do that right</p>
+
+<p>there so instead of a Q&amp;A where you're</p>
+
+<p>asking me a bunch of questions I'm happy</p>
+
+<p>to answer I'm trying too happy to try to</p>
+
+<p>answer let's turn this into a</p>
+
+<p>conversation where if anybody has any</p>
+
+<p>bash tips that they want to share I know</p>
+
+<p>somebody's gotta ditch in one like</p>
+
+<p>woohoo you forgot this one or you didn't</p>
+
+<p>say that that's let's get him out there</p>
+
+<p>Doug gray see it first okay Jeremy what</p>
+
+<p>here it is</p>
+
+<p>command K okay that's clear for me</p>
+
+<p>that's clear for you</p>
+
+<p>yes he enters for me so command K clear</p>
+
+<p>screen</p>
+
+<p>beautiful beautifully to save everybody</p>
+
+<p>on alias</p>
+
+<p>bono he was next yeah it's another shell</p>
+
+<p>sure okay so this is basically an</p>
+
+<p>implementation of bash with all of like</p>
+
+<p>the power features figured out and</p>
+
+<p>turned on already and if you're an</p>
+
+<p>advanced user you're probably gonna like</p>
+
+<p>this better if you're not a power user</p>
+
+<p>terminal the way I'm showing it here</p>
+
+<p>Bash is vanilla it's everywhere if you</p>
+
+<p>know bash inside now yeah this is</p>
+
+<p>probably a good choice if you don't know</p>
+
+<p>bash inside now learn bash first that's</p>
+
+<p>my solid advice on that because you're</p>
+
+<p>never gonna drop in to a random Linux</p>
+
+<p>server that hasn't been updated in five</p>
+
+<p>years and finds ish there's not</p>
+
+<p>guaranteed a good control gain control a</p>
+
+<p>alt arrows let you skip words so what</p>
+
+<p>you say oh oh there you go we're</p>
+
+<p>learning together all the tips we got</p>
+
+<p>double bang freebies commands so let's</p>
+
+<p>run a command real quick so I actually</p>
+
+<p>ruined something oh you know what it yes</p>
+
+<p>[Laughter]</p>
+
+<p>no actually no it on a Mac it doesn't I</p>
+
+<p>know you have to go to the oh you're</p>
+
+<p>right there we go it's controller a +</p>
+
+<p>ctrl K does exactly that I did not know</p>
+
+<p>that I've literally learned that right</p>
+
+<p>now in front of you we're looking at the</p>
+
+<p>and change directory up to</p>
+
+<p>and then say bang bang that's what</p>
+
+<p>oh no it's bang bang for me I think it's</p>
+
+<p>a bang oh because where I'm at is up to</p>
+
+<p>levels yeah you're absolutely right</p>
+
+<p>Stevie - eating no I don't dot no I</p>
+
+<p>don't I don't have that alias what else</p>
+
+<p>we got okay you have a whole bunch of</p>
+
+<p>knowledge in this room obviously and not</p>
+
+<p>all of its me</p>
+
+<p>right we need to say overwrite another</p>
+
+<p>command with like make your own rep yeah</p>
+
+<p>did say yes say you did an eight is this</p>
+
+<p>rep and there's a thing that Congress oh</p>
+
+<p>yeah</p>
+
+<p>that is a built-in mechanism because</p>
+
+<p>grep can't be set as an alias cuz grep</p>
+
+<p>already exists in the dictionary bash</p>
+
+<p>has its own dictionary of like what</p>
+
+<p>things mean and grep is one of those</p>
+
+<p>special words like you can't like calc</p>
+
+<p>if you have Towe consolidate calc means</p>
+
+<p>let's try it yeah when you source it</p>
+
+<p>it'll tell you the line number of your</p>
+
+<p>passion</p>
+
+<p>- underscore profile so I have an alias</p>
+
+<p>for a bachelor sport profile is open my</p>
+
+<p>bash profile tomorrow I keep he made a</p>
+
+<p>shorten it but it don't</p>
+
+<p>so alias grep let's do grow that's the</p>
+
+<p>trend grip equals grow yes make a grip</p>
+
+<p>are you up</p>
+
+<p>Group R which is a rail ASAP so let's</p>
+
+<p>save it and now we're PWD did you ever</p>
+
+<p>get watch just ask yourself where we are</p>
+
+<p>source - love that sound</p>
+
+<p>so I switched it up no dangerous I</p>
+
+<p>would've said something</p>
+
+<p>Wow no okay it's a grep are did that so</p>
+
+<p>I thought that that was reserved</p>
+
+<p>namespace the answer is no it will not</p>
+
+<p>save you from yourself so be careful</p>
+
+<p>your aliases then I just learned that</p>
+
+<p>real time I am there I honestly thought</p>
+
+<p>because I can an alias calc if you if</p>
+
+<p>you do that and then just on the new</p>
+
+<p>erase it from your profile or something</p>
+
+<p>then it will like every time you open a</p>
+
+<p>new session and evaluates your profile</p>
+
+<p>so if you do that Tennyson we do we</p>
+
+<p>just get rid of that mind then open it</p>
+
+<p>yeah</p>
+
+<p>don't worry babe you're never going to</p>
+
+<p>check this constantly okay I use this</p>
+
+<p>you put something in there all the</p>
+
+<p>system's full writing something nothing</p>
+
+<p>to install and you may not realize it</p>
+
+<p>before you buy all that way you can just</p>
+
+<p>come back yeah apparently you can't</p>
+
+<p>overwrite that I honestly was taken me</p>
+
+<p>and Doug both learned something right</p>
+
+<p>now so be careful the thing is this is</p>
+
+<p>completely optimal this stuff is</p>
+
+<p>completely optional completely</p>
+
+<p>completely optional and the only reason</p>
+
+<p>you'll probably ever make one of these</p>
+
+<p>isn't because someone told you to make</p>
+
+<p>one is because you got tired of typing</p>
+
+<p>out like where's grabar if they do you</p>
+
+<p>do</p>
+
+<p>fifteen ah thank you thank you yeah</p>
+
+<p>grep - capital R I am I got tired of</p>
+
+<p>typing that and I need don't even</p>
+
+<p>remember exactly what it does it just</p>
+
+<p>like the output of that better than</p>
+
+<p>regular girl recursive case insensitive</p>
+
+<p>in the line number yep that's it that's</p>
+
+<p>it</p>
+
+<p>sensitive a new iesson City that Zelda</p>
+
+<p>you you can bash install Zelda game</p>
+
+<p>which is actually really fun I got tired</p>
+
+<p>of typing Python so tech PI but these</p>
+
+<p>are things like you'll you'll this will</p>
+
+<p>be your experience with bash and you'll</p>
+
+<p>probably never make one of these until</p>
+
+<p>you are early using the other command</p>
+
+<p>anyway so like that that's probably why</p>
+
+<p>we've never encountered it is if I need</p>
+
+<p>grew up native I just used grew up like</p>
+
+<p>I don't need grep are I in unless I want</p>
+
+<p>to run grow are so this prompts as</p>
+
+<p>anybody done anything magical with the</p>
+
+<p>problems and how is there oh yeah here</p>
+
+<p>it is and there is a zillion things you</p>
+
+<p>can do with it but it's PS 1 equals okay</p>
+
+<p>and you can actually have a ps2 as well</p>
+
+<p>so instead like a pen to it like let's</p>
+
+<p>say you want to pen what branch you're</p>
+
+<p>in</p>
+
+<p>um yeah that's entirely possible</p>
+
+<p>it's um but I don't remember how to do</p>
+
+<p>that off top my head but it's possible</p>
+
+<p>but you can yeah if there's a path for</p>
+
+<p>it there's probably a way to do this the</p>
+
+<p>source you know what I got an alias um</p>
+
+<p>it's gonna be pretty kitty sounds like</p>
+
+<p>eh you might even have that already</p>
+
+<p>built into it or something I hate that</p>
+
+<p>the set up though yeah that's not</p>
+
+<p>reading I think it's safe I feel like</p>
+
+<p>I've some servers that I used to go into</p>
+
+<p>if it had a branch with a traditional up</p>
+
+<p>there all right well I don't know I'm</p>
+
+<p>talking about in that one only ps2 one</p>
+
+<p>anyway but yeah that's what you do it's</p>
+
+<p>you can rename your ps1 ps1 but you just</p>
+
+<p>look again this is one of those millions</p>
+
+<p>and things there's a thousand things you</p>
+
+<p>can do with it</p>
+
+<p>someone's written a brilliant tutorial</p>
+
+<p>it's just out on the Internet yeah just</p>
+
+<p>surgeon yeah but it's possible</p>
+
+<p>and in some ways I could use the</p>
+
+<p>parameters in other ways I could change</p>
+
+<p>directory because it was doing it in a</p>
+
+<p>different environment whenever</p>
+
+<p>the only way I was able to do it was</p>
+
+<p>ready to function yeah it seems worth</p>
+
+<p>sup I thank you for that actually I</p>
+
+<p>didn't talk about functions you'll run</p>
+
+<p>in sometimes you're like I want to do an</p>
+
+<p>alias but it's really complex you can</p>
+
+<p>write scripts inside of your aliases</p>
+
+<p>called functions I just personally have</p>
+
+<p>the opinion if I'm gonna do that I'm</p>
+
+<p>gonna go ahead and make a whole script</p>
+
+<p>out of that because it's easier to for</p>
+
+<p>me to track its the functions are good</p>
+
+<p>I'm not saying they're not it's a</p>
+
+<p>personal preference thing but we're out</p>
+
+<p>of time thank you very much for your way</p>
+
+<p>over</p></div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-1162f78248f4fed0ee928563ab9e6352df71797c43d0802252484869f69fe07f">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/225">https://mid.camp/225</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-c287654734cd29bf0a0c9ef5c490c358253fa2c1da09894035fe60ba98c31cb4">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/acquia.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2019-03/Acquia_no_tagline.png" width="450" height="94" alt="Acquia" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/pantheon.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-11/pantheon-logo-color@2x.png" width="960" height="354" alt="Pantheon" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/elevated-third.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-11/elevated-third-logo_0.png" width="220" height="220" alt="elevated third logo" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#640d0a020b24090d00070509144a0b1603"><span class="__cf_email__" data-cfemail="7d14131b123d1014191e1c100d53120f1a">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/225","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_llBcjrkrgAu2wT1DR7VGL_iP6geJyiTnF_8O5ZD57VI.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJxLz89Pz0mNT8xLzKksyUwu1k9HE9DJSCwpSS3ST8_JT0rM0c0qBgAByBPW"></script>
+
+  </body>
+</html>

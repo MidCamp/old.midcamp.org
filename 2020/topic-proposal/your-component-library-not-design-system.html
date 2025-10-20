@@ -1,0 +1,699 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="Component Libraries like Storybook are excellent for aligning production teams, or in Brad Frost’s words, for making a great workshop. But they are missing what he calls the storefront - the Style Guide - whose audience is not just the production team but the whole organization. A successful Design System contains both, and in this talk we will discuss why this is necessary and how to implement it for your projects using the new Emulsify Design System." />
+<link rel="canonical" href="your-component-library-not-design-system.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Your Component Library is Not a Design System | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter_2019/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Your Component Library is Not a Design System | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_gt5LiAM1qLGUH5e845uOb7R_lJ9dUwTXmnhGDR2yY20.css%3Fdelta=0&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlT9EOwiAM_KEN1De_hsC4bSSFGopb5teLY0s0vrTXu0t7HciKbNpZQTc0HCFiJ8g5J_ZV44yKcrQUXuhmWwqyuV2udz0RO0v9IHLSn2165FR-mS-jbFIQ29kleLBBdPBmDCCvM-.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_q7cxd-C3noAE-s-u3xDxrLWFMO_wjpGZ5xcFfomX0n4.css%3Fdelta=1&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlT9EOwiAM_KEN1De_hsC4bSSFGopb5teLY0s0vrTXu0t7HciKbNpZQTc0HCFiJ8g5J_ZV44yKcrQUXuhmWwqyuV2udz0RO0v9IHLSn2165FR-mS-jbFIQ29kleLBBdPBmDCCvM-.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_JumHJ3UqLO9Mdu1kygD5e19MOiNh5iD_a9p0FH6QrHQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlT9EOwiAM_KEN1De_hsC4bSSFGopb5teLY0s0vrTXu0t7HciKbNpZQTc0HCFiJ8g5J_ZV44yKcrQUXuhmWwqyuV2udz0RO0v9IHLSn2165FR-mS-jbFIQ29kleLBBdPBmDCCvM-.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_LovagMoZZFoM80YhT0zgW4b6oNarRMdF8ooxvYiQ9tA.css%3Fdelta=4&amp;language=en&amp;theme=hatter_2019&amp;include=eJxlT9EOwiAM_KEN1De_hsC4bSSFGopb5teLY0s0vrTXu0t7HciKbNpZQTc0HCFiJ8g5J_ZV44yKcrQUXuhmWwqyuV2udz0RO0v9IHLSn2165FR-mS-jbFIQ29kleLBBdPBmDCCvM-.css" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="your-component-library-not-design-system.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-2019-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-hatter-2019-midcamp2020navigation-menu" id="block-hatter-2019-midcamp2020navigation" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-2019-midcamp2020navigation-menu">Midcamp 2020 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" data-drupal-link-system-path="node/403">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../news.html" title="News" data-drupal-link-system-path="2020/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" data-drupal-link-system-path="2020/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--virtual-camp">
+        <a href="../article/midcamp-2020-going-digital.html" title="MidCamp is going virtual" data-drupal-link-system-path="node/6689">Virtual Camp</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsor">
+        <a href="../sponsor-midcamp.html" data-drupal-link-system-path="node/6250">Sponsor</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--community-organizations">
+        <a href="../sponsor/community-organization-introduction.html" data-drupal-link-system-path="node/6251">Community Organizations</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sponsors">
+        <a href="../sponsors.html" data-drupal-link-system-path="node/6253">Sponsors</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" data-drupal-link-system-path="node/6258">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--sessions-thu">
+        <a href="../schedule/thursday.html" data-drupal-link-system-path="2020/schedule/thursday">Sessions (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-fri">
+        <a href="../schedule/friday.html" data-drupal-link-system-path="2020/schedule/friday">Sessions (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--contribution-sat">
+        <a href="../contribution-day.html" title="Contribution Day" data-drupal-link-system-path="node/6378">Contribution (Sat)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--accepted-sessions">
+        <a href="../accepted-sessions.html" data-drupal-link-system-path="2020/accepted-sessions">Accepted Sessions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-resources">
+        <a href="../../2023/speaker-resources.html" data-drupal-link-system-path="node/345">Speaker Resources</a>
+            </li>
+          <li class="primary-nav__sublist-item item--speaker-terms-and-conditions">
+        <a href="../../speaker-terms-and-conditions.html" data-drupal-link-system-path="node/21">Speaker Terms and Conditions</a>
+            </li>
+          <li class="primary-nav__sublist-item item--topic-tracks">
+        <a href="../../topic-tracks.html" data-drupal-link-system-path="node/10">Topic Tracks</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--donate">
+        <a href="https://tickets.midcamp.org/" title="Register for MidCamp">Donate</a>
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-2019-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2020.html" hreflang="en">MidCamp 2020</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-hatter-2019-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Your Component Library is Not a Design System</span>
+</h1>
+
+
+  </div>
+<div id="block-hatter-2019-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="6296" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2020-03-20T14:00:00Z" class="datetime">Friday, 9:00 am CDT</time>
+ - <time datetime="2020-03-20T15:00:00Z" class="datetime">Friday, 10:00 am CDT</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-83" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-name field--type-string field--label-hidden field__item">Room 324</div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>Component Libraries like <a href="https://storybook.js.org/">Storybook</a> are excellent for aligning production teams, or in Brad Frost’s words, for making a great <a href="https://bradfrost.com/blog/post/the-workshop-and-the-storefront/">workshop</a>. But they are missing what he calls the storefront - the Style Guide - whose audience is not just the production team but the whole organization. A successful Design System contains both, and in this talk we will discuss why this is necessary and how to implement it for your projects using the new Emulsify Design System.</p>
+
+<p>The first part of this session will begin by defining the differences between Component Libraries, Style Guides, and Design Systems. It will then go into detail about why a full Design System is crucial for long-term project success, including real-world examples where a Component Library alone failed and where Design Systems succeed. It will talk about the details of what a full Design System should include and how to implement and support it across multiple teams.</p>
+
+<p>The second part of this session will focus on the experience of using the Emulsify Design System. We will first discuss the developer experience when using it on a Drupal project, including creating fully accessible Twig or React components in Storybook and sharing that work with other teams. Then, we will walk through the experience of maintaining the Style Guide content in Gatsby including the ease-of-use of developing the component/code documentation.</p>
+
+<h3><br>
+Background on Emulsify</h3>
+
+<p><br>
+With over 100,000 downloads, Emulsify has become an important open source release both internally at Four Kitchens and in the Drupal community, helping to propel the component-driven development movement forward. The latest version - Emulsify Design System - provides an exciting new direction that can help deliver a truly flexible Design System regardless of technology. High points include:</p>
+
+<ul>
+	<li>Custom flexible Style Guide driven by Gatsby</li>
+	<li>Storybook-powered Pattern Library</li>
+	<li>Full support for Twig and React out of the box (and other languages possible)</li>
+	<li>Full support for parent/child organizations<br>
+	&nbsp;</li>
+</ul></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/E6YA6HnUEwM?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Evan Willhite</h4>
+
+      Senior Frontend Engineer
+
+
+          @
+              <a href="https://www.fourkitchens.com/">Four Kitchens</a>
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><ul>
+<li>Based in the Nashville, TN area</li>
+<li>Project Lead on <a href="https://github.com/emulsify-ds/emulsify-design-system">Emulsify</a></li>
+<li>Interested in React/JavaScript, Component-based, UX/Frontend</li>
+<li>Working in Drupal for over a decade</li>
+</ul>
+</div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2019-12/me.jpeg%3Fitok=APSb9BbH" width="220" height="220" alt="Evan Willhite" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+          <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Brian Lewis</h4>
+
+      Frontend Engineer
+
+
+          @
+                <a href="../../taxonomy/term/89.html" hreflang="en">Four Kitchens</a>
+
+
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><ul>
+	<li>Based in Wichita KS</li>
+	<li>Project Lead on&nbsp;<a href="https://github.com/emulsify-ds/emulsify-design-system">Emulsify</a></li>
+</ul></div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2020-01/TwitterPhoto.jpg%3Fitok=nBIiP0Wr" width="220" height="220" alt="Brian Lewis" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Front-End</div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-feedback-form field--type-webform field--label-above">
+    <div class="field__label">Feedback Form</div>
+              <div class="field__item"><form class="webform-submission-form webform-submission-add-form webform-submission-session-feedback-form webform-submission-session-feedback-add-form webform-submission-session-feedback-node-6296-form webform-submission-session-feedback-node-6296-add-form" data-drupal-selector="webform-submission-session-feedback-node-6296-add-form" action="your-component-library-not-design-system.html" method="post" id="webform-submission-session-feedback-node-6296-add-form" accept-charset="UTF-8">
+  
+    <div data-drupal-selector="edit-0" class="webform-message js-webform-message js-form-wrapper form-wrapper" id="edit-0"><div data-drupal-messages>
+    <div role="contentinfo" aria-label="Status message" class="messages messages--status">
+                  <h2 class="visually-hidden">Status message</h2>
+                    Sorry...This form is closed to new submissions.
+            </div>
+    </div>
+</div>
+<input autocomplete="off" data-drupal-selector="form-11urteq7kr3mosgcl9rrpcrazucabzulcsdqiwhicmy" type="hidden" name="form_build_id" value="form-11URTeQ7kR3mOsgCl9RrPcRAZUcABZUlcSdQiWHicmY" />
+<input data-drupal-selector="edit-webform-submission-session-feedback-node-6296-add-form" type="hidden" name="form_id" value="webform_submission_session_feedback_node_6296_add_form" />
+<div class="url-textfield js-form-wrapper form-wrapper" style="display: none !important;"><div class="js-form-item form-item js-form-type-textfield form-type-textfield js-form-item-url form-item-url">
+      <label for="edit-url">Leave this field blank</label>
+        <input autocomplete="off" data-drupal-selector="edit-url" type="text" id="edit-url" name="url" value="" size="20" maxlength="128" class="form-text" />
+
+        </div>
+</div>
+
+
+  
+</form>
+</div>
+          </div>
+
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <h3 class="field__label">Transcript</h3>
+              <div class="field__item" tabindex="0"><p>&gt;&gt; All right, cool.&nbsp;Hello, everybody.&nbsp;Welcome to your component library is not a design system.&nbsp;And let's get started.&nbsp;I'm Evan Willhite, based out of Nashville, Tennessee.&nbsp;Four kitchens is contributed, so we're all across the U.S.&nbsp;And I'm the project lead.&nbsp;</p>
+
+<p>&gt;&gt; And I am Brian Lewis.&nbsp;I'm a frontend engineer, I live in Wichita, Kansas, and I am also the project co‑lead.&nbsp;</p>
+
+<p>&gt;&gt; All right.&nbsp;So when it comes to design systems these days, words are definitely hard.&nbsp;We are in the midst of a period of time where terms are actually being defined in public consciousness, similar to a decade ago with responsive design.&nbsp;Folks in the design system space literally have glossary sections on their websites.&nbsp;That doesn't mean we can't talk about it.&nbsp;So let's get some terminology out of the way.&nbsp;</p>
+
+<p>&nbsp;What do we mean when we talk about a component library?&nbsp;At FourKitchens, we use the term for this part of the design system, because it signifies to the widest audience what this piece is.&nbsp;But for developers, a better description might be project scaffolding.&nbsp;Because what we're referring to as a component library is more than a group of organized components.&nbsp;It's also a UI workshop for building and sharing them and a build system to process, stream, minify, etc.&nbsp;Let's take a look at the three pieces in the new emulsify.&nbsp;If you are familiar with Emulsify's history, you may wonder why these tools.&nbsp;So these are just massively popular and well supported products.&nbsp;Also rich eco‑systems.&nbsp;Just incredibly deep.&nbsp;</p>
+
+<p>&nbsp;And then of course they use each other.&nbsp;So we had an interest from the beginning in trying to keep the tools as minimal and expendable as possible.&nbsp;So that's a benefit.&nbsp;Finally there's the components themselves.&nbsp;And FourKitchens is deeply invested in Drupal.&nbsp;So in fact, there is a starter kit project that packages these three pieces together.&nbsp;This is what replaces the old Emulsify.&nbsp;This is similar to that.&nbsp;But here's the cool part.&nbsp;Because of this new tool kit, we have opened ourselves to enormous other possibilities.&nbsp;So the frontend landscape is growing, and we all know it.&nbsp;Even within the Drupal community, there is a massive focus on flexibility of tooling, particularly on the frontend. And because of this choice of storybook and webpack, we get support for all of these and more that I haven't listed here.&nbsp;This is not limited to re‑Act, angular, html5.&nbsp;And because of our first‑class twig support, WordPress using the plugin.&nbsp;</p>
+
+<p>&nbsp;So wow.&nbsp;Now that we have the component side well in hand, what's left to talk about?&nbsp;Oh yeah, design systems.&nbsp;So component libraries equal happy developers, or if you're lucky, a happy production team where designers and developers are on the same page.&nbsp;What we have found is no amount of component‑driven development, shared tooling, or UI workshops can guarantee long‑term success by only making one team happy.&nbsp;Long‑term success requires full buy‑in from all teams across an organization.&nbsp;It requires buy‑in from content strategy.&nbsp;From UX, a team that also cares about how and where components are used as well as whether those components are meeting their success criteria.&nbsp;From accessibility and compliance.&nbsp;Testing and Q&amp;A, the team who fights for component usage to be documented well and components to be versioned.&nbsp;POs and PMs, project managers and product owners, the stewards.&nbsp;And then of course marketing, the ones who decide where the project fits into the big picture, those with the highest vision of organizational success.&nbsp;These are the audiences of a successful design system.&nbsp;All of these teams have to have buy‑in.&nbsp;</p>
+
+<p>&nbsp;This is why component library is not a design system.&nbsp;So what is a design system?&nbsp;Let's start by imagining an organization.&nbsp;So FourKitchens does a lot of work in higher education.&nbsp;Allow me to introduce you to the totally not fake western university of Pennsylvania.&nbsp;It is fake.&nbsp;This is a prestigious university who in its rich 300 plus year history has risen.&nbsp;They have a strong core brand identity, one that must be shared and upheld by its many schools.&nbsp;Schools like studio arts. And of course you can imagine there are a number of other schools as well in an organization this size and obviously we can't spend all of our time making fake logos.&nbsp;So let's talk about the organizational needs.&nbsp;What are the needs of a top‑level organization?&nbsp;Here are a few.&nbsp;Brand consistency.&nbsp;So a clear identity.&nbsp;The ability to tell everyone in the organization how to tell the story across all products is documentation.&nbsp;The organization's web property or properties, because there may be multiple, including internal.&nbsp;And then of course cost.&nbsp;They are interested in keeping costs down across the entire organization and their subproperties.&nbsp;And then more than ever, there is a vested interest in guaranteeing accessibility across the entire organization.&nbsp;</p>
+
+<p>&nbsp;So what about property needs?&nbsp;Likely they will need their own unique brand identity and their own web property, but they will also be interested in staying within their own budget and in maintaining the organization's brand consistency in general.&nbsp;So a good design system not only speaks to multiple audiences, it addresses both of these levels, the top level organization, and all of its individual properties.&nbsp;So let's take a look at the key ingredients to a design system that will address these various needs.&nbsp;So a good design system starts with a living style guide.&nbsp;And unfortunately, this is one of those terms that requires definition these days.&nbsp;By a style guide, I mean this is not a component library.&nbsp;Not storybook or patternlab or something like that.&nbsp;Those are what Brad Frost calls the workshop, and here is what he refers to as the store front.&nbsp;The style guide is the source for all teams to document what he defines well as the official story of how your organization designs and builds digital products.&nbsp;So the style guide contains that story and we'll speak to this in more detail here in a minute.&nbsp;And next, a good design system obviously also includes the component libraries like we just talked about, likely at multiple levels, the global organizational level and for properties as well.&nbsp;And finally it involves a smart, cost‑effective work flow.&nbsp;It involves sharing what needs to be shared and aligning efforts across all of those teams.&nbsp;Just to give an example, if a new component is created and blessed by the production team, its usage may still need to be documented by content strategy.&nbsp;And then its success measured by the user experience team and testing run by a Q&amp;A team.&nbsp;Not only do you need technical work flows, but also organizational work flows for how to distribute that.&nbsp;So let's dig into these three columns further.&nbsp;And let's use our client, western university of Pennsylvania, as an example.&nbsp;So they need a style guide to document things like branding, colors, accessibility, typography and voice and tone.&nbsp;That documentation will include components, but not just components in code, but also content for a variety of audiences like instructions around component variations, when to use them, their look and feel, and any assets related to that component.&nbsp;And also, and this is key, this piece has to be easy to find, easy to digest, and easy to update.&nbsp;And so now that we're familiar with component libraries, let's talk about what is required at this design system level.&nbsp;So at this level, we need the ability to create components that are global and they can be used across all projects.&nbsp;That way we can reap all the benefits of component driven development except scaled across a variety of projects.&nbsp;So benefits like a single source of truth for each component.&nbsp;You can see on the slide here, we have a global component library in the documentation, reused components, and property components this is what we're talking about. And all of these will have build systems and tooling to help quickly build and iterate projects while getting the benefits of maintaining organizational consistency around things like branding and accessibility, things that I talked about earlier.&nbsp;This also means the tooling will have to be flexible enough to support a variety of languages and techniques.&nbsp;So you can imagine an organization's property may be built using Drupal.&nbsp;So let's say for Western University, their main property is built using Drupal and has a traditional Twig frontend, but they may have other properties that use things from WordPress to React and more.&nbsp;On the technical side, we need to be able to document the same components in the style guide that are being used in properties.&nbsp;So carrying that concept that we've always had in Emulsify in having aauthoritative living representations of your components.&nbsp;And this across all properties supporting a variety of languages.&nbsp;This is going to mean we need managing and versioning of packages.&nbsp;So work flows for updating documentation and updating across languages.&nbsp;And for notifying teams when those updates occur.&nbsp;These three things are the key ingredients to a design system.&nbsp;So component libraries shared across well‑defined workflows and documented in an authoritative style guide.&nbsp;And this is the Emulsify design system.&nbsp;A style guide generated built as a Gatsby theme.&nbsp;For components, the style guide has built‑in support for viewing storybook components and built in code block components for code and syntax highlighting.&nbsp;Also, it is extremely customizable via the Gatsby theming.&nbsp;We will show you this in the demo.&nbsp;And then of course the component library is powered via Storybook.&nbsp;And because of the flexible tooling, the work flow can come from powering an organization's component library via packages to a properties component library.&nbsp;So this is like our school of arts property.&nbsp;Their component library using a combination, maybe, of shared packages.&nbsp;</p>
+
+<p>&nbsp;And so let's see&nbsp;‑‑ I should mention, too, the kind of strength of all of this is built on webpack, and its ability to consume things from a variety of sources.&nbsp;It's at the heart of this workflow being able to share all of these things. &nbsp;So let's see this in action.&nbsp;I'm going to stop sharing and pass it over to Brian.&nbsp;</p>
+
+<p>&gt;&gt; Can I get a verbal confirmation that you can see my slide as a demo?&nbsp;</p>
+
+<p>&gt;&gt; I see demo.&nbsp;</p>
+
+<p>&gt;&gt; Excellent.&nbsp;Thank you.&nbsp;In this example, we're going to walk through we have two web properties under the same organization that ewe uses shared organizational styles and components.&nbsp;The first is the western university of Pennsylvania and the second is the studio arts college.&nbsp;The arts prompt will use some of the organizational components but will also have custom components and styles that are not shared by the overall western U organization.&nbsp;So the first thing we did when we started this project is to create the components that would be shared by all of the western U properties.&nbsp;We created one repository for twig components and a second for the SaaS files.&nbsp;If your organization only has one property, you don't need to separate them out like this.&nbsp;Or if your organization is 100% standardized on Twig and SaaS, you can house them together.&nbsp;The reason we're demoing this with separate repositories is to show how one organization can have properties built with any technology and share the things they can.&nbsp;It can be a Drupal site and React app and if they are both configured with SaaS, they with both use it.&nbsp;So the point is the pipeline is flexible to meet any organization's needs.&nbsp;So here is what a section of our repositories look like.&nbsp;On the left we have the western U twig repository and on the right you will see the SaaS repository.&nbsp;We have chosen to structure chemoin an atomic structure.&nbsp;You see the colors here and the event card here.&nbsp;You will notice that the SaaS repo doesn't mirror the structure exactly because we didn't find it necessary to create folders that we knew would only contain one file each.&nbsp;It is flexible and you can organize these however makes the most sense for your team.&nbsp;In a twig repo, there is always at least two, like the twig and the yml, so we went ahead and put those in folders.&nbsp;</p>
+
+<p>&nbsp;Now once those organizational repositories were created, we published them to NPMs so any current or future property could use them.&nbsp;Similarly yarn ad, and they are immediately ready to use.&nbsp;So this is the main Western U website.&nbsp;It's going to use the organizational components with no customization.&nbsp;The only file we have is a SaaS file that just says to import the main style of that SaaS file from the Western hub module.&nbsp;So this gives all the styles from the organizational repo.&nbsp;And you will actually see a comment that says we could import just the SaaS files we need like the colors and buttons, for example, but in this case, we do want everything, so we're just going to keep it simple.&nbsp;</p>
+
+<p>&nbsp;And one quick thing to note is when you're developing the initial organizational components, we wanted to work with these various packages but maintain our UI library workflow and storybook.&nbsp;We had to use a yarn or NPM link.&nbsp;Lerna is also an option.&nbsp;But they were able to handle the files with hot reloading to meet expectations o6 a traditional development workflow.&nbsp;We will not get into detail on how to set them up because they're each different.&nbsp;Your team can decide what to use, but those are examples of tools that we found helpful to work with.&nbsp;</p>
+
+<p>&nbsp;So the SaaS file in our components directory is pulling in the styles from the node module, but what about components? We need to set up configuration in two files to make this work.&nbsp;One for storybook and one for Drupal. &nbsp;So this is the web pack config file for storybook, and on line 35, you will see a twig section.&nbsp;If we zoo in on that, you will see settings in name spaces.&nbsp;So atom points to&nbsp;‑‑ in the node modules directory.&nbsp;This tells storybook where to look for templates when we type something.&nbsp;Drupal needs to know that.&nbsp;So in our yml file here, we are configuring the name spaces for the components module.&nbsp;We're pointing directly to the node module that we have installed.&nbsp;So here is an example of our component library.&nbsp;We we decided to separate our gray scale from branding colors.&nbsp;Here is an example of news cards in a grid.&nbsp;And our example home page.&nbsp;You will see the storybook Chrome on the left side bar and the top, if you're not familiar with that.&nbsp;And the add‑ones bar at the bottom.&nbsp;If you want to see it without it, just like the old version of Emulsify, you can open in separate windows without the Chrome so you can see the whole screen.&nbsp;On the top, we have a nice clean hero with a page title over the image.&nbsp;Scroll down and you will start to see the news cards.&nbsp;For some odd reason we put news cards in the event section, be we were moving quickly to get this together.&nbsp;You will probably notice a lot of little things like that.&nbsp;And then we have a big, beautiful CTA at the bottom and in the footer.&nbsp;That's the home page of the main Western U property.&nbsp;</p>
+
+<p>&nbsp;I want to show you one more page, and that's the content type.&nbsp;Our arts property, a different website, is actually going to use all of these components and styles out of the box showing that 100% consistency between properties is possible because they're sharing the exact same code through packaged components.&nbsp;</p>
+
+<p>&nbsp;So if we open this up, you will see that there's the page title.&nbsp;There's the image and text, the side bar has a basic CTA and an upcoming events list.&nbsp;There's a basic card grid a little further down. And finally the CTA in the body and then the footer.&nbsp;So, so far we have just been looking at the component library with static content.&nbsp;Let's switch over to the Drupal site now and see how things compare.&nbsp;Here's the home page.&nbsp;You can see the same big hero at the top, the text with image paragraph, the upcoming events section using news cards and the home page CTA at the bottom right before the footer.&nbsp;So here they are side by side.&nbsp;On the left we have the component library example with static content and on the right side is the Drupal site with dynamic content.&nbsp;I put the same text and images in to show that they can be 100% identical.&nbsp;The Drupal site looks a little smaller because we have the Admin tool bar visible at the top.&nbsp;If I were to log out, they would be 100% identical, but that wouldn't be a good visual for showing differences.&nbsp;And here is the full article page.&nbsp;I'm going to let Evan talk about the style guide part of this. &nbsp;I will keep sharing my screen, but go ahead, Evan.&nbsp;</p>
+
+<p>&gt;&gt; As we mentioned before, the style guide is powered by the Emulsify Gatsby theme.&nbsp;It produces a style guide quickly.&nbsp;But the tooling also makes it easy to quickly customize.&nbsp;So we built this custom Western University one in a couple of hours.&nbsp;It was very crucial that this be fully customizable.&nbsp;There are many solutions out there for producing something like a style guide and storybook has one for documenting components inside of the storybook UI.&nbsp;But when you're inside of that UI, it is not able to speak to a variety of audiences.&nbsp;It is geared towards a specific team.&nbsp;So it was important that we had something that was its own customizable website.&nbsp;So we ended up going this route.&nbsp;You can see it has all the typical style guide.&nbsp;This is us building off of the Gatsby theme, but producing a unique one for Western University.&nbsp;Here is an example of a logo page.&nbsp;MDX is basically mark‑down but it has the ability to place JS elements and React elements inside.&nbsp;It has super powers that I will show you in a second.&nbsp;One of those perks, so here is a different page showing the colors. One of those perks is something called short codes, which if you're familiar with WordPress and things like that is taken from other places.&nbsp;But the short code, the dark section above is an example in our Gatsby theme is built in and gives you the ability to highlight that section.&nbsp;</p>
+
+<p>&nbsp;And here is an example of that short code usage in an mdx file.&nbsp;You can imagine a mark‑down file that contains your traditional elements.&nbsp;It's as simple as knowing the short codes, which we document in the theme, obviously, and then just wrapping whatever content you want with that DarkWrapper short code.&nbsp;So whatever gets placed in there gets highlighted in your content region.&nbsp;</p>
+
+<p>&nbsp;And also because we leveraged the theme UI tool, which I have linked to on the side.&nbsp;The theme UI is very vague, so I felt the need to explain what that was.&nbsp;I'm not going to go into detail, but you can check it out.&nbsp;This was a tool built with Gatsby themes in mind, but it can be used in a variety of situations, not just a Gatsby tool.&nbsp;It's a library for creating reusable interfaces.&nbsp;From that, we not only get this API‑based theming which allows for very quick overrides from everything from colors to typography to component styles.&nbsp;That's all via just a local config file. &nbsp;So you kind of define those things in config at the theme‑level, which is something that is if you're not familiar with Gatsby themes, that's like a dependency that you install. And you build this in your own project.&nbsp;You can create a local config file that overrides those so you can easily and quickly add a look and feel to your project just in that method.&nbsp;But also a nice part of that is we get support for modes built in.&nbsp;So you can see here I have clicked on the dark mode button in the top right and we have nice dark mode styles, and that is based on the colors defined in that theme.&nbsp;</p>
+
+<p>&nbsp;And then of course here's a component page.&nbsp;So the buttons you see here are actually being pulled in via storybook component short code.&nbsp;And that's from our storybook.&nbsp;And you can control where your storybook instance is coming from in your Gatsby config file.&nbsp;You just pass in that URL for the iframe and that's documented in there and it will serve your components from that authoritative source.&nbsp;These are the live components from the component library being pulled directly into our style guide.&nbsp;So this requires just the idea.&nbsp;Thankfully storybook uses a nice, memorizable way.&nbsp;If you're used to writing in storybook, you will see this is just the name of the section and then&nbsp;‑‑the name of the component.&nbsp;We have atoms and then buttons under that.&nbsp;That is readily available in the storybook URL.&nbsp;And then also in the short code, we add the ability for you to pass a specific type. And that's just to make the high frame look nice.&nbsp;</p>
+
+<p>&nbsp;And then below that component we have our code block.&nbsp;And that has built‑in syntax highlighting.&nbsp;This just works in the typical way of writing markdown.&nbsp;So you just surround your content with back ticks, and the syntax highlighting library gets used.&nbsp;</p>
+
+<p>&nbsp;And here is another example of a component page.&nbsp;Notice we have kept the storybook component and the code block pieces separate.&nbsp;That was intentional so you can organize your content anyway you want.&nbsp;You can have pages with just the component display and content or pages with just code blocks.&nbsp;Here we have a component page with a display.&nbsp;That call to action is sort of a component.&nbsp;And then some markdown in between and then a code block.&nbsp;So you can organize your content however you would like.&nbsp;Because of Gatsby's fantastic tooling and pipeline we are able to swap the syntax highlighting when in dark mode.&nbsp;And finally you noticed there are tabs on the components pages.&nbsp;This allows you to organize the pages into sections.&nbsp;And the way that you do that in your markdown files is very simple.&nbsp;There's yml tags that you are used to using if you are writing markdown.&nbsp;There's one for tab and one for tab order to put it in the order that you would like.&nbsp;So that is a brief look at the Emulsify style guide, specifically the western university style guide.&nbsp;We will give you a repo at the end.&nbsp;</p>
+
+<p>&gt;&gt; All right.&nbsp;So that was the style guide portion.&nbsp;Went through the storybook for the main website.&nbsp;But now let's dive into the studio arts property.&nbsp;This is probably what I'm most excited about with the new Emulsify, because we have never been able to do something like this before.&nbsp;This is the college of western U organization that should share components with the organization's main property, but also because it's an arts college, they want to have some visual flexibility through new components or by customizing the organizational ones.&nbsp;Since we do want to have access, we run the exact same command we ran for the first property.&nbsp;The main property's components directory was pretty bare if you remember, just the one SaaS file.&nbsp;In this case, we have a number of custom components that are specific to the arts type.&nbsp;We have directories for molecules, organisms, templates, and pages. We're using all of the default button components and styles as well as other atoms, so we don't need an atoms directory here.&nbsp;This keeps the properties repository super clean and easy to navigate.&nbsp;There's no duplication of the organization's components and styles.&nbsp;We only have to worry about the code that is custom to this property.&nbsp;And since these components are specific to the property, we're putting the twig, SaaS, JavaScript, yml files right next to each other.&nbsp;This is the same methodology that other component‑driven development tools use.&nbsp;The webpack config for the site is a little different.&nbsp;Now we want to pull in from the node module as well as custom ones.&nbsp;It's simple 20 do so.&nbsp;We add additional name spaces.&nbsp;Organisms is pointing to the node modules directory while the next one is pointing to the components directory for this property for western arts.&nbsp;This means I can call any component from either location at any time.&nbsp;I just use the regular organism name space to pull from the organizational's component or wa_to pull from the next.&nbsp;You can create unlimited name spaces.&nbsp;So depending on how you want to structure it, you may have more, like a campaign related that has all of your splashy ones that more than one site will use but not necessarily all of them.&nbsp;The possibilities here are endless.&nbsp;This is Drupal's yml file, and storybook and Drupal both know what to do.&nbsp;</p>
+
+<p>&nbsp;So here is an example of the western arts article for the main arts site.&nbsp;It uses molecules from the properties components.&nbsp;They are prefixed with wa_.&nbsp;And then there's an organism from the organization site.&nbsp;Too many org words.&nbsp;</p>
+
+<p>&nbsp;In Drupal, you can call up the component you need when and where you need it.&nbsp;You can see the art quote paragraph type is using the component from the arts property and the card is using the organization's basic card component, both on the same site.&nbsp;Back in the component library, the fact that the western arts component library can show exactly what is helpful to its users.&nbsp;In this case, we're not showing any atoms components because we're not customizing them.&nbsp;We decided in this case, it would just be clutter.&nbsp;It can go to the other storybook instance or better yet, use the style guide as a reference.&nbsp;</p>
+
+<p>&nbsp;I did throw in the article from the main organization just to show how this would work.&nbsp;And in the code base, we just had a template for the WA article, but in the story's js file we are telling it to show the organization's article as well.&nbsp;We will set up the content type on the main site to look and function identical to the main organization's article.&nbsp;But we're also going to have a custom WA article that had a different look and feel for different use cases.&nbsp;So here's a content hero that's custom to the Arts property.&nbsp;And the example home page with the big splashy hero and then you will see the content hero a little further down.&nbsp;We also had to create a new layout for this property.&nbsp;It was designed edge to edge with no padding or margin.&nbsp;All of our other pages have some sort of minimal padding, but our designer, being he is on this call, he wanted something very different for this site, because he's artsy‑fartsy.&nbsp;Here is a couple of pages in Drupal that show everything we looked at.&nbsp;The home page on the left is made of entirely custom components specific to the arts property, while the article on the right is made up entirely of components from the organization's component repo.&nbsp;Again, still on the same site, though.&nbsp;</p>
+
+<p>&nbsp;This last page is a fully built‑out WA article in Drupal.&nbsp;If you are familiar with this organization's components, you would realize that everything on the top of the page is custom to the arts property except the last item on the page, the card grid.&nbsp;If you break this down, you will see the code I referenced earlier that the art quote is coming from the WA molecules name space, which is the properties components while each card as well as the grid itself is getting its mark up from the molecules name space, meaning the organization's components.&nbsp;</p>
+
+<p>&nbsp;So this just goes to show how any property in your organization can be built with common or what we call organizational components and styles, their own completely custom components and styles, and/or a combination of both.&nbsp;With the new tool chain you are given everything you need to work in a way that makes the most sense for your project and your organization.&nbsp;</p>
+
+<p>&nbsp;That's the end of our demo, but we do have a few common questions we have heard so far and expect to hear more, so we will answer a few of those real quick.&nbsp;One, the first is can I have multiple style guides.&nbsp;Evan, do you want to speak to this?&nbsp;</p>
+
+<p>&gt;&gt; Just had to find the unmute button.&nbsp;The Gatsby theme is just a dependency that they created themes literally to be a match for plugins.&nbsp;It's like the UI plugin that gives you styling and functionality, whatever you want to pass. And it's just a dependency in your project.&nbsp;And you design and build on top of that.&nbsp;You can have a style guide per property, but the interest of the style guide is a larger conversation than a UI library.&nbsp;A UI library is almost immediately used on a project, but remember that style guides must be maintained. Someone has to create the content for them.&nbsp;And typically only larger organizations and properties have the teams to maintain these well.&nbsp;I'm assuming I'm probably speaking to an audience of people similar to Brian and I who are providing development.&nbsp;We would not be the ones who populate the content.&nbsp;It's key that an organization knows how to maintain and support the style guide.&nbsp;</p>
+
+<p>&gt;&gt; The next question we're sure people are asking is where can we see this code and demos?&nbsp;Are they live somewhere?&nbsp;We're actually going to have these live somewhere soon.&nbsp;The style guide will be available to view.&nbsp;For now you can clone these down and spin each up with a couple of commands.&nbsp;We can use the emulsify Gatsby theme.&nbsp;And although they share tool choices like web pack, they are installed and run separately based on project need.&nbsp;We do have some pretty good documentation for this.&nbsp;We have some getting started help and installation instructions, things like that.&nbsp;</p>
+
+<p>&gt;&gt; There is also an upgrade path for the old emulsify.&nbsp;</p>
+
+<p>&gt;&gt; And what's the current state of the project?&nbsp;So, both are actually available and usable in projects right now.&nbsp;So emulsify Drupal is soon to be released in beta.&nbsp;We're actually using this in projects now.&nbsp;Emulsify style guide is in alpha and we hope to release beta in the next couple of months, but it is usable.&nbsp;If you have any feedback for this session, we love feedback.&nbsp;We would love to hear from you.&nbsp;Go to mid.camp/6296 to let us know what you thought about this.&nbsp;Don't forget contribution day is Saturday 10 to 4 p.m.&nbsp;You don't have to know code to give back.&nbsp;We have new contributor training from 10:00 a.m. to 12:00.&nbsp;We are, after this is done, because we are just about out of time, be hosting a virtual booth.&nbsp;So you can come talk to us.&nbsp;I will post this in the Slack channel and chat in a second.&nbsp;If you go to this Zoom link, Evan and I will be there to hang out since we don't have a physical booth that we will be standing out.&nbsp;We will be there where you can approach us digitally.&nbsp;And I think that's it.&nbsp;Do we have any questions?&nbsp;</p>
+
+<p>&gt;&gt; We have one in here in the chat, which I guess we can use that for anybody who has questions.&nbsp;Go ahead and throw them into the chat.&nbsp;One is assuming you are supporting Drupal 8 sites, would you still decide to go with Store Irybook, webpack and NPM?&nbsp;My answer is yes.&nbsp;</p>
+
+<p>&nbsp;I think part of it is to remember that this is a front‑end workflow.&nbsp;And so we were always like split and fractured.&nbsp;In the old emulsify, we had the old Php‑based thing, which they are moving to node as well.&nbsp;And we had the gulp pipeline to do our build.&nbsp;All frontend workflows are node‑based.&nbsp;So that split was part of the conversation of how do we get rid of this split?&nbsp;And really the only wall, so to speak, is the move from Twig, to twig.js.&nbsp;So what we have found with that is that it has been just sort of bumps along the way have been very minimal.&nbsp;We were committed as a company and as an organization knowing that that was sort of going to make the front‑end work flow the right way committed to helping with that tool.&nbsp;So helping with the twig.js eco‑system.&nbsp;So yeah.&nbsp;We have not hit many bumps with that.&nbsp;It is a little bit different.&nbsp;We have run into some things and we have tried to document those in some of our components.&nbsp;Bordering is something you have to think about.&nbsp;Apparently js, the way it parses a file is a little bit more ordered.&nbsp;That is getting a little bit into the weeds.&nbsp;</p>
+
+<p>&nbsp;What is the cat's name?&nbsp;This is actually a virtual background.&nbsp;So this is a fake&nbsp;‑‑ I'm just kidding.&nbsp;That's Bug.&nbsp;JuneBug.&nbsp;We call her Bug.&nbsp;Great question.&nbsp;Great question.&nbsp;Do we have any others?&nbsp;</p>
+
+<p>&gt;&gt; At least we got the most important one about the cat.&nbsp;</p>
+
+<p>&gt;&gt; Yeah.&nbsp;It's critical.&nbsp;</p>
+
+<p>&gt;&gt; Cool!&nbsp;If there aren't any more questions, we can certainly wrap up.&nbsp;They will be in the virtual booth.&nbsp;We have got to wait for another question.&nbsp;So we can get to that.&nbsp;And then also another way that some other rooms have been handling follow‑up questions, there is a room in the Slack, the Midcamp Slack with the same number as this room. And we can post follow‑up questions there.&nbsp;But the question is when is the video available?&nbsp;I can take that one.&nbsp;The process is a little bit different as far as how we're saving videos. &nbsp;So we're trying to get those up as soon as we can.&nbsp;We already have some from yesterday.&nbsp;But it's probably going to vary on a session‑by‑session basis.&nbsp;Hopefully in the next few days.&nbsp;And we did have another question from Tyler.&nbsp;Is storybook a replacement for pattern lab?&nbsp;</p>
+
+<p>&gt;&gt; Short answer is yes.&nbsp;You can do everything you can do in pattern lab in storybook.&nbsp;That's the tool we decided to use because of the eco‑system around it.&nbsp;Because of all of the storybook add‑ones and plugins that are available.&nbsp;There are plugins for everything.&nbsp;So you can completely customize it however you want.&nbsp;You can theme the storybook UI if you wanted to.&nbsp;It's all very flexible.&nbsp;It's a little more flexible than pattern lab in my experience, because we can pick and choose what we show in there.&nbsp;Whereas in pattern lab, if there was a twig file, it was shown in the component library unless you did the underscore thing.&nbsp;But in this you can have as many components you want and just show only the components you want with the variations you want without having to do any hacks like that.&nbsp;</p>
+
+<p>&gt;&gt; Brian, we have some more questions.&nbsp;Do we still have time to take those?&nbsp;</p>
+
+<p>&gt;&gt; Yeah.&nbsp;We definitely have more time.&nbsp;And I've also learned that threatening to stop questions is the best way to get more questions to come in.&nbsp;</p>
+
+<p>&gt;&gt; Great.&nbsp;I think the next one is are there alternative systems and how do they compare?&nbsp;I'm assuming this is to the design system that we have spoken to as a whole.&nbsp;So the sort of the entire pipeline we have been talking about.&nbsp;We did not find ones that address this but we're addressing a variety of needs.&nbsp;The piece that we saw that was missing was the style guide piece.&nbsp;There are style guides available.&nbsp;They built it using Gatsby and open sourced it, so you can use their style guide.&nbsp;But their UI is free.&nbsp;So one of the key things that drove us down this road is the importance of the style guide to be designed to the organizational need.&nbsp;That's not just colors and look and feel.&nbsp;That could be the flexibility of putting a menu at the top versus on the left.&nbsp;That&nbsp;‑‑ it's a much more highly designed tool than a UI library.&nbsp;We did not find a solution for that.&nbsp;That is the space we're trying to fill to say here's a Gatsby solution for this gap.&nbsp;And obviously we benefit from it ourselves when we use it with clients.&nbsp;</p>
+
+<p>&gt;&gt; Rebecca asked how do designers specifically use the design system in terms of design items?&nbsp;</p>
+
+<p>&gt;&gt; I can speak to this.&nbsp;It's funny you asked that.&nbsp;That's literally at the top of our list of to‑dos.&nbsp;And Gatsby has a plugin for it.&nbsp;It will probably be a matter of getting this in for just allowing files to be referenced in mark upand downloaded.&nbsp;There's to‑dos that we have.&nbsp;We are leaning on the eco‑system here.&nbsp;I don't remember the name of it.&nbsp;Sorry.&nbsp;I can probably look now.&nbsp;</p>
+
+<p>&gt;&gt; I think once you're asking is once we are creating a new property the designers&nbsp;‑‑ I'm not a designer, so I'm going to be guessing here.&nbsp;But yes, I would imagine they would use the existing components as much as or when necessary.&nbsp;But like we saw with the art school, if there isn't a component that solves the need or the vision that the designer has, then they create a new one and that new property would have a custom component just like our arts school did.&nbsp;One other thing is that you can&nbsp;‑‑ I briefly mentioned you can package things like campaign components or splash pages or event components.&nbsp;You could find out that on that law school, the designers created a new thing that they also want to use on other schools.&nbsp;What you could do is take that component and styles and mark upand package those into its own node module in the case of what we're doing and publish that.&nbsp;And then that school could just NPM install that package again as well as other schools could NPM install that and have that new shared component.&nbsp;Or it could be pushed upstream if we decide to use them on all sites.&nbsp;You can develop however you want.&nbsp;It can start up as a custom component for one property and then get pushed upstream to share.&nbsp;</p>
+
+<p>&gt;&gt; I can hop in on that question as well.&nbsp;One of the key things that we found.&nbsp;There is&nbsp;‑‑ the design&nbsp;‑‑ often audiences have different responses to a design system.&nbsp;So accessibility, for instance, is one of the most compelling arguments to the top level of the organization that you can build an accessible component and then everyone can leverage that.&nbsp;Because it's very important to them, to the compliance office that that happen now for legal reasons.&nbsp;But for the design teams&nbsp;‑‑ they are looking at it and saying please don't hand me something that restricts me.&nbsp;So it was always important to us to build the ability to support any level of control.&nbsp;So you could literally build a property that uses just organization components.&nbsp;And that might be for cost effective reasons.&nbsp;It might be for accessibility relationships.&nbsp;You could build a property that uses just some of the styles and then overrides some.&nbsp;That's the fastest way to kind of use buttons, but your buttons are green and not blue.&nbsp;All the way down to complete control.&nbsp;And that's what Brian showed on the western arts is he used some from the org and built some that were completely custom.</p>
+
+<p>&gt;&gt; There are things that I'm going to post.&nbsp;The Drupal twig Slack, Evan and I are both in there.&nbsp;I think there was a channel for storybook that we're in.&nbsp;You can find us. Ping either one of us in there.&nbsp;And that's&nbsp;‑‑ we're just kind of always in there, so you can do that at any time.&nbsp;</p>
+
+<p>&gt;&gt; Excellent.&nbsp;All right.&nbsp;I think it sounds like we're running out.&nbsp;There are a bunch of great questions.&nbsp;Thanks Evan and Brian for the great presentation. &nbsp;If people want to use their clap reaction or unmute and clap, feel free.&nbsp;But thanks again.&nbsp;</p>
+
+<p>&gt;&gt; Yeah.&nbsp;Thank you.&nbsp;</p>
+
+<p>[ Applause ]&nbsp;</p>
+</div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+
+</div>
+  </section>
+
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-c876b60427e8ca2abebe7224a574c298615a08f705fe6fdfa53929a2b7dcd339">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/clarity-partners.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2020-02/CFDFAA23-5C59-4C07-9C66-CAFFE0CF3854.png" width="1534" height="387" alt="Clarity Partners logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/palantirnet.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2020-02/palantirnet-logo.png" width="1200" height="198" alt="Palantir.net logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/bounteous.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2019-11/Bounteous_indigo_large.png" width="1676" height="279" alt="Bounteous logo" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/pantheon.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2020-02/pantheon-logo-tagline-black.png" width="1200" height="370" alt="Pantheon logo" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-2019-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#7f161119103f12161b1c1e120f51100d18"><span class="__cf_email__" data-cfemail="4c25222a230c2125282f2d213c62233e2b">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-2019-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-2019-footer-menu" id="block-hatter-2019-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-2019-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/6296","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"ajaxTrustedUrl":{"form_action_p_pvdeGsVG5zNF_XLGPTvYSKCf43t8qZYSwcfZl2uzM":true},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_sul8js76f3THBVtv8nspP93BoCHSgntyTCisS6lai4M.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter_2019&amp;include=eJx1ykEKgDAMBdELaavuPI2k-o1K2kITFG_vRkQEVwOP4ZxZMFAiOW0d1fMHqoXMUIauaXvPkgNJvT0aSPHSA2HOJfq7DoKIZG6C0SrqlHb8ThGqxLgAGZ04Cw"></script>
+
+  </body>
+</html>

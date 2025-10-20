@@ -1,0 +1,1980 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="Drupal 8 marked a major architectural departure from Drupal 7. How do you upgrade your custom modules for Drupal 8 deployment? We&#039;ll take you through the approach and best practices by showing common scenarios and examples of how it&#039;s done." />
+<link rel="canonical" href="drupal-7-8-custom-module-conversion.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Drupal 7 to 8 custom module conversion | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Drupal 7 to 8 custom module conversion | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_Qoyy92GHt9RyGOt8N3WS_9HRsJcJBywJ2IhXudzvST4.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJw1jGsOgzAMgy9U1iOhtPVYpYSgumNjp18F4o_1-SFnFfKISYiQLzaQsoC3X72MzhsGNROtP4SX9I4WF_UkOmXyTky25N_Agx123e61wGdYQpmfFVpiAzdfWXdMZzkm-DCe-jAvb8UfjYM.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_mK2of_t7UFymkfbTHeA-kHdMPWzqc3DZQCYtX-tC0BA.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJw1jGsOgzAMgy9U1iOhtPVYpYSgumNjp18F4o_1-SFnFfKISYiQLzaQsoC3X72MzhsGNROtP4SX9I4WF_UkOmXyTky25N_Agx123e61wGdYQpmfFVpiAzdfWXdMZzkm-DCe-jAvb8UfjYM.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJw1jGsOgzAMgy9U1iOhtPVYpYSgumNjp18F4o_1-SFnFfKISYiQLzaQsoC3X72MzhsGNROtP4SX9I4WF_UkOmXyTky25N_Agx123e61wGdYQpmfFVpiAzdfWXdMZzkm-DCe-jAvb8UfjYM.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJw1jGsOgzAMgy9U1iOhtPVYpYSgumNjp18F4o_1-SFnFfKISYiQLzaQsoC3X72MzhsGNROtP4SX9I4WF_UkOmXyTky25N_Agx123e61wGdYQpmfFVpiAzdfWXdMZzkm-DCe-jAvb8UfjYM.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+<link rel="stylesheet" media="all" href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.css" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="drupal-7-8-custom-module-conversion.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-hatter-main-menu-menu" id="block-hatter-main-menu" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-main-menu-menu">Midcamp 2018 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" data-drupal-link-system-path="node/2">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--venue">
+        <a href="../../about/venue.html" title="Venue" data-drupal-link-system-path="node/7048">Venue</a>
+            </li>
+          <li class="primary-nav__sublist-item item--travel">
+        <a href="../travel.html" title="Travel and Accommodations" data-drupal-link-system-path="node/65">Travel</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../lunch.html" title="Lunch Near Campus" data-drupal-link-system-path="node/162">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2018/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" title="Meet the Team!" data-drupal-link-system-path="2018/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../../2023/about/lunch-options.html" data-drupal-link-system-path="node/6970">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--accommodations">
+        <a href="../../2023/about/accommodations.html" data-drupal-link-system-path="node/6948">Accommodations</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" data-drupal-link-system-path="node/9">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--become-a-sponsor">
+        <a href="../become-a-sponsor.html" title="Become a Sponsor" data-drupal-link-system-path="node/7">Become a Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../../jobs.html" title="Jobs" data-drupal-link-system-path="jobs">Jobs</a>
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" data-drupal-link-system-path="node/128">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--training-thu">
+        <a href="../training.html" data-drupal-link-system-path="node/195">Training (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--bofs-fri-sat">
+        <a href="../birds-feather-bofs.html" title="Birds of a Feather (BoFs)" data-drupal-link-system-path="node/167">BoFs (Fri/Sat)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-fri">
+        <a href="../schedule/friday.html" title="Friday Sessions" data-drupal-link-system-path="2018/schedule/friday">Sessions (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-sat">
+        <a href="../schedule/saturday.html" title="Saturday Sessions" data-drupal-link-system-path="2018/schedule/saturday">Sessions (Sat)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sprints-sun">
+        <a href="../../sprints.html" title="Sprints">Sprints (Sun)</a>
+            </li>
+  </ul>
+
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2018.html" hreflang="en">MidCamp 2018</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Drupal 7 to 8 custom module conversion</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="114" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2018-03-09T22:00:00Z" class="datetime">Friday, 4:00 pm CST</time>
+ - <time datetime="2018-03-09T23:00:00Z" class="datetime">Friday, 5:00 pm CST</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-84" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-name field--type-string field--label-hidden field__item">Room 325</div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>Drupal 8 marked&nbsp;a major architectural departure from Drupal 7. How do you upgrade your custom modules for Drupal 8 deployment? We'll take you through the approach and best practices by showing common scenarios and examples of how it's done.</p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/6a0TJVyiplw?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Benji Damron</h4>
+
+    
+              
+        
+  </div>
+    <div class="l-66-33--2"></div>
+  </div>
+
+                                                                      </div>
+          <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Gordon Makely</h4>
+
+    
+              
+        
+  </div>
+    <div class="l-66-33--2"></div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Back-End</div>
+              </div>
+      </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p>started you guys are really my my own</p>
+
+<p>team back there won't even let me start</p>
+
+<p>ok manifest errs yeah we're rolling flex</p>
+
+<p>running hey we're from manifest I'm</p>
+
+<p>Benji this is Gordon we proposed this</p>
+
+<p>session not really thinking we were</p>
+
+<p>gonna get it</p>
+
+<p>here we are so got a little agenda here</p>
+
+<p>it's not on the screen yes ok so um I'm</p>
+
+<p>gonna kind of give you a backstory of</p>
+
+<p>what we did as far as converting these</p>
+
+<p>modules in into blocks pages forms</p>
+
+<p>JavaScript and then I'm sure there will</p>
+
+<p>be questions so we'll try to answer them</p>
+
+<p>to the best of our ability so basically</p>
+
+<p>what we had to do was take a Drupal 7</p>
+
+<p>site that was packing like six and</p>
+
+<p>poured it to six drilling sites and we</p>
+
+<p>were given three months to do it</p>
+
+<p>the site didn't actually use domain or</p>
+
+<p>anything that you would normally use to</p>
+
+<p>make a single install look like six</p>
+
+<p>sites they used taxonomy and a bunch of</p>
+
+<p>crazy custom code and on top of that we</p>
+
+<p>had two subdirectory sites which made</p>
+
+<p>things interesting as well anything I</p>
+
+<p>mean that you can say I could I could</p>
+
+<p>actually comment forever on this yeah um</p>
+
+<p>it was pretty hard to work with because</p>
+
+<p>we inherited this and you would read</p>
+
+<p>code and be like I don't even know why</p>
+
+<p>this works or if it's working and yeah I</p>
+
+<p>guess that's almost we spent as much</p>
+
+<p>time being what I like to call</p>
+
+<p>archaeologists is anything else you know</p>
+
+<p>diving into someone else's code I'm sure</p>
+
+<p>no one in here has ever had that</p>
+
+<p>experience before so yeah it's not only</p>
+
+<p>simply just taking something reporting</p>
+
+<p>it to a new platform it's trying to</p>
+
+<p>understand why and of course the team</p>
+
+<p>that we had to work with on the other</p>
+
+<p>end of the content entry people couldn't</p>
+
+<p>tell us why some functionality existed</p>
+
+<p>or not or whether it was needed in the</p>
+
+<p>new site there was a lot of legacy</p>
+
+<p>systems I know how much you guys know</p>
+
+<p>about what best practice for like we</p>
+
+<p>used to say I think it was 20 20 modules</p>
+
+<p><br>
+platform we had any custom modules that</p>
+
+<p>was on top of the contribs</p>
+
+<p>that had everything under the Sun right</p>
+
+<p>like no types were being including</p>
+
+<p>organic groups and there was clearly no</p>
+
+<p>organic groups in the site but we had it</p>
+
+<p>but we didn't want to turn it off</p>
+
+<p>because we wasn't we weren't really sure</p>
+
+<p>right where else what where else that</p>
+
+<p>would manifest itself so has anybody</p>
+
+<p>done this yet ported from v7 to da</p>
+
+<p>well yeah so this is just time to give</p>
+
+<p>you guys an idea of what the file</p>
+
+<p>structure looks like and these are both</p>
+
+<p>the same model it's a this is a module</p>
+
+<p>that pulls data from Google to create a</p>
+
+<p>trending content block it shows the four</p>
+
+<p>highest trending articles on the site</p>
+
+<p>and as you can see they're slightly</p>
+
+<p>different</p>
+
+<p>well everything's kind of split out into</p>
+
+<p>more farm sounds and we'll get into that</p>
+
+<p>but first thing you want to do when</p>
+
+<p>you're starting is wait for the screen</p>
+
+<p>to refresh let's start with a dot info</p>
+
+<p>file which you have to do in d7 d 8 d 6</p>
+
+<p>if you've ever had to do that but in</p>
+
+<p>becoming a mo file and which stands for</p>
+
+<p>yet another markup language as I know</p>
+
+<p>most of you already know and you still</p>
+
+<p>need a dot module file but it</p>
+
+<p>technically doesn't do anything I mean</p>
+
+<p>you can put functions in it if you want</p>
+
+<p>to but you don't have to so just to give</p>
+
+<p>you an idea of what that dot info it</p>
+
+<p>looks like it's pretty similar syntax is</p>
+
+<p>important the spaces would you get the</p>
+
+<p>spaces wrong you're basically looking at</p>
+
+<p>a white screen site and you don't get</p>
+
+<p>any good error message that really tells</p>
+
+<p>you where it is what's happened what</p>
+
+<p>is you kind of just have to walk through</p>
+
+<p>the file until you figure it out and as</p>
+
+<p>you can see pretty similar you have the</p>
+
+<p>same things you don't let your files</p>
+
+<p>anymore</p>
+
+<p>it was screaming again I didn't even</p>
+
+<p>change that time okay blocks Orton and I</p>
+
+<p>were talking earlier and really the only</p>
+
+<p>D seven hooks that we've ever used or</p>
+
+<p>hook block info and hook block you does</p>
+
+<p>anybody ever use the D the other ones</p>
+
+<p>the same pre-suit pre-safe that's a</p>
+
+<p>that's a thing</p>
+
+<p>use the alter ones yeah</p>
+
+<p>configure that's when you're doing</p>
+
+<p>configurations forms and stuff like that</p>
+
+<p>I don't know yeah yeah I mean I've seen</p>
+
+<p>it I've just I've had to write it yeah</p>
+
+<p>and as you can see on the on the right</p>
+
+<p>side is what you're looking at in</p>
+
+<p>you're polite and that lives in a</p>
+
+<p>controller or plugin is that a plug-in</p>
+
+<p>it's a plugin source to lug in black</p>
+
+<p>yeah I kind of seen that right there</p>
+
+<p>and these you got to declare the</p>
+
+<p>namespace and it's usually Drupal your</p>
+
+<p>module name plugin block and you need</p>
+
+<p>these what are those you can call they</p>
+
+<p>use puts the injection</p>
+
+<p>okay dependency injection as you can</p>
+
+<p>tell I'm really great at this stuff or</p>
+
+<p>it just won't work as I found out and</p>
+
+<p>then when you the annotation is</p>
+
+<p>basically like your hook block info</p>
+
+<p>where you give it an ID you the admin</p>
+
+<p>label in that new category and then you</p>
+
+<p>have a class that's basically the name</p>
+
+<p>of your file and extends the block base</p>
+
+<p>and then you have a build function with</p>
+
+<p>an array inside it</p>
+
+<p>so I hope you guys can see this on the</p>
+
+<p>right or on the left I'm sorry is your</p>
+
+<p>Drupal seven hook block info and then on</p>
+
+<p>the right is what that looks like in</p>
+
+<p>your plug-in so here again the</p>
+
+<p>annotation the part of the comments is</p>
+
+<p>the syntax is particular it's another</p>
+
+<p>way</p>
+
+<p>it's each item has to be on its own line</p>
+
+<p>is then with a comma and if you don't do</p>
+
+<p>that then it's you're not going to be</p>
+
+<p>able to get it to appear like in this</p>
+
+<p>particular instance this is how it shows</p>
+
+<p>up in the block list when you go to we</p>
+
+<p>go to place to block on a page so if</p>
+
+<p>anybody has any questions just jump in</p>
+
+<p>with them we don't have to wait till the</p>
+
+<p>end and this is basically this is that</p>
+
+<p>same module I was talking about that</p>
+
+<p>creates the training block so this is</p>
+
+<p>hook block view it's calling and</p>
+
+<p>a custom callback for a custom function</p>
+
+<p>that actually builds the block</p>
+
+<p>um</p>
+
+<p>and then in Drupal 8 inside your build</p>
+
+<p>function it's basically doing the same</p>
+
+<p>thing but in this case I decided to</p>
+
+<p>actually render it with the View mode so</p>
+
+<p>that we the original module just had a</p>
+
+<p>template and it printed the values in</p>
+
+<p>the template so things like that are a</p>
+
+<p>lot easier in Tripoli as far as like</p>
+
+<p>you know print getting things to the</p>
+
+<p>page at least I think so</p>
+
+<p>six one half dozen yeah I guess the</p>
+
+<p>level of comfortability yeah I mean if</p>
+
+<p>you don't like twig you do like twig</p>
+
+<p>yeah I don't know I like it it's a lot</p>
+
+<p>easier than I like it a lot but in the</p>
+
+<p>PHP template yes</p>
+
+<p>just me so pages in d7 you used book</p>
+
+<p>menu and usually use the custom fallback</p>
+
+<p>to get things to the page in d8 you have</p>
+
+<p>a routing file that creates the path you</p>
+
+<p>have a controller which is basically</p>
+
+<p>your page if you want to add something</p>
+
+<p>to a menu you also do that with the ammo</p>
+
+<p>or if you want to add something to the</p>
+
+<p>local task you do that with the ammo</p>
+
+<p>file as well and Gordon's going to go</p>
+
+<p>for the driver things I still don't</p>
+
+<p>understand it</p>
+
+<p>oh yeah it's got its own slide okay I'm</p>
+
+<p>trying to thing in Indy seven in your</p>
+
+<p>hook menu if you had say a collection of</p>
+
+<p>items that were dynamic you wanted to</p>
+
+<p>create local tasks a menu type of local</p>
+
+<p>task the equivalent is you'd run a for</p>
+
+<p>each statement and run through a list of</p>
+
+<p>items to be able to dynamically create</p>
+
+<p>these things on the menu in d8 use a</p>
+
+<p>driver function in the ammo file you</p>
+
+<p>specify the name of the driver and then</p>
+
+<p>in here now this particular example it's</p>
+
+<p>not really doing anything dynamic this</p>
+
+<p>is just kind of illustrative but in here</p>
+
+<p>same thing we have for each statement at</p>
+
+<p>the bottom that would dynamically create</p>
+
+<p>the items for the local tasks in the</p>
+
+<p>particular site we were using we were</p>
+
+<p>building this for this is actually</p>
+
+<p>something that part of a module that</p>
+
+<p>creates HTML emails that we just emailed</p>
+
+<p>to the client so they can drop it into</p>
+
+<p>their email system</p>
+
+<p>yeah the content admins they go in they</p>
+
+<p>create this is not exposed to outside</p>
+
+<p>users this is simply for content admins</p>
+
+<p>they come in they throw a bunch of</p>
+
+<p>articles into a node so they're pulls in</p>
+
+<p>teasers then they want to save it out</p>
+
+<p>and purely grab the HTML and they throw</p>
+
+<p>it into whatever their email is</p>
+
+<p>MailChimp whatever it is it's already</p>
+
+<p>rendered HTML so it's basically a tool</p>
+
+<p>for them to be able to blast out emails</p>
+
+<p>without us having to interact with the</p>
+
+<p>system through their API this was kind</p>
+
+<p>of business rules driven it's not how we</p>
+
+<p>would have intended to build that tool</p>
+
+<p>cetera which a lot of the things we did</p>
+
+<p>so as I said before in your dot mounting</p>
+
+<p>file</p>
+
+<p>this is hook menu where you have the</p>
+
+<p>items array and you get the page of</p>
+
+<p>title usually have the custom call back</p>
+
+<p>and in this case it's in a file and the</p>
+
+<p>menu call that yeah menu callback is</p>
+
+<p>simply it's a callback for a menu item</p>
+
+<p>something on menu or line it's you're</p>
+
+<p>specifying you're creating a path ok the</p>
+
+<p>menu system knows that this path exists</p>
+
+<p>you can't then go to the menu system and</p>
+
+<p>create the same path it's blocking it</p>
+
+<p>out throwing it into the DB so it can't</p>
+
+<p>be used it's defining a static not know</p>
+
+<p>so extent of it</p>
+
+<p>instantiated callback semantics sorry</p>
+
+<p>you're mapping a function to a path</p>
+
+<p>let's put it that way so basically</p>
+
+<p>that's what you're doing here with this</p>
+
+<p>Jamo file you're giving the page a path</p>
+
+<p>you're not if you wanted to do the menu</p>
+
+<p>thing you would do that in the menu yamo</p>
+
+<p>the menu link gamal but you're telling</p>
+
+<p>it which controller to use and giving it</p>
+
+<p>a title and</p>
+
+<p>giving permissions right here in this</p>
+
+<p>channel</p>
+
+<p>so this is the return array from that</p>
+
+<p>custom call back and Drupal 7 and as you</p>
+
+<p>can see it's doing quite a few things</p>
+
+<p>here it's attaching CSS JavaScript it's</p>
+
+<p>doing some settings for the JavaScript</p>
+
+<p>itself does anybody ever mess with that</p>
+
+<p>I recently just learned how to do this I</p>
+
+<p>didn't even know it was a thing until I</p>
+
+<p>was working on a project and had to do</p>
+
+<p>it so basically you can create things in</p>
+
+<p>PHP that can be passed to your</p>
+
+<p>JavaScript files so that's what this</p>
+
+<p>States data thing is here</p>
+
+<p>just in case that wasn't large enough</p>
+
+<p>for you</p>
+
+<p>then I skipped you did okay that's what</p>
+
+<p>happened you swiped left so this is</p>
+
+<p>basically the same thing in Drupal 8 it</p>
+
+<p>hasn't changed too much the only thing</p>
+
+<p>that really has changed is now and we'll</p>
+
+<p>get into this later we are calling the</p>
+
+<p>JavaScript and CSS and with a library as</p>
+
+<p>you can see on the I mean the first</p>
+
+<p>thing in the attached already</p>
+
+<p>so forms we've all done them right</p>
+
+<p>altered them I think I've used all of</p>
+
+<p>these and Drupal 7 they really haven't</p>
+
+<p>changed too much and Drupal 8</p>
+
+<p>some of the function names are different</p>
+
+<p>they of course are in their own file as</p>
+
+<p>you can see that source form form name</p>
+
+<p>and then the the form name extends the</p>
+
+<p>form base class and then within that</p>
+
+<p>class you usually hit all of these these</p>
+
+<p>functions here and this is slightly</p>
+
+<p>different this is still the router club</p>
+
+<p>but for a forum you under the defaults</p>
+
+<p>you actually have a path to your forum</p>
+
+<p>and you usually want a permission that's</p>
+
+<p>a little stronger than access content</p>
+
+<p>because you don't really want everybody</p>
+
+<p>touching your forms especially when they</p>
+
+<p>will determine whether you're training</p>
+
+<p>blocks work or not</p>
+
+<p>so as you can this is Drupal 7</p>
+
+<p>everybody's done forms</p>
+
+<p>a race just like everything else is in</p>
+
+<p>Drupal and if you look at the Drupal 8</p>
+
+<p>version it really hasn't changed much at</p>
+
+<p>all really there's maybe one line that's</p>
+
+<p>different</p>
+
+<p>and if you look</p>
+
+<p>our next slide this is just kind of an</p>
+
+<p>aside variables aren't a thing anymore</p>
+
+<p>in Drupal 8 in Drupal 7 you would use</p>
+
+<p>variable get and variable set to to get</p>
+
+<p>and set your variables but as you can</p>
+
+<p>see on the right side for Drupal 8 it's</p>
+
+<p>changed a bit and they all now live</p>
+
+<p>there's no more variable table either</p>
+
+<p>they now live in config we think right</p>
+
+<p>yeah they do we were just looking for it</p>
+
+<p>earlier and we couldn't remember if they</p>
+
+<p>actually lived in code or in the table</p>
+
+<p>and we found it in a table so they're</p>
+
+<p>kind of hard to find but they're there</p>
+
+<p>so JavaScript's I didn't have to do much</p>
+
+<p>type of script in Drupal 7 other than</p>
+
+<p>get it to the page and it was actually</p>
+
+<p>pretty easy there were several different</p>
+
+<p>ways to do it you could just declare the</p>
+
+<p>scripts in your info file you can do use</p>
+
+<p>Drupal at j/s you could attach them an</p>
+
+<p>array and you could use libraries that</p>
+
+<p>has anybody ever done that in Drupal 7</p>
+
+<p>I've never tried it</p>
+
+<p>other than installing a lot of course</p>
+
+<p>madhouse yeah because he's a nerdy and</p>
+
+<p>socially awkward so in Drupal 8 they</p>
+
+<p>pretty much you're using libraries</p>
+
+<p>there's not really a choice and you can</p>
+
+<p>either put them in your module file</p>
+
+<p>there's a module Yambol or a theme yamo</p>
+
+<p>in a theme you can actually add them to</p>
+
+<p>your data info file but in a module you</p>
+
+<p>need to attach them someway</p>
+
+<p>so this is kind of what a library looks</p>
+
+<p>like in Drupal 8 so you can in most</p>
+
+<p>cases I think it throws things in the</p>
+
+<p>footer now right</p>
+
+<p>by default yes what's though if you need</p>
+
+<p>it in the header you have to tell it hey</p>
+
+<p>I need this in the header by just</p>
+
+<p>putting header true there you can</p>
+
+<p>include files that live in your module</p>
+
+<p>or theme and you can set the pendants</p>
+
+<p>ease for those you can also hit external</p>
+
+<p>external scripts I didn't put an example</p>
+
+<p>in here but I had to actually do one as</p>
+
+<p>the value of a div and that was just</p>
+
+<p>ugly so I didn't put it in here and I</p>
+
+<p>don't want people doing that but</p>
+
+<p>so yeah and that info this is pretty</p>
+
+<p>much all you had to do whenever just</p>
+
+<p>including in Drupal 7</p>
+
+<p>but for</p>
+
+<p>in a theme this is how you do it in</p>
+
+<p>Drupal 8 so you just add libraries and</p>
+
+<p>then point at the library that you've</p>
+
+<p>named in the ammo file and when I was</p>
+
+<p>doing this I noticed this I didn't</p>
+
+<p>notice that when we were building the</p>
+
+<p>site but you can actually remove CSS</p>
+
+<p>files I'm guessing now it you put that</p>
+
+<p>in there yeah it's pretty cool because</p>
+
+<p>usually you had to then you have to</p>
+
+<p>write something and pre-process HTML and</p>
+
+<p>rip everything out of the scripts array</p>
+
+<p>and then I thought you had to read</p>
+
+<p>Eclair the same one but it was empty</p>
+
+<p>yeah good times that seems</p>
+
+<p>counterintuitive yeah</p>
+
+<p>so this is basically the same a couple</p>
+
+<p>ways you can add these</p>
+
+<p>you can either use Drupal at jeaious or</p>
+
+<p>in a return rate add them to the attach</p>
+
+<p>to rate this was in d7 and as you see in</p>
+
+<p>that Drupal at jazz example they</p>
+
+<p>actually had different scripts for</p>
+
+<p>different environments</p>
+
+<p>not sure why</p>
+
+<p>so this is basically this hasn't changed</p>
+
+<p>much other than there's actually</p>
+
+<p>there we go so basically are attaching</p>
+
+<p>the libraries now instead of actual</p>
+
+<p>files</p>
+
+<p>whoops questions</p>
+
+<p>philosopher got any questions again</p>
+
+<p>enough time you can redo it we could do</p>
+
+<p>let's go back to that did you remember</p>
+
+<p>to set the record yeah so my favorite</p>
+
+<p>thing here is the hook page attachments</p>
+
+<p>bite when you're specifying libraries</p>
+
+<p>libraries aren't just simply about like</p>
+
+<p>in the past you had to put J s and CSS</p>
+
+<p>on the page in two different commands</p>
+
+<p>libraries you specify in a library you</p>
+
+<p>can specify CSS and j s in the same</p>
+
+<p>library and just get them both on the</p>
+
+<p>page with one fell swoop that's what I</p>
+
+<p>like about so much cleaner that way yeah</p>
+
+<p>as a back-end guy I don't want to type</p>
+
+<p>that much I mean the front-end guys</p>
+
+<p>don't have to copy too much from Stack</p>
+
+<p>Exchange we just like put on recording</p>
+
+<p>that we sound like the two of the</p>
+
+<p>laziest people in the world but we like</p>
+
+<p>to think of it as efficient not lazy so</p>
+
+<p>you get more done that's right</p>
+
+<p>see we got through this presentation so</p>
+
+<p>efficiently there's time for questions</p>
+
+<p>what did you find that you had to review</p>
+
+<p>in the interiors of the module not just</p>
+
+<p>because they were allowed to encoded in</p>
+
+<p>the first place but because of the</p>
+
+<p>changes in Drupal now first up because</p>
+
+<p>this is being recorded and the developer</p>
+
+<p>may be in the room we didn't say it was</p>
+
+<p>coded in a lousy way same the the</p>
+
+<p>biggest problem we really had was</p>
+
+<p>functionality and what was determined to</p>
+
+<p>be needed or not needed and nobody when</p>
+
+<p>there was a lot of lack of knowledge</p>
+
+<p>well a lot of things we were able to do</p>
+
+<p>with out with out-of-the-box things with</p>
+
+<p>Drupal and then some of the things like</p>
+
+<p>Gordon said lack of knowledge people</p>
+
+<p>didn't know how things were actually</p>
+
+<p>created so we're like two weeks out from</p>
+
+<p>launch and we're finding pages that are</p>
+
+<p>created in a module and using JavaScript</p>
+
+<p>that we didn't know about and then you</p>
+
+<p>know figuring out oh how do I get this</p>
+
+<p>to the page this is how I used to do it</p>
+
+<p>so like having to learn this or yeah</p>
+
+<p>they're one of the modules like the CSS</p>
+
+<p>was playing a really major part some</p>
+
+<p>nothing was actually working because the</p>
+
+<p>CSS was</p>
+
+<p>if it was a map and it was coming in but</p>
+
+<p>like about that big because it wasn't</p>
+
+<p>reading any of the CSS rules that it</p>
+
+<p>needed and I figured it out when I added</p>
+
+<p>it to the library and all of a sudden</p>
+
+<p>the maps like so there were things like</p>
+
+<p>that the variable variables and</p>
+
+<p>configuration like finding the right</p>
+
+<p>syntax to do all that stuff that's the</p>
+
+<p>thing with like Drupal 7 has really good</p>
+
+<p>documentation because it's been around</p>
+
+<p>forever and Drupal 8 not so much like</p>
+
+<p>you would find one instance that got you</p>
+
+<p>exactly what you needed</p>
+
+<p>whereas what seven like you know you</p>
+
+<p>google something and the whole first</p>
+
+<p>page will give you ten different ways to</p>
+
+<p>do something this site we inherited the</p>
+
+<p>guy the original architect was actually</p>
+
+<p>a very sharp programmer I don't think</p>
+
+<p>that Drupal was his first love but the</p>
+
+<p>reason there was 80 custom modules he</p>
+
+<p>wanted all of the module creation or the</p>
+
+<p>content type creation to live in code</p>
+
+<p>and in version control so it wasn't in</p>
+
+<p>the day you know he didn't go and create</p>
+
+<p>an article content type and then put all</p>
+
+<p>the fields on it and to get it in code</p>
+
+<p>he had written custom written some</p>
+
+<p>instantiation rules to be able to create</p>
+
+<p>it when you enable that module it's got</p>
+
+<p>a new content type and that content type</p>
+
+<p>has all those fields and stuff like that</p>
+
+<p>so all that stuff was what we like to</p>
+
+<p>call cruft you know that because we went</p>
+
+<p>to d8 we put all that stuff built it</p>
+
+<p>through the UI or through the migrate</p>
+
+<p>module and then we jumped it into the</p>
+
+<p>ammo files we have to worry about it</p>
+
+<p>again until we wanted to add a new field</p>
+
+<p>to one of those content types so that</p>
+
+<p>got rid of a lot of custom modules we</p>
+
+<p>went from 80 down to like 10 I think</p>
+
+<p>we're down to 10 right now and like he</p>
+
+<p>said we got a lot of our functionality</p>
+
+<p>out of controls that have come a long</p>
+
+<p>way now we started talking to the client</p>
+
+<p>about making this migration over a year</p>
+
+<p>ago a year ago a lot of those modules</p>
+
+<p>hadn't been ported the DA yet and that's</p>
+
+<p>that was a significant help yeah that</p>
+
+<p>the community was able to do that in the</p>
+
+<p>year because if we had been on the hook</p>
+
+<p>to do a lot of that stuff we would have</p>
+
+<p>had to go on</p>
+
+<p>the original route the original</p>
+
+<p>developer went was to create a lot of</p>
+
+<p>custom modules or we would have had to</p>
+
+<p>get into all of those controls and work</p>
+
+<p>on porting those and that's that's a</p>
+
+<p>serious undertaking to that we weren't</p>
+
+<p>staffed for we did have to write some</p>
+
+<p>custom migrations</p>
+
+<p>- yeah we did we had to convert filled</p>
+
+<p>collections to paragraphs and so there</p>
+
+<p>was a patch that existed to be able to</p>
+
+<p>do some of it so we had to pass the</p>
+
+<p>module and then we had to write some</p>
+
+<p>custom migration scripts to be able to</p>
+
+<p>get stuff out of field collections and</p>
+
+<p>into the paragraph and that was kind of</p>
+
+<p>a trial and error sort thing I think I'd</p>
+
+<p>run that in quarters like a dozen times</p>
+
+<p>so so having the ammo files got us out</p>
+
+<p>of a lot of that overhead going from six</p>
+
+<p>sites living on a single Drupal instance</p>
+
+<p>to actually making them six discrete</p>
+
+<p>sites in a multi-site environment opened</p>
+
+<p>up the pipeline to the database from the</p>
+
+<p>code base to the database was no longer</p>
+
+<p>this big it was now you know this big</p>
+
+<p>because each site was talking to its own</p>
+
+<p>database we had a lot of speed increases</p>
+
+<p>just like our SEO team was pretty happy</p>
+
+<p>with the performance of the site because</p>
+
+<p>that used to be a big problem you know</p>
+
+<p>certain pages were taking 30 seconds to</p>
+
+<p>load ridiculous stuff like that a lot of</p>
+
+<p>the custom code too was just dealing</p>
+
+<p>with the way they built them the</p>
+
+<p>multi-site too</p>
+
+<p>because there were you know entire files</p>
+
+<p>that were looking at the URL and saying</p>
+
+<p>if it's this URL do this so we we got</p>
+
+<p>rid of a lot of that stuff - I think we</p>
+
+<p>were talking about - before because two</p>
+
+<p>of the sites exist as sub directory</p>
+
+<p>sites Drupal in a subdirectory they were</p>
+
+<p>sim linking to the parent directory so</p>
+
+<p>if you did an inspection or tried to</p>
+
+<p>load something in Drupal sighs it wasn't</p>
+
+<p><br>
+that you know because it was when it was</p>
+
+<p>trying to think about something it was</p>
+
+<p>going through all the directories and</p>
+
+<p>finding each instance of it because of</p>
+
+<p>the siblings so yeah it was I was not</p>
+
+<p>pleasant so that was at the top of the</p>
+
+<p>list I think for goals for the project</p>
+
+<p>in general we actually proposed this</p>
+
+<p>originally as a as a case study more so</p>
+
+<p>as how to port a module so these were a</p>
+
+<p>lot of things that we were going to talk</p>
+
+<p>about glad I had some time to get it in</p>
+
+<p>there it was a learning experience yes</p>
+
+<p>put it that way</p>
+
+<p>obviously re-architecting isn't</p>
+
+<p>something that you can automate but it</p>
+
+<p>is any of this stuff that could go in</p>
+
+<p>the scripting module conversion</p>
+
+<p>scripting and things like that there's a</p>
+
+<p><br>
+panels on the file that's a good</p>
+
+<p>question I don't know if the way they</p>
+
+<p>were built it would be possible cuz they</p>
+
+<p>weren't really felt like I'm not I'm not</p>
+
+<p>talking about doing your whole setup but</p>
+
+<p>are there pieces that you've learned</p>
+
+<p>that maybe could go into the scripting</p>
+
+<p>so that other people wouldn't have as</p>
+
+<p>much to do as possible I I don't think I</p>
+
+<p>can answer that question on the spot</p>
+
+<p>definitely use console to scaffold the</p>
+
+<p>new modules you know just to take care</p>
+
+<p>of something that without any some of it</p>
+
+<p>for you</p>
+
+<p>I'm just looking at getting more sites</p>
+
+<p>to be able to go over to d8 and part of</p>
+
+<p>it is converting modules and if you can</p>
+
+<p>get somebody that likes to just run the</p>
+
+<p>script and do a few things that they</p>
+
+<p>know and get it set up so that other</p>
+
+<p>people can come in and handle more the</p>
+
+<p>detail that might hello yeah</p>
+
+<p>and the example module has a lot of</p>
+
+<p>stuff missed yeah like I said if you're</p>
+
+<p>gonna re architect it because there's a</p>
+
+<p>whole bunch of changes obviously that's</p>
+
+<p>almost impossible automate is that's a</p>
+
+<p>case-by-case basis yeah we shot other</p>
+
+<p>things that like the variables right I</p>
+
+<p>don't know how much that script does</p>
+
+<p>that but yeah I don't know II think that</p>
+
+<p>would be something that would be</p>
+
+<p>because I usually pull them from the</p>
+
+<p>example module and and in a lot of cases</p>
+
+<p>we were trying to change it because we</p>
+
+<p>didn't have to deal with six sites on</p>
+
+<p>one because yeah because I feel like in</p>
+
+<p>some cases the modules themselves got a</p>
+
+<p>lot smaller two-digit I mean I'm sure no</p>
+
+<p>one's had this problem where you know</p>
+
+<p>you've been giving an insurmountable</p>
+
+<p>task with extremely tight turnaround</p>
+
+<p>time and this was not the case it was</p>
+
+<p>there was there was plenty of times</p>
+
+<p>where we were maybe following the</p>
+
+<p>previous architecture out the window we</p>
+
+<p>wanted to do it differently but you know</p>
+
+<p>maybe to meet a particular deadline say</p>
+
+<p>okay this is working for now let's not</p>
+
+<p>reinvent the wheel we will address it</p>
+
+<p>later because you know after the initial</p>
+
+<p>launch of course there's going to be a</p>
+
+<p>maintenance window you know for us to do</p>
+
+<p>stuff because I mean right now so this</p>
+
+<p>launched about a month ago we're out of</p>
+
+<p>the woods with bug fixes we're doing</p>
+
+<p>feature enhancements now and there's and</p>
+
+<p>but a lot of these things the account</p>
+
+<p>team now is really excited because well</p>
+
+<p>speed increases doesn't like this</p>
+
+<p>they've known they're not at a point</p>
+
+<p>where they say hey go back to the line</p>
+
+<p>and say there's a lot of these features</p>
+
+<p>that we would like to implement which</p>
+
+<p>were not a possibility before Indy 7</p>
+
+<p>with the kind of load times we're</p>
+
+<p>talking about or the overhead that the</p>
+
+<p>site had so we're in a better place now</p>
+
+<p>and that was kind of the first step on</p>
+
+<p>the journey was to be able to do that</p>
+
+<p>Oh young man ultimately from d78</p>
+
+<p>how much of the fat was trimmed and he</p>
+
+<p>said he brought down the number of</p>
+
+<p>customers from 80 to 10</p>
+
+<p>it was mostly to rear contect area yeah</p>
+
+<p>well yeah because we had all these other</p>
+
+<p>we were able to put a lot of stuff in</p>
+
+<p>the ammo and I think we didn't talk</p>
+
+<p>about this but the yam the conflicts</p>
+
+<p>that we have for the site because</p>
+
+<p>they're six or seven sites we have six</p>
+
+<p>or seven config directories living and</p>
+
+<p>that was a little bit of a problem in</p>
+
+<p>during development we had so many</p>
+
+<p>developers in there that we had a little</p>
+
+<p>bit of aggression occasionally because</p>
+
+<p>somebody was pulling in the wrong yam</p>
+
+<p>will file or something like that but</p>
+
+<p>yeah yeah you get to the point where</p>
+
+<p>you're not going to each site and</p>
+
+<p>exporting the config your gret exporting</p>
+
+<p>at one time and you're copying and</p>
+
+<p>pasting it in all these different</p>
+
+<p>directories and then certain of those</p>
+
+<p>things actually have the theme in them</p>
+
+<p>and that was a lesson learned by some of</p>
+
+<p>the devs that you know I just I just</p>
+
+<p>caused the entire thing to not be able</p>
+
+<p>to run config import because that theme</p>
+
+<p>is not enabled on this particular site</p>
+
+<p>so it's there's a there was some</p>
+
+<p>learning lessons there too but to answer</p>
+
+<p>your question I don't have a hard number</p>
+
+<p>about how much fat was trimmed but if</p>
+
+<p>you want to say like certain pages were</p>
+
+<p>taking 20 to 30 seconds to load and</p>
+
+<p>we're now down to like 2 2.5 seconds per</p>
+
+<p>page and this is kind of a coffee-table</p>
+
+<p>book version of sites they're like four</p>
+
+<p>and five Meg's per page you know a lotta</p>
+
+<p>imagery a lot of high-res imagery so we</p>
+
+<p>feel like that's a huge win in terms of</p>
+
+<p>performance</p>
+
+<p>a lot of a lot of them we were able to</p>
+
+<p>consolidate - they had probably four or</p>
+
+<p>five modules that were just doing</p>
+
+<p>JavaScript so I was able to put a bunch</p>
+
+<p>of those in the same module and they had</p>
+
+<p>a lot of analytics I mean there was</p>
+
+<p>probably four different reporting's</p>
+
+<p>going on yeah for each site I think we</p>
+
+<p>got it down to two now is it two or</p>
+
+<p>three there again there was a there was</p>
+
+<p>a shortcoming in knowledge from the</p>
+
+<p>different teams about what are we</p>
+
+<p>actually still collecting on do we need</p>
+
+<p>this yeah we had probably 20 30 scripts</p>
+
+<p>that didn't need to be there yeah an 87</p>
+
+<p>they were loading in the head you know</p>
+
+<p>it's not like now we have them</p>
+
+<p>predominantly a footer except for Google</p>
+
+<p>Analytics always wants you to have and</p>
+
+<p>the hats that are no longer on yeah</p>
+
+<p>they'll come back down yeah that's been</p>
+
+<p>a lot of time making this work</p>
+
+<p>here's another 10 seconds</p>
+
+<p>all right well I guess as we say that my</p>
+
+<p>company like um we can give you back</p>
+
+<p>twenty minutes of your day it's a</p>
+
+<p>win-win thanks for coming</p></div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-436aed2c0ad2c4baadb30b8b938781f338d6b6d31c1fa6170458678cf6019e0a">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/114">https://mid.camp/114</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+  <section class="map-banner">
+      <div class="views-element-container block block-views block-views-blockevent-venue-block-1" id="block-hatter-views-block-event-venue-block-1">
+  
+    
+      <div><div class="container view view-event-venue view-id-event_venue view-display-id-block_1 js-view-dom-id-d8ad70906a75996b682e98f13465b1701d29547f0f52f50838d349fe600751aa">
+  
+    
+      
+      <div class="view-content">
+          <div class="views-row">
+
+
+<div class="map-overlay">
+  <span class="map__label">Location</span>
+  <h2 class="map__title"><span class="field field--name-title field--type-string field--label-hidden">DePaul University - Lincoln Park Student Center</span>
+</h2>
+  
+            <div class="field field--name-field-address field--type-address field--label-hidden field__item"><p class="map__address" translate="no">
+          2250 N Sheffield Ave. <br>
+            Chicago, IL 60614<br>
+  </p>
+</div>
+      
+  <a href="../venue/depaul-university-lincoln-park-student-center.html" class="cta-link--yellow">Learn more  <span class="cta-arrow"></span></a>
+</div>
+<div id='map' class="map"></div>
+</div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-3616b93e1d78c5070cf8ffca6739ef2b32dcd92c5c61a45f341b158cca7bdb02">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/acquia.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-02/Acquia_no_tagline.png" width="450" height="94" alt="Acquia" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/platformsh.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-02/platform.png" width="400" height="79" alt="Platform.sh" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/pantheon.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-11/pantheon.png" width="500" height="157" alt="Pantheon" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#81e8efe7eec1ece8e5e2e0ecf1afeef3e6"><span class="__cf_email__" data-cfemail="e980878f86a984808d8a888499c7869b8e">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/114","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_llBcjrkrgAu2wT1DR7VGL_iP6geJyiTnF_8O5ZD57VI.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJxLz89Pz0mNT8xLzKksyUwu1k9HE9DJSCwpSS3ST8_JT0rM0c2CC-QmFiTlVwAAPmAZQA"></script>
+<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.js"></script>
+<script src="../../sites/default/files/js/js_pODGOpSPRR3Y_Zt-7Fy-5B_pNv18oFAWhyhwUPCQZu4.js%3Fscope=footer&amp;delta=2&amp;language=en&amp;theme=hatter&amp;include=eJxLz89Pz0mNT8xLzKksyUwu1k9HE9DJSCwpSS3ST8_JT0rM0c2CC-QmFiTlVwAAPmAZQA"></script>
+
+  </body>
+</html>

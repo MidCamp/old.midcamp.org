@@ -1,0 +1,3329 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="When building sites, customers expect the site to be optimized for search engines. The good news is that Drupal is very friendly to search engines out of the box. There are a number of modules, tools and best practices that we use on every site we build. In this session, I will talk about modules and settings you can implement while building your site to make search engine optimization even better. These tools will also give site administrators the tools they want to do all their SEO tweaking without modifying templates and needing FTP access, if possible." />
+<link rel="canonical" href="building-seo-friendly-sites-drupal.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Building SEO-Friendly Sites with Drupal | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Building SEO-Friendly Sites with Drupal | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_Qoyy92GHt9RyGOt8N3WS_9HRsJcJBywJ2IhXudzvST4.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJw9jWsOgzAMgy9U1iOhtDWsUkJQ3bGx0w-B2B_r80NyViH3mIQI-eKp6p8NpMzg7RcvR-cNBzUTrV-Ep_SOFmf1JDpk8k5M1uSfwJ0ddl1stcBHWEIZpwotsYGrL6wbhrM8JngznvowLy_.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_QAC1R0aFoF1mIVQtLAaSE24B2iwnT2ZCa0cZDeZsPV0.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJw9jWsOgzAMgy9U1iOhtDWsUkJQ3bGx0w-B2B_r80NyViH3mIQI-eKp6p8NpMzg7RcvR-cNBzUTrV-Ep_SOFmf1JDpk8k5M1uSfwJ0ddl1stcBHWEIZpwotsYGrL6wbhrM8JngznvowLy_.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJw9jWsOgzAMgy9U1iOhtDWsUkJQ3bGx0w-B2B_r80NyViH3mIQI-eKp6p8NpMzg7RcvR-cNBzUTrV-Ep_SOFmf1JDpk8k5M1uSfwJ0ddl1stcBHWEIZpwotsYGrL6wbhrM8JngznvowLy_.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJw9jWsOgzAMgy9U1iOhtDWsUkJQ3bGx0w-B2B_r80NyViH3mIQI-eKp6p8NpMzg7RcvR-cNBzUTrV-Ep_SOFmf1JDpk8k5M1uSfwJ0ddl1stcBHWEIZpwotsYGrL6wbhrM8JngznvowLy_.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+<link rel="stylesheet" media="all" href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.css" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="building-seo-friendly-sites-drupal.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-hatter-main-menu-menu" id="block-hatter-main-menu" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-main-menu-menu">Midcamp 2018 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" data-drupal-link-system-path="node/2">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--venue">
+        <a href="../../about/venue.html" title="Venue" data-drupal-link-system-path="node/7048">Venue</a>
+            </li>
+          <li class="primary-nav__sublist-item item--travel">
+        <a href="../travel.html" title="Travel and Accommodations" data-drupal-link-system-path="node/65">Travel</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../lunch.html" title="Lunch Near Campus" data-drupal-link-system-path="node/162">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2018/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" title="Meet the Team!" data-drupal-link-system-path="2018/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../../2023/about/lunch-options.html" data-drupal-link-system-path="node/6970">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--accommodations">
+        <a href="../../2023/about/accommodations.html" data-drupal-link-system-path="node/6948">Accommodations</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" data-drupal-link-system-path="node/9">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--become-a-sponsor">
+        <a href="../become-a-sponsor.html" title="Become a Sponsor" data-drupal-link-system-path="node/7">Become a Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../../jobs.html" title="Jobs" data-drupal-link-system-path="jobs">Jobs</a>
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" data-drupal-link-system-path="node/128">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--training-thu">
+        <a href="../training.html" data-drupal-link-system-path="node/195">Training (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--bofs-fri-sat">
+        <a href="../birds-feather-bofs.html" title="Birds of a Feather (BoFs)" data-drupal-link-system-path="node/167">BoFs (Fri/Sat)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-fri">
+        <a href="../schedule/friday.html" title="Friday Sessions" data-drupal-link-system-path="2018/schedule/friday">Sessions (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-sat">
+        <a href="../schedule/saturday.html" title="Saturday Sessions" data-drupal-link-system-path="2018/schedule/saturday">Sessions (Sat)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sprints-sun">
+        <a href="../../sprints.html" title="Sprints">Sprints (Sun)</a>
+            </li>
+  </ul>
+
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2018.html" hreflang="en">MidCamp 2018</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Building SEO-Friendly Sites with Drupal</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="74" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2018-03-09T22:00:00Z" class="datetime">Friday, 4:00 pm CST</time>
+ - <time datetime="2018-03-09T23:00:00Z" class="datetime">Friday, 5:00 pm CST</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-81" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-name field--type-string field--label-hidden field__item">Room 314A</div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>When building sites, customers expect the site to be optimized for search engines. The good news is that Drupal is very friendly to search engines out of the box. There are a number of modules, tools and best practices that we use on every site we build. In this session, I will talk about modules and settings you can implement while building your site to make search engine optimization even better. These tools will also give site administrators the tools they want to do all their SEO tweaking without modifying templates and needing FTP access, if possible.</p>
+
+<p>I am not a search engine optimization expert. This is not an advanced SEO tips and tricks session. I do know the basics that Drupal site builders should know in order to serve their clients by building the site in search-engine-friendly way and will work to show you that information. I also regularly work with our internet marketing department to implement solutions, so we will talk about those as well.</p>
+
+<p>Learning Objectives &amp; Outcomes:</p>
+
+<ul>
+	<li>Overview of modules that should be used in best practices in Search Engine Optimization</li>
+	<li>Details on setting up useful URL Aliases and Redirects</li>
+	<li>How to build a sitemap and submit it to sites</li>
+	<li>Giving site administrators access to set page titles and meta tags</li>
+</ul></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/VdSsDpvn_T4?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-presenter-slides field--type-file field--label-above">
+    <div class="field__label">Presenter Slides</div>
+              <div class="field__item">
+<span class="file file--mime-application-pdf file--application-pdf"> <a href="../../sites/default/files/2018-03/Drupal%20SEO%20MidCamp%202018.pdf" type="application/pdf">Drupal SEO MidCamp 2018.pdf</a></span>
+</div>
+          </div>
+
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Dan Ficker</h4>
+
+      Staff Customer Success Engineer
+
+
+          @
+              <a href="https://pantheon.io/">Pantheon</a>
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p>Dan Ficker has been building websites since 1997, when he wanted to tell the world which rock bands he was a fan of. Since then, he has helped build hundreds of websites, most of them using the PHP programming language. He went to college, learned more about development in Java and Oracle, but still builds websites, these days most often using the Drupal or WordPress content management systems built on top of PHP. In the past 17+ years of professional development, he has built and worked on the PHP code, MySQL queries, HTML output, and performance of hundreds of websites. Dan still gets excited when a band he's a fan of comes to town and enjoys learning about other areas of technology.</p></div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2023-01/3%20-%20Daniel%20Ficker_065_sm.jpeg%3Fitok=_0FldWJw" width="220" height="199" alt="The head of rotund, bearded man with short, brown hair and glasses lit mostly from the right side." class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">End users / Content Admin</div>
+          <div class="field__item">Site Building</div>
+              </div>
+      </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p>all right welcome my name is Dan thicker</p>
+
+<p>and this is building SEO friendly sites</p>
+
+<p>with Drupal and just get started here I</p>
+
+<p>think well first I guess about me</p>
+
+<p>sometimes we're shirts in the office I</p>
+
+<p>guess but yeah I've been a computer geek</p>
+
+<p>for like yes it is yes I the red light</p>
+
+<p>means anyway let's see yeah no I mean</p>
+
+<p>I've been a computer programmer for</p>
+
+<p>thirteen some years and work at an</p>
+
+<p>agency in the Twin Cities Minnesota when</p>
+
+<p>you have to st. Paul called August - and</p>
+
+<p>actually remember if anybody wants</p>
+
+<p>afterwards I've got some Twin Cities</p>
+
+<p>Drupal camp stickers here we can if</p>
+
+<p>anybody wants them we can pass them out</p>
+
+<p>or puts a Drupal campus this June but</p>
+
+<p>the company I work at August ash we do</p>
+
+<p>website design develop marketing and we</p>
+
+<p>do have a kind of yeah okay we'll just</p>
+
+<p>go with what is SEO and SEO stands for</p>
+
+<p>search engine optimization you probably</p>
+
+<p>didn't do that but in case you didn't</p>
+
+<p>that's what we got</p>
+
+<p>yeah the process of making it website</p>
+
+<p>being a better understood by search</p>
+
+<p>engines or optimized for search engines</p>
+
+<p>search engines are kind of you know</p>
+
+<p>basically some computers on the internet</p>
+
+<p>that read your website and keep</p>
+
+<p>information about it so that when</p>
+
+<p>somebody want comes along say the most</p>
+
+<p>well-known search engine engine is</p>
+
+<p>Google of course there's also being and</p>
+
+<p>probably I think DuckDuckGo is another</p>
+
+<p>owners</p>
+
+<p>there used to be a lot more of them do</p>
+
+<p>but and what I what I think most people</p>
+
+<p>are talking about when they say SEO or</p>
+
+<p>internet marketing is really kind of a</p>
+
+<p>team of people and this is what we have</p>
+
+<p>in August - - it's two people who do a</p>
+
+<p>lot of research on like best keywords to</p>
+
+<p>kind of use on your website for various</p>
+
+<p>you know I for various things and and</p>
+
+<p>you know kind of setting kind of goals</p>
+
+<p>Dwayne was talking but earlier today</p>
+
+<p>like in his talk talking about goals</p>
+
+<p>that you want you know to make your</p>
+
+<p>website profitable or you know to meet</p>
+
+<p>certain goals - with the functionality</p>
+
+<p>your website and so our internet</p>
+
+<p>marketing department definitely does a</p>
+
+<p>lot of that but what I ended up doing as</p>
+
+<p>a developer what did our marketing team</p>
+
+<p>is really when they say hey we want if</p>
+
+<p>we want to get to at doing X putting</p>
+
+<p>these meta tags or changing the page</p>
+
+<p>titles how can we do that and that's</p>
+
+<p>what we're really going to talk about</p>
+
+<p>today is how some tools that Drupal</p>
+
+<p>provides as well as some Drupal modules</p>
+
+<p>and other things that can help us make</p>
+
+<p>those changes for the internet marketing</p>
+
+<p>or SEO team another thing I see pretty</p>
+
+<p>often is sometimes our clients you know</p>
+
+<p>use a different company than us for</p>
+
+<p>internet marketing or SEO and often the</p>
+
+<p>first thing we'll get from them is our</p>
+
+<p>SEO people say we want an FTP login to</p>
+
+<p>the site and for the most part we say</p>
+
+<p>we'd rather not if you don't have enough</p>
+
+<p>you use the FTP login or you know FTP is</p>
+
+<p>not even that secure so don't don't</p>
+
+<p>probably don't do that but generally we</p>
+
+<p>will try to give them some sort of tools</p>
+
+<p>so that they can even just log into the</p>
+
+<p>website and change some stuff they don't</p>
+
+<p>have to muck about in learning how</p>
+
+<p>Troopa works to some extent don't have</p>
+
+<p>to worry about Drupal templates and that</p>
+
+<p>type of thing</p>
+
+<p>so that's kind of our goal today just</p>
+
+<p>talking about various areas that we can</p>
+
+<p>help internet marketing or SEO teams</p>
+
+<p>with improving the content on your site</p>
+
+<p>for search engines and these are this is</p>
+
+<p>kind of the six different areas I'm</p>
+
+<p>gonna talk about today so we'll just</p>
+
+<p>jump right in domains</p>
+
+<p>that's my vanity domain dan the man or</p>
+
+<p>something like that</p>
+
+<p>anyway the first thing I talk about is a</p>
+
+<p>lot of websites have more than one</p>
+
+<p>domain you can access the website on</p>
+
+<p>maybe and what we really want to do so I</p>
+
+<p>got a couple of them to go should go to</p>
+
+<p>Daniel thicker calm or demand met for</p>
+
+<p>some reason those those will all get you</p>
+
+<p>to my website if depending on the server</p>
+
+<p>configuration is set up you could</p>
+
+<p>actually like the server could actually</p>
+
+<p>respond to each of those in such a way</p>
+
+<p>that each each of them looks like a</p>
+
+<p>separate website that has the exact same</p>
+
+<p>content and what we so would really</p>
+
+<p>rather do is not have that situation and</p>
+
+<p>so it would rather do is just configure</p>
+
+<p>the search engines in search engines can</p>
+
+<p>be confused and say this you know is</p>
+
+<p>three different websites with the same</p>
+
+<p>content and will decide that one of them</p>
+
+<p>is important for next pages and one of</p>
+
+<p>them is important for other pages it</p>
+
+<p>just things can get confused so what we</p>
+
+<p>recommend to probably do is redirect</p>
+
+<p>domain one of the all of the domains</p>
+
+<p>except for one to the main an exist the</p>
+
+<p>example I've mentioned there too you</p>
+
+<p>know my website go to Daniel thicker</p>
+
+<p>calm it'll just lead your wreck too</p>
+
+<p>daamn calm and it actually well it had</p>
+
+<p>some problems right now because of HTTP</p>
+
+<p>HTTPS and certificates but the way you</p>
+
+<p>can do that is configuration on your</p>
+
+<p>apache or nginx or whatever your web</p>
+
+<p>server is serving husband hosting</p>
+
+<p>providers will have different ways you</p>
+
+<p>can do that</p>
+
+<p>triple does have an HT Access file for a</p>
+
+<p>that will kind of give me some just</p>
+
+<p>actually there's some stuff already in</p>
+
+<p>there that says just comment this out if</p>
+
+<p>you are uncomment this and then and then</p>
+
+<p>it will just do it for you</p>
+
+<p>so that's one thing that's good a good</p>
+
+<p>idea to do make sure you have all your</p>
+
+<p>domains redirecting to one domain so</p>
+
+<p>that surgeon does know this domain is</p>
+
+<p>the main one the wwe.com or something</p>
+
+<p>like that</p>
+
+<p>and not it's one of the you get demands</p>
+
+<p>for a lot of different reasons it's</p>
+
+<p>either an old brand name of the company</p>
+
+<p>or you know some sort of a marketing</p>
+
+<p>campaign an alternate spelling of the</p>
+
+<p>brand or something like that and so this</p>
+
+<p>is one way to make sure the search</p>
+
+<p>engines do not get confused with domains</p>
+
+<p>and the next big section we're gonna</p>
+
+<p>talk about its URLs URLs are a major</p>
+
+<p>part of a website they're kind of like</p>
+
+<p>the file system of the website URLs can</p>
+
+<p>kind of look like well almost anything I</p>
+
+<p>mean probably remember some days or</p>
+
+<p>websites where you've seen where you</p>
+
+<p>know the URL is sometimes well first of</p>
+
+<p>all in URLs we have a domain and then a</p>
+
+<p>the path and the path is what we're</p>
+
+<p>really talking about here when we're</p>
+
+<p>talking about URLs is the path internal</p>
+
+<p>to your website I'm just thinking about</p>
+
+<p>like yet in the 80 to 90 is kind of</p>
+
+<p>these enterprise CMS systems the URLs</p>
+
+<p>were mostly just like a bunches of</p>
+
+<p>hashes of random letters and numbers and</p>
+
+<p>you're like what does that all mean and</p>
+
+<p>apparently it's some sort of database ie</p>
+
+<p>it's somewhere thankfully Drupal doesn't</p>
+
+<p>want a better job of handling those URLs</p>
+
+<p>than that but yeah it's the domain part</p>
+
+<p>of the URL redirect you to the server</p>
+
+<p>thereof directs you to that server and</p>
+
+<p>the path is kind of says here's where a</p>
+
+<p>file is Drupal doesn't actually have the</p>
+
+<p>files stored in that spot on the server</p>
+
+<p>but it translates itself into saying</p>
+
+<p>I see with father looking for and you</p>
+
+<p>know generating that file basically with</p>
+
+<p>an HTML page this is the part where I'd</p>
+
+<p>like to plead for URLs paths of pages</p>
+
+<p>making some sense so we'll talk about a</p>
+
+<p>second by default Drupal just you know</p>
+
+<p>actually the path by default is usually</p>
+
+<p>just a node slash something which is not</p>
+
+<p>really that pretty of a title and that's</p>
+
+<p>where your SEO teams may say hey we want</p>
+
+<p>the URL to look prettier than that we</p>
+
+<p>want to have certain keywords in it and</p>
+
+<p>we'll let them do that but first of all</p>
+
+<p>I just want to say yeah URLs should</p>
+
+<p>should be organized in some intelligent</p>
+
+<p>way if you have a hierarchy of content</p>
+
+<p>if you have kind of sections to your</p>
+
+<p>website like that should be reflected in</p>
+
+<p>what the URLs look like convey a</p>
+
+<p>hierarchy meaning I like to say they</p>
+
+<p>should be hackable which would by which</p>
+
+<p>I mean for example here if you have you</p>
+
+<p>know I'm I or I'm a website blog / 27 /</p>
+
+<p><br>
+you know it probably would make sense if</p>
+
+<p>it's a blog post called sample posts</p>
+
+<p>from October 2017 for some reason and I</p>
+
+<p>also think if you're gonna have those</p>
+
+<p>slashes - doesn't make like kind of</p>
+
+<p>folder structure within your site that</p>
+
+<p>if you go to blog slash 2017 or blog</p>
+
+<p>slash 20 17/10 you should actually be</p>
+
+<p>the page there that actually includes</p>
+
+<p>information related to blog posts in</p>
+
+<p><br>
+that can be a little extra work</p>
+
+<p>sometimes but if you're gonna have the</p>
+
+<p>kind of folder structure like somebody</p>
+
+<p>will try to just see like is there</p>
+
+<p>anything at this page and it would be</p>
+
+<p>nice if there is a thing on there even</p>
+
+<p>if there's not in your</p>
+
+<p>Lync on your menu were those types of</p>
+
+<p>things yeah another thing that has to do</p>
+
+<p>with both domains and URLs is robots.txt</p>
+
+<p>I believe there's one in yeah there it's</p>
+
+<p>a robusta txt included within Drupal I</p>
+
+<p>believe but a you know it basically</p>
+
+<p>tells these search engines here's what</p>
+
+<p>we do or do not want you to look at and</p>
+
+<p>and you know by default there's a couple</p>
+
+<p>like Drupal doesn't if if there was</p>
+
+<p>anything in the mid section that was</p>
+
+<p>public like Drupal or your search</p>
+
+<p>engines don't need to know what is in</p>
+
+<p>there they don't need to index it they</p>
+
+<p>don't need to look through it so maybe</p>
+
+<p>you know people something in there that</p>
+
+<p>says don't look at it mint pages yeah</p>
+
+<p>yeah it'll box the admin pages and some</p>
+
+<p>other kind of you know things that are</p>
+
+<p>just kind of internal to drupal's</p>
+
+<p>backing system you know but you won't</p>
+
+<p>obviously want all your content in there</p>
+
+<p>sometimes I've seen some weird things</p>
+
+<p>where maybe a view is not exactly set up</p>
+
+<p>correctly and there's kind of like an</p>
+
+<p>infinite possibilities of you know URL</p>
+
+<p>arguments or something like that and</p>
+
+<p>I've found like search engines kind of</p>
+
+<p>eating up the traffic on our website you</p>
+
+<p>know indexing hundreds of thousands of</p>
+
+<p>variations on these pages generally</p>
+
+<p>that's something we should also probably</p>
+
+<p>fix in the view but you could also use</p>
+
+<p>the robots.txt file will say just don't</p>
+
+<p>even bother trying to index all these</p>
+
+<p>pages because they're not going to be</p>
+
+<p>helpful for you that's what the robot</p>
+
+<p>that chief teeth thing is for also I</p>
+
+<p>just mentioned on staging sites you</p>
+
+<p>could use just disallow everything if</p>
+
+<p>you have a test or staging site where</p>
+
+<p>you don't want this copy of the website</p>
+
+<p>to be indexed by searching into these</p>
+
+<p>engines the one caveat to that is make</p>
+
+<p>sure it never ever ever gets to your</p>
+
+<p>live web site because if it does then</p>
+
+<p>the search engines are gonna be like</p>
+
+<p>okay we're done we're leaving so and</p>
+
+<p>then your clients are going to be not</p>
+
+<p>very happy when they say</p>
+
+<p>is no one looking at her website first</p>
+
+<p>yeah</p>
+
+<p>with URLs here we'll keep going and by</p>
+
+<p>default like I said Drupal drupal's</p>
+
+<p>internal URL structure is just node</p>
+
+<p>slash node ID as a number that's</p>
+
+<p>assigned to the piece of content not</p>
+
+<p>very pretty not very nice so what is</p>
+
+<p>built into Drupal is the URL alias</p>
+
+<p>module or yeah blue bit the module</p>
+
+<p>anyway it's burned up there by default</p>
+
+<p>you turned each installed Drupal and</p>
+
+<p>right there you can put whatever you</p>
+
+<p>want in for the URL and usually to just</p>
+
+<p>pick something slash about - us or</p>
+
+<p>whatever you want to call it and that</p>
+
+<p>can work for some people but we're gonna</p>
+
+<p>look at another couple options here</p>
+
+<p>there's a module called path Auto which</p>
+
+<p>basically gives you a lot more tools for</p>
+
+<p>handling what those URL aliases are it</p>
+
+<p>requires the token module because it</p>
+
+<p>uses these kind of little pieces of</p>
+
+<p>these little bracketed keywords to call</p>
+
+<p>tokens and by default it basically says</p>
+
+<p>for all pieces of content instead of not</p>
+
+<p>giving the URL alias always give it a</p>
+
+<p>URL alias that starts with content slash</p>
+
+<p>and then the an alien URL version of the</p>
+
+<p>title it kind of filters out the spaces</p>
+
+<p>and some funky characters and replace</p>
+
+<p>the spaces with dashes and things so</p>
+
+<p>that it's kind of a URL safe version of</p>
+
+<p>your page title and that's by default</p>
+
+<p>for all content types and it does</p>
+
+<p>something similar for users and nodes if</p>
+
+<p>you turn it every users and taxonomy</p>
+
+<p>terms and that type of thing</p>
+
+<p>but it also can be configured to - a lot</p>
+
+<p>of different options now under the URL</p>
+
+<p>aliases section of the admin there's a</p>
+
+<p>whole section called patterns I believe</p>
+
+<p>yes call patterns and basically you can</p>
+
+<p>say for each content type I'd rather you</p>
+
+<p>know for blog post let's have it start</p>
+
+<p>with slash blog and then slash 20 tens</p>
+
+<p>lat or you know like the years of the</p>
+
+<p>blog posts the day of the blog post</p>
+
+<p>slash then the title of the blog post</p>
+
+<p>you could even do some things where you</p>
+
+<p>know like make if you are pretty sure</p>
+
+<p>that everything in this content type is</p>
+
+<p>going to have a menu item you can</p>
+
+<p>actually say you know the parent menu</p>
+
+<p>items current path and then the title</p>
+
+<p>and so then you kind of actually do get</p>
+
+<p>this kind of menu based hierarchy built</p>
+
+<p>into the site that can break down if</p>
+
+<p>you're for some reason those posts don't</p>
+
+<p>actually have a menu item then it</p>
+
+<p>probably doesn't make much sense but so</p>
+
+<p>there's there's some things to keep in</p>
+
+<p>mind there but it is a lot of</p>
+
+<p>configuration within pathauto and it was</p>
+
+<p>just kind of you set up these little</p>
+
+<p>patterns that say for this content type</p>
+
+<p>make the URL look like this and for this</p>
+
+<p>other content type make it look like</p>
+
+<p>that</p>
+
+<p>and then just by default when anyone</p>
+
+<p>creates content you get a pretty nice</p>
+
+<p>clean URL that will work for most cases</p>
+
+<p>and in the admin under URL illnesses</p>
+
+<p>there's an option if you by default it</p>
+
+<p>just checks to you know use this use the</p>
+
+<p>automatically generated one and if you</p>
+
+<p>keep that on it uses therefore that page</p>
+
+<p>if you check it uncheck the box you can</p>
+
+<p>then set you know a specific one that</p>
+
+<p>you can override the default</p>
+
+<p>another great what module we recommend</p>
+
+<p>to use with Drupal 7 and Drupal 8 sites</p>
+
+<p>to both please apply for mostly ever</p>
+
+<p>both sites is a redirect module the</p>
+
+<p>redirect module basically allows you to</p>
+
+<p>kind of well so we talked about you know</p>
+
+<p>the internal Drupal path node slash node</p>
+
+<p>ID and then there's also the URL alias</p>
+
+<p>the redirect is is something that just</p>
+
+<p>points to the alias of the of the page</p>
+
+<p>so if you have let's see there's a</p>
+
+<p>couple things maybe you want you know a</p>
+
+<p>nice customized short URL for this page</p>
+
+<p>you have an event coming up and it's</p>
+
+<p>called splash or something then play</p>
+
+<p>about summer already or something um but</p>
+
+<p>then you can basically say hey I want</p>
+
+<p>anybody who types in my domain calm</p>
+
+<p>slash slash splash to get redirected to</p>
+
+<p>this page which might be a little bit</p>
+
+<p>longer URL like splash event</p>
+
+<p><br>
+of the page and that's completely rel</p>
+
+<p>and you might use that because then you</p>
+
+<p>don't have to write out on a poster or</p>
+
+<p>something like go to my domain comm / /</p>
+
+<p>- event - 2018 this comité event that</p>
+
+<p>comes to the splash and that's that's</p>
+
+<p>kind of one one use of the redirect but</p>
+
+<p>we'll talk about a couple more here -</p>
+
+<p>when yeah the other thing was right here</p>
+
+<p>actually so when a page title changes it</p>
+
+<p>actually does update well I mean any a</p>
+
+<p>part of that pattern that we're talking</p>
+
+<p>about in the path auto module effect</p>
+
+<p>part changes then it makes a new URL</p>
+
+<p>without the redirect module anybody who</p>
+
+<p>tries to go to the old URL will get a</p>
+
+<p>page not found error and nobody likes a</p>
+
+<p>page not found error so the redirect</p>
+
+<p>module basically as soon as you install</p>
+
+<p>it and turn it on it says oh I know</p>
+
+<p>where this this is supposed to go it it</p>
+
+<p>there's no page here anymore but if you</p>
+
+<p>go</p>
+
+<p>or to this new URL that's where it'll go</p>
+
+<p>that automatically redirects all your</p>
+
+<p>visitors to that from the old URL to the</p>
+
+<p>new URL and then yeah in the admin of</p>
+
+<p>that you like I said you could set your</p>
+
+<p>own you redirects on the page it does a</p>
+
+<p>couple more things to ya like I said it</p>
+
+<p>went x1 it's change yet you can add your</p>
+
+<p>own custom redirects for any reason you</p>
+
+<p>want and then it also tries to if it</p>
+
+<p>notices sometimes you change the title</p>
+
+<p>of a page when you change it back and so</p>
+
+<p>in the past there's been some issues</p>
+
+<p>where it doesn't realize like it's</p>
+
+<p>looping infinitely in redirect land and</p>
+
+<p>then you're visiting never get to your</p>
+
+<p>page in it now to try to detect those</p>
+
+<p>and make sure that make sure that you</p>
+
+<p>know it dynamically kind of shuts off</p>
+
+<p>any redirects that are causing looping</p>
+
+<p>issues there are some cases where if</p>
+
+<p>you're living between two URLs still you</p>
+
+<p>know two redirects then you can still</p>
+
+<p>have an issue but hopefully that doesn't</p>
+
+<p>happen automatically very often this is</p>
+
+<p>another Drupal 7 module called global</p>
+
+<p>redirect and this is also kind of like</p>
+
+<p>we were talking about with domains</p>
+
+<p>really about standardizing URLs Drupal</p>
+
+<p>is pretty forgiving about URLs there's a</p>
+
+<p>lot there's actually a couple of</p>
+
+<p>different URLs paths you could put into</p>
+
+<p>a website to get the same piece of</p>
+
+<p>content and yeah in Drupal 8 most of</p>
+
+<p>these features are included in the</p>
+
+<p>redirect module itself so you don't need</p>
+
+<p>to install an extra module but in Drupal</p>
+
+<p><br>
+include on your website um let's see</p>
+
+<p>yeah so here's my little example you</p>
+
+<p>know the main page URL is just about a</p>
+
+<p>schmee or something like that but it</p>
+
+<p>also actually could be accessible at any</p>
+
+<p>one of these other URLs like notes slash</p>
+
+<p>one about - maybe with a slash on the</p>
+
+<p>end or question mark Q equals about me</p>
+
+<p>or index dot PHP Q equals node slash one</p>
+
+<p>the last couple especially are some</p>
+
+<p>weird if you see mostly those URLs at</p>
+
+<p>the end it's probably either because</p>
+
+<p>you're trying to trick people into doing</p>
+
+<p>something silly or your web server is</p>
+
+<p>configured incorrectly because the -</p>
+
+<p>that question mark you thing actually</p>
+
+<p>does something but it is kind of</p>
+
+<p>Drupal's internal language but it</p>
+
+<p>shouldn't actually be showing up for</p>
+
+<p>users but what the globe will redirect</p>
+
+<p>module basically does this takes all of</p>
+
+<p>those last four and just automatically</p>
+
+<p>redirects them up to the main path most</p>
+
+<p>likely search engines are pretty good at</p>
+
+<p>deciding this you know these URLs are</p>
+
+<p>showing them pretty much the same</p>
+
+<p>content they're probably the same thing</p>
+
+<p>but it's nice to have you know a</p>
+
+<p>redirect that said that enforces that as</p>
+
+<p>well</p>
+
+<p>and that's all we have about URLs but we</p>
+
+<p>have a couple more tools we're going to</p>
+
+<p>talk about and the first one is XML</p>
+
+<p>sitemaps this is kind of XML sitemap of</p>
+
+<p>my site which is just a bunch of blog</p>
+
+<p>posts really it doesn't look this pretty</p>
+
+<p>actually this is a style sheet on top of</p>
+
+<p>the XML XML of course it's just kind of</p>
+
+<p>like HTML code it's just a lot of you</p>
+
+<p>know braces and brackets and things and</p>
+
+<p>and URLs it but I include some</p>
+
+<p>interesting information basically about</p>
+
+<p>the URL when I was last updated and this</p>
+
+<p>is another tool that search engines like</p>
+
+<p>to have or it can be helpful to give to</p>
+
+<p>search engines but the I think the</p>
+
+<p>reason I recommend that sitemap is</p>
+
+<p>because it's not it's not something that</p>
+
+<p>visitors look at really but it's</p>
+
+<p>basically the XML sitemap module</p>
+
+<p>basically there's a couple other modules</p>
+
+<p>- money that's an XML sitemap basically</p>
+
+<p>just creates and keeps a running list of</p>
+
+<p>all the content on your website and then</p>
+
+<p>it's search engines if they come with</p>
+
+<p>cross new content and I think it's</p>
+
+<p>interesting will index it but you first</p>
+
+<p>instead you give them a whole list and</p>
+
+<p>say here's all the stuff I'm interested</p>
+
+<p>in you've indexing and so then they can</p>
+
+<p>probably see it faster and get it</p>
+
+<p>included in their index faster so yeah</p>
+
+<p>it's just a list of all the pages it</p>
+
+<p>includes some information about when</p>
+
+<p>they're updated and how often they may</p>
+
+<p>be updated you can include with the XML</p>
+
+<p>sitemap module a little bit of you know</p>
+
+<p>content items menu items user pages if</p>
+
+<p>there's something interesting on them</p>
+
+<p>taxonomy term pages and there's an</p>
+
+<p>opportunity going with with the module</p>
+
+<p>to submit automatically the information</p>
+
+<p>to Bing or</p>
+
+<p>well Google and Bing generally you have</p>
+
+<p>you know I you are l that you can say</p>
+
+<p>hey I've got an exciting map here's the</p>
+
+<p>five so there are a couple other ways to</p>
+
+<p>do that and we'll talk about those I I</p>
+
+<p>guess what I would say to with XML</p>
+
+<p>sitemap the Drupal 8 it's still kind of</p>
+
+<p>an early alpha beta version of the</p>
+
+<p>module and it the administration</p>
+
+<p>interface definitely is not working</p>
+
+<p>perfectly yet it can be a little</p>
+
+<p>confusing to configure it as well as I</p>
+
+<p>find you have to kind of use there's a</p>
+
+<p>link in there to rebuild the sitemap at</p>
+
+<p>least once</p>
+
+<p>after you configure what you have to do</p>
+
+<p>is go into each content type and say yes</p>
+
+<p>I want to include this in my sitemap and</p>
+
+<p>then after that generally a rebuild the</p>
+
+<p>list because otherwise it kind of just</p>
+
+<p>includes the homepage in the list is</p>
+
+<p>what I found so hopefully that's helpful</p>
+
+<p>in getting it working but the other</p>
+
+<p>thing we can do with sitemaps is</p>
+
+<p>especially for google google is by far</p>
+
+<p>the biggest search engine but the google</p>
+
+<p>search console is it it's actually</p>
+
+<p>they're doing a new design which looks</p>
+
+<p>even more exciting this but it looks</p>
+
+<p>kind of more like the new version of</p>
+
+<p>Google Analytics in the Google search</p>
+
+<p>console is that google.com slash</p>
+
+<p>webmasters and all you need to do is</p>
+
+<p>kind of verify that you are the owner or</p>
+
+<p>manager of that site there's a couple</p>
+
+<p>ways you can do that and they walk you</p>
+
+<p>through it pretty quickly if you have</p>
+
+<p>Google Analytics order consent DNS</p>
+
+<p>records or set a file on the server you</p>
+
+<p>can verify this site and through there</p>
+
+<p>you can actually manually submit your</p>
+
+<p>google site maps where your XML sitemaps</p>
+
+<p>and if you want to it</p>
+
+<p>well when after you submit that you get</p>
+
+<p>actually information like Google could</p>
+
+<p>tell you some information like hey it</p>
+
+<p>says I should include this page but this</p>
+
+<p>page is actually blocked by the</p>
+
+<p>robots.txt file or</p>
+
+<p>I can't access that page because</p>
+
+<p>actually it gives me a 500 error or a</p>
+
+<p><br>
+at that occasionally Google well once</p>
+
+<p>you created you have to log in with a</p>
+
+<p>Google account once you yes</p>
+
+<p>log in with webmaster search console and</p>
+
+<p>once you have that to that Google can</p>
+
+<p>actually contact you email you and say</p>
+
+<p>hey we noticed your website has malware</p>
+
+<p>on it or something's really weird errors</p>
+
+<p>are happening any website so it could be</p>
+
+<p>nice to get that information as well</p>
+
+<p>Google once you verify your site with</p>
+
+<p>search console Google actually knows hey</p>
+
+<p>this is somebody I can actually reach</p>
+
+<p>out to to say hey I'm noticing weird</p>
+
+<p>things on your website so that can</p>
+
+<p>occasionally happen - there's even a way</p>
+
+<p>in there - if you if they do detect</p>
+
+<p>malware or something and start you know</p>
+
+<p>and they detect something's wrong with</p>
+
+<p>your site and they start penalizing you</p>
+
+<p>and down indexing you can reach out to</p>
+
+<p>them through that - and say hey I fixed</p>
+
+<p>everything could you please let me back</p>
+
+<p>in now and that can be helpful as well</p>
+
+<p>let's see a couple more things to go</p>
+
+<p>here I'm running through this pretty</p>
+
+<p>quick okay</p>
+
+<p>meta tags are another important part of</p>
+
+<p>your website and most of this stuff is</p>
+
+<p>just data that the search engines can</p>
+
+<p>look at first of all we have the page</p>
+
+<p>title the page title is pretty</p>
+
+<p>self-explanatory but within each piece</p>
+
+<p>of content here or a piece of content</p>
+
+<p>you have a title but the title is not</p>
+
+<p>necessarily the page title the page</p>
+
+<p>title is actually the title tag that is</p>
+
+<p>shown at the top of the page it usually</p>
+
+<p>shows up as the name of the tab with a</p>
+
+<p>window in your browser and by default in</p>
+
+<p>Drupal when you eligible there's a site</p>
+
+<p>name you set up words you could change</p>
+
+<p>its website information page in the</p>
+
+<p>admin but by default every pages page</p>
+
+<p>title is the content title the title of</p>
+
+<p>the node or whatever you're looking at</p>
+
+<p>the view or something and then and then</p>
+
+<p>the title of the site and that's the</p>
+
+<p>default Drupal 7 Drupal 8 configuration</p>
+
+<p>and this is a pretty pretty useful</p>
+
+<p>default because it kind of reinforces</p>
+
+<p>the you know h1 content of your page and</p>
+
+<p>your page title or not have the same</p>
+
+<p>title the same keywords and if you have</p>
+
+<p>the name of your site in there too and</p>
+
+<p>the page title and that's those are</p>
+
+<p>usually some of the most important key</p>
+
+<p>words on the page anyway but again we</p>
+
+<p>can use some tools to make that even</p>
+
+<p>better and the might wonder to talk</p>
+
+<p>about is called meta tag and the meta</p>
+
+<p>tag module will do even more for setting</p>
+
+<p>page titles as well as some other</p>
+
+<p>information again it uses the token</p>
+
+<p>module to kind of use those code</p>
+
+<p>bracketed keywords that have to do with</p>
+
+<p>it</p>
+
+<p>your website and like the like the path</p>
+
+<p>Auto module that we talked about earlier</p>
+
+<p>in the token system and uses you can</p>
+
+<p>basically for each content type taxonomy</p>
+
+<p>turn page user profile page you can set</p>
+
+<p>kind of a default like let's see that</p>
+
+<p>yeah for the page title should be this</p>
+
+<p>there's other meta tag tags called like</p>
+
+<p>descriptions or keywords and it sets</p>
+
+<p>basically pretty sensible defaults most</p>
+
+<p>pieces of content will have like a body</p>
+
+<p>field and so it actually uses the</p>
+
+<p>summary of the body field as the</p>
+
+<p>description of the content so what and</p>
+
+<p>there's also a link another tag of the</p>
+
+<p>canonical URL which actually will always</p>
+
+<p>put in the URL alias for that page as a</p>
+
+<p>meditative by default too so that kind</p>
+
+<p>of also reinforces that we say this is</p>
+
+<p>the URL that you're supposed to use for</p>
+
+<p>this page and but yeah there's a lot of</p>
+
+<p>different things the meta tag module can</p>
+
+<p>do it's a lot of little HTML code that</p>
+
+<p>goes in the top of your page but you can</p>
+
+<p>also customize the page title</p>
+
+<p>description the keywords any of these</p>
+
+<p>really through a little I mean screen</p>
+
+<p>we'll talk about here and you can set</p>
+
+<p>per content type again like use this</p>
+
+<p>kind of patterning for this content use</p>
+
+<p>different hide for like it's the content</p>
+
+<p>and there's even some meta tags that</p>
+
+<p>have to do with search engines don't</p>
+
+<p>Index this page there's even a couple</p>
+
+<p>more meta tag sub modules for what they</p>
+
+<p>call Open Graph which is the use for</p>
+
+<p>like Twitter and Facebook card things</p>
+
+<p>like when you share a link just pops up</p>
+
+<p>a little card with an image and and a</p>
+
+<p>title I'll get the page a little</p>
+
+<p>description maybe so there are some</p>
+
+<p>options in there too that you can say</p>
+
+<p>hey I just want you know when somebody</p>
+
+<p>shares a link of Twitter and Facebook</p>
+
+<p>that looks up looks a little fancier and</p>
+
+<p>that just adds those meta tags you can</p>
+
+<p>customize it</p>
+
+<p>yeah and then here's the example of just</p>
+
+<p>kind of when you talk to all the meta</p>
+
+<p>tag module like I said you can on the</p>
+
+<p>content type page say here's the</p>
+
+<p>defaults for that kind of pin type right</p>
+
+<p>I'm at a given page but when you're</p>
+
+<p>editing a page you'll actually see -</p>
+
+<p>like here's the pattern we're going to</p>
+
+<p>use by default if you don't modify it</p>
+
+<p>but on any page you can in this little</p>
+
+<p>vertical tab here at the bottom you can</p>
+
+<p>say actually I don't want to use the</p>
+
+<p>default body field for the description</p>
+
+<p>I'd rather write my own description or</p>
+
+<p>I'd rather write my own page title and</p>
+
+<p>if you know your internet marketing</p>
+
+<p>department or whoever is that into the</p>
+
+<p>content it's really interested that much</p>
+
+<p>and setting not they're not using the</p>
+
+<p>default end setting it whatever they</p>
+
+<p>like they can actually do that way to</p>
+
+<p>the administration interface or the way</p>
+
+<p>of the website so there's a lot of</p>
+
+<p>options there another one that I found</p>
+
+<p>just recently that I think is pretty</p>
+
+<p>interesting is called real-time SEO and</p>
+
+<p>it actually uses a plugin that is pretty</p>
+
+<p>popular in them in the WordPress world</p>
+
+<p>it's like Yoast SEO plug-in and it</p>
+
+<p>actually uses any host API and gives it</p>
+
+<p>a bunch of information about here's what</p>
+
+<p>you know the page meta tags and</p>
+
+<p>descriptions and things looks like and</p>
+
+<p>it actually it actually then gives you</p>
+
+<p>something what a little picture of like</p>
+
+<p>what it probably will look like in</p>
+
+<p>Google or Bing and also some information</p>
+
+<p>things like um and also some information</p>
+
+<p>about like you can make actually bit</p>
+
+<p>better</p>
+
+<p>can you put it you can even put it as a</p>
+
+<p>keyword that you want to rank pretty</p>
+
+<p>well on but it would also say you know</p>
+
+<p>hey your page title could be longer and</p>
+
+<p>you could put more keywords in there so</p>
+
+<p>give me some some tech tips and secrets</p>
+
+<p>I don't know what secrets these tips but</p>
+
+<p>give you some ideas how to improve the</p>
+
+<p>content of your page for search engines</p>
+
+<p>if you're trying to get into it two</p>
+
+<p>words are taking keywords for Medicare</p>
+
+<p>well yeah I think it's looking at kind</p>
+
+<p>of a lot of the same things that the</p>
+
+<p>search engines do look at it's kind of</p>
+
+<p>the meta tags and stuff Google's looking</p>
+
+<p>at America what's going to key word</p>
+
+<p>Medicare yeah I mean well I think the</p>
+
+<p>top you can say you can say a focus</p>
+
+<p>keyword is kind of you know I'm looking</p>
+
+<p>at you know how old was this keyword</p>
+
+<p>ranked but it does look through you know</p>
+
+<p>the content of the page what's on the</p>
+
+<p>h1s and h2s and I believe some of that</p>
+
+<p>other stuff to try to see it at least</p>
+
+<p>give you some tips that might be helpful</p>
+
+<p>and I haven't used it too much on most</p>
+
+<p>of our sites I'd say but I think for</p>
+
+<p>someone who is interested in writing</p>
+
+<p>more SEO friendly content it could be</p>
+
+<p>could be helpful you know it's like a</p>
+
+<p>lot of these ins I don't know I I think</p>
+
+<p>there is a certain amount of like within</p>
+
+<p>Drupal like I'm giving a lot of ideas up</p>
+
+<p>here's money modules you should involve</p>
+
+<p>and I think most of these you should</p>
+
+<p>install this one is maybe more like it</p>
+
+<p>could be helpful for you it might not be</p>
+
+<p>helpful and there's a certain point</p>
+
+<p>within Drupal to that kind of every</p>
+
+<p>every module you add makes you a mess</p>
+
+<p>it-- milliseconds slower or maybe even</p>
+
+<p>more than that and so you know you don't</p>
+
+<p>want to have 500 modules on your website</p>
+
+<p>you know if this is important to you to</p>
+
+<p>have a really good SEO and that your</p>
+
+<p>content editors are really looking at</p>
+
+<p>what they can do to improve SEO this</p>
+
+<p>might be the type of tool that helpful</p>
+
+<p>um another up-and-coming area is called</p>
+
+<p>RDF or schema.org and this is kind of</p>
+
+<p>like hidden metadata in the page like</p>
+
+<p>meta tags that can that it a little bit</p>
+
+<p>more contextual Drupal Drupal core does</p>
+
+<p>have an RDF module I'm actually not even</p>
+
+<p>sure if it's actually turned on</p>
+
+<p>automatically but I believe it is but</p>
+
+<p>RDF is an open standard and it with the</p>
+
+<p>w3c and basically it's um it's it's some</p>
+
+<p>extra little attribute tags within the</p>
+
+<p>pages div spans and other things that</p>
+
+<p>say you know this is a certain kind of</p>
+
+<p>data I know like when you turn the</p>
+
+<p>already have module the like author</p>
+
+<p>information and be posted by information</p>
+
+<p>will have a version of it that's kind of</p>
+
+<p>a fairy the posted by it usually just</p>
+
+<p>says like you know date posted and it is</p>
+
+<p>a date format that's whatever you set</p>
+
+<p>and this will actually include like a</p>
+
+<p>very standard date format within the</p>
+
+<p>like metadata of the page that you can't</p>
+
+<p>actually see but search engines and</p>
+
+<p>other robots that search on the internet</p>
+
+<p>could use this data find some more</p>
+
+<p>information I know but if you actually</p>
+
+<p>use the address field module it will</p>
+
+<p>also you know include the whole address</p>
+
+<p>information it will say this section</p>
+
+<p>here you know it is a this section here</p>
+
+<p>is the address part the section of the</p>
+
+<p>city and this is the state this</p>
+
+<p>zip code or country name that kind of</p>
+
+<p>thing so that's where RDF can become</p>
+
+<p>pretty helpful</p>
+
+<p>I don't think let's the Drupal seventh</p>
+
+<p>rdf does not do come that really helps</p>
+
+<p>in my opinion your blade i think has a</p>
+
+<p>lot more built into it we'll talk about</p>
+
+<p>that here too schema.org is kind of an</p>
+
+<p>extension of rdf it's also you could you</p>
+
+<p>do a couple different standards like</p>
+
+<p>json-ld or some other different types of</p>
+
+<p>like including by the data in your page</p>
+
+<p>but for drupal seven the schema word</p>
+
+<p>module basically extends the RDF type</p>
+
+<p>system by adding in the content admin</p>
+
+<p>area you could say this is this piece of</p>
+
+<p>content is you know it's a job listing</p>
+
+<p>or it's a location of a place or you</p>
+
+<p>know it's the location of the store or</p>
+
+<p>something like that and then even for</p>
+
+<p>the subfields you can actually say like</p>
+
+<p>this this field is you know like if you</p>
+
+<p>did do a job listing or something you</p>
+
+<p>could say like this field is like what</p>
+
+<p>kind of pay if it's gonna be full-time</p>
+
+<p>or part-time weren't that type of thing</p>
+
+<p>and this is a new one actually their</p>
+
+<p>clients have been asking about a bunch</p>
+
+<p>because like google recently said hey if</p>
+
+<p>you love this human other information on</p>
+
+<p>job listings then you know once people</p>
+
+<p>search for drive listings will actually</p>
+
+<p>not even go to your website but just</p>
+
+<p>show like here's a bunch of down</p>
+
+<p>listings on a google page or something</p>
+
+<p>like that and it's one way to kind of</p>
+
+<p>you know not just say here's a page that</p>
+
+<p>has some interesting content like here's</p>
+
+<p>a piece of a page that has even more</p>
+
+<p>specific content that you can do kind of</p>
+
+<p>whatever you want with and it can be</p>
+
+<p>nice maybe I don't know it people may</p>
+
+<p>not be going to your website as much to</p>
+
+<p>view this information but maybe they're</p>
+
+<p>more easily finding the information that</p>
+
+<p>they're looking for if if they are not</p>
+
+<p>looking for your information</p>
+
+<p>um let's see yeah I think yeah much of</p>
+
+<p>the schema.org information is included</p>
+
+<p>in Drupal 8 we can want to configure it</p>
+
+<p>a little bit more intraplate looks like</p>
+
+<p>there's this RDF UI module that will</p>
+
+<p>allow you to kind of in the UI again I</p>
+
+<p>think that's some more of those type of</p>
+
+<p>information and field information this</p>
+
+<p>is not an area that I've looked at a ton</p>
+
+<p>but it's I think it's a very interesting</p>
+
+<p>place to look in the future and I think</p>
+
+<p>more and more internet marketing groups</p>
+
+<p>and SEO people may be looking at it so</p>
+
+<p>let's necklace a bow back but the last</p>
+
+<p>section I'm going to look at here it's</p>
+
+<p>really talking about tracking scrapes so</p>
+
+<p>that's actually just a boring graph from</p>
+
+<p>my Google Analytics page but but what</p>
+
+<p>I'm really talking about here is</p>
+
+<p>internet marketing folks especially if</p>
+
+<p>they're working with an advertising</p>
+
+<p>company or you if you're sometimes even</p>
+
+<p>though I know some of our clients are</p>
+
+<p>even doing like paid at area like radio</p>
+
+<p>ads or TV ads and the ad companies bill</p>
+
+<p>even says or ads in the paper or</p>
+
+<p>something and the tea and they act like</p>
+
+<p>we want you to stick this piece of</p>
+
+<p>JavaScript on all your pages or one of</p>
+
+<p>the pages in order for us to track some</p>
+
+<p>more information I don't even know how</p>
+
+<p>it works exactly but this is maybe some</p>
+
+<p>ways you can help them do that first I</p>
+
+<p>mentioned Google Analytics is a free</p>
+
+<p>analytics tool provided by Google and</p>
+
+<p>basically you install this little piece</p>
+
+<p>of code on your page and basically</p>
+
+<p>Google just gets a lot of information</p>
+
+<p>about who's visiting your web page and</p>
+
+<p>put some nice graphs to it you can kind</p>
+
+<p>of you could do a lot within it I don't</p>
+
+<p>even know all the details but you can</p>
+
+<p>you know set up like goals you can if</p>
+
+<p>you have ecommerce include some more</p>
+
+<p>information after an order saying this</p>
+
+<p>is what they</p>
+
+<p>this is how much they ordered and you</p>
+
+<p>can actually tie that back to ads saying</p>
+
+<p>people if you bought ads on Google you</p>
+
+<p>can say you know how much did my ads</p>
+
+<p>actually get me or how many times have</p>
+
+<p>they actually filled x1 or buy X things</p>
+
+<p>after they bought imagine so that's what</p>
+
+<p>that's where you can really get kind of</p>
+
+<p>that information on return on investment</p>
+
+<p>on the Google Analytics module for</p>
+
+<p>Drupal it's a it's a pretty good one I</p>
+
+<p>mean if you want to you could just</p>
+
+<p>include in your page template for your</p>
+
+<p>whole site the little piece of Google</p>
+
+<p>code and that might be just all the</p>
+
+<p>information you want it for Google</p>
+
+<p>Analytics the Google Analytics module</p>
+
+<p>does a couple extra pieces of JavaScript</p>
+
+<p>in there for example you could tell it</p>
+
+<p>to actually send Google an event thing</p>
+
+<p>when you click on a file download or</p>
+
+<p>when you click on an external link so</p>
+
+<p>you can kind of keep track of like where</p>
+
+<p>we're going a little bit further than</p>
+
+<p>the default Google Analytics code gives</p>
+
+<p>you it's also pretty easy you don't</p>
+
+<p>actually even have to copy of this huge</p>
+
+<p>block of code you just have to copy out</p>
+
+<p>your little ID number and paste it into</p>
+
+<p>the admin of Google or of Drupal and it</p>
+
+<p>will automatically put the Google X code</p>
+
+<p>light in your page there's a couple</p>
+
+<p>other things so like I said some of</p>
+
+<p>these websites have a lot of these</p>
+
+<p>little JavaScript pieces of tracking</p>
+
+<p>codes or JavaScript sometimes clients</p>
+
+<p>will use something with two of like</p>
+
+<p>crazy egg there's another type of</p>
+
+<p>analytics tool of like where people are</p>
+
+<p>moving their Mouse around on their</p>
+
+<p>website or clicking on different parts</p>
+
+<p>of the page and those can be helpful</p>
+
+<p>what I found is these this Drupal 7</p>
+
+<p>module for tracking code really you can</p>
+
+<p>it gives you kind of a really easy way</p>
+
+<p>in the admin to say hey this little</p>
+
+<p>piece of JavaScript I want it at the top</p>
+
+<p>of the in the meta data area live page</p>
+
+<p>before the body tag</p>
+
+<p>the page where I want at the very very</p>
+
+<p>bottom of my page and that kind of</p>
+
+<p>sticks it in those places that</p>
+
+<p>JavaScript usually goes and you can also</p>
+
+<p>like you can with blocks say I want to</p>
+
+<p>show it on only these pieces of content</p>
+
+<p>these types of content were only only on</p>
+
+<p>these paths or either not on all pages</p>
+
+<p>but not these paths that kind of thing</p>
+
+<p>so this this is just one of those tools</p>
+
+<p>where you could say you know hey on this</p>
+
+<p>you know thank you page for the contact</p>
+
+<p>form instead of actually editing the</p>
+
+<p>template of that page or the content of</p>
+
+<p>that page just go install the tracking</p>
+
+<p>code module and say hey just on this</p>
+
+<p>page include this piece of JavaScript</p>
+
+<p>that was tracking code module we've used</p>
+
+<p>it a lot through the seven sites I</p>
+
+<p>believe I'm not looked at it too much</p>
+
+<p>but there is a module on for Drupal 8</p>
+
+<p>called asset injector that actually you</p>
+
+<p>can inject both JavaScript and CSS and I</p>
+
+<p>think you can do those even a little</p>
+
+<p>more complicated things with it the</p>
+
+<p>other tool you could use is something</p>
+
+<p>like Google tag manager is becoming more</p>
+
+<p>and more popular and that is basically</p>
+
+<p>like Google Analytics just a piece of</p>
+
+<p>Google code you put on every page and</p>
+
+<p>then in Google's web site you can</p>
+
+<p>actually do a lot of these same types of</p>
+
+<p>things so on Google's website you could</p>
+
+<p>say in the tag manager interface you can</p>
+
+<p>say hey only on this page add this piece</p>
+
+<p>of JavaScript or you know on every page</p>
+
+<p>but this paint but this page or that</p>
+
+<p>other page just include the JavaScript</p>
+
+<p>here so then it's pretty impressive what</p>
+
+<p>they got in there actually like you can</p>
+
+<p>kind of like put stuff in there and kind</p>
+
+<p>of keep it unpublished for a while and</p>
+
+<p>publish it when you're ready</p>
+
+<p>and that type of thing so we've started</p>
+
+<p>using that a lot more on sites instead</p>
+
+<p>of actually putting it right into the</p>
+
+<p>website template or you've been</p>
+
+<p>installing this tracking code module</p>
+
+<p>the last thing I'll mention here is a</p>
+
+<p>drupal module called site verify when</p>
+
+<p>you use like stuff like Google search</p>
+
+<p>console where you want to get the search</p>
+
+<p>reduced or any quality a lot of things</p>
+
+<p>you can even a lot of things you know</p>
+
+<p>companies want to verify hey do you</p>
+
+<p>actually own this website and then we</p>
+
+<p>usually give you a couple different ways</p>
+
+<p>to do that like add a little extra</p>
+
+<p>minute egg in there in the website that</p>
+
+<p>identifies what they can actually read</p>
+
+<p>them at a tag and say oh yeah you are</p>
+
+<p>you control the website because you put</p>
+
+<p>it meta tagging now or you control the</p>
+
+<p>website because you put it DNS record in</p>
+
+<p>there and we talked about using that for</p>
+
+<p>the search console to get access but</p>
+
+<p>there are sometimes other reasons you</p>
+
+<p>might do that and so this this module</p>
+
+<p>site verify is just a really simple</p>
+
+<p>admin to to help you do that if you</p>
+
+<p>don't want to actually like for the most</p>
+
+<p>part if if the client says hey we want</p>
+
+<p>this little like a file it uploaded to</p>
+
+<p>the website I will just maybe put the</p>
+
+<p>file and get and it it's and you know</p>
+
+<p>upload it to the website and that should</p>
+
+<p>work fine but it's like if the client</p>
+
+<p>really wanted to do that themselves this</p>
+
+<p>will give you an admin interface where</p>
+
+<p>you can turn on this module and then</p>
+
+<p>they can upload files or add little meta</p>
+
+<p>tags on whatever pages they want and</p>
+
+<p>just do it through the admin so</p>
+
+<p>yeah I mean that's another thing I</p>
+
+<p>mentioned too is just I'm kind of a</p>
+
+<p>little bit against adding little</p>
+
+<p>verification codes and meta tags just</p>
+
+<p>because this one search engine is</p>
+
+<p>looking for it but on the other hand</p>
+
+<p>every single visitor your website has to</p>
+
+<p>download this little snippet of stuff</p>
+
+<p>that doesn't mean anything to them it</p>
+
+<p>just means to me like you're just</p>
+
+<p>wasting kilobytes of download speeds or</p>
+
+<p>something so wait wait going sorry when</p>
+
+<p>doing Google Google search console</p>
+
+<p>verification I usually like to pick one</p>
+
+<p>either like you know hey this account is</p>
+
+<p>already associated with a Google</p>
+
+<p>Analytics account and then I'll just</p>
+
+<p>kind of let you through or include</p>
+
+<p>actually a file that's specific to</p>
+
+<p>Google and that Google can look for that</p>
+
+<p>not everyone else has to know I have to</p>
+
+<p>download that content but you know it</p>
+
+<p>it's you know it's like less than a</p>
+
+<p>kilobyte of data I suppose on every page</p>
+
+<p>so it's not like you know it's the most</p>
+
+<p>downloaded thing ever if it is there but</p>
+
+<p>um yeah site verification module also</p>
+
+<p>site verify is only really now for</p>
+
+<p>Drupal 7 as far as I've seen but there's</p>
+
+<p>other ways to get around that to you</p>
+
+<p>know adding meta tags in different</p>
+
+<p>places and</p>
+
+<p>fighting files so I think that's all I</p>
+
+<p>have for today</p>
+
+<p>hopefully I was and if anybody has any</p>
+
+<p>questions I'd feel free to take them rap</p>
+
+<p>anymore</p>
+
+<p>yes I just wanted to mention one thing</p>
+
+<p>about tips are great to LMOs direct</p>
+
+<p>modules there's one other that I like</p>
+
+<p>Matt redirect naturally and I match</p>
+
+<p>redirect does and so if you haven't</p>
+
+<p>website where you've done a lot of</p>
+
+<p>rearranging or something and you want to</p>
+
+<p>just say take everything that was in</p>
+
+<p>this section and redirect because</p>
+
+<p>there's not a direct one-to-one</p>
+
+<p>correlation with new pages right right</p>
+
+<p>everybody who's going to what used to be</p>
+
+<p>called this now to be caught this you</p>
+
+<p>can you can set it up with a wild card</p>
+
+<p>in your master yeah that's so just with</p>
+
+<p>recording it and the module called match</p>
+
+<p>redirect I couldn't do more about kind</p>
+
+<p>of matching kind of a wild card</p>
+
+<p>searching kind of system that's</p>
+
+<p>interesting I did not use that myself</p>
+
+<p>but any more questions comments anything</p>
+
+<p>I missed</p>
+
+<p>yeah sorry</p>
+
+<p>well um I think you know that's a good</p>
+
+<p>question</p>
+
+<p>I I guess I haven't used it on a site</p>
+
+<p>that has like 100,000 pages or something</p>
+
+<p>like that because it is kind of stored</p>
+
+<p>in its own database table but I don't</p>
+
+<p>think that should be a really big</p>
+
+<p>performance issue yeah I don't know of</p>
+
+<p>one but I you might have may have had</p>
+
+<p>some issues that I have experienced</p>
+
+<p>myself either but yeah I think it's you</p>
+
+<p>know it's pretty well used by you know a</p>
+
+<p>lot of websites I haven't looked at on</p>
+
+<p>drupal.org at the meta tag page you can</p>
+
+<p>say like this many you could see like</p>
+
+<p>this one I think it's probably hundreds</p>
+
+<p>of thousands of websites are probably</p>
+
+<p>using them edit a blog you want so I</p>
+
+<p>think yeah very early on when you were</p>
+
+<p>talking about URLs you're talking about</p>
+
+<p>them being having a higher RPM yeah well</p>
+
+<p>I thank you but I have one website where</p>
+
+<p>we have so many so much in the hierarchy</p>
+
+<p>that I now have some URLs that are like</p>
+
+<p>they're truncated because it's too long</p>
+
+<p>do you have any success</p>
+
+<p>maximum length for useful URLs or</p>
+
+<p>another way to approach that yeah that's</p>
+
+<p>that's a good question I yeah there is</p>
+
+<p>kind of a max I think by default these</p>
+
+<p>URL systems really don't allow like up</p>
+
+<p>to two hundred and fifty or fifty-five</p>
+
+<p>characters or something like that and I</p>
+
+<p>would say I mean most likely at some</p>
+
+<p>point too far in their the search</p>
+
+<p>engines are not really going to look at</p>
+
+<p>those four keywords anyway so maybe</p>
+
+<p>there's a reason not to do it that way</p>
+
+<p>either but yeah I don't know I bet</p>
+
+<p>there's probably something in the that</p>
+
+<p>you could add into the token module that</p>
+
+<p>would say like you know just cut cut off</p>
+
+<p>this you know if your taxonomy term name</p>
+
+<p>or your page name is Lilly long in a</p>
+
+<p>cut-off a little orderly or something</p>
+
+<p>flatter</p>
+
+<p>you know rounded up to write it down to</p>
+
+<p><br>
+so maybe there's something like that but</p>
+
+<p>I'm not exactly sure I have seen that</p>
+
+<p>once or twice before and usually tried</p>
+
+<p>to maybe make the category page names a</p>
+
+<p>little short or something and the</p>
+
+<p>particular site I'm thinking of if I had</p>
+
+<p>it to do over</p>
+
+<p>they wouldn't have bothered so for</p>
+
+<p>example there's like there's three</p>
+
+<p>different kinds of blogs on this site</p>
+
+<p>rather than having you know this whole</p>
+
+<p>path to get to that particular why I</p>
+
+<p>probably just could have you know used a</p>
+
+<p>descriptive name of the blog yeah that</p>
+
+<p>can happen to then you might get yeah I</p>
+
+<p>mean what I have come to is if you do</p>
+
+<p>use the path auto module and you change</p>
+
+<p>what it is</p>
+
+<p>change what the alias is there's ways to</p>
+
+<p>kind of clear all those out and it</p>
+
+<p>should add so I mean I would maybe try</p>
+
+<p>it on dev or test copy or local copy</p>
+
+<p>first before you and verify that at</p>
+
+<p>least you know a couple of various pages</p>
+
+<p>work but you know try it out and see if</p>
+
+<p>you can actually reorganize the URLs you</p>
+
+<p>have the redirects and the aliases those</p>
+
+<p>things working pretty well it should</p>
+
+<p>kind of all redirecting and yeah if I</p>
+
+<p>was in hand anybody wanted to uh yeah</p>
+
+<p>schema metatag papa</p>
+
+<p>yeah yeah okay so that actually will</p>
+
+<p>include json-ld parts in the meta tag</p>
+
+<p>area or page or something like that okay</p>
+
+<p>nice then you have Jason LD is one of</p>
+
+<p>the format's that schema that earlier</p>
+
+<p>accepts and it's usually like the rdf</p>
+
+<p>usually kind of includes all the</p>
+
+<p>metadata in different tags throughout</p>
+
+<p>the page the jason LD kind of usually</p>
+
+<p>just put it in one little block of jason</p>
+
+<p>code that's to some extent kind of</p>
+
+<p>duplicates you know the content you know</p>
+
+<p>it sometimes is a little easier to use</p>
+
+<p>that kind of get it in the right format</p>
+
+<p>that schema or wants then of that higher</p>
+
+<p>page is organized so yeah that's that's</p>
+
+<p>helpful thank you yeah matter is with a</p>
+
+<p>lot of sites builders designers</p>
+
+<p>watch it put into a lot of our these SEO</p>
+
+<p>well the next time I'll cite Mac a lot</p>
+
+<p>of the stuff you mentioned already but</p>
+
+<p>one of the things is trying to get our</p>
+
+<p>clients so I actually do things like</p>
+
+<p>incorporate keywords and page titles</p>
+
+<p>and that's not I mean it's not like we</p>
+
+<p>can go back in this or we would get paid</p>
+
+<p>to go back in and rewrite their page</p>
+
+<p>styles to help us ego rush all right do</p>
+
+<p>you have any resources to direct clients</p>
+
+<p>to to help them grasp no I think let's</p>
+
+<p>see I mean there's a lot of research</p>
+
+<p>done Eric resources on kind of SEO and</p>
+
+<p>keywords that type of thing just kind of</p>
+
+<p>around the internet I guess I'm not</p>
+
+<p>exactly sure I know like yeah there's</p>
+
+<p>one like search engine land or moz.com</p>
+
+<p>search engine land if another website</p>
+
+<p>yeah and then moz.com is a second one</p>
+
+<p>there's some you know kind of search</p>
+
+<p>engine news and and I think moz.com is</p>
+
+<p>like one of the top search engine</p>
+
+<p>companies there's very SEO companies</p>
+
+<p>worldwide or something but you know</p>
+
+<p>those are maybe some good like I've</p>
+
+<p>definitely looked at those for some</p>
+
+<p>other blog posts on how things should</p>
+
+<p>should work I think you know let's see I</p>
+
+<p>think I think Drupal and if you solve</p>
+
+<p>most these modules I think it does a</p>
+
+<p>pretty good job of giving SEO to a point</p>
+
+<p>where it's you know um you just write</p>
+
+<p>good content on your page is going to</p>
+
+<p>kind of just show up to some extent but</p>
+
+<p>you can always kind of you know really</p>
+
+<p>get deep into like oh hey this keyword</p>
+
+<p>is actually not really used by a lot of</p>
+
+<p>our competitors but a lot of people are</p>
+
+<p>searching for it</p>
+
+<p>and so maybe you want to start</p>
+
+<p>optimizing for that keyword instead and</p>
+
+<p>I think that's where you know you</p>
+
+<p>usually get like an SEO or internet</p>
+
+<p>marketing company coming in because the</p>
+
+<p>client says something like hey we're not</p>
+
+<p>getting as much traffic as you want and</p>
+
+<p>we want to improve that more so that</p>
+
+<p>that's one you have to do a little more</p>
+
+<p>research on that here's what you're</p>
+
+<p>looking for that make sense yeah even so</p>
+
+<p>I mean I've noticed a lot of times that</p>
+
+<p>clients will for instance title unknown</p>
+
+<p>something that is maybe not really</p>
+
+<p>related or it's to the content or it's</p>
+
+<p>so generic that is fine with us right</p>
+
+<p>right you know like great a benefice we</p>
+
+<p>kind of stuff I mean was I playing today</p>
+
+<p>yeah yeah so it's that's you know and of</p>
+
+<p>course see the stuff after the fact</p>
+
+<p>because we're not actually adding the</p>
+
+<p>content right yeah I think content I</p>
+
+<p>think they're not really you know</p>
+
+<p>writing content and that's such a way</p>
+
+<p>that it makes it's very helpful for the</p>
+
+<p>reader or for search engines in general</p>
+
+<p>um yeah I you know I guess what I would</p>
+
+<p>do very often is just kind of say hey</p>
+
+<p>you know I noticed this and I think it</p>
+
+<p>could be confusing maybe for your</p>
+
+<p>clients or for your customers and maybe</p>
+
+<p>try just say hey like this would make</p>
+
+<p>more sense I think you know and just try</p>
+
+<p>to try to you know put them in their</p>
+
+<p>shoes I guess you know yeah I face that</p>
+
+<p>same issue with clients of two most</p>
+
+<p>important things with page title and</p>
+
+<p>page description th title is important</p>
+
+<p>for Google to find out what the keywords</p>
+
+<p>are so they can go there see the</p>
+
+<p>description is important for people who</p>
+
+<p>see a results on Google what would -</p>
+
+<p>sentence</p>
+
+<p>show up yeah yeah I've written a</p>
+
+<p>one-page description of what those</p>
+
+<p>elements are what's what should be put</p>
+
+<p>in them into my clients so they could</p>
+
+<p>write that stuff so I can yeah I am by</p>
+
+<p>no means an SEO expert have a one-person</p>
+
+<p>C so that means I design I build I sure</p>
+
+<p>a certain level of SEO for my clients</p>
+
+<p>which isn't a whole lot but I'd like to</p>
+
+<p>share a link that I found really useful</p>
+
+<p>it's it's very very simple for those of</p>
+
+<p>us who don't really know much about SEO</p>
+
+<p>and then perhaps to share with your</p>
+
+<p>clients also and it's back link Oh so</p>
+
+<p>back link and with an O at the end that</p>
+
+<p>SEO - okay exactly Okami slash SEO -</p>
+
+<p>this - here yeah and it's just got and</p>
+
+<p>I'll probably six or eight tips based on</p>
+
+<p>what Google is really looking for right</p>
+
+<p>now and yeah it's simple that's like</p>
+
+<p>stuff if you have the opportunity to</p>
+
+<p>implement</p>
+
+<p>anything at all in terms of content</p>
+
+<p>descriptions I'm just like you're</p>
+
+<p>working on it's definitely yeah that's I</p>
+
+<p>think true likely the pages title the</p>
+
+<p>keywords that you have in the URL and</p>
+
+<p>and actually the you know the URL of the</p>
+
+<p>name of the site reminds me to like</p>
+
+<p>backlinks is when they call like links</p>
+
+<p>that are going to your website and those</p>
+
+<p>are all kind of very important things</p>
+
+<p>that search engines like Google and most</p>
+
+<p>people will use to kind of say hey this</p>
+
+<p>is a important website people in looking</p>
+
+<p>to your website you have some important</p>
+
+<p>information so well subject back there</p>
+
+<p>somehow important search engines I think</p>
+
+<p>these days they're pretty important</p>
+
+<p>because the idea yeah</p>
+
+<p>like I think if no one's linking to your</p>
+
+<p>website and that's like whoa you know</p>
+
+<p>maybe no one finds this useful that's</p>
+
+<p>something you know that maybe the search</p>
+
+<p>engine shouldn't either</p>
+
+<p>but I think you know if you I think</p>
+
+<p>there's also the other side of that too</p>
+
+<p>where you just have a bunch of random</p>
+
+<p>websites that have nothing to do with</p>
+
+<p>your industry and nothing to do with</p>
+
+<p>yeah they're just swarming with a bunch</p>
+
+<p>of spam whatever so I can help you</p>
+
+<p>either because Google is pretty smart at</p>
+
+<p>saying hey this is somebody just trying</p>
+
+<p>to game our system so you know it that's</p>
+
+<p>where like she said every year kind of a</p>
+
+<p>slightly new thing that's going on</p>
+
+<p>because Google's always trying to keep</p>
+
+<p>one step ahead of has the SEO people or</p>
+
+<p>the spam people that are trying to game</p>
+
+<p>the system that they've just created so</p>
+
+<p>it's always a little bit changing but</p>
+
+<p>hopefully this at least you know my</p>
+
+<p>presentation gave you some ideas of like</p>
+
+<p>here's things you can do that will at</p>
+
+<p>least get things started and help you</p>
+
+<p>know if you have an internet marketing</p>
+
+<p>group that's doing a lot more help them</p>
+
+<p>to kind of manage that without having to</p>
+
+<p>you know we've dive into the triple code</p>
+
+<p>so let's call it throw a wildling thing</p>
+
+<p>out there and that is I find that it's</p>
+
+<p>useful on through this super often but I</p>
+
+<p>find it useful look at silver alloys</p>
+
+<p>because it's remarkable to me that like</p>
+
+<p><br>
+to the Box yeah that's true</p>
+
+<p>yeah I was gonna say look at server logs</p>
+
+<p>that's not really that exciting because</p>
+
+<p>it's not gonna I think most of it's just</p>
+
+<p>just noise yeah but a couple things</p>
+
+<p>about it is that directly a5 something</p>
+
+<p>which you can block it with HD access</p>
+
+<p>for instance yeah fancy but it also it</p>
+
+<p>will tell you although you can find this</p>
+
+<p>out in the Google search console to</p>
+
+<p>it'll actually tell you what pages are</p>
+
+<p>being indexed by but you know by Google</p>
+
+<p>or by being or by Yahoo or whatever yeah</p>
+
+<p>yeah so that's sometimes worthwhile</p>
+
+<p>because yeah in the logs the bots will</p>
+
+<p>say actually hey we're at Google about</p>
+
+<p>oh yeah Google Mike to say something</p>
+
+<p>card good for some part of Google that's</p>
+
+<p>that's where I have seen a couple times</p>
+
+<p>where like you know a few configured</p>
+
+<p>wrong and we have a million URLs and</p>
+
+<p>Bing just starts trying to index all of</p>
+
+<p>them why is our server so slow and it's</p>
+
+<p>like well yeah this is trying to index a</p>
+
+<p>thousand different variations of this</p>
+
+<p>page and some happy actually end up</p>
+
+<p>blocking them for a little while and you</p>
+
+<p>know fixing the issue or something like</p>
+
+<p>that</p>
+
+<p>that district yeah looking through the</p>
+
+<p>log female board but I think we're out</p>
+
+<p>of time but if you have any questions</p>
+
+<p>for me I'll be standing right up here if</p>
+
+<p>you want a Twin Cities drupal sticker</p>
+
+<p>posted triple camp</p>
+
+<p>come on this June in</p></div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-9547e84e02cc7c5c2fec06544934bd661ba01fbcc38eb1be91bdf59b259c2a9b">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/74">https://mid.camp/74</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+  <section class="map-banner">
+      <div class="views-element-container block block-views block-views-blockevent-venue-block-1" id="block-hatter-views-block-event-venue-block-1">
+  
+    
+      <div><div class="container view view-event-venue view-id-event_venue view-display-id-block_1 js-view-dom-id-468b478626d9cf6d7561a58c40d5489e55e79c9d05d7cfc2c4dcfbc761ec108f">
+  
+    
+      
+      <div class="view-content">
+          <div class="views-row">
+
+
+<div class="map-overlay">
+  <span class="map__label">Location</span>
+  <h2 class="map__title"><span class="field field--name-title field--type-string field--label-hidden">DePaul University - Lincoln Park Student Center</span>
+</h2>
+  
+            <div class="field field--name-field-address field--type-address field--label-hidden field__item"><p class="map__address" translate="no">
+          2250 N Sheffield Ave. <br>
+            Chicago, IL 60614<br>
+  </p>
+</div>
+      
+  <a href="../venue/depaul-university-lincoln-park-student-center.html" class="cta-link--yellow">Learn more  <span class="cta-arrow"></span></a>
+</div>
+<div id='map' class="map"></div>
+</div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-bcf97e7744586e7239a726f520262075623ec73b7b45b0ddbe5d28bb1c4e5718">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/acquia.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-02/Acquia_no_tagline.png" width="450" height="94" alt="Acquia" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/platformsh.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-02/platform.png" width="400" height="79" alt="Platform.sh" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/pantheon.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-11/pantheon.png" width="500" height="157" alt="Pantheon" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#61080f070e210c080502000c114f0e1306"><span class="__cf_email__" data-cfemail="452c2b232a05282c21262428356b2a3722">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/74","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_llBcjrkrgAu2wT1DR7VGL_iP6geJyiTnF_8O5ZD57VI.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJxLz89Pz0mNT8xLzKksyUwu1k9HE9DJSCwpSS3ST8_JT0rM0c2CC-QmFiTlVwAAPmAZQA"></script>
+<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.js"></script>
+<script src="../../sites/default/files/js/js_pODGOpSPRR3Y_Zt-7Fy-5B_pNv18oFAWhyhwUPCQZu4.js%3Fscope=footer&amp;delta=2&amp;language=en&amp;theme=hatter&amp;include=eJxLz89Pz0mNT8xLzKksyUwu1k9HE9DJSCwpSS3ST8_JT0rM0c2CC-QmFiTlVwAAPmAZQA"></script>
+
+  </body>
+</html>

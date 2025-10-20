@@ -1,0 +1,3281 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60086119-2"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-60086119-2", {"groups":"default","anonymize_ip":true,"page_placeholder":"PLACEHOLDER_page_path","allow_ad_personalization_signals":false});</script>
+<meta name="description" content="Learn from one developer’s experience building a music discovery app with Drupal 8 and React, soundtracked by the hottest jams of 2017 (Remember that year? Yikes!)" />
+<link rel="canonical" href="hot-jamstack-lessons-building-music-discovery-app-drupal-and-react.html" />
+<link rel="image_src" href="../../sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:title" content="Hot JAMS(tack): Lessons from Building a Music Discovery App with Drupal and React | MidCamp" />
+<meta property="og:image" content="https://www.midcamp.org/sites/default/files/2024-09/SCR-20240918-jxbn.jpeg" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1174" />
+<meta property="og:image:height" content="654" />
+<meta property="og:image:alt" content="Midcamp" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="../../themes/custom/hatter/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Hot JAMS(tack): Lessons from Building a Music Discovery App with Drupal and React | MidCamp</title>
+    <link rel="stylesheet" media="all" href="../../sites/default/files/css/css_Qoyy92GHt9RyGOt8N3WS_9HRsJcJBywJ2IhXudzvST4.css%3Fdelta=0&amp;language=en&amp;theme=hatter&amp;include=eJw1jGsOgzAMgy9U1iOhtPVYpYSgumNjp18F4o_1-SFnFfKISYiQLzaQsoC3X72MzhsGNROtP4SX9I4WF_UkOmXyTky25N_Agx123e61wGdYQpmfFVpiAzdfWXdMZzkm-DCe-jAvb8UfjYM.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_mK2of_t7UFymkfbTHeA-kHdMPWzqc3DZQCYtX-tC0BA.css%3Fdelta=1&amp;language=en&amp;theme=hatter&amp;include=eJw1jGsOgzAMgy9U1iOhtPVYpYSgumNjp18F4o_1-SFnFfKISYiQLzaQsoC3X72MzhsGNROtP4SX9I4WF_UkOmXyTky25N_Agx123e61wGdYQpmfFVpiAzdfWXdMZzkm-DCe-jAvb8UfjYM.css" />
+<link rel="stylesheet" media="print" href="../../sites/default/files/css/css_NX8ZFwlXWGwhNi13KHmnQU_Y7FXakyYqP6weQTWvKNM.css%3Fdelta=2&amp;language=en&amp;theme=hatter&amp;include=eJw1jGsOgzAMgy9U1iOhtPVYpYSgumNjp18F4o_1-SFnFfKISYiQLzaQsoC3X72MzhsGNROtP4SX9I4WF_UkOmXyTky25N_Agx123e61wGdYQpmfFVpiAzdfWXdMZzkm-DCe-jAvb8UfjYM.css" />
+<link rel="stylesheet" media="all" href="../../sites/default/files/css/css_8sRujPYJzgl1uTvnLT-_zWmbpTt38keUtHMuOU_DUuQ.css%3Fdelta=3&amp;language=en&amp;theme=hatter&amp;include=eJw1jGsOgzAMgy9U1iOhtPVYpYSgumNjp18F4o_1-SFnFfKISYiQLzaQsoC3X72MzhsGNROtP4SX9I4WF_UkOmXyTky25N_Agx123e61wGdYQpmfFVpiAzdfWXdMZzkm-DCe-jAvb8UfjYM.css" />
+<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Poppins:400,700" />
+<link rel="stylesheet" media="all" href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.css" />
+
+    
+  </head>
+  <body class="path-node page-node-type-topic">
+      <a href="hot-jamstack-lessons-building-music-discovery-app-drupal-and-react.html#main-content" class="visually-hidden focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+  <section class="top-header__wrapper">
+    <div class="top-header">
+        <div class="container">
+                <div class="l-2up--1 camp-dates">
+                    <a href="../../2025.html">Midwest Drupal Camp May 12-14, 2026</a>
+                </div>
+                <div class="l-2up--2 user-menu">
+                    <nav role="navigation" aria-labelledby="" id="block-hatter-account-menu">
+                                                                                                                            
+                        <h2 class="visually-hidden">User account menu</h2>
+                        
+
+                                                                            
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="../../2024/topic-proposal/tech-career-tune-navigating-your-path-tech-confidence-and-clarity%3Fmc_cid=9d726d71d5.html" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+        </ul>
+  
+
+
+                                            </nav>
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <header class="site-header">
+      <nav role="navigation" aria-labelledby="block-hatter-main-menu-menu" id="block-hatter-main-menu" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-main-menu-menu">Midcamp 2018 Navigation</h2>
+      
+
+                    
+  
+
+<button class="primary-nav__trigger"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441.9 342.4" style="enable-background:new 0 0 441.9 342.4;" xml:space="preserve">
+<g>
+	<path d="M25.4,34.4c-1.2,3.2-2.1,6.2-0.6,9.4c-1.6,1.7,0.4,2.3,0.7,3.3c1.1,3.5,5,5.7,5,9.3c0,4.8,3.8,7.2,6.6,7.6
+		c9.8,1.3,19.6,2.9,29.6,1.4c10.6-1.6,21.2-4.2,32.1-3.6c9.1,0.5,18.2,1.9,27.2,1.5c16.3-0.9,32.4,1,48.5,1.5
+		c10.2,0.3,20.5,1.7,30.7,2.7c13,1.3,26,2,38.7,4.7c11.2,2.4,22.3,4.7,33.8,5.7c9.4,0.8,18.8,1.4,28,3c8.1,1.4,16.1,1.3,24.1,0.5
+		c5.6-0.6,11-1.7,16.8,0c11.7,3.5,23.6,6.1,35,10.6c6.2,2.4,12.1,3.7,17.9-1.4c4.3-3.7,9.4-6.2,14.5-8.8c2.2-1.1,5.5-1.8,6.3-5.2
+		c1.1-4.7-3.2-11.6-7.9-12.9c-8.1-2.3-14.3-6.9-18-14.6c-0.5-1.1-1-2.2-2-2.8c-7.9-4.6-15.6-9.5-24.7-11.4c-11-2.3-22-4.4-30.8-12.4
+		c-1.5-1.4-4-2.1-6.2-2.9c-11.1-4.1-22.9-3.6-34.3-4.6c-17.5-1.6-34.8-4.7-52.4-5.8c-14-0.8-28-1.9-42.1-2.4
+		c-12.1-0.4-24.2-1.3-36.3-1.8c-8.9-0.4-18.1-1.1-26.8-0.6c-12.9,0.8-25.5-0.9-38.2-1.3C91.4,3,82.2,1.6,73,2.1
+		c-9.5,0.5-18.7-0.7-28-1.6C31.8-0.8,19,0.3,6.6,5.2C4.5,6,2.7,7.7,1,9.3c-1.1,1-1.7,2.3,0.5,2.9c9,2.6,17.1,6.2,22.2,14.9
+		C25.1,29.6,26.3,32,25.4,34.4z M123.6,48.5c0,0.3,0,0.6,0,0.9C123.6,49.2,123.6,48.8,123.6,48.5L123.6,48.5z M399.4,65.4
+		c0,0.1,0,0.1-0.1,0.2C399.3,65.5,399.4,65.5,399.4,65.4c-0.1-0.1-0.2-0.2-0.3-0.3C399.2,65.2,399.3,65.3,399.4,65.4z M399.2,65.8
+		L399.2,65.8c-0.1-0.1-0.3-0.3-0.4-0.4C398.9,65.5,399.1,65.6,399.2,65.8z"/>
+	<path d="M425.6,300c-8-6-16.8-9-26.8-10.3c-17.6-2.3-34.9-6.5-52.2-10.6c-13.4-3.2-26.7-7.1-40.4-8.9c-9.1-1.2-18.1-3.4-27-5.6
+		c-6.1-1.5-12.5-1.4-18.8-1.8c-6.9-0.5-12.8,2.1-19.1,3.2c-3.3,0.6-6.7,1.5-10,1.2c-14-1.2-27.8-3.4-41.9-3.8
+		c-9.7-0.2-19.4-0.3-29.1-0.8c-7-0.3-14.1,1.4-21.2,1.6c-12.8,0.3-25.7,0.1-38.5,0.2c-5.7,0.1-11.4,0.7-17,0.8
+		c-10.4,0.1-20.8,0.1-31.1,0c-6.4-0.1-12.5,1.5-18.7,2.2c-4.8,0.6-10.4,2.5-11.7,7.7c-1.1,4.3-1.4,9.2-0.3,13.8
+		c2.9,12.2,3.1,12.7,16.8,12.3c4-0.1,7.9-0.1,11.7,0.5c3.3,0.5,6.7,1.5,9.8,3.2c2.9,1.7-1.3,6.3,3.1,7.2c-1.8,3.1-3.7,6.2-6.4,8.7
+		c-0.4,0.3-0.9,0.5-1.2,0.9c-0.9,0.8-1,2.1-0.1,2.6c3,1.9,4.6,6,8.8,6c6.8,0,13.7,0.2,20.5-0.3c8.8-0.6,17.2-4.2,26.3-3.3
+		c3.1,0.3,6.3,0.5,9.4,0.4c11.9-0.4,23.8-1.2,35.7-1.8c11.9-0.5,23.9,0.8,35.9,0.6c12.4-0.3,24.2,3.8,36.5,3.7
+		c5.6,0,11.4,0.9,16.5,3.9c1.3,0.8,3.2,0.6,4.9,0.6c4.7-0.2,9.5-0.8,14.2-1c5.2-0.2,10.4-0.3,15.1,2.3c3.9,2.2,7.7,2.2,11.9,1.5
+		c3-0.5,5.5-2.2,8.9-2c13.5,0.6,26.8,2.5,40.4,1.6c18.3-1.3,36.5,2.6,54.8,4c2.8,0.2,5.5,2.3,8.7,1.8c6.2-0.5,12.3-1.8,18-3.9
+		c5.9-2.2,7.9-5.7,7.2-11.8c-0.4-3.2,0.5-5.9,1.5-8.6c1.1-3.1,4.7-6.6,1.6-9.4C429.3,306,428.7,302.2,425.6,300z"/>
+	<path d="M439.8,171.5c-3.6-3-7.7-6-12.2-7.2c-9.5-2.6-19.3-4.3-29.1-5.9c-7.2-1.1-14-3.8-21.3-4.8c-8.7-1.1-17.5-1.1-26-3.5
+		c-6-1.7-12.3-2.1-18.3-3.4c-10-2.1-20.4-2.1-30.4-4.6c-7.4-1.8-15.1-2.1-22.6-3.6c-6.6-1.3-13.3,0.1-19.9-1.1
+		c-8.7-1.6-17.6-2.5-26.3-2.3c-11,0.2-21.7-1.6-32.5-2.6c-15-1.3-29.7-2.7-44.7,0c-10.3,1.9-20.8,3.1-31.5,2.5
+		c-9.4-0.6-18.8,0.4-28.2,0.8c-1.3,0.1-2.8,0.2-3.8,0.8c-4.9,3.1-10.3,2.4-15.6,2.5c-5.4,0.1-10.8-1.2-16.1-1
+		c-6.1,0.3-12.2,1-18.3-0.2c-1.7-0.3-3.6-0.2-4.7,1.1c-1.3,1.6-2.9,1.8-4.7,2.1c-5.5,0.9-9.2,5.6-7.3,9.3c1.3,2.6,2.9,5.3,5.8,6.5
+		c8.4,3.3,16.6,7.1,25.2,9.9c3.4,1.1,7.1,2.2,9.2,5.8c3.3,5.7,8.6,8.2,14.8,8.4c12.5,0.4,25-2.1,37.6-0.9c7.4,0.7,15.2-0.2,22.2,1.8
+		c8.6,2.5,17.1,3,25.8,3.3c4.3,0.1,8.5,1.1,12.8,1.5c10.2,1,20.1,3.2,30.4,3.9c3.6,0.2,7.8-1,11.1,3.8c2.8,4.1,8.8,6.9,14.4,5.1
+		c6.2-2,12.5-2.4,18.7-3.2c5.5-0.8,11.2,1,16.4,0.4c14.5-1.5,28.8,0.6,43.1,1.5c8.7,0.5,17.4,2.2,26.1,2.9c9,0.7,18,0.9,27.1,1.1
+		c2.7,0.1,5.4,0.3,7.7,1.6c7.9,4.5,16.7,4.9,25.4,5.2c2.3,0,4.7,0.2,7-0.1c2.1-0.3,4.2-1,6.2-1.7c7.3-2.4,9.4-6.1,7.6-13.4
+		c-0.6-2.5-0.3-5.3,1.6-5.6c3.4-0.5,5.7-3.5,9.6-3.2c4.3,0.4,7.4-2.7,9.2-6.5C442.6,176.1,441.4,172.8,439.8,171.5z M258.1,144.1
+		c-0.2-0.1-0.4-0.2-0.6-0.2c-0.3-0.1-0.6-0.3-0.9-0.4c0,0,0,0,0,0c0.3,0.1,0.6,0.2,0.9,0.4C257.7,144,257.9,144.1,258.1,144.1z"/>
+</g>
+</svg>
+ Menu</button>
+  <ul class="primary-nav__list">
+          <li class="primary-nav__item has-children item--about">
+        <a href="../about.html" data-drupal-link-system-path="node/2">About</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--venue">
+        <a href="../../about/venue.html" title="Venue" data-drupal-link-system-path="node/7048">Venue</a>
+            </li>
+          <li class="primary-nav__sublist-item item--travel">
+        <a href="../travel.html" title="Travel and Accommodations" data-drupal-link-system-path="node/65">Travel</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../lunch.html" title="Lunch Near Campus" data-drupal-link-system-path="node/162">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--news">
+        <a href="../news.html" data-drupal-link-system-path="2018/news">News</a>
+            </li>
+          <li class="primary-nav__sublist-item item--organizers">
+        <a href="../organizers.html" title="Meet the Team!" data-drupal-link-system-path="2018/organizers">Organizers</a>
+            </li>
+          <li class="primary-nav__sublist-item item--lunch-options">
+        <a href="../../2023/about/lunch-options.html" data-drupal-link-system-path="node/6970">Lunch Options</a>
+            </li>
+          <li class="primary-nav__sublist-item item--accommodations">
+        <a href="../../2023/about/accommodations.html" data-drupal-link-system-path="node/6948">Accommodations</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item has-children item--sponsors">
+        <a href="../sponsors.html" data-drupal-link-system-path="node/9">Sponsors</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--become-a-sponsor">
+        <a href="../become-a-sponsor.html" title="Become a Sponsor" data-drupal-link-system-path="node/7">Become a Sponsor</a>
+            </li>
+  </ul>
+
+            </li>
+          <li class="primary-nav__item item--jobs">
+        <a href="../../jobs.html" title="Jobs" data-drupal-link-system-path="jobs">Jobs</a>
+            </li>
+          <li class="primary-nav__item has-children item--schedule">
+        <a href="../schedule.html" data-drupal-link-system-path="node/128">Schedule</a>
+                      
+
+<button class="primary-nav__sublist--trigger">
+  <span class="element-invisible">Open Menu</span>
+  <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 371.1 415.6" style="enable-background:new 0 0 371.1 415.6;" xml:space="preserve">
+<g>
+	<polygon points="206.1,318 206.1,317.9 206.1,317.9 206.1,318 	"/>
+	<path d="M365.2,163.4l-2.1,1.5l-2-0.4l-0.6-4.2l-15.8-11.9L334,131.2L112.5,34.5l-1.7-2.5L70.2,15.7l-2.3,1.4l-2.3-0.7l-1.4-3.6
+		L21.5,0l-8.5,0.9L0.2,10.7L0,23.2l176.9,73.5l0.8,6.6l-26.1,22.6l-0.5,6.6l5,1.9l42.9-28.9l22.1,9.8l-0.3,9.7l-47.7,33.6l-1.5,5.9
+		l5.6,16.8l-11.3,43l2.9,12.4l-3.8,12.2l-13,10.1l-6.4-1.4l-0.5-2.2l5.2-30.4l-2.8-2.4l-8.8,6.8l-12.6,46.7l-9.5,7.5l-4.1,1.3
+		l2.8-39.1l-3.8-2.9L100,262.4l-13.7,67.9l-12.3,15.4l-5.8-1.5l9.7-41.1l-1.9-5.7L62,311.1l-25.1,66l-1.4,25.2l7.8,8.4l22.1,5
+		l137.5-97.9l0.2-0.7l3,0.9l0.9-0.2l147.6-120.2l16.5-25.4L365.2,163.4L365.2,163.4z M121.1,313.5l-0.5,6.3l-16.5,6.9l2.4-11.7
+		l8.4-6.3L121.1,313.5L121.1,313.5z M161,287.8l-6.5,11.5l-12.7,4.3l-2.3-5.8l9.8-14.7l7.6-1.3L161,287.8L161,287.8z M195.1,228.7
+		l-3.3,3.2l-3.7,1.3l-1.2-4.8l4.7-13.8l5.8-0.8L195.1,228.7L195.1,228.7z M228.9,216.5l-9.4-3.6l-1.1-5.1l3.7-15.8l11.4-13.1
+		l9.8,9.8l-5,16.7L228.9,216.5L228.9,216.5z M271.9,186.6l-13.6,5.1l4.3-32.8l0,0l0.4-0.4l4.8-1.2l5.5-4.5l4.2,8.3L271.9,186.6
+		L271.9,186.6z M207.4,153.8l5.4,9l-18.1,22.5l-5.7-4.1l3.1-11.7l10.4-13.7L207.4,153.8L207.4,153.8z M57.6,407.5l-0.7-0.3
+		L57.6,407.5L57.6,407.5L57.6,407.5z"/>
+	<polygon points="205.6,318.4 206,318 205.7,318.1 205.6,318.4 	"/>
+	<polygon points="206.1,318 206.1,317.9 206,318 206.1,318 	"/>
+</g>
+</svg>
+</button>
+  <ul class="primary-nav__sublist">
+          <li class="primary-nav__sublist-item item--training-thu">
+        <a href="../training.html" data-drupal-link-system-path="node/195">Training (Thu)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--bofs-fri-sat">
+        <a href="../birds-feather-bofs.html" title="Birds of a Feather (BoFs)" data-drupal-link-system-path="node/167">BoFs (Fri/Sat)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-fri">
+        <a href="../schedule/friday.html" title="Friday Sessions" data-drupal-link-system-path="2018/schedule/friday">Sessions (Fri)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sessions-sat">
+        <a href="../schedule/saturday.html" title="Saturday Sessions" data-drupal-link-system-path="2018/schedule/saturday">Sessions (Sat)</a>
+            </li>
+          <li class="primary-nav__sublist-item item--sprints-sun">
+        <a href="../../sprints.html" title="Sprints">Sprints (Sun)</a>
+            </li>
+  </ul>
+
+            </li>
+  </ul>
+
+
+
+          </div>
+  </div>
+</nav>
+
+
+  </header>
+
+  <section class="banner">
+    <div class="container">  <div data-drupal-messages-fallback class="hidden"></div>
+<div id="block-hatter-eventlabelblock" class="block block-midcamp-event-label-block block-event-label-block">
+  
+    
+      <div class="block block-">
+    
+        
+            <h3 class="content">
+            <a href="../../2018.html" hreflang="en">MidCamp 2018</a>
+        </h3>
+    </div>
+<!-- Add you custom twig html here -->
+  </div>
+<div id="block-hatter-page-title--2" class="block block-core block-page-title-block">
+  
+    
+      
+  <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Hot JAMS(tack): Lessons from Building a Music Discovery App with Drupal and React</span>
+</h1>
+
+
+  </div>
+<div id="block-outdated" class="block block-block-content block-block-content6883d5a2-42bc-4e5b-8719-2f7a42a63f43">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><hr><p><mark>This content is from a prior year's camp. </mark><a class="button" href="https://midcamp.org">Get the most up-to-date information.</a></p><hr></div>
+      
+  </div>
+<div id="block-hatter-content--2" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="68" class="node node--type-topic node--view-mode-full">
+
+  
+    
+
+  
+  <div class="node__content">
+    
+  <div class="field field--name-field-schedule-time field--type-daterange field--label-above">
+    <div class="field__label">Time</div>
+              <div class="field__item"><time datetime="2018-03-10T20:45:00Z" class="datetime">Saturday, 2:45 pm CST</time>
+ - <time datetime="2018-03-10T21:45:00Z" class="datetime">Saturday, 3:45 pm CST</time>
+</div>
+          </div>
+
+  <div class="field field--name-field-schedule-location field--type-entity-reference field--label-above">
+    <div class="field__label">Location</div>
+              <div class="field__item"><div id="taxonomy-term-82" class="taxonomy-term vocabulary-location">
+  <div class="content">
+          
+            <div class="field field--name-field-link field--type-link field--label-hidden field__item"><a href="https://zoom.us/my/midcamp314b" target="_blank" class="button--primary">Go to Room 314B - old</a></div>
+      
+      </div>
+</div>
+</div>
+          </div>
+
+<div >
+  <h4>Description</h4>
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>Learn from one developer’s experience building a <a href="http://brianperryinteractive.com/aoty-visualizations/">music discovery app</a>&nbsp;with Drupal 8 and React, soundtracked by the hottest jams of 2017 (Remember that year? Yikes!)</p>
+
+<p>On an annual basis, <a href="http://robmitchum.github.io/aotysheets.html">The Album of the Year Project</a> follows a painstaking <a href="https://open.spotify.com/album/2gUSWVHCOerKhJHZRwhVtN">Process</a> to compile all of the best of the year lists into <a href="https://docs.google.com/spreadsheets/d/1-uY5_BeeKH_e2-XROri85qpV8s_5hMEEoFoxigci61I/edit">one massive google spreadsheet</a> that crowns a definitive musical critical consensus (<a href="https://open.spotify.com/album/4eLPsYPBmXABThSJ821sqY">DAMN.</a>) While an&nbsp;intriguing dataset is practically the <a href="https://open.spotify.com/album/4AF1M7bGCFL3LHCtXUUXw5">American Dream</a>, how could a curious developer take the <a href="https://open.spotify.com/album/3UHMhYzYnfTBEuDxb1JmxC">Plunge</a> and go from a Google Spreadsheet to a JavaScript application&nbsp;while gaining <a href="https://open.spotify.com/album/4TkmrrpjlPoCPpGyDN3rkF">A Deeper Understanding</a> of Decoupled Drupal and React along the way?</p>
+
+<p>Your awesome mixtape will include:</p>
+
+<ul>
+	<li>A <a href="https://open.spotify.com/album/6fUnZqjU3bwBOZIsQ4kN1Q">Common Sense</a> approach to choosing a decoupled architecture - progressively decoupled vs. fully decoupled and why a fully decoupled approach was most appropriate for this project.</li>
+	<li><a href="https://open.spotify.com/album/76290XdXVF9rPzGdNRWdCh">CTRL</a> your API with the right flavor of Drupal - Contenta vs. Reservoir, vs no distribution, and why Reservoir was chosen for this project.</li>
+	<li>Migrate to the rescue - getting data from a Google spreadsheet and the Spotify API into Drupal without resorting to getting <a href="https://open.spotify.com/album/4anxEzh8xEKSPXKHGWiFue">Drunk</a>.</li>
+	<li><a href="https://open.spotify.com/album/5tTk7OYT4TAw8IEQqLliyo">4:44</a> worth of React basics (actual time may vary)
+	<ul>
+		<li>Quickly bootstrapping a project with Create React App</li>
+		<li>Components, Props and State - oh my!</li>
+		<li>Go Fetch! - getting data from JSON API into your app.</li>
+	</ul>
+	</li>
+	<li>CSS in JS (aka <a href="https://open.spotify.com/album/4Q4PAknSA2wgEY0VPLCqAR">Nothing Feels Natural</a>) - How I avoided a <a href="https://open.spotify.com/album/0xtTojp4zfartyGtbFKN3v">Crack-Up</a> and learned to love styled components.</li>
+	<li><a href="https://open.spotify.com/album/6pw1XPub1bSMq03ASVqRVu">Take Me Apart</a> and deploy me back together - a look at the JAMstack and efficient ways to build and deploy your application.</li>
+	<li>The rest of <a href="https://open.spotify.com/album/6Ulu31dfRTpIAud08ZIhXd">The OOZ</a> - the things I conveniently avoided, the things I’d do differently next time around, and why I threw away the first version of this app and started over.</li>
+</ul>
+
+<p>Last but not least, we'll wrap up with some&nbsp;<a href="https://open.spotify.com/album/4oCGmYsAQOWt2ACWTpNUU6">Melodrama</a>&nbsp;and ask the question&nbsp;'did this project really need Drupal'?</p>
+
+<p>By the time the mixtape fades out, you’ll have a clearer picture of what it takes to go from compelling dataset to decoupled app, and may even be itching to join the <a href="https://open.spotify.com/album/1bHFgyItmSogZKb5fWOefI">Party</a> and do something similar yourself. You’ll also know beyond a shadow of a doubt that critics really, really loved Kendrick Lamar’s latest album.</p>
+
+<p>This talk is for people who are are&nbsp;interested in decoupled Drupal but unsure where to start, people who find it helpful to learn from real world decoupled projects, or even just people taking a <a href="https://open.spotify.com/album/4nSWX5A4xVomzrOEGDKLQ6">Slowdive</a> into decoupled Drupal concepts who want to avoid some poor developer's rookie mistakes. &nbsp;Experienced React developers are unlikely to learn something new about React here, but will better understand how Drupal could be a viable option to serve their front end work.&nbsp;</p>
+
+<p>Live app:&nbsp;<a href="http://brianperryinteractive.com/aoty-visualizations/">http://brianperryinteractive.com/aoty-visualizations/</a><br>
+Repository:&nbsp;<a href="https://github.com/backlineint/aoty-visualizations">https://github.com/backlineint/aoty-visualizations</a></p></div>
+      
+  </div>
+            <div class="field field--name-field-video field--type-video-embed-field field--label-hidden field__item"><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/Sj_nE2IukOs?autoplay=0&amp;start=0&amp;rel=0"></iframe>
+</div>
+</div>
+      
+  <div class="field field--name-field-people field--type-entity-reference field--label-above">
+    <div class="field__label">Speakers</div>
+          <div class="field__items">
+              <div class="field__item"><div  class="clearfix">
+  <div class="l-66-33--1">
+      <h4>Brian Perry</h4>
+
+      Founding Engineer
+
+
+          @
+              <a href="https://www.actual.ai/">Actual AI</a>
+        
+            <div class="clearfix text-formatted field field--name-field-bio field--type-text-long field--label-hidden field__item"><p>Brian is a versatile developer with experience building complex, interactive web applications in support of large-scale localized sites. Recently he has focused his efforts on evolving Drupal front-end development practices, decoupled Drupal, and style guide development techniques and has spoken on the topic at various Drupal events. Brian is a Drupal 7 and Drupal 8 Acquia Certified Grand Master and loves all things Nintendo.</p>
+</div>
+      
+  </div>
+    <div class="l-66-33--2">
+            <div class="field field--name-user-picture field--type-image field--label-hidden field__item">  <img loading="lazy" src="../../sites/default/files/styles/medium/public/pictures/2018-12/profile_crop.jpg%3Fitok=oEUbNaMX" width="220" height="220" alt="Brian Perry" class="image-style-medium" />
+
+
+</div>
+      </div>
+  </div>
+
+                                                                      </div>
+              </div>
+      </div>
+
+  <div class="field field--name-field-track field--type-entity-reference field--label-inline clearfix">
+    <div class="field__label">Track</div>
+          <div class="field__items">
+              <div class="field__item">Back-End</div>
+          <div class="field__item">Front-End</div>
+              </div>
+      </div>
+
+  <div class="clearfix text-formatted field field--name-field-captions field--type-text-long field--label-above">
+    <div class="field__label">Transcript</div>
+              <div class="field__item"><p>so yeah thanks everybody for checking</p>
+
+<p>this out I appreciate it</p>
+
+<p>you are in hot jams parentheses tap and</p>
+
+<p>I'm going to talk about a music summary</p>
+
+<p>app that I built to learn more about the</p>
+
+<p>couple Drupal and also yeah little small</p>
+
+<p>this big giant screen but there's a</p>
+
+<p>github repository and you're all I can</p>
+
+<p>also post it on Twitter but that has the</p>
+
+<p>source code for this there's a link to</p>
+
+<p>the line and then also this slide deck</p>
+
+<p>so if you're interested that would be</p>
+
+<p>what I recommend you go to get other</p>
+
+<p>stuff so I am Brian Perry I'm going to</p>
+
+<p>interactive developer at hs2 solutions</p>
+
+<p>I live in Palatine with suburbs kind of</p>
+
+<p>a popular opinion these days and say</p>
+
+<p>that I am a lover of all things</p>
+
+<p>component and component driven so</p>
+
+<p>building with components of Drupal or</p>
+
+<p>face beaming pattern libraries like</p>
+
+<p>pattern lab and they increasingly become</p>
+
+<p>more interested in JavaScript based</p>
+
+<p>approaches to building with components</p>
+
+<p>like yeah and I also love all things</p>
+
+<p>Nintendo so if you guys are playing in a</p>
+
+<p>cool on switch track me down let's talk</p>
+
+<p>about it and I'm on the Internet in</p>
+
+<p>various places of Brian Terry and Google</p>
+
+<p>that worked</p>
+
+<p>burn bright comedy on Twitter and most</p>
+
+<p>importantly while Brian on the Nintendo</p>
+
+<p>network so I work for interesting</p>
+
+<p>solutions I'm not the best mister these</p>
+
+<p>companies slide things but the things</p>
+
+<p>that I just like to say is that I get we</p>
+
+<p>have a nice great roof team I get to</p>
+
+<p>learn a lot of awesome stuff from my</p>
+
+<p>teammates so if you're looking to do</p>
+
+<p>great Google work or off and hiring as</p>
+
+<p>you need</p>
+
+<p>great triple work done I'm sure we would</p>
+
+<p>love to do it for you</p>
+
+<p>oh there's that flickered and I see what</p>
+
+<p>you're saying what so what we're going</p>
+
+<p>to talk about is you know this project</p>
+
+<p>that I took on to kind of learn more</p>
+
+<p>a couple Drupal and react and it was</p>
+
+<p>kind of something that I fell into as</p>
+
+<p>often times is the case with good side</p>
+
+<p>projects so this is from song tonight by</p>
+
+<p>LCD soundsystem which is one of my</p>
+
+<p>favorite albums of the year a big LCD</p>
+
+<p>soundsystem fan but the lyric is it luck</p>
+
+<p>is always better than skillet things and</p>
+
+<p>yeah I think this is definitely a case</p>
+
+<p>where it kind of fell into some of us</p>
+
+<p>let's talk about how we got here this is</p>
+
+<p>that mean I used to perform comedy I'm</p>
+
+<p>doing my solo musical show right I'm a</p>
+
+<p>sound machine here while it's relevant</p>
+
+<p>for a few reasons of one is that all</p>
+
+<p>comedians secretly would rather be in a</p>
+
+<p>band and I was one of those people never</p>
+
+<p>quite was but for this moment in time</p>
+
+<p>media I felt like I was but performing</p>
+
+<p>out in Boston I collaborated with a</p>
+
+<p>comedian named Chris Duffy and he</p>
+
+<p>happened to go to college with one of</p>
+
+<p>the folks behind the podcast called</p>
+
+<p>switched on pop which is a great podcast</p>
+
+<p>encourage you to check it out so what</p>
+
+<p>they do is they focus on like the modern</p>
+
+<p>pop landscape and break down current pop</p>
+
+<p>songs and why they work musically often</p>
+
+<p>from like a musicologist perspective or</p>
+
+<p>more of kind of like a classical</p>
+
+<p>approach it's a really awesome podcast</p>
+
+<p>why don't we go at this point I was</p>
+
+<p>listening to an episode of the show and</p>
+
+<p>they had a guest on Rob Mitchell who's</p>
+
+<p>also from the Chicago area turns out the</p>
+
+<p>one of the things that he does and then</p>
+
+<p>he was on the podcast to talk about he</p>
+
+<p>maintains every year Google spreadsheet</p>
+
+<p>where he activates all of the best of</p>
+
+<p>lists in music so he creates a big</p>
+
+<p>master best of best of list to have the</p>
+
+<p>undeniable overall critical consensus</p>
+
+<p>for the year this is what that</p>
+
+<p>spreadsheet looks like to some of these</p>
+
+<p>men with beautiful to others it may look</p>
+
+<p>like a horrible panic inducing Google</p>
+
+<p>spreadsheet but there's a lot of great</p>
+
+<p>data in here Bulba albums a different</p>
+
+<p>genre is where everything ranks in on</p>
+
+<p>the lists and then further down in the</p>
+
+<p>spreadsheet there's stuff like averages</p>
+
+<p>and a compilation for like a critical</p>
+
+<p>consensus score really awesome data in</p>
+
+<p>there so I kind of have this back</p>
+
+<p>ahead for why I like I'd love to find</p>
+
+<p>something to do with that awesome</p>
+
+<p>dataset and then you can barely see it</p>
+
+<p>in the background I think this histories</p>
+
+<p>at DrupalCon</p>
+
+<p>being attacked by a bird so much talk in</p>
+
+<p>the community about decoupling and</p>
+
+<p>progressively decouple only or only the</p>
+
+<p>coupling things and we don't really say</p>
+
+<p>headless anymore but that was a thing</p>
+
+<p>for a while too but so much talking</p>
+
+<p>about decouple old and a couple Drupal</p>
+
+<p>and I had some limited experience with</p>
+
+<p>them on projects we definitely wanted to</p>
+
+<p>learn more about the approaches that</p>
+
+<p>were becoming popular in the community</p>
+
+<p>and then also in big giant bold letters</p>
+
+<p>from the front-end framework world I</p>
+
+<p>heard so much stuff about react and</p>
+
+<p>things like reactive redux</p>
+
+<p>and there are other frameworks that I'm</p>
+
+<p>sure are great like view but I just</p>
+
+<p>heard so much noise about react and also</p>
+
+<p>had some experience with angular and</p>
+
+<p>wasn't really all that thrilled with it</p>
+
+<p>so I'm kind of curious is it the</p>
+
+<p>frameworks is it me to do more with yeah</p>
+
+<p>so all that kind of came together and</p>
+
+<p>was possible in the back of my head I</p>
+
+<p>assume I got enough to try to take that</p>
+
+<p>cool dataset learn more about the couple</p>
+
+<p>and learn more about react if I took all</p>
+
+<p>this stuff and slammed it together so</p>
+
+<p>that's what I did</p>
+
+<p>talk about so kind of starting from the</p>
+
+<p>beginning at that point I had to ask</p>
+
+<p>myself what sort of de coupled</p>
+
+<p>architecture am I going to follow how am</p>
+
+<p>I going to set this up some of these</p>
+
+<p>lyrics are slight stretches that this is</p>
+
+<p>the freight that faces the project where</p>
+
+<p>we're kind of really plotting things out</p>
+
+<p>and I also wanted to leave this because</p>
+
+<p>I really appreciate this guy still lives</p>
+
+<p>and dies by the byte hat but there's no</p>
+
+<p>style choice I can stand by so we have a</p>
+
+<p>bunch of different a few different</p>
+
+<p>flavors of our a couple of more</p>
+
+<p>decoupled versions of Google six fully</p>
+
+<p>coupled where it's all Drupal all the</p>
+
+<p>time so Drupal handles the rendering of</p>
+
+<p>your page and all the things that we</p>
+
+<p>know and love for two-pole and you know</p>
+
+<p>we can build on top with the contributed</p>
+
+<p>things but it's still you know a PHP CMS</p>
+
+<p>at the end of the day and then we could</p>
+
+<p>progressively decouple so this is still</p>
+
+<p>Drupal that renders the the shell of the</p>
+
+<p>page but we're strategically for being</p>
+
+<p>sprinkling in some of the JavaScript</p>
+
+<p>JavaScript framework magic be in blocks</p>
+
+<p>or certain components on the page or you</p>
+
+<p>know even still a triple renders the</p>
+
+<p>page but then the framework takes over</p>
+
+<p>and then there is fully decouple so here</p>
+
+<p>your JavaScript framework is what</p>
+
+<p>actually renders the pain and it is</p>
+
+<p>going to communicate with duple via an</p>
+
+<p>API to get the content</p>
+
+<p>so this is pretty small on the screen</p>
+
+<p>but Driss has a series of mounted a</p>
+
+<p>couple posts most recently there was</p>
+
+<p>having a couple in 2018 which is great</p>
+
+<p>for this 2018 and I want to do to 2017</p>
+
+<p>versions of that well it's definitely</p>
+
+<p>worth repeating but what this portion of</p>
+
+<p>the flow traffic just kind of calls out</p>
+
+<p>is that it's not really a black and</p>
+
+<p>white decision where you might fall on</p>
+
+<p>the couple's to fill needs a couple old</p>
+
+<p>spectrum and you kind of have to ask a</p>
+
+<p>lot of questions so is there are things</p>
+
+<p>that are you know editorial needs or</p>
+
+<p>things that Drupal is going to give you</p>
+
+<p>that's really important to your project</p>
+
+<p>or the people who are going to be</p>
+
+<p>maintaining content so the editorial</p>
+
+<p>experience being able to easily preview</p>
+
+<p>content then we can also think about</p>
+
+<p>just some of the things that Drupal</p>
+
+<p>gives us that we potentially take for</p>
+
+<p>granted like routing or you know</p>
+
+<p>accessibility in its markup for some of</p>
+
+<p>the security things that that Drupal is</p>
+
+<p>gonna take care of that we don't have to</p>
+
+<p>worry about</p>
+
+<p>so going from you know fully fully</p>
+
+<p>coupled Drupal the further you go over</p>
+
+<p>into something that is fully decoupled</p>
+
+<p>you're losing out on some of those</p>
+
+<p>niceties and you gain the responsibility</p>
+
+<p>of that but on the other end of things</p>
+
+<p>you potentially gain some things in</p>
+
+<p>developer convenience or if you have a</p>
+
+<p>team that is already very familiar with</p>
+
+<p>JavaScript through these JavaScript</p>
+
+<p>frameworks it might be easier for them</p>
+
+<p>to do some of this work but for this</p>
+
+<p>particular project it wasn't that</p>
+
+<p>difficult of a choice for me I've come</p>
+
+<p>up with will be a couple approach there</p>
+
+<p>couple reasons I don't really have any</p>
+
+<p>editorial needs here or at least very</p>
+
+<p>few of them it's nice to be able to edit</p>
+
+<p>things in the Drupal UI but the data</p>
+
+<p>that did the spreadsheet is really into</p>
+
+<p>the magic here there's a few things I</p>
+
+<p>want to add to it but I'm not gonna</p>
+
+<p>break a 12-page story about</p>
+
+<p>and I also wanted to kind of force</p>
+
+<p>myself to go all in and learn more about</p>
+
+<p>react and kind of cut some of my</p>
+
+<p>comfortable jubal parachute so</p>
+
+<p>thankfully the kind of and then we need</p>
+
+<p>to figure out okay how are we actually</p>
+
+<p>going to use rupal to achieve that and</p>
+
+<p>there's a few different distributions</p>
+
+<p>this is a lyric from scissors album I'm</p>
+
+<p>either saying that wrong or the fact</p>
+
+<p>that there's no way for me to say that</p>
+
+<p>it sound cool but either way so her</p>
+
+<p>album with the number two critical</p>
+
+<p>success consensus of the year but I</p>
+
+<p>think this potentially applies to using</p>
+
+<p>a distribution may actually play a</p>
+
+<p>little harder or work a little smarter</p>
+
+<p>and potentially these distributions</p>
+
+<p>might help you work a little smarter so</p>
+
+<p>I think just the past year there's been</p>
+
+<p>a whole lot of movement in the community</p>
+
+<p>on these distributions it's crazy to</p>
+
+<p>think that it's only been a year but</p>
+
+<p>there is a reservoir which is aqueous</p>
+
+<p>API versus distribution there's also</p>
+
+<p>headless lightning which I've only</p>
+
+<p>tinkered with just a little bit so but</p>
+
+<p>it might be something you consider if</p>
+
+<p>you already use lightning we're familiar</p>
+
+<p>with lightning I find that it blends</p>
+
+<p>kind of somewhere in between reservoir</p>
+
+<p>and Contenta in kind of how it functions</p>
+
+<p>and what it offers then there's that</p>
+
+<p>Contenta which is another distribution</p>
+
+<p>that's driven community driven</p>
+
+<p>distribution and I'm sure there are some</p>
+
+<p>things that each of those distributions</p>
+
+<p>do for you but at the end of the day a</p>
+
+<p>lot of that stuff is still contributed</p>
+
+<p>modules that they set up in a particular</p>
+
+<p>way so you can still roll your own or</p>
+
+<p>later that into a Drupal 8 project so</p>
+
+<p>for those who haven't played around with</p>
+
+<p>these distributions we're going to take</p>
+
+<p>a look at a few things that they have in</p>
+
+<p>common one is that they have API focus</p>
+
+<p>admin UI is unser</p>
+
+<p>and late so we've got contentos menu on</p>
+
+<p>the top and we see things like content</p>
+
+<p>models and API and then rs4 is down</p>
+
+<p>bottom we still see the content models</p>
+
+<p>and API but you see that the menu there</p>
+
+<p>is much more stripped down and that's</p>
+
+<p>probably the biggest difference between</p>
+
+<p>the two distributions that reservoir is</p>
+
+<p>intentionally kind of the minimalist</p>
+
+<p>approach and they're trying to build</p>
+
+<p>something that maybe somebody who's less</p>
+
+<p>familiar with Drupal can install and</p>
+
+<p>have this API out of the box and they</p>
+
+<p>don't have to you know deal with Drupal</p>
+
+<p>isms or you know they're not looking to</p>
+
+<p>really extend this and change this in a</p>
+
+<p>lot of ways and then they both offer</p>
+
+<p>some automatic API documentation using</p>
+
+<p>open api and redock I believe so here we</p>
+
+<p>see all of the endpoints then we can</p>
+
+<p>interact with examples of the responses</p>
+
+<p>how we can filter and query for the</p>
+
+<p>great and then they both also use JSON</p>
+
+<p>API and by default so we get a nice JSON</p>
+
+<p>response back and we hit one of those</p>
+
+<p>endpoints and uses the JSON API standard</p>
+
+<p>which lets us get more data in a single</p>
+
+<p>response without having to chain</p>
+
+<p>together multiple endpoints it's kind of</p>
+
+<p>but then it seems like the kind of</p>
+
+<p>recently is using JSON API rather than</p>
+
+<p>the core rest modules so just a little</p>
+
+<p>bit more about each of these approaches</p>
+
+<p>and why I think you might choose one</p>
+
+<p>over the other</p>
+
+<p>there's reservoir they also have their</p>
+
+<p>own cool logos and slogans which I</p>
+
+<p>appreciate</p>
+
+<p>so ressemore is the back</p>
+
+<p>and you might vote for reservoir if you</p>
+
+<p>want kind of the quickest approach to</p>
+
+<p>having a drupal-based API and nodes and</p>
+
+<p>no types although are gonna meet your</p>
+
+<p>needs and then also you know you don't</p>
+
+<p>know of or won't miss kind of some of</p>
+
+<p>the Drupal isms and Drupal approaches to</p>
+
+<p>extending and keep in your any balance</p>
+
+<p>so Contenta makes your content happy</p>
+
+<p>it's very smiling and you might go for</p>
+
+<p>Contenta if you want to use things like</p>
+
+<p>vocabularies or media or some of the</p>
+
+<p>other things that you're familiar with</p>
+
+<p>in Drupal that reservoir isn't</p>
+
+<p>necessarily set to use our box and you</p>
+
+<p>do want a more true life approach to</p>
+
+<p>adding you know additional modules and</p>
+
+<p>customizing things and having more</p>
+
+<p>flexibility more options reservoir can</p>
+
+<p>do it but the UI is definitely not</p>
+
+<p>focused on that and then also Contenta</p>
+
+<p>has example content that it ships with</p>
+
+<p>and a number of consumers and reference</p>
+
+<p>implementations that you can use so if</p>
+
+<p>we want something to experiment with or</p>
+
+<p>examples to start from that also a great</p>
+
+<p>great reason to in tickets and also it</p>
+
+<p>seems to have a lot of momentum recently</p>
+
+<p>in the community too and then you can</p>
+
+<p>totally roll your own if you're a DIY</p>
+
+<p>person the the pieces of the puzzle here</p>
+
+<p>are often contributed modules and not</p>
+
+<p>necessarily magic but you know I would</p>
+
+<p>encourage you to ask yourself could you</p>
+
+<p>play a little harder and work a little</p>
+
+<p>smarter so could these distributions</p>
+
+<p>help you out or is there something</p>
+
+<p>custom about your project that you know</p>
+
+<p>you need to be able to build these in a</p>
+
+<p>specific way or do you need to layer</p>
+
+<p>some of this functionality on to an</p>
+
+<p>existing project and you can camp ahead</p>
+
+<p>so I picked Reservoir</p>
+
+<p>I had really simple needs I just wanted</p>
+
+<p>an API that just worked and I'm just</p>
+
+<p>going to use album notes it worked</p>
+
+<p>immediately I basically composer</p>
+
+<p>installed it and then hit the API what</p>
+
+<p>didn't work that way for me when I</p>
+
+<p>initially worked with it I think that</p>
+
+<p>might have been a little early on it let</p>
+
+<p>maybe I just did something stupid that's</p>
+
+<p>entirely possible - but I have to use</p>
+
+<p>content out on projects as well what I</p>
+
+<p>used reservoir and it met my needs</p>
+
+<p>really well for this project so now all</p>
+
+<p>we've got to talk about getting our data</p>
+
+<p>from that ugly Google spreadsheet engine</p>
+
+<p>Drupal somehow so it's a bit of an</p>
+
+<p>exaggeration but what if I told you that</p>
+
+<p>was just all so easy</p>
+
+<p>and that is some time</p>
+
+<p>kenny loggins on this track Thunder -</p>
+
+<p>problem the migrate API dig into it in a</p>
+
+<p>second but what it can offer us for</p>
+
+<p>getting some this data into our trip</p>
+
+<p>fluency is really kind of amazing have</p>
+
+<p>the other thing since we're referencing</p>
+
+<p>this song people to show you the way on</p>
+
+<p>Thunder can't Dublin so people at the</p>
+
+<p>conference who may be socializing or</p>
+
+<p>drinking this is actually useful</p>
+
+<p>information everyone please hydrate</p>
+
+<p>there's one thing we take away always hi</p>
+
+<p>I feel like that everyone think that</p>
+
+<p>advice seriously so how in God's name</p>
+
+<p>are we gonna get data out of a Google</p>
+
+<p>spreadsheet I need to are influences and</p>
+
+<p>I want to avoid making them stapling</p>
+
+<p>like a copy of the spreadsheet or</p>
+
+<p>including in the depository because it's</p>
+
+<p>during December when all these lists are</p>
+
+<p>published I wanted to be able to get on</p>
+
+<p>a pretty regular basis</p>
+
+<p>the most recent you know version of that</p>
+
+<p>data from the source which this dude Rob</p>
+
+<p>who was nice enough to share this</p>
+
+<p>information maintains the Google</p>
+
+<p>spreadsheet because he's crazy I guess I</p>
+
+<p>don't know</p>
+
+<p>so Drupal migrate can you help us quite</p>
+
+<p>a bit here I created a custom migrate</p>
+
+<p>module which also installs the album</p>
+
+<p>content type but I'm going to use to do</p>
+
+<p>that I put through the I built that</p>
+
+<p>album content type and then use Drupal</p>
+
+<p>console to export it with their no ouu</p>
+
+<p>ID</p>
+
+<p>no peeping hash option and then using</p>
+
+<p>the migrates + json migration i can</p>
+
+<p>actually pull right from the Google</p>
+
+<p>spreadsheet we'll look at how that</p>
+
+<p>happens in a second and it also as part</p>
+
+<p>of the migration process</p>
+
+<p>I'm augmenting the gated I bring in with</p>
+
+<p>some data from Spotify using Spotify API</p>
+
+<p>because there's a few additional things</p>
+
+<p>that can help make that app a little bit</p>
+
+<p>more fun if we do that</p>
+
+<p>so this is a weird little hat that I</p>
+
+<p>learned about that makes this possible</p>
+
+<p>to actually hit the Google spreadsheet</p>
+
+<p>data in place if you go file them and</p>
+
+<p>publish to the web or email the guy who</p>
+
+<p>maintains this Google spreadsheet not</p>
+
+<p>significant to do it for you and then</p>
+
+<p>say automatically republish when changes</p>
+
+<p>are made then you're gonna get this URL</p>
+
+<p>that you can hit as long as you provide</p>
+
+<p>the document ID you can get a JSON</p>
+
+<p>response that has all the data from your</p>
+
+<p>Google Spreadsheets there's a little</p>
+
+<p>weirdness and kind of the paths and the</p>
+
+<p>response and some of the naming</p>
+
+<p>conventions but once you've got your</p>
+
+<p>head around that the data is all there</p>
+
+<p>in real time wait so now we can take a</p>
+
+<p>look at the migration itself I'm pretty</p>
+
+<p>small over everybody's eyes are up to</p>
+
+<p>the task so this is the gal file that</p>
+
+<p>defines our migration in this case and</p>
+
+<p>it lives in the AMT why migrate module</p>
+
+<p>config install and we you know specify</p>
+
+<p>an ID and a label and all that stuff for</p>
+
+<p>the migration and then we're using a</p>
+
+<p>custom source plugin here we'll look at</p>
+
+<p>that next</p>
+
+<p>but basically what that does is mainly</p>
+
+<p>in this case it's what we use to</p>
+
+<p>interact them to Spotify API and then</p>
+
+<p>we're fetching HTTP and we are parsing</p>
+
+<p>JSON which makes sense given what we</p>
+
+<p>just saw we provide our ugly Google</p>
+
+<p>spreadsheet URL and then this item</p>
+
+<p>selector here it's basically we're in</p>
+
+<p>that response we're gonna get the items</p>
+
+<p>that were migrating game so it's has to</p>
+
+<p>be feed slash entry and then we define</p>
+
+<p>the fields that we're going to be</p>
+
+<p>migrating in so we give it a name a</p>
+
+<p>label and then from that feed slash</p>
+
+<p>entry point a selector so there's a bit</p>
+
+<p>of a weird naming convention and a</p>
+
+<p>dollar sign</p>
+
+<p>that actually has a string value once</p>
+
+<p>you figured that out you can map all of</p>
+
+<p>the fields and then we're saying that</p>
+
+<p>we're going to use the node destination</p>
+
+<p>plug-in to save these as album node</p>
+
+<p>types and then after that we basically</p>
+
+<p>just mapped the source fields to the</p>
+
+<p>fields on the album content type and</p>
+
+<p>this is the album source plug-in and</p>
+
+<p>that lives in a Oh to live in migrate</p>
+
+<p>plugin migrate source we're including</p>
+
+<p>the Spotify Web API for PHP which worked</p>
+
+<p>pretty nicely from my needs and then we</p>
+
+<p>are extending the URL source plug-in and</p>
+
+<p>implementing prepare world that's where</p>
+
+<p>most of the the work goes on here so we</p>
+
+<p>creates a instance of the Spotify which</p>
+
+<p>Web API start a session and get token</p>
+
+<p>back that's what that block of code does</p>
+
+<p>and then at that point we can interact</p>
+
+<p>with the Spotify API and perform a</p>
+
+<p>search so that's another what we're</p>
+
+<p>doing they were just searching we're</p>
+
+<p>using the table we filled in the</p>
+
+<p>spreadsheet and that has to that has</p>
+
+<p>both the artist name and the title of</p>
+
+<p>the album which actually gives us a</p>
+
+<p>pretty good string to search Spotify for</p>
+
+<p>and get a relevant set of results back</p>
+
+<p>and then at that point we just from our</p>
+
+<p>Spotify response we pull some data that</p>
+
+<p>we need use up so there's the Spotify</p>
+
+<p>album ID and once we get that we can do</p>
+
+<p>things like link over to Spotify to play</p>
+
+<p>the album they could embed song and</p>
+
+<p>things like that and then that Spotify</p>
+
+<p>API also has the album art in a number</p>
+
+<p>of different sizes which is really</p>
+
+<p>useful to be able to include it in an</p>
+
+<p>app</p>
+
+<p>and then we just return the modified row</p>
+
+<p>back to the migration and then at that</p>
+
+<p>point</p>
+
+<p>more like migrate am i right yeah</p>
+
+<p>everybody took that more seriously than</p>
+
+<p>the suggested in our reservoir instance</p>
+
+<p>now and if we edit one of these albums</p>
+
+<p>Kendrick Lamar in this case which is</p>
+
+<p>without question the critical darling of</p>
+
+<p>last year we see all the data that we</p>
+
+<p>expect to see we've got a title album</p>
+
+<p>title genre the averages links to the</p>
+
+<p>cover images all the rankings for all</p>
+
+<p>the lists so now we have all this cool</p>
+
+<p>data sitting in Drupal ready for us to</p>
+
+<p>interact with okay deep breath so now we</p>
+
+<p>get to talk about the reacts end of</p>
+
+<p>things and there's a lot to talk about</p>
+
+<p>here and you know the thing that I would</p>
+
+<p>also stress here giving the the kind of</p>
+
+<p>Napoleon room I think a lot of us are</p>
+
+<p>probably on the same page but I was</p>
+
+<p>three new to react when I took on this</p>
+
+<p>project learned a lot along the way but</p>
+
+<p>to quote jay-z I would say I'm the guy</p>
+
+<p>who's been to Paris two times and seeing</p>
+
+<p>you know the Eiffel Tower I know some</p>
+
+<p>things about react but certainly not</p>
+
+<p>everything but I'm gonna focus on kind</p>
+
+<p>of high-level learnings that I had</p>
+
+<p>putting together this app hopefully so</p>
+
+<p>spoiler alert this is what the app ended</p>
+
+<p>up looking like and we'll go play around</p>
+
+<p>a little bit and see what this so there</p>
+
+<p>was a spinner there and we're loading in</p>
+
+<p>data from Drupal we'll talk a little bit</p>
+
+<p>more about how you might be able to</p>
+
+<p>eliminate that process the loading</p>
+
+<p>process but so here we get by default</p>
+
+<p>the cover view so we see rows for all</p>
+
+<p>the different albums and if we click on</p>
+
+<p>an album the detail panel</p>
+
+<p>fine and the color arts and there is a</p>
+
+<p>little link here to play the album on</p>
+
+<p>Spotify so we see no drama on Spotify I</p>
+
+<p>mean a lord fans yes nice couple Lord</p>
+
+<p>fans alright</p>
+
+<p>and then there's also the rankings on</p>
+
+<p>all the lists that it happens to fall</p>
+
+<p>into and we can click through and see</p>
+
+<p>the list and you'll see where it ranks</p>
+
+<p>on the 50 best albums on Stereogum and</p>
+
+<p>then there's also a control panel here</p>
+
+<p>on the side that slides out so we can do</p>
+
+<p>things like restrict the number of rows</p>
+
+<p>that were displaying and there is a</p>
+
+<p>filtering capability so we can filter by</p>
+
+<p>the artist album genre so my favorite</p>
+
+<p>album of the year was by the war on</p>
+
+<p>drugs so if I type in war the deeper</p>
+
+<p>understanding by the war on drugs and</p>
+
+<p>all the album's artists that have more</p>
+
+<p>war in it updates very quickly as I type</p>
+
+<p>in my search string I can type for hip</p>
+
+<p>hop hip hip hip hip fresh and and get</p>
+
+<p>all the hip hop albums of the year and</p>
+
+<p>Kendrick Lamar still unsurprisingly at</p>
+
+<p>the top of the list there and then</p>
+
+<p>there's a couple of other views that we</p>
+
+<p>can switch between so this is just a</p>
+
+<p>simple table view here and uses a</p>
+
+<p>component from the blueprint jazz</p>
+
+<p>component library which had to have a</p>
+
+<p>number of nice building blocks</p>
+
+<p>um but I also found this was a really</p>
+
+<p>good place to start</p>
+
+<p>I had a few like initial attempts at</p>
+
+<p>this project and I tried for something</p>
+
+<p>too ambitious like I said I'm gonna</p>
+
+<p>start with a large chart he said just a</p>
+
+<p>few people in getting the data that I</p>
+
+<p>within the spreadsheet from the drupal</p>
+
+<p>api and have it show up in this table</p>
+
+<p>that i can then sort and filter ended up</p>
+
+<p>being a really good starting point for</p>
+
+<p>me and then there's also this list view</p>
+
+<p>which is a heat map visualization and a</p>
+
+<p>whole lot of stuff here but we see all</p>
+
+<p>the lists and then the data that happens</p>
+
+<p>to me in this results that 50 rows and</p>
+
+<p>we get to see where everything ranks on</p>
+
+<p>all the different lists it gets</p>
+
+<p>interesting if you do something like</p>
+
+<p>pick a list here so if I say Rolling</p>
+
+<p>Stone a resource the data set based on</p>
+
+<p>Rolling Stones list so we see it running</p>
+
+<p>right down from 1 to 50 there and then</p>
+
+<p>you can kind of compare where Rolling</p>
+
+<p>Stone has similarities to other lists</p>
+
+<p>like if we look at the third row here we</p>
+
+<p>see that u2 songs of experience was</p>
+
+<p>number 3 for Rolling Stone and did not</p>
+
+<p>short on any other list in this dataset</p>
+
+<p>so weight a way to go with your gut</p>
+
+<p>Rolling Stone um so yeah that's it how</p>
+
+<p>to do it he was interviewed yeah I</p>
+
+<p>haven't read Youngman might be amazing I</p>
+
+<p>don't yeah we got a u2 defender anyone</p>
+
+<p>who could defend you to everyone still</p>
+
+<p>mad that album ended up on their their</p>
+
+<p>iPhones</p>
+
+<p>I'm renaming this talk to a bustin you</p>
+
+<p>choose chops okay so anyway that's um</p>
+
+<p>what else feel free to poke around</p>
+
+<p>online and try it out um but I thought</p>
+
+<p>would be helpful to kind of look I want</p>
+
+<p>a dozen contacts before we look at some</p>
+
+<p>of the component parts a little bit</p>
+
+<p>which will do now we're after take this</p>
+
+<p>set okay so the question I had to ask</p>
+
+<p>myself is how do you start or react to</p>
+
+<p>that I didn't know how to do that and as</p>
+
+<p>I mentioned I took a few attempts at</p>
+
+<p>this and initially when I started trying</p>
+
+<p>to learn more reactive as before</p>
+
+<p>creating react that existed which is</p>
+
+<p>some about a second but you had to do</p>
+
+<p>more web configuration and maybe get a</p>
+
+<p>portable plate that you work with and</p>
+
+<p>there was no more than you had to do to</p>
+
+<p>kind of get your local set up going for</p>
+
+<p>development before you could actually</p>
+
+<p>get into the exciting part of learning</p>
+
+<p>and playing around with react components</p>
+
+<p>to then create react app has been</p>
+
+<p>released which is maintained by the</p>
+
+<p>Facebook team and the idea here is that</p>
+
+<p>it lets you bootstrap react out really</p>
+
+<p>quickly and hide some of that</p>
+
+<p>configuration behind scenes so you don't</p>
+
+<p>have to worry about it unless you need</p>
+
+<p>to so I installed crack up as a global</p>
+
+<p>package and then you can run create and</p>
+
+<p>grab the name of your project</p>
+
+<p>there's a new recommended way to do this</p>
+
+<p>now if I think more recent versions of</p>
+
+<p>NPM have a command npx that vaporizes</p>
+
+<p>you these two</p>
+
+<p>once so if you happen to look at it</p>
+
+<p>that's what they recommend doing now but</p>
+
+<p>not what I did and then if you're</p>
+
+<p>familiar with installing things VM PM</p>
+
+<p>there's going to be all kinds of crazy</p>
+
+<p>outputs that certainly do not want to</p>
+
+<p>copy and paste into this fake terminal</p>
+
+<p>and then you can change directory into</p>
+
+<p>your project you see all files that</p>
+
+<p>create react that way create create</p>
+
+<p>react up bootstrapped for you and if you</p>
+
+<p>run npm start it's gonna start a little</p>
+
+<p>web server for you and did a load in</p>
+
+<p>your browser and it also does hot module</p>
+
+<p>reloading so if you change things in</p>
+
+<p>your app it will automatically refresh</p>
+
+<p>and update in your and then you can also</p>
+
+<p>run npm run build and that is going to</p>
+
+<p>build a production ready bundle for you</p>
+
+<p>that can be your assets that you deploy</p>
+
+<p>and also be where there are dragons</p>
+
+<p>ahead but so you know i mentioned that</p>
+
+<p>it hides a lot of the configuration</p>
+
+<p>behind the scenes to make it easier for</p>
+
+<p>you to get up and running with writing</p>
+
+<p>react code there's also the concept of</p>
+
+<p>ejecting so you can run npm run a jet</p>
+
+<p>and what that does is it exposes all</p>
+
+<p>that configuration so that you can</p>
+
+<p>optimize things or change your web</p>
+
+<p>packing thing as you see fit and what i</p>
+
+<p>would say is don't be embarrassed if you</p>
+
+<p>use the default configuration of create</p>
+
+<p>react app as long as it makes sense for</p>
+
+<p>you just know that you can get out there</p>
+
+<p>and change it if you have to so we're</p>
+
+<p>this project i actually had never</p>
+
+<p>adapted it but for this slide deck</p>
+
+<p>ironically enough I had to to be able to</p>
+
+<p>get the slide back working the way that</p>
+
+<p>I wanted to and it wasn't the end of the</p>
+
+<p>world but I did see some cool dragons</p>
+
+<p>okay so now starting to build the react</p>
+
+<p>out a little bit a couple ways we could</p>
+
+<p>go but one thing that we might want to</p>
+
+<p>ask the session because we were just</p>
+
+<p>talking about our friend rupal is how</p>
+
+<p>are we going to get that data from our</p>
+
+<p>API into just a handful of ways that you</p>
+
+<p>could do that you can use the library</p>
+
+<p>like Axios which is kind of similar to</p>
+
+<p>jquery's it's not exact methods but I</p>
+
+<p>wanted to use the JavaScript fetch API</p>
+
+<p>try that out</p>
+
+<p>so I created a little utility function</p>
+
+<p>that lives in source utilities and it</p>
+
+<p>takes an endpoint it defines an array of</p>
+
+<p>albums and then we call fetch with the</p>
+
+<p>endpoint and in fetch returns JavaScript</p>
+
+<p>promise which reminds me to also say</p>
+
+<p>that some of the JavaScript code we're</p>
+
+<p>going to be looking at is gonna be using</p>
+
+<p>es6 syntax which I'm sure some people</p>
+
+<p>may or may not be familiar with but if</p>
+
+<p>you see anything that you're not quite</p>
+
+<p>familiar to looks a little bit weird</p>
+
+<p>that's why but I'm hoping it's gonna be</p>
+
+<p>generally understandable so anyway we we</p>
+
+<p>call fetch and we we get a promise back</p>
+
+<p>and then we are going to chain a few</p>
+
+<p>promises together to resolve that data</p>
+
+<p>and act on it so here we're resolving</p>
+
+<p>the response as JSON data and then we're</p>
+
+<p>taking that data and doing a few things</p>
+
+<p>with it so if first we're taking the</p>
+
+<p>data and we're putting it in albums</p>
+
+<p>array and then if there's a next page of</p>
+
+<p>results back from our JSON API endpoints</p>
+
+<p>we are gonna call get all album data</p>
+
+<p>recursively to get the next page of</p>
+
+<p>results and if there isn't then we'll</p>
+
+<p>just return the album data JSON API I</p>
+
+<p>found out that there's no way to just</p>
+
+<p>get all of the data which while</p>
+
+<p>frustrating initially makes a lot of</p>
+
+<p>sense because oftentimes that's probably</p>
+
+<p>in that</p>
+
+<p>that's why you have to do something like</p>
+
+<p>that and then also there is a little</p>
+
+<p>error logging if something goes wrong</p>
+
+<p>well with that we can get all of the</p>
+
+<p>data from our endpoint and so this</p>
+
+<p>particular app with just the data for</p>
+
+<p><br>
+data upfront so that we had it available</p>
+
+<p>in the app I do want in the future have</p>
+
+<p>like multiple years worth of data and I</p>
+
+<p>don't think that approach would be</p>
+
+<p>practical we need to you know based on</p>
+
+<p>the year or based on some other</p>
+
+<p>interaction Pig API a little bit more</p>
+
+<p>frequently but keeping things simple</p>
+
+<p>here so now we have the data and you</p>
+
+<p>know big object and we can start</p>
+
+<p>rendering it so we're going to look at a</p>
+
+<p>example component this is the album</p>
+
+<p>component and we see Kendrick Lamar</p>
+
+<p>again since he won his element the</p>
+
+<p>example but so we have our component on</p>
+
+<p>the left hand side and then on the right</p>
+
+<p>this is an example of a render method</p>
+
+<p>that's rendering out and what we see</p>
+
+<p>there is JSS so that's a mark up syntax</p>
+
+<p>that's used in react that lets you use</p>
+
+<p>HTML like tags and elements to render</p>
+
+<p>your components it gets converted to</p>
+
+<p>JavaScript but you can use things like</p>
+
+<p>divs and you know H ones and elements</p>
+
+<p>that you're familiar with but you can</p>
+
+<p>also use custom components custom</p>
+
+<p>elements that you define in this case if</p>
+
+<p>the album and then they can accept props</p>
+
+<p>properties so here we're passing in as</p>
+
+<p>props a bunch of the data that we need</p>
+
+<p>to use to render that power</p>
+
+<p>so we've got our</p>
+
+<p>and how am i the cover image things like</p>
+
+<p>that and so with in react if the data</p>
+
+<p>the props or the state which we'll talk</p>
+
+<p>about in a second if any of that changes</p>
+
+<p>it's going to automatically render your</p>
+
+<p>component or at least figure out if it</p>
+
+<p>needs to do that and any components that</p>
+
+<p>might be children of it that are inside</p>
+
+<p>of it which is part of why it you know</p>
+
+<p>feels the performance and responds so</p>
+
+<p>quickly so we can actually just update</p>
+
+<p>things here and obviously as we update</p>
+
+<p>our props things are gonna you know</p>
+
+<p>update in real time so I'll just some</p>
+
+<p>goofy there's something great about</p>
+
+<p>changing Dan to Dharma and I also have a</p>
+
+<p>cover image of that war on drugs album</p>
+
+<p>that I'd done so much so there might be</p>
+
+<p>actual like string values that get</p>
+
+<p>passed in here it also commonly might be</p>
+
+<p>a variable or an object or something</p>
+
+<p>like that so I can replace this with</p>
+
+<p>these squiggly brackets and use my lower</p>
+
+<p>cover variable here and now I have the</p>
+
+<p>war on drugs album art for Kenny Loggins</p>
+
+<p>this darn so that's a look at what the</p>
+
+<p>JSX</p>
+
+<p>for a component might be like so now</p>
+
+<p>let's take a look at this problem</p>
+
+<p>component and how we actually build it</p>
+
+<p>in JavaScript so this is our component</p>
+
+<p>album dot J guess which lives in source</p>
+
+<p>components in this project and we're</p>
+
+<p>importing react and also prop types</p>
+
+<p>we'll talk about prop types towards the</p>
+
+<p>end of this file and we are extending</p>
+
+<p>the react component class there's a</p>
+
+<p>handful of different ways that you</p>
+
+<p>can you define component extending react</p>
+
+<p>component kind of covers all cases so if</p>
+
+<p>the I think the best way to explain</p>
+
+<p>these as examples if you have a simple</p>
+
+<p>but functional component that maybe just</p>
+
+<p>takes props there's a more stripped-down</p>
+
+<p>simpler ways that you can define this</p>
+
+<p>but there's going to be a render method</p>
+
+<p>and the render method returns JSX</p>
+
+<p>and there's a little bit of logic here</p>
+
+<p>so if we have a cover image we're gonna</p>
+
+<p>return one version of the album</p>
+
+<p>component that has them to help them</p>
+
+<p>cover and if we don't have that we're</p>
+
+<p>gonna return a slightly different</p>
+
+<p>version of that component and then it's</p>
+
+<p>all JSX here so we see things like album</p>
+
+<p>rel and you can think of that as another</p>
+
+<p>custom component we've defined the truth</p>
+
+<p>is actually a little bit different from</p>
+
+<p>that and we'll get there but for now</p>
+
+<p>just think of it as a custom react</p>
+
+<p>component but then there's also stuff</p>
+
+<p>like that an image tag and on each floor</p>
+
+<p>and things that we know and love or some</p>
+
+<p>days don't love it all and we're also</p>
+
+<p>making use of our props here so we know</p>
+
+<p>the props that we expect to be passed in</p>
+
+<p>so we can do things like this that</p>
+
+<p>prompts the cover image to a cover image</p>
+
+<p>this not props that title etc and then</p>
+
+<p>also up in album row there's an onclick</p>
+
+<p>handler and that you know when you click</p>
+
+<p>on the album row as we saw like</p>
+
+<p>highlights it and populate the the panel</p>
+
+<p>on the right hand side so it can't call</p>
+
+<p>functions like that and those functions</p>
+
+<p>could be find in the component itself or</p>
+
+<p>they may also be passed down by a parent</p>
+
+<p>as plots</p>
+
+<p>and we'll also see some examples of that</p>
+
+<p>and then this is just the stripped-down</p>
+
+<p>version where we don't have an image and</p>
+
+<p>then these are the prop types so prop</p>
+
+<p>types is just a simple way to kind of</p>
+
+<p>validate some of the props that come in</p>
+
+<p>so just really simple basic but you know</p>
+
+<p>we're expecting a string here we're</p>
+
+<p>expecting a function here and it'll</p>
+
+<p>complain if it gets something different</p>
+
+<p>which is nice and then we export the</p>
+
+<p>album component so we can import it</p>
+
+<p>elsewhere so that was the basics of how</p>
+
+<p>we would create a component and we</p>
+
+<p>talked about props there's also the</p>
+
+<p>concept of state in react component and</p>
+
+<p>tops are really kind of external</p>
+
+<p>influences up influences on your</p>
+
+<p>component data that gets passed into it</p>
+
+<p>state is more what the component knows</p>
+
+<p>to be true about itself and you know</p>
+
+<p>variables that are managed inside of the</p>
+
+<p>component so a way to illustrate that is</p>
+
+<p>thinking about our control panel here we</p>
+
+<p>have things like the little list to sort</p>
+
+<p>and pick list so I just created a</p>
+
+<p>stripped down version of that in our</p>
+
+<p>little preview panel here there's enough</p>
+
+<p>coil go full screen but so if we wanted</p>
+
+<p>to find some state that lives in the</p>
+
+<p>component we created a constructor and</p>
+
+<p>then we define the variables constants</p>
+
+<p>that we want to use of their selected</p>
+
+<p>source we just set the field</p>
+
+<p>comscore and then selected list we</p>
+
+<p>default to Nami and then we can set</p>
+
+<p>state in the constructor so this stop</p>
+
+<p>state and then we have an object that</p>
+
+<p>has selected sort and selected list and</p>
+
+<p>then below that I'm finding a couple of</p>
+
+<p>functions that we'll look at in a second</p>
+
+<p>I typically don't do that if you</p>
+
+<p>use yes its arrow functions it</p>
+
+<p>automatically finds that stuff before</p>
+
+<p>whatever reason I had to do that in this</p>
+
+<p>little preview pane we'll skip over the</p>
+
+<p>functions for a second and just look at</p>
+
+<p>the render method so it's returning jss</p>
+
+<p>again and it always has to return one</p>
+
+<p>top-level wrapper so that's why wrapping</p>
+
+<p>it indeed we're accessing here so we say</p>
+
+<p>that we're just printing out this is a</p>
+
+<p>state that's like sorts in the current</p>
+
+<p>value for selected sort and then for the</p>
+
+<p>Select list we're setting the value to</p>
+
+<p>the value in State for selected source</p>
+
+<p>so whatever the state of the component</p>
+
+<p>is set to is what that select list will</p>
+
+<p>have selected as well and then when we</p>
+
+<p>change it we have a non change event we</p>
+
+<p>call this handle sort change function</p>
+
+<p>that's defined component and really all</p>
+
+<p>that does here is it just updates the</p>
+
+<p>state to whatever you select in that</p>
+
+<p>select list so we just take the events</p>
+
+<p>and we use set States and we say that</p>
+
+<p>selected sort is the value that's picked</p>
+
+<p>in the Select list and all that to do</p>
+
+<p>this so if I go and pick average it you</p>
+
+<p>know the value in the Select list is now</p>
+
+<p>average and we show that the state here</p>
+
+<p>is average so again the state is more</p>
+
+<p>the kind of internal representation of</p>
+
+<p>the components and I think it's kind of</p>
+
+<p>well for me let me get out of here</p>
+
+<p>I definitely it was a challenge for me</p>
+
+<p>to kind of understand those two concepts</p>
+
+<p>Protestant state I wrap my head around</p>
+
+<p>the day-to-day but then I also it took</p>
+
+<p>me a while to really understand where I</p>
+
+<p>would and wouldn't use state law school</p>
+
+<p>and there is a common pattern in react</p>
+
+<p>of lifting the state up it's a higher</p>
+
+<p>components in your path and so I'll talk</p>
+
+<p>a little bit about kind of what I went</p>
+
+<p>through there but so take the Albanian</p>
+
+<p>component that we had you know I'm</p>
+
+<p>initially building that I know about</p>
+
+<p>props and state now I know maybe enough</p>
+
+<p>to be a little bit dangerous and I'm</p>
+
+<p>like okay it has a cover and a title and</p>
+
+<p>an artist name so it's probably gonna</p>
+
+<p>have all those things in state and the</p>
+
+<p>state of the component then I keep</p>
+
+<p>building and I'm building the detail</p>
+
+<p>panel and it has a lot of the same stuff</p>
+
+<p>that has at least like that largest name</p>
+
+<p>and then you know the helping title some</p>
+
+<p>okay well then it probably also needs to</p>
+
+<p>have state for those things as well and</p>
+
+<p>now I'm trying to manage that in two</p>
+
+<p>places I click on something</p>
+
+<p>I have to go updated both places and I</p>
+
+<p>filter the list and messed up you know</p>
+
+<p>I'll take a state in the album component</p>
+
+<p>and the detail panel components so that</p>
+
+<p>doesn't feel right so then the idea</p>
+
+<p>there is that you would take your state</p>
+
+<p>and you would lift it up to one of the</p>
+
+<p>higher parent components that are going</p>
+
+<p>to render these things so then at that</p>
+
+<p>point you know I take the visualization</p>
+
+<p>maybe that's where in the soil</p>
+
+<p>the cover view is where that state lives</p>
+
+<p>but then I've also got like the list</p>
+
+<p>visualization and the table</p>
+
+<p>visualization and those are using the</p>
+
+<p>exact same set of album data so you</p>
+
+<p>don't want to manage that big object of</p>
+
+<p>album data in each of those</p>
+
+<p>visualizations and have to update each</p>
+
+<p>one as things change and the control</p>
+
+<p>panel also needs to know about some of</p>
+
+<p>this stuff at least like how many albums</p>
+
+<p>are displaying and things like that so</p>
+
+<p>where I eventually ended up is that the</p>
+
+<p>almighty app is what has a lot of the</p>
+
+<p>sustain and it's really passing down all</p>
+
+<p>of that data into the components as</p>
+
+<p>props so it's passing all the album data</p>
+
+<p>into the visualization and then that</p>
+
+<p>visualization renders each of the albums</p>
+
+<p>with all the information and then</p>
+
+<p>another thing that I didn't really talk</p>
+
+<p>about getting getting kind of deep into</p>
+
+<p>reacts up here but the state in a</p>
+
+<p>component can only be managed by the</p>
+
+<p>component itself became like reach into</p>
+
+<p>other components and mess with their</p>
+
+<p>state because what they believe about</p>
+
+<p>themselves so the app will also pass</p>
+
+<p>down functions to some of those children</p>
+
+<p>so that it can go all the way back up to</p>
+
+<p>the app and change the app state but the</p>
+
+<p>basic idea here is like if you want to</p>
+
+<p>be able to filter in the control panel</p>
+
+<p>if you pass down a function that can do</p>
+
+<p>that they can go back to the app and say</p>
+
+<p>all I'm supposed to filter for hip-hop</p>
+
+<p>so hey app we're gonna use hip-hop now</p>
+
+<p>and then the app passes all that data</p>
+
+<p>down and because whatever thing the</p>
+
+<p>props changed things we render</p>
+
+<p>everything magically updates when you</p>
+
+<p>filter all that it took a while for me</p>
+
+<p>to wrap my head around I'm probably</p>
+
+<p>making people's eyes roll back in their</p>
+
+<p>heads</p>
+
+<p>they're new to the south if you are</p>
+
+<p>familiar with react you may be thinking</p>
+
+<p>that this would be a situation where you</p>
+
+<p>use something like Redux and Redux is a</p>
+
+<p>library that helps you manage states in</p>
+
+<p>your app in a consistent way in a very</p>
+
+<p>deliberate way and I think about it you</p>
+
+<p>do this again or maybe next year if I do</p>
+
+<p>some work with the 2018 data I probably</p>
+
+<p>would do that understand I'm just manage</p>
+
+<p>everything at the top of the app but</p>
+
+<p>passing things down quite a bit</p>
+
+<p>or you know passing the happens to one</p>
+
+<p>component and their their children and</p>
+
+<p>passing functions all the way so that</p>
+
+<p>was definite Art for me to wrap my head</p>
+
+<p>around another thing that was really</p>
+
+<p>hard for me to wrap my head around is</p>
+
+<p>styling and CSS and JavaScript when I</p>
+
+<p>saw the people who were doing here I got</p>
+
+<p>it but to paraphrase I was flabbergasted</p>
+
+<p>and there's free styling if anybody has</p>
+
+<p>not heard of it well it will rock your</p>
+
+<p>face off into the finale so let's talk</p>
+
+<p>about how we style these things so you</p>
+
+<p>can create a CSS file like you might be</p>
+
+<p>familiar with and import that into your</p>
+
+<p>component and then you have access to</p>
+
+<p>all those styles in your app and then in</p>
+
+<p>your JSX you can use the class name prop</p>
+
+<p>to use the appropriate class not class</p>
+
+<p>the class name look if it's crappy like</p>
+
+<p>that or some days</p>
+
+<p>and that'll work that's totally fine but</p>
+
+<p>as I doubt you to this all the cool kids</p>
+
+<p>are reading CSS and J's for some reason</p>
+
+<p>and when I learned that especially what</p>
+
+<p>I saw what it actually looked like it</p>
+
+<p>was definitely a facepalm situation</p>
+
+<p>that's that candid picture I took of my</p>
+
+<p>son one day when his mom was away and I</p>
+
+<p>just ascended that and I took that</p>
+
+<p>picture I'm like I can't send this to</p>
+
+<p>her she's gonna wonder what's going on</p>
+
+<p>with him it definitely describes my</p>
+
+<p>feelings when I first saw how some of</p>
+
+<p>these approaches to CSS MJS actually was</p>
+
+<p>so what I ended up using is the styled</p>
+
+<p>components library so here we're</p>
+
+<p>reporting styled components and then</p>
+
+<p>when you do that you can define these</p>
+
+<p>constants that basically let you create</p>
+
+<p>a little inline react component there's</p>
+
+<p>this album real thing which we saw up</p>
+
+<p>before it technically was a styled</p>
+
+<p>component and you can say that it's</p>
+
+<p>styled it or it could be one of the</p>
+
+<p>other components custom components that</p>
+
+<p>you've built and then you can define the</p>
+
+<p>CSS look in line here in your JavaScript</p>
+
+<p>file which you know initially felt very</p>
+
+<p>horrible and very wrong but as I took</p>
+
+<p>this approach if something made more</p>
+
+<p>sense</p>
+
+<p>one is that everything actually really</p>
+
+<p>does live in one place in this component</p>
+
+<p>another is that it can also respond your</p>
+
+<p>Styles can respond to the props that are</p>
+
+<p>passing to your component now</p>
+
+<p>you think this is a really simple</p>
+
+<p>example but if the album component has</p>
+
+<p>the active album drop and then we click</p>
+
+<p>on it it becomes active then we can</p>
+
+<p>change the styling and put that that</p>
+
+<p>blue border around it so that's really</p>
+
+<p>nice we don't actually have to go like</p>
+
+<p>we do in what Lana jQuery approach maybe</p>
+
+<p>and update class names and juggle a</p>
+
+<p>bunch of class names together the</p>
+
+<p>component itself just knows what its</p>
+
+<p>state is and can make itself look how it</p>
+
+<p>thinks it should make itself look in</p>
+
+<p>that case and there's you know more</p>
+
+<p>complicated things you can do with that</p>
+
+<p>but it's actually pretty nice and useful</p>
+
+<p>those are all in line like you're an</p>
+
+<p>inspector the thing and you changed it</p>
+
+<p>all the inline JavaScript CSS ticket</p>
+
+<p>yeah so what it does and I haven't gone</p>
+
+<p>too deep engine of like the actual nuts</p>
+
+<p>and bolts of what happens but it</p>
+
+<p>actually do basically like I have</p>
+
+<p>nonsense class today that elements in</p>
+
+<p>the DOM and then in that class has all</p>
+
+<p>the styles but yeah the other thing that</p>
+
+<p>that does is it prevents these styles</p>
+
+<p>from leaking out because it's got this</p>
+
+<p>nonsense class name there's no way that</p>
+
+<p>that class name is going to be used</p>
+
+<p>anywhere else so other tangential</p>
+
+<p>components aren't gonna pick up these</p>
+
+<p>styles they will fly to the child but</p>
+
+<p>they're not gonna leak outside and I</p>
+
+<p>don't know if people have used naming</p>
+
+<p>conventions like been in some of their</p>
+
+<p>CSS styling that's kind of a pretty</p>
+
+<p>heavy handle handed way to try to in my</p>
+
+<p>opinion achieve that same effect but</p>
+
+<p>with still having you know styles that</p>
+
+<p>apply globally</p>
+
+<p>so this image people may have seen this</p>
+
+<p>but this made a lot of sense to me when</p>
+
+<p>I saw in that I know I have been taught</p>
+
+<p>there's a particular separation of</p>
+
+<p>concerns between like JavaScript and</p>
+
+<p>HTML and CSS and that mixing them is bad</p>
+
+<p>and wrong but as I started to you know</p>
+
+<p>build things this way it actually makes</p>
+
+<p>a lot of sense to me that like my album</p>
+
+<p>component that's where the separation of</p>
+
+<p>concerns is and I have this nice</p>
+
+<p>wonderfully packaged album component all</p>
+
+<p>the stuff is in there and it knows how</p>
+
+<p>it's supposed to behave and that</p>
+
+<p>actually makes a lot of sense to me so</p>
+
+<p>let's talk about building and deploying</p>
+
+<p>have just a little bit of time here bend</p>
+
+<p>if erase the album cover I hope it's</p>
+
+<p>still within the acceptable rules of</p>
+
+<p>what I can put on screen in this</p>
+
+<p>conference nobody got too excited but</p>
+
+<p>alright I have this app and where where</p>
+
+<p>can I go where can I put it so let's</p>
+
+<p>talk about the jam stack a little bit</p>
+
+<p>which is in the the title of this talk</p>
+
+<p>took me a while to get to it but we're</p>
+
+<p>here and what the what the jam in Jam</p>
+
+<p>stack stands for is JavaScript API yes</p>
+
+<p>the alien Jam stock stands for an API</p>
+
+<p>and markup okay so that that's the the</p>
+
+<p>stack that we're dealing with here and</p>
+
+<p>let's look at that in relation to this</p>
+
+<p>app that I've been blabbering on about</p>
+
+<p>minutes now so the JavaScript it's react</p>
+
+<p>on the client-side and that's an</p>
+
+<p>important distinction in what I</p>
+
+<p>understand to be the jam stack in that</p>
+
+<p>it's client-side JavaScript um Preston</p>
+
+<p>had his decouple of Drupal across the</p>
+
+<p>stack talk yesterday and a lot of his</p>
+
+<p>examples there was a universal</p>
+
+<p>JavaScript or like isomorphic JavaScript</p>
+
+<p>component the handles be a node on the</p>
+
+<p>server side of the first request a jab</p>
+
+<p>CEQA is specifically not doing that the</p>
+
+<p>JavaScript runs on the client side and</p>
+
+<p>then there's an API you know the</p>
+
+<p>definition API is pretty broad in this</p>
+
+<p>case it's our Drupal API and you can put</p>
+
+<p>it anywhere you control which is great</p>
+
+<p>and especially from this app you know</p>
+
+<p>kind of doesn't matter where it is long</p>
+
+<p>as your app knows where it is but it</p>
+
+<p>doesn't have to be like a easily</p>
+
+<p>publicly available thing and then there</p>
+
+<p>a is mock-up and in this case it's the</p>
+
+<p>empty and build production bundle that I</p>
+
+<p>created and you can put because it's</p>
+
+<p>just that static set of assets you can</p>
+
+<p>put that a lot of different places for</p>
+
+<p>example I just put it up on github pages</p>
+
+<p>and boom now I have this app that's on</p>
+
+<p>github which is great I would say that</p>
+
+<p>it's not really as static as I think</p>
+
+<p>some of it jammed stachyose of gem stack</p>
+
+<p>apps could be it's a little bit more on</p>
+
+<p>the single page side of things but it</p>
+
+<p>still falls into the category I think</p>
+
+<p>however like looking at the marked up</p>
+
+<p>piece of this I'm doing in that the</p>
+
+<p>static markup I feel like that's the</p>
+
+<p>kind of secret sauce here in that</p>
+
+<p>typically the markup is statically built</p>
+
+<p>markup in these jams at convocations</p>
+
+<p>I've been also experimenting with Gaffey</p>
+
+<p>which is a react static site generator</p>
+
+<p>and that's definitely more on that side</p>
+
+<p>of things where it is statically filling</p>
+
+<p>your whole entire site but the question</p>
+
+<p>that I want to ask myself about this app</p>
+
+<p>and also as you start to get away from</p>
+
+<p>the you know laps that stuff that you</p>
+
+<p>might be familiar with that are playing</p>
+
+<p>around this sort of snack is ask</p>
+
+<p>yourself is there more of this app that</p>
+
+<p>can be static and even just thinking</p>
+
+<p>about this app I think there definitely</p>
+
+<p>is so that first first request that we</p>
+
+<p>have we saw the little spinner when it</p>
+
+<p>loaded and it's hitting the API and we</p>
+
+<p>got a little data and then render</p>
+
+<p>everything but really that first request</p>
+
+<p>is always going to be the same 50</p>
+
+<p>results so there is no reason why I</p>
+
+<p>couldn't have made that that first page</p>
+
+<p>to static or essentially act as if it is</p>
+
+<p>static and then get the data behind</p>
+
+<p>scenes and let you filter it and then</p>
+
+<p>also beyond that there's also the fact</p>
+
+<p>that it's only really December where</p>
+
+<p>this data is changing so this even this</p>
+
+<p>data itself but kind of live statically</p>
+
+<p>in there but there's more I want to do</p>
+
+<p>to try to take advantage of the static</p>
+
+<p>aspect of this and make it feel even</p>
+
+<p>faster on that initial memory but</p>
+
+<p>haven't quite gotten to it um so really</p>
+
+<p>quickly almost out of time but let's get</p>
+
+<p>to the hot melodrama here throw a lord</p>
+
+<p>fan again myself as I was building this</p>
+
+<p>is uh did we really need Drupal for this</p>
+
+<p>project no we didn't baby though so if</p>
+
+<p>here's somebody who is familiar with</p>
+
+<p>this stack and have a way that you can</p>
+
+<p>easily build an API something that</p>
+
+<p>you're comfortable</p>
+
+<p>I've done a number of times before then</p>
+
+<p>you're fine</p>
+
+<p>do that and that's absolutely great I'm</p>
+
+<p>sure there are like really experience</p>
+
+<p>with app developers or JavaScript folks</p>
+
+<p>who have their go-to way to do that</p>
+
+<p>might be something like firebase Express</p>
+
+<p>or that but I don't really know any of</p>
+
+<p>those things but in my case it was</p>
+
+<p>definitely yes so I'm familiar with</p>
+
+<p>Drupal and a lot of people here are</p>
+
+<p>probably familiar with Drupal and</p>
+
+<p>somebody I think who has some level of</p>
+
+<p>familiarity with Drupal but wants to</p>
+
+<p>have me add that powers something like a</p>
+
+<p>react app really can be served well by</p>
+
+<p>those API first distributions it was</p>
+
+<p>really easy for me to get set up and go</p>
+
+<p>and then I think it's also so effective</p>
+
+<p>and some of those distributions are so</p>
+
+<p>easy to get up and running that you</p>
+
+<p>actually don't really have a go-to thing</p>
+
+<p>for this it's worth checking out even if</p>
+
+<p>you're not a Drupal person because</p>
+
+<p>really what you're looking for is a</p>
+
+<p>really reliable consistent API and the</p>
+
+<p>things that you do within the admin UI</p>
+
+<p>to update your API it's pretty great so</p>
+
+<p>I don't think there really is a</p>
+
+<p>black-and-white answer it's simply a yes</p>
+
+<p>for me but I would certainly also</p>
+
+<p>understand if somebody's like no I use I</p>
+
+<p>don't know ice cream cone J s to make my</p>
+
+<p>back-end that's what you do in</p>
+
+<p>JavaScript</p>
+
+<p>so and so I'm putting this together hope</p>
+
+<p>it was interesting to people we might</p>
+
+<p>have a couple of minutes for questions</p>
+
+<p>also it's my first Dungeness talk let me</p>
+
+<p>give me a month in Nashville so I would</p>
+
+<p>really appreciate any feedback than</p>
+
+<p>anybody has about how this might be more</p>
+
+<p>interesting or useful to you but thank</p>
+
+<p>you any questions or anything yes I</p>
+
+<p>think you speak for that explain you</p>
+
+<p>actually have confidence in rural that</p>
+
+<p>you need to add or change certain parts</p>
+
+<p>and I was thinking fall into place as a</p>
+
+<p>API to be your multiple endpoints let's</p>
+
+<p>say you've had multiple sheets for</p>
+
+<p>different people and also some of their</p>
+
+<p>like comments attached to something then</p>
+
+<p>I think that this</p>
+
+<p>yeah yeah that makes us great yes I'm</p>
+
+<p>you said this was all client-side</p>
+
+<p>reactants right so they're probably</p>
+
+<p>Noble authentication that you have set</p>
+
+<p>up with your plate yeah where is it</p>
+
+<p>so the distributions also have signal</p>
+
+<p>Allah so that's definitely a figure I</p>
+
+<p>didn't really care if people could get</p>
+
+<p>the responses from this end point I make</p>
+
+<p>sure you can't like post to it yeah this</p>
+
+<p>is a react have a server cycle well that</p>
+
+<p>you can use if you wanted to I believe</p>
+
+<p>it does I haven't done anything with it</p>
+
+<p>I've only been in Paris twice did you</p>
+
+<p>find new music new music actually I've</p>
+
+<p>been listening to the Kendrick Lamar</p>
+
+<p>album because I see it so much and when</p>
+
+<p>I first listened to it I don't know I</p>
+
+<p>had trouble and trouble coming along to</p>
+
+<p>it at read listen there's past albums</p>
+
+<p>but it's awesome it's really awesome</p>
+
+<p>sometimes I feel like an idiot if I'm</p>
+
+<p>blasting it at my desk oh I'm reading</p>
+
+<p>code but it's really good</p>
+
+<p>it's probably a good mix of all of his</p>
+
+<p>different styles on one place alright</p>
+
+<p>so what'd you think would be a</p>
+
+<p>difference than losing the rest of water</p>
+
+<p>and seek a mite what would be the two</p>
+
+<p>different like being sick and it serves</p>
+
+<p>as a big up writing a story you take</p>
+
+<p>that I'm not so familiar with she can't</p>
+
+<p>miss calico opened the portal</p>
+
+<p>distribution for Google how they want to</p>
+
+<p>know things you have any idea the</p>
+
+<p>difference</p>
+
+<p>the closing concert music they use for</p>
+
+<p>envita yep I haven't used it sort I</p>
+
+<p>really don't know but I mean honestly at</p>
+
+<p>the end of the day partially from my</p>
+
+<p>perspective it's just making that API</p>
+
+<p>accessible and you know whatever does</p>
+
+<p>that in a way that works for you is kind</p>
+
+<p>of lying so that I think the biggest</p>
+
+<p>advantage to these distributions is</p>
+
+<p>keeping new that API without you really</p>
+
+<p>having to think about it thank you</p></div>
+          </div>
+
+  </div>
+
+</article>
+
+  </div>
+<div class="views-element-container block block-views block-views-blockschedule-2023-short-url" id="block-views-block-schedule-2023-short-url">
+  
+    
+      <div><div class="schedule view view-schedule-2023 view-id-schedule_2023 view-display-id-short_url js-view-dom-id-25ee448ab15b8ad3c4f5f9062d96844fe8d09148591256efe0dfb59e8557a954">
+  
+    
+      
+      <div class="view-content">
+          <div class="schedule__teaser"><p class="field-content">Short URL: <a href="https://mid.camp/68">https://mid.camp/68</a></p></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+</div>
+  </section>
+
+  <section class="map-banner">
+      <div class="views-element-container block block-views block-views-blockevent-venue-block-1" id="block-hatter-views-block-event-venue-block-1">
+  
+    
+      <div><div class="container view view-event-venue view-id-event_venue view-display-id-block_1 js-view-dom-id-c4457facb4064980202d80e1bce47abc54b4c12489cee961637a8371b73797c4">
+  
+    
+      
+      <div class="view-content">
+          <div class="views-row">
+
+
+<div class="map-overlay">
+  <span class="map__label">Location</span>
+  <h2 class="map__title"><span class="field field--name-title field--type-string field--label-hidden">DePaul University - Lincoln Park Student Center</span>
+</h2>
+  
+            <div class="field field--name-field-address field--type-address field--label-hidden field__item"><p class="map__address" translate="no">
+          2250 N Sheffield Ave. <br>
+            Chicago, IL 60614<br>
+  </p>
+</div>
+      
+  <a href="../venue/depaul-university-lincoln-park-student-center.html" class="cta-link--yellow">Learn more  <span class="cta-arrow"></span></a>
+</div>
+<div id='map' class="map"></div>
+</div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <section class="banner">
+      <div class="container">
+  
+      <h2 class="banner-title">Thank You to our Core Sponsors</h2>
+    
+      <div><div class="view view-event-sponsors view-id-event_sponsors view-display-id-block_1 js-view-dom-id-9f33f160efbea3364832625d2abdb48640a1f9aca33d9e308b500802da47b696">
+  
+    
+      
+      <div class="view-content">
+          <div class="l-3up"><a href="../sponsor/acquia.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-02/Acquia_no_tagline.png" width="450" height="94" alt="Acquia" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/platformsh.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-02/platform.png" width="400" height="79" alt="Platform.sh" />
+
+</a></div>
+    <div class="l-3up"><a href="../sponsor/pantheon.html" class="sponsor-item">  <img loading="lazy" src="../../sites/default/files/2018-11/pantheon.png" width="500" height="157" alt="Pantheon" />
+
+</a></div>
+
+    </div>
+  
+            <div class="view-footer">
+      <div class="l-1up button--center-container">
+      <a href="../../become-a-sponsor.html" class="cta-link">Become a Sponsor<span class="cta-arrow"></span></a>
+      <a href="../../sponsors.html" class="cta-link">See all Sponsors<span class="cta-arrow"></span></a>
+    </div>
+    </div>
+    </div>
+</div>
+
+  </div>
+
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="l-2up--1">  <div id="block-hatter-footerbranding" class="block block-block-content block-block-content2f35417b-1d83-40cb-a971-3683805002ae">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h3 class="footer-title"><a href="../../2025.html">MidCamp</a></h3>
+
+<div class="footer-description">
+<p>Midwest Drupal Camp (MidCamp) is an annual event held in Chicago (virtual in 2020 &amp; 2021) that brings together people who use, develop, design, and support the Web’s leading content management platform, Drupal.</p>
+
+<p>For more information email us at <a href="https://www.midcamp.org/cdn-cgi/l/email-protection#3851565e577855515c5b59554816574a5f"><span class="__cf_email__" data-cfemail="f59c9b939ab5989c9196949885db9a8792">[email&#160;protected]</span></a>.</p>
+
+<p><a href="http://eepurl.com/c4vVIP">Subscribe to our newsletter</a>.</p>
+
+<p>Thanks to&nbsp;<a href="http://amazee.io">Amazee.io</a> for hosting our site.</p>
+
+<p>The Archives: <a href="https://midcamp.org/2024">2024</a>&nbsp;<a href="https://midcamp.org/2023">2023</a>&nbsp;<a href="../../2021/article/midcamp-2022-canceled.html">2022</a> <a href="https://midcamp.org/2021">2021</a> <a href="https://midcamp.org/2020">2020</a>&nbsp;<a href="https://midcamp.org/2019">2019</a> <a href="https://midcamp.org/2018">2018</a> <a href="http://2017.midcamp.org">2017</a> <a href="http://2016.midcamp.org">2016</a> <a href="http://2015.midcamp.org">2015</a> <a href="http://2014.midcamp.org">2014</a><br>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+<a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" style="border-width:0"></a><br>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
+
+<p>&nbsp;</p>
+</div>
+</div>
+      
+  </div>
+<div id="block-hatter-socialfooter" class="block block-block-content block-block-contentc87b75b7-23fd-45ac-ae17-af7efa9c87a8">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="social--footer">
+    <li class="social__item--footer">
+        <a href="https://twitter.com/midwestcamp"><svg style="enable-background:new 0 0 900 900;" ixmlns="http://www.w3.org/2000/svg" title="twitter" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.6,0,450,0z M716.8,351.5c0.3,5.3,0.3,10.9,0.3,16.5
+c0,167.6-127.6,361.2-361.2,361.2c-71.8,0-138.5-20.9-194.7-57.1c10,1.2,20,1.8,30.3,1.8c59.7,0,114.1-20.3,157.6-54.4
+c-55.6-0.9-102.4-37.6-118.5-88.2c7.9,1.5,15.9,2.1,23.8,2.1c11.5,0,22.6-1.5,33.5-4.4c-58.2-11.5-101.8-62.9-101.8-124.4
+c0-0.6,0-0.9,0-1.5c17.1,9.7,36.8,15.3,57.6,15.9c-34.1-22.6-56.5-61.5-56.5-105.9c0-23.2,6.2-45,17.1-63.8
+c62.6,76.8,156.2,127.4,261.8,132.6c-2.1-9.4-3.2-19.1-3.2-29.1c0-70.3,56.8-127.1,127.1-127.1c36.5,0,69.7,15.3,92.6,40.3
+c29.1-5.6,56.2-16.2,80.6-30.9c-9.4,29.7-29.7,54.7-55.9,70.3c25.6-2.9,50.3-10,72.9-20C763,311.2,741.5,333.3,716.8,351.5z" /></svg><span>Twitter</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.facebook.com/MidCamp/"><svg style="enable-background:new 0 0 900.6 899.1;" title="facebook" version="1.1" viewBox="0 0 900.6 899.1" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M450,0C201.5,0,0,201.5,0,450c0,238.8,185.9,433.8,420.6,449.1V560H301.5V422.1h119.1V320.3c0-117.9,72.1-182.4,177.4-182.4
+	c50.3,0,93.5,3.8,106.5,5.3v123.3h-72.9c-57.4,0-68.2,27.4-68.2,67.1v87.9h136.5l-17.6,137.9H563.8v325.9
+ C757.6,835,900.6,659.1,900.6,449.7C900,201.5,698.6,0,450,0z" /></svg><span>Facebook</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://www.youtube.com/channel/UCWf6JWaRR8GIHbrZyDFhV3A"><svg style="enable-background:new 0 0 900 900;" title="YouTube" version="1.1" viewBox="0 0 900 900" x="0px" xml:space="preserve" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"><g><polygon points="382.9,534.4 558.2,443.6 382.9,351.8" /><path d="M450,0C201.5,0,0,201.5,0,450s201.5,450,450,450s450-201.5,450-450S698.5,0,450,0z M774.7,474.4c0,52.6-6.5,105-6.5,105
+s-6.5,44.7-25.9,64.4c-24.7,25.9-52.4,26.2-65,27.6c-90.9,6.8-227.4,6.8-227.4,6.8s-169.1-1.5-220.9-6.5
+c-14.4-2.6-47.1-1.8-71.5-27.9c-19.4-19.7-25.9-64.4-25.9-64.4s-6.5-52.6-6.5-105V425c0-52.6,6.5-105,6.5-105s6.5-44.7,25.9-64.4
+c24.7-25.9,52.4-25.9,65-27.6c90.9-6.8,227.4-6.8,227.4-6.8h0.3c0,0,136.5,0,227.4,6.8c12.6,1.5,40.6,1.5,65,27.6
+c19.4,19.7,25.9,64.4,25.9,64.4s6.5,52.6,6.5,105L774.7,474.4L774.7,474.4z" /></g></svg><span>YouTube</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://fosstodon.org/@midcamp" rel="me"><svg class="bi bi-mastodon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" /></svg><span>Mastodon</span></a>
+    </li>
+    <li class="social__item--footer">
+        <a href="https://bsky.app/profile/midcamp.org"><svg width="568" height="501" viewBox="0 0 568 501" fill="none"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" /></svg><span>Bluesky</span></a>
+    </li>
+</ul></div>
+      
+  </div>
+
+</div>
+      <div class="l-2up--2">  <nav role="navigation" aria-labelledby="block-hatter-footer-menu" id="block-hatter-footer" class="site-header__nav">
+  <div class="container">
+    <div class="l-1up">
+                                
+      <h2 class="visually-hidden" id="block-hatter-footer-menu">Footer</h2>
+      
+
+                    
+                      <ul class="footer-nav__list">
+                    <li class="footer-nav__list-item">
+        <a href="../../accessibility.html" data-drupal-link-system-path="node/7067">Accessibility</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../code-conduct.html" data-drupal-link-system-path="node/5">Code of Conduct</a>
+              </li>
+                <li class="footer-nav__list-item">
+        <a href="../../convince-your-boss.html" data-drupal-link-system-path="node/8684">Convince Your Boss</a>
+              </li>
+        </ul>
+  
+
+
+          </div>
+  </div>
+</nav>
+
+</div>
+    </div>
+  </footer>
+
+  </div>
+
+    
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/68","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"account":"UA-60086119-2","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"field_group":{"html_element":{"mode":"full","context":"view","settings":{"classes":"","show_empty_fields":false,"id":"","element":"div","show_label":true,"label_element":"h4","label_element_classes":"","attributes":"","effect":"none","speed":"fast"}}},"user":{"uid":0,"permissionsHash":"7d3e43463602cb05134725aa664a7d4f7a1f842257a4bc4f7b64504c2ca07170"}}</script>
+<script src="../../sites/default/files/js/js_llBcjrkrgAu2wT1DR7VGL_iP6geJyiTnF_8O5ZD57VI.js%3Fscope=footer&amp;delta=0&amp;language=en&amp;theme=hatter&amp;include=eJxLz89Pz0mNT8xLzKksyUwu1k9HE9DJSCwpSS3ST8_JT0rM0c2CC-QmFiTlVwAAPmAZQA"></script>
+<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.js"></script>
+<script src="../../sites/default/files/js/js_pODGOpSPRR3Y_Zt-7Fy-5B_pNv18oFAWhyhwUPCQZu4.js%3Fscope=footer&amp;delta=2&amp;language=en&amp;theme=hatter&amp;include=eJxLz89Pz0mNT8xLzKksyUwu1k9HE9DJSCwpSS3ST8_JT0rM0c2CC-QmFiTlVwAAPmAZQA"></script>
+
+  </body>
+</html>
